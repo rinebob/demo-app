@@ -1,0 +1,18 @@
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 600px;
+    margin-top: 40px;
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        
+        input, select {
+            margin: 12px 6px;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<h2>{{boardBS.value.id ? 'Edit board' : 'Create board'}}</h2>
+<form [formGroup]="boardForm" (ngSubmit)="saveBoard()">
+    <label for="displayName">Board title</label>
+    <input type="text" id="displayName" formControlName="displayNameControl">
+    
+    <label for="status">Board status</label>
+    <select id="status" formControlName="statusControl">
+        <option *ngFor="let status of statusValues" value="{{status}}">{{status}}</option>
+    </select>
+
+    <button type="submit">Save board</button>
+    <button (click)="cancelOperation()">Cancel</button>
+
+</form>
