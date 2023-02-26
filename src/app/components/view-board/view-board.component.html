@@ -1,0 +1,20 @@
+<ng-container *ngIf="board$ | async as board">
+    <div class="container">
+        <p>Selected board</p>
+        <p>id: {{ board.id }}</p>
+        <p>displayName: {{ board.displayName }}</p>
+        <button (click)="editBoard(board.id ?? 0)">Edit board</button>
+        <button (click)="deleteBoard(board.id ?? 0)">Delete board</button>
+        <div *ngIf="board.tasks as tasks">
+            <p>tasks:</p>
+            <div class="task-container" *ngFor="let task of tasks">
+                <p>id: {{ task.id }}</p>
+                <p>displayName: {{ task.displayName }}</p>
+                <p>description: {{ task.description }}</p>
+                <p>status: {{ task.status }}</p>
+                <!-- <button (click)="editTask(task)">Edit task</button>
+                <button (click)="deleteTask(task.id)">Delete task</button> -->
+            </div>
+        </div>
+    </div>
+</ng-container>

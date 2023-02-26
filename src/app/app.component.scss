@@ -1,0 +1,20 @@
+
+:host {
+    display: flex;
+    flex-direction: column;
+
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .design-button {
+            align-self: flex-end;
+        }
+    }
+
+}
+.container, .task-container {
+    border: 1px solid black;
+    margin: 4px 20px;
+}

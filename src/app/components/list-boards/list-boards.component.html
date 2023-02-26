@@ -1,0 +1,19 @@
+<ng-container *ngIf="boards$ | async as boards">
+    <p>All boards</p>
+    <button (click)="createNewBoard()">Create new board</button>
+    <div class="container" *ngFor="let board of boards">
+        <p>Board</p>
+        <p>id: {{ board.id }}</p>
+        <p>displayName: {{ board.displayName }}</p>
+        <div *ngIf="board.tasks as tasks">
+            
+            <p>tasks:</p>
+            <ng-container *ngFor="let task of tasks">
+                <span>{{task.id}}, </span>
+            </ng-container>
+        </div>
+        <div class="buttons-container">
+            <button (click)="viewBoard(board.id ?? 0)">Set selected board</button>
+        </div>
+    </div>
+</ng-container>
