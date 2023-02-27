@@ -29,7 +29,7 @@ export class ListBoardsComponent implements OnInit {
   }
 
   viewBoard(boardId: number) {
-    this.router.navigate(['boards', boardId]);
+    this.router.navigate(['view', boardId]);
   }
   
   createNewBoard() {

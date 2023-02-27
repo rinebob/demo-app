@@ -1,14 +1,26 @@
+@import "styles.scss";
 
 :host {
-    display: flex;
-    flex-direction: column;
+    @include flexboxLayout(row, flex-start, flex-start);
+    height: 100%;
+
+    .mat-sidenav-container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .heading {
+        @include darkHeadingXLText;
+        margin: 34px 120px 54px 34px;
+    }
+    
 
     .nav-bar {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+        @include flexboxLayout(row, flex-end, center);
+        width: 100%;
 
-        .design-button {
+        .nav-button {
+            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
             align-self: flex-end;
         }
     }

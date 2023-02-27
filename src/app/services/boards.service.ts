@@ -31,7 +31,10 @@ export class BoardsService  {
 
   // get one board
   getBoard(boardId: number): Observable<Board> {
-    return this.http.get<Board>(`${BOARDS_BASE_URL}/${boardId}`);
+    const board = this.http.get<Board>(`${BOARDS_BASE_URL}/${boardId}`);
+    console.log('bS gB called. boardId: ', boardId, board);
+    return board;
+    // return this.http.get<Board>(`${BOARDS_BASE_URL}/${boardId}`);
   }
 
   // add board

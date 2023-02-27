@@ -1,7 +1,34 @@
 
-<nav class="nav-bar">
-    <button class="nav-button" [routerLink]="'boards'">Boards</button>
-    <button class="nav-button" [routerLink]="'design-system'">Design system</button>
-</nav>
 
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side">
+
+        <h1 class="heading">kanban</h1>
+        <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
+        <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
+    
+        <button color="primary" mat-button (click)="sidenav.close()">Close</button>
+
+        <mat-nav-list>
+
+            <a mat-list-item [routerLink]="['/view', board.id ?? 0]" *ngFor="let board of boards$ | async">{{board.displayName}}</a>
+            
+        </mat-nav-list>
+        
+    </mat-sidenav>
+    
+    <mat-sidenav-content>
+        
+        <nav class="nav-bar">
+            <button mat-button class="nav-button" (click)="sidenav.open()">Open side menu</button>
+            <button mat-button class="nav-button" [routerLink]="'boards'">Boards</button>
+            <button mat-button class="nav-button" [routerLink]="'design-system'">Design system</button>
+            <button mat-button class="nav-button" [routerLink]="'create'">New board</button>
+        </nav>
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
+

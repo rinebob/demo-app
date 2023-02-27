@@ -9,7 +9,13 @@ import { DesignSystemComponent } from './components/design-system/design-system.
 const routes: Routes = [
   {path: '', redirectTo: 'boards', pathMatch: 'full'},
   {path: 'boards', component: ListBoardsComponent},
-  {path: 'boards/:id', component: ViewBoardComponent},
+  {
+    path: 'view/:id',
+    component: ViewBoardComponent,
+    resolve: {
+      board: BoardResolver
+    },
+  },
   {path: 'create', component: BoardFormComponent},
   {
     path: 'edit/:id',
