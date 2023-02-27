@@ -1,0 +1,80 @@
+
+
+:root {
+
+    --purple-1: #635fc7;
+    --purple-2: #a8a4ff;
+    
+    --grey-1: #000112;
+    --grey-2: #20212c;
+    --grey-3: #2b2c37;
+    --grey-4: #3e3f4e;
+    --grey-5: #828fa3;
+    --grey-6: #e4ebfa;
+
+    --white-1: #ffffff;
+    --white-2: #f4f7fd;
+
+    --red-1: #ea5555;
+    --red-2: #ff9898;
+
+    $colors: (
+        primary: #333,
+        secondary: #ffe,
+        tertiary: #f2f0f1,
+        quaternary: #f5b149,
+
+    );
+
+    --light-background-1: var(--white-1);
+    --light-background-2: var(--white-2);
+
+    --text-color-for-dark-background-1: var(--white-1);
+    --text-color-for-dark-background-2: var(--white-2);
+    
+    --primary-idle: var(--purple-1);
+    --primary-hover: var(--purple-2);
+
+    --secondary-idle: var(--white-1);
+    --secondary-hover: rgba(99, 95, 199, .25);
+
+    --destructive-idle: var(--red-1);
+    --destructive-hover: var(--red-2);
+
+    --checkbox-completed-text-color: var(--grey-1);
+    
+    --light-title-text-1: var(--grey-1);
+    --light-title-text-2: var(--grey-2);
+    --light-title-text-3: var(--grey-3);
+    --light-title-text-4: var(--grey-4);
+    --light-subtitle-text-1: var(--grey-5);
+    --light-subtitle-text-2: var(--grey-6);
+    
+
+    --dark-background-1: var(--grey-1);
+    --dark-background-2: var(--grey-2);
+
+    --text-color-for-light-background-1: var(--purple-1);
+    --text-color-for-light-background-2: var(--purple-2);
+
+    --dark-title-text-1: var(--white-1);
+    --dark-title-text-2: var(--white-1);
+    --dark-title-text-3: var(--white-1);
+    --dark-title-text-4: var(--white-1);
+    --dark-subtitle-text-1: var(--white-1);
+    --dark-subtitle-text-2: var(--white-1);
+
+
+    --column-dot-color-1: #49c4e5;
+    --column-dot-color-2: #8471f2;
+    --column-dot-color-3: #67e2ae;
+
+    --main-font-family: Plus Jakarta sans, "Helvetica Neue", sans-serif;
+    --font-kanit: Kanit, "Helvetica Neue", sans-serif;
+    --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
+    --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
+    --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
+    --font-nunito: Nunito, "Helvetica Neue", sans-serif;
+    
+
+}

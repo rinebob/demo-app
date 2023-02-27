@@ -1,7 +1,46 @@
-.container {
-    border: 1px solid black;
+
+
+.board {
+    background-color: var(--light-title-text-1);
+    border: 1px solid var(--light-accent-1);
+    color: var(--light-background-2);
+
     display: flex;
     flex-direction: column;
     margin: 4px 20px;
+        
+    
 
+    &-header {
+        color: var(--dark-background-1);
+        font-family: var(--main-font-family);
+
+    }
+
+    &-display-name {
+        font-family: var(--font-kanit);
+
+    }
+
+    .task {
+        background-color: var(--light-title-text-1);
+        border: 1px solid var(--light-accent-1);
+        color: var(--light-background-2);
+        
+        display: flex;
+        flex-direction: column;
+        margin: 4px 20px;
+        
+        &-header {
+            font-family: var(--josefin-sans);
+            font-size: 20px;
+            color: var(--destructive-idle);
+            background-color: var(--light-title-text-2);
+
+        }
+
+        &-id {
+
+        }
+    }
 }
