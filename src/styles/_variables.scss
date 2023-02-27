@@ -2,9 +2,84 @@
 
 :root {
 
-    --purple-1: #635fc7;
-    --purple-2: #a8a4ff;
+    ////// PRIMARY COLOR SPECIFIED IN KANBAN PROJECT DESIGN SYSTEM //////
     
+    --purple-1: #635fc7;
+    
+    ////////// ANGULAR MATERIAL THEME BASED ON ABOVE COLOR ///////////////////
+
+    // based on purple-1.  Hex values obteained from Material color tool
+    // https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+    $kanban-purple-palette: (
+        50: #e9e8f7,
+        100: #c7c6ec,
+        200: #a2a1de,
+        300: #7d7cd1,
+        400: #635fc7,       // primary color
+        500: #4a42bc,
+        600: #4439b1,
+        700: #3c2fa5,
+        800: #34249a,
+        900: #290c83,
+        contrast: (
+            50: rgba(black, 0.87),
+            100: rgba(black, 0.87),
+            200: rgba(black, 0.87),
+            300: white,
+            400: white,
+            500: white,
+            600: white,
+            700: white,
+            800: white,
+            900: white,
+        )
+    );
+
+    $kanban-primary: mat.define-palette($kanban-purple-palette, 400, 200);
+    $kanban-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+    // The "warn" palette is optional and defaults to red if not specified.
+    $kanban-warn: mat.define-palette(mat.$red-palette);
+
+    $kanban-dark-theme: mat.define-dark-theme((
+        color: (
+            primary: $kanban-primary,
+            accent: $kanban-accent,
+            warn: $kanban-warn,
+        ),
+         // Only include `typography` and `density` in the default dark theme.
+         // Specify the font to use something other than default Roboto font
+        typography: mat.define-typography-config($font-family: var(--main-font-family)),
+        density: 0,
+        ));
+
+    $kanban-light-theme: mat.define-light-theme((
+    color: (
+        primary: $kanban-primary,
+        accent: $kanban-accent,
+        warn: $kanban-warn,
+    ),
+    ));
+
+    // Apply the dark theme by default
+    @include mat.core-theme($kanban-dark-theme);
+    @include mat.all-component-themes($kanban-dark-theme);
+    
+    // Apply the light theme only when the user prefers light themes.
+    @media (prefers-color-scheme: light) {
+        // Use the `-color` mixins to only apply color styles without reapplying the same
+        // typography and density styles.
+        @include mat.core-color($kanban-light-theme);
+        // @include mat.all-component-themes($kanban-light-theme);
+        
+   }
+
+
+   ////////// REMAINING KANBAN COLORS NOT USED IN THEME ///////////////////
+
+   
+   --purple-2: #a8a4ff;
+        
     --grey-1: #000112;
     --grey-2: #20212c;
     --grey-3: #2b2c37;
@@ -17,14 +92,6 @@
 
     --red-1: #ea5555;
     --red-2: #ff9898;
-
-    $colors: (
-        primary: #333,
-        secondary: #ffe,
-        tertiary: #f2f0f1,
-        quaternary: #f5b149,
-
-    );
 
     --light-background-1: var(--white-1);
     --light-background-2: var(--white-2);
@@ -49,7 +116,6 @@
     --light-title-text-4: var(--grey-4);
     --light-subtitle-text-1: var(--grey-5);
     --light-subtitle-text-2: var(--grey-6);
-    
 
     --dark-background-1: var(--grey-1);
     --dark-background-2: var(--grey-2);
@@ -69,12 +135,77 @@
     --column-dot-color-2: #8471f2;
     --column-dot-color-3: #67e2ae;
 
-    --main-font-family: Plus Jakarta sans, "Helvetica Neue", sans-serif;
+    --size-button-tall: 48px;
+    --size-button-regular: 40px;
+    --size-heading-xl: 24px,
+    --size-heading-lg: 18px,
+    --size-heading-md: 15px,
+    --size-heading-sm: 12px,
+    --size-body-m: 13px,
+    --size-body-s: 12px,
+
+    // --font-plus-jakarta-sans: Plus Jakarta sans, "Helvetica Neue", sans-serif;
+    --font-plus-jakarta-sans: Plus Jakarta sans;
     --font-kanit: Kanit, "Helvetica Neue", sans-serif;
     --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
     --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
     --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
     --font-nunito: Nunito, "Helvetica Neue", sans-serif;
+    
+    --main-font-family: var(--font-plus-jakarta-sans);
+    // --main-font-family: var(--font-kanit);
+    // --main-font-family: var(--font-josefin-sans);
+    // --main-font-family: var(--font-great-vibes);
+    // --main-font-family: var(--font-dancing-script);
+    // --main-font-family: var(--font-nunito);
+
+    $colors: (
+        primary-idle: var(--primary-idle),
+        primary-hover: var(--primary-hover),
+        secondary-idle: var(--secondary-idle),
+        secondary-hover: var(--secondary-hover),
+        destructive-idle: var(--destructive-idle),
+        destructive-hover: var(--destructive-hover),
+    );
+
+    @function color($color-name) {
+        @return map-get($colors, $color-name);
+    }
+
+    $font-sizes: (
+        heading-xl: 24px,
+        heading-lg: 18px,
+        heading-md: 15px,
+        heading-sm: 12px,
+        body-m: 13px,
+        body-s: 12px,
+    );
+
+    @function size($size) {
+        @return map-get($font-sizes, $size);
+    }
+
+    $fonts: (
+        plus-jakarta-sans: var(--font-plus-jakarta-sans),
+        kanit: var(--font-kanit),
+        josefin-sans: var(--font-josefin-sans),
+        great-vibes: var(--font-great-vibes),
+        dancing-script: var(--font-dancing-script),
+        nunito: var(--font-nunito),
+    );
+
+    @function font($font) {
+        @return map-get($fonts, $font);
+    }
+
+    $element-sizes: (
+        button-tall: 48px,
+        button-regular: 40px,
+    );
+
+    @function elementSize($element-size) {
+        @return map-get($element-sizes, $element-size);
+    }
     
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -31,8 +33,19 @@ export class AppComponent implements OnDestroy, OnInit {
   showTasks = false;
   showForm = false;
 
-  constructor(private boardsService: BoardsService, private router: Router) {
+  constructor(private boardsService: BoardsService, private router: Router, 
+    private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.boards$ = boardsService.listBoards();
+    
+    this.matIconRegistry.addSvgIcon(
+      `logo-light`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("./assets/logo-light.svg")
+    );
+
+    this.matIconRegistry.addSvgIcon(
+      `icon-light-theme`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("./assets/icon-light-theme.svg")
+    );
   }
 
   ngOnInit() {
@@ -59,40 +72,22 @@ export class AppComponent implements OnDestroy, OnInit {
 
   }
 
-  createNewBoard() {
-    this.router.navigateByUrl('boards/create');
-
-  }
-
-  handleOutputBoard(board: Board) {
-
-
-  }
-
   getTasksFromBoard(boardId: number) {
     console.log('aC gTFB boardId: ', boardId);
     const tasks = this.boardsService.getTasksFromBoard(boardId).subscribe(tasks => {
       this.tasksBS.next(tasks);
-
     });
-
-
   }
 
   setSelectedTask(taskId: number) {
     const task = this.selectedBoardBS.value?.tasks?.find(task => task.id === taskId);
     this.selectedTaskBS.next(task);
-
-
   }
 
   editTask(task: Task) {
     this.showTasks = false;
     this.showForm = true;
-
   }
 
-  deleteTask(taskId: string) {
-
-  }
+  deleteTask(taskId: string) {}
 }

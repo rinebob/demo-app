@@ -6,6 +6,11 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { RouterModule } from '@angular/router';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -36,6 +41,11 @@ import { DesignSystemComponent } from './components/design-system/design-system.
     HttpClientModule,
     ReactiveFormsModule,
 
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatSidenavModule,
+
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
@@ -48,7 +58,8 @@ import { DesignSystemComponent } from './components/design-system/design-system.
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [MatIconRegistry],
+  exports: [MatIconModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
