@@ -1,0 +1,277 @@
+@import "styles.scss";
+
+.design-container {
+    @include flexboxLayout;
+    padding: 12px;
+    
+    .elements {
+        @include border1;
+        @include flexboxLayout;
+
+        // width: 50%;
+        width: 100%;
+
+        .colors {
+            @include border1;
+            @include flexboxLayout;
+            flex-wrap: wrap;
+            width: 33%;
+            
+            .color {
+                @include border1;
+                flex-grow: 1;
+                height: 40px;
+                width: 10%;
+
+            }
+
+            .color-1 {
+                background-color: var(--purple-1);
+                color: var(--white-1);
+            }
+
+            .color-2 {
+                background-color: var(--purple-2);
+                color: var(--white-1);
+            }
+
+            .color-3 {
+                background-color: var(--grey-1);
+                color: var(--white-1);
+            }
+
+            .color-4 {
+                background-color: var(--grey-2);
+                color: var(--white-1);
+            }
+
+            .color-5 {
+                background-color: var(--grey-3);
+                color: var(--white-1);
+            }
+
+            .color-6 {
+                background-color: var(--grey-4);
+                color: var(--white-1);
+            }
+
+            .color-7 {
+                background-color: var(--grey-5);
+                color: var(--white-1);
+            }
+
+            .color-8 {
+                background-color: var(--grey-6);
+                color: var(--grey-1);
+            }
+
+            .color-9 {
+                background-color: var(--white-1);
+                color: var(--grey-1);
+            }
+
+            .color-10 {
+                background-color: var(--white-2);
+                color: var(--grey-1);
+            }
+
+            .color-11 {
+                background-color: var(--red-1);
+                color: var(--white-1);
+            }
+
+            .color-12 {
+                background-color: var(--red-2);
+                color: var(--white-1);
+            }
+        }
+
+        .interactive {
+            @include border1;
+            @include flexboxLayout($flex-direction: column, $align-items: center);
+            
+            .buttons {
+                @include flexboxLayout($align-items: center);
+                flex-wrap: wrap;
+                
+                .button {
+                    @include mainButtonStyles;
+                }
+                
+                .button-1 {
+                    height: 48px;
+                    background-color: var(--primary-idle);
+                }
+
+                .button-2 {
+                    background-color: var(--primary-idle);
+                    
+                }
+                .button-3 {
+                    background-color: var(--secondary-idle);
+                    color: var(--text-color-for-light-background-1)
+                    
+                }
+                .button-4 {
+                    background-color: var(--destructive-idle);
+                    
+                }
+
+                .button-5 {
+                    height: 48px;
+                    background-color: var(--primary-hover);
+                }
+
+                .button-6 {
+                    background-color: var(--primary-hover);
+                    
+                }
+                .button-7 {
+                    background-color: var(--secondary-hover);
+                    color: var(--text-color-for-light-background-1)
+                    
+                }
+                .button-8 {
+                    background-color: var(--destructive-hover);
+                    
+                }
+
+            }
+
+            .fields {
+                @include flexboxLayout;
+                width: 100%;
+
+                & > div {
+                    width: 33%;
+                }
+                
+                .checkboxes {
+                    @include border1;
+                    // @include flexboxLayout($flex-direction: column);
+                    width: 33%;
+                    display: block;
+
+                    .checkbox {
+                        @include border1;
+                        // @include flexboxLayout;
+                        // display: block;
+                    }
+
+                    .checkbox-container {
+                        @include flexboxLayout($align-items: center);
+
+                     
+                    }
+
+                    .checkbox-label {
+                        @include lightBodyMText;
+                        display: block;
+
+                    }
+                    
+                    .checkbox-idle {
+                        color: var(--light-title-text-1);
+
+                    }
+
+                    .checkbox-hovered {
+                        color: var(--light-title-text-1);
+                        background-color: var(--secondary-hover);
+                        border-radius: 4px;
+
+                    }
+
+                    .checkbox-completed {
+                        color: var(--checkbox-completed-text-color);
+                        opacity: .5;
+                        text-decoration-line: line-through;
+
+                    }
+                }
+                
+                .text-fields {
+                    @include border1;
+                    @include flexboxLayout($flex-direction: column);
+                    width: 33%;
+
+                    .text-field {
+                        @include border1;
+                        @include flexboxLayout;
+                    }
+                }
+                
+                .dropdown {
+                    @include border1;
+                    @include flexboxLayout($flex-direction: column);
+                    width: 33%;
+                }
+
+
+            }
+        }
+
+    }
+
+    .typography {
+        display: none;
+        @include border1;
+        width: 0;
+        .spacer {
+            margin-bottom: 20px;
+        }
+
+        .light-styles {
+            background-color: var(--light-background-1);
+    
+            .light-heading-xl{
+                @include lightHeadingXLText;
+                
+            }
+            .light-heading-l{
+                @include lightHeadingLText;
+            }
+            .light-heading-m{
+                @include lightHeadingMText;
+            }
+            .light-heading-s{
+                @include lightHeadingSText;
+            }
+            .light-body-l{
+                @include lightBodyLText;
+            }
+            .light-body-m{
+                @include lightBodyMText;
+            }
+        }
+    
+        .dark-styles {
+            background-color: var(--dark-background-1);
+    
+            .dark-heading-xl{
+                @include darkHeadingXLText;
+                
+            }
+            .dark-heading-l{
+                @include darkHeadingLText;
+            }
+            .dark-heading-m{
+                @include darkHeadingMText;
+            }
+            .dark-heading-s{
+                @include darkHeadingSText;
+            }
+            .dark-body-l{
+                @include darkBodyLText;
+            }
+            .dark-body-m{
+                @include darkBodyMText;
+            }
+        }
+
+    }
+
+
+
+
+}
