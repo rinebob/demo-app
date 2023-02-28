@@ -60,10 +60,10 @@ export class AppComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     this.boards$.pipe().subscribe(boards => {
-      console.log('aC ngOI boards sub: ', boards);
+      // console.log('aC ngOI boards sub: ', boards);
     });
     this.tasks$.pipe().subscribe(tasks => {
-      console.log('aC ngOI tasks sub: ', tasks);
+      // console.log('aC ngOI tasks sub: ', tasks);
     });
   }
 
@@ -110,11 +110,11 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   toggleDarkMode(event: any) {
-    console.log('a tDM event: ', event);
+    // console.log('a tDM event: ', event);
   }
 
   toggleShowSidenavButton(event: any) {
-    console.log('a tSSB event: ', event);
+    // console.log('a tSSB event: ', event);
     this.shouldShowOpenSidenavButton = !this.shouldShowOpenSidenavButton;
 
   }

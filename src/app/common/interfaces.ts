@@ -47,6 +47,11 @@ export interface SortedTasks {
     [key: string]: Task[];
 }
 
+export interface SortedTasksWithColumns {
+    allocatedTasks: SortedTasks;
+    columns: string[];
+}
+
 export interface ColumnOrder {
     [key: string]: number;
 }
