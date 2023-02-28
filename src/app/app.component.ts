@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
+import {ThemePalette} from '@angular/material/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -32,10 +33,19 @@ export class AppComponent implements OnDestroy, OnInit {
   showAllBoards = true;
   showTasks = false;
   showForm = false;
+  numBoards = 0;
+
+  shouldShowOpenSidenavButton = true;
+  darkModeToggleButtonColor: ThemePalette = 'primary';
 
   constructor(private boardsService: BoardsService, private router: Router, 
     private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.boards$ = boardsService.listBoards();
+
+    this.boards$.pipe().subscribe(boards => {
+      console.log('a ctor boards sub: ', boards);
+      this.numBoards = boards.length;
+    });
     
     this.matIconRegistry.addSvgIcon(
       `logo-light`,
@@ -61,6 +71,10 @@ export class AppComponent implements OnDestroy, OnInit {
     this.destroy.next();
     this.destroy.complete();
     
+  }
+
+  createNewBoard() {
+    console.log('a cNB create new board called');
   }
 
   setSelectedBoard(board: Board) {
@@ -90,4 +104,18 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   deleteTask(taskId: string) {}
+
+  openCreateTaskDialog() {
+
+  }
+
+  toggleDarkMode(event: any) {
+    console.log('a tDM event: ', event);
+  }
+
+  toggleShowSidenavButton(event: any) {
+    console.log('a tSSB event: ', event);
+    this.shouldShowOpenSidenavButton = !this.shouldShowOpenSidenavButton;
+
+  }
 }

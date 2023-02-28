@@ -1,8 +1,14 @@
 
 export enum TaskStatus {
+    PLANNING = 'planning',
+    BACKLOG = 'backlog',
     NOT_STARTED = 'not-started',
-    STARTED = 'started',
-    COMPLETE = 'complete',
+    DEVELOPMENT = 'development',
+    REVIEW = 'review',
+    NIGHTLY = 'nightly',
+    STAGING = 'staging',
+    PRODUCTION = 'production',
+    DEPRECATED = 'deprecated',
 }
 
 export interface Entity {
@@ -35,4 +41,16 @@ export interface Board extends Entity {
 export enum FormMode {
     CREATE = 'create',
     EDIT = 'edit',
+}
+
+export interface SortedTasks {
+    [key: string]: Task[];
+}
+
+export interface ColumnOrder {
+    [key: string]: number;
+}
+
+export interface ColumnColor {
+    [key: string]: string;
 }

@@ -7,26 +7,131 @@
     .mat-sidenav-container {
         height: 100%;
         width: 100%;
+    
+        .mat-sidenav {
+            @include flexboxLayout(column, flex-start, space-between);
+            background-color: var(--dark-background-3);
+            width: 300px;
+
+            ::ng-deep .mat-drawer-inner-container {
+                @include flexboxLayout(column, space-between, flex-start);
+                overflow: hidden;
+            }
+
+            .top-sidenav-container {
+                .heading {
+                    @include darkHeadingXLText;
+                    margin: 34px 120px 54px 34px;
+                }
+
+                .all-boards {
+                    @include lightHeadingSText;
+                    padding: 0 16px;
+                    text-transform: uppercase;
+                }
+
+                .create-new-board-button {
+                    @include darkHeadingMText;
+                    background-color: var(--dark-background-3);
+                    color: var(--primary-idle);
+                }
+            }
+
+            .bottom-buttons-container {
+                @include flexboxLayout(column, flex-start, center);
+                margin-bottom: 50px;
+                // padding-left: 24px;
+                width: 100%;
+                
+                .dark-mode-switch-container {
+                    @include flexboxLayout(row, space-between, center);
+                    background-color: var(--dark-background-2);
+                    // margin: 0 24px 22px;
+                    margin: 0 0 22px;
+                    padding: 15px 64px;
+
+                    mat-icon {
+                        color: var(--light-subtitle-text-1);
+                    }
+
+                    mat-slide-toggle {
+                        margin: 0 24px;
+                    }
+                }
+
+                .hide-sidebar-button {
+                    @include darkHeadingMText;
+                    @include flexboxLayout(row, center, center);
+                    align-self: flex-start;
+                    background-color: var(--dark-background-3);
+                    border: none;
+                    color: var(--light-subtitle-text-1);
+                    cursor: pointer;
+                    margin-left: 14px;
+
+                    mat-icon {
+                        margin-right: 15px;
+                    }
+
+                }
+            }
+
+            // }
+        }
+
+        .mat-sidenav-content {
+            background-color: var(--dark-background-2);
+            position: relative;
+    
+            .nav-bar {
+                @include flexboxLayout(row, flex-end, center);
+                background-color: var(--dark-background-3);
+                height: var(--size-nav-bar-height);
+                width: 100%;
+        
+                .nav-button {
+                    @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                }
+            }
+        }
+
     }
 
-    .heading {
-        @include darkHeadingXLText;
-        margin: 34px 120px 54px 34px;
+    
+
+    // .heading {
+    //     @include darkHeadingXLText;
+    //     margin: 34px 120px 54px 34px;
+    // }
+
+ 
+
+    .link-active {
+        background-color: var(--primary-idle);
+        border-top-right-radius: 24px;
+        border-bottom-right-radius: 24px;
+        width: 276px;
     }
     
 
-    .nav-bar {
-        @include flexboxLayout(row, flex-end, center);
-        width: 100%;
-
-        .nav-button {
-            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
-            align-self: flex-end;
-        }
-    }
+   
 
 }
-.container, .task-container {
-    border: 1px solid black;
-    margin: 4px 20px;
+
+
+// .container, .task-container {
+//     border: 1px solid black;
+//     margin: 4px 20px;
+// }
+
+.show-sidenav-button {
+    @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+    border-top-left-radius: 0;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 0;
+    position: absolute;
+    left: 0;
+    margin: 0;
+    top: 90%;
 }

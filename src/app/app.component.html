@@ -1,19 +1,60 @@
 
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side">
+    <mat-sidenav #sidenav mode="side"
+                opened="true"
+                (openedChange)="toggleShowSidenavButton($event)"
+    >
 
-        <h1 class="heading">kanban</h1>
-        <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
-        <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
-    
-        <button color="primary" mat-button (click)="sidenav.close()">Close</button>
+        <div class="top-sidenav-container">
 
-        <mat-nav-list>
+            <h1 class="heading">kanban</h1>
+            <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
+            <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
+        
+            <p class="all-boards">all boards ({{numBoards}})</p>
 
-            <a mat-list-item [routerLink]="['/view', board.id ?? 0]" *ngFor="let board of boards$ | async">{{board.displayName}}</a>
-            
-        </mat-nav-list>
+            <mat-nav-list>
+
+                <a *ngFor="let board of boards$ | async"
+                mat-list-item 
+                [routerLink]="['/view', board.id ?? 0]"
+                routerLinkActive="link-active"
+                (click)="sidenav.close()"
+                >
+                    {{board.displayName}}
+                </a>
+                
+            </mat-nav-list>
+
+            <button mat-flat-button
+                    class="create-new-board-button"
+                    (click)="createNewBoard()"
+            >
+                <mat-icon>add</mat-icon>
+                Create New Board
+            </button>
+
+        </div>
+
+        <div class="bottom-buttons-container">
+            <div class="dark-mode-switch-container">
+                <mat-icon class="material-symbols-outlined">light_mode</mat-icon>
+                <mat-slide-toggle [color]="darkModeToggleButtonColor"
+                                  (change)="toggleDarkMode($event)"
+                                
+                ></mat-slide-toggle>
+                <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
+
+            </div>
+
+            <button class="hide-sidebar-button"
+                    (click)="sidenav.close()"
+            >
+                <mat-icon>visibility_off</mat-icon>
+                Hide Sidebar
+            </button>
+        </div>
         
     </mat-sidenav>
     
@@ -23,10 +64,24 @@
             <button mat-button class="nav-button" (click)="sidenav.open()">Open side menu</button>
             <button mat-button class="nav-button" [routerLink]="'boards'">Boards</button>
             <button mat-button class="nav-button" [routerLink]="'design-system'">Design system</button>
-            <button mat-button class="nav-button" [routerLink]="'create'">New board</button>
+            
+            <button mat-button
+                    class="nav-button"
+                    (click)="openCreateTaskDialog()"
+            >
+                <mat-icon>add</mat-icon>
+                Add New Task
+            </button>
         </nav>
 
         <router-outlet></router-outlet>
+
+        <button *ngIf="shouldShowOpenSidenavButton"
+                class="show-sidenav-button"
+                (click)="sidenav.open()"
+        >
+            <mat-icon>visibility</mat-icon>
+        </button>
 
     </mat-sidenav-content>
 
