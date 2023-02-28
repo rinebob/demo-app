@@ -13,13 +13,17 @@ export class ImBoardsTasksService  implements InMemoryDbService {
   constructor() { }
 
   createDb(reqInfo?: RequestInfo) {
-    // const {raw_boards, raw_tasks} = buildBoardsAndTasks(RAW_BOARDS, RAW_TASKS);
+    // Generates a raw data set.  After adding boards and/or tasks, uncomment this and
+    // let the utility construct a raw data set.
     // const {boards, tasks} = buildBoardsAndTasks(RAW_BOARDS, RAW_TASKS);
 
+    // Copy the output from the console and paste it into the BOARDS array in
+    // mock-task-data.ts
     // console.log('iMBTS cDB boards: ', boards);
     
+    // Use the mock data in the in-memory-web-api
     const boards = [...BOARDS];
-    console.log('iMBT p requst info: ', reqInfo);
+    // console.log('iMBT p requst info: ', reqInfo);
     
     return {boards};
   }

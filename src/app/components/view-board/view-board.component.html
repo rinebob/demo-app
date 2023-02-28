@@ -1,20 +1,63 @@
 <ng-container *ngIf="board$ | async as board">
-    <div class="container">
-        <p>Selected board</p>
-        <p>id: {{ board.id }}</p>
-        <p>displayName: {{ board.displayName }}</p>
-        <button (click)="editBoard(board.id ?? 0)">Edit board</button>
-        <button (click)="deleteBoard(board.id ?? 0)">Delete board</button>
-        <div *ngIf="board.tasks as tasks">
-            <p>tasks:</p>
-            <div class="task-container" *ngFor="let task of tasks">
-                <p>id: {{ task.id }}</p>
-                <p>displayName: {{ task.displayName }}</p>
-                <p>description: {{ task.description }}</p>
-                <p>status: {{ task.status }}</p>
-                <!-- <button (click)="editTask(task)">Edit task</button>
-                <button (click)="deleteTask(task.id)">Delete task</button> -->
+    
+    <ng-container *ngIf="columns.length !== 0; else noTasks">
+
+        <div class="columns-container">
+    
+            <div *ngFor="let column of columns"
+                [ngStyle]="{'order': getColumnOrder(column)}"
+                [style.width.px]="getWidth(columns.length)"
+                 class="column-container" 
+            >
+            
+                <ng-container *ngIf="allocatedTasks[column]">
+
+                    <div class="column-header">
+                        <div class="color-circle"
+                        [ngStyle]="{'background-color': getColumnColor(column)}"
+                        ></div>
+                        <p class="column-header-text">{{column}} ({{allocatedTasks[column].length}})</p>
+                    </div>
+
+
+                    <div class="task-card" *ngFor="let task of allocatedTasks[column]">
+                        <p class="task-title">{{task.displayName}}</p>
+                        <p class="task-subtitle">{{task.status}}</p>
+                        <p class="task-subtitle">x of x subtasks</p>
+            
+                    </div>
+
+                </ng-container>
+
+                <div *ngIf="column === 'new-column'" 
+                     class="new-column-area"
+                >
+                    <mat-icon>add</mat-icon>
+                    <button mat-button class="new-column-button">new column</button>
+                </div>
+
             </div>
+
+            
+
         </div>
-    </div>
+
+    </ng-container>
+
+    <ng-template #noTasks>
+        <div class="no-tasks-container">
+            
+            <p class="empty-board">{{emptyBoardText}}</p>
+            <button mat-button
+                    class="add-column-button"
+                    (click)="addNewColumn()"
+            >
+                <mat-icon>add</mat-icon>
+                Add New Column
+            </button>
+
+        </div>
+
+    </ng-template>
+    
 </ng-container>
