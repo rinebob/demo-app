@@ -1,8 +1,8 @@
-import { Board, Entity, SortedTasks, SortedTasksWithColumns, Task, TaskStatus } from '../common/interfaces';
+import { Board, Entity, SortedTasks, SortedTasksWithColumns, SubTask, Task, TaskStatus } from '../common/interfaces';
 import { ALLOCATED_TASKS_INITIALIZER } from './constants';
 
 
-export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[]) {
+export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], subTasksSource: SubTask[]) {
     let boards: Board[] = [];
     let tasks: Task[] = [];
     
@@ -16,7 +16,8 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[]) 
           displayName: task.displayName,
           description: task.description,
           boardId: boardId,
-          subTasks: task.subTasks,
+          // subTasks: task.subTasks,
+          subTasks: [...subTasksSource],
           status: board.status === TaskStatus.NOT_STARTED ? TaskStatus.NOT_STARTED : task.status,
         }
         // console.log('tU bBAT post taskId: ', newTask.entityId);
@@ -42,9 +43,11 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[]) 
   }
 
   export function allocateTasksToColumns(board: Board): SortedTasksWithColumns {
-    const allocatedTasks: SortedTasks = ALLOCATED_TASKS_INITIALIZER;
+    const allocatedTasks: SortedTasks = {...ALLOCATED_TASKS_INITIALIZER};
     const tasks = board.tasks ?? [];
     const statusValues = new Set<string>(['new-column']);
+    // console.log('tU aTTC input board: ', board);
+    // console.log('tU aTTC start allocatedTasks: ', allocatedTasks);
 
     if (tasks) {
       for (const task of tasks) {
@@ -52,9 +55,9 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[]) 
         // console.log('tU aTTC input task: ', task);
         const status = task.status;
         statusValues.add(status);
-        // console.log('tU aTTC t.allocTasks start: ', this.allocatedTasks);
-        let existingTasks = allocatedTasks[status] ?? [];
         // console.log('tU aTTC status/values: ', status, statusValues);
+        // console.log('tU aTTC allocTasks start: ', allocatedTasks);
+        let existingTasks = allocatedTasks[status] ?? [];
         // console.log('tU aTTC existing tasks: ', existingTasks);
         
         if (existingTasks?.length) {
@@ -69,15 +72,15 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[]) 
           // console.log('tU aTTC first existing task: ', existingTasks);
         }
         allocatedTasks[status] = existingTasks;
-        // console.log('tU aTTC t.allocTasks end: ', this.allocatedTasks);
       }
+      // console.log('tU aTTC allocTasks end: ', allocatedTasks);
     }
     const columns = [...statusValues.keys()];
     // console.log('tU aTTC keys: ', columns);
     // console.log('tU aTTC final columns/tasks by status map: ', columns, allocatedTasks);
 
     for (const column of columns) {
-      // console.log('tU aTTC column/tasks: ', column, this.allocatedTasks[column]);
+      // console.log('tU aTTC column/tasks: ', column, allocatedTasks[column]);
     }
 
     return {allocatedTasks, columns};

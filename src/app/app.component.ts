@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import {ThemePalette} from '@angular/material/core';
@@ -9,6 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 import { BoardsService } from './services/boards.service';
 import { Board, Task } from './common/interfaces';
 import { getTasksFromBoard } from './common/task_utils';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +41,14 @@ export class AppComponent implements OnDestroy, OnInit {
   darkModeToggleButtonColor: ThemePalette = 'primary';
 
   constructor(private boardsService: BoardsService, private router: Router, 
-    private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
+    private dialog: MatDialog, private route: ActivatedRoute,
+    ) {
+
+    this.route.data.pipe().subscribe(data => {
+      console.log('a ctor route data: ', data);
+    });
+
     this.boards$ = boardsService.listBoards();
 
     this.boards$.pipe().subscribe(boards => {
@@ -106,6 +115,14 @@ export class AppComponent implements OnDestroy, OnInit {
   deleteTask(taskId: string) {}
 
   openCreateTaskDialog() {
+
+    // console.log('aC oCTD create task called. boardId: ', this.boar);
+
+    const dialogRef = this.dialog.open(TaskFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('vB oETD edit task dialog closed.  result: ', result);
+    });
 
   }
 

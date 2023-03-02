@@ -1,11 +1,15 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take } from 'rxjs';
 import { ALLOCATED_TASKS_INITIALIZER, BOARD_INITIALIZER, COLUMN_COLOR, COLUMN_ORDER_FROM_STATUS } from 'src/app/common/constants';
-import { Board, SortedTasks, Task, TaskStatus } from 'src/app/common/interfaces';
+import { Board, DialogCloseResult, SortedTasks, Task, TaskStatus } from 'src/app/common/interfaces';
 import { BoardsService } from 'src/app/services/boards.service';
 import { allocateTasksToColumns } from '../../common/task_utils';
+import { ViewTaskComponent } from '../view-task/view-task.component';
+import { TaskFormComponent } from '../task-form/task-form.component';
+import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
 
 @Component({
   selector: 'app-view-board',
@@ -21,6 +25,9 @@ export class ViewBoardComponent implements OnInit {
   tasksBS = new BehaviorSubject<Task[]>([]);
   tasks$: Observable<Task[]> = this.tasksBS;
 
+  selectedTaskBS = new BehaviorSubject<Task|undefined>(undefined);
+  selectedTask$: Observable<Task|undefined> = this.selectedTaskBS;
+
   allocatedTasks: SortedTasks = ALLOCATED_TASKS_INITIALIZER;
   columns: string[] = [];
 
@@ -35,20 +42,25 @@ export class ViewBoardComponent implements OnInit {
 
   constructor(private boardsService: BoardsService, 
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    ) {
 
       this.route.data.pipe().subscribe(data => {
         // console.log('vB ctor route data: ', data);
         if (data && data['board'] && data['board'].displayName !== '') {
-          // console.log('vB ctor selected board from route: ', data['board']);
+          console.log('vB ctor selected board from route: ', data['board']);
           this.boardBS.next(data['board']);
           const tasks = this.boardBS.value.tasks;
           // console.log('vB ctor tasks from board: ', tasks);
+          console.log('vB ctor allocation before reset: ', this.allocatedTasks);
           this.allocatedTasks = {};
+          console.log('vB ctor allocation after reset: ', this.allocatedTasks);
           // this.allocateTasksToColumns();
           const {allocatedTasks, columns} = allocateTasksToColumns(this.boardBS.value);
           this.allocatedTasks = allocatedTasks;
           this.columns = columns;
+          console.log('vB ctor t.allocatedTasks: ', this.allocatedTasks);
         }
       });
 
@@ -95,15 +107,65 @@ export class ViewBoardComponent implements OnInit {
     this.boardsService.deleteBoard(boardId);
   }
 
-  editTask(taskId: number) {
-
-    this.board$.pipe(take(1)).subscribe(board => {
-      // this.boardsService.updateTaskInBoard(board.id, taskId)
-
-    });
+  setSelectedTask(task: Task) {
+    console.log('vB sST selected task: ', task);
+    this.selectedTaskBS.next(task);
+    this.openViewTaskDialog();
   }
 
-  deleteTask(taskId: number) {
+  openViewTaskDialog() {
+    const dialogData = {
+      task: this.selectedTaskBS.value,
+    }
+
+    const dialogRef = this.dialog.open(ViewTaskComponent, {data: dialogData});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('vB oVTD view task dialog closed.  result: ', result);
+
+      if (result && this.selectedTaskBS.value) {
+        if (result.outcome === DialogCloseResult.EDIT_TASK) {
+          this.openEditTaskDialog(this.selectedTaskBS.value);
+
+        } else if (result.outcome === DialogCloseResult.DELETE_TASK) {
+          this.openDeleteTaskDialog(this.selectedTaskBS.value);
+        }
+      }
+
+    });
+
+  }
+
+  openEditTaskDialog(task: Task) {
+
+    console.log('vB oETD edit task called. displayName: ', task.displayName);
+
+    const dialogData = {
+      task: this.selectedTaskBS.value,
+    }
+
+    const dialogRef = this.dialog.open(TaskFormComponent, {data: dialogData});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('vB oETD edit task dialog closed.  result: ', result);
+    });
+
+    
+  }
+
+  openDeleteTaskDialog(task: Task) {
+
+    console.log('vB oDTD delete task called. display name: ', task.displayName);
+
+    const dialogData = {
+      task,
+    }
+
+    const dialogRef = this.dialog.open(DeleteConfirmComponent, {data: dialogData});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('vB oDTD delete task dialog closed.  result: ', result);
+    });
 
   }
 }

@@ -20,7 +20,10 @@
                     </div>
 
 
-                    <div class="task-card" *ngFor="let task of allocatedTasks[column]">
+                    <div *ngFor="let task of allocatedTasks[column]"
+                         class="task-card"
+                         (click)="setSelectedTask(task)"
+                    >
                         <p class="task-title">{{task.displayName}}</p>
                         <p class="task-subtitle">{{task.status}}</p>
                         <p class="task-subtitle">x of x subtasks</p>

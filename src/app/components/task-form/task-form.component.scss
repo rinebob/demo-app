@@ -1,0 +1,89 @@
+@import "styles.scss";
+
+.task-dialog-container {
+    @include flexboxLayout(column, flex-start, flex-start);
+    background-color: var(--dark-background-3);
+    padding: 32px;
+    width: 480px;
+
+    .title-container {
+        @include flexboxLayout(row, space-between, center);
+        margin-bottom: 24px;
+        width: 100%;
+        
+        .title-text {
+            @include darkHeadingLText;
+            padding: 0;
+        }
+   }
+
+   .task-form {
+        width: 100%;
+
+        .mat-mdc-form-field {
+            width: 100%;
+        }
+
+        .field-label {
+            @include lightBodyMText;
+            color: var(--dark-title-text-1);
+        }
+
+        .subtasks-container {
+            @include flexboxLayout(column, flex-start, flex-start);
+            max-height: 234px;
+            margin-bottom: 12px;
+            overflow-y: auto;
+            
+            .subtask {
+                @include flexboxLayout(row, space-between, center);
+                width: 100%;
+
+                .mat-mdc-form-field {
+                    width: 100%;
+                }
+
+                ::ng-deep {
+                    .mat-mdc-input-element {
+                        width: 90%;
+                    }
+                }
+
+                button {
+                    margin-top: -24px;
+                    
+                    mat-icon {
+                        color: var(--light-subtitle-text-1);
+                    }
+                }
+            }
+        }
+
+        .add-subtask-button {
+            @include mainButtonStyles(var(--light-background-1), var(--text-color-for-light-background-1), 40px);
+            margin: 0 0 24px;
+            width: 100%;
+        }
+
+        .action-buttons {
+             @include flexboxLayout(row, flex-end, center);
+             width: 100%;
+     
+             button {
+                 width: 50%;
+     
+             }
+             .cancel-button {
+                 @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+             }
+     
+             .save-button {
+                 @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+             }
+     
+        }
+
+   }
+
+
+}

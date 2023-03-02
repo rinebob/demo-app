@@ -81,14 +81,11 @@ export class BoardFormComponent implements OnInit {
       this.router.navigateByUrl('boards');
 
     }
-
-}
+   }
 
   cancelOperation() {
     this.boardForm.reset();
     this.router.navigateByUrl('/back')
-
-
   }
 
 }

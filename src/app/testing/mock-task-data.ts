@@ -1,3 +1,5 @@
+import { SubTaskStatus } from '../common/interfaces';
+import { SubTask } from '../common/interfaces';
 import { Board, Task, TaskStatus } from '../common/interfaces';
 
 // export interface Task {
@@ -156,6 +158,45 @@ export const FIREBASE_SETUP: Task = {
     status: TaskStatus.PLANNING,
 }
 
+// export interface SubTask extends Entity {
+//     description: string;
+//     status: TaskStatus | string;
+// }
+
+// sint perspiciatis non at consectetur cum reprehenderit explicabo itaque quas sit consequatur dolorem. Quia quasi sunt alias itaque quas, voluptatibus reprehenderit aliquam dolore dolorum eum provident nobis aliquid ut illum nam dolores adipisci eos tempora autem. Exercitationem, recusandae debitis? Laboriosam deserunt a facere velit aperiam! Eligendi, earum. Sunt similique voluptatum veniam eius ipsa, at reiciendis rerum ullam natus in temporibus necessitatibus ducimus praesentium exercitationem deleniti doloribus labore molestiae quisquam voluptatem est voluptatibus porro.
+
+export const SUBTASK_1: SubTask = {
+    displayName: '',
+    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
+    status: SubTaskStatus.COMPLETED,
+}
+
+export const SUBTASK_2: SubTask = {
+    displayName: '',
+    description: 'Sequi perspiciatis error repellat debitis sint impedit',
+    status: SubTaskStatus.COMPLETED,
+}
+
+export const SUBTASK_3: SubTask = {
+    displayName: '',
+    description: ', quisquam asperiores. Debitis, qui omnis.',
+    status: SubTaskStatus.DEVELOPMENT,
+}
+
+export const SUBTASK_4: SubTask = {
+    displayName: '',
+    description: ' Tempora repellat earum esse asperiores doloribus et maiores neque!',
+    status: SubTaskStatus.DEVELOPMENT,
+}
+
+export const SUBTASK_5: SubTask = {
+    displayName: '',
+    description: 'Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ',
+    status: SubTaskStatus.NOT_STARTED,
+}
+
+export const RAW_SUBTASKS = [SUBTASK_1, SUBTASK_2, SUBTASK_3, SUBTASK_4, SUBTASK_5];
+
 
 
 export const RAW_TASKS: Task[] = [
@@ -184,7 +225,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Scaffold app",
                 "description": "Run the ng new command to create the application",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -192,7 +259,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement interfaces",
                 "description": "In file common/interfaces.ts add interfaces for each entity the app tracks",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -200,7 +293,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement test data",
                 "description": "Code the test data for the app",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -208,7 +327,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement service",
                 "description": "Implement the http service to call the backend",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "nightly"
             },
             {
@@ -216,7 +361,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement component store",
                 "description": "Implement a NgRx component store service for the main application view",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -224,7 +395,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Generate view component",
                 "description": "Use the angular cli to generate the main view-level smart component",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -232,7 +429,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement View component logic",
                 "description": "Implement logic for CRUDL operations in View component",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -240,7 +463,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement presentation layer",
                 "description": "Implement presentation components to show data in UI",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -248,7 +497,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Create Sass mixins for UI",
                 "description": "Extract scss/css from individual components and create mixins for reusability",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -256,7 +531,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Create Sass variables",
                 "description": "Extract css values from component scss files and create variables in a shared file",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -264,7 +565,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Firebase planning",
                 "description": "Design Firebase architecture for entire app",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "planning"
             },
             {
@@ -272,7 +599,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Firebase setup",
                 "description": "Add all necessary projects and infrastructure in Firebase account",
                 "boardId": 1,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "planning"
             }
         ]
@@ -287,7 +640,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Scaffold app",
                 "description": "Run the ng new command to create the application",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -295,7 +674,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement interfaces",
                 "description": "In file common/interfaces.ts add interfaces for each entity the app tracks",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -303,7 +708,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement test data",
                 "description": "Code the test data for the app",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -311,7 +742,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement service",
                 "description": "Implement the http service to call the backend",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "nightly"
             },
             {
@@ -319,7 +776,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement component store",
                 "description": "Implement a NgRx component store service for the main application view",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -327,7 +810,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Generate view component",
                 "description": "Use the angular cli to generate the main view-level smart component",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -335,7 +844,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement View component logic",
                 "description": "Implement logic for CRUDL operations in View component",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -343,7 +878,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement presentation layer",
                 "description": "Implement presentation components to show data in UI",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -351,7 +912,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Create Sass mixins for UI",
                 "description": "Extract scss/css from individual components and create mixins for reusability",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -359,7 +946,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Create Sass variables",
                 "description": "Extract css values from component scss files and create variables in a shared file",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -367,7 +980,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Firebase planning",
                 "description": "Design Firebase architecture for entire app",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "planning"
             },
             {
@@ -375,7 +1014,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Firebase setup",
                 "description": "Add all necessary projects and infrastructure in Firebase account",
                 "boardId": 2,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "planning"
             }
         ]
@@ -390,7 +1055,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Scaffold app",
                 "description": "Run the ng new command to create the application",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -398,7 +1089,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement interfaces",
                 "description": "In file common/interfaces.ts add interfaces for each entity the app tracks",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -406,7 +1123,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement test data",
                 "description": "Code the test data for the app",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "staging"
             },
             {
@@ -414,7 +1157,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement service",
                 "description": "Implement the http service to call the backend",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "nightly"
             },
             {
@@ -422,7 +1191,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement component store",
                 "description": "Implement a NgRx component store service for the main application view",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -430,7 +1225,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Generate view component",
                 "description": "Use the angular cli to generate the main view-level smart component",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -438,7 +1259,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement View component logic",
                 "description": "Implement logic for CRUDL operations in View component",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -446,7 +1293,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Implement presentation layer",
                 "description": "Implement presentation components to show data in UI",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -454,7 +1327,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Create Sass mixins for UI",
                 "description": "Extract scss/css from individual components and create mixins for reusability",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -462,7 +1361,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Create Sass variables",
                 "description": "Extract css values from component scss files and create variables in a shared file",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "development"
             },
             {
@@ -470,7 +1395,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Firebase planning",
                 "description": "Design Firebase architecture for entire app",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "planning"
             },
             {
@@ -478,7 +1429,33 @@ export const BOARDS: Board[] = [
                 "displayName": "Firebase setup",
                 "description": "Add all necessary projects and infrastructure in Firebase account",
                 "boardId": 3,
-                "subTasks": [],
+                "subTasks": [
+                    {
+                        "displayName": "",
+                        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. ",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Sequi perspiciatis error repellat debitis sint impedit",
+                        "status": "completed"
+                    },
+                    {
+                        "displayName": "",
+                        "description": ", quisquam asperiores. Debitis, qui omnis.",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": " Tempora repellat earum esse asperiores doloribus et maiores neque!",
+                        "status": "development"
+                    },
+                    {
+                        "displayName": "",
+                        "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
+                        "status": "not-started"
+                    }
+                ],
                 "status": "planning"
             }
         ]

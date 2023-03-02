@@ -1,0 +1,56 @@
+
+<div *ngIf="task$ | async as task"
+     class="task-dialog-container"
+>
+
+    <div class="title-container">
+        <p mat-dialog-title>{{task.displayName}}</p>
+        <button mat-icon-button [matMenuTriggerFor]="taskMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #taskMenu="matMenu" [class]="viewTaskMenuCssClass">
+            
+                <button mat-menu-item (click)="editTask(task)">Edit Task</button>
+                <button mat-menu-item class="delete-task-button" (click)="deleteTask(task.id ?? -1)">Delete Task</button>
+            
+        </mat-menu>
+
+    </div>
+
+    <p class="dialog-subtitle">{{task.description}}</p>
+    <div mat-dialog-content>
+        <p class="subtasks-header">Subtasks ({{numCompleted}} of {{task.subTasks.length}})</p>
+        
+        <div class="subtasks-container">
+
+            <div class="subtask-card" *ngFor="let subtask of task.subTasks">
+                <mat-checkbox color="primary"
+                disabled="true"
+                [checked]="subtask.status === 'completed'"
+                >
+                </mat-checkbox>
+                <p class="subtask-description">{{subtask.description}}</p>
+            </div>
+        </div>
+        
+        <p class="subtasks-header">Current Status</p>
+       
+        <div class="subtask-status">
+            <p class="subtask-status-text">{{task.status | titlecase}}</p>
+        </div>
+        
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-button 
+                cdkFocusInitial
+                (click)="handleCancel()"
+        >
+            Close
+        </button>
+    </div>
+
+</div>
+
+

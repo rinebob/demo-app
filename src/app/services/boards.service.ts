@@ -121,12 +121,62 @@ export class BoardsService  {
   }
 
   // add task to board
-  createTaskInBoard(boardId: number, newTask: Task) {}
+  createTaskInBoard(boardId: number, newTask: Task) {
+    console.log('bS cTIB create task in board. boardId/task: ', boardId, newTask);
 
+    const url = `${BOARDS_BASE_URL}/${boardId}/tasks`;
+    console.log('bS gTFB board url: ', url);
+
+    this.http.post<Task>(url, newTask, this.httpOptions).subscribe(resp => {
+      console.log('bS cT create task resp: ', resp);
+
+      this.http.get<Task[]>(url, this.httpOptions).subscribe(resp => {
+        console.log('bS cB tasks after create task: ', resp);
+      });
+      }
+    );
+  }
+  
   // update task in board
-  updateTaskInBoard(boardId: number, updatedTask: Task) {}
+  updateTaskInBoard(boardId: number, taskId: number, task: Task) {
+    console.log('bS uTIB update task in board. boardId/taskId/task: ', boardId, taskId, task);
 
+    const url = `${BOARDS_BASE_URL}/${boardId}/tasks/${taskId}`;
+    console.log('bS uTIB board url: ', url);
+
+    this.http.put<Task>(url, task, this.httpOptions).subscribe(resp => {
+      console.log('bS uTIB update task resp: ', resp);
+
+      const getTasksUrl = `${BOARDS_BASE_URL}/${boardId}/tasks`;
+
+      this.http.get<Task[]>(getTasksUrl, this.httpOptions).subscribe(resp => {
+        console.log('bS uTIB tasks after update task: ', resp);
+      });
+      }
+    );
+
+    
+  }
+  
   // delete task in board
-  deleteTaskInBoard(boardId: number, taskId: number) {}
+  deleteTaskInBoard(boardId: number, taskId: number) {
+    console.log('bS dTIB delete task in board. boardId/taskId: ', boardId, taskId);
+
+    const url = `${BOARDS_BASE_URL}/${boardId}/tasks/${taskId}`;
+    console.log('bS dTIB board url: ', url);
+
+    this.http.delete<Task>(url, this.httpOptions).subscribe(resp => {
+      console.log('bS dTIB create task resp: ', resp);
+
+      const getTasksUrl = `${BOARDS_BASE_URL}/${boardId}/tasks`;
+
+      this.http.get<Task[]>(getTasksUrl, this.httpOptions).subscribe(resp => {
+        console.log('bS dTIB tasks after create task: ', resp);
+      });
+      }
+    );
+
+
+  }
 
 }
