@@ -66,24 +66,23 @@
         }
 
         .action-buttons {
-             @include flexboxLayout(row, flex-end, center);
-             width: 100%;
-     
-             button {
-                 width: 50%;
-     
-             }
-             .cancel-button {
-                 @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
-             }
-     
-             .save-button {
-                 @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
-             }
+            @include flexboxLayout(row, flex-end, center);
+            width: 100%;
+    
+            button {
+                width: 50%;
+    
+            }
+            .cancel-button {
+                @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+            }
+    
+            .save-button {
+                @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+            }
      
         }
-
-   }
+    }
 
 
 }

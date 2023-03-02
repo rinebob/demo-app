@@ -42,9 +42,9 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], 
 
   }
 
-  export function allocateTasksToColumns(board: Board): SortedTasksWithColumns {
+  export function allocateTasksToColumns(tasks: Task[]): SortedTasksWithColumns {
     const allocatedTasks: SortedTasks = {...ALLOCATED_TASKS_INITIALIZER};
-    const tasks = board.tasks ?? [];
+    // const tasks = board.tasks ?? [];
     const statusValues = new Set<string>(['new-column']);
     // console.log('tU aTTC input board: ', board);
     // console.log('tU aTTC start allocatedTasks: ', allocatedTasks);

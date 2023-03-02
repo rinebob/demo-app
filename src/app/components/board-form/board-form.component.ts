@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
+
 import { take } from 'rxjs';
 import { BoardsService } from 'src/app/services/boards.service';
-import {Board, FormMode, Task, TaskStatus} from '../../common/interfaces';
+import {Board, DialogCloseResult, DialogData, FormMode, Task, TaskStatus} from '../../common/interfaces';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
 
 @Component({
@@ -16,76 +18,91 @@ import { BOARD_INITIALIZER } from 'src/app/common/constants';
 export class BoardFormComponent implements OnInit {
   boardForm: FormGroup;
   displayNameControl = new FormControl('');
-  statusControl = new FormControl(TaskStatus.NOT_STARTED);
+  descriptionControl = new FormControl('');
+  // statusControl = new FormControl(TaskStatus.NOT_STARTED);
 
   statusValues = Object.values(TaskStatus);
 
+  readonly FormMode = FormMode;
   formMode: FormMode = FormMode.CREATE;
 
   boardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
   
   constructor(private boardsService: BoardsService, 
-    private router: Router,
-    private route: ActivatedRoute) {
+    public dialogRef: MatDialogRef<BoardFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.buildBoardForm();
+
+    if (data && data.board) {
+      this.formMode = FormMode.EDIT;
+      console.log('bF ctor board for edit board: ', data.board);
+      this.boardBS.next(data.board);
+
+      this.populateForm(this.boardBS.value);
+
+    }
   }
 
   ngOnInit() {
     
-    this.route.data.pipe().subscribe(data => {
-      console.log('bF ctor route data: ', data);
-      if (data && data['board'] && data['board'].displayName !== '') {
-        console.log('bF ctor selected board from route: ', data['board']);
-        this.boardBS.next(data['board']);
-        this.formMode = FormMode.EDIT;
-        this.populateForm(this.boardBS.value);
-      }
-    });
+    // this.route.data.pipe().subscribe(data => {
+    //   console.log('bF ctor route data: ', data);
+    //   if (data && data['board'] && data['board'].displayName !== '') {
+    //     console.log('bF ctor selected board from route: ', data['board']);
+    //     this.boardBS.next(data['board']);
+    //     this.formMode = FormMode.EDIT;
+    //     this.populateForm(this.boardBS.value);
+    //   }
+    // });
   }
 
   buildBoardForm() {
     this.boardForm = new FormGroup({
       'displayNameControl': this.displayNameControl,
-      'statusControl': this.statusControl,
+      'descriptionControl': this.descriptionControl,
     })
   }
 
   populateForm(board: Board) {
     this.boardForm.patchValue({
       'displayNameControl': board.displayName ?? '',
-      'statusControl': board.status ?? '',
+      'descriptionControl': board.description,
+      
     })
   }
 
-  saveBoard() {
+  handleSaveBoard() {
     const boardData = this.boardForm.value;
     console.log('bF sB board form values: ', boardData);
     const board: Board = {
       id: this.boardBS.value.id ?? undefined ,
       displayName: boardData.displayNameControl,
-      status: boardData.statusControl,
-      tasks: this.boardBS.value.tasks,
+      description: boardData.descriptionControl,
+      // status: boardData.statusControl,
     }
     
     console.log('bF sB board to BE: ', board);
     if (this.formMode === FormMode.EDIT) {
-      // const returnValue = this.boardsService.updateBoard(board);
+      board.tasks = this.boardBS.value.tasks,
       this.boardsService.updateBoard(board);
-      this.router.navigateByUrl('boards');
-      // if (returnValue) {
-      // }
-
+      this.dialogRef.close({outcome: DialogCloseResult.EDIT_BOARD_COMPLETE});
     } else {
       console.log('bF sB board object to create: ', board);
       this.boardsService.createBoard(board);
-      this.router.navigateByUrl('boards');
-
+      this.dialogRef.close({outcome: DialogCloseResult.CREATE_BOARD_COMPLETE});
     }
    }
 
-  cancelOperation() {
+  handleCancelOperation() {
     this.boardForm.reset();
-    this.router.navigateByUrl('/back')
+    
+    if (this.formMode === FormMode.EDIT) {
+      this.dialogRef.close({outcome: DialogCloseResult.EDIT_BOARD_CANCELLED});
+    
+    } else {
+      this.dialogRef.close({outcome: DialogCloseResult.CREATE_BOARD_CANCELLED});
+    }
+   
   }
 
 }

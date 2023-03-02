@@ -1,5 +1,25 @@
 @import "styles.scss";
 
+.nav-bar {
+    @include flexboxLayout(row, space-between, center);
+    background-color: var(--dark-background-3);
+    height: var(--size-nav-bar-height);
+    width: 100%;
+
+    .board-title {
+        @include darkHeadingXLText;
+        margin-left: 24px;
+    }
+
+    .buttons-container {
+        @include flexboxLayout(row, flex-start, center);
+        
+        .nav-button {
+            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+        }
+    }
+}
+
 .columns-container {
     @include flexboxLayout(row, flex-start, flex-start);
     margin: 0 24px;

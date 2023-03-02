@@ -1,18 +1,51 @@
+@import "styles.scss";
 
-:host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    max-width: 600px;
-    margin-top: 40px;
-    
-    form {
-        display: flex;
-        flex-direction: column;
+.board-dialog-container {
+    @include flexboxLayout(column, flex-start, flex-start);
+    background-color: var(--dark-background-3);
+    padding: 32px;
+    width: 480px;
+
+    .title-container {
+        @include flexboxLayout(row, space-between, center);
+        margin-bottom: 24px;
+        width: 100%;
         
-        input, select {
-            margin: 12px 6px;
+        .title-text {
+            @include darkHeadingLText;
+            padding: 0;
+        }
+   }
+
+   .board-form {
+    width: 100%;
+
+        .mat-mdc-form-field {
+            width: 100%;
+        }
+
+        .field-label {
+            @include lightBodyMText;
+            color: var(--dark-title-text-1);
+        }
+
+        .action-buttons {
+            @include flexboxLayout(row, flex-end, center);
+            width: 100%;
+
+            button {
+                width: 50%;
+
+            }
+            .cancel-button {
+                @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+            }
+
+            .save-button {
+                @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+            }
+    
         }
     }
+
 }

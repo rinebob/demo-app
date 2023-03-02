@@ -1,13 +1,13 @@
-<ng-container *ngIf="board$ | async as board">
-    
-    <ng-container *ngIf="columns.length !== 0; else noTasks">
+<ng-container *ngIf="columns.length !== 0; else noTasks">
 
-        <div class="columns-container">
+    <div class="scroll-container">
     
+        <div class="columns-container">
+
             <div *ngFor="let column of columns"
                 [ngStyle]="{'order': getColumnOrder(column)}"
                 [style.width.px]="getWidth(columns.length)"
-                 class="column-container" 
+                class="column-container" 
             >
             
                 <ng-container *ngIf="allocatedTasks[column]">
@@ -21,8 +21,8 @@
 
 
                     <div *ngFor="let task of allocatedTasks[column]"
-                         class="task-card"
-                         (click)="setSelectedTask(task)"
+                        class="task-card"
+                        (click)="setSelectedTask(task)"
                     >
                         <p class="task-title">{{task.displayName}}</p>
                         <p class="task-subtitle">{{task.status}}</p>
@@ -33,7 +33,7 @@
                 </ng-container>
 
                 <div *ngIf="column === 'new-column'" 
-                     class="new-column-area"
+                    class="new-column-area"
                 >
                     <mat-icon>add</mat-icon>
                     <button mat-button class="new-column-button">new column</button>
@@ -41,26 +41,24 @@
 
             </div>
 
-            
-
         </div>
 
-    </ng-container>
+    </div>
 
-    <ng-template #noTasks>
-        <div class="no-tasks-container">
-            
-            <p class="empty-board">{{emptyBoardText}}</p>
-            <button mat-button
-                    class="add-column-button"
-                    (click)="addNewColumn()"
-            >
-                <mat-icon>add</mat-icon>
-                Add New Column
-            </button>
-
-        </div>
-
-    </ng-template>
-    
 </ng-container>
+
+<ng-template #noTasks>
+    <div class="no-tasks-container">
+        
+        <p class="empty-board">{{emptyBoardText}}</p>
+        <button mat-button
+                class="add-column-button"
+                (click)="addNewColumn()"
+        >
+            <mat-icon>add</mat-icon>
+            Add New Column
+        </button>
+
+    </div>
+
+</ng-template>

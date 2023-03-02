@@ -73,7 +73,7 @@
         
         <p class="field-label">Status</p>
         <mat-form-field appearance="outline">
-            <mat-select [value]="task.status">
+            <mat-select [value]="defaultStatusValue">
                 <mat-option *ngFor="let option of TASK_STATUS_VALUES" 
                             [value]="option"
                 >
@@ -97,7 +97,6 @@
             <button mat-flat-button
                     type="submit"
                     class="save-button"
-                    (click)="handleSaveTask()"
             >
                 Save Changes
             </button>

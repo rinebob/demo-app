@@ -26,6 +26,7 @@ export class TaskFormComponent {
   subtaskDescriptionControl = new FormControl('');
   subtasksArray = new FormArray([this.subtaskDescriptionControl]);
 
+  defaultStatusValue = '';
   readonly TaskStatus = TaskStatus;
   TASK_STATUS_VALUES = Object.values(TaskStatus);
 
@@ -37,14 +38,20 @@ export class TaskFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
       this.buildTaskForm();
 
-      if (data && data.task) {
-        this.formMode = FormMode.EDIT;
-        this.taskBS.next(data.task)
-        console.log('tF ctor task to view: ', data.task);
+      if (data && data.boardId) {
+        this.formMode = FormMode.CREATE;
+        this.defaultStatusValue = TaskStatus.NOT_STARTED;
+        console.log('tF ctor board id for create task: ', data.boardId);
         this.populateForm(this.taskBS.value);
 
       }
 
+      if (data && data.task) {
+        this.formMode = FormMode.EDIT;
+        this.taskBS.next(data.task)
+        console.log('tF ctor task to edit: ', data.task);
+        this.populateForm(this.taskBS.value);
+      }
   }
 
   buildTaskForm() {
@@ -71,6 +78,8 @@ export class TaskFormComponent {
       'statusControl': task.status ?? '',
     });
 
+    this.defaultStatusValue = task.status;
+
   }
 
   getSubTasks() {
@@ -90,20 +99,6 @@ export class TaskFormComponent {
     const taskData = this.taskForm.value;
     console.log('tF hST task form values: ', taskData);
 
-    // const subTasks: SubTask[] = []
-
-    // if (this.taskForm.value.subTasks) {
-    //   for (const subtask of this.taskForm.value.subTasks) {
-    //     const newSubtask: SubTask = {
-    //       displayName: '',
-    //       description: subtask.description,
-    //       status: subtask.status,
-    //     };
-    //     subTasks.push(newSubtask);
-    //   }
-    //   console.log('tF hST new subtasks: ', subTasks);
-    // }
-
     const task: Task = {
       id: this.taskBS.value.id ?? undefined,
       displayName: taskData.displayNameControl,
@@ -112,13 +107,15 @@ export class TaskFormComponent {
       subTasks: this.taskForm.value.subTasks,
     }
     
-    console.log('tF hST task to BE: ', task);
     if (this.formMode === FormMode.EDIT) {
+      task.boardId = this.taskBS.value.boardId,
+      console.log('tF hST updated task to BE: ', task);
       this.boardsService.updateTaskInBoard(task.boardId ?? -1, task.id ?? -1, task);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
 
     } else {
-      console.log('tF hST task object to create: ', task);
+      task.boardId = this.data.boardId,
+      console.log('tF hST new task to create: ', task);
       this.boardsService.createTaskInBoard(task.boardId ?? -1, task);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
       

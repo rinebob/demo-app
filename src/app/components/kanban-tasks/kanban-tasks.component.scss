@@ -1,0 +1,85 @@
+@import "styles.scss";
+
+.scroll-container {
+    height: calc(100vh - var(--size-nav-bar-height));
+    overflow-y: scroll;
+
+    .columns-container {
+        @include flexboxLayout(row, flex-start, flex-start);
+        margin: 0 24px;
+
+        .column-container {
+            margin: 4px 12px;
+
+            .column-header {
+                @include flexboxLayout(row, flex-start, center);
+                margin: 24px 0;
+
+                .color-circle {
+                    border-radius: 100%;
+                    height: 12px;
+                    margin-right: 12px;
+                    width: 12px;
+                }
+
+                .column-header-text {
+                    @include darkHeadingSText;
+                    color: var(--light-subtitle-text-1);
+                    margin: 0;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .new-column-area {
+            @include flexboxLayout(row, center, center);
+            background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
+            border-radius: 6px;
+            height: 80vh;
+            margin-top: 64px;
+
+            .new-column-button {
+                @include darkHeadingXLText;
+                color: var(--light-subtitle-text-1);
+                text-transform: capitalize;
+            }
+            
+            mat-icon {
+                color: var(--light-subtitle-text-1);
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+.task-card {
+    @include taskCardStyles;
+    
+    .task-title {
+        @include darkHeadingMText;
+    }
+
+    .task-subtitle {
+        @include darkBodyMText;
+    }
+    
+    
+}
+
+.no-tasks-container {
+    @include flexboxLayout(column, center, center);
+    height: 100%;
+    height: calc(100% - var(--size-nav-bar-height));
+}
+
+.empty-board {
+    @include darkBodyLText;
+    color: var(--light-subtitle-text-1);
+
+
+}
+
+.add-column-button {
+    @include mainButtonStyles;
+    @include darkHeadingMText;
+}
