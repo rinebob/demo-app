@@ -2,7 +2,7 @@
 export enum TaskStatus {
     PLANNING = 'planning',
     BACKLOG = 'backlog',
-    NOT_STARTED = 'not-started',
+    NOT_STARTED = 'not started',
     DEVELOPMENT = 'development',
     REVIEW = 'review',
     NIGHTLY = 'nightly',
@@ -12,7 +12,7 @@ export enum TaskStatus {
 }
 
 export enum SubTaskStatus {
-    NOT_STARTED = 'not-started',
+    NOT_STARTED = 'not started',
     DEVELOPMENT = 'development',
     COMPLETED = 'completed',
 }
@@ -44,7 +44,8 @@ export interface Board extends Entity {
     // for mock data.  Will use firebase generated id when be is implemented
     // entityId: string;
     // displayName: string;
-    status: TaskStatus | string;
+    description: string;
+    status?: TaskStatus | string;
     // tasks: string[];
     tasks?: Task[];
 }
@@ -92,6 +93,7 @@ export enum DialogCloseResult {
 }
 
 export interface DialogData {
+    boardId?: number;
     board?: Board;
     task?: Task;
   }

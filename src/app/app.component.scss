@@ -3,6 +3,7 @@
 :host {
     @include flexboxLayout(row, flex-start, flex-start);
     height: 100%;
+    overflow: hidden;
 
     .mat-sidenav-container {
         height: 100%;
@@ -72,15 +73,13 @@
                     mat-icon {
                         margin-right: 15px;
                     }
-
                 }
             }
-
-            // }
         }
 
         .mat-sidenav-content {
             background-color: var(--dark-background-2);
+            overflow-y: hidden;
             position: relative;
     
             .nav-bar {
@@ -130,6 +129,7 @@
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
     border-bottom-left-radius: 0;
+    cursor: pointer;
     position: absolute;
     left: 0;
     margin: 0;

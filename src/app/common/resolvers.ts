@@ -13,11 +13,12 @@ export class BoardResolver implements Resolve<Board> {
 
     }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Board> {
+        // console.log('bR r board resolver hit. id: ', route.paramMap.get('id'));
 
         const board = this.boardsService.getBoard(Number(route.paramMap.get('id') ?? 0));
 
         if (board) {
-            console.log('r nR r resolved board: ', board);
+            // console.log('r nR r resolved board: ', board);
             return board;
 
         } else {

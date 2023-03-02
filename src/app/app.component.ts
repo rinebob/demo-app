@@ -11,6 +11,7 @@ import { BoardsService } from './services/boards.service';
 import { Board, Task } from './common/interfaces';
 import { getTasksFromBoard } from './common/task_utils';
 import { TaskFormComponent } from './components/task-form/task-form.component';
+import { BoardFormComponent } from './components/board-form/board-form.component';
 
 @Component({
   selector: 'app-root',
@@ -45,10 +46,6 @@ export class AppComponent implements OnDestroy, OnInit {
     private dialog: MatDialog, private route: ActivatedRoute,
     ) {
 
-    this.route.data.pipe().subscribe(data => {
-      console.log('a ctor route data: ', data);
-    });
-
     this.boards$ = boardsService.listBoards();
 
     this.boards$.pipe().subscribe(boards => {
@@ -69,7 +66,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     this.boards$.pipe().subscribe(boards => {
-      // console.log('aC ngOI boards sub: ', boards);
+      console.log('aC ngOI boards sub: ', boards);
     });
     this.tasks$.pipe().subscribe(tasks => {
       // console.log('aC ngOI tasks sub: ', tasks);
@@ -80,10 +77,6 @@ export class AppComponent implements OnDestroy, OnInit {
     this.destroy.next();
     this.destroy.complete();
     
-  }
-
-  createNewBoard() {
-    console.log('a cNB create new board called');
   }
 
   setSelectedBoard(board: Board) {
@@ -113,6 +106,18 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   deleteTask(taskId: string) {}
+
+  openCreateBoardDialog() {
+
+    console.log('aC oCBD create board called');
+
+    const dialogRef = this.dialog.open(BoardFormComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('aC oCTD create board dialog closed.  result: ', result);
+    });
+
+  }
 
   openCreateTaskDialog() {
 

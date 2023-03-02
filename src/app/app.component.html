@@ -28,8 +28,9 @@
             </mat-nav-list>
 
             <button mat-flat-button
+                    type="button"
                     class="create-new-board-button"
-                    (click)="createNewBoard()"
+                    (click)="openCreateBoardDialog()"
             >
                 <mat-icon>add</mat-icon>
                 Create New Board
@@ -60,19 +61,6 @@
     
     <mat-sidenav-content>
         
-        <nav class="nav-bar">
-            <button mat-button class="nav-button" (click)="sidenav.open()">Open side menu</button>
-            <button mat-button class="nav-button" [routerLink]="'design-system'">Design system</button>
-            
-            <button mat-button
-                    class="nav-button"
-                    (click)="openCreateTaskDialog()"
-            >
-                <mat-icon>add</mat-icon>
-                Add New Task
-            </button>
-        </nav>
-
         <router-outlet></router-outlet>
 
         <button *ngIf="shouldShowOpenSidenavButton"

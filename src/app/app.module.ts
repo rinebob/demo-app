@@ -29,11 +29,12 @@ import { ImBoardsTasksService } from './services/im-boards-tasks.service';
 import { BoardFormComponent } from './components/board-form/board-form.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { ListBoardsComponent } from './components/list-boards/list-boards.component';
-import { ViewBoardComponent } from './components/view-board/view-board.component';
+import { BoardViewComponent } from './components/board-view/board-view.component';
 import { DesignSystemComponent } from './components/design-system/design-system.component';
 import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
 import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
+import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +42,12 @@ import { DeleteConfirmComponent } from './components/delete-confirm/delete-confi
     BoardFormComponent,
     TaskFormComponent,
     ListBoardsComponent,
-    ViewBoardComponent,
+    BoardViewComponent,
     DesignSystemComponent,
     ViewTaskComponent,
     CreateColumnComponent,
-    DeleteConfirmComponent
+    DeleteConfirmComponent,
+    KanbanTasksComponent
   ],
   imports: [
     BrowserModule,

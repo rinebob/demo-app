@@ -22,6 +22,7 @@ export const DEMO_APP: Board = {
     id: 1,
     // entityId: 'demo-app',
     displayName: 'Demo app',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     status: TaskStatus.DEVELOPMENT,
     tasks: [],
 }
@@ -30,6 +31,7 @@ export const TRACKER_APP: Board = {
     id: 2,
     // entityId: 'tracker-app',
     displayName: 'Bio data app',
+    description: 'Quisquam assumenda neque maxime perspiciatis rerum debitis sit? Nobis sapiente eum ipsa?',
     status: TaskStatus.DEVELOPMENT,
     tasks: [],
 }
@@ -38,6 +40,7 @@ export const TRADING_VIEW_APP: Board = {
     id: 3,
     // entityId: 'trading-view-app',
     displayName: 'TradingView clone app',
+    description: 'A clone of the trading view app thats very cool',
     status: TaskStatus.DEVELOPMENT,
     tasks: [],
 }
@@ -211,6 +214,7 @@ export const BOARDS: Board[] = [
     {
         "id": 1,
         "displayName": "Demo app",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         "status": "development",
         "tasks": [
             {
@@ -242,7 +246,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -276,7 +280,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -310,7 +314,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -344,7 +348,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "nightly"
@@ -378,7 +382,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -412,7 +416,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -446,7 +450,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -480,7 +484,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -514,7 +518,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -548,7 +552,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -582,7 +586,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "planning"
@@ -616,7 +620,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "planning"
@@ -626,6 +630,7 @@ export const BOARDS: Board[] = [
     {
         "id": 2,
         "displayName": "Bio data app",
+        "description": "Quisquam assumenda neque maxime perspiciatis rerum debitis sit? Nobis sapiente eum ipsa?",
         "status": "development",
         "tasks": [
             {
@@ -657,7 +662,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -691,7 +696,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -725,7 +730,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -759,7 +764,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "nightly"
@@ -793,7 +798,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -827,7 +832,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -861,7 +866,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -895,7 +900,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -929,7 +934,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -963,7 +968,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -997,7 +1002,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "planning"
@@ -1031,7 +1036,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "planning"
@@ -1041,6 +1046,7 @@ export const BOARDS: Board[] = [
     {
         "id": 3,
         "displayName": "TradingView clone app",
+        "description": "A clone of the trading view app thats very cool",
         "status": "development",
         "tasks": [
             {
@@ -1072,7 +1078,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -1106,7 +1112,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -1140,7 +1146,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "staging"
@@ -1174,7 +1180,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "nightly"
@@ -1208,7 +1214,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -1242,7 +1248,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -1276,7 +1282,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -1310,7 +1316,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -1344,7 +1350,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -1378,7 +1384,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "development"
@@ -1412,7 +1418,7 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "planning"
@@ -1446,11 +1452,11 @@ export const BOARDS: Board[] = [
                     {
                         "displayName": "",
                         "description": "Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ",
-                        "status": "not-started"
+                        "status": "not started"
                     }
                 ],
                 "status": "planning"
             }
         ]
     }
-]
+];

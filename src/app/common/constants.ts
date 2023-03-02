@@ -3,6 +3,7 @@ import { Board, ColumnColor, ColumnOrder, SortedTasks, Task, TaskStatus } from "
 
 export const BOARD_INITIALIZER: Board = {
     displayName: '',
+    description: '',
     status: TaskStatus.NOT_STARTED,
     tasks: [],
 }
