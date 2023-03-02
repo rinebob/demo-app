@@ -1,0 +1,33 @@
+<div class="delete-dialog-container"
+>
+
+    <div class="title-container">
+        <p class="title-text">Delete this {{data.board ? 'board' : 'task'}}?</p>
+    </div>
+
+    <p class="message">Are you sure you want to delete the {{displayName}} {{deleteMessage}}?  This action cannot be reversed.</p>
+
+        <!-- Action buttons -->
+
+    <div class="action-buttons">
+
+        <button mat-flat-button 
+                class="cancel-button"
+                type="button"
+                (click)="handleCancel()"
+        >
+            Cancel
+        </button>
+        
+        <button mat-flat-button
+                type="button"
+                class="delete-button"
+                (click)="handleDelete()"
+        >
+            Delete
+        </button>
+
+    </div>
+
+
+</div>

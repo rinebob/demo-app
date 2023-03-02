@@ -7,10 +7,10 @@ import { BoardResolver } from './common/resolvers';
 import { DesignSystemComponent } from './components/design-system/design-system.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'view/1', pathMatch: 'full'},
+  {path: '', redirectTo: 'board/1', pathMatch: 'full'},
   // {path: 'boards', component: ListBoardsComponent},
   {
-    path: 'view/:id',
+    path: 'board/:id',
     component: ViewBoardComponent,
     resolve: {
       board: BoardResolver

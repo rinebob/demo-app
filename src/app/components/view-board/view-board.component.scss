@@ -53,13 +53,8 @@
 }
 
 .task-card {
-    @include flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--dark-background-3);
-    border-radius: 4px;
-    color: var(--dark-subtitle-text-1);
-    margin-bottom: 4px;
-    padding: 23px 16px;
-
+    @include taskCardStyles;
+    
     .task-title {
         @include darkHeadingMText;
     }

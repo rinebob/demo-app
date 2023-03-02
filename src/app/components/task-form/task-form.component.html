@@ -1,1 +1,112 @@
-<p>task-form works!</p>
+<div *ngIf="task$ | async as task"
+     class="task-dialog-container"
+>
+
+    <div class="title-container">
+        <p class="title-text">{{formMode === FormMode.CREATE ? 'Create Task' : 'Edit Task'}}</p>
+    </div>
+
+    <form [formGroup]="taskForm" (ngSubmit)="handleSaveTask()" class="task-form">
+
+            <!-- Display name control as title -->
+
+        <p class="field-label">Title</p>
+        <mat-form-field appearance="outline">
+            <mat-label>Task title</mat-label>
+            <input matInput
+                formControlName="displayNameControl"
+                placeholder="Task title"
+                type="text"
+            >
+        </mat-form-field>
+
+
+            <!-- Description control -->
+        
+        <p class="field-label">Description</p>
+        <mat-form-field appearance="outline">
+            <input matInput
+                    formControlName="descriptionControl"
+                    placeholder="Task description"
+                    type="text"
+            >
+        </mat-form-field>
+
+
+            <!-- Subtasks form group -->
+
+        <p class="field-label">Subtasks</p>
+
+        <div class="subtasks-container">
+
+            <div class="subtask" formArrayName="subTasks" *ngFor="let subtask of subtasksArray.controls; let i=index">
+                
+                <mat-form-field appearance="outline"
+                >
+                    <input matInput id="subtask-{{i}}"
+                        [formControlName]="i"
+                        placeholder="Subtask title or description"
+                        type="text"
+                    >
+                </mat-form-field>
+                <button mat-icon-button
+                        (click)="deleteSubTask('{{i}}')"
+                        >
+                    <mat-icon matSuffix>close</mat-icon>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <button mat-flat-button
+                class="add-subtask-button"
+                type="button"
+                (click)="addSubTask($event)"
+                >
+            <mat-icon>add</mat-icon>
+            Add New Subtask
+        </button>
+        
+            <!-- Status control -->
+        
+        <p class="field-label">Status</p>
+        <mat-form-field appearance="outline">
+            <mat-select [value]="task.status">
+                <mat-option *ngFor="let option of TASK_STATUS_VALUES" 
+                            [value]="option"
+                >
+                    {{option | titlecase}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+            <!-- Action buttons -->
+
+        <div class="action-buttons">
+            
+            <button mat-flat-button 
+                    class="cancel-button"
+                    type="button"
+                    (click)="handleCancel()"
+            >
+                Cancel
+            </button>
+            
+            <button mat-flat-button
+                    type="submit"
+                    class="save-button"
+                    (click)="handleSaveTask()"
+            >
+                Save Changes
+            </button>
+
+        </div>
+
+
+
+    </form>
+
+
+</div>

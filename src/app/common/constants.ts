@@ -1,10 +1,18 @@
-import { Board, ColumnColor, ColumnOrder, SortedTasks, TaskStatus } from "./interfaces";
+import { Board, ColumnColor, ColumnOrder, SortedTasks, Task, TaskStatus } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
     displayName: '',
     status: TaskStatus.NOT_STARTED,
     tasks: [],
+}
+
+export const TASK_INITIALIZER: Task = {
+    displayName: '',
+    description: '',
+    boardId: -1,
+    subTasks: [],
+    status: TaskStatus.NOT_STARTED,
 }
 
 export const ALLOCATED_TASKS_INITIALIZER: SortedTasks = {

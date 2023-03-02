@@ -1,0 +1,46 @@
+@import "styles.scss";
+
+.delete-dialog-container {
+    @include flexboxLayout(column, flex-start, flex-start);
+    background-color: var(--dark-background-3);
+    padding: 32px;
+    width: 480px;
+
+    .title-container {
+        @include flexboxLayout(row, space-between, center);
+        margin-bottom: 24px;
+        width: 100%;
+
+        .title-text {
+            @include darkHeadingLText;
+            color: var(--destructive-idle);
+            padding: 0;
+        }
+    }
+
+    .message {
+        @include darkBodyLText;
+        color: var(--light-subtitle-text-1);
+        margin: 0 0 24px;
+
+    }
+
+    .action-buttons {
+        @include flexboxLayout(row, flex-end, center);
+             width: 100%;
+
+        button {
+            width: 50%;
+        }
+
+        .cancel-button {
+            @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+        }
+
+        .delete-button {
+            @include mainButtonStyles(var(--destructive-idle), var(--text-color-for-dark-background-1), 40px);
+        }
+    }
+
+
+}

@@ -15,12 +15,12 @@
             <p class="all-boards">all boards ({{numBoards}})</p>
 
             <mat-nav-list>
-
+                
+                <!-- (click)="sidenav.close()" -->
                 <a *ngFor="let board of boards$ | async"
                 mat-list-item 
-                [routerLink]="['/view', board.id ?? 0]"
+                [routerLink]="['/board', board.id ?? 0]"
                 routerLinkActive="link-active"
-                (click)="sidenav.close()"
                 >
                     {{board.displayName}}
                 </a>
