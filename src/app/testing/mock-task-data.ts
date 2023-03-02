@@ -158,13 +158,6 @@ export const FIREBASE_SETUP: Task = {
     status: TaskStatus.PLANNING,
 }
 
-// export interface SubTask extends Entity {
-//     description: string;
-//     status: TaskStatus | string;
-// }
-
-// sint perspiciatis non at consectetur cum reprehenderit explicabo itaque quas sit consequatur dolorem. Quia quasi sunt alias itaque quas, voluptatibus reprehenderit aliquam dolore dolorum eum provident nobis aliquid ut illum nam dolores adipisci eos tempora autem. Exercitationem, recusandae debitis? Laboriosam deserunt a facere velit aperiam! Eligendi, earum. Sunt similique voluptatum veniam eius ipsa, at reiciendis rerum ullam natus in temporibus necessitatibus ducimus praesentium exercitationem deleniti doloribus labore molestiae quisquam voluptatem est voluptatibus porro.
-
 export const SUBTASK_1: SubTask = {
     displayName: '',
     description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
@@ -222,7 +215,7 @@ export const BOARDS: Board[] = [
         "tasks": [
             {
                 "id": 1,
-                "displayName": "Scaffold app",
+                "displayName": "Demo app - Scaffold app",
                 "description": "Run the ng new command to create the application",
                 "boardId": 1,
                 "subTasks": [
@@ -256,7 +249,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 2,
-                "displayName": "Implement interfaces",
+                "displayName": "Demo app - Implement interfaces",
                 "description": "In file common/interfaces.ts add interfaces for each entity the app tracks",
                 "boardId": 1,
                 "subTasks": [
@@ -290,7 +283,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 3,
-                "displayName": "Implement test data",
+                "displayName": "Demo app - Implement test data",
                 "description": "Code the test data for the app",
                 "boardId": 1,
                 "subTasks": [
@@ -324,7 +317,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 4,
-                "displayName": "Implement service",
+                "displayName": "Demo app - Implement service",
                 "description": "Implement the http service to call the backend",
                 "boardId": 1,
                 "subTasks": [
@@ -358,7 +351,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 5,
-                "displayName": "Implement component store",
+                "displayName": "Demo app - Implement component store",
                 "description": "Implement a NgRx component store service for the main application view",
                 "boardId": 1,
                 "subTasks": [
@@ -392,7 +385,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 6,
-                "displayName": "Generate view component",
+                "displayName": "Demo app - Generate view component",
                 "description": "Use the angular cli to generate the main view-level smart component",
                 "boardId": 1,
                 "subTasks": [
@@ -426,7 +419,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 7,
-                "displayName": "Implement View component logic",
+                "displayName": "Demo app - Implement View component logic",
                 "description": "Implement logic for CRUDL operations in View component",
                 "boardId": 1,
                 "subTasks": [
@@ -460,7 +453,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 8,
-                "displayName": "Implement presentation layer",
+                "displayName": "Demo app - Implement presentation layer",
                 "description": "Implement presentation components to show data in UI",
                 "boardId": 1,
                 "subTasks": [
@@ -494,7 +487,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 9,
-                "displayName": "Create Sass mixins for UI",
+                "displayName": "Demo app - Create Sass mixins for UI",
                 "description": "Extract scss/css from individual components and create mixins for reusability",
                 "boardId": 1,
                 "subTasks": [
@@ -528,7 +521,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 10,
-                "displayName": "Create Sass variables",
+                "displayName": "Demo app - Create Sass variables",
                 "description": "Extract css values from component scss files and create variables in a shared file",
                 "boardId": 1,
                 "subTasks": [
@@ -562,7 +555,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 11,
-                "displayName": "Firebase planning",
+                "displayName": "Demo app - Firebase planning",
                 "description": "Design Firebase architecture for entire app",
                 "boardId": 1,
                 "subTasks": [
@@ -596,7 +589,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 12,
-                "displayName": "Firebase setup",
+                "displayName": "Demo app - Firebase setup",
                 "description": "Add all necessary projects and infrastructure in Firebase account",
                 "boardId": 1,
                 "subTasks": [
@@ -637,7 +630,7 @@ export const BOARDS: Board[] = [
         "tasks": [
             {
                 "id": 1,
-                "displayName": "Scaffold app",
+                "displayName": "Bio data app - Scaffold app",
                 "description": "Run the ng new command to create the application",
                 "boardId": 2,
                 "subTasks": [
@@ -671,7 +664,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 2,
-                "displayName": "Implement interfaces",
+                "displayName": "Bio data app - Implement interfaces",
                 "description": "In file common/interfaces.ts add interfaces for each entity the app tracks",
                 "boardId": 2,
                 "subTasks": [
@@ -705,7 +698,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 3,
-                "displayName": "Implement test data",
+                "displayName": "Bio data app - Implement test data",
                 "description": "Code the test data for the app",
                 "boardId": 2,
                 "subTasks": [
@@ -739,7 +732,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 4,
-                "displayName": "Implement service",
+                "displayName": "Bio data app - Implement service",
                 "description": "Implement the http service to call the backend",
                 "boardId": 2,
                 "subTasks": [
@@ -773,7 +766,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 5,
-                "displayName": "Implement component store",
+                "displayName": "Bio data app - Implement component store",
                 "description": "Implement a NgRx component store service for the main application view",
                 "boardId": 2,
                 "subTasks": [
@@ -807,7 +800,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 6,
-                "displayName": "Generate view component",
+                "displayName": "Bio data app - Generate view component",
                 "description": "Use the angular cli to generate the main view-level smart component",
                 "boardId": 2,
                 "subTasks": [
@@ -841,7 +834,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 7,
-                "displayName": "Implement View component logic",
+                "displayName": "Bio data app - Implement View component logic",
                 "description": "Implement logic for CRUDL operations in View component",
                 "boardId": 2,
                 "subTasks": [
@@ -875,7 +868,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 8,
-                "displayName": "Implement presentation layer",
+                "displayName": "Bio data app - Implement presentation layer",
                 "description": "Implement presentation components to show data in UI",
                 "boardId": 2,
                 "subTasks": [
@@ -909,7 +902,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 9,
-                "displayName": "Create Sass mixins for UI",
+                "displayName": "Bio data app - Create Sass mixins for UI",
                 "description": "Extract scss/css from individual components and create mixins for reusability",
                 "boardId": 2,
                 "subTasks": [
@@ -943,7 +936,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 10,
-                "displayName": "Create Sass variables",
+                "displayName": "Bio data app - Create Sass variables",
                 "description": "Extract css values from component scss files and create variables in a shared file",
                 "boardId": 2,
                 "subTasks": [
@@ -977,7 +970,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 11,
-                "displayName": "Firebase planning",
+                "displayName": "Bio data app - Firebase planning",
                 "description": "Design Firebase architecture for entire app",
                 "boardId": 2,
                 "subTasks": [
@@ -1011,7 +1004,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 12,
-                "displayName": "Firebase setup",
+                "displayName": "Bio data app - Firebase setup",
                 "description": "Add all necessary projects and infrastructure in Firebase account",
                 "boardId": 2,
                 "subTasks": [
@@ -1052,7 +1045,7 @@ export const BOARDS: Board[] = [
         "tasks": [
             {
                 "id": 1,
-                "displayName": "Scaffold app",
+                "displayName": "TradingView clone app - Scaffold app",
                 "description": "Run the ng new command to create the application",
                 "boardId": 3,
                 "subTasks": [
@@ -1086,7 +1079,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 2,
-                "displayName": "Implement interfaces",
+                "displayName": "TradingView clone app - Implement interfaces",
                 "description": "In file common/interfaces.ts add interfaces for each entity the app tracks",
                 "boardId": 3,
                 "subTasks": [
@@ -1120,7 +1113,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 3,
-                "displayName": "Implement test data",
+                "displayName": "TradingView clone app - Implement test data",
                 "description": "Code the test data for the app",
                 "boardId": 3,
                 "subTasks": [
@@ -1154,7 +1147,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 4,
-                "displayName": "Implement service",
+                "displayName": "TradingView clone app - Implement service",
                 "description": "Implement the http service to call the backend",
                 "boardId": 3,
                 "subTasks": [
@@ -1188,7 +1181,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 5,
-                "displayName": "Implement component store",
+                "displayName": "TradingView clone app - Implement component store",
                 "description": "Implement a NgRx component store service for the main application view",
                 "boardId": 3,
                 "subTasks": [
@@ -1222,7 +1215,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 6,
-                "displayName": "Generate view component",
+                "displayName": "TradingView clone app - Generate view component",
                 "description": "Use the angular cli to generate the main view-level smart component",
                 "boardId": 3,
                 "subTasks": [
@@ -1256,7 +1249,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 7,
-                "displayName": "Implement View component logic",
+                "displayName": "TradingView clone app - Implement View component logic",
                 "description": "Implement logic for CRUDL operations in View component",
                 "boardId": 3,
                 "subTasks": [
@@ -1290,7 +1283,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 8,
-                "displayName": "Implement presentation layer",
+                "displayName": "TradingView clone app - Implement presentation layer",
                 "description": "Implement presentation components to show data in UI",
                 "boardId": 3,
                 "subTasks": [
@@ -1324,7 +1317,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 9,
-                "displayName": "Create Sass mixins for UI",
+                "displayName": "TradingView clone app - Create Sass mixins for UI",
                 "description": "Extract scss/css from individual components and create mixins for reusability",
                 "boardId": 3,
                 "subTasks": [
@@ -1358,7 +1351,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 10,
-                "displayName": "Create Sass variables",
+                "displayName": "TradingView clone app - Create Sass variables",
                 "description": "Extract css values from component scss files and create variables in a shared file",
                 "boardId": 3,
                 "subTasks": [
@@ -1392,7 +1385,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 11,
-                "displayName": "Firebase planning",
+                "displayName": "TradingView clone app - Firebase planning",
                 "description": "Design Firebase architecture for entire app",
                 "boardId": 3,
                 "subTasks": [
@@ -1426,7 +1419,7 @@ export const BOARDS: Board[] = [
             },
             {
                 "id": 12,
-                "displayName": "Firebase setup",
+                "displayName": "TradingView clone app - Firebase setup",
                 "description": "Add all necessary projects and infrastructure in Firebase account",
                 "boardId": 3,
                 "subTasks": [

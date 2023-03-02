@@ -13,7 +13,7 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], 
         // console.log('tU bBAT pre taskId: ', task.entityId);
         const newTask: Task = {
           id: task.id,
-          displayName: task.displayName,
+          displayName: `${board.displayName} - ${task.displayName}`,
           description: task.description,
           boardId: boardId,
           // subTasks: task.subTasks,
