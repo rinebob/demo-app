@@ -27,7 +27,7 @@ export class ViewTaskComponent {
     ) {
       if (data && data.task) {
         this.taskBS.next(data.task)
-        console.log('vT ctor task to view: ', data.task);
+        // console.log('vT ctor task to view: ', data.task);
         this.numCompleted = this.getNumberOfCompletedSubtasks();
       }
     }
@@ -41,7 +41,7 @@ export class ViewTaskComponent {
             numCompleted ++;
           }
         }
-        console.log('vT gNOCS num completed subtasks: ', numCompleted);
+        // console.log('vT gNOCS num completed subtasks: ', numCompleted);
         return numCompleted;
       } else {
         return 0;
@@ -49,13 +49,13 @@ export class ViewTaskComponent {
     }
     
     editTask(task: Task) {
-      console.log('vT eT edit task called.  task: ', task.displayName);
+      // console.log('vT eT edit task called.  task: ', task.displayName);
       this.dialogRef.close({outcome: DialogCloseResult.EDIT_TASK});
       
     }
     
     deleteTask(taskId: number) {
-      console.log('vT dT delete task called.  id: ', taskId);
+      // console.log('vT dT delete task called.  id: ', taskId);
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_TASK});
 
     }

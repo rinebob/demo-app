@@ -82,28 +82,32 @@
             overflow-y: hidden;
             position: relative;
     
-            .nav-bar {
-                @include flexboxLayout(row, flex-end, center);
-                background-color: var(--dark-background-3);
-                height: var(--size-nav-bar-height);
-                width: 100%;
-        
-                .nav-button {
-                    @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+            .show-sidenav-button {
+                @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+                border-top-left-radius: 0;
+                border-top-right-radius: 100px;
+                border-bottom-right-radius: 100px;
+                border-bottom-left-radius: 0;
+                cursor: pointer;
+                height: 20px;
+                position: absolute;
+                left: 0;
+                margin: 0;
+                padding: 4px 8px;
+                top: 4px;
+                z-index: 10;
+                
+                .back-button-text {
+                    @include darkBodyMText;
+                    font-size: 10px;
+                    font-weight: lighter;
+                    letter-spacing: 1.25px;
+                    margin: -3px 0 0;
+                    padding: 0;
                 }
             }
         }
-
     }
-
-    
-
-    // .heading {
-    //     @include darkHeadingXLText;
-    //     margin: 34px 120px 54px 34px;
-    // }
-
- 
 
     .link-active {
         background-color: var(--primary-idle);
@@ -118,20 +122,3 @@
 }
 
 
-// .container, .task-container {
-//     border: 1px solid black;
-//     margin: 4px 20px;
-// }
-
-.show-sidenav-button {
-    @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
-    border-top-left-radius: 0;
-    border-top-right-radius: 100px;
-    border-bottom-right-radius: 100px;
-    border-bottom-left-radius: 0;
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    margin: 0;
-    top: 90%;
-}

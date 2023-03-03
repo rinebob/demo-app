@@ -1,24 +1,162 @@
 @import "styles.scss";
 
-.nav-bar {
-    @include flexboxLayout(row, space-between, center);
-    background-color: var(--dark-background-3);
-    height: var(--size-nav-bar-height);
-    width: 100%;
+:host {
+    @include flexboxLayout(row, flex-start, flex-start);
+    height: 100%;
+    overflow: hidden;
 
-    .board-title {
-        @include darkHeadingXLText;
-        margin-left: 24px;
-    }
+    .mat-drawer-container {
+        height: 100%;
+        width: 100%;
 
-    .buttons-container {
-        @include flexboxLayout(row, flex-start, center);
-        
-        .nav-button {
-            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+        .mat-drawer {
+            @include flexboxLayout(column, flex-start, space-between);
+            background-color: var(--dark-background-3);
+            width: 300px;
+
+            ::ng-deep .mat-drawer-inner-container {
+                @include flexboxLayout(column, space-between, flex-start);
+                overflow: hidden;
+            }
+
+            .top-drawer-container {
+                .heading {
+                    @include darkHeadingXLText;
+                    margin: 34px 120px 54px 34px;
+                }
+
+                .nav-button {
+                    @include navButtonStyles;
+                    @include flexboxLayout(row, flex-start, center);
+
+                    mat-icon {
+                        margin: 0 16px 0 0;
+                    }
+
+                    &-text {
+                        font-weight: lighter;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    
+                }
+
+                .all-boards {
+                    @include lightHeadingSText;
+                    padding: 0 16px;
+                    text-transform: uppercase;
+                }
+
+                .create-new-board-button {
+                    @include darkHeadingMText;
+                    background-color: var(--dark-background-3);
+                    color: var(--primary-idle);
+                    margin: 4px 8px;
+                }
+            }
+
+            .bottom-buttons-container {
+                @include flexboxLayout(column, flex-start, center);
+                margin-bottom: 50px;
+                // padding-left: 24px;
+                width: 100%;
+                
+                .dark-mode-switch-container {
+                    @include flexboxLayout(row, space-between, center);
+                    background-color: var(--dark-background-2);
+                    // margin: 0 24px 22px;
+                    margin: 0 0 22px;
+                    padding: 15px 64px;
+
+                    mat-icon {
+                        color: var(--light-subtitle-text-1);
+                    }
+
+                    mat-slide-toggle {
+                        margin: 0 24px;
+                    }
+                }
+
+                .hide-sidebar-button {
+                    @include darkHeadingMText;
+                    @include flexboxLayout(row, center, center);
+                    align-self: flex-start;
+                    background-color: var(--dark-background-3);
+                    border: none;
+                    color: var(--light-subtitle-text-1);
+                    cursor: pointer;
+                    margin-left: 14px;
+
+                    mat-icon {
+                        margin-right: 15px;
+                    }
+                }
+            }
+
+        }
+
+        .mat-drawer-content {
+            background-color: var(--dark-background-2);
+            overflow-y: hidden;
+            position: relative;
+
+            .nav-bar {
+                @include flexboxLayout(row, space-between, center);
+                background-color: var(--dark-background-3);
+                height: var(--size-nav-bar-height);
+                width: 100%;
+            
+                .board-title {
+                    @include darkHeadingXLText;
+                    margin-left: 24px;
+                }
+            
+                .buttons-container {
+                    @include flexboxLayout(row, flex-start, center);
+                    
+                    .nav-button {
+                        @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                    }
+                }
+            }
+
+            .show-drawer-button {
+                @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+                border-top-left-radius: 0;
+                border-top-right-radius: 100px;
+                border-bottom-right-radius: 100px;
+                border-bottom-left-radius: 0;
+                cursor: pointer;
+                position: absolute;
+                left: 0;
+                margin: 0;
+                top: 90%;
+            }
+
         }
     }
+
 }
+
+// .nav-bar {
+//     @include flexboxLayout(row, space-between, center);
+//     background-color: var(--dark-background-3);
+//     height: var(--size-nav-bar-height);
+//     width: 100%;
+
+//     .board-title {
+//         @include darkHeadingXLText;
+//         margin-left: 24px;
+//     }
+
+//     .buttons-container {
+//         @include flexboxLayout(row, flex-start, center);
+        
+//         .nav-button {
+//             @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+//         }
+//     }
+// }
 
 .columns-container {
     @include flexboxLayout(row, flex-start, flex-start);

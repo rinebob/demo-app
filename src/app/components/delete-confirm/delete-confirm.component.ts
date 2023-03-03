@@ -20,7 +20,7 @@ export class DeleteConfirmComponent implements OnInit {
     private boardService: BoardsService,
     ) {
 
-      console.log('dC ctor entity to delete: ', data);
+      // console.log('dC ctor entity to delete: ', data);
 
       this.setMessages();
   }
@@ -32,18 +32,18 @@ export class DeleteConfirmComponent implements OnInit {
 
   setMessages() {
     const data = this.data;
-    console.log('dC dE data: ', data);
+    // console.log('dC dE data: ', data);
     if (data.board && data.board.id) {
       this.displayName = data.board.displayName;
       this.deleteMessage = 'board';
-      console.log('dC dE type = board: ', data.board);
+      // console.log('dC dE type = board: ', data.board);
       
     } else if (data.task && data.task.id) {
       this.displayName = data.task.displayName;
       this.deleteMessage = 'task and its subtasks';
-      console.log('dC dE type = task: ', data.task);
+      // console.log('dC dE type = task: ', data.task);
     } else {
-      console.log('dC dE no entity present');
+      // console.log('dC dE no entity present');
     }
 
   }
@@ -58,22 +58,22 @@ export class DeleteConfirmComponent implements OnInit {
   
   deleteEntity() {
     const data = this.data;
-    console.log('dC dE data: ', data);
+    // console.log('dC dE data: ', data);
     
     if (data.board && data.board.id) {
-      console.log('dC dE type = board: ', data.board);
+      // console.log('dC dE type = board: ', data.board);
 
       this.boardService.deleteBoard(data.board.id);
       
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_BOARD_COMPLETE});
       
     } else if (data.task && data.task.id && data.task.boardId) {
-      console.log('dC dE deleting task: ', data.task);
+      // console.log('dC dE deleting task: ', data.task);
       this.boardService.deleteTaskInBoard(data.task.boardId, data.task.id);
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_TASK_COMPLETE});
       
     } else {
-      console.log('dC dE no entity present');
+      // console.log('dC dE no entity present');
       
     }
 

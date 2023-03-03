@@ -1,60 +1,22 @@
 
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side"
-                opened="true"
-                (openedChange)="toggleShowSidenavButton($event)"
-    >
+
+    <mat-sidenav #sidenav mode="side">
 
         <div class="top-sidenav-container">
 
-            <h1 class="heading">kanban</h1>
-            <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
-            <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
-        
-            <p class="all-boards">all boards ({{numBoards}})</p>
-
-            <mat-nav-list>
-                
-                <!-- (click)="sidenav.close()" -->
-                <a *ngFor="let board of boards$ | async"
-                mat-list-item 
-                [routerLink]="['/board', board.id ?? 0]"
-                routerLinkActive="link-active"
-                >
-                    {{board.displayName}}
-                </a>
-                
-            </mat-nav-list>
-
-            <button mat-flat-button
-                    type="button"
-                    class="create-new-board-button"
-                    (click)="openCreateBoardDialog()"
+            <button type="button" 
+                    routerLink="/kanban"
+                    class="nav-link-button"
+                    (click)="sidenav.close()"
             >
-                <mat-icon>add</mat-icon>
-                Create New Board
+                Kanban Todo App
             </button>
 
         </div>
 
         <div class="bottom-buttons-container">
-            <div class="dark-mode-switch-container">
-                <mat-icon class="material-symbols-outlined">light_mode</mat-icon>
-                <mat-slide-toggle [color]="darkModeToggleButtonColor"
-                                  (change)="toggleDarkMode($event)"
-                                
-                ></mat-slide-toggle>
-                <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
-
-            </div>
-
-            <button class="hide-sidebar-button"
-                    (click)="sidenav.close()"
-            >
-                <mat-icon>visibility_off</mat-icon>
-                Hide Sidebar
-            </button>
         </div>
         
     </mat-sidenav>
@@ -66,11 +28,10 @@
         <button *ngIf="shouldShowOpenSidenavButton"
                 class="show-sidenav-button"
                 (click)="sidenav.open()"
-        >
-            <mat-icon>visibility</mat-icon>
+            >
+            <p class="back-button-text">Other apps</p>
         </button>
 
     </mat-sidenav-content>
 
 </mat-sidenav-container>
-

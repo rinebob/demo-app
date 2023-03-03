@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -18,23 +17,34 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { KanbanRoutingModule } from './kanban-routing.module';
 import { environment } from '../environments/environment';
 import { ImBoardsTasksService } from './services/im-boards-tasks.service';
+import { BoardFormComponent } from './components/board-form/board-form.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
+import { ListBoardsComponent } from './components/list-boards/list-boards.component';
+import { BoardViewComponent } from './components/board-view/board-view.component';
+import { DesignSystemComponent } from './components/design-system/design-system.component';
+import { ViewTaskComponent } from './components/view-task/view-task.component';
+import { CreateColumnComponent } from './components/create-column/create-column.component';
+import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
+import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    BoardFormComponent,
+    TaskFormComponent,
+    ListBoardsComponent,
+    BoardViewComponent,
+    DesignSystemComponent,
+    ViewTaskComponent,
+    CreateColumnComponent,
+    DeleteConfirmComponent,
+    KanbanTasksComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
+    CommonModule,
+    KanbanRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
 
@@ -54,16 +64,9 @@ import { ImBoardsTasksService } from './services/im-boards-tasks.service';
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     // Use it only in non-prod environment
-    environment.production ? [] : 
-      HttpClientInMemoryWebApiModule.forRoot(
-        ImBoardsTasksService, { dataEncapsulation: false, delay: 100 }),
-
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-  ],
-  providers: [MatIconRegistry],
-  exports: [MatIconModule],
-  bootstrap: [AppComponent]
+    // environment.production ? [] : 
+    //   HttpClientInMemoryWebApiModule.forChild(
+    //     ImBoardsTasksService, { dataEncapsulation: false, delay: 100 }),
+ ],
 })
-export class AppModule { }
+export class KanbanModule { }

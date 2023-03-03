@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -18,16 +18,16 @@ import { allocateTasksToColumns } from '../../common/task_utils';
 export class KanbanTasksComponent {
   @Input()
   set tasks(tasks: Task[]) {
-    if (tasks && tasks.length) {
-      this.tasksBS.next(tasks);
-      this.allocateTasksToColumns(this.tasksBS.value);
-      // console.log('kT @i input kanban tasks: ', this.tasksBS.value);
-    }
+    this.tasksBS.next(tasks);
+    // console.log('kT @i input kanban tasks: ', this.tasksBS.value);
+    this.allocateTasksToColumns(this.tasksBS.value);
   }
   get tasks() {
     return this.tasksBS.value;
   }
   tasksBS = new BehaviorSubject<Task[]>([]);
+
+  @Output() addTask = new EventEmitter<void>();
 
   selectedTaskBS = new BehaviorSubject<Task|undefined>(undefined);
   selectedTask$: Observable<Task|undefined> = this.selectedTaskBS;
@@ -35,7 +35,7 @@ export class KanbanTasksComponent {
   allocatedTasks: SortedTasks = ALLOCATED_TASKS_INITIALIZER;
   columns: string[] = [];
 
-  emptyBoardText = 'This board is empty.  Create a new column to get started.';
+  emptyBoardText = 'This board is empty.  Create a new task to get started.';
 
   public innerWidth = 0;
 
@@ -78,8 +78,9 @@ export class KanbanTasksComponent {
     return color;
   }
 
-  addNewColumn() {
-    // console.log('vB aNC add new column called');
+  addNewTask() {
+    this.addTask.emit();
+    // console.log('vB aNC add new task called');
   }
 
   setSelectedTask(task: Task) {

@@ -35,7 +35,7 @@ export class BoardFormComponent implements OnInit {
 
     if (data && data.board) {
       this.formMode = FormMode.EDIT;
-      console.log('bF ctor board for edit board: ', data.board);
+      // console.log('bF ctor board for edit board: ', data.board);
       this.boardBS.next(data.board);
 
       this.populateForm(this.boardBS.value);
@@ -43,18 +43,7 @@ export class BoardFormComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    
-    // this.route.data.pipe().subscribe(data => {
-    //   console.log('bF ctor route data: ', data);
-    //   if (data && data['board'] && data['board'].displayName !== '') {
-    //     console.log('bF ctor selected board from route: ', data['board']);
-    //     this.boardBS.next(data['board']);
-    //     this.formMode = FormMode.EDIT;
-    //     this.populateForm(this.boardBS.value);
-    //   }
-    // });
-  }
+  ngOnInit() {}
 
   buildBoardForm() {
     this.boardForm = new FormGroup({
@@ -73,7 +62,7 @@ export class BoardFormComponent implements OnInit {
 
   handleSaveBoard() {
     const boardData = this.boardForm.value;
-    console.log('bF sB board form values: ', boardData);
+    // console.log('bF sB board form values: ', boardData);
     const board: Board = {
       id: this.boardBS.value.id ?? undefined ,
       displayName: boardData.displayNameControl,
@@ -81,13 +70,13 @@ export class BoardFormComponent implements OnInit {
       // status: boardData.statusControl,
     }
     
-    console.log('bF sB board to BE: ', board);
+    // console.log('bF sB board to BE: ', board);
     if (this.formMode === FormMode.EDIT) {
       board.tasks = this.boardBS.value.tasks,
       this.boardsService.updateBoard(board);
       this.dialogRef.close({outcome: DialogCloseResult.EDIT_BOARD_COMPLETE});
     } else {
-      console.log('bF sB board object to create: ', board);
+      // console.log('bF sB board object to create: ', board);
       this.boardsService.createBoard(board);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_BOARD_COMPLETE});
     }

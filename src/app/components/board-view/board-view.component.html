@@ -1,34 +1,111 @@
-<ng-container *ngIf="board$ | async as board">
-    
-    <nav class="nav-bar">
 
-        <p class="board-title">{{board.displayName}}</p>
 
-        <!-- <button mat-button class="nav-button" (click)="sidenav.open()">Open side menu</button> -->
-        <!-- <button mat-button class="nav-button" [routerLink]="'/design-system'">Design system</button> -->
+<mat-drawer-container>
 
-        <div class="buttons-container">
+    <mat-drawer #drawer mode="side"
+                opened="true"
+                (openedChange)="toggleShowDrawerButton($event)"
+    >
 
-            <button mat-button
+    <div class="top-drawer-container">
+
+            <h1 class="heading">kanban</h1>
+            <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
+            <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
+        
+            <p class="all-boards">all boards ({{numBoards}})</p>
+
+            <button *ngFor="let board of boards$ | async"
+                    type="button"
                     class="nav-button"
-                    (click)="openEditBoardDialog()"
+                    (click)="setSelectedBoard(board)"
+            >
+                <mat-icon>grid_on</mat-icon>
+                <p class="nav-button-text">
+                    {{board.displayName}}
+                </p>
+            </button>
+
+            <button mat-flat-button
+                    type="button"
+                    class="create-new-board-button"
+                    disableRipple="true"
+                    (click)="openCreateBoardDialog()"
             >
                 <mat-icon>add</mat-icon>
-                Edit Board
+                Create New Board
             </button>
-            
-            <button mat-button
-                    class="nav-button"
-                    (click)="openCreateTaskDialog()"
-            >
-                <mat-icon>add</mat-icon>
-                Add New Task
-            </button>
-            
+
         </div>
 
-    </nav>
+        <div class="bottom-buttons-container">
+            <div class="dark-mode-switch-container">
+                <mat-icon class="material-symbols-outlined">light_mode</mat-icon>
+                <mat-slide-toggle [color]="darkModeToggleButtonColor"
+                                  (change)="toggleDarkMode($event)"
+                                
+                ></mat-slide-toggle>
+                <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
+
+            </div>
+
+            <button class="hide-sidebar-button"
+                    (click)="drawer.close()"
+            >
+                <mat-icon>visibility_off</mat-icon>
+                Hide Sidebar
+            </button>
+        </div>
+
+    </mat-drawer>
+
+    <mat-drawer-content>
+
+        <ng-container *ngIf="selectedBoard$ | async as board">
     
-    <app-kanban-tasks [tasks]="(tasks$ | async)!"></app-kanban-tasks>
-    
-</ng-container>
+            <nav class="nav-bar">
+        
+                <p class="board-title">{{board.displayName}}</p>
+        
+                <!-- <button mat-button class="nav-button" (click)="drawer.open()">Open side menu</button> -->
+                <!-- <button mat-button class="nav-button" [routerLink]="'/design-system'">Design system</button> -->
+        
+                <div class="buttons-container">
+        
+                    <button mat-button
+                            class="nav-button"
+                            (click)="openEditBoardDialog()"
+                    >
+                        <mat-icon>add</mat-icon>
+                        Edit Board
+                    </button>
+                    
+                    <button mat-button
+                            class="nav-button"
+                            (click)="openCreateTaskDialog()"
+                    >
+                        <mat-icon>add</mat-icon>
+                        Add New Task
+                    </button>
+        
+                </div>
+        
+            </nav>
+            
+            <app-kanban-tasks [tasks]="(tasks$ | async)!"
+                              (addTask)="openCreateTaskDialog()"
+            >
+            </app-kanban-tasks>
+
+            <button *ngIf="shouldShowOpenDrawerButton"
+                    class="show-drawer-button"
+                    (click)="drawer.open()"
+            >
+                <mat-icon>visibility</mat-icon>
+            </button>
+            
+        </ng-container>
+
+    </mat-drawer-content>
+
+</mat-drawer-container>
