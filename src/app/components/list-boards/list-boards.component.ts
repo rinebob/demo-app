@@ -23,7 +23,7 @@ export class ListBoardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.boards$ = this.boardsService.listBoards();
+    this.boards$ = this.boardsService.boards$;
     
     
   }

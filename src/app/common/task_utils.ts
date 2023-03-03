@@ -30,9 +30,7 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], 
 
       boards.push(board);
     }
-    console.log('tU bBAT boards/tasks: ', boards, tasks);
-
-    // newTasks = generateId(newTasks);
+    // console.log('tU bBAT boards/tasks: ', boards, tasks);
 
     return {boards, tasks};
   }

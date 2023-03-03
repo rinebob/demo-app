@@ -41,7 +41,7 @@ export class TaskFormComponent {
       if (data && data.boardId) {
         this.formMode = FormMode.CREATE;
         this.defaultStatusValue = TaskStatus.NOT_STARTED;
-        console.log('tF ctor board id for create task: ', data.boardId);
+        // console.log('tF ctor board id for create task: ', data.boardId);
         this.populateForm(this.taskBS.value);
 
       }
@@ -49,7 +49,7 @@ export class TaskFormComponent {
       if (data && data.task) {
         this.formMode = FormMode.EDIT;
         this.taskBS.next(data.task)
-        console.log('tF ctor task to edit: ', data.task);
+        // console.log('tF ctor task to edit: ', data.task);
         this.populateForm(this.taskBS.value);
       }
   }
@@ -97,7 +97,7 @@ export class TaskFormComponent {
 
   handleSaveTask() {
     const taskData = this.taskForm.value;
-    console.log('tF hST task form values: ', taskData);
+    // console.log('tF hST task form values: ', taskData);
 
     const task: Task = {
       id: this.taskBS.value.id ?? undefined,
@@ -109,13 +109,13 @@ export class TaskFormComponent {
     
     if (this.formMode === FormMode.EDIT) {
       task.boardId = this.taskBS.value.boardId,
-      console.log('tF hST updated task to BE: ', task);
+      // console.log('tF hST updated task to BE: ', task);
       this.boardsService.updateTaskInBoard(task.boardId ?? -1, task.id ?? -1, task);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
 
     } else {
       task.boardId = this.data.boardId,
-      console.log('tF hST new task to create: ', task);
+      // console.log('tF hST new task to create: ', task);
       this.boardsService.createTaskInBoard(task.boardId ?? -1, task);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
       
