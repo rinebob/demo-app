@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { DialogCloseResult, DialogData, FormMode, SubTask, SubTaskStatus, Task, TaskStatus } from 'src/app/common/interfaces';
 import { TASK_INITIALIZER } from '../../common/constants';
 import { BoardsService } from 'src/app/services/boards.service';
+import { BoardsStore } from 'src/app/services/boards-store.service';
 
 
 @Component({
@@ -35,6 +36,7 @@ export class TaskFormComponent {
 
   constructor(private boardsService: BoardsService,
             public dialogRef: MatDialogRef<TaskFormComponent>,
+            private boardsStore: BoardsStore,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
       this.buildTaskForm();
 
@@ -97,7 +99,7 @@ export class TaskFormComponent {
 
   handleSaveTask() {
     const taskData = this.taskForm.value;
-    // console.log('tF hST task form values: ', taskData);
+    console.log('tF hST task form values: ', taskData);
 
     const task: Task = {
       id: this.taskBS.value.id ?? undefined,
@@ -109,13 +111,15 @@ export class TaskFormComponent {
     
     if (this.formMode === FormMode.EDIT) {
       task.boardId = this.taskBS.value.boardId,
-      // console.log('tF hST updated task to BE: ', task);
+      console.log('tF hST updated task to BE: ', task);
+      // this.boardsService.updateTaskInBoard(task.boardId ?? -1, task.id ?? -1, task);
       this.boardsService.updateTaskInBoard(task.boardId ?? -1, task.id ?? -1, task);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
 
     } else {
       task.boardId = this.data.boardId,
-      // console.log('tF hST new task to create: ', task);
+      console.log('tF hST new task to create: ', task);
+      // this.boardsService.createTaskInBoard(task.boardId ?? -1, task);
       this.boardsService.createTaskInBoard(task.boardId ?? -1, task);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
       

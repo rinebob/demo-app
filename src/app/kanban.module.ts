@@ -18,8 +18,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { KanbanRoutingModule } from './kanban-routing.module';
-import { environment } from '../environments/environment';
-import { ImBoardsTasksService } from './services/im-boards-tasks.service';
 import { BoardFormComponent } from './components/board-form/board-form.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 import { ListBoardsComponent } from './components/list-boards/list-boards.component';
@@ -44,10 +42,9 @@ import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.com
   ],
   imports: [
     CommonModule,
-    KanbanRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-
+    
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
@@ -59,14 +56,10 @@ import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.com
     MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    // Use it only in non-prod environment
-    // environment.production ? [] : 
-    //   HttpClientInMemoryWebApiModule.forChild(
-    //     ImBoardsTasksService, { dataEncapsulation: false, delay: 100 }),
+    
+    KanbanRoutingModule,
  ],
 })
 export class KanbanModule { }
+
+

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, withLatestFrom } from 'rxjs';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
 import { Board, Task } from 'src/app/common/interfaces';
 import { BoardsService } from 'src/app/services/boards.service';
@@ -9,20 +9,21 @@ import { TaskFormComponent } from '../task-form/task-form.component';
 import { BoardFormComponent } from '../board-form/board-form.component';
 import { ThemePalette } from '@angular/material/core';
 import { BOARDS } from 'src/app/testing/mock-task-data';
+import { BoardsStore } from 'src/app/services/boards-store.service';
 
 @Component({
   selector: 'app-board-view',
   templateUrl: './board-view.component.html',
   styleUrls: ['./board-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardViewComponent implements OnInit {
+  
+  boards$ = this.boardsStore.boards$;
+  selectedBoard$ = this.boardsStore.selectedBoard$;
 
   boardsBS = new BehaviorSubject<Board[]>([])
-  boards$: Observable<Board[]> = this.boardsBS;
-
   selectedBoardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
-  selectedBoard$: Observable<Board> = this.selectedBoardBS;
   
   tasksBS = new BehaviorSubject<Task[]>([]);
   tasks$: Observable<Task[]> = this.tasksBS;
@@ -40,40 +41,37 @@ export class BoardViewComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute,
     private dialog: MatDialog, private boardsService: BoardsService,
+    private boardsStore: BoardsStore,
     ) {
 
-      this.boardsService.listBoards();
-      
-      boardsService.boards$.pipe().subscribe(boards => {
-        if (boards.length > 0) {
-          // console.log('bV ctor boards sub: ', boards);
-          this.numBoards = boards.length;
-          this.boardsBS.next(boards);
+      this.boardsStore.getAllBoards();
 
+      this.boards$.pipe(
+        withLatestFrom(this.selectedBoard$)
+      ).subscribe(([boards, board]) => {
+        // console.log('bV ctor store boards sub: ', boards);
+        this.numBoards = boards.length;
+        this.boardsBS.next(boards);
+        if (boards[0] && board && board.displayName === '') {
+          this.boardsStore.setSelectedBoard(boards[0]);
+          // console.log('bV ctor setting default selectedBoard: ', boards[0]);
         }
-      });
-
-      boardsService.selectedBoard$.pipe().subscribe(board => {
-        if (board) {
-          // console.log('bV ctor selected board sub: ', board);
-          // this.initializeBoardAndTasks(board);
-          this.selectedBoardBS.next(board);
-
-        }
-      });
-
-      this.boards$.pipe().subscribe(boards => {
-        // console.log('bV ctor boards sub: ', boards);
       });
 
       this.selectedBoard$.pipe().subscribe(board => {
-        // console.log('bV ctor selected board sub: ', board);
+        // console.log('bV ctor store selected board sub: ', board);
         if (board && board.displayName !== '') {
+          // this.selectedBoardBS.next(board);
           this.initializeBoardAndTasks(board);
         }
-        if (this.boardsBS.value && board.displayName === '') {
-          this.boardsService.setSelectedBoard(1);
-        }
+      });
+
+      this.boards$.pipe().subscribe((boards) => {
+        // console.log('bV ctor boards store sub: ', boards);
+      });
+
+      this.selectedBoard$.pipe().subscribe(board => {
+        // console.log('bV ctor boards store selected board sub: ', board);
       });
 
       this.tasks$.pipe().subscribe(tasks => {
@@ -98,7 +96,7 @@ export class BoardViewComponent implements OnInit {
   
   setSelectedBoard(board: Board) {
     // console.log('bV sSB board: ', board);
-    this.selectedBoardBS.next(board);
+    this.boardsStore.setSelectedBoard(board);
     this.initializeBoardAndTasks(this.selectedBoardBS.value);
   }
 
@@ -109,7 +107,7 @@ export class BoardViewComponent implements OnInit {
     const dialogRef = this.dialog.open(BoardFormComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('aC oCTD create board dialog closed.  result: ', result);
+      // console.log('bV oCTD create board dialog closed.  result: ', result);
     });
 
   }
@@ -126,11 +124,6 @@ export class BoardViewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('bV oEBD edit board dialog closed.  result: ', result);
-      this.boardsService.getBoard(this.selectedBoardBS.value?.id ?? -1).pipe().subscribe(board => {
-        // console.log('bV oEBD board from be after edit: ', board);
-        // this.selectedBoardBS.next(board);
-        this.setSelectedBoard(board);
-      });
     });
 
   }

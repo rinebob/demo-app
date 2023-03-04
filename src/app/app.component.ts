@@ -11,7 +11,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class AppComponent {
   title = 'demo-app';
   shouldShowOpenSidenavButton = true;
-  
+
   constructor(private router: Router, private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     ) {

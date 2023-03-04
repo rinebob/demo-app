@@ -5,14 +5,13 @@ import { switchMap } from 'rxjs/operators'
 
 import { Board, Task, TaskStatus } from '../common/interfaces';
 import { BOARD_INITIALIZER } from '../common/constants';
-// import { BOARDS, TASKS } from '../testing/mock-task-data';
-// import { buildBoardsAndTasks } from '../common/task_utils';
+import { BoardsStore } from './boards-store.service';
 
 const BOARDS_BASE_URL = 'api/boards';
 const TASKS_BASE_URL = 'api/tasks';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any',
 })
 export class BoardsService  {
 
@@ -30,103 +29,62 @@ export class BoardsService  {
   }
 
   // get all boards
-  listBoards(): void {
-    this.http.get<Board[]>(BOARDS_BASE_URL).pipe().subscribe(boards => {
-      // console.log('bS lB boards service list sub: ', boards);
-      this.setBoards(boards);
-    });
-  }
-
-  setBoards(boards: Board[]) {
-    // console.log('bS sB set boards called');
-    this.boardsBS.next(boards);
-    if (this.selectedBoardBS.value && this.selectedBoardBS.value.id !== -1) {
-      this.setSelectedBoard(this.selectedBoardBS.value.id);
-    } else {
-      this.setSelectedBoard(1);
-      
-    }
-  }
-
-  setSelectedBoard(boardId?: number) {
-    if (this.boardsBS.value.length > 0) {
-      const selectedBoard = this.boardsBS.value.find(board => board.id === boardId);
-      if (selectedBoard) {
-        this.selectedBoardBS.next(selectedBoard);
-        // console.log('bS lB update selected board: ', selectedBoard);
-        
-      } else {
-        this.selectedBoardBS.next(this.boardsBS.value[0]);
-        // console.log('bS lB no selected board yet.  setting to: ', this.selectedBoardBS.value);
-      }
-
-    }
+  listBoards(): Observable<Board[]> {
     
-
+    return this.http.get<Board[]>(BOARDS_BASE_URL);
   }
 
   // get one board
   getBoard(boardId: number): Observable<Board> {
-    const board = this.http.get<Board>(`${BOARDS_BASE_URL}/${boardId}`);
-    // console.log('bS gB called. boardId: ', boardId, board);
-    return board;
-    // return this.http.get<Board>(`${BOARDS_BASE_URL}/${boardId}`);
+
+    return this.http.get<Board>(`${BOARDS_BASE_URL}/${boardId}`);
   }
 
-  // add board
-  createBoard(inputBoard: Board) {
-    // console.log('bS cB called. board: ', inputBoard);
-    this.http.post<Board>('api/boards', inputBoard, this.httpOptions).subscribe(resp => {
-      // console.log('bS cB create resp: ', resp);
-      this.refreshSelectedBoard(inputBoard);
-      }
-    );
+  createBoard(inputBoard: Board): Observable<Board> {
+
+    return this.http.post<Board>('api/boards', inputBoard, this.httpOptions);
   }
 
   // update board
-  updateBoard(board: Board) {
+  updateBoard(board: Board): Observable<Board> {
     // console.log('bS uB called. board: ', board);
     const url = `${BOARDS_BASE_URL}/${board.id}`
-    
-    this.http.put<Board>(url, board, this.httpOptions).subscribe(resp => {
-      // console.log('bS uB update resp: ', resp);
-      
-      this.http.get<Board[]>('api/boards').subscribe(boards => {
-        // console.log('bS uB boards after put: ', boards);
-        this.setBoards(boards);
-      });
-      
-    });
+
+    return this.http.put<Board>(url, board, this.httpOptions);
+
+
   }
   
   // delete board
-  deleteBoard(boardId: number) {
+  deleteBoard(boardId: number): Observable<Board> {
     console.log('bS dB called. boardId: ', boardId);
     // this.http.delete<Board>(`${BOARDS_BASE_URL}/${boardId}`);
     
     const url = `${BOARDS_BASE_URL}/${boardId}`
-    this.http.delete<Board>(url, this.httpOptions).subscribe(resp => {
-      // console.log('bS uB delete resp: ', resp);
+    // this.http.delete<Board>(url, this.httpOptions).subscribe(resp => {
+    //   // console.log('bS uB delete resp: ', resp);
       
-      this.http.get<Board[]>('api/boards').subscribe(boards => {
-        // console.log('bS uB boards after put: ', boards);
-        this.setBoards(boards);
-      });
+    //   this.http.get<Board[]>('api/boards').subscribe(boards => {
+    //     // console.log('bS uB boards after put: ', boards);
+    //     // this.setBoards(boards);
+    //   });
       
-    });
+    // });
+
+    return this.http.delete<Board>(url, this.httpOptions);
 
   }
 
   refreshSelectedBoard(inputBoard: Board) {
     this.http.get<Board[]>('api/boards').subscribe(boards => {
       // console.log('bS rSB boards after post: ', boards);
-      this.setBoards(boards);
+      // this.setBoards(boards);
       const board: Board | undefined = boards.find(b => b.displayName === inputBoard.displayName);
 
       if (board && board.id && board.id !== -1) {
-        this.setSelectedBoard(board.id);
+        // this.setSelectedBoard(board.id);
       } else {
-        this.setSelectedBoard(1);
+        // this.setSelectedBoard(1);
       }
 
     });
