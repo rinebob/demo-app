@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { take } from 'rxjs';
 import { BoardsService } from 'src/app/services/boards.service';
+import { BoardsStore } from 'src/app/services/boards-store.service';
 import {Board, DialogCloseResult, DialogData, FormMode, Task, TaskStatus} from '../../common/interfaces';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
 
@@ -28,7 +29,8 @@ export class BoardFormComponent implements OnInit {
 
   boardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
   
-  constructor(private boardsService: BoardsService, 
+  constructor(private boardsService: BoardsService,
+    private boardsStore: BoardsStore,
     public dialogRef: MatDialogRef<BoardFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.buildBoardForm();
@@ -73,11 +75,13 @@ export class BoardFormComponent implements OnInit {
     // console.log('bF sB board to BE: ', board);
     if (this.formMode === FormMode.EDIT) {
       board.tasks = this.boardBS.value.tasks,
-      this.boardsService.updateBoard(board);
+      // this.boardsService.updateBoard(board);
+      this.boardsStore.updateBoard(board);
       this.dialogRef.close({outcome: DialogCloseResult.EDIT_BOARD_COMPLETE});
     } else {
       // console.log('bF sB board object to create: ', board);
-      this.boardsService.createBoard(board);
+      // this.boardsService.createBoard(board);
+      this.boardsStore.createBoard(board);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_BOARD_COMPLETE});
     }
    }

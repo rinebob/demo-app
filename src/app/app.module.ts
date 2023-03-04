@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { RouterModule } from '@angular/router';
 
@@ -26,6 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { ImBoardsTasksService } from './services/im-boards-tasks.service';
+import { StoreModule } from '@ngrx/store';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { BoardsStore } from './services/boards-store.service';
 
 @NgModule({
   declarations: [
@@ -61,8 +64,9 @@ import { ImBoardsTasksService } from './services/im-boards-tasks.service';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    StoreModule.forRoot({}, {}),
   ],
-  providers: [MatIconRegistry],
+  providers: [MatIconRegistry, BoardsStore],
   exports: [MatIconModule],
   bootstrap: [AppComponent]
 })
