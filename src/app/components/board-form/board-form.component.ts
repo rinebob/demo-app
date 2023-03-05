@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { take } from 'rxjs';
 import { BoardsService } from 'src/app/services/boards.service';
 import { BoardsStore } from 'src/app/services/boards-store.service';
-import {Board, DialogCloseResult, DialogData, FormMode, Task, TaskStatus} from '../../common/interfaces';
+import { Board, DialogCloseResult, DialogData, FormMode, Task, TaskStatus} from '../../common/interfaces';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
 
 @Component({
@@ -29,8 +28,7 @@ export class BoardFormComponent implements OnInit {
 
   boardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
   
-  constructor(private boardsService: BoardsService,
-    private boardsStore: BoardsStore,
+  constructor(private boardsStore: BoardsStore,
     public dialogRef: MatDialogRef<BoardFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.buildBoardForm();

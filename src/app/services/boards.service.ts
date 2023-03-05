@@ -125,20 +125,22 @@ export class BoardsService  {
   }
 
   // add task to board
-  createTaskInBoard(boardId: number, newTask: Task) {
+  createTask(newTask: Task) {
     // console.log('bS cTIB create task in board. boardId/task: ', boardId, newTask);
 
-    const url = `${BOARDS_BASE_URL}/${boardId}/tasks`;
-    // console.log('bS gTFB board url: ', url);
+    const url = `${BOARDS_BASE_URL}/${newTask.boardId}/tasks`;
+    // // console.log('bS gTFB board url: ', url);
 
-    this.http.post<Task>(url, newTask, this.httpOptions).subscribe(resp => {
-      // console.log('bS cT create task resp: ', resp);
+    // this.http.post<Task>(url, newTask, this.httpOptions).subscribe(resp => {
+    //   // console.log('bS cT create task resp: ', resp);
 
-      this.http.get<Task[]>(url, this.httpOptions).subscribe(resp => {
-        // console.log('bS cB tasks after create task: ', resp);
-      });
-      }
-    );
+    //   this.http.get<Task[]>(url, this.httpOptions).subscribe(resp => {
+    //     // console.log('bS cB tasks after create task: ', resp);
+    //   });
+    //   }
+    // );
+
+    return this.http.post<Task>(url, newTask, this.httpOptions);
   }
   
   // update task in board

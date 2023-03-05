@@ -42,6 +42,7 @@
                 @include darkHeadingXLText;
                 color: var(--light-subtitle-text-1);
                 text-transform: capitalize;
+                white-space: normal;
             }
             
             mat-icon {
@@ -62,8 +63,6 @@
     .task-subtitle {
         @include darkBodyMText;
     }
-    
-    
 }
 
 .no-tasks-container {
@@ -75,8 +74,6 @@
 .empty-board {
     @include darkHeadingLText;
     color: var(--light-subtitle-text-1);
-
-
 }
 
 .add-column-button {

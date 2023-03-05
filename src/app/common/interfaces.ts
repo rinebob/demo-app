@@ -90,10 +90,16 @@ export enum DialogCloseResult {
     DELETE_TASK = 'delete-task',
     DELETE_TASK_COMPLETE = 'delete-task-complete',
     DELETE_TASK_CANCELLED = 'delete-task-cancelled',
+    COLUMN_SETTINGS_COMPLETE = 'column-settings-complete',
+    COLUMN_SETTINGS_CANCELLED = 'column-settings-cancelled',
 }
 
 export interface DialogData {
     boardId?: number;
     board?: Board;
     task?: Task;
+    columns?: string[];
+    numTasksByColumn: {[key: string]: number}
   }
+
+  export const TASK_STATUS_VALUES = Object.values(TaskStatus);

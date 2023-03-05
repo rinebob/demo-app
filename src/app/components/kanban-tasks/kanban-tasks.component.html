@@ -4,10 +4,10 @@
     
         <div class="columns-container">
 
-            <div *ngFor="let column of columns"
-                [ngStyle]="{'order': getColumnOrder(column)}"
-                [style.width.px]="getWidth(columns.length)"
-                class="column-container" 
+            <div *ngFor="let column of userSelectedColumns$ | async"
+                 [ngStyle]="{'order': getColumnOrder(column)}"
+                 [style.width.px]="getWidth(columns.length)"
+                 class="column-container" 
             >
             
                 <ng-container *ngIf="allocatedTasks[column]">
@@ -35,8 +35,13 @@
                 <div *ngIf="column === 'new-column'" 
                     class="new-column-area"
                 >
-                    <mat-icon>add</mat-icon>
-                    <button mat-button class="new-column-button">new column</button>
+                    <button mat-button
+                            class="new-column-button"
+                            (click)="openColumnSettingsDialog()"
+                    >
+                        <mat-icon>settings</mat-icon>
+                            columns
+                    </button>
                 </div>
 
             </div>
