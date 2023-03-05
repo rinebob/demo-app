@@ -1,0 +1,56 @@
+@import "styles.scss";
+
+.settings-dialog-container {
+    @include flexboxLayout(column, flex-start, flex-start);
+    background-color: var(--dark-background-3);
+    padding: 32px;
+    width: 300px;
+
+    .title-container {
+        @include flexboxLayout(column, flex-start, flex-start);
+        margin-bottom: 12px;
+        width: 100%;
+        
+        .title-text {
+            @include darkHeadingLText;
+            margin-bottom: 24px;
+            padding: 0;
+        }
+
+        .subtitle-text {
+            @include darkBodyMText;
+            padding: 0;
+        }
+   }
+
+   .checkbox-container {
+        @include flexboxLayout(column, flex-start, flex-start);
+        margin-bottom: 24px;
+        width: 100%;
+   }
+
+   .action-buttons {
+        @include flexboxLayout(row, flex-end, center);
+        width: 100%;
+
+        &:not(:last-child) {
+            margin-bottom: 24px;
+        }
+
+        button {
+            width: 50%;
+        }
+
+        .all-none-button {
+            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+        }
+
+        .cancel-button {
+            @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+        }
+        
+        .save-button {
+            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+        }
+    }
+}

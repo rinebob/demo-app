@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
 import { Observable, of } from 'rxjs';
-import { concatMap, tap, switchMap, catchError } from 'rxjs/operators';
+import { concatMap, tap, switchMap, catchError, withLatestFrom, map } from 'rxjs/operators';
 
-import { Board } from '../common/interfaces';
+import { Board, SortedTasks, Task } from '../common/interfaces';
 import { BOARD_INITIALIZER } from '../common/constants';
 import { BoardsService } from './boards.service';
 
 export interface BoardsState {
   boards: Board[];
   selectedBoard: Board;
+  allTasksByStatus: SortedTasks;
+  allColumnsWithTasks: string[];
+  userSelectedColumns: string[];
 }
 
-const BOARDS_STORE_INITIALIZER = {boards: [], selectedBoard: BOARD_INITIALIZER};
+const BOARDS_STORE_INITIALIZER = {
+  boards: [],
+  selectedBoard: BOARD_INITIALIZER,
+  allTasksByStatus: {},
+  allColumnsWithTasks: [],
+  userSelectedColumns: [],
+};
 
 @Injectable({
   providedIn: 'root',
@@ -34,9 +43,24 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     selectedBoard: {...board},
   }));
 
+  readonly setallTasksByStatus = this.updater((state, sortedTasks: SortedTasks) => ({
+    ...state,
+    allTasksByStatus: {...sortedTasks},
+  }));
+
+  readonly setAllColumnsWithTasks = this.updater((state, columns: string[]) => ({
+    ...state,
+    allColumnsWithTasks: [...columns],
+  }));
+
+  readonly setUserSelectedColumns = this.updater((state, columns: string[]) => ({
+    ...state,
+    userSelectedColumns: [...columns],
+  }));
+
   readonly boards$: Observable<Board[]> = this.select((state: BoardsState) => state.boards);
   readonly selectedBoard$: Observable<Board> = this.select((state: BoardsState) => state.selectedBoard);
-
+  
   // readonly boards$: Observable<Board[]> = this.select((state: BoardsState) => state.boards).pipe(
   //   tap(boards => {console.log('bS boards$ value: ', boards)})
   // );
@@ -44,13 +68,29 @@ export class BoardsStore extends ComponentStore<BoardsState> {
   //   tap(board => {console.log('bS selectedBoard$ value: ', board)})
   // );
 
+  readonly allTasksByStatus$: Observable<SortedTasks> = this.select((state: BoardsState) => state.allTasksByStatus);
+  readonly allColumnsWithTasks$: Observable<string[]> = this.select((state: BoardsState) => state.allColumnsWithTasks);
+  readonly userSelectedColumns$: Observable<string[]> = this.select((state: BoardsState) => state.userSelectedColumns);
+  
+  
+  readonly numberOfTasksPerColumn$: Observable<any> = this.select(
+    this.allTasksByStatus$,
+    (tasks: SortedTasks ) => {
+      const numTasksByStatus: { [key: string]: number} = {};
+      for (const [key, value] of Object.entries(tasks)) {
+        numTasksByStatus[key] = value.length;
+      }
+      // console.log('bSt nOTPC num tasks by status: ', numTasksByStatus);
+      return numTasksByStatus;
+    });
+  
   // getAllBoards
   readonly getAllBoards = this.effect<void>(
     trigger$ => trigger$.pipe(
         switchMap(() => this.boardsService.listBoards().pipe(
         tap(( boards) => {
           this.setBoards([...boards])
-          console.log('bSt gAB all boards: ', boards);
+          // console.log('bSt gAB all boards: ', boards);
         }))))
   );
 
@@ -59,7 +99,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     return boardId$.pipe(
       switchMap(boardId => this.boardsService.getBoard(boardId).pipe(
         tap(board => {
-          console.log('bSt gB get board: ', board);
+          // console.log('bSt gB get board: ', board);
           this.setSelectedBoard({...board});
         }),
         catchError(error => {
@@ -78,7 +118,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
           // this.addBoard({...board});
           this.setSelectedBoard({...board});
           this.getAllBoards();
-          console.log('bSt cB created board: ', board);
+          // console.log('bSt cB created board: ', board);
         }),
         catchError(error => {
           console.log('bSt gB error: ', error);
@@ -90,11 +130,14 @@ export class BoardsStore extends ComponentStore<BoardsState> {
 
   readonly updateBoard = this.effect((board$: Observable<Board>) => {
     return board$.pipe(
+      // tap(board => {
+      //   this.setSelectedBoard({...board});
+      //   console.log('bSt uB updated board: ', board);
+      // }),
       concatMap((board) => this.boardsService.updateBoard(board).pipe(
         tap(board => {
-          this.setSelectedBoard({...board});
+          // this.setSelectedBoard({...board});
           this.getAllBoards()
-          console.log('bSt uB updated board: ', board);
         }),
         catchError(error => {
           console.log('bSt uB error: ', error);
@@ -109,7 +152,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
       concatMap((boardId) => this.boardsService.deleteBoard(boardId).pipe(
         tap(board => {
           this.getAllBoards()
-          console.log('bSt uB updated board: ', board);
+          // console.log('bSt uB updated board: ', board);
         }),
         catchError(error => {
           console.log('bSt uB error: ', error);
@@ -120,8 +163,39 @@ export class BoardsStore extends ComponentStore<BoardsState> {
   });
 
 
+  readonly createTask = this.effect((task$: Observable<Task>) => {
+    return task$.pipe(
+      concatMap((task) => this.boardsService.createTask(task).pipe(
+        tap(task => {
+          this.getAllBoards();
+          // console.log('bSt cB created task: ', task);
+        }),
+        catchError(error => {
+          // console.log('bSt gB error: ', error);
+          return of(error);
+        })
+      ))
+    )
+  });
 
-
-
+  // readonly createTask = this.effect((task$: Observable<Task>) => {
+  //   return task$.pipe(
+  //     withLatestFrom(this.selectedBoard$),
+  //     map(([task, board]) => {
+  //       const updatedTasks = board.tasks ? [...board.tasks, task] : [task];
+  //       board.tasks = [...updatedTasks];
+  //       return board;
+  //     }),
+  //     concatMap((board) => this.boardsService.updateBoard(board)),
+  //     tap(board => {
+  //         this.getAllBoards();
+  //         console.log('bSt cB created task in board: ', board);
+  //       }),
+  //     catchError(error => {
+  //         console.log('bSt gB error: ', error);
+  //         return of(error);
+  //       })
+  //     )
+  // });
 
 }

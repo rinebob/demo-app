@@ -1,0 +1,66 @@
+<div class="settings-dialog-container">
+
+    <div class="title-container">
+        <p class="title-text">Select Columns to Display</p>
+        <p class="subtitle-text">Column (number of tasks)</p>
+    </div>
+
+    <div class="checkbox-container">
+        
+        <ng-container *ngFor="let column of TASK_STATUS_VALUES" >
+
+            <mat-checkbox #checkbox color="primary"
+                          [checked]="getCheckedStatus(column)"
+                          [id]="column"
+                          (change)="generateColumnsList($event)"
+            >
+                {{column | titlecase}} ({{numTasksByColumn[column]}})
+            </mat-checkbox>
+
+        </ng-container>
+        
+    </div>
+
+    <div class="action-buttons">
+
+        <button mat-flat-button 
+                class="all-none-button"
+                type="button"
+                (click)="handleSetAllColumns(false)"
+        >
+            Clear all
+        </button>
+        
+        <button mat-flat-button
+                type="button"
+                class="all-none-button"
+                (click)="handleSetAllColumns(true)"
+        >
+            Select all
+        </button>
+
+    </div>
+
+    <div class="action-buttons">
+
+        <button mat-flat-button 
+                class="cancel-button"
+                type="button"
+                (click)="handleCancelOperation()"
+        >
+            Cancel
+        </button>
+        
+        <button mat-flat-button
+                type="submit"
+                class="save-button"
+                (click)="handleSaveOperation()"
+        >
+            Save
+        </button>
+
+    </div>
+
+
+
+</div>

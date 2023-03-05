@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -27,6 +25,7 @@ import { ViewTaskComponent } from './components/view-task/view-task.component';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
 import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
 import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.component';
+import { ColumnSettingsComponent } from './components/column-settings/column-settings.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,8 @@ import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.com
     ViewTaskComponent,
     CreateColumnComponent,
     DeleteConfirmComponent,
-    KanbanTasksComponent
+    KanbanTasksComponent,
+    ColumnSettingsComponent
   ],
   imports: [
     CommonModule,

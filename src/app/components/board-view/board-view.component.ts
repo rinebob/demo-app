@@ -8,8 +8,8 @@ import { BoardsService } from 'src/app/services/boards.service';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { BoardFormComponent } from '../board-form/board-form.component';
 import { ThemePalette } from '@angular/material/core';
-import { BOARDS } from 'src/app/testing/mock-task-data';
 import { BoardsStore } from 'src/app/services/boards-store.service';
+import { ColumnSettingsComponent } from '../column-settings/column-settings.component';
 
 @Component({
   selector: 'app-board-view',
@@ -21,6 +21,10 @@ export class BoardViewComponent implements OnInit {
   
   boards$ = this.boardsStore.boards$;
   selectedBoard$ = this.boardsStore.selectedBoard$;
+  allTasksByStatus$ = this.boardsStore.allTasksByStatus$;
+  allColumnsWithTasks$ = this.boardsStore.allColumnsWithTasks$;
+  userSelectedColumns$ = this.boardsStore.userSelectedColumns$;
+  numberOfTasksPerColumn$ = this.boardsStore.numberOfTasksPerColumn$;
 
   boardsBS = new BehaviorSubject<Board[]>([])
   selectedBoardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
@@ -36,12 +40,14 @@ export class BoardViewComponent implements OnInit {
   showForm = false;
   numBoards = 0;
 
+  userSelectedColumns: string[] = [];
+  numTasksByColumn: {[key: string]: number};
+
   shouldShowOpenDrawerButton = true;
   darkModeToggleButtonColor: ThemePalette = 'primary';
 
   constructor(private router: Router, private route: ActivatedRoute,
-    private dialog: MatDialog, private boardsService: BoardsService,
-    private boardsStore: BoardsStore,
+    private dialog: MatDialog, private boardsStore: BoardsStore,
     ) {
 
       this.boardsStore.getAllBoards();
@@ -49,21 +55,33 @@ export class BoardViewComponent implements OnInit {
       this.boards$.pipe(
         withLatestFrom(this.selectedBoard$)
       ).subscribe(([boards, board]) => {
-        // console.log('bV ctor store boards sub: ', boards);
+        console.log('bV ctor store boards sub: ', boards);
         this.numBoards = boards.length;
-        this.boardsBS.next(boards);
+        this.boardsBS.next([...boards]);
         if (boards[0] && board && board.displayName === '') {
           this.boardsStore.setSelectedBoard(boards[0]);
           // console.log('bV ctor setting default selectedBoard: ', boards[0]);
+        } else {
+          this.boardsStore.setSelectedBoard(boards.find(b => b.id === board.id) ?? boards[0]);
         }
       });
 
       this.selectedBoard$.pipe().subscribe(board => {
         // console.log('bV ctor store selected board sub: ', board);
         if (board && board.displayName !== '') {
-          // this.selectedBoardBS.next(board);
+          this.selectedBoardBS.next(board);
           this.initializeBoardAndTasks(board);
         }
+      });
+
+      this.userSelectedColumns$.pipe().subscribe(columns => {
+        // console.log('kT ctor user selected columns sub: ', columns);
+        this.userSelectedColumns = columns;
+      });
+  
+      this.numberOfTasksPerColumn$.pipe().subscribe(numbers => {
+        // console.log('kT ctor num tasks by column sub: ', numbers);
+        this.numTasksByColumn = numbers;
       });
 
       this.boards$.pipe().subscribe((boards) => {
@@ -97,7 +115,7 @@ export class BoardViewComponent implements OnInit {
   setSelectedBoard(board: Board) {
     // console.log('bV sSB board: ', board);
     this.boardsStore.setSelectedBoard(board);
-    this.initializeBoardAndTasks(this.selectedBoardBS.value);
+    // this.initializeBoardAndTasks(this.selectedBoardBS.value);
   }
 
   openCreateBoardDialog() {
@@ -129,11 +147,13 @@ export class BoardViewComponent implements OnInit {
   }
 
   openCreateTaskDialog() {
+    let id = 0;
+    this.selectedBoard$.pipe().subscribe(board => id = board.id ?? -1);
     const dialogData = {
-      boardId: this.selectedBoardBS.value?.id,
+      boardId: id,
     }
 
-    // console.log('aC oCTD create task called. boardId: ', this.boar);
+    // console.log('aC oCTD create task called. boardId: ', id);
 
     const dialogRef = this.dialog.open(TaskFormComponent, {data: dialogData});
 
@@ -142,6 +162,25 @@ export class BoardViewComponent implements OnInit {
     });
 
   }
+
+  openConfigureColumnsDialog() {
+    const dialogData = {
+      columns: this.userSelectedColumns,
+      numTasksByColumn: this.numTasksByColumn,
+    }
+
+    const dialogRef = this.dialog.open(ColumnSettingsComponent, {data: dialogData});
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('kT oCSD column settings dialog closed.  result: ', result);
+      // console.log('kT oCSD updated columns: ', result['columns']);
+      if (result && result.columns) {
+        this.boardsStore.setUserSelectedColumns(result['columns']);
+      }
+    });
+
+  }
+  
 
   toggleDarkMode(event: any) {
     // console.log('a tDM event: ', event);
