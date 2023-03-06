@@ -1,0 +1,55 @@
+
+<div class="ang-exp-container">
+
+    <mat-drawer-container>
+
+        <mat-drawer #drawer mode="side"
+                    opened="true"
+                    (openedChange)="toggleShowDrawerButton($event)">
+
+                    <div class="top-drawer-container">
+
+                        <h1 class="heading">Angular Experiments</h1>
+
+                        <button type="button" 
+                                (click)="drawer.close()"
+                                routerLink="drag-drop"
+                                class="nav-button"
+                        >
+                            cdk Drag Drop
+                        </button>
+
+                    </div>
+
+        </mat-drawer>
+
+        <mat-drawer-content>
+
+            <nav class="nav-bar">
+            
+                <div class="buttons-container">
+        
+                    <button mat-button
+                            class="nav-button"
+                            (click)="drawer.open()"
+                    >
+                        Open sidenav
+                    </button>
+                    
+                </div>
+        
+            </nav>
+
+            <router-outlet></router-outlet>
+
+            <button *ngIf="shouldShowOpenDrawerButton"
+                    class="show-drawer-button"
+                    (click)="drawer.open()"
+            >
+                <mat-icon>visibility</mat-icon>
+            </button>
+
+        </mat-drawer-content>
+
+    </mat-drawer-container>
+</div>

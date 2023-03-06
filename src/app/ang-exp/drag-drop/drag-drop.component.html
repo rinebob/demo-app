@@ -1,0 +1,43 @@
+
+<div class="drag-drop-container column-boundary"
+     cdkDropListGroup
+>
+
+    <div *ngFor="let column of columns; let ind = index"
+         class="column-container"
+    >
+
+        <div class="column"
+            id="{{column.id}}"
+            cdkDropList
+            [cdkDropListData]="column.elements"
+            (cdkDropListDropped)="dropElement($event)"
+        >
+            <div class="header-container">
+                <p class="column-title">{{column.title}}</p>
+                <!-- <p class="column-title">Col id {{column.id}}</p>
+                <p class="column-title">Col index {{ind}}</p> -->
+            </div>
+            
+            <div *ngFor="let element of column.elements; let i = index"
+                 cdkDragBoundary=".column-boundary"
+                 class="drag-element" 
+                 cdkDrag
+            >
+                <div class="placeholder" *cdkDragPlaceholder></div>
+                <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+                <div class="drag-element-content">
+                    <p class="element-title">{{column.title}}</p>
+                    <p class="element-title">{{element.title}}</p>
+                    <p class="element-title">Elem index {{i}}</p>
+                    <!-- <p class="element-title">{{element.content}}</p> -->
+
+                </div>
+
+            </div>
+        
+        </div>
+
+    </div>
+    
+</div>
