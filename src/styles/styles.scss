@@ -1,14 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
 @include mat.core();
-@import "./mixins";
-@import "./variables";
+@import "./global-mixins";
+@import "./global-variables";
+@import "./kanban-mixins";
+@import "./kanban-variables";
+@import "./ng-exp-mixins";
+@import "./ng-exp-variables";
 
 html, body { 
     height: 100%; 
 }
 body { 
-    margin: 0; 
+    margin: 0;
+    padding: 0;
 }
 
 .view-task-menu-css {
