@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Inject, ViewChildren } from '@angular/core';
-import {CdkDragDrop, CDK_DROP_LIST, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 interface Element {
   title: string;
@@ -19,8 +19,7 @@ interface Column {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DragDropComponent {
-  // @ViewChildren('.column') columns!: HTMLElement;
-
+  
   // columns: Column[] = [
   //   {id: 'col-1', title: 'Column A', elements: this.generateRandomElements('Column A', 4)},
   //   {id: 'col-2', title: 'Column B', elements: this.generateRandomElements('Column B', 7)},
@@ -32,7 +31,7 @@ export class DragDropComponent {
   
 
   constructor() {
-    console.log('dD ctor columns: ', this.columns);
+    // console.log('dD ctor columns: ', this.columns);
 
   }
 
@@ -47,15 +46,15 @@ export class DragDropComponent {
   }
 
   dropElement(event: CdkDragDrop<Element[]>) {
-    console.log('dD dE drop element event: ', event);
-    console.log('dD dE prevind/ind/prevCont/cont ', event.previousIndex, event.currentIndex, event.previousContainer.id, event.container.id);
+    // console.log('dD dE drop element event: ', event);
+    // console.log('dD dE prevind/ind/prevCont/cont ', event.previousIndex, event.currentIndex, event.previousContainer.id, event.container.id);
     
     if (event.previousContainer === event.container) {
-      console.log('dD dE move in array');
+      // console.log('dD dE move in array');
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       
     } else {
-      console.log('dD dE transfer item');
+      // console.log('dD dE transfer item');
       // console.log('dD dE prevind/ind/prevCont/cont ', event.previousIndex, event.currentIndex, event.previousContainer.id, event.container.id);
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
@@ -63,27 +62,10 @@ export class DragDropComponent {
   }
 
   dropColumn(event: CdkDragDrop<string[]>) {
-    console.log('dD dC drop element event: ', event);
+    // console.log('dD dC drop element event: ', event);
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
   }
   
-  getConnectedContainers(column: Column) {
-    const containers = [];
-    
-    // [id]="'#list' + column.title + '=cdkDropList'";
-    
-    for (const col of this.columns) {
-      if (col.title !== column.title) {
-        const containerName = `list-${column.title}`;
-        containers.push(containerName);
-        
-      }
-      
-    }
-    console.log('dD gCC conected containers: ', containers);
-    return containers;
-
-  }
 }
 
 const COLUMNS: Column[] = [

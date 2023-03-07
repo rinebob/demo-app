@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Board } from 'src/app/common/interfaces';
-import { BoardsService } from 'src/app/services/boards.service';
+import { BoardsStore } from 'src/app/services/boards-store.service';
 
 @Component({
   selector: 'app-list-boards',
@@ -13,28 +13,19 @@ import { BoardsService } from 'src/app/services/boards.service';
 })
 export class ListBoardsComponent implements OnInit {
   
-  boards$: Observable<Board[]>;
+  boards$: Observable<Board[]> = this.boardsStore.boards$;
 
-  constructor(private boardsService: BoardsService, 
-    private router: Router,
-    private route: ActivatedRoute
-    ) {
+  constructor(private boardsStore: BoardsStore) {}
 
-  }
-
-  ngOnInit(): void {
-    this.boards$ = this.boardsService.boards$;
-    
-    
-  }
+  ngOnInit(): void {}
 
   viewBoard(boardId: number) {
-    this.router.navigate(['view', boardId]);
+    // this.router.navigate(['view', boardId]);
   }
   
   createNewBoard() {
-    console.log('lB cNB create new board called');
-    this.router.navigateByUrl('create');
+    // console.log('lB cNB create new board called');
+    // this.router.navigateByUrl('create');
 
   }
 

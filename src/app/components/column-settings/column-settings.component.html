@@ -7,14 +7,14 @@
 
     <div class="checkbox-container">
         
-        <ng-container *ngFor="let column of TASK_STATUS_VALUES" >
+        <ng-container *ngFor="let value of TASK_STATUS_VALUES" >
 
             <mat-checkbox #checkbox color="primary"
-                          [checked]="getCheckedStatus(column)"
-                          [id]="column"
+                          [checked]="getCheckedStatus(value)"
+                          [id]="value"
                           (change)="generateColumnsList($event)"
             >
-                {{column | titlecase}} ({{numTasksByColumn[column]}})
+                {{value | titlecase}} ({{numTasksByColumn[value]}})
             </mat-checkbox>
 
         </ng-container>
@@ -29,6 +29,14 @@
                 (click)="handleSetAllColumns(false)"
         >
             Clear all
+        </button>
+
+        <button mat-flat-button
+                type="button"
+                class="all-none-button"
+                (click)="handleSelectColumnsWithTasks()"
+        >
+            Tasks only
         </button>
         
         <button mat-flat-button
@@ -60,7 +68,5 @@
         </button>
 
     </div>
-
-
 
 </div>

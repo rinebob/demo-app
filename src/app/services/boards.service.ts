@@ -15,11 +15,11 @@ const TASKS_BASE_URL = 'api/tasks';
 })
 export class BoardsService  {
 
-  boardsBS = new BehaviorSubject<Board[]>([]);
-  boards$: Observable<Board[]> = this.boardsBS;
+  // boardsBS = new BehaviorSubject<Board[]>([]);
+  // boards$: Observable<Board[]> = this.boardsBS;
   
-  selectedBoardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
-  selectedBoard$: Observable<Board> = this.selectedBoardBS;
+  // selectedBoardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
+  // selectedBoard$: Observable<Board> = this.selectedBoardBS;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

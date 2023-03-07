@@ -31,11 +31,11 @@ export class ImBoardsTasksService  implements InMemoryDbService {
   }
 
   post(reqInfo: RequestInfo) {
-    console.log('iMBT post requst info: ', reqInfo);
+    // console.log('iMBT post requst info: ', reqInfo);
   }
   
   put(reqInfo: RequestInfo) {
-    console.log('iMBT put requst info: ', reqInfo);
+    // console.log('iMBT put requst info: ', reqInfo);
   }
 
   delete(reqInfo: RequestInfo) {

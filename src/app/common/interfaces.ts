@@ -50,6 +50,12 @@ export interface Board extends Entity {
     tasks?: Task[];
 }
 
+export interface Column {
+    id: number;
+    name: string;
+    order: number;
+}
+
 export enum FormMode {
     CREATE = 'create',
     EDIT = 'edit',
@@ -61,7 +67,7 @@ export interface SortedTasks {
 
 export interface SortedTasksWithColumns {
     allocatedTasks: SortedTasks;
-    columns: string[];
+    // columns: Column[];
 }
 
 export interface ColumnOrder {
@@ -98,7 +104,8 @@ export interface DialogData {
     boardId?: number;
     board?: Board;
     task?: Task;
-    columns?: string[];
+    allColumns: Column[];
+    userColumns?: Column[];
     numTasksByColumn: {[key: string]: number}
   }
 
