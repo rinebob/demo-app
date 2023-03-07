@@ -2,37 +2,50 @@
 
     <div class="scroll-container">
     
-        <div class="columns-container">
+        <div class="columns-container column-boundary"
+             cdkDropListGroup
+        >
 
             <div *ngFor="let column of userSelectedColumns$ | async"
-                 [ngStyle]="{'order': getColumnOrder(column)}"
-                 [style.width.px]="getWidth(columns.length)"
-                 class="column-container" 
+                 [ngStyle]="{'order': getColumnOrder(column.name)}"
+                 [style.width.px]="getWidth(userSelectedColumns.length)"
+                 class="column-container"
+                 id="{{column.id}}"
+                 cdkDropList
+                 [cdkDropListData]="allocatedTasks[column.name]"
+                 (cdkDropListDropped)="dropElement($event)"
             >
             
-                <ng-container *ngIf="allocatedTasks[column]">
+                <ng-container *ngIf="allocatedTasks[column.name]">
 
                     <div class="column-header">
                         <div class="color-circle"
-                        [ngStyle]="{'background-color': getColumnColor(column)}"
+                        [ngStyle]="{'background-color': getColumnColor(column.name)}"
                         ></div>
-                        <p class="column-header-text">{{column}} ({{allocatedTasks[column].length}})</p>
+                        <p class="column-header-text">{{column.name}} ({{allocatedTasks[column.name].length}})</p>
                     </div>
 
 
-                    <div *ngFor="let task of allocatedTasks[column]"
+                    <div *ngFor="let task of allocatedTasks[column.name]"
                         class="task-card"
                         (click)="setSelectedTask(task)"
+                        cdkDragBoundary=".column-boundary"
+                        class="drag-element" 
+                        cdkDrag
                     >
-                        <p class="task-title">{{task.displayName}}</p>
-                        <p class="task-subtitle">{{task.status}}</p>
-                        <p class="task-subtitle">x of x subtasks</p>
+                        <div class="placeholder" *cdkDragPlaceholder></div>
+                        <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+                        <div class="drag-element-content">
+                            <p class="task-title">{{task.displayName}}</p>
+                            <p class="task-subtitle">{{task.status}}</p>
+                            <p class="task-subtitle">x of x subtasks</p>
+                        </div>
             
                     </div>
 
                 </ng-container>
 
-                <div *ngIf="column === 'new-column'" 
+                <div *ngIf="column.name === 'new-column'" 
                     class="new-column-area"
                 >
                     <button mat-button

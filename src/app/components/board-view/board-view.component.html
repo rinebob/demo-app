@@ -3,7 +3,6 @@
 <mat-drawer-container>
 
     <mat-drawer #drawer mode="side"
-                opened="true"
                 (openedChange)="toggleShowDrawerButton($event)"
     >
 
@@ -99,6 +98,7 @@
             
             <app-kanban-tasks [tasks]="(tasks$ | async)!"
                               (addTask)="openCreateTaskDialog()"
+                              (updatedTasks)="handleUpdatedTasks($event)"
             >
             </app-kanban-tasks>
 

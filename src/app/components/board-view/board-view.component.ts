@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, of, withLatestFrom } from 'rxjs';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
-import { Board, Task } from 'src/app/common/interfaces';
-import { BoardsService } from 'src/app/services/boards.service';
+import { Board, Column, Task } from 'src/app/common/interfaces';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { BoardFormComponent } from '../board-form/board-form.component';
 import { ThemePalette } from '@angular/material/core';
@@ -22,6 +21,7 @@ export class BoardViewComponent implements OnInit {
   boards$ = this.boardsStore.boards$;
   selectedBoard$ = this.boardsStore.selectedBoard$;
   allTasksByStatus$ = this.boardsStore.allTasksByStatus$;
+  allColumns$ = this.boardsStore.allColumns$;
   allColumnsWithTasks$ = this.boardsStore.allColumnsWithTasks$;
   userSelectedColumns$ = this.boardsStore.userSelectedColumns$;
   numberOfTasksPerColumn$ = this.boardsStore.numberOfTasksPerColumn$;
@@ -40,22 +40,24 @@ export class BoardViewComponent implements OnInit {
   showForm = false;
   numBoards = 0;
 
-  userSelectedColumns: string[] = [];
+  allColumns: Column[] = [];
+  userSelectedColumns: Column[] = [];
   numTasksByColumn: {[key: string]: number};
 
   shouldShowOpenDrawerButton = true;
   darkModeToggleButtonColor: ThemePalette = 'primary';
 
-  constructor(private router: Router, private route: ActivatedRoute,
-    private dialog: MatDialog, private boardsStore: BoardsStore,
-    ) {
+  constructor(private dialog: MatDialog, private boardsStore: BoardsStore) {
+
+      // console.log('-------------------------------');
+      // console.log('bV ctor board view ctor');
 
       this.boardsStore.getAllBoards();
 
       this.boards$.pipe(
         withLatestFrom(this.selectedBoard$)
       ).subscribe(([boards, board]) => {
-        console.log('bV ctor store boards sub: ', boards);
+        // console.log('bV ctor store boards sub: ', boards);
         this.numBoards = boards.length;
         this.boardsBS.next([...boards]);
         if (boards[0] && board && board.displayName === '') {
@@ -74,13 +76,18 @@ export class BoardViewComponent implements OnInit {
         }
       });
 
+      this.allColumns$.pipe().subscribe(columns => {
+        // console.log('bV ctor user selected columns sub: ', columns);
+        this.allColumns = columns;
+      });
+
       this.userSelectedColumns$.pipe().subscribe(columns => {
-        // console.log('kT ctor user selected columns sub: ', columns);
+        // console.log('bV ctor user selected columns sub: ', columns);
         this.userSelectedColumns = columns;
       });
   
       this.numberOfTasksPerColumn$.pipe().subscribe(numbers => {
-        // console.log('kT ctor num tasks by column sub: ', numbers);
+        // console.log('bV ctor num tasks by column sub: ', numbers);
         this.numTasksByColumn = numbers;
       });
 
@@ -165,19 +172,29 @@ export class BoardViewComponent implements OnInit {
 
   openConfigureColumnsDialog() {
     const dialogData = {
-      columns: this.userSelectedColumns,
+      allColumns: this.allColumns,
+      userColumns: this.userSelectedColumns,
       numTasksByColumn: this.numTasksByColumn,
     }
 
     const dialogRef = this.dialog.open(ColumnSettingsComponent, {data: dialogData});
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('kT oCSD column settings dialog closed.  result: ', result);
-      // console.log('kT oCSD updated columns: ', result['columns']);
+      // console.log('bV oCSD column settings dialog closed.  result: ', result);
+      // console.log('bV oCSD updated columns: ', result['columns']);
       if (result && result.columns) {
         this.boardsStore.setUserSelectedColumns(result['columns']);
       }
     });
+    
+  }
+  
+  handleUpdatedTasks(tasks: Task[]) {
+    // console.log('bV hUT handle updated tasks: ', tasks);
+    const board = this.selectedBoardBS.value;
+    board.tasks = [...tasks];
+
+    this.boardsStore.updateBoard(board);
 
   }
   

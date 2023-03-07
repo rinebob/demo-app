@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -45,6 +46,7 @@ import { ColumnSettingsComponent } from './components/column-settings/column-set
     HttpClientModule,
     ReactiveFormsModule,
     
+    DragDropModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,

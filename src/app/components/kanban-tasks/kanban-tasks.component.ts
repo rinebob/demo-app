@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
@@ -8,8 +9,8 @@ import { ViewTaskComponent } from '../view-task/view-task.component';
 import { ColumnSettingsComponent } from '../column-settings/column-settings.component';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { ALLOCATED_TASKS_INITIALIZER, COLUMN_COLOR, COLUMN_ORDER_FROM_STATUS } from 'src/app/common/constants';
-import { DialogCloseResult, SortedTasks, Task } from '../../common/interfaces';
-import { allocateTasksToColumns } from '../../common/task_utils';
+import { Column, DialogCloseResult, SortedTasks, Task } from '../../common/interfaces';
+import { allocateTasksToColumns, generateAllColumnsList } from '../../common/task_utils';
 
 
 @Component({
@@ -22,8 +23,9 @@ export class KanbanTasksComponent {
   @Input()
   set tasks(tasks: Task[]) {
     this.tasksBS.next(tasks);
+    // console.log('-------------------------------');
     // console.log('kT @i input kanban tasks: ', this.tasksBS.value);
-    this.allocateTasksToColumns(this.tasksBS.value);
+    this.initializeTasks(this.tasksBS.value);
   }
   get tasks() {
     return this.tasksBS.value;
@@ -31,6 +33,7 @@ export class KanbanTasksComponent {
   tasksBS = new BehaviorSubject<Task[]>([]);
 
   @Output() addTask = new EventEmitter<void>();
+  @Output() updatedTasks = new EventEmitter<Task[]>();
 
   allTasksByStatus$ = this.boardsStore.allTasksByStatus$;
   allColumnsWithTasks$ = this.boardsStore.allColumnsWithTasks$;
@@ -41,9 +44,9 @@ export class KanbanTasksComponent {
   selectedTask$: Observable<Task|undefined> = this.selectedTaskBS;
 
   allocatedTasks: SortedTasks = ALLOCATED_TASKS_INITIALIZER;
-  columns: string[] = [];
-  columnsWithTasks: string[] = [];
-  userSelectedColumns: string[] = [];
+  allColumns: Column[] = [];
+  columnsWithTasks: Column[] = [];
+  userSelectedColumns: Column[] = [];
   numTasksByColumn: {[key: string]: number};
   
   emptyBoardText = 'This board is empty.  Create a new task to get started.';
@@ -57,13 +60,17 @@ export class KanbanTasksComponent {
 
   constructor(private dialog: MatDialog, private boardsStore: BoardsStore,) {
 
+    // console.log('-------------------------------');
+    // console.log('kT ctor kanban tasks ctor');
+
     this.userSelectedColumns$.pipe().subscribe(columns => {
-      console.log('kT ctor user selected columns sub: ', columns);
+      // console.log('kT ctor user selected columns sub pre: ', columns);
       this.userSelectedColumns = columns;
+      // console.log('kT ctor user selected columns sub post: ', this.userSelectedColumns);
     });
 
     this.numberOfTasksPerColumn$.pipe().subscribe(numbers => {
-      console.log('kT ctor num tasks by column sub: ', numbers);
+      // console.log('kT ctor num tasks by column sub: ', numbers);
       this.numTasksByColumn = numbers;
     });
   }
@@ -72,16 +79,42 @@ export class KanbanTasksComponent {
     this.innerWidth = window.innerWidth;
   }
 
-  allocateTasksToColumns(tasks: Task[]) {
-    const {allocatedTasks, columns} = allocateTasksToColumns(this.tasks);
-    this.allocatedTasks = allocatedTasks;
-    this.columns = columns;
-    this.columnsWithTasks = columns;
-    this.userSelectedColumns = columns;
-    this.boardsStore.setallTasksByStatus(allocatedTasks);
-    this.boardsStore.setAllColumnsWithTasks(columns);
-    this.boardsStore.setUserSelectedColumns(columns);
-    // console.log('kT aTTC t.allocatedTasks: ', this.allocatedTasks);
+  initializeTasks(tasks: Task[]) {
+    const allocatedTasks = allocateTasksToColumns(this.tasks);
+    // console.log('kT iT t.allocatedTasks post: ', {...allocatedTasks});
+    const columns = generateAllColumnsList();
+    this.allocatedTasks = {...allocatedTasks};
+    this.allColumns = [...columns];
+    // console.log('kT iT t.allColumns pre: ', [...this.allColumns]);
+    // console.log('kT iT t.colsWTasks pre: ', [...this.columnsWithTasks]);
+    
+    this.columnsWithTasks = [];
+    for (const col of this.allColumns) {
+      if (this.allocatedTasks[col.name] && this.allocatedTasks[col.name].length > 0) {
+        this.columnsWithTasks.push(col);
+      }
+    }
+    // console.log('kT iT t.allColumns post: ', [...this.allColumns]);
+    // console.log('kT iT t.colsWTasks post: ', [...this.columnsWithTasks]);
+    
+    if (this.userSelectedColumns.length === 0) {
+      this.userSelectedColumns = [...this.columnsWithTasks];
+      this.boardsStore.setUserSelectedColumns([...this.columnsWithTasks]);
+
+    }
+
+
+    // console.log('kT iT t.aT: ', {...this.allocatedTasks});
+    // console.log('kT iT t.aT keys: ', Object.keys({...this.allocatedTasks}));
+    // console.log('kT iT t.columnsWithTasks pre: ', [...this.columnsWithTasks]);
+    // console.log('kT iT t.userSelectedColumns pre: ', [...this.userSelectedColumns]);
+    
+    
+    this.boardsStore.setallTasksByStatus({...allocatedTasks});
+    this.boardsStore.setAllColumns([...this.allColumns]);
+    this.boardsStore.setAllColumnsWithTasks([...this.columnsWithTasks]);
+    // console.log('kT iT t.userSelectedColumns post: ', [...this.userSelectedColumns]);
+    // console.log('kT iT t.allocatedTasks: ', this.allocatedTasks);
   }
   
   getWidth(numColumns: number) {
@@ -91,14 +124,14 @@ export class KanbanTasksComponent {
     return columnWidth;
   }
 
-  getColumnOrder(column: string) {
-    const order = COLUMN_ORDER_FROM_STATUS[column];
+  getColumnOrder(columnName: string) {
+    const order = COLUMN_ORDER_FROM_STATUS[columnName];
     // console.log('kT gCO column/order: ', column, order);
     return order;
   }
 
-  getColumnColor(column: string) {
-    const color = COLUMN_COLOR[column];
+  getColumnColor(columnName: string) {
+    const color = COLUMN_COLOR[columnName];
     // console.log('kT gCO column/color: ', column, color);
     return color;
   }
@@ -173,7 +206,8 @@ export class KanbanTasksComponent {
   openColumnSettingsDialog() {
 
     const dialogData = {
-      columns: this.userSelectedColumns,
+      allColumns: this.allColumns,
+      userColumns: this.userSelectedColumns,
       numTasksByColumn: this.numTasksByColumn,
     }
 
@@ -189,4 +223,43 @@ export class KanbanTasksComponent {
 
   }
 
+  dropElement(event: CdkDragDrop<Task[]>) {
+    // console.log('kT dE drop element event: ', event);
+    // console.log('kT dE drop item data: ', event.item.data);
+    // console.log('kT dE prevind/ind/prevCont/cont ', event.previousIndex, event.currentIndex, event.previousContainer.id, event.container.id);
+    
+    if (event.previousContainer === event.container) {
+      // console.log('kT dE move in array');
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.boardsStore.setallTasksByStatus({...this.allocatedTasks});
+      
+    } else {
+      // console.log('kT dE transfer item');
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      this.boardsStore.setallTasksByStatus({...this.allocatedTasks});
+      // console.log('kT dE input tasks: ', this.tasks);
+      // console.log('kT dE t.allocTasks: ', this.allocatedTasks);
+      
+      const movedTask = event.container.data[event.currentIndex];
+      // console.log('kT dE moved task: ', {...movedTask});
+      // console.log('kT dE new container id: ', event.container.id);
+      const newColumn = this.allColumns.find(col => col.id === Number(event.container.id));
+      // console.log('kT dE new column: ', newColumn);
+      
+      if (movedTask && newColumn && newColumn.name) {
+        movedTask.status = newColumn?.name;
+        // console.log('kT dE updated moved task: ', {...movedTask});
+        
+        const updatedTaskList = this.tasks.filter(task => task.id !== movedTask.id);
+        updatedTaskList.push(movedTask);
+        
+        this.updatedTasks.emit(updatedTaskList);
+        // console.log('kT dE emitting updated task list');
+
+      }
+
+
+    }
+
+  }
 }

@@ -3,7 +3,7 @@ import { ComponentStore } from '@ngrx/component-store';
 import { Observable, of } from 'rxjs';
 import { concatMap, tap, switchMap, catchError, withLatestFrom, map } from 'rxjs/operators';
 
-import { Board, SortedTasks, Task } from '../common/interfaces';
+import { Board, Column, SortedTasks, Task } from '../common/interfaces';
 import { BOARD_INITIALIZER } from '../common/constants';
 import { BoardsService } from './boards.service';
 
@@ -11,14 +11,16 @@ export interface BoardsState {
   boards: Board[];
   selectedBoard: Board;
   allTasksByStatus: SortedTasks;
-  allColumnsWithTasks: string[];
-  userSelectedColumns: string[];
+  allColumns: Column[];
+  allColumnsWithTasks: Column[];
+  userSelectedColumns: Column[];
 }
 
 const BOARDS_STORE_INITIALIZER = {
   boards: [],
   selectedBoard: BOARD_INITIALIZER,
   allTasksByStatus: {},
+  allColumns: [],
   allColumnsWithTasks: [],
   userSelectedColumns: [],
 };
@@ -48,12 +50,17 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     allTasksByStatus: {...sortedTasks},
   }));
 
-  readonly setAllColumnsWithTasks = this.updater((state, columns: string[]) => ({
+  readonly setAllColumns = this.updater((state, columns: Column[]) => ({
+    ...state,
+    allColumns: [...columns],
+  }));
+
+  readonly setAllColumnsWithTasks = this.updater((state, columns: Column[]) => ({
     ...state,
     allColumnsWithTasks: [...columns],
   }));
 
-  readonly setUserSelectedColumns = this.updater((state, columns: string[]) => ({
+  readonly setUserSelectedColumns = this.updater((state, columns: Column[]) => ({
     ...state,
     userSelectedColumns: [...columns],
   }));
@@ -69,10 +76,10 @@ export class BoardsStore extends ComponentStore<BoardsState> {
   // );
 
   readonly allTasksByStatus$: Observable<SortedTasks> = this.select((state: BoardsState) => state.allTasksByStatus);
-  readonly allColumnsWithTasks$: Observable<string[]> = this.select((state: BoardsState) => state.allColumnsWithTasks);
-  readonly userSelectedColumns$: Observable<string[]> = this.select((state: BoardsState) => state.userSelectedColumns);
-  
-  
+  readonly allColumns$: Observable<Column[]> = this.select((state: BoardsState) => state.allColumns);
+  readonly allColumnsWithTasks$: Observable<Column[]> = this.select((state: BoardsState) => state.allColumnsWithTasks);
+  readonly userSelectedColumns$: Observable<Column[]> = this.select((state: BoardsState) => state.userSelectedColumns);
+    
   readonly numberOfTasksPerColumn$: Observable<any> = this.select(
     this.allTasksByStatus$,
     (tasks: SortedTasks ) => {

@@ -4,7 +4,7 @@
     @include flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
     padding: 32px;
-    width: 300px;
+    width: 400px;
 
     .title-container {
         @include flexboxLayout(column, flex-start, flex-start);
@@ -42,7 +42,8 @@
         }
 
         .all-none-button {
-            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 20px);
+            font-size: 12px;
         }
 
         .cancel-button {
