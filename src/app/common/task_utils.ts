@@ -81,28 +81,7 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], 
       }
       // console.log('tU aTTC allocTasks end: ', allocatedTasks);
     }
-
-    // const columns: Column[] = []
-    // let id = 1;
-    // for (const key of [...statusValues.keys()]) {
-    //   const column: Column = {
-    //     id,
-    //     name: key,
-    //     order: COLUMN_ORDER_FROM_STATUS[key],
-    //   };
-    //   columns.push(column);
-    //   id ++;
-
-    // }
-
-    // const columns = [...statusValues.keys()];
-    // console.log('tU aTTC keys: ', columns);
-    // console.log('tU aTTC final columns/tasks by status map: ', columns, allocatedTasks);
-
-    // for (const column of columns) {
-      // console.log('tU aTTC column/tasks: ', column, allocatedTasks[column.name]);
-    // }
-    
+   
     return allocatedTasks;
   }
   
@@ -119,8 +98,28 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], 
       id ++;
       
     }
+
+    columns.push({id: columns.length, name: 'new column', order: columns.length});
     // console.log('tU gACL all columns: ', columns);
     
+    return columns;
+  }
+
+  export function updateColumnOrders(columns: Column[], previousIndex: number, newIndex: number ) {
+    // console.log('tU uCO input columns: ', columns);
+    const movedColumn = columns[previousIndex];
+    const movedColumnOrder = movedColumn.order;
+
+    columns.splice(previousIndex, 1);
+
+    columns.splice(newIndex, 0, movedColumn);
+
+    columns.forEach((column, i) => {
+      column.order = i;
+    });
+
+    // console.log('tU uCO output columns: ', columns);
+
     return columns;
   }
 

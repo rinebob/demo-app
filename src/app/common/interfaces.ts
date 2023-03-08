@@ -54,6 +54,7 @@ export interface Column {
     id: number;
     name: string;
     order: number;
+    display?: boolean;
 }
 
 export enum FormMode {
