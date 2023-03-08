@@ -144,7 +144,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
           this.setSelectedBoard({...board});
         }),
         catchError(error => {
-          console.log('bSt gB error: ', error);
+          // console.log('bSt gB error: ', error);
           return of(error);
         })
       ))
@@ -162,7 +162,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
           // console.log('bSt cB created board: ', board);
         }),
         catchError(error => {
-          console.log('bSt gB error: ', error);
+          // console.log('bSt gB error: ', error);
           return of(error);
         })
       ))
@@ -196,26 +196,41 @@ export class BoardsStore extends ComponentStore<BoardsState> {
           // console.log('bSt uB updated board: ', board);
         }),
         catchError(error => {
-          console.log('bSt uB error: ', error);
+          // console.log('bSt uB error: ', error);
           return of(error);
         })
       ))
     )
   });
 
-
   readonly createTask = this.effect((task$: Observable<Task>) => {
     return task$.pipe(
-      concatMap((task) => this.boardsService.createTask(task).pipe(
-        tap(task => {
-          this.getAllBoards();
-          // console.log('bSt cB created task: ', task);
-        }),
-        catchError(error => {
-          // console.log('bSt gB error: ', error);
-          return of(error);
-        })
-      ))
+      withLatestFrom(this.selectedBoard$),
+      concatMap(([task, board]) => {
+        // console.log('bSt cT new task: ', task);
+        // console.log('bSt cT selectedBoard: ', board);
+        
+        const title = `${board.displayName} - ${task.displayName}`;
+        task.displayName = title;
+        // console.log('bSt cT task with new title: ', task);
+        
+        const existingTasks = board.tasks ? board.tasks : [];
+        // console.log('bSt cT existing tasks: ', existingTasks);
+        task.id = existingTasks.length + 1;
+        existingTasks.push(task);
+        board.tasks = [...existingTasks];
+        // console.log('bSt cT board with task: ', board, board.tasks);
+        
+        return this.boardsService.updateBoard(board).pipe(
+          tap(task => {
+            this.getAllBoards();
+            // console.log('bSt cT created task: ', task);
+          }),
+          catchError(error => {
+            // console.log('bSt cT error: ', error);
+            return of(error);
+          })
+        )})
     )
   });
 
@@ -239,4 +254,56 @@ export class BoardsStore extends ComponentStore<BoardsState> {
   //     )
   // });
 
+  readonly updateTask = this.effect((task$: Observable<Task>) => {
+    return task$.pipe(
+      withLatestFrom(this.selectedBoard$),
+      concatMap(([task, board]) => {
+        // console.log('bSt uT new task: ', task);
+        // console.log('bSt uT selectedBoard: ', board);
+        
+        const existingTasks = board.tasks ? board.tasks.filter(t => t.id !== task.id) : [];
+        // console.log('bSt uT existing tasks: ', existingTasks);
+        
+        existingTasks.push(task);
+        board.tasks = [...existingTasks];
+        // console.log('bSt uT board with task: ', board, board.tasks);
+        
+        return this.boardsService.updateBoard(board).pipe(
+          tap(task => {
+            this.getAllBoards();
+            // console.log('bSt uT updated task: ', task);
+          }),
+          catchError(error => {
+            // console.log('bSt uT error: ', error);
+            return of(error);
+          })
+        )})
+    )
+  });
+
+  readonly deleteTask = this.effect((taskId$: Observable<number>) => {
+    return taskId$.pipe(
+      withLatestFrom(this.selectedBoard$),
+      concatMap(([taskId, board]) => {
+        // console.log('bSt dT task id to delete: ', taskId);
+        // console.log('bSt dT selectedBoard: ', board);
+        
+        const remainingTasks = board.tasks ? board.tasks.filter(t => t.id !== taskId) : [];
+        // console.log('bSt uT remaining tasks: ', [...remainingTasks]);
+
+        board.tasks = [...remainingTasks];
+        
+        // console.log('bSt uT board after delete task: ', board, [...board.tasks]);
+        
+        return this.boardsService.updateBoard(board).pipe(
+          tap( _ => {
+            this.getAllBoards();
+          }),
+          catchError(error => {
+            console.log('bSt dT error: ', error);
+            return of(error);
+          })
+        )})
+    )
+  });
 }

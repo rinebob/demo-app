@@ -22,7 +22,8 @@ export class TaskFormComponent {
   taskForm: FormGroup;
   displayNameControl = new FormControl('');
   descriptionControl = new FormControl('');
-  statusControl = new FormControl(TaskStatus.NOT_STARTED);
+  selectedStatus = TaskStatus.NOT_STARTED
+  statusControl = new FormControl(this.selectedStatus);
   
   subtaskDescriptionControl = new FormControl('');
   subtasksArray = new FormArray([this.subtaskDescriptionControl]);
@@ -54,6 +55,14 @@ export class TaskFormComponent {
         // console.log('tF ctor task to edit: ', data.task);
         this.populateForm(this.taskBS.value);
       }
+
+      this.statusControl.valueChanges.pipe().subscribe(changes => {
+        console.log('tF ctor status control values sub: ', changes);
+      });
+
+      this.taskForm.valueChanges.pipe().subscribe(changes => {
+        console.log('tF ctor task form values sub: ', changes);
+      });
   }
 
   buildTaskForm() {
@@ -84,6 +93,13 @@ export class TaskFormComponent {
 
   }
 
+  // updateStatusControl(event: any) {
+  //   console.log('tF uSC status control change event: ', event);
+  //   const taskData = this.taskForm.value;
+  //   console.log('tF hST task form values: ', taskData);
+
+  // }
+
   getSubTasks() {
     return this.taskForm.get('subTasks') as FormArray;
   }
@@ -111,17 +127,18 @@ export class TaskFormComponent {
     
     if (this.formMode === FormMode.EDIT) {
       task.boardId = this.taskBS.value.boardId,
-      // console.log('tF hST updated task to BE: ', task);
+      console.log('tF hST updated task to BE: ', task);
       // this.boardsService.updateTaskInBoard(task.boardId ?? -1, task.id ?? -1, task);
-      this.boardsService.updateTaskInBoard(task.boardId ?? -1, task.id ?? -1, task);
-      this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
+      // this.boardsService.updateTaskInBoard(task.boardId ?? -1, task.id ?? -1, task);
+      this.boardsStore.updateTask(task);
+      this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE, updatedTask: task});
 
     } else {
       task.boardId = this.data.boardId,
-      // console.log('tF hST new task to create: ', task);
+      console.log('tF hST new task to create: ', task);
       // this.boardsService.createTask(task);
       this.boardsStore.createTask(task);
-      this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE});
+      this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE, newTask: task});
       
 
     }

@@ -73,7 +73,9 @@
         
         <p class="field-label">Status</p>
         <mat-form-field appearance="outline">
-            <mat-select [value]="defaultStatusValue">
+            <mat-select [(value)]="selectedStatus"
+                        formControlName="statusControl"
+            >
                 <mat-option *ngFor="let option of TASK_STATUS_VALUES" 
                             [value]="option"
                 >

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
-import { BoardsService } from 'src/app/services/boards.service';
+import { BoardsStore } from 'src/app/services/boards-store.service';
 import { DialogCloseResult, DialogData } from '../../common/interfaces';
 
 @Component({
@@ -17,7 +17,7 @@ export class DeleteConfirmComponent implements OnInit {
   
   constructor(public dialogRef: MatDialogRef<DeleteConfirmComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private boardService: BoardsService,
+    private boardsStore: BoardsStore,
     ) {
 
       // console.log('dC ctor entity to delete: ', data);
@@ -58,22 +58,22 @@ export class DeleteConfirmComponent implements OnInit {
   
   deleteEntity() {
     const data = this.data;
-    // console.log('dC dE data: ', data);
+    console.log('dC dE data: ', data);
     
     if (data.board && data.board.id) {
       // console.log('dC dE type = board: ', data.board);
 
-      this.boardService.deleteBoard(data.board.id);
+      this.boardsStore.deleteBoard(data.board.id);
       
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_BOARD_COMPLETE});
       
     } else if (data.task && data.task.id && data.task.boardId) {
-      // console.log('dC dE deleting task: ', data.task);
-      this.boardService.deleteTaskInBoard(data.task.boardId, data.task.id);
+      console.log('dC dE deleting task: ', data.task);
+      this.boardsStore.deleteTask(data.task.id);
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_TASK_COMPLETE});
       
     } else {
-      // console.log('dC dE no entity present');
+      console.log('dC dE no entity present');
       
     }
 
