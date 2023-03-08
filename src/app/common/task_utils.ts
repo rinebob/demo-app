@@ -99,7 +99,7 @@ export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], 
       
     }
 
-    columns.push({id: columns.length, name: 'new column', order: columns.length});
+    columns.push({id: columns.length, name: 'new column', order: columns.length, display: true});
     // console.log('tU gACL all columns: ', columns);
     
     return columns;

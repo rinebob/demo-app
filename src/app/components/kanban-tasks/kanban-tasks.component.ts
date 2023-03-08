@@ -94,21 +94,31 @@ export class KanbanTasksComponent {
     const allocatedTasks = allocateTasksToColumns(this.tasks);
     this.boardsStore.setallTasksByStatus(allocatedTasks);
     
-    // console.log('kT iT all columns: ', [...this.allColumns]);
+    // console.log('kT iT all columns pre: ', [...this.allColumns]);
     
     if (this.userSelectedColumns.length === 0) {
       // console.log('kT iT user columns empty');
       const columns =  generateAllColumnsList();
       const userSelectedColumns: Column[] = [];
       for (const col of columns) {
-        if (this.allocatedTasks[col.name] && this.allocatedTasks[col.name].length > 0) {
-          col.display = true;
-          userSelectedColumns.push(col);
-        } else {
-          col.display = false;
+        if (col.name !== 'new column') {
+          if (this.allocatedTasks[col.name] && this.allocatedTasks[col.name].length > 0) {
+            col.display = true;
+            userSelectedColumns.push(col);
+          } else {
+            col.display = false;
+          }
+          
         }
       }
-    
+      const newColumn = columns.find(col => col.name === 'new column');
+      if (newColumn && userSelectedColumns.length) {
+        userSelectedColumns.push(newColumn);
+
+      }
+      
+      // console.log('kT iT all columns post: ', [...this.allColumns]);
+      // console.log('kT iT user columns post: ', [...this.userSelectedColumns]);
       this.boardsStore.setAllColumns([...columns]);
 
       this.boardsStore.setUserSelectedColumns([...userSelectedColumns]);
@@ -216,12 +226,16 @@ export class KanbanTasksComponent {
     dialogRef.afterClosed().subscribe(result => {
       // console.log('kT oCSD column settings dialog closed.  result: ', result);
       // console.log('kT oCSD updated user columns: ', result['columns']);
-      // console.log('kT oCSD updated all columns: ', result['allColumns']);
       if (result && result.columns) {
-        this.boardsStore.setUserSelectedColumns(result['columns']);
-      }
-      if (result && result.allColumns) {
-        this.boardsStore.setAllColumns(result['allColumns']);
+        this.boardsStore.setAllColumns(result['columns']);
+
+        let cols: Column[] = [];
+        for (const col of result['columns']) {
+          if (col.display) {
+            cols.push(col);
+          }
+        }
+        this.boardsStore.setUserSelectedColumns(cols);
       }
     });
 
@@ -243,7 +257,7 @@ export class KanbanTasksComponent {
       this.boardsStore.setallTasksByStatus({...this.allocatedTasks});
 
       // console.log('kT dE input tasks: ', this.tasks);
-      // console.log('kT dE t.allocTasks: ', {...this.allocatedTasks});
+      console.log('kT dE t.allocTasks: ', {...this.allocatedTasks});
 
       for (const [key, value] of Object.entries(this.allocatedTasks)) {
         // const column = 

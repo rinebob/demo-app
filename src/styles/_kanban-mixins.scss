@@ -54,13 +54,36 @@
 }
 
 @mixin taskCardStyles {
-    @include flexboxLayout(column, flex-start, flex-start);
+    @include flexboxLayout(row, flex-start, flex-start);
     background-color: var(--dark-background-3);
     border-radius: 4px;
+    box-sizing: border-box;
     color: var(--dark-subtitle-text-1);
-    margin-bottom: 4px;
-    padding: 23px 16px;
     cursor: pointer;
+    margin-bottom: 10px;
+    min-height: 60px;
+    padding: 10px 2px;
+    width: 100%;
+
+    .handle-container {
+        height: 100%;
+        margin-right: 2px;
+    }
+
+    .drag-element-content {
+        width: 100%;
+
+        .task-title {
+            @include darkHeadingMText;
+            margin: 0 0 8px;
+        }
+    
+        .task-subtitle {
+            @include darkBodyMText;
+            margin: 0 0 6px;
+        }
+    }
+
 }
 
 
