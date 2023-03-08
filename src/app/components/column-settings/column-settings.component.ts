@@ -70,27 +70,30 @@ export class ColumnSettingsComponent implements AfterViewInit {
   generateColumnsList(event: any) {
     // console.log('cS gCL checkbox event: ', event);
 
-    this.outputColumns = [];
     for (const checkbox of this.checkboxes) {
       // console.log('cS gCL checkbox: ', checkbox);
       // console.log('cS gCL checkbox id/value: ', checkbox.id, checkbox.checked);
-      if (checkbox.checked) {
-        for (const col of this.allColumns) {
-          if (col.name === checkbox.id) {
-            col.display = true;
-
+      const column = this.allColumns.find(col => col.name === checkbox.id);
+      if (column) {
+        if (checkbox.checked) {
+            column.display = true;
+          } else {
+            column.display = false;
           }
-        }
+          // console.log('cS gCL all columns after check: ', this.allColumns);
       }
-
     }
-    
-    // console.log('cS gCL output columns: ', this.outputColumns);
+    // console.log('cS gCL output all columns: ', this.allColumns);
   }
 
   handleSelectColumnsWithTasks() {
-    this.outputColumns = [];
+    // console.log('cS gCL input all columns: ', this.allColumns);
     // console.log('cS gCL numtasks by col: ', this.numTasksByColumn);
+    for (const col of this.allColumns) {
+      if (col.name !== 'new column') {
+        col.display = false;
+      }
+    }
     for (const checkbox of this.checkboxes) {
       checkbox.checked = false;
       if (this.numTasksByColumn[checkbox.id] && this.numTasksByColumn[checkbox.id] > 0) {
@@ -100,11 +103,12 @@ export class ColumnSettingsComponent implements AfterViewInit {
         // console.log('cS gCL checked column: ', column?.name);
         if (column) {
           // console.log('cS gCL pushing to output columns');
-          this.outputColumns.push(column);
+          // this.outputColumns.push(column);
+          column.display = true;
         }
       }
     }
-    // console.log('cS gCL output columns: ', this.outputColumns);
+    // console.log('cS gCL output all columns: ', this.allColumns);
   }
 
   handleResetInitial() {
@@ -120,19 +124,20 @@ export class ColumnSettingsComponent implements AfterViewInit {
     }
 
     for (const box of this.checkboxes) {
-      console.log('cs hRI checkbox name: ', box.id);
+      // console.log('cs hRI checkbox name: ', box.id);
       newCheckboxes.push(box);
     }
   }
 
   handleSetAllColumns(checked: boolean) {
-    this.outputColumns = [];
+    // console.log('cS hSAC set all columns pre: ', this.allColumns);
     for (const checkbox of this.checkboxes) {
-      checkbox.checked = checked;
-      if (checked) {
-        this.outputColumns = this.allColumns;
-      }
+      checkbox.checked = checked ? true : false;
     }
+    for (const col of this.allColumns) {
+      col.display = checked ? true : false;
+    }
+    // console.log('cS hSAC set all columns post: ', this.allColumns);
     
   }
 
@@ -186,8 +191,11 @@ export class ColumnSettingsComponent implements AfterViewInit {
   }
   
   handleSaveOperation() {
-    // console.log('cS hSO save columns called.  output columns: ', this.outputColumns);
-    this.dialogRef.close({'outcome': DialogCloseResult.COLUMN_SETTINGS_COMPLETE, 'columns': this.outputColumns});
+    // console.log('cS hSO save columns called.  output all columns: ', this.allColumns);
+    this.dialogRef.close({
+      'outcome': DialogCloseResult.COLUMN_SETTINGS_COMPLETE,
+      'columns': this.allColumns,
+    });
   }
   
   handleCancelOperation() {

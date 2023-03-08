@@ -30,11 +30,15 @@
                         class="task-card"
                         (click)="setSelectedTask(task)"
                         cdkDragBoundary=".column-boundary"
-                        class="drag-element" 
                         cdkDrag
                     >
                         <div class="placeholder" *cdkDragPlaceholder></div>
-                        <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+                        <div class="handle-container">
+                            
+                            <mat-icon cdkDragHandle>drag_indicator</mat-icon>
+
+                        </div>
+                        
                         <div class="drag-element-content">
                             <p class="task-title">{{task.displayName}}</p>
                             <p class="task-subtitle">{{task.status}}</p>
