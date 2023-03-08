@@ -14,34 +14,23 @@ const TASKS_BASE_URL = 'api/tasks';
   providedIn: 'any',
 })
 export class BoardsService  {
-
-  // boardsBS = new BehaviorSubject<Board[]>([]);
-  // boards$: Observable<Board[]> = this.boardsBS;
-  
-  // selectedBoardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
-  // selectedBoard$: Observable<Board> = this.selectedBoardBS;
-
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   // get all boards
   listBoards(): Observable<Board[]> {
-    
     return this.http.get<Board[]>(BOARDS_BASE_URL);
   }
 
   // get one board
   getBoard(boardId: number): Observable<Board> {
-
     return this.http.get<Board>(`${BOARDS_BASE_URL}/${boardId}`);
   }
 
   createBoard(inputBoard: Board): Observable<Board> {
-
     return this.http.post<Board>('api/boards', inputBoard, this.httpOptions);
   }
 
@@ -51,28 +40,14 @@ export class BoardsService  {
     const url = `${BOARDS_BASE_URL}/${board.id}`
 
     return this.http.put<Board>(url, board, this.httpOptions);
-
-
   }
   
   // delete board
   deleteBoard(boardId: number): Observable<Board> {
-    console.log('bS dB called. boardId: ', boardId);
-    // this.http.delete<Board>(`${BOARDS_BASE_URL}/${boardId}`);
-    
+    // console.log('bS dB called. boardId: ', boardId);
     const url = `${BOARDS_BASE_URL}/${boardId}`
-    // this.http.delete<Board>(url, this.httpOptions).subscribe(resp => {
-    //   // console.log('bS uB delete resp: ', resp);
-      
-    //   this.http.get<Board[]>('api/boards').subscribe(boards => {
-    //     // console.log('bS uB boards after put: ', boards);
-    //     // this.setBoards(boards);
-    //   });
-      
-    // });
 
     return this.http.delete<Board>(url, this.httpOptions);
-
   }
 
   refreshSelectedBoard(inputBoard: Board) {
@@ -86,16 +61,12 @@ export class BoardsService  {
       } else {
         // this.setSelectedBoard(1);
       }
-
     });
   }
-
 
   // get all tasks for all boards
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(TASKS_BASE_URL);
-    
-
   }
 
   // get all tasks from board
@@ -121,7 +92,6 @@ export class BoardsService  {
 
   // get one task from board
   getTaskFromBoard(boardId: number, taskId: number) {
-
   }
 
   // add task to board
@@ -160,8 +130,6 @@ export class BoardsService  {
       });
       }
     );
-
-    
   }
   
   // delete task in board
@@ -181,8 +149,5 @@ export class BoardsService  {
       });
       }
     );
-
-
   }
-
 }

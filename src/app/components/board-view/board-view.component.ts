@@ -163,7 +163,11 @@ export class BoardViewComponent implements OnInit {
     const dialogRef = this.dialog.open(TaskFormComponent, {data: dialogData});
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('bV oCTD create task dialog closed.  result: ', result);
+      console.log('bV oCTD create task dialog closed.  result: ', result);
+      if (result && result['task']) {
+        this.boardsStore.createTask(result['task']);
+
+      }
     });
 
   }
