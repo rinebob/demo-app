@@ -77,8 +77,26 @@ export class BoardsStore extends ComponentStore<BoardsState> {
 
   readonly allTasksByStatus$: Observable<SortedTasks> = this.select((state: BoardsState) => state.allTasksByStatus);
   readonly allColumns$: Observable<Column[]> = this.select((state: BoardsState) => state.allColumns);
-  readonly allColumnsWithTasks$: Observable<Column[]> = this.select((state: BoardsState) => state.allColumnsWithTasks);
+  // readonly allColumnsWithTasks$: Observable<Column[]> = this.select((state: BoardsState) => state.allColumnsWithTasks);
   readonly userSelectedColumns$: Observable<Column[]> = this.select((state: BoardsState) => state.userSelectedColumns);
+  
+  readonly allColumnsWithTasks$: Observable<Column[]> = this.select(
+    this.allColumns$,
+    this.allTasksByStatus$,
+    (columns, tasksByStatus) => {
+      const columnsWithTasks: Column[] = [];
+      for (const [key, value] of Object.entries(tasksByStatus)) {
+        if (value['length'] > 0) {
+          const column = columns.find(col => col.name === key);
+          if (column) {
+            columnsWithTasks.push(column);
+
+          }
+        }
+      }
+      // console.log('bSt uSC store colums with tasks: ', columnsWithTasks);
+      return columnsWithTasks;
+    });
     
   readonly numberOfTasksPerColumn$: Observable<any> = this.select(
     this.allTasksByStatus$,

@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, of, withLatestFrom } from 'rxjs';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
@@ -77,7 +76,7 @@ export class BoardViewComponent implements OnInit {
       });
 
       this.allColumns$.pipe().subscribe(columns => {
-        // console.log('bV ctor user selected columns sub: ', columns);
+        // console.log('bV ctor all columns sub: ', columns);
         this.allColumns = columns;
       });
 
@@ -122,7 +121,6 @@ export class BoardViewComponent implements OnInit {
   setSelectedBoard(board: Board) {
     // console.log('bV sSB board: ', board);
     this.boardsStore.setSelectedBoard(board);
-    // this.initializeBoardAndTasks(this.selectedBoardBS.value);
   }
 
   openCreateBoardDialog() {
@@ -180,10 +178,23 @@ export class BoardViewComponent implements OnInit {
     const dialogRef = this.dialog.open(ColumnSettingsComponent, {data: dialogData});
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('bV oCSD column settings dialog closed.  result: ', result);
-      // console.log('bV oCSD updated columns: ', result['columns']);
+      // console.log('bV oCCD column settings dialog closed.  result: ', result);
+      // console.log('bV oCCD updated columns: ', result['columns']);
+      
       if (result && result.columns) {
-        this.boardsStore.setUserSelectedColumns(result['columns']);
+        this.boardsStore.setAllColumns(result['columns']);
+        
+        let cols: Column[] = [];
+        for (const col of result['columns']) {
+          if (col.display) {
+            cols.push(col);
+          }
+        }
+        
+        // console.log('bV oCCD updated user selected columns: ', cols);
+        this.boardsStore.setUserSelectedColumns(cols);
+
+
       }
     });
     

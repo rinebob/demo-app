@@ -29,15 +29,15 @@ export const ALLOCATED_TASKS_INITIALIZER: SortedTasks = {
 }
 
 export const COLUMN_ORDER_FROM_STATUS: ColumnOrder = {
-    [TaskStatus.PLANNING]: 1,
-    [TaskStatus.BACKLOG]: 2,
-    [TaskStatus.NOT_STARTED]: 3,
-    [TaskStatus.DEVELOPMENT]: 4,
-    [TaskStatus.REVIEW]: 5,
-    [TaskStatus.NIGHTLY]: 6,
-    [TaskStatus.STAGING]: 7,
-    [TaskStatus.PRODUCTION]: 8,
-    [TaskStatus.DEPRECATED]: 9,
+    [TaskStatus.PLANNING]: 0,
+    [TaskStatus.BACKLOG]: 1,
+    [TaskStatus.NOT_STARTED]: 2,
+    [TaskStatus.DEVELOPMENT]: 3,
+    [TaskStatus.REVIEW]: 4,
+    [TaskStatus.NIGHTLY]: 5,
+    [TaskStatus.STAGING]: 6,
+    [TaskStatus.PRODUCTION]: 7,
+    [TaskStatus.DEPRECATED]: 8,
     'new-column': 10,
 
 }
