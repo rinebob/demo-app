@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
+// @use "sass:color";
 @include mat.core();
 @import "./global-mixins";
 @import "./global-variables";
@@ -18,4 +19,45 @@ body {
 
 .view-task-menu-css {
     background-color: var(--dark-background-2) !important;
+
+    button.create-task-button {
+        display: none;
+        
+        @include response(lg) {
+            display: block;
+        }
+    }
+
+    button.delete-task-button {
+        .mdc-list-item__primary-text {
+            color: var(--destructive-idle);
+        }
+    }
+}
+
+.boards-select-panel-class .mat-mdc-dialog-container {
+    background-color: var( --dark-background-3);
+}
+
+.board-form-panel-class,
+.view-task-panel-class, 
+.task-form-panel-class,
+.delete-confirm-panel-class,
+.column-settings-panel-class {
+
+    .mat-mdc-dialog-container {
+        background-color: var(--dark-background-3);
+        border-radius: 8px;
+        width: var(--size-board-dialog-width-xl);
+        padding: var(--size-board-dialog-padding-xl);
+    
+        @include response(md) {
+            width: var(--size-board-dialog-width-md);
+            padding: var(--size-board-dialog-padding-md);
+        }
+
+        .mdc-dialog__surface {
+            box-shadow: none;
+        }
+    }
 }

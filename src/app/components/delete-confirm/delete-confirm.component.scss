@@ -3,9 +3,7 @@
 .delete-dialog-container {
     @include flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
-    padding: 32px;
-    width: 480px;
-
+    
     .title-container {
         @include flexboxLayout(row, space-between, center);
         margin-bottom: 24px;
@@ -33,12 +31,24 @@
             width: 50%;
         }
 
-        .cancel-button {
-            @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+        @include response(md) {
+            @include flexboxLayout(column, center, center);
+            width: 100%;
+
+            button {
+                width: 100%;
+            }
+
         }
 
+        .cancel-button {
+            @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+            justify-content: center;
+        }
+        
         .delete-button {
             @include mainButtonStyles(var(--destructive-idle), var(--text-color-for-dark-background-1), 40px);
+            justify-content: center;
         }
     }
 

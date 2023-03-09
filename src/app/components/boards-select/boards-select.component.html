@@ -1,0 +1,44 @@
+
+
+<div class="boards-select-container">
+
+    <div class="boards-select-upper">
+
+        <p class="all-boards">all boards ({{numBoards}})</p>
+
+        <button *ngFor="let board of boards"
+                type="button"
+                class="nav-button"
+                (click)="handleSetSelectedBoard(board)"
+        >
+            <mat-icon>grid_on</mat-icon>
+            <p class="nav-button-text">
+                {{board}}
+            </p>
+        </button>
+
+        <button mat-flat-button
+                type="button"
+                class="create-new-board-button"
+                disableRipple="true"
+                (click)="handleOpenCreateBoardDialog()"
+        >
+            <mat-icon>add</mat-icon>
+            Create New Board
+        </button>
+
+    </div>
+
+    <div class="dark-mode-container">
+
+        <mat-icon class="material-symbols-outlined">light_mode</mat-icon>
+        <mat-slide-toggle [color]="darkModeToggleButtonColor"
+                          [checked]="data.darkModeOn"
+                          (change)="handleUpdateToggleDarkMode()"
+                        
+        ></mat-slide-toggle>
+        <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
+
+    </div>
+
+</div>

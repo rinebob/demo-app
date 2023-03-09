@@ -23,4 +23,47 @@
     padding: 8px;
 }
 
-////////////// END BORDER //////////////////////
+////////////// END BORDER //////////////////////////// 
+
+
+////////////// MEDIA BREAKPOINTS ///////////////////// 
+
+@mixin response($breakpoint) {
+    @if($breakpoint == xl) {
+        @media(max-width: 1200px) {
+            @content;
+        }
+    }
+    
+    @if($breakpoint == lg) {
+        @media(max-width: 1000px) {
+            @content;
+        }
+    }
+    
+    @if($breakpoint == md) {
+        @media(max-width: 760px) {
+            @content;
+        }
+    }
+    
+    @if($breakpoint == sm) {
+        @media(max-width: 560px) {
+            @content;
+        }
+    }
+
+    @if($breakpoint == h-md) {
+        @media(max-height: 760px) {
+            @content;
+        }
+    }
+
+    @if($breakpoint == h-sm) {
+        @media(max-height: 560px) {
+            @content;
+        }
+    }
+}
+
+////////////// END MEDIA BREAKPOINTS ///////////////////////

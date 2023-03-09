@@ -32,29 +32,33 @@
             >
         </mat-form-field>
 
-
             <!-- Subtasks form group -->
 
         <p class="field-label">Subtasks</p>
 
-        <div class="subtasks-container">
+        <div class="subtasks-scroll-container">
 
-            <div class="subtask" formArrayName="subTasks" *ngFor="let subtask of subtasksArray.controls; let i=index">
-                
-                <mat-form-field appearance="outline"
-                >
-                    <input matInput id="subtask-{{i}}"
-                        [formControlName]="i"
-                        placeholder="Subtask title or description"
-                        type="text"
+            <div class="subtasks-container">
+
+                <div class="subtask" formArrayName="subTasks" *ngFor="let subtask of subtasksArray.controls; let i=index">
+                    
+                    <mat-form-field appearance="outline"
                     >
-                </mat-form-field>
-                <button mat-icon-button
-                        (click)="deleteSubTask('{{i}}')"
+                        <input matInput id="subtask-{{i}}"
+                            [formControlName]="i"
+                            placeholder="Subtask title or description"
+                            type="text"
                         >
-                    <mat-icon matSuffix>close</mat-icon>
+                    </mat-form-field>
+                    <button mat-icon-button
+                            type="button"
+                            (click)="deleteSubTask('{{i}}')"
+                            >
+                        <mat-icon matSuffix>close</mat-icon>
 
-                </button>
+                    </button>
+
+                </div>
 
             </div>
 
@@ -66,7 +70,7 @@
                 (click)="addSubTask($event)"
                 >
             <mat-icon>add</mat-icon>
-            Add New Subtask
+            Add Subtask
         </button>
         
             <!-- Status control -->
@@ -100,14 +104,11 @@
                     type="submit"
                     class="save-button"
             >
-                Save Changes
+                Save
             </button>
 
         </div>
 
-
-
     </form>
-
 
 </div>

@@ -26,7 +26,7 @@
                 }
 
                 .nav-button {
-                    @include navButtonStyles;
+                    @include sidenavButtonStyles;
                     @include flexboxLayout(row, flex-start, center);
 
                     mat-icon {
@@ -105,18 +105,112 @@
                 background-color: var(--dark-background-3);
                 height: var(--size-nav-bar-height);
                 width: 100%;
-            
-                .board-title {
-                    @include darkHeadingXLText;
-                    margin-left: 24px;
+
+                .board-title-container {
+                    @include flexboxLayout(row, flex-start, center);
+                    margin: 0 0 0 16px;
+
+                    .kanban-icon-container {
+                        display: none;
+                                                
+                        @include response(sm) {
+                            @include flexboxLayout(row, flex-start, center);
+                        }
+                        
+                        .kanban-icon-segment {
+                            border-radius: 2px;
+                            height: 25px;
+                            width: 6px;
+
+                            &:not(:last-child) {
+                                margin: 0 3px 0 0;
+                            }
+                        }
+
+                        .segment-1 {
+                            background-color: var(--primary-idle);
+                        }
+
+                        .segment-2 {
+                            background-color: var(--primary-idle);
+                            opacity: .75;
+                        }
+
+                        .segment-3 {
+                            background-color: var(--primary-idle);
+                            opacity: .5;
+                        }
+                    }
+
+                    .board-title {
+                        @include darkHeadingXLText;
+                        margin: 0 0 0 24px;
+                        
+                        @include response(sm) {
+                            margin: 0 0 0 16px;
+                            max-width: 165px;
+                        }
+                    }
+    
+                    .dropdown-icon-button {
+                        display: none;
+
+                        @include response(sm) {
+                            display: block;
+                        }
+                    }
                 }
             
                 .buttons-container {
                     @include flexboxLayout(row, flex-start, center);
+
                     
                     .nav-button {
-                        @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                        @include topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                        
+                        .nav-button-text {
+                            margin: 0;
+                        }
+
+                        @include response(md) {
+
+                            .nav-button-text {
+                                display: none;
+                            }
+
+                            mat-icon {
+                                margin: 0;
+                            }
+                        }
+
+                        @include response(sm) {
+                            @include topnavButtonStylesMobile;
+                            width: 48px;
+                        }
+
+                        button.create-task-menu-item {
+                            display: none;
+
+                            @include response(md) {
+                                display: block;
+
+                            }
+                        }
+
+                        
+
+
                     }
+                }
+
+                .menu-button-container {
+                    // display: none;
+
+                    @include response(xl) {
+                        display: block;
+                        
+                    }
+                
                 }
             }
 
@@ -131,32 +225,16 @@
                 left: 0;
                 margin: 0;
                 top: 90%;
+
+                @include response(sm) {
+                    display: none;
+                }
             }
 
         }
     }
 
 }
-
-// .nav-bar {
-//     @include flexboxLayout(row, space-between, center);
-//     background-color: var(--dark-background-3);
-//     height: var(--size-nav-bar-height);
-//     width: 100%;
-
-//     .board-title {
-//         @include darkHeadingXLText;
-//         margin-left: 24px;
-//     }
-
-//     .buttons-container {
-//         @include flexboxLayout(row, flex-start, center);
-        
-//         .nav-button {
-//             @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
-//         }
-//     }
-// }
 
 .columns-container {
     @include flexboxLayout(row, flex-start, flex-start);

@@ -148,6 +148,8 @@
 
     --size-button-tall: 48px;
     --size-button-regular: 40px;
+    --size-button-mobile-height: 32px;
+    --size-button-mobile-width: 48px;
     --size-heading-xl: 24px;
     --size-heading-lg: 18px;
     --size-heading-md: 15px;
@@ -157,13 +159,20 @@
 
     --size-nav-bar-height: 96px;
 
+    --size-board-dialog-width-xl: 480px;
+    --size-board-dialog-width-lg: 400px;
+    --size-board-dialog-width-md: 324px;
+
+    --size-board-dialog-padding-xl: 32px;
+    --size-board-dialog-padding-md: 24px;
+
     // --font-plus-jakarta-sans: Plus Jakarta sans, "Helvetica Neue", sans-serif;
     --font-plus-jakarta-sans: Plus Jakarta sans;
     --font-kanit: Kanit, "Helvetica Neue", sans-serif;
     --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
-    --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
-    --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
-    --font-nunito: Nunito, "Helvetica Neue", sans-serif;
+    // --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
+    // --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
+    // --font-nunito: Nunito, "Helvetica Neue", sans-serif;
     
     --main-font-family: var(--font-plus-jakarta-sans);
     // --main-font-family: var(--font-kanit);
@@ -206,15 +215,29 @@ $statusColors: (
 
 $font-sizes: (
     heading-xl: 24px,
+    tablet-heading-xl: 20px,
     heading-lg: 18px,
     heading-md: 15px,
     heading-sm: 12px,
-    body-m: 13px,
-    body-s: 12px,
+    body-l: 13px,
+    body-m: 12px,
 );
 
-@function size($size) {
+@function fontSize($size) {
     @return map-get($font-sizes, $size);
+}
+
+$line-heights: (
+    heading-xl: 30px,
+    heading-lg: 23px,
+    heading-md: 19px,
+    heading-sm: 15px,
+    body-l: 23px,
+    body-m: 15px,
+);
+
+@function lineHeight($size) {
+    @return map-get($line-heights, $size);
 }
 
 $fonts: (

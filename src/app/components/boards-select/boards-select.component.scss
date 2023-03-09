@@ -1,0 +1,66 @@
+@import "styles.scss";
+
+.boards-select-container {
+    @include flexboxLayout(column, flex-start, flex-start);
+    background-color: var( --dark-background-3);
+    border-radius: 8px;
+    height: 322px;
+    width: 264px;
+
+    .boards-select-upper {
+        @include flexboxLayout(column, space-between, flex-start);
+        margin: 16px 24px 16px 0;
+
+        .all-boards {
+            @include lightHeadingSText;
+            padding: 0 16px;
+            text-transform: uppercase;
+        }
+
+        .nav-button {
+            @include sidenavButtonStylesMobile;
+            @include flexboxLayout(row, flex-start, center);
+    
+            mat-icon {
+                margin: 0 16px 0 0;
+            }
+    
+            &-text {
+                font-weight: lighter;
+                margin: 0;
+                padding: 0;
+            }
+            
+        }
+
+        .create-new-board-button {
+            @include darkHeadingMText;
+            background-color: var(--dark-background-3);
+            color: var(--primary-idle);
+            margin: 4px 8px;
+        }
+
+    }
+
+    .dark-mode-container {
+        @include flexboxLayout(row, center, center);
+        background-color: var(--dark-background-2);
+        height: 48px;
+        width: 235px;
+        margin: 0 16px 16px 16px;
+        padding: 6px 0;
+
+        mat-icon {
+            color: var(--light-subtitle-text-1);
+        }
+
+        mat-slide-toggle {
+            margin: 0 24px;
+        }
+    }
+}
+
+.boards-select-panel-class .mat-mdc-dialog-surface {
+    border-radius: 50px;
+    background-color: red;
+}

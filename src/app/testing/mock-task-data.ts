@@ -213,7 +213,7 @@ export const RAW_TASKS: Task[] = [
 export const BOARDS: Board[] = [
     {
         "id": 1,
-        "displayName": "Demo app",
+        "displayName": "Demo app with a long name",
         "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         "status": "development",
         "tasks": [

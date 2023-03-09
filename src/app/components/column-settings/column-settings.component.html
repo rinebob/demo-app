@@ -6,28 +6,33 @@
         <p class="subtitle-text">Drag to change column order</p>
     </div>
 
-    <div class="checkbox-container column-boundary"
-        cdkDropList
-        [cdkDropListData]="TASK_STATUS_VALUES"
-        (cdkDropListDropped)="dropElement($event)"
-    >
-        
-        <div *ngFor="let value of TASK_STATUS_VALUES" 
-            cdkDragBoundary=".column-boundary"
-            class="drag-element" 
-            cdkDrag
+    <div class="checkbox-list-scroll-container">
+
+    
+        <div class="checkbox-list-container column-boundary"
+            cdkDropList
+            [cdkDropListData]="TASK_STATUS_VALUES"
+            (cdkDropListDropped)="dropElement($event)"
         >
-            <div class="placeholder" *cdkDragPlaceholder></div>
-            <mat-icon cdkDragHandle>drag_indicator</mat-icon>
-
-            <mat-checkbox #checkbox color="primary"
-                          [checked]="getCheckedStatus(value)"
-                          [id]="value"
-                          (change)="generateColumnsList($event)"
+            
+            <div *ngFor="let value of TASK_STATUS_VALUES" 
+                cdkDragBoundary=".column-boundary"
+                class="drag-element" 
+                cdkDrag
             >
-                {{value | titlecase}} ({{numTasksByColumn[value]}})
-            </mat-checkbox>
+                <div class="placeholder" *cdkDragPlaceholder></div>
+                <mat-icon cdkDragHandle>drag_indicator</mat-icon>
 
+                <mat-checkbox #checkbox color="primary"
+                            [checked]="getCheckedStatus(value)"
+                            [id]="value"
+                            (change)="generateColumnsList($event)"
+                >
+                    {{value | titlecase}} ({{numTasksByColumn[value]}})
+                </mat-checkbox>
+
+            </div>
+            
         </div>
         
     </div>
@@ -48,7 +53,7 @@
                 disabled="true"
                 (click)="handleResetInitial()"
         >
-            Reset initial
+            Reset
         </button>
 
         <button mat-flat-button 

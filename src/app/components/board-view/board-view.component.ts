@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { BehaviorSubject, Observable, of, withLatestFrom } from 'rxjs';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
-import { Board, Column, Task } from 'src/app/common/interfaces';
+import { Board, Column, DialogCloseResult, Task } from 'src/app/common/interfaces';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { BoardFormComponent } from '../board-form/board-form.component';
 import { ThemePalette } from '@angular/material/core';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { ColumnSettingsComponent } from '../column-settings/column-settings.component';
+import { BoardsSelectComponent } from '../boards-select/boards-select.component';
 
 @Component({
   selector: 'app-board-view',
@@ -45,6 +46,14 @@ export class BoardViewComponent implements OnInit {
 
   shouldShowOpenDrawerButton = true;
   darkModeToggleButtonColor: ThemePalette = 'primary';
+  darkModeOn = true;
+
+  // using the same css as the ViewTask component menu 
+  topnavMenuCssClass = 'view-task-menu-css';
+  boardFormPanelClass = 'board-form-panel-class';
+  boardsSelectPanelClass = 'boards-select-panel-class';
+  columnSettingsPanelClass = 'column-settings-panel-class';
+  taskFormPanelClass = 'task-form-panel-class';
 
   constructor(private dialog: MatDialog, private boardsStore: BoardsStore) {
 
@@ -127,7 +136,10 @@ export class BoardViewComponent implements OnInit {
 
     // console.log('aC oCBD create board called');
 
-    const dialogRef = this.dialog.open(BoardFormComponent);
+    const config = new MatDialogConfig();
+    config.panelClass = this.boardFormPanelClass;
+    
+    const dialogRef = this.dialog.open(BoardFormComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('bV oCTD create board dialog closed.  result: ', result);
@@ -141,9 +153,13 @@ export class BoardViewComponent implements OnInit {
       board: this.selectedBoardBS.value,
     }
 
+    const config = new MatDialogConfig();
+    config.panelClass = this.boardFormPanelClass;
+    config.data = dialogData;
+
     // console.log('aC oEBD edit board called. board: ', this.selectedBoardBS.value);
 
-    const dialogRef = this.dialog.open(BoardFormComponent, {data: dialogData});
+    const dialogRef = this.dialog.open(BoardFormComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('bV oEBD edit board dialog closed.  result: ', result);
@@ -157,10 +173,15 @@ export class BoardViewComponent implements OnInit {
     const dialogData = {
       boardId: id,
     }
+    
 
     // console.log('aC oCTD create task called. boardId: ', id);
 
-    const dialogRef = this.dialog.open(TaskFormComponent, {data: dialogData});
+    const config = new MatDialogConfig();
+    config.panelClass = this.taskFormPanelClass;
+    config.data = dialogData;
+
+    const dialogRef = this.dialog.open(TaskFormComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('bV oCTD create task dialog closed.  result: ', result);
@@ -179,7 +200,11 @@ export class BoardViewComponent implements OnInit {
       numTasksByColumn: this.numTasksByColumn,
     }
 
-    const dialogRef = this.dialog.open(ColumnSettingsComponent, {data: dialogData});
+    const config = new MatDialogConfig();
+    config.panelClass = this.columnSettingsPanelClass;
+    config.data = dialogData;
+
+    const dialogRef = this.dialog.open(ColumnSettingsComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('bV oCCD column settings dialog closed.  result: ', result);
@@ -203,6 +228,55 @@ export class BoardViewComponent implements OnInit {
     });
     
   }
+
+  openBoardsSelectDialog() {
+    console.log('bV oBSD open boards select dialog called');
+    
+    const boardNames: string[] = [];
+    for (const board of this.boardsBS.value) {
+      boardNames.push(board.displayName);
+    }
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = this.boardsSelectPanelClass;
+    dialogConfig.data = {
+      darkModeOn: this.darkModeOn,
+      boardNames,
+    }
+
+    console.log('bV oBSD board names list: ', boardNames);
+    
+    const dialogRef = this.dialog.open(BoardsSelectComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('bV oBSD boards select dialog closed.  result: ', result);
+      console.log('bV oBSD selected board: ', result['selectedBoard']);
+      
+      if (result && result['outcome'] === DialogCloseResult.SET_SELECTED_BOARD && result['selectedBoard']) {
+        const board = this.boardsBS.value.find(b => b.displayName === result['selectedBoard']);
+        if (board) {
+          this.boardsStore.setSelectedBoard(board);
+          console.log('bV oBSD selected board: ', board);
+        } else {
+          console.log('bV oBSD selected board not found');
+          
+        }
+      }
+      
+      if (result && result['outcome'] === DialogCloseResult.OPEN_CREATE_BOARD_DIALOG) {
+        console.log('bV oBSD result = open create board dialog');
+        this.openCreateBoardDialog();
+        
+      }
+      
+      if (result && result['outcome'] === DialogCloseResult.TOGGLE_DARK_MODE) {
+        console.log('bV oBSD result = toggle dark mode');
+
+        this.toggleDarkMode();
+        
+      }
+    });
+  }
   
   handleUpdatedTasks(tasks: Task[]) {
     // console.log('bV hUT handle updated tasks: ', tasks);
@@ -210,16 +284,21 @@ export class BoardViewComponent implements OnInit {
     board.tasks = [...tasks];
 
     this.boardsStore.updateBoard(board);
+  }
+
+  openTopnavMenu() {
 
   }
   
 
-  toggleDarkMode(event: any) {
-    // console.log('a tDM event: ', event);
+  toggleDarkMode() {
+    console.log('bV tDM toggleDarkMode called.  pre: ', this.darkModeOn);
+    this.darkModeOn = !this.darkModeOn;
+    console.log('bV tDM toggleDarkMode called.  post: ', this.darkModeOn);
   }
 
   toggleShowDrawerButton(event: any) {
-    // console.log('a tSSB event: ', event);
+    // console.log('bV tSSB event: ', event);
     this.shouldShowOpenDrawerButton = !this.shouldShowOpenDrawerButton;
 
   }

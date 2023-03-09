@@ -3,9 +3,7 @@
 .task-dialog-container {
     @include flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
-    padding: 32px;
-    width: 480px;
-
+    
     .title-container {
         @include flexboxLayout(row, space-between, center);
         margin-bottom: 24px;
@@ -13,6 +11,7 @@
         
         .title-text {
             @include darkHeadingLText;
+            margin: 0;
             padding: 0;
         }
    }
@@ -29,31 +28,38 @@
             color: var(--dark-title-text-1);
         }
 
-        .subtasks-container {
-            @include flexboxLayout(column, flex-start, flex-start);
-            max-height: 234px;
+        .subtasks-scroll-container {
             margin-bottom: 12px;
+            max-height: 234px;
             overflow-y: auto;
-            
-            .subtask {
-                @include flexboxLayout(row, space-between, center);
-                width: 100%;
 
-                .mat-mdc-form-field {
+            @include response(h-md) {
+                max-height: 144px;
+            }
+
+            .subtasks-container {
+                @include flexboxLayout(column, flex-start, flex-start);
+                
+                .subtask {
+                    @include flexboxLayout(row, space-between, center);
                     width: 100%;
-                }
-
-                ::ng-deep {
-                    .mat-mdc-input-element {
-                        width: 90%;
+    
+                    .mat-mdc-form-field {
+                        width: 100%;
                     }
-                }
-
-                button {
-                    margin-top: -24px;
-                    
-                    mat-icon {
-                        color: var(--light-subtitle-text-1);
+    
+                    ::ng-deep {
+                        .mat-mdc-input-element {
+                            width: 90%;
+                        }
+                    }
+    
+                    button {
+                        margin-top: -24px;
+                        
+                        mat-icon {
+                            color: var(--light-subtitle-text-1);
+                        }
                     }
                 }
             }
@@ -61,6 +67,7 @@
 
         .add-subtask-button {
             @include mainButtonStyles(var(--light-background-1), var(--text-color-for-light-background-1), 40px);
+            justify-content: center;
             margin: 0 0 24px;
             width: 100%;
         }
@@ -71,18 +78,18 @@
     
             button {
                 width: 50%;
-    
             }
             .cancel-button {
                 @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+                justify-content: center;
             }
     
             .save-button {
                 @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+                justify-content: center;
             }
      
         }
     }
-
 
 }
