@@ -8,7 +8,6 @@ import { TASK_INITIALIZER } from '../../common/constants';
 import { BoardsService } from 'src/app/services/boards.service';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 
-
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
@@ -57,11 +56,11 @@ export class TaskFormComponent {
       }
 
       this.statusControl.valueChanges.pipe().subscribe(changes => {
-        console.log('tF ctor status control values sub: ', changes);
+        // console.log('tF ctor status control values sub: ', changes);
       });
 
       this.taskForm.valueChanges.pipe().subscribe(changes => {
-        console.log('tF ctor task form values sub: ', changes);
+        // console.log('tF ctor task form values sub: ', changes);
       });
   }
 
@@ -139,20 +138,14 @@ export class TaskFormComponent {
       // this.boardsService.createTask(task);
       this.boardsStore.createTask(task);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_COMPLETE, newTask: task});
-      
-
     }
   }
 
   handleCancel() {
     if (this.formMode === FormMode.CREATE) {
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_TASK_CANCELLED});
-
     } else {
       this.dialogRef.close({outcome: DialogCloseResult.EDIT_TASK_CANCELLED});
-
     }
-
   }
-
 }

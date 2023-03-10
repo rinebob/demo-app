@@ -28,8 +28,8 @@ export class ColumnSettingsComponent implements AfterViewInit {
   constructor(@Inject(MAT_DIALOG_DATA) data: DialogData, private dialogRef: MatDialogRef<ColumnSettingsComponent>) {
     if (data && data.userColumns) {
       // console.log('cS ctor data.columns/user columns: ', data.allColumns, data.userColumns);
-      this.inputUserColumns = [...data.userColumns];
-      this.allColumns = [...data.allColumns];
+      this.inputUserColumns = data.userColumns;
+      this.allColumns = data.allColumns ?? [];
       this.inputColumnNames = this.generateInputColumnNamesList();
       let i = 1;
       for (const col of this.allColumns) {
@@ -45,13 +45,7 @@ export class ColumnSettingsComponent implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    // console.log('cS ngAVI checkboxes: ', this.checkboxes);
-    // for (const checkbox of this.checkboxes) {
-    //   console.log('cS ngAVI checkbox: ', checkbox);
-    //   console.log('cS ngAVI checkbox id/value: ', checkbox.id, checkbox.checked);
-    // }
-  }
+  ngAfterViewInit(): void {}
 
   generateInputColumnNamesList(): string[] {
     const columnNames: string[] = [];
