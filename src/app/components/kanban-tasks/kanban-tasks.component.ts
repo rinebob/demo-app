@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -51,6 +51,11 @@ export class KanbanTasksComponent {
   numTasksByColumn: {[key: string]: number};
   
   emptyBoardText = 'This board is empty.  Create a new task to get started.';
+
+  viewTaskPanelClass = 'view-task-panel-class';
+  taskFormPanelClass = 'task-form-panel-class';
+  deleteConfirmPanelClass = 'delete-confirm-panel-class';
+  columnSettingsPanelClass = 'column-settings-panel-class';
 
   public innerWidth = 0;
 
@@ -162,7 +167,11 @@ export class KanbanTasksComponent {
       task: this.selectedTaskBS.value,
     }
 
-    const dialogRef = this.dialog.open(ViewTaskComponent, {data: dialogData});
+    const config = new MatDialogConfig();
+    config.panelClass = this.viewTaskPanelClass;
+    config.data = dialogData;
+
+    const dialogRef = this.dialog.open(ViewTaskComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('kT oVTD view task dialog closed.  result: ', result);
@@ -188,7 +197,11 @@ export class KanbanTasksComponent {
       task: this.selectedTaskBS.value,
     }
 
-    const dialogRef = this.dialog.open(TaskFormComponent, {data: dialogData});
+    const config = new MatDialogConfig();
+    config.panelClass = this.taskFormPanelClass;
+    config.data = dialogData;
+
+    const dialogRef = this.dialog.open(TaskFormComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('kT oETD edit task dialog closed.  result: ', result);
@@ -205,7 +218,11 @@ export class KanbanTasksComponent {
       task,
     }
 
-    const dialogRef = this.dialog.open(DeleteConfirmComponent, {data: dialogData});
+    const config = new MatDialogConfig();
+    config.panelClass = this.deleteConfirmPanelClass;
+    config.data = dialogData;
+
+    const dialogRef = this.dialog.open(DeleteConfirmComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('kT oDTD delete task dialog closed.  result: ', result);
@@ -221,7 +238,11 @@ export class KanbanTasksComponent {
       numTasksByColumn: this.numTasksByColumn,
     }
 
-    const dialogRef = this.dialog.open(ColumnSettingsComponent, {data: dialogData});
+    const config = new MatDialogConfig();
+    config.panelClass = this.columnSettingsPanelClass;
+    config.data = dialogData;
+
+    const dialogRef = this.dialog.open(ColumnSettingsComponent, config);
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('kT oCSD column settings dialog closed.  result: ', result);

@@ -1,34 +1,8 @@
 
-
-////////////// FLEXBOX //////////////////////
-
-// @mixin flexboxLayout($flex-direction: row, $justify-content: flex-start, $align-items: flex-start) {
-//     display: flex;
-//     flex-direction: $flex-direction;
-//     justify-content: $justify-content;
-//     align-items: $align-items;
-
-// }
-
-////////////// END FLEXBOX //////////////////////
-
-
-////////////// BORDER //////////////////////
-
-
-// @mixin border1 {
-//     border-radius: 4px;
-//     border: 1px solid black;
-//     margin: 8px;
-//     padding: 8px;
-// }
-
-////////////// END BORDER //////////////////////
-
-
 //////////////// ELEMENTS //////////////////////
 
-@mixin mainButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: 40px) {
+@mixin mainButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
+    @include flexboxLayout(row, space-between, center);
     background-color: $background-color;
     border: none;
     border-radius: 24px;
@@ -36,21 +10,78 @@
     color: $color;
     margin: 4px 8px;
     padding: 0 24px;
+
+    @include response(xl) {
+        // height: 24px;
+    }
+
+    @include response(md) {
+        
+    }
 }
 
-@mixin navButtonStyles {
+@mixin topnavButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
+    @include darkHeadingMText;
+    @include flexboxLayout(row, space-between, center);
+    background-color: $background-color;
+    border: none;
+    border-radius: 24px;
+    height: $height;
+    color: $color;
+    margin: 0 8px;
+    padding: 0 24px;
+}
+
+// @mixin topnavButtonStylesMobile($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-mobile)) {
+//     @include topnavButtonStyles($background-color, $color, $height);
+//     @include flexboxLayout(row, center, center);
+//     height: $height;
+//     padding: 0;
+// }
+
+@mixin topnavButtonStylesMobile {
+    @include topnavButtonStyles;
+    @include flexboxLayout(row, center, center);
+    height: var(--size-button-mobile-height);
+    min-width: 0;
+    padding: 0;
+    width: var(--size-button-mobile-width);
+}
+
+@mixin sidenavButtonStyles {
     @include darkHeadingMText;
     background-color: color(primary-idle);
     border: none;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
     cursor: pointer;
-    height: 40px;
+    height: var(--size-button-tall);
     color: color(light-text);
     margin: 4px 8px;
     padding: 0 24px;
     text-align: left;
     width: 276px;
+
+    @include response(lg) {
+        
+    }
+
+    @include response(sm) {
+        
+    }
+}
+
+@mixin sidenavButtonStylesMobile {
+    @include sidenavButtonStyles();
+    width: 240px;
+
+    @include response(lg) {
+        
+    }
+
+    @include response(sm) {
+        
+    }
 }
 
 @mixin taskCardStyles {
@@ -95,57 +126,67 @@
 @mixin lightHeadingXLText {
     color: var(--light-title-text-1);
     font-weight: 700;
-    font-size: 24px;
-    line-height: 30px;
+    // font-size: 24px;
+    // line-height: 30px;
+    font-size: fontSize(heading-xl);
+    line-height: lineHeight(heading-xl);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+
+    @include response(md) {
+        font-size: fontSize(tablet-heading-xl);
+        line-height: lineHeight(heading-lg);
+    }
+    
+    @include response(sm) {
+        font-size: fontSize(heading-lg);
+        line-height: lineHeight(heading-lg);
+    }
 }
 
 
 @mixin lightHeadingLText {
     color: var(--light-title-text-1);
     font-weight: 700;
-    font-size: 18px;
-    line-height: 23px;
+    // font-size: 18px;
+    // line-height: 23px;
+    font-size: fontSize(heading-lg);
+    line-height: lineHeight(heading-lg);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
 @mixin lightHeadingMText {
     color: var(--light-title-text-1);
     font-weight: 700;
-    font-size: 15px;
-    line-height: 19px;
+    font-size: fontSize(heading-md);
+    line-height: lineHeight(heading-md);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
 @mixin lightHeadingSText {
     color: var(--light-subtitle-text-1);
     font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
+    font-size: fontSize(heading-sm);
+    line-height: lineHeight(heading-sm);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-    letter-spacing: 4px;
-    
 }
 
 @mixin lightBodyLText {
     color: var(--light-title-text-3);
-    // color: var(--primary-idle);
     font-weight: 500;
-    font-size: 13px;
-    line-height: 23px;
+    font-size: fontSize(body-l);
+    line-height: lineHeight(body-l);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
 @mixin lightBodyMText {
     color: var(--light-title-text-3);
     font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
+    font-size: fontSize(body-m);
+    line-height: lineHeight(body-m);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
 //////////////// END LIGHT STYLES /////////////////////////
-
 
 //////////////// DARK STYLES /////////////////////////
 
@@ -153,7 +194,6 @@
     @include lightHeadingXLText;
     color: var(--dark-title-text-1);
 }
-
 
 @mixin darkHeadingLText {
     @include lightHeadingLText;
@@ -163,43 +203,24 @@
 @mixin darkHeadingMText {
     @include lightHeadingMText;
     color: var(--dark-title-text-1);
-    // font-weight: 700;
-    // font-size: 15px;
-    // line-height: 19px;
-    // font-family: var(--main-font-family);
 }
 
 @mixin darkHeadingSText {
     @include lightHeadingSText;
     color: var(--dark-subtitle-text-1);
-    // font-weight: 700;
-    // font-size: 12px;
-    // line-height: 15px;
-    // font-family: var(--main-font-family);
-    // letter-spacing: 4px;
-    
 }
 
 // dark body l
 @mixin darkBodyLText {
     @include lightBodyLText;
     color: var(--dark-title-text-1);
-    // font-weight: 500;
-    // font-size: 13px;
-    // line-height: 23px;
-    // font-family: var(--main-font-family);
 }
 
 // dark body m
 @mixin darkBodyMText {
     @include lightBodyMText;
     color: var(--dark-title-text-3);
-    // font-weight: 700;
-    // font-size: 12px;
-    // line-height: 15px;
-    // font-family: var(--main-font-family);
 }
 //////////////// END DARK STYLES /////////////////////////
 
 ////////////// END TYPOGRAPHY //////////////////////
-/// 

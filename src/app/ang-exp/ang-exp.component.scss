@@ -27,7 +27,7 @@
             }
 
             .nav-button {
-                @include navButtonStyles;
+                @include sidenavButtonStyles;
                 @include flexboxLayout(row, flex-start, center);
 
                 mat-icon {
@@ -58,7 +58,7 @@
                 @include flexboxLayout(row, flex-start, center);
                 
                 .nav-button {
-                    @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                    @include topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
                 }
             }
         }

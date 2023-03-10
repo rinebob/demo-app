@@ -1,12 +1,16 @@
 
 <div class="board-dialog-container">
 
-    <div class="title-container">
-        <p class="title-text">{{formMode === FormMode.CREATE ? 'Create Board' : 'Edit Board'}}</p>
+    <div matDialogTitle class="title-container">
+        <p class="title-text">{{formMode === FormMode.CREATE ? 'Add New Board' : 'Edit Board'}}</p>
     </div>
 
-    <form [formGroup]="boardForm" (ngSubmit)="handleSaveBoard()" class="board-form">
-
+    <form matDialogContent
+          [formGroup]="boardForm"
+          (ngSubmit)="handleSaveBoard()"
+          class="board-form"
+    >
+    
             <!-- Display name control as title -->
 
         <p class="field-label">Title</p>
@@ -33,7 +37,7 @@
 
             <!-- Action buttons -->
 
-        <div class="action-buttons">
+        <div matDialogActions class="action-buttons">
 
             <button mat-flat-button 
                     class="cancel-button"
@@ -47,7 +51,7 @@
                     type="submit"
                     class="save-button"
             >
-                Save Changes
+                Save
             </button>
 
         </div>

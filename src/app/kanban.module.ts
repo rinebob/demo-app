@@ -27,6 +27,7 @@ import { CreateColumnComponent } from './components/create-column/create-column.
 import { DeleteConfirmComponent } from './components/delete-confirm/delete-confirm.component';
 import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.component';
 import { ColumnSettingsComponent } from './components/column-settings/column-settings.component';
+import { BoardsSelectComponent } from './components/boards-select/boards-select.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ColumnSettingsComponent } from './components/column-settings/column-set
     CreateColumnComponent,
     DeleteConfirmComponent,
     KanbanTasksComponent,
-    ColumnSettingsComponent
+    ColumnSettingsComponent,
+    BoardsSelectComponent,
   ],
   imports: [
     CommonModule,

@@ -3,9 +3,7 @@
 .settings-dialog-container {
     @include flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
-    padding: 32px;
-    width: 400px;
-
+    
     .title-container {
         @include flexboxLayout(column, flex-start, flex-start);
         margin-bottom: 12px;
@@ -23,28 +21,59 @@
         }
    }
 
-   .checkbox-container {
-        @include flexboxLayout(column, flex-start, flex-start);
-        margin-bottom: 24px;
+    .checkbox-list-scroll-container {
         width: 100%;
+
+        @include response(h-md) {
+            margin-bottom: 24px;
+            max-height: 290px;
+            overflow-y: auto;
+        }
+
+        @include response(h-sm) {
+            margin-bottom: 18px;
+            max-height: 145px;
+            overflow-y: auto;
+        }
+
+       .checkbox-list-container {
+            @include flexboxLayout(column, flex-start, flex-start);
+            margin-bottom: 24px;
+            width: 100%;
+            
+            @include response(h-md) {
+                margin-bottom: 0;
+            }
+        }
     }
+
 
     .reset-buttons {
         @include flexboxLayout(row, space-around, center);
         flex-wrap: wrap;
-        width: 100%;
         margin-bottom: 24px;
+        width: 100%;
 
         .all-none-button {
             @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 20px);
             font-size: 12px;
+            justify-content: center;
             width: 40%;
+
+            @include response(md) {
+                font-size: 10px;
+            }
         }
 
         .reset-initial-button {
             @include mainButtonStyles(var(--primary-hover), var(--light-subtitle-text-1), 20px);
             font-size: 12px;
+            justify-content: center;
             width: 40%;
+
+            @include response(md) {
+                font-size: 10px;
+            }
         }
 
     }
@@ -64,10 +93,12 @@
         
         .cancel-button {
             @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+            justify-content: center;
         }
         
         .save-button {
             @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+            justify-content: center;
         }
     }
 }
@@ -77,6 +108,7 @@
 .cdk-drag {
     @include flexboxLayout(row, flex-start, center);
     background-color: var(--ang-exp-grey-4);
+    border-radius: 4px;
     color: var(--ang-exp-white-1);
     margin: 4px 0;
     width: 100%;

@@ -80,25 +80,28 @@ export interface ColumnColor {
 }
 
 export enum DialogCloseResult {
-    EDIT_BOARD = 'edit-board',
-    DELETE_BOARD = 'delete-board',
-    CREATE_BOARD_COMPLETE = 'create-board-complete',
-    CREATE_BOARD_CANCELLED = 'create-board-cancelled',
-    EDIT_BOARD_COMPLETE = 'edit-board-complete',
-    EDIT_BOARD_CANCELLED = 'edit-board-cancelled',
-    DELETE_BOARD_COMPLETE = 'delete-board-complete',
-    DELETE_BOARD_CANCELLED = 'delete-board-cancelled',
-    VIEW_TASK_CANCELLED = 'view-task-cancelled',
-    CREATE_TASK_COMPLETE = 'create-task-complete',
-    CREATE_TASK_CANCELLED = 'create-task-cancelled',
-    EDIT_TASK = 'edit-task',
-    EDIT_TASK_COMPLETE = 'edit-task-complete',
-    EDIT_TASK_CANCELLED = 'edit-task-cancelled',
-    DELETE_TASK = 'delete-task',
-    DELETE_TASK_COMPLETE = 'delete-task-complete',
-    DELETE_TASK_CANCELLED = 'delete-task-cancelled',
-    COLUMN_SETTINGS_COMPLETE = 'column-settings-complete',
-    COLUMN_SETTINGS_CANCELLED = 'column-settings-cancelled',
+  EDIT_BOARD = 'edit-board',
+  DELETE_BOARD = 'delete-board',
+  CREATE_BOARD_COMPLETE = 'create-board-complete',
+  CREATE_BOARD_CANCELLED = 'create-board-cancelled',
+  EDIT_BOARD_COMPLETE = 'edit-board-complete',
+  EDIT_BOARD_CANCELLED = 'edit-board-cancelled',
+  DELETE_BOARD_COMPLETE = 'delete-board-complete',
+  DELETE_BOARD_CANCELLED = 'delete-board-cancelled',
+  VIEW_TASK_CANCELLED = 'view-task-cancelled',
+  CREATE_TASK_COMPLETE = 'create-task-complete',
+  CREATE_TASK_CANCELLED = 'create-task-cancelled',
+  EDIT_TASK = 'edit-task',
+  EDIT_TASK_COMPLETE = 'edit-task-complete',
+  EDIT_TASK_CANCELLED = 'edit-task-cancelled',
+  DELETE_TASK = 'delete-task',
+  DELETE_TASK_COMPLETE = 'delete-task-complete',
+  DELETE_TASK_CANCELLED = 'delete-task-cancelled',
+  COLUMN_SETTINGS_COMPLETE = 'column-settings-complete',
+  COLUMN_SETTINGS_CANCELLED = 'column-settings-cancelled',
+  SET_SELECTED_BOARD = "SET_SELECTED_BOARD",
+  OPEN_CREATE_BOARD_DIALOG = "OPEN_CREATE_BOARD_DIALOG",
+  TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE"
 }
 
 export interface DialogData {
@@ -107,7 +110,9 @@ export interface DialogData {
     task?: Task;
     allColumns: Column[];
     userColumns?: Column[];
-    numTasksByColumn: {[key: string]: number}
+    numTasksByColumn: {[key: string]: number},
+    boardNames?: string[],
+    darkModeOn?: boolean,
   }
 
   export const TASK_STATUS_VALUES = Object.values(TaskStatus);

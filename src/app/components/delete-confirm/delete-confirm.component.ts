@@ -49,7 +49,7 @@ export class DeleteConfirmComponent implements OnInit {
   }
 
   handleCancel() {
-
+    this.dialogRef.close({outcome: DialogCloseResult.DELETE_BOARD_CANCELLED});
   }
 
   handleDelete() {
@@ -68,12 +68,12 @@ export class DeleteConfirmComponent implements OnInit {
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_BOARD_COMPLETE});
       
     } else if (data.task && data.task.id && data.task.boardId) {
-      console.log('dC dE deleting task: ', data.task);
+      // console.log('dC dE deleting task: ', data.task);
       this.boardsStore.deleteTask(data.task.id);
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_TASK_COMPLETE});
       
     } else {
-      console.log('dC dE no entity present');
+      // console.log('dC dE no entity present');
       
     }
 

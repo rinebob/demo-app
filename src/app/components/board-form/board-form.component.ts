@@ -27,15 +27,17 @@ export class BoardFormComponent implements OnInit {
   formMode: FormMode = FormMode.CREATE;
 
   boardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
-  
+
   constructor(private boardsStore: BoardsStore,
     public dialogRef: MatDialogRef<BoardFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.buildBoardForm();
+    console.log('bF ctor dialog data: ', data);
+    console.log('bF ctor dialog ref: ', dialogRef);
 
     if (data && data.board) {
       this.formMode = FormMode.EDIT;
-      // console.log('bF ctor board for edit board: ', data.board);
+      console.log('bF ctor board for edit board: ', data.board);
       this.boardBS.next(data.board);
 
       this.populateForm(this.boardBS.value);
