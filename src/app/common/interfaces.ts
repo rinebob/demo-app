@@ -108,11 +108,16 @@ export interface DialogData {
     boardId?: number;
     board?: Board;
     task?: Task;
-    allColumns: Column[];
+    allColumns?: Column[];
     userColumns?: Column[];
-    numTasksByColumn: {[key: string]: number},
+    numTasksByColumn?: {[key: string]: number},
     boardNames?: string[],
     darkModeOn?: boolean,
   }
+
+  export interface DialogResult {
+    outcome: DialogCloseResult | string;
+    selectedBoard?: string;
+}
 
   export const TASK_STATUS_VALUES = Object.values(TaskStatus);

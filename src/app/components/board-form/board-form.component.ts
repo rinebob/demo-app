@@ -3,8 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 
-import { take } from 'rxjs';
-import { BoardsService } from 'src/app/services/boards.service';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { Board, DialogCloseResult, DialogData, FormMode, Task, TaskStatus} from '../../common/interfaces';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
@@ -32,12 +30,12 @@ export class BoardFormComponent implements OnInit {
     public dialogRef: MatDialogRef<BoardFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.buildBoardForm();
-    console.log('bF ctor dialog data: ', data);
-    console.log('bF ctor dialog ref: ', dialogRef);
+    // console.log('bF ctor dialog data: ', data);
+    // console.log('bF ctor dialog ref: ', dialogRef);
 
     if (data && data.board) {
       this.formMode = FormMode.EDIT;
-      console.log('bF ctor board for edit board: ', data.board);
+      // console.log('bF ctor board for edit board: ', data.board);
       this.boardBS.next(data.board);
 
       this.populateForm(this.boardBS.value);
