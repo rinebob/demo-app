@@ -1,22 +1,24 @@
+@use '../../../styles/kanban-mixins' as kanban;
+@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .settings-dialog-container {
-    @include flexboxLayout(column, flex-start, flex-start);
+    @include global.flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
     
     .title-container {
-        @include flexboxLayout(column, flex-start, flex-start);
+        @include global.flexboxLayout(column, flex-start, flex-start);
         margin-bottom: 12px;
         width: 100%;
         
         .title-text {
-            @include darkHeadingLText;
+            @include kanban.darkHeadingLText;
             margin-bottom: 24px;
             padding: 0;
         }
 
         .subtitle-text {
-            @include darkBodyMText;
+            @include kanban.darkBodyMText;
             padding: 0;
         }
    }
@@ -24,24 +26,24 @@
     .checkbox-list-scroll-container {
         width: 100%;
 
-        @include response(h-md) {
+        @include global.response(h-md) {
             margin-bottom: 24px;
             max-height: 290px;
             overflow-y: auto;
         }
 
-        @include response(h-sm) {
+        @include global.response(h-sm) {
             margin-bottom: 18px;
             max-height: 145px;
             overflow-y: auto;
         }
 
        .checkbox-list-container {
-            @include flexboxLayout(column, flex-start, flex-start);
+            @include global.flexboxLayout(column, flex-start, flex-start);
             margin-bottom: 24px;
             width: 100%;
             
-            @include response(h-md) {
+            @include global.response(h-md) {
                 margin-bottom: 0;
             }
         }
@@ -49,29 +51,29 @@
 
 
     .reset-buttons {
-        @include flexboxLayout(row, space-around, center);
+        @include global.flexboxLayout(row, space-around, center);
         flex-wrap: wrap;
         margin-bottom: 24px;
         width: 100%;
 
         .all-none-button {
-            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 20px);
+            @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 20px);
             font-size: 12px;
             justify-content: center;
             width: 40%;
 
-            @include response(md) {
+            @include global.response(md) {
                 font-size: 10px;
             }
         }
 
         .reset-initial-button {
-            @include mainButtonStyles(var(--primary-hover), var(--light-subtitle-text-1), 20px);
+            @include kanban.mainButtonStyles(var(--primary-hover), var(--light-subtitle-text-1), 20px);
             font-size: 12px;
             justify-content: center;
             width: 40%;
 
-            @include response(md) {
+            @include global.response(md) {
                 font-size: 10px;
             }
         }
@@ -79,7 +81,7 @@
     }
 
    .action-buttons {
-        @include flexboxLayout(row, space-between, center);
+        @include global.flexboxLayout(row, space-between, center);
         width: 100%;
 
         &:not(:last-child) {
@@ -92,12 +94,12 @@
 
         
         .cancel-button {
-            @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+            @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
             justify-content: center;
         }
         
         .save-button {
-            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+            @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
             justify-content: center;
         }
     }
@@ -106,7 +108,7 @@
 
 // This is the element being dragged
 .cdk-drag {
-    @include flexboxLayout(row, flex-start, center);
+    @include global.flexboxLayout(row, flex-start, center);
     background-color: var(--ang-exp-grey-4);
     border-radius: 4px;
     color: var(--ang-exp-white-1);
@@ -118,11 +120,11 @@
     }
 
     &-content {
-        @include flexboxLayout(column, flex-start, flex-start);
+        @include global.flexboxLayout(column, flex-start, flex-start);
     }
     
     .element-title {
-        @include darkBodyMText;
+        @include kanban.darkBodyMText;
     }
 
     p {
@@ -133,7 +135,7 @@
 
 // This is the preview of the element being dragged
 .cdk-drag-preview {
-    @include flexboxLayout(row, flex-start, flex-start);
+    @include global.flexboxLayout(row, flex-start, flex-start);
     color: var(--ang-exp-white-1);
     background-color: var(--ang-exp-grey-4);
     width: 100%;
@@ -146,7 +148,7 @@
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
     .element-title {
-        @include darkBodyMText;
+        @include kanban.darkBodyMText;
     }
 
     p {

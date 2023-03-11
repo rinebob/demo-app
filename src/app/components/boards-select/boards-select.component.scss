@@ -1,25 +1,27 @@
+@use '../../../styles/kanban-mixins' as kanban;
+@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .boards-select-container {
-    @include flexboxLayout(column, flex-start, flex-start);
+    @include global.flexboxLayout(column, flex-start, flex-start);
     background-color: var( --dark-background-3);
     border-radius: 8px;
     height: 322px;
     width: 264px;
 
     .boards-select-upper {
-        @include flexboxLayout(column, space-between, flex-start);
+        @include global.flexboxLayout(column, space-between, flex-start);
         margin: 16px 24px 16px 0;
 
         .all-boards {
-            @include lightHeadingSText;
+            @include kanban.lightHeadingSText;
             padding: 0 16px;
             text-transform: uppercase;
         }
 
         .nav-button {
-            @include sidenavButtonStylesMobile;
-            @include flexboxLayout(row, flex-start, center);
+            @include kanban.sidenavButtonStylesMobile;
+            @include global.flexboxLayout(row, flex-start, center);
     
             mat-icon {
                 margin: 0 16px 0 0;
@@ -30,20 +32,18 @@
                 margin: 0;
                 padding: 0;
             }
-            
         }
 
         .create-new-board-button {
-            @include darkHeadingMText;
+            @include kanban.darkHeadingMText;
             background-color: var(--dark-background-3);
             color: var(--primary-idle);
             margin: 4px 8px;
         }
-
     }
 
     .dark-mode-container {
-        @include flexboxLayout(row, center, center);
+        @include global.flexboxLayout(row, center, center);
         background-color: var(--dark-background-2);
         height: 48px;
         width: 235px;
@@ -58,9 +58,4 @@
             margin: 0 24px;
         }
     }
-}
-
-.boards-select-panel-class .mat-mdc-dialog-surface {
-    border-radius: 50px;
-    background-color: red;
 }

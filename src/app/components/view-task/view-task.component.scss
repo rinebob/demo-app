@@ -1,23 +1,25 @@
+@use '../../../styles/kanban-mixins' as kanban;
+@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .task-dialog-container {
-    @include flexboxLayout(column, flex-start, flex-start);
+    @include global.flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
     overflow: hidden;
     
     .title-container {
-        @include flexboxLayout(row, space-between, center);
+        @include global.flexboxLayout(row, space-between, center);
         margin-bottom: 24px;
         padding: 0;
         width: 100%;
         
         .mat-mdc-dialog-title {
-            @include darkHeadingLText;
+            @include kanban.darkHeadingLText;
             margin: 0;
             max-width: 300px;
             padding: 0;
 
-            @include response(md) {
+            @include global.response(md) {
                 max-width: 220px;
             }
         }
@@ -29,7 +31,7 @@
 
 
     .dialog-subtitle {
-        @include darkBodyLText;
+        @include kanban.darkBodyLText;
         color: var(--light-subtitle-text-1);
         margin-bottom: 24px;
     }
@@ -40,7 +42,7 @@
         width: 100%;
 
         .subtasks-header {
-            @include darkBodyMText;
+            @include kanban.darkBodyMText;
             color: var(--dark-subtitle-text-1);
             margin-bottom: 16px;
         }
@@ -50,12 +52,12 @@
             overflow-y: auto;
             margin-bottom: 24px;
 
-            @include response(h-md) {
+            @include global.response(h-md) {
                 max-height: 130px;
             }
 
             .subtask-card {
-                @include flexboxLayout(row, flex-start, center);
+                @include global.flexboxLayout(row, flex-start, center);
                 background-color: var(--dark-background-2);
                 border-radius: 4px;
                 height: 40px;
@@ -63,7 +65,7 @@
                 width: 100%;
         
                 .subtask-description {
-                    @include darkBodyMText;
+                    @include kanban.darkBodyMText;
                     margin: 0;
                 }
             }
@@ -74,7 +76,7 @@
         }
 
         .subtask-status {
-            @include flexboxLayout(row, flex-start, center);
+            @include global.flexboxLayout(row, flex-start, center);
             border-radius: 4px;
             border: 1px solid var(--border-5);
             height: 40px;
@@ -82,19 +84,18 @@
             padding: 8px 16px;
 
             &-text {
-                @include darkBodyLText;
+                @include kanban.darkBodyLText;
                 margin: 0;
             }
         }
     }
 
     .mat-mdc-dialog-actions {
-        @include flexboxLayout(row, flex-end, center);
+        @include global.flexboxLayout(row, flex-end, center);
         width: 100%;
 
         button {
-            @include mainButtonStyles;
-            
+            @include kanban.mainButtonStyles();
             color: var(--dark-title-text-1);
             padding: 4px 24px;
         }

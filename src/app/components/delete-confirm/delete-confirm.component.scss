@@ -1,38 +1,40 @@
+@use '../../../styles/kanban-mixins' as kanban;
+@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .delete-dialog-container {
-    @include flexboxLayout(column, flex-start, flex-start);
+    @include global.flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
     
     .title-container {
-        @include flexboxLayout(row, space-between, center);
+        @include global.flexboxLayout(row, space-between, center);
         margin-bottom: 24px;
         width: 100%;
 
         .title-text {
-            @include darkHeadingLText;
+            @include kanban.darkHeadingLText;
             color: var(--destructive-idle);
             padding: 0;
         }
     }
 
     .message {
-        @include darkBodyLText;
+        @include kanban.darkBodyLText;
         color: var(--light-subtitle-text-1);
         margin: 0 0 24px;
 
     }
 
     .action-buttons {
-        @include flexboxLayout(row, flex-end, center);
+        @include global.flexboxLayout(row, flex-end, center);
              width: 100%;
 
         button {
             width: 50%;
         }
 
-        @include response(md) {
-            @include flexboxLayout(column, center, center);
+        @include global.response(md) {
+            @include global.flexboxLayout(column, center, center);
             width: 100%;
 
             button {
@@ -42,12 +44,12 @@
         }
 
         .cancel-button {
-            @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+            @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
             justify-content: center;
         }
         
         .delete-button {
-            @include mainButtonStyles(var(--destructive-idle), var(--text-color-for-dark-background-1), 40px);
+            @include kanban.mainButtonStyles(var(--destructive-idle), var(--text-color-for-dark-background-1), 40px);
             justify-content: center;
         }
     }

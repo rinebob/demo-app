@@ -1,7 +1,9 @@
+@use '../../styles/kanban-mixins' as kanban;
+@use '../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .ang-exp-container {
-    @include flexboxLayout(column, flex-start, flex-start);
+    @include global.flexboxLayout(column, flex-start, flex-start);
     height: 100%;
     overflow: hidden;
 
@@ -11,24 +13,24 @@
     }
 
     .mat-drawer {
-        @include flexboxLayout(column, flex-start, space-between);
+        @include global.flexboxLayout(column, flex-start, space-between);
         background-color: var(--dark-background-3);
         width: 300px;
 
         ::ng-deep .mat-drawer-inner-container {
-            @include flexboxLayout(column, space-between, flex-start);
+            @include global.flexboxLayout(column, space-between, flex-start);
             overflow: hidden;
         }
 
         .top-drawer-container {
             .heading {
-                @include darkHeadingXLText;
+                @include kanban.darkHeadingXLText;
                 margin: 34px 120px 54px 34px;
             }
 
             .nav-button {
-                @include sidenavButtonStyles;
-                @include flexboxLayout(row, flex-start, center);
+                @include kanban.sidenavButtonStyles;
+                @include global.flexboxLayout(row, flex-start, center);
 
                 mat-icon {
                     margin: 0 16px 0 0;
@@ -49,22 +51,22 @@
         position: relative;
 
         .nav-bar {
-            @include flexboxLayout(row, flex-end, center);
+            @include global.flexboxLayout(row, flex-end, center);
             background-color: var(--dark-background-3);
             height: var(--size-nav-bar-height);
             width: 100%;
         
             .buttons-container {
-                @include flexboxLayout(row, flex-start, center);
+                @include global.flexboxLayout(row, flex-start, center);
                 
                 .nav-button {
-                    @include topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                    @include kanban.topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
                 }
             }
         }
 
         .show-drawer-button {
-            @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+            @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
             border-top-left-radius: 0;
             border-top-right-radius: 100px;
             border-bottom-right-radius: 100px;
@@ -75,9 +77,5 @@
             margin: 0;
             top: 90%;
         }
-
-
     }
-
-
 }
