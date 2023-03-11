@@ -1,24 +1,26 @@
+@use '../../../styles/kanban-mixins' as kanban;
+@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .design-container {
-    @include flexboxLayout;
+    @include global.flexboxLayout;
     padding: 12px;
     
     .elements {
-        @include border1;
-        @include flexboxLayout;
+        @include global.border1;
+        @include global.flexboxLayout;
 
         // width: 50%;
         width: 100%;
 
         .colors {
-            @include border1;
-            @include flexboxLayout;
+            @include global.border1;
+            @include global.flexboxLayout;
             flex-wrap: wrap;
             width: 33%;
             
             .color {
-                @include border1;
+                @include global.border1;
                 flex-grow: 1;
                 height: 40px;
                 width: 10%;
@@ -87,15 +89,15 @@
         }
 
         .interactive {
-            @include border1;
-            @include flexboxLayout($flex-direction: column, $align-items: center);
+            @include global.border1;
+            @include global.flexboxLayout($flex-direction: column, $align-items: center);
             
             .buttons {
-                @include flexboxLayout($align-items: center);
+                @include global.flexboxLayout($align-items: center);
                 flex-wrap: wrap;
                 
                 .button {
-                    @include mainButtonStyles;
+                    @include kanban.mainButtonStyles;
                 }
                 
                 .button-1 {
@@ -139,7 +141,7 @@
             }
 
             .fields {
-                @include flexboxLayout;
+                @include global.flexboxLayout;
                 width: 100%;
 
                 & > div {
@@ -147,25 +149,25 @@
                 }
                 
                 .checkboxes {
-                    @include border1;
-                    // @include flexboxLayout($flex-direction: column);
+                    @include global.border1;
+                    // @include global.flexboxLayout($flex-direction: column);
                     width: 33%;
                     display: block;
 
                     .checkbox {
-                        @include border1;
-                        // @include flexboxLayout;
+                        @include global.border1;
+                        // @include global.flexboxLayout;
                         // display: block;
                     }
 
                     .checkbox-container {
-                        @include flexboxLayout($align-items: center);
+                        @include global.flexboxLayout($align-items: center);
 
                      
                     }
 
                     .checkbox-label {
-                        @include lightBodyMText;
+                        @include kanban.lightBodyMText;
                         display: block;
 
                     }
@@ -191,19 +193,19 @@
                 }
                 
                 .text-fields {
-                    @include border1;
-                    @include flexboxLayout($flex-direction: column);
+                    @include global.border1;
+                    @include global.flexboxLayout($flex-direction: column);
                     width: 33%;
 
                     .text-field {
-                        @include border1;
-                        @include flexboxLayout;
+                        @include global.border1;
+                        @include global.flexboxLayout;
                     }
                 }
                 
                 .dropdown {
-                    @include border1;
-                    @include flexboxLayout($flex-direction: column);
+                    @include global.border1;
+                    @include global.flexboxLayout($flex-direction: column);
                     width: 33%;
                 }
 
@@ -215,7 +217,7 @@
 
     .typography {
         display: none;
-        @include border1;
+        @include global.border1;
         width: 0;
         .spacer {
             margin-bottom: 20px;
@@ -225,23 +227,23 @@
             background-color: var(--light-background-1);
     
             .light-heading-xl{
-                @include lightHeadingXLText;
+                @include kanban.lightHeadingXLText;
                 
             }
             .light-heading-l{
-                @include lightHeadingLText;
+                @include kanban.lightHeadingLText;
             }
             .light-heading-m{
-                @include lightHeadingMText;
+                @include kanban.lightHeadingMText;
             }
             .light-heading-s{
-                @include lightHeadingSText;
+                @include kanban.lightHeadingSText;
             }
             .light-body-l{
-                @include lightBodyLText;
+                @include kanban.lightBodyLText;
             }
             .light-body-m{
-                @include lightBodyMText;
+                @include kanban.lightBodyMText;
             }
         }
     
@@ -249,23 +251,23 @@
             background-color: var(--dark-background-1);
     
             .dark-heading-xl{
-                @include darkHeadingXLText;
+                @include kanban.darkHeadingXLText;
                 
             }
             .dark-heading-l{
-                @include darkHeadingLText;
+                @include kanban.darkHeadingLText;
             }
             .dark-heading-m{
-                @include darkHeadingMText;
+                @include kanban.darkHeadingMText;
             }
             .dark-heading-s{
-                @include darkHeadingSText;
+                @include kanban.darkHeadingSText;
             }
             .dark-body-l{
-                @include darkBodyLText;
+                @include kanban.darkBodyLText;
             }
             .dark-body-m{
-                @include darkBodyMText;
+                @include kanban.darkBodyMText;
             }
         }
 
