@@ -25,10 +25,11 @@ export class DialogService {
 
   constructor(private dialog: MatDialog, private boardsStore: BoardsStore) { }
 
-  openCreateBoardDialog() {
+  openCreateBoardDialog(theme: string) {
     // console.log('bS oCBD create board called');
     const config = new MatDialogConfig();
-    config.panelClass = this.boardFormPanelClass;
+    config.panelClass = [this.boardFormPanelClass, theme];
+    config.data = {theme};
     const dialogRef = this.dialog.open(BoardFormComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       // console.log('dS oCTD create board dialog closed.  result: ', result);

@@ -3,7 +3,18 @@
 
 //////////////// ELEMENTS //////////////////////
 
-@mixin mainButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
+// @mixin mainButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
+//     @include global.flexboxLayout(row, space-between, center);
+//     background-color: $background-color;
+//     border: none;
+//     border-radius: 24px;
+//     height: $height;
+//     color: $color;
+//     margin: 4px 8px;
+//     padding: 0 24px;
+// }
+
+@mixin mainButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
     @include global.flexboxLayout(row, space-between, center);
     background-color: $background-color;
     border: none;
@@ -14,7 +25,19 @@
     padding: 0 24px;
 }
 
-@mixin topnavButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
+// @mixin topnavButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
+//     @include darkHeadingMText;
+//     @include global.flexboxLayout(row, space-between, center);
+//     background-color: $background-color;
+//     border: none;
+//     border-radius: 24px;
+//     height: $height;
+//     color: $color;
+//     margin: 0 8px;
+//     padding: 0 24px;
+// }
+
+@mixin topnavButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
     @include darkHeadingMText;
     @include global.flexboxLayout(row, space-between, center);
     background-color: $background-color;
@@ -36,14 +59,17 @@
 }
 
 @mixin sidenavButtonStyles {
-    @include darkHeadingMText;
-    background-color: kanbanVar.color(primary-idle);
+    // @include darkHeadingMText;
+    // background-color: kanbanVar.color(primary-idle);
+    @include headingMText;
+    background-color: var(--kanban-background-3);
     border: none;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
     cursor: pointer;
     height: var(--size-button-tall);
-    color: kanbanVar.color(light-text);
+    // color: kanbanVar.color(light-text);
+    color: var(--subtitle-text-1);
     margin: 4px 8px;
     padding: 0 24px;
     text-align: left;
@@ -57,10 +83,14 @@
 
 @mixin taskCardStyles {
     @include global.flexboxLayout(row, flex-start, flex-start);
-    background-color: var(--dark-background-3);
-    border-radius: 4px;
+    // background-color: var(--dark-background-3);
+    background-color: var(--background-3);
+    border-radius: 8px;
     box-sizing: border-box;
-    color: var(--dark-subtitle-text-1);
+    // box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.101545);
+    box-shadow: 2px 4px 6px rgba(54, 78, 126, .25);
+    // color: var(--dark-subtitle-text-1);
+    color: var(--title-text-1);
     cursor: pointer;
     margin-bottom: 10px;
     padding: 10px 2px;
@@ -75,12 +105,14 @@
         width: 100%;
 
         .task-title {
-            @include darkHeadingMText;
+            // @include darkHeadingMText;
+            @include headingMText;
             margin: 0 0 8px;
         }
     
         .task-subtitle {
-            @include darkBodyMText;
+            // @include darkBodyMText;
+            @include bodyMText;
             margin: 0 0 6px;
         }
     }
@@ -93,6 +125,64 @@
 ////////////// TYPOGRAPHY //////////////////////////
 
 // Light styles
+
+@mixin headingXLText {
+    color: var(--title-text-1);
+    font-weight: 700;
+    font-size: kanbanVar.fontSize(heading-xl);
+    line-height: kanbanVar.lineHeight(heading-xl);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+
+    @include global.response(md) {
+        font-size: kanbanVar.fontSize(tablet-heading-xl);
+        line-height: kanbanVar.lineHeight(heading-lg);
+    }
+    
+    @include global.response(sm) {
+        font-size: kanbanVar.fontSize(heading-lg);
+        line-height: kanbanVar.lineHeight(heading-lg);
+    }
+}
+
+@mixin headingLText {
+    color: var(--title-text-1);
+    font-weight: 700;
+    font-size: kanbanVar.fontSize(heading-lg);
+    line-height: kanbanVar.lineHeight(heading-lg);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin headingMText {
+    color: var(--title-text-1);
+    font-weight: 700;
+    font-size: kanbanVar.fontSize(heading-md);
+    line-height: kanbanVar.lineHeight(heading-md);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin headingSText {
+    color: var(--subtitle-text-1);
+    font-weight: 700;
+    font-size: kanbanVar.fontSize(heading-sm);
+    line-height: kanbanVar.lineHeight(heading-sm);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin bodyLText {
+    color: var(--title-text-3);
+    font-weight: 500;
+    font-size: kanbanVar.fontSize(body-l);
+    line-height: kanbanVar.lineHeight(body-l);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin bodyMText {
+    color: var(--title-text-3);
+    font-weight: 700;
+    font-size: kanbanVar.fontSize(body-m);
+    line-height: kanbanVar.lineHeight(body-m);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
 
 @mixin lightHeadingXLText {
     color: var(--light-title-text-1);
@@ -113,7 +203,6 @@
         line-height: kanbanVar.lineHeight(heading-lg);
     }
 }
-
 
 @mixin lightHeadingLText {
     color: var(--light-title-text-1);

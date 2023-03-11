@@ -1,16 +1,28 @@
 
-
 <mat-drawer-container>
 
-    <!-- opened="true" -->
     <mat-drawer #drawer mode="side"
+                opened="true"
                 class="board-view-sidenav"
                 (openedChange)="toggleShowDrawerButton($event)"
     >
 
-    <div class="top-drawer-container">
+        <div class="top-drawer-container">
 
-            <h1 class="heading">kanban</h1>
+            <div class="kanban-logo-container"
+                 [class.sidenav-closed]="shouldShowOpenDrawerButton"
+            >
+
+                <div class="kanban-icon-container">
+                    <div class="kanban-icon-segment segment-1"></div>
+                    <div class="kanban-icon-segment segment-2"></div>
+                    <div class="kanban-icon-segment segment-3"></div>
+                </div>
+
+                <p class="logo-text">kanban</p>
+
+            </div>
+
             <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
             <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
         
@@ -20,6 +32,7 @@
                     type="button"
                     class="nav-button"
                     (click)="setSelectedBoard(board)"
+                    [class.focused]="getFocusStatus(board.displayName)"
             >
                 <mat-icon>grid_on</mat-icon>
                 <p class="nav-button-text">
@@ -44,7 +57,7 @@
                 <mat-icon class="material-symbols-outlined">light_mode</mat-icon>
                 <mat-slide-toggle [color]="darkModeToggleButtonColor"
                                   [checked]="darkModeOn"
-                                  (change)="toggleDarkMode()"
+                                  (change)="toggleTheme()"
                                 
                 ></mat-slide-toggle>
                 <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
@@ -66,17 +79,26 @@
         <ng-container *ngIf="selectedBoard$ | async as board">
     
             <nav class="nav-bar">
-
-                <div class="board-title-container">
-                    
-                    <div class="kanban-icon-container">
-                        <div class="kanban-icon-segment segment-1"></div>
-                        <div class="kanban-icon-segment segment-2"></div>
-                        <div class="kanban-icon-segment segment-3"></div>
-                    </div>
             
+                <div class="board-title-container">
+                
+                    <div *ngIf="shouldShowOpenDrawerButton" 
+                        class="kanban-logo-container"
+                        [class.sidenav-closed]="shouldShowOpenDrawerButton"
+                    >
+        
+                        <div class="kanban-icon-container">
+                            <div class="kanban-icon-segment segment-1"></div>
+                            <div class="kanban-icon-segment segment-2"></div>
+                            <div class="kanban-icon-segment segment-3"></div>
+                        </div>
+        
+                        <p class="logo-text">kanban</p>
+        
+                    </div>
+        
                     <p class="board-title">{{board.displayName}}</p>
-    
+        
                     <button mat-icon-button
                             class="dropdown-icon-button"
                             color="primary"
@@ -84,10 +106,9 @@
                     >
                         <mat-icon>expand_more</mat-icon>
                     </button>
-
-                </div>
-
         
+                </div>
+                
                 <div class="buttons-container">
         
                     <button mat-button
@@ -95,9 +116,9 @@
                             (click)="openCreateTaskDialog()"
                     >
                         <mat-icon>add</mat-icon>
-                        <p class="nav-button-text">Add New Task</p>
+                        <p class="nav-button-text">Add Task</p>
                     </button>
-
+        
                     <button mat-icon-button
                             class="menu-button"
                             color="primary"
@@ -105,9 +126,9 @@
                     >
                         <mat-icon>more_vert</mat-icon>
                     </button>
-
+        
                     <mat-menu #topnavMenu="matMenu" [class]="topnavMenuCssClass">
-            
+        
                         <button mat-menu-item (click)="openEditBoardDialog()">Edit Board</button>
                         <button mat-menu-item class="create-task-menu-item" (click)="openCreateTaskDialog()">Add Task</button>
                         <button mat-menu-item (click)="openConfigureColumnsDialog()">Configure Columns</button>
@@ -115,7 +136,7 @@
                     </mat-menu>
                     
                 </div>
-   
+        
             </nav>
             
             <app-kanban-tasks [tasks]="(tasks$ | async)!"

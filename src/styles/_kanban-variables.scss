@@ -4,64 +4,63 @@
 
     ////// PRIMARY COLOR SPECIFIED IN KANBAN PROJECT DESIGN SYSTEM //////
     
-    --purple-1: #635fc7;
-    --purple-2: #a8a4ff;
-        
-    --grey-1: #000112;
-    --grey-2: #20212c;
-    --grey-3: #2b2c37;
-    --grey-4: #3e3f4e;
-    --grey-5: #828fa3;
-    --grey-6: #e4ebfa;
-
-    --white-1: #ffffff;
-    --white-2: #f4f7fd;
-
-    --red-1: #ea5555;
-    --red-2: #ff9898;
-
-    --light-background-1: var(--white-1);
-    --light-background-2: var(--white-2);
-
-    --text-color-for-dark-background-1: var(--white-1);
-    --text-color-for-dark-background-2: var(--white-2);
+    --kanban-purple-1: #635fc7;
+    --kanban-purple-2: #a8a4ff;
+    --kanban-grey-1: #000112;
+    --kanban-grey-2: #20212c;
+    --kanban-grey-3: #2b2c37;
+    --kanban-grey-4: #3e3f4e;
+    --kanban-grey-5: #828fa3;
+    --kanban-grey-6: #e4ebfa;
+    --kanban-white-1: #ffffff;
+    --kanban-white-2: #f4f7fd;
+    --kanban-red-1: #ea5555;
+    --kanban-red-2: #ff9898;
     
-    --primary-idle: var(--purple-1);
-    --primary-hover: var(--purple-2);
+    --kanban-primary-idle: var(--kanban-purple-1);
+    --kanban-primary-hover: var(--kanban-purple-2);
+    --kanban-secondary-idle: var(--kanban-white-1);
+    --kanban-secondary-hover: rgba(99, 95, 199, .25);
+    --kanban-destructive-idle: var(--kanban-red-1);
+    --kanban-destructive-hover: var(--kanban-red-2);
 
-    --secondary-idle: var(--white-1);
-    --secondary-hover: rgba(99, 95, 199, .25);
+    --kanban-on-primary-idle: var(--kanban-white-1);
+    --kanban-on-primary-hover: var(--kanban-white-1);
+    --kanban-on-secondary-idle: var(--kanban-purple-1);
+    --kanban-on-secondary-hover: var(--kanban-purple-1);
+    --kanban-on-destructive-idle: var(--kanban-white-1);
+    --kanban-on-destructive-hover: var(--kanban-white-1);
 
-    --destructive-idle: var(--red-1);
-    --destructive-hover: var(--red-2);
+    --light-background-1: var(--kanban-white-1);
+    --light-background-2: var(--kanban-white-1);
+    --light-background-3: var(--kanban-white-1);
+    --light-title-text-1: var(--kanban-grey-1);
+    --light-title-text-2: var(--kanban-grey-2);
+    --light-title-text-3: var(--kanban-grey-3);
+    --light-title-text-4: var(--kanban-grey-4);
+    --light-subtitle-text-1: var(--kanban-grey-5);
+    --light-subtitle-text-2: var(--kanban-grey-6);
 
-    --checkbox-completed-text-color: var(--grey-1);
+    --dark-background-1: var(--kanban-white-1);
+    --dark-background-2: var(--kanban-white-1);
+    --dark-background-3: var(--kanban-white-1);
+    --dark-title-text-1: var(--kanban-grey-1);
+    --dark-title-text-2: var(--kanban-grey-2);
+    --dark-title-text-3: var(--kanban-grey-3);
+    --dark-title-text-4: var(--kanban-grey-4);
+    --dark-subtitle-text-1: var(--kanban-grey-5);
+    --dark-subtitle-text-2: var(--kanban-grey-6);
+
+    --text-color-for-light-background-1: var(--kanban-purple-1);
+    --text-color-for-light-background-2: var(--kanban-purple-2);
+
+    --text-color-for-dark-background-1: var(--kanban-white-1);
+
     
-    --light-title-text-1: var(--grey-1);
-    --light-title-text-2: var(--grey-2);
-    --light-title-text-3: var(--grey-3);
-    --light-title-text-4: var(--grey-4);
-    --light-subtitle-text-1: var(--grey-5);
-    --light-subtitle-text-2: var(--grey-6);
-
-    --dark-background-1: var(--grey-1);
-    --dark-background-2: var(--grey-2);
-    --dark-background-3: var(--grey-3);
-    --dark-background-4: var(--grey-4);
-
-    --text-color-for-light-background-1: var(--purple-1);
-    --text-color-for-light-background-2: var(--purple-2);
-
-    --dark-title-text-1: var(--white-1);
-    --dark-title-text-2: var(--white-1);
-    --dark-title-text-3: var(--white-1);
-    --dark-title-text-4: var(--white-1);
-    --dark-subtitle-text-1: var(--white-1);
-    --dark-subtitle-text-2: var(--white-1);
-
-    --border-5: var(--grey-5);
-
-    --destructive-text-1: var(--red-1);
+    
+    --checkbox-completed-text-color: var(--kanban-grey-1);
+    --border-5: var(--kanban-grey-5);
+    --destructive-text-1: var(--kanban-red-1);
     
     --column-dot-color-1: #49c4e5;
     --column-dot-color-2: #8471f2;
@@ -109,14 +108,75 @@
     // --main-font-family: var(--font-nunito);
 }
 
+.app-theme {
+    --background-1: var(--kanban-white-1);
+    --background-2: var(--kanban-white-1);
+    --background-3: var(--kanban-white-1);
+    --title-text-1: var(--kanban-grey-1);
+    --title-text-2: var(--kanban-grey-2);
+    --title-text-3: var(--kanban-grey-3);
+    --title-text-4: var(--kanban-grey-4);
+    --subtitle-text-1: var(--kanban-grey-5);
+    --subtitle-text-2: var(--kanban-grey-6);
+}
+
+.kanban-light-theme {
+    
+    --background-1: var(--kanban-white-1);
+    --background-2: var(--kanban-white-1);
+    --background-3: var(--kanban-white-1);
+    --background-4: var(--kanban-white-1);
+    --title-text-1: var(--kanban-grey-1);
+    --title-text-2: var(--kanban-grey-2);
+    --title-text-3: var(--kanban-grey-3);
+    --title-text-4: var(--kanban-grey-4);
+    --subtitle-text-1: var(--kanban-grey-5);
+    --subtitle-text-2: var(--kanban-grey-6);
+
+    // text colors for light backgrounds
+    --text-color-1: var(--kanban-purple-1);
+    --text-color-2: var(--kanban-purple-2);
+
+    --drag-preview-background-color: var(--kanban-grey-6);
+    --drag-preview-placeholder-color: var(--kanban-grey-6);
+    --drag-preview-text-color: var(--kanban-grey-1);
+    --drag-preview-outline-color: var(--kanban-grey-5);
+
+    --sidenav-border-color: var(--kanban-grey-6);
+
+}
+
+
+.kanban-dark-theme {
+    // text color for dark backgrounds    
+    --text-color-1: var(--kanban-white-1);
+    --background-1: var(--kanban-grey-1);
+    --background-2: var(--kanban-grey-2);
+    --background-3: var(--kanban-grey-3);
+    --background-4: var(--kanban-grey-4);
+    --title-text-1: var(--kanban-white-1);
+    --title-text-2: var(--kanban-white-1);
+    --title-text-3: var(--kanban-white-1);
+    --title-text-4: var(--kanban-white-1);
+    --subtitle-text-1: var(--kanban-grey-5);
+    --subtitle-text-2: var(--kanban-grey-5);
+
+    --drag-preview-background-color: var(--kanban-grey-5);
+    --drag-preview-placeholder-color: var(--kanban-grey-6);
+    --drag-preview-text-color: var(--kanban-white-1);
+    --drag-preview-outline-color: var(--kanban-grey-4);
+
+    --sidenav-border-color: var(--kanban-grey-4);
+}
+
 $colors: (
-        primary-idle: var(--primary-idle),
-        primary-hover: var(--primary-hover),
-        secondary-idle: var(--secondary-idle),
-        secondary-hover: var(--secondary-hover),
-        destructive-idle: var(--destructive-idle),
-        destructive-hover: var(--destructive-hover),
-        light-text: var(--white-1),
+        primary-idle: var(--kanban-primary-idle),
+        primary-hover: var(--kanban-primary-hover),
+        secondary-idle: var(--kanban-secondary-idle),
+        secondary-hover: var(--kanban-secondary-hover),
+        destructive-idle: var(--kanban-destructive-idle),
+        destructive-hover: var(--kanban-destructive-hover),
+        light-text: var(--kanban-white-1),
     );
 
 @function color($color-name) {

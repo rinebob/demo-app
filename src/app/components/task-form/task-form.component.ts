@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import { BoardsStore } from 'src/app/services/boards-store.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskFormComponent {
+  @HostBinding('class') theme = 'kanban-light-theme';
   taskBS = new BehaviorSubject<Task>(TASK_INITIALIZER);
   task$: Observable<Task> = this.taskBS;
 

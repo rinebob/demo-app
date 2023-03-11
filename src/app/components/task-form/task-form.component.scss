@@ -4,7 +4,8 @@
 
 .task-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--dark-background-3);
+    // background-color: var(--dark-background-3);
+    background-color: var(--background-3);
     
     .title-container {
         @include global.flexboxLayout(row, space-between, center);
@@ -12,7 +13,8 @@
         width: 100%;
         
         .title-text {
-            @include kanban.darkHeadingLText;
+            // @include kanban.darkHeadingLText;
+            @include kanban.headingLText;
             margin: 0;
             padding: 0;
         }
@@ -26,8 +28,10 @@
         }
 
         .field-label {
-            @include kanban.lightBodyMText;
-            color: var(--dark-title-text-1);
+            // @include kanban.lightBodyMText;
+            // color: var(--dark-title-text-1);
+            @include kanban.bodyMText;
+            color: var(--title-text-1);
         }
 
         .subtasks-scroll-container {
@@ -60,7 +64,8 @@
                         margin-top: -24px;
                         
                         mat-icon {
-                            color: var(--light-subtitle-text-1);
+                            // color: var(--light-subtitle-text-1);
+                            color: var(--subtitle-text-1);
                         }
                     }
                 }
@@ -68,7 +73,8 @@
         }
 
         .add-subtask-button {
-            @include kanban.mainButtonStyles(var(--light-background-1), var(--text-color-for-light-background-1), 40px);
+            // @include kanban.mainButtonStyles(var(--light-background-1), var(--text-color-for-light-background-1), 40px);
+            @include kanban.mainButtonStyles(var(--background-1), var(--kanban-primary-idle), 40px);
             justify-content: center;
             margin: 0 0 24px;
             width: 100%;
@@ -82,12 +88,14 @@
                 width: 50%;
             }
             .cancel-button {
-                @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+                // @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+                @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
                 justify-content: center;
             }
     
             .save-button {
-                @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+                // @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+                @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
                 justify-content: center;
             }
      
