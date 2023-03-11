@@ -1,8 +1,10 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/kanban-mixins' as kanban;
 @import "styles.scss";
 
 .boards-select-container {
-    @include flexboxLayout(column, flex-start, flex-start);
-    background-color: var( --dark-background-3);
+    @include global.flexboxLayout(column, flex-start, flex-start);
+    background-color: var(--dark-background-3);
     border-radius: 8px;
     height: 322px;
     width: 264px;
@@ -18,8 +20,8 @@
         }
 
         .nav-button {
-            @include sidenavButtonStylesMobile;
-            @include flexboxLayout(row, flex-start, center);
+            @include global.flexboxLayout(row, flex-start, center);
+
     
             mat-icon {
                 margin: 0 16px 0 0;
