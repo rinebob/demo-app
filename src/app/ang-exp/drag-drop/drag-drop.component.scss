@@ -1,18 +1,16 @@
-@use '../../../styles/kanban-mixins' as kanban;
-@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .drag-drop-container {
-    @include global.border1;
-    @include global.flexboxLayout(row, space-around, stretch);
+    @include border1;
+    @include flexboxLayout(row, space-around, stretch);
     background-color: var(--ang-exp-grey-5);
     height: calc(100vh - var(--size-nav-bar-height));
     margin: 0;
     padding: 0;
     
     .column-container {
-        @include global.border1;
-        @include global.flexboxLayout(column, flex-start, flex-start);
+        @include border1;
+        @include flexboxLayout(column, flex-start, flex-start);
         box-sizing: border-box;
         background-color: var(--ang-exp-grey-2);
         margin: 0;
@@ -20,8 +18,8 @@
         width: 500px;
 
         .column {
-            @include global.border1;
-            @include global.flexboxLayout(column, flex-start, stretch);
+            @include border1;
+            @include flexboxLayout(column, flex-start, stretch);
             box-sizing: border-box;
             background-color: var(--ang-exp-grey-3);
             min-height: 100%;
@@ -31,11 +29,11 @@
             width: 100%;
 
             .header-container {
-                @include global.flexboxLayout(column, flex-start, flex-start);
+                @include flexboxLayout(column, flex-start, flex-start);
                 margin: 0 0 8px;
 
                 .column-title {
-                    @include kanban.darkHeadingMText;
+                    @include darkHeadingMText;
                     margin: 0;
                     padding: 0;
 
@@ -47,7 +45,7 @@
 
 // This is the element being dragged
 .cdk-drag {
-    @include global.flexboxLayout(row, flex-start, flex-start);
+    @include flexboxLayout(row, flex-start, flex-start);
     background-color: var(--ang-exp-grey-4);
     color: var(--ang-exp-white-1);
     margin: 4px 0;
@@ -60,12 +58,12 @@
     }
 
     &-content {
-        @include global.flexboxLayout(column, flex-start, flex-start);
+        @include flexboxLayout(column, flex-start, flex-start);
 
     }
     
     .element-title {
-        @include kanban.darkBodyMText;
+        @include darkBodyMText;
     }
 
     p {
@@ -76,7 +74,7 @@
 
 // This is the preview of the element being dragged
 .cdk-drag-preview {
-    @include global.flexboxLayout(row, flex-start, flex-start);
+    @include flexboxLayout(row, flex-start, flex-start);
     color: var(--ang-exp-white-1);
     background-color: var(--ang-exp-grey-4);
     width: 100%;
@@ -89,7 +87,7 @@
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
     .element-title {
-        @include kanban.darkBodyMText;
+        @include darkBodyMText;
     }
 
     p {

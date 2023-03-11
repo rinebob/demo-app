@@ -1,5 +1,3 @@
-@use '../../../styles/kanban-mixins' as kanban;
-@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 .scroll-container {
@@ -7,13 +5,13 @@
     overflow: hidden;
     
     .columns-container {
-        @include global.flexboxLayout(row, flex-start, flex-start);
+        @include flexboxLayout(row, flex-start, flex-start);
         height: 100%;
         margin: 0 24px;
         overflow-x: auto;
 
         .column-container {
-            @include global.flexboxLayout(column, stretch, flex-start);
+            @include flexboxLayout(column, stretch, flex-start);
             margin: 4px 12px;
             height: calc(100vh - calc(var(--size-nav-bar-height) + 64px));
             min-width: 250px;
@@ -21,7 +19,7 @@
             overflow-y: auto;
             
             .column-header {
-                @include global.flexboxLayout(row, flex-start, center);
+                @include flexboxLayout(row, flex-start, center);
                 margin: 24px 0;
 
                 .color-circle {
@@ -32,7 +30,7 @@
                 }
 
                 .column-header-text {
-                    @include kanban.darkHeadingSText;
+                    @include darkHeadingSText;
                     color: var(--light-subtitle-text-1);
                     margin: 0;
                     text-transform: uppercase;
@@ -41,7 +39,7 @@
         }
 
         .new-column-area {
-            @include global.flexboxLayout(row, center, center);
+            @include flexboxLayout(row, center, center);
             background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
             border-radius: 6px;
             height: 80vh;
@@ -49,7 +47,7 @@
             width: 100%;
 
             .new-column-button {
-                @include kanban.darkHeadingXLText;
+                @include darkHeadingXLText;
                 color: var(--light-subtitle-text-1);
                 text-transform: capitalize;
                 white-space: normal;
@@ -64,23 +62,23 @@
 }
 
 .task-card {
-    @include kanban.taskCardStyles;
+    @include taskCardStyles;
 }
 
 .no-tasks-container {
-    @include global.flexboxLayout(column, center, center);
+    @include flexboxLayout(column, center, center);
     height: 100%;
     height: calc(100% - var(--size-nav-bar-height));
 }
 
 .empty-board {
-    @include kanban.darkHeadingLText;
+    @include darkHeadingLText;
     color: var(--light-subtitle-text-1);
 }
 
 .add-column-button {
-    @include kanban.mainButtonStyles;
-    @include kanban.darkHeadingMText;
+    @include mainButtonStyles;
+    @include darkHeadingMText;
 }
 
 // This is the element being dragged
@@ -92,12 +90,12 @@
     }
 
     &-content {
-        @include global.flexboxLayout(column, flex-start, flex-start);
+        @include flexboxLayout(column, flex-start, flex-start);
 
     }
     
     .element-title {
-        @include kanban.darkBodyMText;
+        @include darkBodyMText;
     }
 
     p {
@@ -108,7 +106,7 @@
 
 // This is the preview of the element being dragged
 .cdk-drag-preview {
-    @include global.flexboxLayout(row, flex-start, flex-start);
+    @include flexboxLayout(row, flex-start, flex-start);
     color: var(--ang-exp-white-1);
     background-color: var(--ang-exp-grey-4);
     width: 100%;
@@ -121,7 +119,7 @@
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
     .element-title {
-        @include kanban.darkBodyMText;
+        @include darkBodyMText;
     }
 
     p {
