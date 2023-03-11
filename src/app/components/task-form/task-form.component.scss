@@ -1,16 +1,18 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/kanban-mixins' as kanban;
 @import "styles.scss";
 
 .task-dialog-container {
-    @include flexboxLayout(column, flex-start, flex-start);
+    @include global.flexboxLayout(column, flex-start, flex-start);
     background-color: var(--dark-background-3);
     
     .title-container {
-        @include flexboxLayout(row, space-between, center);
+        @include global.flexboxLayout(row, space-between, center);
         margin-bottom: 24px;
         width: 100%;
         
         .title-text {
-            @include darkHeadingLText;
+            @include kanban.darkHeadingLText;
             margin: 0;
             padding: 0;
         }
@@ -24,7 +26,7 @@
         }
 
         .field-label {
-            @include lightBodyMText;
+            @include kanban.lightBodyMText;
             color: var(--dark-title-text-1);
         }
 
@@ -33,15 +35,15 @@
             max-height: 234px;
             overflow-y: auto;
 
-            @include response(h-md) {
+            @include global.response(h-md) {
                 max-height: 144px;
             }
 
             .subtasks-container {
-                @include flexboxLayout(column, flex-start, flex-start);
+                @include global.flexboxLayout(column, flex-start, flex-start);
                 
                 .subtask {
-                    @include flexboxLayout(row, space-between, center);
+                    @include global.flexboxLayout(row, space-between, center);
                     width: 100%;
     
                     .mat-mdc-form-field {
@@ -66,26 +68,26 @@
         }
 
         .add-subtask-button {
-            @include mainButtonStyles(var(--light-background-1), var(--text-color-for-light-background-1), 40px);
+            @include kanban.mainButtonStyles(var(--light-background-1), var(--text-color-for-light-background-1), 40px);
             justify-content: center;
             margin: 0 0 24px;
             width: 100%;
         }
 
         .action-buttons {
-            @include flexboxLayout(row, flex-end, center);
+            @include global.flexboxLayout(row, flex-end, center);
             width: 100%;
     
             button {
                 width: 50%;
             }
             .cancel-button {
-                @include mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
+                @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
                 justify-content: center;
             }
     
             .save-button {
-                @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
+                @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
                 justify-content: center;
             }
      
