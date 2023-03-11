@@ -1,9 +1,7 @@
-@use '../styles/kanban-mixins' as kanban;
-@use '../styles/global-mixins' as global;
 @import "styles.scss";
 
 :host {
-    @include global.flexboxLayout(row, flex-start, flex-start);
+    @include flexboxLayout(row, flex-start, flex-start);
     height: 100%;
     overflow: hidden;
 
@@ -12,24 +10,24 @@
         width: 100%;
     
         .mat-sidenav {
-            @include global.flexboxLayout(column, flex-start, space-between);
+            @include flexboxLayout(column, flex-start, space-between);
             background-color: var(--dark-background-3);
             width: 300px;
 
             ::ng-deep .mat-drawer-inner-container {
-                @include global.flexboxLayout(column, space-between, flex-start);
+                @include flexboxLayout(column, space-between, flex-start);
                 overflow: hidden;
             }
 
             .top-sidenav-container {
                 .heading {
-                    @include kanban.darkHeadingXLText;
+                    @include darkHeadingXLText;
                     margin: 34px 120px 54px 34px;
                 }
 
                 .nav-button {
-                    @include kanban.sidenavButtonStyles;
-                    @include global.flexboxLayout(row, flex-start, center);
+                    @include sidenavButtonStyles;
+                    @include flexboxLayout(row, flex-start, center);
 
                     mat-icon {
                         margin: 0 16px 0 0;
@@ -43,25 +41,25 @@
                 }
 
                 .all-boards {
-                    @include kanban.lightHeadingSText;
+                    @include lightHeadingSText;
                     padding: 0 16px;
                     text-transform: uppercase;
                 }
 
                 .create-new-board-button {
-                    @include kanban.darkHeadingMText;
+                    @include darkHeadingMText;
                     background-color: var(--dark-background-3);
                     color: var(--primary-idle);
                 }
             }
 
             .bottom-buttons-container {
-                @include global.flexboxLayout(column, flex-start, center);
+                @include flexboxLayout(column, flex-start, center);
                 margin-bottom: 50px;
                 width: 100%;
                 
                 .dark-mode-switch-container {
-                    @include global.flexboxLayout(row, space-between, center);
+                    @include flexboxLayout(row, space-between, center);
                     background-color: var(--dark-background-2);
                     margin: 0 0 22px;
                     padding: 15px 64px;
@@ -76,8 +74,8 @@
                 }
 
                 .hide-sidebar-button {
-                    @include kanban.darkHeadingMText;
-                    @include global.flexboxLayout(row, center, center);
+                    @include darkHeadingMText;
+                    @include flexboxLayout(row, center, center);
                     align-self: flex-start;
                     background-color: var(--dark-background-3);
                     border: none;
@@ -98,7 +96,7 @@
             position: relative;
     
             .show-sidenav-button {
-                @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+                @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
                 border-top-left-radius: 0;
                 border-top-right-radius: 100px;
                 border-bottom-right-radius: 100px;
@@ -113,7 +111,7 @@
                 z-index: 10;
                 
                 .back-button-text {
-                    @include kanban.darkBodyMText;
+                    @include darkBodyMText;
                     font-size: 10px;
                     font-weight: lighter;
                     letter-spacing: 1.25px;

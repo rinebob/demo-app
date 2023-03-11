@@ -1,9 +1,7 @@
-@use '../../../styles/kanban-mixins' as kanban;
-@use '../../../styles/global-mixins' as global;
 @import "styles.scss";
 
 :host {
-    @include global.flexboxLayout(row, flex-start, flex-start);
+    @include flexboxLayout(row, flex-start, flex-start);
     height: 100%;
     overflow: hidden;
 
@@ -12,24 +10,24 @@
         width: 100%;
 
         .mat-drawer {
-            @include global.flexboxLayout(column, flex-start, space-between);
+            @include flexboxLayout(column, flex-start, space-between);
             background-color: var(--dark-background-3);
             width: 300px;
 
             ::ng-deep .mat-drawer-inner-container {
-                @include global.flexboxLayout(column, space-between, flex-start);
+                @include flexboxLayout(column, space-between, flex-start);
                 overflow: hidden;
             }
 
             .top-drawer-container {
                 .heading {
-                    @include kanban.darkHeadingXLText;
+                    @include darkHeadingXLText;
                     margin: 34px 120px 54px 34px;
                 }
 
                 .nav-button {
-                    @include kanban.sidenavButtonStyles;
-                    @include global.flexboxLayout(row, flex-start, center);
+                    @include sidenavButtonStyles;
+                    @include flexboxLayout(row, flex-start, center);
 
                     mat-icon {
                         margin: 0 16px 0 0;
@@ -44,13 +42,13 @@
                 }
 
                 .all-boards {
-                    @include kanban.lightHeadingSText;
+                    @include lightHeadingSText;
                     padding: 0 16px;
                     text-transform: uppercase;
                 }
 
                 .create-new-board-button {
-                    @include kanban.darkHeadingMText;
+                    @include darkHeadingMText;
                     background-color: var(--dark-background-3);
                     color: var(--primary-idle);
                     margin: 4px 8px;
@@ -58,13 +56,13 @@
             }
 
             .bottom-buttons-container {
-                @include global.flexboxLayout(column, flex-start, center);
+                @include flexboxLayout(column, flex-start, center);
                 margin-bottom: 50px;
                 // padding-left: 24px;
                 width: 100%;
                 
                 .dark-mode-switch-container {
-                    @include global.flexboxLayout(row, space-between, center);
+                    @include flexboxLayout(row, space-between, center);
                     background-color: var(--dark-background-2);
                     // margin: 0 24px 22px;
                     margin: 0 0 22px;
@@ -80,8 +78,8 @@
                 }
 
                 .hide-sidebar-button {
-                    @include kanban.darkHeadingMText;
-                    @include global.flexboxLayout(row, center, center);
+                    @include darkHeadingMText;
+                    @include flexboxLayout(row, center, center);
                     align-self: flex-start;
                     background-color: var(--dark-background-3);
                     border: none;
@@ -103,20 +101,20 @@
             position: relative;
 
             .nav-bar {
-                @include global.flexboxLayout(row, space-between, center);
+                @include flexboxLayout(row, space-between, center);
                 background-color: var(--dark-background-3);
                 height: var(--size-nav-bar-height);
                 width: 100%;
 
                 .board-title-container {
-                    @include global.flexboxLayout(row, flex-start, center);
+                    @include flexboxLayout(row, flex-start, center);
                     margin: 0 0 0 16px;
 
                     .kanban-icon-container {
                         display: none;
                                                 
-                        @include global.response(sm) {
-                            @include global.flexboxLayout(row, flex-start, center);
+                        @include response(sm) {
+                            @include flexboxLayout(row, flex-start, center);
                         }
                         
                         .kanban-icon-segment {
@@ -145,10 +143,10 @@
                     }
 
                     .board-title {
-                        @include kanban.darkHeadingXLText;
+                        @include darkHeadingXLText;
                         margin: 0 0 0 24px;
                         
-                        @include global.response(sm) {
+                        @include response(sm) {
                             margin: 0 0 0 16px;
                             max-width: 165px;
                         }
@@ -157,24 +155,24 @@
                     .dropdown-icon-button {
                         display: none;
 
-                        @include global.response(sm) {
+                        @include response(sm) {
                             display: block;
                         }
                     }
                 }
             
                 .buttons-container {
-                    @include global.flexboxLayout(row, flex-start, center);
+                    @include flexboxLayout(row, flex-start, center);
 
                     
                     .nav-button {
-                        @include kanban.topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                        @include topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
                         
                         .nav-button-text {
                             margin: 0;
                         }
 
-                        @include global.response(md) {
+                        @include response(md) {
 
                             .nav-button-text {
                                 display: none;
@@ -185,25 +183,30 @@
                             }
                         }
 
-                        @include global.response(sm) {
-                            @include kanban.topnavButtonStylesMobile;
+                        @include response(sm) {
+                            @include topnavButtonStylesMobile;
                             width: 48px;
                         }
 
                         button.create-task-menu-item {
                             display: none;
 
-                            @include global.response(md) {
+                            @include response(md) {
                                 display: block;
+
                             }
                         }
+
+                        
+
+
                     }
                 }
 
                 .menu-button-container {
                     // display: none;
 
-                    @include global.response(xl) {
+                    @include response(xl) {
                         display: block;
                         
                     }
@@ -212,7 +215,7 @@
             }
 
             .show-drawer-button {
-                @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+                @include mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
                 border-top-left-radius: 0;
                 border-top-right-radius: 100px;
                 border-bottom-right-radius: 100px;
@@ -223,24 +226,25 @@
                 margin: 0;
                 top: 90%;
 
-                @include global.response(sm) {
+                @include response(sm) {
                     display: none;
                 }
             }
 
         }
     }
+
 }
 
 .columns-container {
-    @include global.flexboxLayout(row, flex-start, flex-start);
+    @include flexboxLayout(row, flex-start, flex-start);
     margin: 0 24px;
 
     .column-container {
         margin: 4px 12px;
 
         .column-header {
-            @include global.flexboxLayout(row, flex-start, center);
+            @include flexboxLayout(row, flex-start, center);
             margin: 24px 0;
 
             .color-circle {
@@ -252,7 +256,7 @@
             }
 
             .column-header-text {
-                @include kanban.darkHeadingSText;
+                @include darkHeadingSText;
                 color: var(--light-subtitle-text-1);
                 margin: 0;
                 text-transform: uppercase;
@@ -263,14 +267,14 @@
     }
 
     .new-column-area {
-        @include global.flexboxLayout(row, center, center);
+        @include flexboxLayout(row, center, center);
         background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
                 border-radius: 6px;
         height: 80vh;
         margin-top: 64px;
 
         .new-column-button {
-            @include kanban.darkHeadingXLText;
+            @include darkHeadingXLText;
             color: var(--light-subtitle-text-1);
             text-transform: capitalize;
             
@@ -285,33 +289,33 @@
 }
 
 .task-card {
-    @include kanban.taskCardStyles;
+    @include taskCardStyles;
     
     .task-title {
-        @include kanban.darkHeadingMText;
+        @include darkHeadingMText;
     }
 
     .task-subtitle {
-        @include kanban.darkBodyMText;
+        @include darkBodyMText;
     }
     
     
 }
 
 .no-tasks-container {
-    @include global.flexboxLayout(column, center, center);
+    @include flexboxLayout(column, center, center);
     height: 100%;
     height: calc(100% - var(--size-nav-bar-height));
 }
 
 .empty-board {
-    @include kanban.darkBodyLText;
+    @include darkBodyLText;
     color: var(--light-subtitle-text-1);
 
 
 }
 
 .add-column-button {
-    @include kanban.mainButtonStyles;
-    @include kanban.darkHeadingMText;
+    @include mainButtonStyles;
+    @include darkHeadingMText;
 }
