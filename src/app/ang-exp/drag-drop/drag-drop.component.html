@@ -1,4 +1,23 @@
 
+<div class="simple-drag-container">
+
+    <div *ngFor="let box of [1, 2]"
+         [style.width.px]="getWidth(2)"
+         class="drag-target" 
+         cdkDropListGroup
+    >
+        <div class="drag-thing"
+             *ngFor="let thing of [1, 2, 3, 4]"
+             cdkDrag
+             cdkDragBoundary=".simple-drag-container"
+        >
+        </div>
+
+    </div>
+    
+</div>
+
+
 <div class="drag-drop-container column-boundary"
      cdkDropListGroup
 >
@@ -8,6 +27,7 @@
     >
 
         <div class="column"
+            [style.width.px]="getWidth(columns.length)"
             id="{{column.id}}"
             cdkDropList
             [cdkDropListData]="column.elements"

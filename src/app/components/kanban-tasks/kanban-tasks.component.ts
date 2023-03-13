@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { BoardsStore } from 'src/app/services/boards-store.service';
@@ -27,6 +28,18 @@ export class KanbanTasksComponent {
     return this.tasksBS.value;
   }
   tasksBS = new BehaviorSubject<Task[]>([]);
+
+  
+  @Input()
+  set theme(theme: string) {
+    this.themeBS.next(theme);
+    // console.log('-------------------------------');
+    // console.log('kT @i input kanban theme: ', this.themeBS.value);
+  }
+  get theme() {
+    return this.themeBS.value;
+  }
+  themeBS = new BehaviorSubject<string>('');
 
   @Output() addTask = new EventEmitter<void>();
   @Output() updatedTasks = new EventEmitter<Task[]>();
@@ -56,10 +69,10 @@ export class KanbanTasksComponent {
   }
 
   constructor(private dialog: MatDialog, private boardsStore: BoardsStore,
-    private dialogService: DialogService) {
+    private dialogService: DialogService, private _overlayContainer: OverlayContainer) {
 
     // console.log('-------------------------------');
-    // console.log('kT ctor kanban tasks ctor');
+    console.log('kT ctor kanban tasks ctor.  theme: ', this.theme);
 
     this.allColumns$.pipe().subscribe(columns => {
       // console.log('kT ctor all columns sub: ', columns);
@@ -156,19 +169,25 @@ export class KanbanTasksComponent {
 
   openViewTaskDialog() {
     if (this.selectedTaskBS.value) {
-      this.dialogService.openViewTaskDialog(this.selectedTaskBS.value);
+      console.log('kT oVT theme: ', this.theme);
+      this.dialogService.openViewTaskDialog(this.selectedTaskBS.value, this.theme);
     }
   }
 
   openColumnSettingsDialog() {
-    // DO NOT USE - OPEN COLUMN SETTINGS DIALOG FROM BOARD VIEW COMP
+    
     const dialogData = {
       allColumns: this.allColumns,
       userColumns: this.userSelectedColumns,
       numTasksByColumn: this.numTasksByColumn,
     }
+    // console.log('kT oCSD theme: ', this.theme);
+    this.dialogService.openConfigureColumnsDialog(dialogData, this.theme);
+  }
 
-    this.dialogService.openConfigureColumnsDialog(dialogData);
+  handleDragStart() {
+    // console.log('kT hDS handle drag start');
+    this.applyTheme(this.theme);
   }
 
   dropElement(event: CdkDragDrop<Task[]>) {
@@ -206,5 +225,19 @@ export class KanbanTasksComponent {
         // console.log('kT dE emitting updated task list');
       }
     }
+  }
+
+  applyTheme(theme: string): void {
+    // remove old theme class and add new theme class
+    const overlayContainerClasses = this._overlayContainer.getContainerElement().classList;
+    // console.log('bV aT container classes pre: ', overlayContainerClasses);
+    const themeClassesToRemove = Array.from(overlayContainerClasses)
+    .filter((item: string) => item.includes('kanban-'));
+    if (themeClassesToRemove.length) {
+      overlayContainerClasses.remove(...themeClassesToRemove);
+    }
+    // console.log('bV aT adding theme: ', theme);
+    overlayContainerClasses.add(theme);
+    // console.log('bV aT container classes post: ', overlayContainerClasses);
   }
 }

@@ -4,24 +4,21 @@
 
 .boards-select-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--dark-background-3);
-    border-radius: 8px;
     height: 322px;
-    width: 264px;
-
+    
     .boards-select-upper {
         @include global.flexboxLayout(column, space-between, flex-start);
         margin: 16px 24px 16px 0;
 
         .all-boards {
-            @include kanban.lightHeadingSText;
+            @include kanban.headingSText;
             padding: 0 16px;
             text-transform: uppercase;
         }
 
         .nav-button {
             @include global.flexboxLayout(row, flex-start, center);
-
+            @include kanban.sidenavButtonStyles;
     
             mat-icon {
                 margin: 0 16px 0 0;
@@ -32,37 +29,36 @@
                 margin: 0;
                 padding: 0;
             }
-            
+        }
+
+        .focused {
+            background-color: var(--kanban-primary-idle);
+            color: var(--kanban-on-primary-idle);
         }
 
         .create-new-board-button {
-            @include kanban.darkHeadingMText;
-            background-color: var(--dark-background-3);
-            color: var(--primary-idle);
+            @include kanban.headingMText;
+            background-color: var(--background-3);
+            color: var(--kanban-primary-idle);
             margin: 4px 8px;
         }
-
     }
 
     .dark-mode-container {
         @include global.flexboxLayout(row, center, center);
-        background-color: var(--dark-background-2);
+        align-self: center;
+        background-color: var(--background-2);
         height: 48px;
         width: 235px;
         margin: 0 16px 16px 16px;
         padding: 6px 0;
-
+        
         mat-icon {
-            color: var(--light-subtitle-text-1);
+            color: var(--subtitle-text-1);
         }
 
         mat-slide-toggle {
             margin: 0 24px;
         }
     }
-}
-
-.boards-select-panel-class .mat-mdc-dialog-surface {
-    border-radius: 50px;
-    background-color: red;
 }

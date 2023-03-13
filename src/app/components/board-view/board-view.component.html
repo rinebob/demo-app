@@ -56,7 +56,7 @@
             <div class="dark-mode-switch-container">
                 <mat-icon class="material-symbols-outlined">light_mode</mat-icon>
                 <mat-slide-toggle [color]="darkModeToggleButtonColor"
-                                  [checked]="darkModeOn"
+                                  [checked]="darkModeOn$ | async"
                                   (change)="toggleTheme()"
                                 
                 ></mat-slide-toggle>
@@ -123,6 +123,7 @@
                             class="menu-button"
                             color="primary"
                             [matMenuTriggerFor]="topnavMenu"
+                            (menuOpened)="handleTopnavMenuOpen()"
                     >
                         <mat-icon>more_vert</mat-icon>
                     </button>
@@ -140,6 +141,7 @@
             </nav>
             
             <app-kanban-tasks [tasks]="(tasks$ | async)!"
+                              [theme]="theme"
                               (addTask)="openCreateTaskDialog()"
                               (updatedTasks)="handleUpdatedTasks($event)"
             >

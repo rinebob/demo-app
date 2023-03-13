@@ -46,9 +46,11 @@ export class BoardViewComponent implements OnInit {
 
   shouldShowOpenDrawerButton = true;
   darkModeToggleButtonColor: ThemePalette = 'primary';
-  darkModeOn = false;
+  darkModeOnBS = new BehaviorSubject(false);
+  darkModeOn$: Observable<boolean> = this.darkModeOnBS;
 
   topnavMenuCssClass = 'board-view-topnav-menu-css';
+  boardsSelectPanelClass = 'boards-select-panel-class';
 
   constructor(private dialog: MatDialog, private boardsStore: BoardsStore,
       private dialogService: DialogService, private _overlayContainer: OverlayContainer
@@ -57,7 +59,7 @@ export class BoardViewComponent implements OnInit {
       // console.log('-------------------------------');
       // console.log('bV ctor board view ctor');
 
-      // this.applyTheme(this.theme);
+      this.applyTheme(this.theme);
 
       this.boardsStore.getAllBoards();
 
@@ -136,14 +138,18 @@ export class BoardViewComponent implements OnInit {
     this.dialogService.openCreateBoardDialog(this.theme);
   }
 
+  handleTopnavMenuOpen() {
+    this.applyTheme(this.theme);
+  }
+
   openEditBoardDialog() {
-    this.dialogService.openEditBoardDialog(this.selectedBoardBS.value);
+    this.dialogService.openEditBoardDialog(this.selectedBoardBS.value, this.theme);
   }
 
   openCreateTaskDialog() {
     const id = this.selectedBoardBS.value.id;
     if (id) {
-      this.dialogService.openCreateTaskDialog(id);
+      this.dialogService.openCreateTaskDialog(id, this.theme);
       // console.log('bV oCTD create task called. boardId: ', id);
       
     } else {
@@ -158,7 +164,7 @@ export class BoardViewComponent implements OnInit {
       numTasksByColumn: {...this.numTasksByColumn},
     }
 
-    this.dialogService.openConfigureColumnsDialog(dialogData);
+    this.dialogService.openConfigureColumnsDialog(dialogData, this.theme);
   }
 
   openBoardsSelectDialog() {
@@ -169,12 +175,14 @@ export class BoardViewComponent implements OnInit {
       boardNames.push(board.displayName);
     }
 
-    const data = {
-      darkModeOn: this.darkModeOn,
+    const dialogData = {
+      darkModeOn: this.darkModeOnBS.value,
       boardNames,
+      selectedBoard: this.selectedBoardBS.value.displayName,
+      theme: this.theme,
     }
 
-    const dialogRef = this.dialogService.openBoardsSelectDialog(data);
+    const dialogRef = this.dialogService.openBoardsSelectDialog(dialogData, this.theme);
 
     dialogRef.afterClosed().subscribe(result => {
       this.handleBoardsSelectDialogCloseResult(result);
@@ -222,15 +230,15 @@ export class BoardViewComponent implements OnInit {
   applyTheme(theme: string): void {
     // remove old theme class and add new theme class
     const overlayContainerClasses = this._overlayContainer.getContainerElement().classList;
-    console.log('bV cT container classes pre: ', overlayContainerClasses);
+    // console.log('bV aT container classes pre: ', overlayContainerClasses);
     const themeClassesToRemove = Array.from(overlayContainerClasses)
     .filter((item: string) => item.includes('kanban-'));
     if (themeClassesToRemove.length) {
       overlayContainerClasses.remove(...themeClassesToRemove);
     }
-    console.log('bV cT adding theme: ', theme);
+    // console.log('bV aT adding theme: ', theme);
     overlayContainerClasses.add(theme);
-    console.log('bV cT container classes post: ', overlayContainerClasses);
+    // console.log('bV aT container classes post: ', overlayContainerClasses);
   }
 
   getFocusStatus(appName: string) {
@@ -238,8 +246,10 @@ export class BoardViewComponent implements OnInit {
   }
 
   toggleTheme() {
+    // console.log('bV tT toggle dark mode pre: ', this.darkModeOn);
     this.theme = this.theme === 'kanban-light-theme' ? 'kanban-dark-theme' : 'kanban-light-theme';
-    this.darkModeOn = !this.darkModeOn;
+    this.darkModeOnBS.next(!this.darkModeOnBS.value);
+    // console.log('bV tT toggle dark mode post: ', this.darkModeOn);
   }
 
   toggleShowDrawerButton(event: any) {

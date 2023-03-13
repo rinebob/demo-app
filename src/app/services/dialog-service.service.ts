@@ -37,12 +37,12 @@ export class DialogService {
 
   }
 
-  openEditBoardDialog(board: Board) {
+  openEditBoardDialog(board: Board, theme: string) {
     const dialogData = {
       board,
     }
     const config = new MatDialogConfig();
-    config.panelClass = this.boardFormPanelClass;
+    config.panelClass = [this.boardFormPanelClass, theme];
     config.data = dialogData;
     // console.log('dS oEBD edit board called. board: ', board);
     const dialogRef = this.dialog.open(BoardFormComponent, config);
@@ -51,13 +51,13 @@ export class DialogService {
     });
   }
 
-  openCreateTaskDialog(boardId: number) {
+  openCreateTaskDialog(boardId: number, theme: string) {
     const dialogData = {
       boardId,
     }
     // console.log('dS oCTD create task called. boardId: ', boardId);
     const config = new MatDialogConfig();
-    config.panelClass = this.taskFormPanelClass;
+    config.panelClass = [this.taskFormPanelClass, theme];
     config.data = dialogData;
     const dialogRef = this.dialog.open(TaskFormComponent, config);
     dialogRef.afterClosed().subscribe(result => {
@@ -66,58 +66,60 @@ export class DialogService {
 
   }
 
-  openViewTaskDialog(task: Task) {
-    // console.log('kT oVTD view task called. displayName: ', task.displayName);
+  openViewTaskDialog(task: Task, theme: string) {
+    // console.log('dS oVTD view task called. displayName: ', task.displayName);
     const dialogData = {
       task,
+      theme
     }
     const config = new MatDialogConfig();
-    config.panelClass = this.viewTaskPanelClass;
+    config.panelClass = [this.viewTaskPanelClass, theme];
     config.data = dialogData;
     const dialogRef = this.dialog.open(ViewTaskComponent, config);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('kT oVTD view task dialog closed.  result: ', result);
+      // console.log('dS oVTD view task dialog closed.  result: ', result);
       if (result && task) {
         if (result.outcome === DialogCloseResult.EDIT_TASK) {
-          this.openEditTaskDialog(task);
+          this.openEditTaskDialog(task, theme);
         } else if (result.outcome === DialogCloseResult.DELETE_TASK) {
-          this.openDeleteTaskDialog(task);
+          this.openDeleteTaskDialog(task, theme);
         }
       }
     });
   }
 
-  openEditTaskDialog(task: Task) {
-    // console.log('kT oETD edit task called. displayName: ', task.displayName);
+  openEditTaskDialog(task: Task, theme: string) {
+    // console.log('dS oETD edit task called. theme: ', theme);
     const dialogData = {
       task,
+      theme,
     }
     const config = new MatDialogConfig();
-    config.panelClass = this.taskFormPanelClass;
+    config.panelClass = [this.taskFormPanelClass, theme];
     config.data = dialogData;
     const dialogRef = this.dialog.open(TaskFormComponent, config);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('kT oETD edit task dialog closed.  result: ', result);
+      // console.log('dS oETD edit task dialog closed.  result: ', result);
     });
   }
 
-  openDeleteTaskDialog(task: Task) {
-    // console.log('kT oDTD delete task called. display name: ', task.displayName);
+  openDeleteTaskDialog(task: Task, theme: string) {
+    // console.log('dS oDTD delete task called. display name: ', task.displayName);
     const dialogData = {
       task,
     }
     const config = new MatDialogConfig();
-    config.panelClass = this.deleteConfirmPanelClass;
+    config.panelClass = [this.deleteConfirmPanelClass, theme];
     config.data = dialogData;
     const dialogRef = this.dialog.open(DeleteConfirmComponent, config);
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('kT oDTD delete task dialog closed.  result: ', result);
+      // console.log('dS oDTD delete task dialog closed.  result: ', result);
     });
   }
 
-  openConfigureColumnsDialog(data: DialogData) {
+  openConfigureColumnsDialog(data: DialogData, theme: string) {
     const config = new MatDialogConfig();
-    config.panelClass = this.columnSettingsPanelClass;
+    config.panelClass = [this.columnSettingsPanelClass, theme];
     config.data = data;
     const dialogRef = this.dialog.open(ColumnSettingsComponent, config);
     dialogRef.afterClosed().subscribe(result => {
@@ -137,10 +139,10 @@ export class DialogService {
     });
   }
 
-  openBoardsSelectDialog(data: DialogData): MatDialogRef<BoardsSelectComponent, any> {
+  openBoardsSelectDialog(data: DialogData, theme: string): MatDialogRef<BoardsSelectComponent, any> {
     // console.log('bV oBSD open boards select dialog called');
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.panelClass = this.boardsSelectPanelClass;
+    dialogConfig.panelClass = [this.boardsSelectPanelClass, theme];
     dialogConfig.data = {...data};
     const dialogRef = this.dialog.open(BoardsSelectComponent, dialogConfig);
 

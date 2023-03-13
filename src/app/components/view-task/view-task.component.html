@@ -11,7 +11,7 @@
 
         <mat-menu #taskMenu="matMenu" [class]="viewTaskMenuCssClass">
             
-                <button mat-menu-item (click)="editTask(task)">Edit Task</button>
+                <button mat-menu-item class="edit-task-button" (click)="editTask(task)">Edit Task</button>
                 <button mat-menu-item class="delete-task-button" (click)="deleteTask(task.id ?? -1)">Delete Task</button>
             
         </mat-menu>
@@ -28,8 +28,8 @@
 
                 <div class="subtask-card" *ngFor="let subtask of task.subTasks">
                     <mat-checkbox color="primary"
-                    disabled="true"
-                    [checked]="subtask.status === 'completed'"
+                                  disabled="true"
+                                  [checked]="subtask.status === 'completed'"
                     >
                     </mat-checkbox>
                     <p class="subtask-description">{{subtask.description}}</p>

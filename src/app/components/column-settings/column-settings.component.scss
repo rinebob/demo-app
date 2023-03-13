@@ -4,7 +4,7 @@
 
 .settings-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--dark-background-3);
+    background-color: var(--background-3);
     
     .title-container {
         @include global.flexboxLayout(column, flex-start, flex-start);
@@ -12,14 +12,12 @@
         width: 100%;
         
         .title-text {
-            // @include kanban.darkHeadingLText;
             @include kanban.headingLText;
             margin-bottom: 24px;
             padding: 0;
         }
 
         .subtitle-text {
-            // @include kanban.darkBodyMText;
             @include kanban.bodyMText;
             padding: 0;
         }
@@ -48,6 +46,32 @@
             @include global.response(h-md) {
                 margin-bottom: 0;
             }
+
+            ::ng-deep {
+
+                .mat-mdc-checkbox .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+                    border-color: var(--title-text-1);
+                    background-color: transparent;
+                }
+
+                .checkbox-container {
+                    background-color: var(--checkbox-background);
+                    
+                    &:hover {
+                        background-color: var(--checkbox-background-hover);
+                        
+                    }
+                }
+
+                .mat-checkbox .mat-checkbox-frame {
+                    border-color: var(--background-1);
+                }
+
+                .mat-mdc-checkbox label {
+                    color: var(--title-text-1);
+                }
+            }
+
         }
     }
 
@@ -59,7 +83,6 @@
         width: 100%;
 
         .all-none-button {
-            // @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 20px);
             @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
             font-size: 12px;
             justify-content: center;
@@ -71,7 +94,6 @@
         }
 
         .reset-initial-button {
-            // @include kanban.mainButtonStyles(var(--primary-hover), var(--light-subtitle-text-1), 20px);
             @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
             font-size: 12px;
             justify-content: center;
@@ -98,13 +120,11 @@
 
         
         .cancel-button {
-            // @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
-            @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+            @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
             justify-content: center;
         }
         
         .save-button {
-            // @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
             @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
             justify-content: center;
         }
@@ -115,13 +135,11 @@
 // This is the element being dragged
 .cdk-drag {
     @include global.flexboxLayout(row, flex-start, center);
-    // background-color: var(--ang-exp-grey-4);
-    background-color: var(--background-4);
-    border-radius: 4px;
-    // color: var(--ang-exp-white-1);
-    color: var(--title-text-1);
-    margin: 4px 0;
-    width: 100%;
+    // background-color: var(--background-4);
+    // border-radius: 4px;
+    // color: var(--title-text-1);
+    // margin: 4px 0;
+    // width: 100%;
     
     mat-icon {
         cursor: move;
@@ -132,7 +150,6 @@
     }
     
     .element-title {
-        // @include kanban.darkBodyMText;
         @include kanban.bodyMText;
     }
 
@@ -145,8 +162,6 @@
 // This is the preview of the element being dragged
 .cdk-drag-preview {
     @include global.flexboxLayout(row, flex-start, flex-start);
-    // color: var(--ang-exp-white-1);
-    // background-color: var(--ang-exp-grey-4);
     color: var(--title-text-1);
     background-color: var(--background-1);
     width: 100%;
@@ -159,7 +174,6 @@
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
     .element-title {
-        // @include kanban.darkBodyMText;
         @include kanban.bodyMText;
     }
 
@@ -184,7 +198,6 @@
 // This affects the location the element was dragged from, after the element is 
 // clicked on and the drag is in progress
 .placeholder {
-    // background-color: var(--ang-exp-grey-4);
     background-color: var(--background-1);
     border: dotted 2px #999;
     min-height: 60px;

@@ -2,47 +2,71 @@
 @use '../../../styles/kanban-mixins' as kanban;
 @import "styles.scss";
 
-.drag-drop-container {
-    @include global.border1;
-    @include global.flexboxLayout(row, space-around, stretch);
-    background-color: var(--ang-exp-grey-5);
-    height: calc(100vh - var(--size-nav-bar-height));
-    margin: 0;
-    padding: 0;
-    
-    .column-container {
+:host {
+    @include global.flexboxLayout(column, flex-start, flex-start);
+
+    .simple-drag-container {
+        @include global.flexboxLayout(row, flex-start, flex-start);
         @include global.border1;
-        @include global.flexboxLayout(column, flex-start, flex-start);
-        box-sizing: border-box;
-        background-color: var(--ang-exp-grey-2);
-        margin: 0;
-        padding: 4px;
-        width: 500px;
-
-        .column {
+        width: 100%;
+        
+        .drag-target {
             @include global.border1;
-            @include global.flexboxLayout(column, flex-start, stretch);
+
+        }
+
+        .drag-thing {
+            background-color: blue;
+            height: 50px;
+            width: 50px;
+        }
+    }
+
+    .drag-drop-container {
+        @include global.border1;
+        @include global.flexboxLayout(row, flex-start, stretch);
+        background-color: var(--ang-exp-grey-5);
+        box-sizing: border-box;
+        height: calc(100vh - var(--size-nav-bar-height));
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        
+        .column-container {
+            @include global.border1;
+            @include global.flexboxLayout(column, flex-start, flex-start);
             box-sizing: border-box;
-            background-color: var(--ang-exp-grey-3);
-            min-height: 100%;
+            background-color: var(--ang-exp-grey-2);
             margin: 0;
-            overflow-y: auto;
             padding: 4px;
-            width: 100%;
+            // width: 500px;
 
-            .header-container {
-                @include global.flexboxLayout(column, flex-start, flex-start);
-                margin: 0 0 8px;
+            .column {
+                @include global.border1;
+                @include global.flexboxLayout(column, flex-start, stretch);
+                box-sizing: border-box;
+                background-color: var(--ang-exp-grey-3);
+                min-height: 100%;
+                margin: 0;
+                overflow-y: auto;
+                padding: 4px;
+                width: 100%;
 
-                .column-title {
-                    @include kanban.darkHeadingMText;
-                    margin: 0;
-                    padding: 0;
+                .header-container {
+                    @include global.flexboxLayout(column, flex-start, flex-start);
+                    margin: 0 0 8px;
 
+                    .column-title {
+                        @include kanban.headingMText;
+                        margin: 0;
+                        padding: 0;
+
+                    }
                 }
             }
         }
     }
+
 }
 
 // This is the element being dragged

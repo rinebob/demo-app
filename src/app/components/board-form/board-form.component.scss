@@ -4,7 +4,6 @@
 
 .board-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    // background-color: var(--dark-background-3);
     background-color: var(--background-3);
    
     .title-container {
@@ -28,14 +27,16 @@
             width: 100%;
 
             mat-label {
-                color: var(--title-text-1)
+                color: var(--title-text-1);
+            }
+
+            .mat-mdc-input-element {
+                color: var(--title-text-1);
             }
         }
 
         .field-label {
-            // @include kanban.lightBodyMText;
             @include kanban.bodyMText;
-            // color: var(--dark-title-text-1);
             color: var(--title-text-1);
         }
 
@@ -50,14 +51,12 @@
             }
 
             .cancel-button {
-                // @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
                 @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
                 justify-content: center;
                 margin: 4px 0;
             }
 
             .save-button {
-                // @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), 40px);
                 @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
                 justify-content: center;
                 margin: 4px 0;

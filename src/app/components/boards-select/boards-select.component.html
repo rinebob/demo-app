@@ -9,6 +9,7 @@
         <button *ngFor="let board of boards"
                 type="button"
                 class="nav-button"
+                [class.focused]="getFocusStatus(board)"
                 (click)="handleSetSelectedBoard(board)"
         >
             <mat-icon>grid_on</mat-icon>

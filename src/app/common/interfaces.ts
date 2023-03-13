@@ -114,6 +114,7 @@ export interface DialogData {
     boardNames?: string[],
     darkModeOn?: boolean,
     theme?: string;
+    selectedBoard?: string;
   }
 
   export interface DialogResult {

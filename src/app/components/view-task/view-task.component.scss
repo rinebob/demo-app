@@ -4,7 +4,7 @@
 
 .task-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--dark-background-3);
+    background-color: var(--background-3);
     overflow: hidden;
     
     .title-container {
@@ -14,7 +14,7 @@
         width: 100%;
         
         .mat-mdc-dialog-title {
-            @include kanban.darkHeadingLText;
+            @include kanban.headingLText;
             margin: 0;
             max-width: 300px;
             padding: 0;
@@ -25,14 +25,14 @@
         }
 
         mat-icon {
-            color: var( --light-subtitle-text-1);
+            color: var( --subtitle-text-1);
         }
     }
 
 
     .dialog-subtitle {
-        @include kanban.darkBodyLText;
-        color: var(--light-subtitle-text-1);
+        @include kanban.bodyLText;
+        color: var(--subtitle-text-1);
         margin-bottom: 24px;
     }
 
@@ -42,8 +42,8 @@
         width: 100%;
 
         .subtasks-header {
-            @include kanban.darkBodyMText;
-            color: var(--dark-subtitle-text-1);
+            @include kanban.bodyMText;
+            color: var(--subtitle-text-1);
             margin-bottom: 16px;
         }
 
@@ -58,14 +58,18 @@
 
             .subtask-card {
                 @include global.flexboxLayout(row, flex-start, center);
-                background-color: var(--dark-background-2);
+                background-color: var(--checkbox-background);
                 border-radius: 4px;
                 height: 40px;
                 margin-bottom: 4px;
                 width: 100%;
+
+                &:hover {
+                    background-color: var(--checkbox-background-hover);
+                }
         
                 .subtask-description {
-                    @include kanban.darkBodyMText;
+                    @include kanban.bodyMText;
                     margin: 0;
                 }
             }
@@ -84,7 +88,7 @@
             padding: 8px 16px;
 
             &-text {
-                @include kanban.darkBodyLText;
+                @include kanban.bodyLText;
                 margin: 0;
             }
         }
@@ -96,8 +100,7 @@
 
         button {
             @include kanban.mainButtonStyles;
-            
-            color: var(--dark-title-text-1);
+            color: var(--kanban-on-primary-idle);
             padding: 4px 24px;
         }
     }

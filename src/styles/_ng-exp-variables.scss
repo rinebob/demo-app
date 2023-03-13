@@ -10,4 +10,67 @@
     --ang-exp-white-2: #f4f7fd;
     --ang-exp-red-1: #ea5555;
     --ang-exp-red-2: #ff9898;
+
+    --ang-exp-primary-idle: var(--kanban-purple-1);
+    --ang-exp-primary-hover: var(--kanban-purple-2);
+    --ang-exp-secondary-idle: var(--kanban-white-1);
+    --ang-exp-secondary-hover: rgba(99, 95, 199, .25);
+    --ang-exp-destructive-idle: var(--kanban-red-1);
+    --ang-exp-destructive-hover: var(--kanban-red-2);
+    --ang-exp-on-primary-idle: var(--kanban-white-1);
+    --ang-exp-on-primary-hover: var(--kanban-white-1);
+    --ang-exp-on-secondary-idle: var(--kanban-purple-1);
+    --ang-exp-on-secondary-hover: var(--kanban-purple-1);
+    --ang-exp-on-destructive-idle: var(--kanban-white-1);
+    --ang-exp-on-destructive-hover: var(--kanban-white-1);
+}
+
+
+$font-sizes: (
+    heading-xl: 24px,
+    tablet-heading-xl: 20px,
+    heading-lg: 18px,
+    heading-md: 15px,
+    heading-sm: 12px,
+    body-l: 13px,
+    body-m: 12px,
+);
+
+@function fontSize($size) {
+    @return map-get($font-sizes, $size);
+}
+
+$line-heights: (
+    heading-xl: 30px,
+    heading-lg: 23px,
+    heading-md: 19px,
+    heading-sm: 15px,
+    body-l: 23px,
+    body-m: 15px,
+);
+
+@function lineHeight($size) {
+    @return map-get($line-heights, $size);
+}
+
+$fonts: (
+    plus-jakarta-sans: var(--font-plus-jakarta-sans),
+    // kanit: var(--font-kanit),
+    // josefin-sans: var(--font-josefin-sans),
+    // great-vibes: var(--font-great-vibes),
+    // dancing-script: var(--font-dancing-script),
+    // nunito: var(--font-nunito),
+);
+
+@function font($font) {
+    @return map-get($fonts, $font);
+}
+
+$element-sizes: (
+    button-tall: 48px,
+    button-regular: 40px,
+);
+
+@function elementSize($element-size) {
+    @return map-get($element-sizes, $element-size);
 }

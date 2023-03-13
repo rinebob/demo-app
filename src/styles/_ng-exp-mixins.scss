@@ -1,0 +1,156 @@
+@use './global-mixins' as global;
+@use './ng-exp-variables' as angExpVar;
+
+//////////////// ELEMENTS //////////////////////
+@mixin mainButtonStyles($background-color: var(--ang-exp-primary-idle), $color: var(--ang-exp-on-primary-idle), $height: var(--size-button-regular)) {
+    @include global.flexboxLayout(row, space-between, center);
+    background-color: $background-color;
+    border: none;
+    border-radius: 24px;
+    height: $height;
+    color: $color;
+    margin: 4px 8px;
+    padding: 0 24px;
+}
+
+@mixin topnavButtonStyles($background-color: var(--ang-exp-primary-idle), $color: var(--ang-exp-on-primary-idle), $height: var(--size-button-regular)) {
+    @include headingMText;
+    @include global.flexboxLayout(row, space-between, center);
+    background-color: $background-color;
+    border: none;
+    border-radius: 24px;
+    height: $height;
+    color: $color;
+    margin: 0 8px;
+    padding: 0 24px;
+}
+
+@mixin topnavButtonStylesMobile {
+    @include topnavButtonStyles;
+    @include global.flexboxLayout(row, center, center);
+    height: var(--size-button-mobile-height);
+    min-width: 0;
+    padding: 0;
+    width: var(--size-button-mobile-width);
+}
+
+@mixin sidenavButtonStyles {
+    @include headingMText;
+    background-color: var(--background-3);
+    border: none;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    cursor: pointer;
+    height: var(--size-button-tall);
+    // color: angExpVar.color(light-text);
+    color: var(--subtitle-text-1);
+    margin: 4px 8px;
+    padding: 0 24px;
+    text-align: left;
+    width: 276px;
+}
+
+@mixin sidenavButtonStylesMobile {
+    @include sidenavButtonStyles();
+    width: 240px;
+}
+
+@mixin taskCardStyles {
+    @include global.flexboxLayout(row, flex-start, flex-start);
+    background-color: var(--background-3);
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 2px 4px 6px rgba(54, 78, 126, var(--task-card-drop-shadow-opacity));
+
+    // this affects the drag handle only
+    color: var(--title-text-1);
+
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px 2px;
+    width: 100%;
+
+    .handle-container {
+        height: 100%;
+        margin-right: 2px;
+    }
+
+    .drag-element-content {
+        width: 100%;
+
+        .task-title {
+            @include headingMText;
+            margin: 0 0 8px;
+        }
+    
+        .task-subtitle {
+            @include bodyMText;
+            margin: 0 0 6px;
+        }
+    }
+}
+
+//////////////// END ELEMENTS //////////////////////
+
+////////////// TYPOGRAPHY //////////////////////////
+
+@mixin headingXLText {
+    color: var(--title-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-xl);
+    line-height: angExpVar.lineHeight(heading-xl);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+
+    @include global.response(md) {
+        font-size: angExpVar.fontSize(tablet-heading-xl);
+        line-height: angExpVar.lineHeight(heading-lg);
+    }
+    
+    @include global.response(sm) {
+        font-size: angExpVar.fontSize(heading-lg);
+        line-height: angExpVar.lineHeight(heading-lg);
+    }
+}
+
+@mixin headingLText {
+    color: var(--title-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-lg);
+    line-height: angExpVar.lineHeight(heading-lg);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin headingMText {
+    color: var(--title-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-md);
+    line-height: angExpVar.lineHeight(heading-md);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin headingSText {
+    color: var(--subtitle-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-sm);
+    line-height: angExpVar.lineHeight(heading-sm);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin bodyLText {
+    color: var(--title-text-3);
+    font-weight: 500;
+    font-size: angExpVar.fontSize(body-l);
+    line-height: angExpVar.lineHeight(body-l);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin bodyMText {
+    color: var(--title-text-3);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(body-m);
+    line-height: angExpVar.lineHeight(body-m);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+}
+
+
+////////////// END TYPOGRAPHY //////////////////////

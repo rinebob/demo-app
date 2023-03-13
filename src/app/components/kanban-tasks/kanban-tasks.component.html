@@ -31,6 +31,7 @@
                         (click)="setSelectedTask(task)"
                         cdkDragBoundary=".column-boundary"
                         cdkDrag
+                        (cdkDragStarted)="handleDragStart()"
                     >
                         <div class="placeholder" *cdkDragPlaceholder></div>
                         <div class="handle-container">
