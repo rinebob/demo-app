@@ -15,7 +15,6 @@
             <mat-label>Task title</mat-label>
             <input matInput
                 formControlName="displayNameControl"
-                placeholder="Task title"
                 type="text"
             >
         </mat-form-field>
@@ -25,9 +24,9 @@
         
         <p class="field-label">Description</p>
         <mat-form-field appearance="outline">
+            <mat-label>Task description</mat-label>
             <input matInput
                     formControlName="descriptionControl"
-                    placeholder="Task description"
                     type="text"
             >
         </mat-form-field>
@@ -77,8 +76,11 @@
         
         <p class="field-label">Status</p>
         <mat-form-field appearance="outline">
+            <!-- [panelClass]="(theme$ | async)!" -->
             <mat-select [(value)]="selectedStatus"
+                        [panelClass]="themeBS.value"
                         formControlName="statusControl"
+                        class="status-select"
             >
                 <mat-option *ngFor="let option of TASK_STATUS_VALUES" 
                             [value]="option"

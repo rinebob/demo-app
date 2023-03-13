@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 interface Element {
@@ -18,7 +18,7 @@ interface Column {
   styleUrls: ['./drag-drop.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DragDropComponent {
+export class DragDropComponent implements OnInit {
   
   // columns: Column[] = [
   //   {id: 'col-1', title: 'Column A', elements: this.generateRandomElements('Column A', 4)},
@@ -28,11 +28,24 @@ export class DragDropComponent {
   // ];
   
   columns: Column[] = COLUMNS;
+
+  public innerWidth = 0;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.innerWidth = window.innerWidth;
+      // console.log('dD oR inner width: ', this.innerWidth);
+  }
   
 
   constructor() {
     // console.log('dD ctor columns: ', this.columns);
 
+  }
+
+  ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
+    // console.log('dD oR inner width: ', this.innerWidth);
   }
 
   generateRandomElements(originalColumn: string, numElements: number) {
@@ -43,6 +56,13 @@ export class DragDropComponent {
       elements.push(element);
     }
     return elements;
+  }
+
+  getWidth(numColumns: number) {
+    const columnWidth = this.innerWidth / numColumns;
+    // console.log('dD gW total width/numColumns/column width: ', this.innerWidth, numColumns, columnWidth);
+
+    return columnWidth;
   }
 
   dropElement(event: CdkDragDrop<Element[]>) {

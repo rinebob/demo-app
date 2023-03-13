@@ -17,16 +17,17 @@
             
             <div *ngFor="let value of TASK_STATUS_VALUES" 
                 cdkDragBoundary=".column-boundary"
-                class="drag-element" 
+                class="drag-element checkbox-container" 
                 cdkDrag
             >
                 <div class="placeholder" *cdkDragPlaceholder></div>
                 <mat-icon cdkDragHandle>drag_indicator</mat-icon>
 
-                <mat-checkbox #checkbox color="primary"
-                            [checked]="getCheckedStatus(value)"
-                            [id]="value"
-                            (change)="generateColumnsList($event)"
+                <mat-checkbox #checkbox 
+                              color="primary"
+                              [checked]="getCheckedStatus(value)"
+                              [id]="value"
+                              (change)="generateColumnsList($event)"
                 >
                     {{value | titlecase}} ({{numTasksByColumn[value]}})
                 </mat-checkbox>

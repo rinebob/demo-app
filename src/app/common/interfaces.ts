@@ -113,6 +113,8 @@ export interface DialogData {
     numTasksByColumn?: {[key: string]: number},
     boardNames?: string[],
     darkModeOn?: boolean,
+    theme?: string;
+    selectedBoard?: string;
   }
 
   export interface DialogResult {

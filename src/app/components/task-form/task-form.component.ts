@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { DialogCloseResult, DialogData, FormMode, SubTask, SubTaskStatus, Task, TaskStatus, TASK_STATUS_VALUES } from 'src/app/common/interfaces';
@@ -34,9 +35,13 @@ export class TaskFormComponent {
   readonly FormMode = FormMode;
   formMode: FormMode = FormMode.CREATE;
 
+  themeBS = new BehaviorSubject<string[]>([]);
+  theme$: Observable<string[]> = this.themeBS;
+  taskFormPanelClass = 'task-form-panel-class';
+
   constructor(private boardsService: BoardsService,
             public dialogRef: MatDialogRef<TaskFormComponent>,
-            private boardsStore: BoardsStore,
+            private boardsStore: BoardsStore, private _overlayContainer: OverlayContainer,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
       this.buildTaskForm();
 
@@ -53,6 +58,12 @@ export class TaskFormComponent {
         this.taskBS.next(data.task)
         // console.log('tF ctor task to edit: ', data.task);
         this.populateForm(this.taskBS.value);
+      }
+
+      if (data && data.theme) {
+        this.themeBS.next([this.taskFormPanelClass, data.theme]);
+        // console.log('tF ctor dialog data theme: ', this.themeBS.value);
+        this.applyTheme(data.theme);
       }
 
       this.statusControl.valueChanges.pipe().subscribe(changes => {
@@ -147,5 +158,19 @@ export class TaskFormComponent {
     } else {
       this.dialogRef.close({outcome: DialogCloseResult.EDIT_TASK_CANCELLED});
     }
+  }
+
+  applyTheme(theme: string): void {
+    // remove old theme class and add new theme class
+    const overlayContainerClasses = this._overlayContainer.getContainerElement().classList;
+    // console.log('tF aT container classes pre: ', overlayContainerClasses);
+    const themeClassesToRemove = Array.from(overlayContainerClasses)
+    .filter((item: string) => item.includes('kanban-'));
+    if (themeClassesToRemove.length) {
+      overlayContainerClasses.remove(...themeClassesToRemove);
+    }
+    // console.log('tF aT adding theme: ', theme);
+    overlayContainerClasses.add(theme);
+    // console.log('tF aT container classes post: ', overlayContainerClasses);
   }
 }

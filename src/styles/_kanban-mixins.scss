@@ -2,8 +2,7 @@
 @use './kanban-variables' as kanbanVar;
 
 //////////////// ELEMENTS //////////////////////
-
-@mixin mainButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
+@mixin mainButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
     @include global.flexboxLayout(row, space-between, center);
     background-color: $background-color;
     border: none;
@@ -14,8 +13,8 @@
     padding: 0 24px;
 }
 
-@mixin topnavButtonStyles($background-color: var(--primary-idle), $color: var(--text-color-for-dark-background-1), $height: var(--size-button-regular)) {
-    @include darkHeadingMText;
+@mixin topnavButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
+    @include headingMText;
     @include global.flexboxLayout(row, space-between, center);
     background-color: $background-color;
     border: none;
@@ -36,14 +35,15 @@
 }
 
 @mixin sidenavButtonStyles {
-    @include darkHeadingMText;
-    background-color: kanbanVar.color(primary-idle);
+    @include headingMText;
+    background-color: var(--background-3);
     border: none;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
     cursor: pointer;
     height: var(--size-button-tall);
-    color: kanbanVar.color(light-text);
+    // color: kanbanVar.color(light-text);
+    color: var(--subtitle-text-1);
     margin: 4px 8px;
     padding: 0 24px;
     text-align: left;
@@ -57,10 +57,14 @@
 
 @mixin taskCardStyles {
     @include global.flexboxLayout(row, flex-start, flex-start);
-    background-color: var(--dark-background-3);
-    border-radius: 4px;
+    background-color: var(--background-3);
+    border-radius: 8px;
     box-sizing: border-box;
-    color: var(--dark-subtitle-text-1);
+    box-shadow: 2px 4px 6px rgba(54, 78, 126, var(--task-card-drop-shadow-opacity));
+
+    // this affects the drag handle only
+    color: var(--title-text-1);
+
     cursor: pointer;
     margin-bottom: 10px;
     padding: 10px 2px;
@@ -75,30 +79,24 @@
         width: 100%;
 
         .task-title {
-            @include darkHeadingMText;
+            @include headingMText;
             margin: 0 0 8px;
         }
     
         .task-subtitle {
-            @include darkBodyMText;
+            @include bodyMText;
             margin: 0 0 6px;
         }
     }
-
 }
-
 
 //////////////// END ELEMENTS //////////////////////
 
 ////////////// TYPOGRAPHY //////////////////////////
 
-// Light styles
-
-@mixin lightHeadingXLText {
-    color: var(--light-title-text-1);
+@mixin headingXLText {
+    color: var(--title-text-1);
     font-weight: 700;
-    // font-size: 24px;
-    // line-height: 30px;
     font-size: kanbanVar.fontSize(heading-xl);
     line-height: kanbanVar.lineHeight(heading-xl);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
@@ -114,84 +112,45 @@
     }
 }
 
-
-@mixin lightHeadingLText {
-    color: var(--light-title-text-1);
+@mixin headingLText {
+    color: var(--title-text-1);
     font-weight: 700;
-    // font-size: 18px;
-    // line-height: 23px;
     font-size: kanbanVar.fontSize(heading-lg);
     line-height: kanbanVar.lineHeight(heading-lg);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin lightHeadingMText {
-    color: var(--light-title-text-1);
+@mixin headingMText {
+    color: var(--title-text-1);
     font-weight: 700;
     font-size: kanbanVar.fontSize(heading-md);
     line-height: kanbanVar.lineHeight(heading-md);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin lightHeadingSText {
-    color: var(--light-subtitle-text-1);
+@mixin headingSText {
+    color: var(--subtitle-text-1);
     font-weight: 700;
     font-size: kanbanVar.fontSize(heading-sm);
     line-height: kanbanVar.lineHeight(heading-sm);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin lightBodyLText {
-    color: var(--light-title-text-3);
+@mixin bodyLText {
+    color: var(--title-text-3);
     font-weight: 500;
     font-size: kanbanVar.fontSize(body-l);
     line-height: kanbanVar.lineHeight(body-l);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin lightBodyMText {
-    color: var(--light-title-text-3);
+@mixin bodyMText {
+    color: var(--title-text-3);
     font-weight: 700;
     font-size: kanbanVar.fontSize(body-m);
     line-height: kanbanVar.lineHeight(body-m);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-//////////////// END LIGHT STYLES /////////////////////////
-
-//////////////// DARK STYLES /////////////////////////
-
-@mixin darkHeadingXLText {
-    @include lightHeadingXLText;
-    color: var(--dark-title-text-1);
-}
-
-@mixin darkHeadingLText {
-    @include lightHeadingLText;
-    color: var(--dark-title-text-1);
-}
-
-@mixin darkHeadingMText {
-    @include lightHeadingMText;
-    color: var(--dark-title-text-1);
-}
-
-@mixin darkHeadingSText {
-    @include lightHeadingSText;
-    color: var(--dark-subtitle-text-1);
-}
-
-// dark body l
-@mixin darkBodyLText {
-    @include lightBodyLText;
-    color: var(--dark-title-text-1);
-}
-
-// dark body m
-@mixin darkBodyMText {
-    @include lightBodyMText;
-    color: var(--dark-title-text-3);
-}
-//////////////// END DARK STYLES /////////////////////////
 
 ////////////// END TYPOGRAPHY //////////////////////

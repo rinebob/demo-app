@@ -5,11 +5,8 @@
 @use "../styles/ng-exp-mixins" as ng-exp;
 
 @include mat.core();
-// @import "./global-mixins";
 @import "./global-variables";
-// @import "./kanban-mixins";
 @import "./kanban-variables";
-// @import "./ng-exp-mixins";
 @import "./ng-exp-variables";
 
 ////////// ANGULAR MATERIAL THEME ///////////////////
@@ -47,19 +44,19 @@
     // The "warn" palette is optional and defaults to red if not specified.
     $kanban-warn: mat.define-palette(mat.$red-palette);
 
-    $kanban-dark-theme: mat.define-dark-theme((
+    $kanban-light-theme: mat.define-light-theme((
         color: (
             primary: $kanban-primary,
             accent: $kanban-accent,
             warn: $kanban-warn,
         ),
-         // Only include `typography` and `density` in the default dark theme.
+         // Only include `typography` and `density` in the default light theme.
          // Specify the font to use something other than default Roboto font
         typography: mat.define-typography-config($font-family: var(--main-font-family)),
         density: 0,
         ));
 
-    $kanban-light-theme: mat.define-light-theme((
+    $kanban-dark-theme: mat.define-dark-theme((
     color: (
         primary: $kanban-primary,
         accent: $kanban-accent,
@@ -67,16 +64,16 @@
     ),
     ));
 
-    // Apply the dark theme by default
-    @include mat.core-theme($kanban-dark-theme);
-    @include mat.all-component-themes($kanban-dark-theme);
+    // Apply the light theme by default
+    @include mat.core-theme($kanban-light-theme);
+    @include mat.all-component-themes($kanban-light-theme);
 
-    // Apply the light theme only when the user prefers light themes.
-    @media (prefers-color-scheme: light) {
+    // Apply the dark theme only when the user prefers light themes.
+    @media (prefers-color-scheme: dark) {
         // Use the `-color` mixins to only apply color styles without reapplying the same
         // typography and density styles.
-        @include mat.core-color($kanban-light-theme);
-        // @include mat.all-component-themes($kanban-light-theme);
+        @include mat.core-color($kanban-dark-theme);
+        // @include mat.all-component-themes($kanban-dark-theme);
 
    }
 
@@ -91,26 +88,59 @@ body {
     padding: 0;
 }
 
-.view-task-menu-css {
-    background-color: var(--dark-background-2) !important;
+.board-view-topnav-menu-css {
+    background-color: var(--background-2) !important;
 
-    button.create-task-button {
-        display: none;
+    button.mat-mdc-menu-item {
+    
+        &:hover {
+            background-color: var(--background-5) !important;
+        }
+    }
+
+    .mdc-list-item__primary-text {
+        color: var(--title-text-1);
+
         
-        @include global.response(lg) {
-            display: block;
+
+    }
+}
+
+.view-task-menu-css {
+    background-color: var(--background-2) !important;
+
+    button.mat-mdc-menu-item {
+        
+        &:hover {
+            background-color: var(--background-5) !important;
+        }
+    }
+
+    button.edit-task-button {
+        .mdc-list-item__primary-text {
+            color: var(--title-text-1);
         }
     }
 
     button.delete-task-button {
         .mdc-list-item__primary-text {
-            color: var(--destructive-idle);
+            color: var(--kanban-destructive-idle);
         }
     }
 }
 
-.boards-select-panel-class .mat-mdc-dialog-container {
-    background-color: var( --dark-background-3);
+.boards-select-panel-class {
+    
+    .mat-mdc-dialog-container {
+        background-color: var( --background-3);
+        border-radius: 8px;
+        height: 322px;
+        
+        .mdc-dialog__surface {
+            background-color: var(--background-3) !important;
+        }
+    }
+
 }
 
 .board-form-panel-class,
@@ -118,9 +148,16 @@ body {
 .task-form-panel-class,
 .delete-confirm-panel-class,
 .column-settings-panel-class {
+    
+    background-color: var(--background-2);
 
+    .mdc-list-item__primary-text {
+        color: var(--title-text-1);
+
+    }
+    
     .mat-mdc-dialog-container {
-        background-color: var(--dark-background-3);
+        background-color: var(--background-3);
         border-radius: 8px;
         width: var(--size-board-dialog-width-xl);
         padding: var(--size-board-dialog-padding-xl);
@@ -133,5 +170,9 @@ body {
         .mdc-dialog__surface {
             box-shadow: none;
         }
+    }
+
+    .mat-mdc-select-panel {
+        background-color: var(--background-2) !important;
     }
 }

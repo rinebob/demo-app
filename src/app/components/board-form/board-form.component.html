@@ -1,5 +1,7 @@
 
-<div class="board-dialog-container">
+<!-- [ngClass]=" theme" -->
+<div class="board-dialog-container"
+>
 
     <div matDialogTitle class="title-container">
         <p class="title-text">{{formMode === FormMode.CREATE ? 'Add New Board' : 'Edit Board'}}</p>
@@ -18,7 +20,6 @@
             <mat-label>Board title</mat-label>
             <input matInput
                 formControlName="displayNameControl"
-                placeholder="Board title"
                 type="text"
             >
         </mat-form-field>
@@ -28,9 +29,9 @@
         
         <p class="field-label">Description</p>
         <mat-form-field appearance="outline">
+            <mat-label>Board description</mat-label>
             <input matInput
                     formControlName="descriptionControl"
-                    placeholder="Board description"
                     type="text"
             >
         </mat-form-field>

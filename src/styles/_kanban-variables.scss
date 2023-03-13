@@ -4,75 +4,37 @@
 
     ////// PRIMARY COLOR SPECIFIED IN KANBAN PROJECT DESIGN SYSTEM //////
     
-    --purple-1: #635fc7;
-    --purple-2: #a8a4ff;
-        
-    --grey-1: #000112;
-    --grey-2: #20212c;
-    --grey-3: #2b2c37;
-    --grey-4: #3e3f4e;
-    --grey-5: #828fa3;
-    --grey-6: #e4ebfa;
-
-    --white-1: #ffffff;
-    --white-2: #f4f7fd;
-
-    --red-1: #ea5555;
-    --red-2: #ff9898;
-
-    --light-background-1: var(--white-1);
-    --light-background-2: var(--white-2);
-
-    --text-color-for-dark-background-1: var(--white-1);
-    --text-color-for-dark-background-2: var(--white-2);
+    --kanban-purple-1: #635fc7;
+    --kanban-purple-2: #a8a4ff;
+    --kanban-grey-1: #000112;
+    --kanban-grey-2: #20212c;
+    --kanban-grey-3: #2b2c37;
+    --kanban-grey-4: #3e3f4e;
+    --kanban-grey-5: #828fa3;
+    --kanban-grey-6: #e4ebfa;
+    --kanban-white-1: #ffffff;
+    --kanban-white-2: #f4f7fd;
+    --kanban-red-1: #ea5555;
+    --kanban-red-2: #ff9898;
     
-    --primary-idle: var(--purple-1);
-    --primary-hover: var(--purple-2);
+    --kanban-primary-idle: var(--kanban-purple-1);
+    --kanban-primary-hover: var(--kanban-purple-2);
+    --kanban-secondary-idle: var(--kanban-white-1);
+    --kanban-secondary-hover: rgba(99, 95, 199, .25);
+    --kanban-destructive-idle: var(--kanban-red-1);
+    --kanban-destructive-hover: var(--kanban-red-2);
 
-    --secondary-idle: var(--white-1);
-    --secondary-hover: rgba(99, 95, 199, .25);
+    --kanban-on-primary-idle: var(--kanban-white-1);
+    --kanban-on-primary-hover: var(--kanban-white-1);
+    --kanban-on-secondary-idle: var(--kanban-purple-1);
+    --kanban-on-secondary-hover: var(--kanban-purple-1);
+    --kanban-on-destructive-idle: var(--kanban-white-1);
+    --kanban-on-destructive-hover: var(--kanban-white-1);
 
-    --destructive-idle: var(--red-1);
-    --destructive-hover: var(--red-2);
-
-    --checkbox-completed-text-color: var(--grey-1);
+    --checkbox-completed-text-color: var(--kanban-grey-1);
+    --border-5: var(--kanban-grey-5);
+    --destructive-text-1: var(--kanban-red-1);
     
-    --light-title-text-1: var(--grey-1);
-    --light-title-text-2: var(--grey-2);
-    --light-title-text-3: var(--grey-3);
-    --light-title-text-4: var(--grey-4);
-    --light-subtitle-text-1: var(--grey-5);
-    --light-subtitle-text-2: var(--grey-6);
-
-    --dark-background-1: var(--grey-1);
-    --dark-background-2: var(--grey-2);
-    --dark-background-3: var(--grey-3);
-    --dark-background-4: var(--grey-4);
-
-    --text-color-for-light-background-1: var(--purple-1);
-    --text-color-for-light-background-2: var(--purple-2);
-
-    --dark-title-text-1: var(--white-1);
-    --dark-title-text-2: var(--white-1);
-    --dark-title-text-3: var(--white-1);
-    --dark-title-text-4: var(--white-1);
-    --dark-subtitle-text-1: var(--white-1);
-    --dark-subtitle-text-2: var(--white-1);
-
-    --border-5: var(--grey-5);
-
-    --destructive-text-1: var(--red-1);
-    
-    --column-dot-color-1: #49c4e5;
-    --column-dot-color-2: #8471f2;
-    --column-dot-color-3: #67e2ae;
-    --column-dot-color-4: #49c4e5;
-    --column-dot-color-5: #8471f2;
-    --column-dot-color-6: #67e2ae;
-    --column-dot-color-7: #49c4e5;
-    --column-dot-color-8: #8471f2;
-    --column-dot-color-9: #67e2ae;
-
     --size-button-tall: 48px;
     --size-button-regular: 40px;
     --size-button-mobile-height: 32px;
@@ -95,8 +57,8 @@
 
     // --font-plus-jakarta-sans: Plus Jakarta sans, "Helvetica Neue", sans-serif;
     --font-plus-jakarta-sans: Plus Jakarta sans;
-    --font-kanit: Kanit, "Helvetica Neue", sans-serif;
-    --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
+    // --font-kanit: Kanit, "Helvetica Neue", sans-serif;
+    // --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
     // --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
     // --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
     // --font-nunito: Nunito, "Helvetica Neue", sans-serif;
@@ -109,36 +71,139 @@
     // --main-font-family: var(--font-nunito);
 }
 
+.app-theme {
+    --background-1: var(--kanban-white-1);
+    --background-2: var(--kanban-white-1);
+    --background-3: var(--kanban-white-1);
+    --title-text-1: var(--kanban-grey-1);
+    --title-text-2: var(--kanban-grey-2);
+    --title-text-3: var(--kanban-grey-3);
+    --title-text-4: var(--kanban-grey-4);
+    --subtitle-text-1: var(--kanban-grey-5);
+    --subtitle-text-2: var(--kanban-grey-6);
+}
+
+.kanban-light-theme {
+    
+    --background-1: var(--kanban-white-1);
+    --background-2: var(--kanban-white-1);
+    --background-3: var(--kanban-white-1);
+    --background-4: var(--kanban-white-1);
+    --background-5: var(--kanban-grey-5);
+    --background-6: var(--kanban-grey-6);
+    --title-text-1: var(--kanban-grey-1);
+    --title-text-2: var(--kanban-grey-2);
+    --title-text-3: var(--kanban-grey-3);
+    --title-text-4: var(--kanban-grey-4);
+    --subtitle-text-1: var(--kanban-grey-5);
+    --subtitle-text-2: var(--kanban-grey-6);
+
+    // text colors for light backgrounds
+    --text-color-1: var(--kanban-purple-1);
+    --text-color-2: var(--kanban-purple-2);
+
+    --drag-preview-background-color: var(--kanban-grey-6);
+    --drag-preview-placeholder-color: var(--kanban-grey-6);
+    --drag-preview-text-color: var(--kanban-grey-1);
+    --drag-preview-outline-color: var(--kanban-grey-5);
+
+    --sidenav-border-color: var(--kanban-grey-6);
+
+    --checkbox-background: var(--kanban-grey-6);
+    --checkbox-background-hover: var(--kanban-grey-5);
+
+    --task-card-drop-shadow-opacity: .25;
+
+}
+
+
+.kanban-dark-theme {
+    // text color for dark backgrounds    
+    --text-color-1: var(--kanban-white-1);
+    --background-1: var(--kanban-grey-1);
+    --background-2: var(--kanban-grey-2);
+    --background-3: var(--kanban-grey-3);
+    --background-4: var(--kanban-grey-4);
+    --background-5: var(--kanban-grey-5);
+    --background-6: var(--kanban-grey-6);
+    --title-text-1: var(--kanban-white-1);
+    --title-text-2: var(--kanban-white-1);
+    --title-text-3: var(--kanban-white-1);
+    --title-text-4: var(--kanban-white-1);
+    --subtitle-text-1: var(--kanban-grey-5);
+    --subtitle-text-2: var(--kanban-grey-5);
+
+    --drag-preview-background-color: var(--kanban-grey-5);
+    --drag-preview-placeholder-color: var(--kanban-grey-6);
+    --drag-preview-text-color: var(--kanban-white-1);
+    --drag-preview-outline-color: var(--kanban-grey-4);
+
+    --sidenav-border-color: var(--kanban-grey-4);
+
+    --checkbox-background: var(--kanban-grey-4);
+    --checkbox-background-hover: var(--kanban-grey-5);
+
+    --task-card-drop-shadow-opacity: 0;
+}
+
 $colors: (
-        primary-idle: var(--primary-idle),
-        primary-hover: var(--primary-hover),
-        secondary-idle: var(--secondary-idle),
-        secondary-hover: var(--secondary-hover),
-        destructive-idle: var(--destructive-idle),
-        destructive-hover: var(--destructive-hover),
-        light-text: var(--white-1),
+        primary-idle: var(--kanban-primary-idle),
+        primary-hover: var(--kanban-primary-hover),
+        secondary-idle: var(--kanban-secondary-idle),
+        secondary-hover: var(--kanban-secondary-hover),
+        destructive-idle: var(--kanban-destructive-idle),
+        destructive-hover: var(--kanban-destructive-hover),
+        light-text: var(--kanban-white-1),
     );
 
 @function color($color-name) {
     @return map-get($colors, $color-name);
 }
 
-$statusColors: (
-    planning: var(--column-dot-color-1),
-    backlog: var(--column-dot-color-2),
-    not-started: var(--column-dot-color-3),
-    development: var(--column-dot-color-4),
-    review: var(--column-dot-color-5),
-    nightly: var(--column-dot-color-6),
-    staging: var(--column-dot-color-7),
-    production: var(--column-dot-color-8),
-    deprecated: var(--column-dot-color-9),
+// $column-dot-color-1: #49c4e5;
+// $column-dot-color-2: #8471f2;
+// $column-dot-color-3: #67e2ae;
+// $column-dot-color-4: #49c4e5;
+// $column-dot-color-5: #8471f2;
+// $column-dot-color-6: #67e2ae;
+// $column-dot-color-7: #49c4e5;
+// $column-dot-color-8: #8471f2;
+// $column-dot-color-9: #67e2ae;
 
-);
+// $statusColors2: (
+//     planning: var($column-dot-color-1),
+//     backlog: var(--column-dot-color-2),
+//     not-started: var(--column-dot-color-3),
+//     development: var(--column-dot-color-4),
+//     review: var(--column-dot-color-5),
+//     nightly: var(--column-dot-color-6),
+//     staging: var(--column-dot-color-7),
+//     production: var(--column-dot-color-8),
+//     deprecated: var(--column-dot-color-9),
 
-@function statusColor($status-color-name) {
-    @return map-get($statusColors, $status-color-name);
-}
+// );
+
+// @function statusColor2($status-color-name) {
+//     @return map-get($statusColors2, $status-color-name);
+// }
+
+
+// $statusColors: (
+//     planning: var(--column-dot-color-1),
+//     backlog: var(--column-dot-color-2),
+//     not-started: var(--column-dot-color-3),
+//     development: var(--column-dot-color-4),
+//     review: var(--column-dot-color-5),
+//     nightly: var(--column-dot-color-6),
+//     staging: var(--column-dot-color-7),
+//     production: var(--column-dot-color-8),
+//     deprecated: var(--column-dot-color-9),
+
+// );
+
+// @function statusColor($status-color-name) {
+//     @return map-get($statusColors, $status-color-name);
+// }
 
 $font-sizes: (
     heading-xl: 24px,
@@ -169,11 +234,11 @@ $line-heights: (
 
 $fonts: (
     plus-jakarta-sans: var(--font-plus-jakarta-sans),
-    kanit: var(--font-kanit),
-    josefin-sans: var(--font-josefin-sans),
-    great-vibes: var(--font-great-vibes),
-    dancing-script: var(--font-dancing-script),
-    nunito: var(--font-nunito),
+    // kanit: var(--font-kanit),
+    // josefin-sans: var(--font-josefin-sans),
+    // great-vibes: var(--font-great-vibes),
+    // dancing-script: var(--font-dancing-script),
+    // nunito: var(--font-nunito),
 );
 
 @function font($font) {

@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { Board, DialogCloseResult, DialogData, FormMode, Task, TaskStatus} from '../../common/interfaces';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
+import { DialogShellComponent } from '../dialog-shell/dialog-shell.component';
 
 @Component({
   selector: 'app-board-form',
@@ -29,6 +30,13 @@ export class BoardFormComponent implements OnInit {
   constructor(private boardsStore: BoardsStore,
     public dialogRef: MatDialogRef<BoardFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+
+    // super();
+
+    // this.theme = data.theme ? data.theme : 'kanban-light-theme';
+
+    // console.log('bF ctor theme from dialog shell/dialog data: ', this.theme, data.theme);
+
     this.buildBoardForm();
     // console.log('bF ctor dialog data: ', data);
     // console.log('bF ctor dialog ref: ', dialogRef);

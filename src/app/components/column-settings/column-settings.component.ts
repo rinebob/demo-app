@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, Inject, QueryList, ViewChildren } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatCheckbox} from '@angular/material/checkbox';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { COLUMN_ORDER_FROM_STATUS } from '../../common/constants';
 import { TaskStatus, TASK_STATUS_VALUES, DialogData, DialogCloseResult, Column, Task } from '../../common/interfaces';
@@ -25,7 +25,10 @@ export class ColumnSettingsComponent implements AfterViewInit {
   numTasksByColumn: {[key: string]: number} = {};
   columnOrder: {[key: string]: number} = {};
 
-  constructor(@Inject(MAT_DIALOG_DATA) data: DialogData, private dialogRef: MatDialogRef<ColumnSettingsComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) data: DialogData,
+              private dialogRef: MatDialogRef<ColumnSettingsComponent>
+              ) {
+
     if (data && data.userColumns) {
       // console.log('cS ctor data.columns/user columns: ', data.allColumns, data.userColumns);
       this.inputUserColumns = data.userColumns;
