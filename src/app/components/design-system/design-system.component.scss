@@ -95,7 +95,7 @@
                 flex-wrap: wrap;
                 
                 .button {
-                    @include kanban.mainButtonStyles;
+                    @include kanban.kanbanMainButtonStyles;
                 }
                 
                 .button-1 {
@@ -165,7 +165,7 @@
                     }
 
                     .checkbox-label {
-                        @include kanban.bodyMText;
+                        @include kanban.kanbanBodyMText;
                         display: block;
 
                     }
@@ -225,23 +225,23 @@
             background-color: var(--light-background-1);
     
             .light-heading-xl{
-                @include kanban.headingXLText;
+                @include kanban.kanbanHeadingXLText;
                 
             }
             .light-heading-l{
-                @include kanban.headingLText;
+                @include kanban.kanbanHeadingLText;
             }
             .light-heading-m{
-                @include kanban.headingMText;
+                @include kanban.kanbanHeadingMText;
             }
             .light-heading-s{
-                @include kanban.headingSText;
+                @include kanban.kanbanHeadingSText;
             }
             .light-body-l{
-                @include kanban.bodyLText;
+                @include kanban.kanbanBodyLText;
             }
             .light-body-m{
-                @include kanban.bodyMText;
+                @include kanban.kanbanBodyMText;
             }
         }
     
@@ -249,23 +249,23 @@
             background-color: var(--dark-background-1);
     
             .dark-heading-xl{
-                @include kanban.headingXLText;
+                @include kanban.kanbanHeadingXLText;
                 
             }
             .dark-heading-l{
-                @include kanban.headingLText;
+                @include kanban.kanbanHeadingLText;
             }
             .dark-heading-m{
-                @include kanban.headingMText;
+                @include kanban.kanbanHeadingMText;
             }
             .dark-heading-s{
-                @include kanban.headingSText;
+                @include kanban.kanbanHeadingSText;
             }
             .dark-body-l{
-                @include kanban.bodyLText;
+                @include kanban.kanbanBodyLText;
             }
             .dark-body-m{
-                @include kanban.bodyMText;
+                @include kanban.kanbanBodyMText;
             }
         }
 

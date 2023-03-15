@@ -1,5 +1,7 @@
 
 :root {
+    --ang-exp-purple-1: #635fc7;
+    --ang-exp-purple-2: #a8a4ff;
     --ang-exp-grey-1: #000112;
     --ang-exp-grey-2: #20212c;
     --ang-exp-grey-3: #2b2c37;
@@ -25,6 +27,21 @@
     --ang-exp-on-destructive-hover: var(--ang-exp-white-1);
 
     --ang-exp-size-nav-bar-height: 96px;
+
+     // --font-plus-jakarta-sans: Plus Jakarta sans, "Helvetica Neue", sans-serif;
+    //  --font-plus-jakarta-sans: Plus Jakarta sans;
+     --font-kanit: Kanit, "Helvetica Neue", sans-serif;
+     --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
+     // --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
+     // --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
+     // --font-nunito: Nunito, "Helvetica Neue", sans-serif;
+     
+    //  --main-font-family: var(--font-plus-jakarta-sans);
+    // --main-font-family: var(--font-kanit);
+    --ang-exp-main-font-family: var(--font-josefin-sans);
+    // --main-font-family: var(--font-great-vibes);
+    // --main-font-family: var(--font-dancing-script);
+    // --main-font-family: var(--font-nunito);
 }
 
 

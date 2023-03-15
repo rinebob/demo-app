@@ -13,8 +13,7 @@
         width: 100%;
         
         .title-text {
-            // @include kanban.darkHeadingLText;
-            @include kanban.headingLText;
+            @include kanban.kanbanHeadingLText;
             padding: 0;
         }
    }
@@ -36,7 +35,7 @@
         }
 
         .field-label {
-            @include kanban.bodyMText;
+            @include kanban.kanbanBodyMText;
             color: var(--title-text-1);
         }
 
@@ -51,13 +50,13 @@
             }
 
             .cancel-button {
-                @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+                @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
                 justify-content: center;
                 margin: 4px 0;
             }
 
             .save-button {
-                @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
                 justify-content: center;
                 margin: 4px 0;
             }

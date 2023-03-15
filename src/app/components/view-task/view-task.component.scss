@@ -14,7 +14,7 @@
         width: 100%;
         
         .mat-mdc-dialog-title {
-            @include kanban.headingLText;
+            @include kanban.kanbanHeadingLText;
             margin: 0;
             max-width: 300px;
             padding: 0;
@@ -31,7 +31,7 @@
 
 
     .dialog-subtitle {
-        @include kanban.bodyLText;
+        @include kanban.kanbanBodyLText;
         color: var(--subtitle-text-1);
         margin-bottom: 24px;
     }
@@ -42,7 +42,7 @@
         width: 100%;
 
         .subtasks-header {
-            @include kanban.bodyMText;
+            @include kanban.kanbanBodyMText;
             color: var(--subtitle-text-1);
             margin-bottom: 16px;
         }
@@ -69,7 +69,7 @@
                 }
         
                 .subtask-description {
-                    @include kanban.bodyMText;
+                    @include kanban.kanbanBodyMText;
                     margin: 0;
                 }
             }
@@ -88,7 +88,7 @@
             padding: 8px 16px;
 
             &-text {
-                @include kanban.bodyLText;
+                @include kanban.kanbanBodyLText;
                 margin: 0;
             }
         }
@@ -99,7 +99,7 @@
         width: 100%;
 
         button {
-            @include kanban.mainButtonStyles;
+            @include kanban.kanbanMainButtonStyles;
             color: var(--kanban-on-primary-idle);
             padding: 4px 24px;
         }

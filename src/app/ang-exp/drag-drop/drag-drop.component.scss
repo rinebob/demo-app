@@ -27,7 +27,7 @@
     .drag-drop-container {
         @include global.border1;
         @include global.flexboxLayout(row, flex-start, stretch);
-        background-color: var(--background-2);
+        background-color: var(--ang-exp-background-2);
         box-sizing: border-box;
         height: calc(100vh - var(--size-nav-bar-height));
         margin: 0;

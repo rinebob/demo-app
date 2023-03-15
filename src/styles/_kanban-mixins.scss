@@ -2,7 +2,7 @@
 @use './kanban-variables' as kanbanVar;
 
 //////////////// ELEMENTS //////////////////////
-@mixin mainButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
+@mixin kanbanMainButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
     @include global.flexboxLayout(row, space-between, center);
     background-color: $background-color;
     border: none;
@@ -13,8 +13,8 @@
     padding: 0 24px;
 }
 
-@mixin topnavButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
-    @include headingMText;
+@mixin kanbanTopnavButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
+    @include kanbanHeadingMText;
     @include global.flexboxLayout(row, space-between, center);
     background-color: $background-color;
     border: none;
@@ -25,8 +25,8 @@
     padding: 0 24px;
 }
 
-@mixin topnavButtonStylesMobile {
-    @include topnavButtonStyles;
+@mixin kanbanTopnavButtonStylesMobile {
+    @include kanbanTopnavButtonStyles;
     @include global.flexboxLayout(row, center, center);
     height: var(--size-button-mobile-height);
     min-width: 0;
@@ -34,8 +34,8 @@
     width: var(--size-button-mobile-width);
 }
 
-@mixin sidenavButtonStyles {
-    @include headingMText;
+@mixin kanbanSidenavButtonStyles {
+    @include kanbanHeadingMText;
     background-color: var(--background-3);
     border: none;
     border-top-right-radius: 24px;
@@ -50,12 +50,12 @@
     width: 276px;
 }
 
-@mixin sidenavButtonStylesMobile {
-    @include sidenavButtonStyles();
+@mixin kanbanSidenavButtonStylesMobile {
+    @include kanbanSidenavButtonStyles();
     width: 240px;
 }
 
-@mixin taskCardStyles {
+@mixin kanbanTaskCardStyles {
     @include global.flexboxLayout(row, flex-start, flex-start);
     background-color: var(--background-3);
     border-radius: 8px;
@@ -79,12 +79,12 @@
         width: 100%;
 
         .task-title {
-            @include headingMText;
+            @include kanbanHeadingMText;
             margin: 0 0 8px;
         }
     
         .task-subtitle {
-            @include bodyMText;
+            @include kanbanBodyMText;
             margin: 0 0 6px;
         }
     }
@@ -94,7 +94,7 @@
 
 ////////////// TYPOGRAPHY //////////////////////////
 
-@mixin headingXLText {
+@mixin kanbanHeadingXLText {
     color: var(--title-text-1);
     font-weight: 700;
     font-size: kanbanVar.fontSize(heading-xl);
@@ -112,7 +112,7 @@
     }
 }
 
-@mixin headingLText {
+@mixin kanbanHeadingLText {
     color: var(--title-text-1);
     font-weight: 700;
     font-size: kanbanVar.fontSize(heading-lg);
@@ -120,7 +120,7 @@
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin headingMText {
+@mixin kanbanHeadingMText {
     color: var(--title-text-1);
     font-weight: 700;
     font-size: kanbanVar.fontSize(heading-md);
@@ -128,7 +128,7 @@
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin headingSText {
+@mixin kanbanHeadingSText {
     color: var(--subtitle-text-1);
     font-weight: 700;
     font-size: kanbanVar.fontSize(heading-sm);
@@ -136,7 +136,7 @@
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin bodyLText {
+@mixin kanbanBodyLText {
     color: var(--title-text-3);
     font-weight: 500;
     font-size: kanbanVar.fontSize(body-l);
@@ -144,7 +144,7 @@
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
-@mixin bodyMText {
+@mixin kanbanBodyMText {
     color: var(--title-text-3);
     font-weight: 700;
     font-size: kanbanVar.fontSize(body-m);
