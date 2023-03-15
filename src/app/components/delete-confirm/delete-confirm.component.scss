@@ -4,7 +4,6 @@
 
 .delete-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    // background-color: var(--dark-background-3);
     background-color: var(--background-3);
     
     .title-container {
@@ -13,18 +12,14 @@
         width: 100%;
 
         .title-text {
-            // @include kanban.darkHeadingLText;
-            // color: var(--destructive-idle);
-            @include kanban.headingLText;
+            @include kanban.kanbanHeadingLText;
             color: var(--kanban-destructive-idle);
             padding: 0;
         }
     }
 
     .message {
-        // @include kanban.darkBodyLText;
-        // color: var(--light-subtitle-text-1);
-        @include kanban.bodyLText;
+        @include kanban.kanbanBodyLText;
         color: var(--subtitle-text-1);
         margin: 0 0 24px;
 
@@ -49,14 +44,12 @@
         }
 
         .cancel-button {
-            // @include kanban.mainButtonStyles(var(--secondary-idle), var(--text-color-for-light-background-1), 40px);
-            @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
             justify-content: center;
         }
         
         .delete-button {
-            // @include kanban.mainButtonStyles(var(--destructive-idle), var(--text-color-for-dark-background-1), 40px);
-            @include kanban.mainButtonStyles(var(--kanban-destructive-idle), var(--kanban-on-destructive-idle), 40px);
+            @include kanban.kanbanMainButtonStyles(var(--kanban-destructive-idle), var(--kanban-on-destructive-idle), 40px);
             justify-content: center;
         }
     }

@@ -12,7 +12,7 @@
         width: 100%;
         
         .title-text {
-            @include kanban.headingLText;
+            @include kanban.kanbanHeadingLText;
             margin: 0;
             padding: 0;
         }
@@ -38,7 +38,7 @@
         }
 
         .field-label {
-            @include kanban.bodyMText;
+            @include kanban.kanbanBodyMText;
             color: var(--title-text-1);
         }
 
@@ -80,7 +80,7 @@
         }
 
         .add-subtask-button {
-            @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
             justify-content: center;
             margin: 0 0 24px;
             width: 100%;
@@ -104,12 +104,12 @@
                 width: 50%;
             }
             .cancel-button {
-                @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+                @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
                 justify-content: center;
             }
     
             .save-button {
-                @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
                 justify-content: center;
             }
      

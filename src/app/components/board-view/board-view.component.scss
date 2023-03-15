@@ -28,15 +28,14 @@
             .top-drawer-container {
 
                 .all-boards {
-                    // @include kanban.lightHeadingSText;
-                    @include kanban.headingSText;
+                    @include kanban.kanbanHeadingSText;
                     margin: 16px 0 0;
                     padding: 0 16px;
                     text-transform: uppercase;
                 }
 
                 .nav-button {
-                    @include kanban.sidenavButtonStyles;
+                    @include kanban.kanbanSidenavButtonStyles;
                     @include global.flexboxLayout(row, flex-start, center);
 
                     mat-icon {
@@ -58,10 +57,7 @@
                 
 
                 .create-new-board-button {
-                    // @include kanban.darkHeadingMText;
-                    // background-color: var(--dark-background-3);
-                    // color: var(--primary-idle);
-                    @include kanban.headingMText;
+                    @include kanban.kanbanHeadingMText;
                     background-color: var(--background-3);
                     color: var(--kanban-primary-idle);
                     margin: 4px 8px;
@@ -71,19 +67,15 @@
             .bottom-buttons-container {
                 @include global.flexboxLayout(column, flex-start, center);
                 margin-bottom: 50px;
-                // padding-left: 24px;
                 width: 100%;
                 
                 .dark-mode-switch-container {
                     @include global.flexboxLayout(row, space-between, center);
-                    // background-color: var(--dark-background-2);
                     background-color: var(--background-2);
-                    // margin: 0 24px 22px;
                     margin: 0 0 22px;
                     padding: 15px 64px;
 
                     mat-icon {
-                        // color: var(--light-subtitle-text-1);
                         color: var(--subtitle-text-1);
                     }
 
@@ -93,14 +85,11 @@
                 }
 
                 .hide-sidebar-button {
-                    // @include kanban.darkHeadingMText;
-                    @include kanban.headingMText;
+                    @include kanban.kanbanHeadingMText;
                     @include global.flexboxLayout(row, center, center);
                     align-self: flex-start;
-                    // background-color: var(--dark-background-3);
                     background-color: var(--background-3);
                     border: none;
-                    // color: var(--light-subtitle-text-1);
                     color: var(--subtitle-text-1);
                     cursor: pointer;
                     margin-left: 14px;
@@ -114,14 +103,12 @@
         }
 
         .mat-drawer-content {
-            // background-color: var(--dark-background-2);
             background-color: var(--background-2);
             overflow-y: hidden;
             position: relative;
 
             .nav-bar {
                 @include global.flexboxLayout(row, space-between, center);
-                // background-color: var(--dark-background-3);
                 background-color: var(--background-3);
                 border-bottom: 1px solid var(--sidenav-border-color);
                 height: var(--size-nav-bar-height);
@@ -131,16 +118,8 @@
                     @include global.flexboxLayout(row, flex-start, center);
                     margin: 0 0 0 16px;
         
-                    // .kanban-icon-container {
-                    //     @include global.flexboxLayout(row, flex-start, center);
-                                
-                        
-        
-                    // }
-        
                     .board-title {
-                        // @include kanban.darkHeadingXLText;
-                        @include kanban.headingXLText;
+                        @include kanban.kanbanHeadingXLText;
                         margin: 24px;
                         
                         @include global.response(sm) {
@@ -162,8 +141,7 @@
                     @include global.flexboxLayout(row, flex-start, center);
                     
                     .nav-button {
-                        // @include kanban.topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
-                        @include kanban.topnavButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));
+                        @include kanban.kanbanTopnavButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));
                         
                         .nav-button-text {
                             margin: 0;
@@ -181,7 +159,7 @@
                         }
         
                         @include global.response(sm) {
-                            @include kanban.topnavButtonStylesMobile;
+                            @include kanban.kanbanTopnavButtonStylesMobile;
                             width: 48px;
                         }
         
@@ -206,8 +184,8 @@
             }
         
             .show-drawer-button {
-                // @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
-                @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));    
+                // @include kanban.kanbanmainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));    
                 border-top-left-radius: 0;
                 border-top-right-radius: 100px;
                 border-bottom-right-radius: 100px;
@@ -222,10 +200,8 @@
                     display: none;
                 }
             }
-
         }
     }
-
 }
 
 .kanban-logo-container {
@@ -238,11 +214,10 @@
     @include global.response(sm) {
         border: none;
         margin: 0;
-        // width: 100px;
     }
 
     .logo-text {
-        @include kanban.headingXLText;
+        @include kanban.kanbanHeadingXLText;
         margin: 0 0 0 16px;
 
         @include global.response(sm) {
@@ -310,8 +285,7 @@
             }
 
             .column-header-text {
-                // @include kanban.darkHeadingSText;
-                @include kanban.headingSText;
+                @include kanban.kanbanHeadingSText;
                 // color: var(--light-subtitle-text-1);
                 color: var(--subtitle-text-1);
                 margin: 0;
@@ -330,16 +304,13 @@
         margin-top: 64px;
 
         .new-column-button {
-            // @include kanban.darkHeadingXLText;
-            @include kanban.headingXLText;
-            // color: var(--light-subtitle-text-1);
+            @include kanban.kanbanHeadingXLText;
             color: var(--subtitle-text-1);
             text-transform: capitalize;
             
         }
         
         mat-icon {
-            // color: var(--light-subtitle-text-1);
             color: var(--subtitle-text-1);
             margin-right: 8px;
         }
@@ -348,16 +319,14 @@
 }
 
 .task-card {
-    @include kanban.taskCardStyles;
+    @include kanban.kanbanTaskCardStyles;
     
     .task-title {
-        // @include kanban.darkHeadingMText;
-        @include kanban.headingMText;
+        @include kanban.kanbanHeadingMText;
     }
 
     .task-subtitle {
-        // @include kanban.darkBodyMText;
-        @include kanban.bodyMText;
+        @include kanban.kanbanBodyMText;
     }
     
     
@@ -370,16 +339,13 @@
 }
 
 .empty-board {
-    // @include kanban.darkBodyLText;
-    @include kanban.bodyLText;
-    // color: var(--light-subtitle-text-1);
+    @include kanban.kanbanBodyLText;
     color: var(--subtitle-text-1);
 
 
 }
 
 .add-column-button {
-    @include kanban.mainButtonStyles;
-    // @include kanban.darkHeadingMText;
-    @include kanban.headingMText;
+    @include kanban.kanbanMainButtonStyles;
+    @include kanban.kanbanHeadingMText;
 }

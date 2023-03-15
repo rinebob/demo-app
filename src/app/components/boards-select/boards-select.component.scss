@@ -11,14 +11,14 @@
         margin: 16px 24px 16px 0;
 
         .all-boards {
-            @include kanban.headingSText;
+            @include kanban.kanbanHeadingSText;
             padding: 0 16px;
             text-transform: uppercase;
         }
 
         .nav-button {
             @include global.flexboxLayout(row, flex-start, center);
-            @include kanban.sidenavButtonStyles;
+            @include kanban.kanbanSidenavButtonStyles;
     
             mat-icon {
                 margin: 0 16px 0 0;
@@ -37,7 +37,7 @@
         }
 
         .create-new-board-button {
-            @include kanban.headingMText;
+            @include kanban.kanbanHeadingMText;
             background-color: var(--background-3);
             color: var(--kanban-primary-idle);
             margin: 4px 8px;

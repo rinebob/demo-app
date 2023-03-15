@@ -12,13 +12,13 @@
         width: 100%;
         
         .title-text {
-            @include kanban.headingLText;
+            @include kanban.kanbanHeadingLText;
             margin-bottom: 24px;
             padding: 0;
         }
 
         .subtitle-text {
-            @include kanban.bodyMText;
+            @include kanban.kanbanBodyMText;
             padding: 0;
         }
    }
@@ -28,13 +28,13 @@
 
         @include global.response(h-md) {
             margin-bottom: 24px;
-            max-height: 290px;
+            max-height: 262px;
             overflow-y: auto;
         }
 
         @include global.response(h-sm) {
             margin-bottom: 18px;
-            max-height: 145px;
+            max-height: 130px;
             overflow-y: auto;
         }
 
@@ -56,10 +56,21 @@
 
                 .checkbox-container {
                     background-color: var(--checkbox-background);
+                    width: 100%;
+                    border-radius: 4px;
+                    
+                    &:not(:last-child) {
+                        margin-bottom: 4px;
+                        
+                    }
                     
                     &:hover {
                         background-color: var(--checkbox-background-hover);
                         
+                    }
+
+                    mat-icon {
+                        color: var(--title-text-1);
                     }
                 }
 
@@ -83,7 +94,7 @@
         width: 100%;
 
         .all-none-button {
-            @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
+            @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
             font-size: 12px;
             justify-content: center;
             width: 40%;
@@ -94,7 +105,7 @@
         }
 
         .reset-initial-button {
-            @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
+            @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
             font-size: 12px;
             justify-content: center;
             width: 40%;
@@ -120,12 +131,12 @@
 
         
         .cancel-button {
-            @include kanban.mainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
             justify-content: center;
         }
         
         .save-button {
-            @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
             justify-content: center;
         }
     }
@@ -150,7 +161,7 @@
     }
     
     .element-title {
-        @include kanban.bodyMText;
+        @include kanban.kanbanBodyMText;
     }
 
     p {
@@ -174,7 +185,7 @@
                 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
     .element-title {
-        @include kanban.bodyMText;
+        @include kanban.kanbanBodyMText;
     }
 
     p {

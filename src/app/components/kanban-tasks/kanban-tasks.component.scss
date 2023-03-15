@@ -33,7 +33,7 @@
                 }
 
                 .column-header-text {
-                    @include kanban.headingSText;
+                    @include kanban.kanbanHeadingSText;
                     color: var(--subtitle-text-1);
                     margin: 0;
                     text-transform: uppercase;
@@ -50,7 +50,7 @@
             width: 100%;
 
             .new-column-button {
-                @include kanban.headingXLText;
+                @include kanban.kanbanHeadingXLText;
                 color: var(--subtitle-text-1);
                 text-transform: capitalize;
                 white-space: normal;
@@ -70,13 +70,13 @@
     height: calc(100% - var(--size-nav-bar-height));
 
     .empty-board {
-        @include kanban.headingLText;
+        @include kanban.kanbanHeadingLText;
         color: var(--subtitle-text-1);
     }
 
     .add-column-button {
-        @include kanban.mainButtonStyles;
-        @include kanban.headingMText;
+        @include kanban.kanbanMainButtonStyles;
+        @include kanban.kanbanHeadingMText;
     }
 
 }
@@ -84,7 +84,7 @@
 // this is the same element as .cdk-drag.  It is NOT the element as it is being dragged.
 // it is the card in the drag-from location
 .task-card {
-    @include kanban.taskCardStyles;
+    @include kanban.kanbanTaskCardStyles;
 
     // this properly applies styles for light/dark themes for the source
     // card.  However, the dragged element only gets the color if a static value is used.

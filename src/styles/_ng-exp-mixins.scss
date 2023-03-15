@@ -1,6 +1,71 @@
 @use './global-mixins' as global;
 @use './ng-exp-variables' as angExpVar;
 
+
+////////////// TYPOGRAPHY //////////////////////////
+
+@mixin headingXLText {
+    color: var(--ang-exp-title-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-xl);
+    line-height: angExpVar.lineHeight(heading-xl);
+    font-family: var(--ang-exp-main-font-family), "Helvetica Neue", sans-serif;
+
+    @include global.response(md) {
+        font-size: angExpVar.fontSize(tablet-heading-xl);
+        line-height: angExpVar.lineHeight(heading-lg);
+    }
+    
+    @include global.response(sm) {
+        font-size: angExpVar.fontSize(heading-lg);
+        line-height: angExpVar.lineHeight(heading-lg);
+    }
+}
+
+@mixin headingLText {
+    color: var(--ang-exp-title-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-lg);
+    line-height: angExpVar.lineHeight(heading-lg);
+    font-family: var(--ang-exp-main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin headingMText {
+    color: var(--ang-exp-title-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-md);
+    line-height: angExpVar.lineHeight(heading-md);
+    font-family: var(--ang-exp-main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin headingSText {
+    color: var(--ang-exp-subtitle-text-1);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(heading-sm);
+    line-height: angExpVar.lineHeight(heading-sm);
+    font-family: var(--ang-exp-main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin bodyLText {
+    color: var(--ang-exp-title-text-3);
+    font-weight: 500;
+    font-size: angExpVar.fontSize(body-l);
+    line-height: angExpVar.lineHeight(body-l);
+    font-family: var(--ang-exp-main-font-family), "Helvetica Neue", sans-serif;
+}
+
+@mixin bodyMText {
+    color: var(--ang-exp-title-text-3);
+    font-weight: 700;
+    font-size: angExpVar.fontSize(body-m);
+    line-height: angExpVar.lineHeight(body-m);
+    font-family: var(--ang-exp-main-font-family), "Helvetica Neue", sans-serif;
+}
+
+
+////////////// END TYPOGRAPHY //////////////////////
+
+
 //////////////// ELEMENTS //////////////////////
 @mixin mainButtonStyles($background-color: var(--ang-exp-primary-idle), $color: var(--ang-exp-on-primary-idle), $height: var(--size-button-regular)) {
     @include global.flexboxLayout(row, space-between, center);
@@ -57,13 +122,13 @@
 
 @mixin taskCardStyles {
     @include global.flexboxLayout(row, flex-start, flex-start);
-    background-color: var(--background-3);
+    background-color: var(--ang-exp-background-3);
     border-radius: 8px;
     box-sizing: border-box;
-    box-shadow: 2px 4px 6px rgba(54, 78, 126, var(--task-card-drop-shadow-opacity));
+    box-shadow: 2px 4px 6px rgba(54, 78, 126, var(--ang-exp-task-card-drop-shadow-opacity));
 
     // this affects the drag handle only
-    color: var(--title-text-1);
+    color: var(--ang-exp-title-text-1);
 
     cursor: pointer;
     margin-bottom: 10px;
@@ -91,66 +156,3 @@
 }
 
 //////////////// END ELEMENTS //////////////////////
-
-////////////// TYPOGRAPHY //////////////////////////
-
-@mixin headingXLText {
-    color: var(--title-text-1);
-    font-weight: 700;
-    font-size: angExpVar.fontSize(heading-xl);
-    line-height: angExpVar.lineHeight(heading-xl);
-    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-
-    @include global.response(md) {
-        font-size: angExpVar.fontSize(tablet-heading-xl);
-        line-height: angExpVar.lineHeight(heading-lg);
-    }
-    
-    @include global.response(sm) {
-        font-size: angExpVar.fontSize(heading-lg);
-        line-height: angExpVar.lineHeight(heading-lg);
-    }
-}
-
-@mixin headingLText {
-    color: var(--title-text-1);
-    font-weight: 700;
-    font-size: angExpVar.fontSize(heading-lg);
-    line-height: angExpVar.lineHeight(heading-lg);
-    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-}
-
-@mixin headingMText {
-    color: var(--title-text-1);
-    font-weight: 700;
-    font-size: angExpVar.fontSize(heading-md);
-    line-height: angExpVar.lineHeight(heading-md);
-    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-}
-
-@mixin headingSText {
-    color: var(--subtitle-text-1);
-    font-weight: 700;
-    font-size: angExpVar.fontSize(heading-sm);
-    line-height: angExpVar.lineHeight(heading-sm);
-    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-}
-
-@mixin bodyLText {
-    color: var(--title-text-3);
-    font-weight: 500;
-    font-size: angExpVar.fontSize(body-l);
-    line-height: angExpVar.lineHeight(body-l);
-    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-}
-
-@mixin bodyMText {
-    color: var(--title-text-3);
-    font-weight: 700;
-    font-size: angExpVar.fontSize(body-m);
-    line-height: angExpVar.lineHeight(body-m);
-    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-}
-
-
-////////////// END TYPOGRAPHY //////////////////////
