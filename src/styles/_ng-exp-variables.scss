@@ -11,20 +11,81 @@
     --ang-exp-red-1: #ea5555;
     --ang-exp-red-2: #ff9898;
 
-    --ang-exp-primary-idle: var(--kanban-purple-1);
-    --ang-exp-primary-hover: var(--kanban-purple-2);
-    --ang-exp-secondary-idle: var(--kanban-white-1);
+    --ang-exp-primary-idle: var(--ang-exp-purple-1);
+    --ang-exp-primary-hover: var(--ang-exp-purple-2);
+    --ang-exp-secondary-idle: var(--ang-exp-white-1);
     --ang-exp-secondary-hover: rgba(99, 95, 199, .25);
-    --ang-exp-destructive-idle: var(--kanban-red-1);
-    --ang-exp-destructive-hover: var(--kanban-red-2);
-    --ang-exp-on-primary-idle: var(--kanban-white-1);
-    --ang-exp-on-primary-hover: var(--kanban-white-1);
-    --ang-exp-on-secondary-idle: var(--kanban-purple-1);
-    --ang-exp-on-secondary-hover: var(--kanban-purple-1);
-    --ang-exp-on-destructive-idle: var(--kanban-white-1);
-    --ang-exp-on-destructive-hover: var(--kanban-white-1);
+    --ang-exp-destructive-idle: var(--ang-exp-red-1);
+    --ang-exp-destructive-hover: var(--ang-exp-red-2);
+    --ang-exp-on-primary-idle: var(--ang-exp-white-1);
+    --ang-exp-on-primary-hover: var(--ang-exp-white-1);
+    --ang-exp-on-secondary-idle: var(--ang-exp-purple-1);
+    --ang-exp-on-secondary-hover: var(--ang-exp-purple-1);
+    --ang-exp-on-destructive-idle: var(--ang-exp-white-1);
+    --ang-exp-on-destructive-hover: var(--ang-exp-white-1);
+
+    --ang-exp-size-nav-bar-height: 96px;
 }
 
+
+.ang-exp-light-theme {
+
+    --ang-exp-test-background-1: var(--ang-exp-purple-1);
+    --ang-exp-test-background-2: orange;
+    --ang-exp-background-1: var(--ang-exp-white-1);
+    --ang-exp-background-2: var(--ang-exp-white-1);
+    --ang-exp-background-3: var(--ang-exp-white-1);
+    --ang-exp-background-4: var(--ang-exp-white-1);
+    --ang-exp-background-5: var(--ang-exp-grey-5);
+    --ang-exp-background-6: var(--ang-exp-grey-6);
+    --ang-exp-title-text-1: var(--ang-exp-grey-1);
+    --ang-exp-title-text-2: var(--ang-exp-grey-2);
+    --ang-exp-title-text-3: var(--ang-exp-grey-3);
+    --ang-exp-title-text-4: var(--ang-exp-grey-4);
+    --ang-exp-subtitle-text-1: var(--ang-exp-grey-5);
+    --ang-exp-subtitle-text-2: var(--ang-exp-grey-6);
+
+    // text colors for light backgrounds
+    --ang-exp-text-color-1: var(--ang-exp-purple-1);
+    --ang-exp-text-color-2: var(--ang-exp-purple-2);
+    --ang-exp-drag-preview-background-color: var(--ang-exp-grey-6);
+    --ang-exp-drag-preview-placeholder-color: var(--ang-exp-grey-6);
+    --ang-exp-drag-preview-text-color: var(--ang-exp-grey-1);
+    --ang-exp-drag-preview-outline-color: var(--ang-exp-grey-5);
+    --ang-exp-sidenav-border-color: var(--ang-exp-grey-6);
+    --ang-exp-checkbox-background: var(--ang-exp-grey-6);
+    --ang-exp-checkbox-background-hover: var(--ang-exp-grey-5);
+    --ang-exp-task-card-drop-shadow-opacity: .25;
+
+}
+
+
+.ang-exp-dark-theme {
+
+    --ang-exp-test-background-1: var(--ang-exp-red-1);
+    --ang-exp-test-background-2: green;
+    --ang-exp-text-color-1: var(--ang-exp-white-1);
+    --ang-exp-background-1: var(--ang-exp-grey-1);
+    --ang-exp-background-2: var(--ang-exp-grey-2);
+    --ang-exp-background-3: var(--ang-exp-grey-3);
+    --ang-exp-background-4: var(--ang-exp-grey-4);
+    --ang-exp-background-5: var(--ang-exp-grey-5);
+    --ang-exp-background-6: var(--ang-exp-grey-6);
+    --ang-exp-title-text-1: var(--ang-exp-white-1);
+    --ang-exp-title-text-2: var(--ang-exp-white-1);
+    --ang-exp-title-text-3: var(--ang-exp-white-1);
+    --ang-exp-title-text-4: var(--ang-exp-white-1);
+    --ang-exp-subtitle-text-1: var(--ang-exp-grey-5);
+    --ang-exp-subtitle-text-2: var(--ang-exp-grey-5);
+    --ang-exp-drag-preview-background-color: var(--ang-exp-grey-5);
+    --ang-exp-drag-preview-placeholder-color: var(--ang-exp-grey-6);
+    --ang-exp-drag-preview-text-color: var(--ang-exp-white-1);
+    --ang-exp-drag-preview-outline-color: var(--ang-exp-grey-4);
+    --ang-exp-sidenav-border-color: var(--ang-exp-grey-4);
+    --ang-exp-checkbox-background: var(--ang-exp-grey-4);
+    --ang-exp-checkbox-background-hover: var(--ang-exp-grey-5);
+    --ang-exp-task-card-drop-shadow-opacity: 0;
+}
 
 $font-sizes: (
     heading-xl: 24px,

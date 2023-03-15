@@ -33,9 +33,7 @@
                 }
 
                 .column-header-text {
-                    // @include kanban.darkHeadingSText;
                     @include kanban.headingSText;
-                    // color: var(--light-subtitle-text-1);
                     color: var(--subtitle-text-1);
                     margin: 0;
                     text-transform: uppercase;
@@ -52,8 +50,6 @@
             width: 100%;
 
             .new-column-button {
-                // @include kanban.darkHeadingXLText;
-                // color: var(--light-subtitle-text-1);
                 @include kanban.headingXLText;
                 color: var(--subtitle-text-1);
                 text-transform: capitalize;
@@ -61,27 +57,11 @@
             }
             
             mat-icon {
-                // color: var(--light-subtitle-text-1);
                 color: var(--subtitle-text-1);
                 margin-right: 8px;
             }
         }
     }
-}
-
-.task-card {
-    @include kanban.taskCardStyles;
-    // background-color: yellow;
-    // .task-title {
-    //     // @include kanban.darkBodyMText;
-    //     @include kanban.bodyMText;
-    //     color: blue;
-    // }
-
-    // .task-subtitle {
-    //     @include kanban.bodyMText;
-    //     color: green;
-    // }
 }
 
 .no-tasks-container {
@@ -90,71 +70,64 @@
     height: calc(100% - var(--size-nav-bar-height));
 
     .empty-board {
-        // @include kanban.darkHeadingLText;
-        // color: var(--light-subtitle-text-1);
         @include kanban.headingLText;
         color: var(--subtitle-text-1);
     }
 
     .add-column-button {
         @include kanban.mainButtonStyles;
-        // @include kanban.darkHeadingMText;
         @include kanban.headingMText;
     }
 
 }
 
-// This is the element being dragged
-.cdk-drag {
-    // background-color: green;
+// this is the same element as .cdk-drag.  It is NOT the element as it is being dragged.
+// it is the card in the drag-from location
+.task-card {
+    @include kanban.taskCardStyles;
+
+    // this properly applies styles for light/dark themes for the source
+    // card.  However, the dragged element only gets the color if a static value is used.
+    // It does not get a color from a variable
+    // background-color: yellow;
+    // background-color: var(--test-background-2);
     
     mat-icon {
         cursor: move;
     }
 
-    &-content {
-        @include global.flexboxLayout(column, flex-start, flex-start);
+    .light-background {
+        // background-color: var(--kanban-white-1);
+        background-color: yellow;
     }
     
-    // .task-title {
-    //     // @include kanban.darkBodyMText;
-    //     @include kanban.bodyMText;
-    //     color: blue;
-    // }
-
-    // .task-subtitle {
-    //     @include kanban.bodyMText;
-    //     color: green;
-    // }
-
-    // p {
-    //     margin: 0;
-    //     padding: 0;
-    // }
+    .dark-background {
+        // background-color: var(--kanban-grey-3);
+        background-color: green;
+    
+    }
 }
 
-// background-color: var(--background-3);
-//     border-radius: 8px;
-//     box-sizing: border-box;
-//     // box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.101545);
-//     box-shadow: 2px 4px 6px rgba(54, 78, 126, .25);
-//     // color: var(--dark-subtitle-text-1);
-//     color: var(--title-text-1);
-//     cursor: pointer;
-//     margin-bottom: 10px;
-//     padding: 10px 2px;
-//     width: 100%;
+// This is the element that will be dragged (task card) and has the same behavior as 
+// .task-card
+.cdk-drag {
+    
+    // This does NOT work here
+    &-content {
+        // @include global.flexboxLayout(column, flex-start, flex-start);
+        // background-color: chartreuse;
+    }
+}
 
-// This is the preview of the element being dragged
+// This is the preview of the drag element as it is being dragged away from its source
+// location
 .cdk-drag-preview {
-    @include global.flexboxLayout(row, flex-start, flex-start);
-    @include kanban.taskCardStyles;
-    // color: var(--ang-exp-white-1);
-    // background-color: var(--ang-exp-grey-4);
-    // color: var(--title-text-1);
-    // color: blue;
-    // background-color: var(--drag-preview-background-color);
-    // background-color: red;
+    
+     // THIS ONLY WORKS WITH A STATIC COLOR.  VARIABLE COLOR DOES NOT WORK
+    // This overrides the same class in kanban-tasks.scss
+    // background-color: purple;
+    // background-color: var(--test-background-2);
+
     // width: 100%;
     // min-height: 60px;
     // margin: 4px 0;
@@ -164,43 +137,50 @@
     //             0 8px 10px 1px rgba(0, 0, 0, 0.14),
     //             0 3px 14px 2px rgba(0, 0, 0, 0.12);
 
-    // .task-title {
-    //     @include kanban.bodyLText;
-    //     color: blue;
-    // }
-
-    // .task-subtitle {
-    //     @include kanban.bodyMText;
-    //     color: green;
-    // }
-
-    // p {
-    //     margin: 0;
-    //     padding: 0;
-    // }
 }
 
-// This affects the preview after releasing the mouse button to allow the drop
+// This is the dragged element after releasing the mouse button to allow the drop
+// animation to begin.  It affects the card from mouse up to when it reaches the new
+// destination
 .cdk-drag-animating {
-    // background-color: red;
+    // THIS ONLY WORKS WHEN .cdk-drag DOES NOT HAVE ITS OWN BACKGROUND COLOR AND
+    // THIS VALUE IS NOT A VARIABLE (i.e. 'red' works but 'test-background-1' does not)
+    // Also it needs the transition property set in order to work properly
+    // This overrides the same class in styles.scss
+    // background-color: yellow;
+    // background-color: var(--test-background-1);
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-// These are all the elements not being dragged
+// This is all the elements except the dragged element.
 .cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
+    // THIS PROPERLY APPLIES LIGHT/DARK THEME COLORS
+    // This overrides same class in styles.scss
     // background-color: blue;
+    // background-color: var(--test-background-1);
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 // This affects the location the element was dragged from, after the element is 
 // clicked on and the drag is in progress
 .placeholder {
-    // background-color: var(--ang-exp-grey-4);
-    // border: dotted 2px var(--light-subtitle-text-2);
+    // this properly takes light/dark theme colors
     background-color: var(--drag-preview-placeholder-color);
     border: dotted 2px var(--drag-preview-outline-color);
+    border-radius: 8px;
     margin: 4px 0;
     min-height: 60px;
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
     width: 98%;
+}
+
+.light-background {
+    // background-color: var(--kanban-white-1);
+    background-color: yellow;
+}
+
+.dark-background {
+    // background-color: var(--kanban-grey-3);
+    background-color: green;
+
 }

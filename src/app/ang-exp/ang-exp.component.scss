@@ -1,5 +1,5 @@
 @use '../../styles/global-mixins' as global;
-@use '../../styles/kanban-mixins' as kanban;
+@use '../../styles/ng-exp-mixins' as ang-exp;
 @import "styles.scss";
 
 .ang-exp-container {
@@ -14,7 +14,7 @@
 
     .mat-drawer {
         @include global.flexboxLayout(column, flex-start, space-between);
-        background-color: var(--dark-background-3);
+        background-color: var(--ang-exp-background-3);
         width: 300px;
 
         ::ng-deep .mat-drawer-inner-container {
@@ -24,12 +24,12 @@
 
         .top-drawer-container {
             .heading {
-                @include kanban.darkHeadingXLText;
+                @include ang-exp.headingXLText;
                 margin: 34px 120px 54px 34px;
             }
 
             .nav-button {
-                @include kanban.sidenavButtonStyles;
+                @include ang-exp.sidenavButtonStyles;
                 @include global.flexboxLayout(row, flex-start, center);
 
                 mat-icon {
@@ -46,27 +46,28 @@
     }
 
     .mat-drawer-content {
-        background-color: var(--dark-background-2);
+        background-color: var(--ang-exp-background-2);
         overflow-y: hidden;
         position: relative;
 
         .nav-bar {
             @include global.flexboxLayout(row, flex-end, center);
-            background-color: var(--dark-background-3);
-            height: var(--size-nav-bar-height);
+            background-color: var(--ang-exp-background-3);
+            height: var(--ang-exp-size-nav-bar-height);
             width: 100%;
         
             .buttons-container {
                 @include global.flexboxLayout(row, flex-start, center);
                 
                 .nav-button {
-                    @include kanban.topnavButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                    @include ang-exp.topnavButtonStyles(var(--ang-exp-primary-idle), var(--ang-exp-on-primary-idle), var(--size-button-tall));
+                    
                 }
             }
         }
 
         .show-drawer-button {
-            @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
+            @include ang-exp.mainButtonStyles(var(--ang-exp-primary-idle), var(--ang-exp-on-primary-idle), var(--size-button-tall));    
             border-top-left-radius: 0;
             border-top-right-radius: 100px;
             border-bottom-right-radius: 100px;

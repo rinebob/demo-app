@@ -41,15 +41,15 @@
             
             <div *ngFor="let element of column.elements; let i = index"
                  cdkDragBoundary=".column-boundary"
-                 class="drag-element" 
+                 class="task-card" 
                  cdkDrag
             >
                 <div class="placeholder" *cdkDragPlaceholder></div>
                 <mat-icon cdkDragHandle>drag_indicator</mat-icon>
                 <div class="drag-element-content">
-                    <p class="element-title">{{column.title}}</p>
-                    <p class="element-title">{{element.title}}</p>
-                    <p class="element-title">Elem index {{i}}</p>
+                    <p class="task-title">{{column.title}}</p>
+                    <p class="task-subtitle">{{element.title}}</p>
+                    <p class="task-subtitle">Elem index {{i}}</p>
                     <!-- <p class="element-title">{{element.content}}</p> -->
 
                 </div>
