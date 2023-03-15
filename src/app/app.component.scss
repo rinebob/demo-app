@@ -23,7 +23,7 @@
 
             .top-sidenav-container {
                 .heading {
-                    @include kanban.darkHeadingXLText;
+                    @include kanban.headingXLText;
                     margin: 34px 120px 54px 34px;
                 }
 
@@ -43,13 +43,13 @@
                 }
 
                 .all-boards {
-                    @include kanban.lightHeadingSText;
+                    @include kanban.headingSText;
                     padding: 0 16px;
                     text-transform: uppercase;
                 }
 
                 .create-new-board-button {
-                    @include kanban.darkHeadingMText;
+                    @include kanban.headingMText;
                     background-color: var(--dark-background-3);
                     color: var(--primary-idle);
                 }
@@ -62,12 +62,12 @@
                 
                 .dark-mode-switch-container {
                     @include global.flexboxLayout(row, space-between, center);
-                    background-color: var(--dark-background-2);
+                    background-color: var(--background-2);
                     margin: 0 0 22px;
                     padding: 15px 64px;
 
                     mat-icon {
-                        color: var(--light-subtitle-text-1);
+                        color: var(--subtitle-text-1);
                     }
 
                     mat-slide-toggle {
@@ -76,12 +76,12 @@
                 }
 
                 .hide-sidebar-button {
-                    @include kanban.darkHeadingMText;
+                    @include kanban.headingMText;
                     @include global.flexboxLayout(row, center, center);
                     align-self: flex-start;
-                    background-color: var(--dark-background-3);
+                    background-color: var(--background-3);
                     border: none;
-                    color: var(--light-subtitle-text-1);
+                    color: var(--subtitle-text-1);
                     cursor: pointer;
                     margin-left: 14px;
 
@@ -93,12 +93,12 @@
         }
 
         .mat-sidenav-content {
-            background-color: var(--dark-background-2);
+            background-color: var(--background-2);
             overflow-y: hidden;
             position: relative;
     
             .show-sidenav-button {
-                @include kanban.mainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));
+                @include kanban.mainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));
                 border-top-left-radius: 0;
                 border-top-right-radius: 100px;
                 border-bottom-right-radius: 100px;
@@ -113,7 +113,7 @@
                 z-index: 10;
                 
                 .back-button-text {
-                    @include kanban.darkBodyMText;
+                    @include kanban.bodyMText;
                     font-size: 10px;
                     font-weight: lighter;
                     letter-spacing: 1.25px;
@@ -125,7 +125,7 @@
     }
 
     .link-active {
-        background-color: var(--primary-idle);
+        background-color: var(--kanban-primary-idle);
         border-top-right-radius: 24px;
         border-bottom-right-radius: 24px;
         width: 276px;

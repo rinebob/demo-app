@@ -84,6 +84,9 @@
 }
 
 .kanban-light-theme {
+
+    --test-background-1: var(--kanban-purple-1);
+    --test-background-2: orange;
     
     --background-1: var(--kanban-white-1);
     --background-2: var(--kanban-white-1);
@@ -118,6 +121,9 @@
 
 
 .kanban-dark-theme {
+    --test-background-1: var(--kanban-red-1);
+    --test-background-2: green;
+
     // text color for dark backgrounds    
     --text-color-1: var(--kanban-white-1);
     --background-1: var(--kanban-grey-1);
