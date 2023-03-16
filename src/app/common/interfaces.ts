@@ -123,3 +123,14 @@ export interface DialogData {
 }
 
   export const TASK_STATUS_VALUES = Object.values(TaskStatus);
+
+  export enum AngExpRoutes {
+    DRAG_DROP = 'drag-drop',
+    ANIMATIONS = 'animations',
+    SIGNALS = 'signals',
+  }
+
+  export interface NavButtonConfig {
+    routerLink: string;
+    text: string;
+  }

@@ -43,7 +43,7 @@
                 }
             }
 
-            .focused {
+            .active-link {
                 background-color: var(--ang-exp-primary-idle);
                 color: var(--ang-exp-on-primary-idle);
             }
@@ -58,6 +58,7 @@
         .nav-bar {
             @include global.flexboxLayout(row, flex-end, center);
             background-color: var(--ang-exp-background-3);
+            border-bottom: 1px solid lightgrey;
             height: var(--ang-exp-size-nav-bar-height);
             width: 100%;
         

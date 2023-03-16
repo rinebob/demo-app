@@ -2,6 +2,8 @@ import { Component, HostBinding } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { ANG_EXP_NAV_BUTTONS } from '../common/constants';
+
 @Component({
   selector: 'app-ang-exp',
   templateUrl: './ang-exp.component.html',
@@ -14,6 +16,8 @@ export class AngExpComponent {
   darkModeToggleButtonColor: ThemePalette = 'primary';
   darkModeOnBS = new BehaviorSubject(false);
   darkModeOn$: Observable<boolean> = this.darkModeOnBS;
+
+  readonly ANG_EXP_NAV_BUTTONS = ANG_EXP_NAV_BUTTONS;
 
   toggleTheme() {
     // console.log('bV tT toggle dark mode pre: ', this.darkModeOnBS.value);
