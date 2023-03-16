@@ -11,13 +11,14 @@
 
                         <h1 class="heading">Angular Experiments</h1>
 
-                        <button type="button" 
+                        <button *ngFor="let button of ANG_EXP_NAV_BUTTONS"
+                                type="button" 
                                 (click)="drawer.close()"
-                                routerLink="drag-drop"
+                                [routerLink]="button.routerLink"
+                                routerLinkActive="active-link"
                                 class="nav-button"
-                                [class.focused]="true"
                         >
-                            cdk Drag Drop
+                            {{button.text}}
                         </button>
 
                     </div>

@@ -98,7 +98,9 @@
             position: relative;
     
             .show-sidenav-button {
-                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));
+                // @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));
+                @include kanban.kanbanMainButtonStyles(transparent, transparent, var(--size-button-tall));
+
                 border-top-left-radius: 0;
                 border-top-right-radius: 100px;
                 border-bottom-right-radius: 100px;
@@ -114,6 +116,7 @@
                 
                 .back-button-text {
                     @include kanban.kanbanBodyMText;
+                    color: transparent;
                     font-size: 10px;
                     font-weight: lighter;
                     letter-spacing: 1.25px;

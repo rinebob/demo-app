@@ -8,12 +8,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { AngExpRoutingModule } from './ang-exp-routing.module';
 import { AngExpComponent } from './ang-exp.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
+import { SignalsComponent } from './signals/signals.component';
+import { AnimationsComponent } from './animations/animations.component';
 
 
 @NgModule({
   declarations: [
     AngExpComponent,
-    DragDropComponent
+    DragDropComponent,
+    SignalsComponent,
+    AnimationsComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { Board, ColumnColor, ColumnOrder, SortedTasks, Task, TaskStatus } from "./interfaces";
+import { AngExpRoutes, Board, ColumnColor, ColumnOrder, NavButtonConfig, SortedTasks, Task, TaskStatus } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -54,3 +54,9 @@ export const COLUMN_COLOR: ColumnColor = {
     [TaskStatus.DEPRECATED]: '#67e2ae',
 
 }
+
+export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
+    {routerLink: AngExpRoutes.DRAG_DROP, text: 'cdk Drag Drop' },
+    {routerLink: AngExpRoutes.ANIMATIONS, text: 'Animations'},
+    {routerLink: AngExpRoutes.SIGNALS, text: 'Signals'},
+];
