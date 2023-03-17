@@ -4,7 +4,7 @@
 
 .task-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--background-3);
+    background-color: var(--background-2);
     
     .title-container {
         @include global.flexboxLayout(row, space-between, center);
@@ -80,10 +80,18 @@
         }
 
         .add-subtask-button {
+            @include kanban.kanbanBodyLText;
             @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanColors;
             justify-content: center;
             margin: 0 0 24px;
             width: 100%;
+
+            &:hover {
+                @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+            }
+
+
         }
 
         .status-select {
@@ -103,14 +111,27 @@
             button {
                 width: 50%;
             }
+
             .cancel-button {
                 @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+                @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--kanban-on-secondary-idle));
                 justify-content: center;
+                
+                &:hover {
+                    @include kanban.kanbanColors($background-color: var(--kanban-secondary-hover), $color: var(--kanban-on-secondary-hover));
+                    
+                }
             }
     
             .save-button {
                 @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+                @include kanban.kanbanColors;
                 justify-content: center;
+
+                &:hover {
+                    @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+                    
+                }
             }
      
         }

@@ -20,7 +20,7 @@ export class DeleteConfirmComponent implements OnInit {
     private boardsStore: BoardsStore,
     ) {
 
-      // console.log('dC ctor entity to delete: ', data);
+      // console.log('dC ctor dialog data: ', data);
 
       this.setMessages();
   }

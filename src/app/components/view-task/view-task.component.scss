@@ -4,7 +4,7 @@
 
 .task-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--background-3);
+    background-color: var(--background-2);
     overflow: hidden;
     
     .title-container {
@@ -67,10 +67,15 @@
                 &:hover {
                     background-color: var(--checkbox-background-hover);
                 }
-        
+
                 .subtask-description {
                     @include kanban.kanbanBodyMText;
                     margin: 0;
+                }
+
+                .subtask-completed {
+                    color: var(--kanban-grey-5);
+                    text-decoration: line-through;
                 }
             }
         }
@@ -100,8 +105,15 @@
 
         button {
             @include kanban.kanbanMainButtonStyles;
-            color: var(--kanban-on-primary-idle);
-            padding: 4px 24px;
+            @include kanban.kanbanColors;
+                justify-content: center;
+                margin: 4px 0;
+                padding: 4px 24px;
+
+                &:hover {
+                    @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+
+                }
         }
     }
    

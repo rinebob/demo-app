@@ -4,7 +4,7 @@
 
 .delete-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--background-3);
+    background-color: var(--background-2);
     
     .title-container {
         @include global.flexboxLayout(row, space-between, center);

@@ -25,14 +25,15 @@
         <div class="subtasks-scroll-container">
 
             <div class="subtasks-container">
-
+                
                 <div class="subtask-card" *ngFor="let subtask of task.subTasks">
                     <mat-checkbox color="primary"
-                                  disabled="true"
                                   [checked]="subtask.status === 'completed'"
                     >
                     </mat-checkbox>
-                    <p class="subtask-description">{{subtask.description}}</p>
+                    <p class="subtask-description"
+                       [class.subtask-completed]="subtask.status === 'completed'"
+                    >{{subtask.description}}</p>
                 </div>
             
             </div>

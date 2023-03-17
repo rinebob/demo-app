@@ -51,6 +51,20 @@ export class DialogService {
     });
   }
 
+  openDeleteBoardDialog(board: Board, theme: string) {
+    const dialogData = {
+      board,
+    }
+    const config = new MatDialogConfig();
+    config.panelClass = [this.boardFormPanelClass, theme];
+    config.data = dialogData;
+    // console.log('dS oEBD edit board called. board: ', board);
+    const dialogRef = this.dialog.open(DeleteConfirmComponent, config);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('dS oDBD delete board dialog closed.  result: ', result);
+    });
+  }
+
   openCreateTaskDialog(boardId: number, theme: string) {
     const dialogData = {
       boardId,

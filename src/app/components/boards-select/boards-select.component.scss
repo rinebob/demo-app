@@ -4,6 +4,7 @@
 
 .boards-select-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
+    background-color: var(--background-3);
     height: 322px;
     
     .boards-select-upper {
@@ -19,6 +20,7 @@
         .nav-button {
             @include global.flexboxLayout(row, flex-start, center);
             @include kanban.kanbanSidenavButtonStyles;
+            @include kanban.kanbanColors($background-color: var(--background-3), $color: var(--subtitle-text-1));
     
             mat-icon {
                 margin: 0 16px 0 0;
@@ -29,17 +31,22 @@
                 margin: 0;
                 padding: 0;
             }
+
+            &:not(.focused) {
+                        
+                &:hover {
+                    @include kanban.kanbanColors($background-color: var(--kanban-white-1), $color: var(--kanban-primary-idle));
+                }
+            }
         }
 
         .focused {
-            background-color: var(--kanban-primary-idle);
-            color: var(--kanban-on-primary-idle);
+            @include kanban.kanbanColors($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle));
         }
 
         .create-new-board-button {
             @include kanban.kanbanHeadingMText;
-            background-color: var(--background-3);
-            color: var(--kanban-primary-idle);
+            @include kanban.kanbanColors($background-color: var(--background-3), $color: var(--kanban-primary-idle));
             margin: 4px 8px;
         }
     }

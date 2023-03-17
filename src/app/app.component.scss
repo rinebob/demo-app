@@ -98,8 +98,8 @@
             position: relative;
     
             .show-sidenav-button {
-                // @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));
                 @include kanban.kanbanMainButtonStyles(transparent, transparent, var(--size-button-tall));
+                @include kanban.kanbanColors($background-color: transparent, $color: transparent);
 
                 border-top-left-radius: 0;
                 border-top-right-radius: 100px;

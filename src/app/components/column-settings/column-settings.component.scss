@@ -4,7 +4,7 @@
 
 .settings-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--background-3);
+    background-color: var(--background-2);
     
     .title-container {
         @include global.flexboxLayout(column, flex-start, flex-start);
@@ -95,9 +95,14 @@
 
         .all-none-button {
             @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
+            @include kanban.kanbanColors;
             font-size: 12px;
             justify-content: center;
             width: 40%;
+
+            &:hover {
+                @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+            }
 
             @include global.response(md) {
                 font-size: 10px;
@@ -106,6 +111,8 @@
 
         .reset-initial-button {
             @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
+            // colors indend to indicate button is disabled
+            @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--background-5));
             font-size: 12px;
             justify-content: center;
             width: 40%;
@@ -132,12 +139,22 @@
         
         .cancel-button {
             @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--kanban-on-secondary-idle));
             justify-content: center;
+
+            &:hover {
+                @include kanban.kanbanColors($background-color: var(--kanban-secondary-hover), $color: var(--kanban-on-secondary-hover));
+            }
         }
         
         .save-button {
             @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+            @include kanban.kanbanColors;
             justify-content: center;
+
+            &:hover {
+                @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+            }
         }
     }
 }
@@ -146,11 +163,6 @@
 // This is the element being dragged
 .cdk-drag {
     @include global.flexboxLayout(row, flex-start, center);
-    // background-color: var(--background-4);
-    // border-radius: 4px;
-    // color: var(--title-text-1);
-    // margin: 4px 0;
-    // width: 100%;
     
     mat-icon {
         cursor: move;

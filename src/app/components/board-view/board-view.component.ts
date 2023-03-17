@@ -145,6 +145,10 @@ export class BoardViewComponent implements OnInit {
   openEditBoardDialog() {
     this.dialogService.openEditBoardDialog(this.selectedBoardBS.value, this.theme);
   }
+  
+  openDeleteBoardDialog() {
+    this.dialogService.openDeleteBoardDialog(this.selectedBoardBS.value, this.theme);
+  }
 
   openCreateTaskDialog() {
     const id = this.selectedBoardBS.value.id;

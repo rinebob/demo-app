@@ -4,23 +4,36 @@
 //////////////// ELEMENTS //////////////////////
 @mixin kanbanMainButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
     @include global.flexboxLayout(row, space-between, center);
-    background-color: $background-color;
     border: none;
     border-radius: 24px;
+    cursor: pointer;
     height: $height;
-    color: $color;
     margin: 4px 8px;
     padding: 0 24px;
+}
+
+@mixin kanbanColors($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle)) {
+    background-color: $background-color;
+    color: $color;
+}
+
+@mixin kanbanButtonTextStyles($color: var(--kanban-on-primary-idle)) {
+    color: $color;
+    font-weight: 700;
+    font-size: kanbanVar.fontSize(body-l);
+    line-height: kanbanVar.lineHeight(body-l);
+    font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
 
 @mixin kanbanTopnavButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
     @include kanbanHeadingMText;
     @include global.flexboxLayout(row, space-between, center);
-    background-color: $background-color;
+    // background-color: $background-color;
     border: none;
     border-radius: 24px;
     height: $height;
-    color: $color;
+    // color: $color;
+    cursor: pointer;
     margin: 0 8px;
     padding: 0 24px;
 }
@@ -34,20 +47,33 @@
     width: var(--size-button-mobile-width);
 }
 
-@mixin kanbanSidenavButtonStyles {
+@mixin kanbanSidenavButtonStyles($background-color: var(--kanban-primary-idle), $height: var(--size-button-tall)) {
     @include kanbanHeadingMText;
-    background-color: var(--background-3);
+    background-color: $background-color;
     border: none;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
     cursor: pointer;
-    height: var(--size-button-tall);
-    // color: kanbanVar.color(light-text);
-    color: var(--subtitle-text-1);
+    height: $height;
     margin: 4px 8px;
     padding: 0 24px;
     text-align: left;
     width: 276px;
+}
+
+@mixin kanbanSidenavButtonStylesActive {
+    @include kanbanSidenavButtonStyles;
+    background-color: var(--kanban-primary-idle);
+    color: var(--kanban-on-primary-idle);
+}
+
+@mixin kanbanSidenavButtonStylesHover {
+    background-color: var(--kanban-secondary-hover);
+    color: var(--kanban-on-secondary-hover);
+}
+
+@mixin kanbanSidenavTextButtonStylesHover {
+    color: var(--kanban-primary-idle);
 }
 
 @mixin kanbanSidenavButtonStylesMobile {
@@ -70,6 +96,10 @@
     padding: 10px 2px;
     width: 100%;
 
+    mat-icon {
+        cursor: move;
+    }
+
     .handle-container {
         height: 100%;
         margin-right: 2px;
@@ -81,6 +111,10 @@
         .task-title {
             @include kanbanHeadingMText;
             margin: 0 0 8px;
+
+            &:hover {
+                @include kanbanSidenavTextButtonStylesHover
+            }
         }
     
         .task-subtitle {
@@ -151,6 +185,5 @@
     line-height: kanbanVar.lineHeight(body-m);
     font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
 }
-
 
 ////////////// END TYPOGRAPHY //////////////////////

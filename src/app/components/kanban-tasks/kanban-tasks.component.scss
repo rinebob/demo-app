@@ -49,11 +49,38 @@
             margin-top: 64px;
             width: 100%;
 
+            .column-button-container {
+
+                @include kanban.kanbanHeadingXLText;
+                color: var(--subtitle-text-1);
+                text-transform: capitalize;
+                white-space: normal;
+                
+                &:hover {
+                    @include kanban.kanbanSidenavTextButtonStylesHover;
+                }
+            }
+
             .new-column-button {
                 @include kanban.kanbanHeadingXLText;
                 color: var(--subtitle-text-1);
                 text-transform: capitalize;
                 white-space: normal;
+                
+                &:hover {
+                    @include kanban.kanbanSidenavTextButtonStylesHover;
+                    
+                    mat-icon {
+                        @include kanban.kanbanSidenavTextButtonStylesHover;
+                        
+                    }
+                }
+
+                mat-icon {
+                    color: var(--subtitle-text-1);
+                    margin-right: 8px;
+                }
+
             }
             
             mat-icon {
@@ -74,9 +101,9 @@
         color: var(--subtitle-text-1);
     }
 
-    .add-column-button {
-        @include kanban.kanbanMainButtonStyles;
+    .add-task-button {
         @include kanban.kanbanHeadingMText;
+        @include kanban.kanbanMainButtonStyles;
     }
 
 }
@@ -91,21 +118,6 @@
     // It does not get a color from a variable
     // background-color: yellow;
     // background-color: var(--test-background-2);
-    
-    mat-icon {
-        cursor: move;
-    }
-
-    .light-background {
-        // background-color: var(--kanban-white-1);
-        background-color: yellow;
-    }
-    
-    .dark-background {
-        // background-color: var(--kanban-grey-3);
-        background-color: green;
-    
-    }
 }
 
 // This is the element that will be dragged (task card) and has the same behavior as 
@@ -172,15 +184,4 @@
     min-height: 60px;
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
     width: 98%;
-}
-
-.light-background {
-    // background-color: var(--kanban-white-1);
-    background-color: yellow;
-}
-
-.dark-background {
-    // background-color: var(--kanban-grey-3);
-    background-color: green;
-
 }
