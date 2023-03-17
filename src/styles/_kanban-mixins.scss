@@ -2,7 +2,7 @@
 @use './kanban-variables' as kanbanVar;
 
 //////////////// ELEMENTS //////////////////////
-@mixin kanbanMainButtonStyles($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle), $height: var(--size-button-regular)) {
+@mixin kanbanMainButtonStyles($height: var(--size-button-regular)) {
     @include global.flexboxLayout(row, space-between, center);
     border: none;
     border-radius: 24px;

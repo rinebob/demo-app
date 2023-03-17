@@ -81,7 +81,7 @@
 
         .add-subtask-button {
             @include kanban.kanbanBodyLText;
-            @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles;
             @include kanban.kanbanColors;
             justify-content: center;
             margin: 0 0 24px;
@@ -113,7 +113,7 @@
             }
 
             .cancel-button {
-                @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+                @include kanban.kanbanMainButtonStyles;
                 @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--kanban-on-secondary-idle));
                 justify-content: center;
                 
@@ -124,7 +124,7 @@
             }
     
             .save-button {
-                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+                @include kanban.kanbanMainButtonStyles;
                 @include kanban.kanbanColors;
                 justify-content: center;
 

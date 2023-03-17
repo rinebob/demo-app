@@ -1,6 +1,14 @@
 @use './global-mixins' as global;
 @use './ng-exp-variables' as angExpVar;
 
+////////////////// COLORS /////////////////////////
+
+@mixin angExpColors($background-color: var(--ang-exp-primary-idle), $color: var(--ang-exp-on-primary-idle)) {
+    background-color: $background-color;
+    color: $color;
+}
+
+////////////////// END COLORS /////////////////////////
 
 ////////////// TYPOGRAPHY //////////////////////////
 
@@ -67,25 +75,21 @@
 
 
 //////////////// ELEMENTS //////////////////////
-@mixin mainButtonStyles($background-color: var(--ang-exp-primary-idle), $color: var(--ang-exp-on-primary-idle), $height: var(--size-button-regular)) {
+@mixin mainButtonStyles($height: var(--size-button-regular)) {
     @include global.flexboxLayout(row, space-between, center);
-    background-color: $background-color;
     border: none;
     border-radius: 24px;
     height: $height;
-    color: $color;
     margin: 4px 8px;
     padding: 0 24px;
 }
 
-@mixin topnavButtonStyles($background-color: var(--ang-exp-primary-idle), $color: var(--ang-exp-on-primary-idle), $height: var(--size-button-regular)) {
+@mixin topnavButtonStyles($height: var(--size-button-regular)) {
     @include headingMText;
     @include global.flexboxLayout(row, space-between, center);
-    background-color: $background-color;
     border: none;
     border-radius: 24px;
     height: $height;
-    color: $color;
     margin: 0 8px;
     padding: 0 24px;
 }
@@ -101,14 +105,11 @@
 
 @mixin sidenavButtonStyles {
     @include headingMText;
-    background-color: var(--background-3);
     border: none;
     border-top-right-radius: 24px;
     border-bottom-right-radius: 24px;
     cursor: pointer;
     height: var(--size-button-tall);
-    // color: angExpVar.color(light-text);
-    color: var(--subtitle-text-1);
     margin: 4px 8px;
     padding: 0 24px;
     text-align: left;
@@ -122,7 +123,6 @@
 
 @mixin taskCardStyles {
     @include global.flexboxLayout(row, flex-start, flex-start);
-    background-color: var(--ang-exp-background-3);
     border-radius: 8px;
     box-sizing: border-box;
     box-shadow: 2px 4px 6px rgba(54, 78, 126, var(--ang-exp-task-card-drop-shadow-opacity));

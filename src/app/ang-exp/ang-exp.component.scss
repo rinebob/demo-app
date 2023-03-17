@@ -30,7 +30,16 @@
 
             .nav-button {
                 @include ang-exp.sidenavButtonStyles;
+                @include ang-exp.angExpColors($background-color: var(--background-3), $color: var(--subtitle-text-1));
                 @include global.flexboxLayout(row, flex-start, center);
+
+                &:not(.active-link) {
+                        
+                    &:hover {
+                        @include ang-exp.angExpColors(var(--ang-exp-primary-hover), var(--ang-exp-on-primary-hover));
+                 
+                    }
+                }
 
                 mat-icon {
                     margin: 0 16px 0 0;
@@ -44,8 +53,7 @@
             }
 
             .active-link {
-                background-color: var(--ang-exp-primary-idle);
-                color: var(--ang-exp-on-primary-idle);
+                @include ang-exp.angExpColors;
             }
         }
     }
@@ -66,14 +74,16 @@
                 @include global.flexboxLayout(row, flex-start, center);
                 
                 .nav-button {
-                    @include ang-exp.topnavButtonStyles(var(--ang-exp-primary-idle), var(--ang-exp-on-primary-idle), var(--size-button-tall));
+                    @include ang-exp.topnavButtonStyles(var(--size-button-tall));
+                    @include ang-exp.angExpColors;
                     
                 }
             }
         }
 
         .show-drawer-button {
-            @include ang-exp.mainButtonStyles(var(--ang-exp-primary-idle), var(--ang-exp-on-primary-idle), var(--size-button-tall));    
+            @include ang-exp.mainButtonStyles(var(--size-button-tall));    
+            @include ang-exp.angExpColors;
             border-top-left-radius: 0;
             border-top-right-radius: 100px;
             border-bottom-right-radius: 100px;
