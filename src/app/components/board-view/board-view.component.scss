@@ -4,7 +4,6 @@
 @import "styles.scss";
 
 :host {
-    // @include global.flexboxLayout(row, flex-start, flex-start);
     @include global.flexboxLayout(column, flex-start, flex-start);
     height: 100%;
     overflow: hidden;

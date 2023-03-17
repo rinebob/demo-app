@@ -44,13 +44,23 @@
         }
 
         .cancel-button {
-            @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles;
+            @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--kanban-on-secondary-idle));
             justify-content: center;
+            
+            &:hover {
+                @include kanban.kanbanColors($background-color: var(--kanban-secondary-hover), $color: var(--kanban-on-secondary-hover));
+            }
         }
         
         .delete-button {
-            @include kanban.kanbanMainButtonStyles(var(--kanban-destructive-idle), var(--kanban-on-destructive-idle), 40px);
+            @include kanban.kanbanMainButtonStyles;
+            @include kanban.kanbanColors($background-color: var(--kanban-destructive-idle), $color: var(--kanban-on-destructive-idle));
             justify-content: center;
+
+            &:hover {
+                @include kanban.kanbanColors($background-color: var(--kanban-destructive-hover), $color: var(--kanban-on-destructive-hover));
+            }
         }
     }
 

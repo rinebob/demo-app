@@ -94,7 +94,7 @@
         width: 100%;
 
         .all-none-button {
-            @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
+            @include kanban.kanbanMainButtonStyles(20px);
             @include kanban.kanbanColors;
             font-size: 12px;
             justify-content: center;
@@ -110,7 +110,7 @@
         }
 
         .reset-initial-button {
-            @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 20px);
+            @include kanban.kanbanMainButtonStyles(20px);
             // colors indend to indicate button is disabled
             @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--background-5));
             font-size: 12px;
@@ -138,7 +138,7 @@
 
         
         .cancel-button {
-            @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles;
             @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--kanban-on-secondary-idle));
             justify-content: center;
 
@@ -148,7 +148,7 @@
         }
         
         .save-button {
-            @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+            @include kanban.kanbanMainButtonStyles;
             @include kanban.kanbanColors;
             justify-content: center;
 
