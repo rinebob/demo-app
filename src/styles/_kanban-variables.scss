@@ -20,7 +20,7 @@
     --kanban-primary-idle: var(--kanban-purple-1);
     --kanban-primary-hover: var(--kanban-purple-2);
     --kanban-secondary-idle: var(--kanban-white-1);
-    --kanban-secondary-hover: rgba(99, 95, 199, .25);
+    // --kanban-secondary-hover in light/dark themes
     --kanban-destructive-idle: var(--kanban-red-1);
     --kanban-destructive-hover: var(--kanban-red-2);
 
@@ -85,8 +85,7 @@
 
 .kanban-light-theme {
 
-    --test-background-1: var(--kanban-purple-1);
-    --test-background-2: orange;
+    --kanban-secondary-hover: var(--kanban-purple-2);
     
     --background-1: var(--kanban-white-1);
     --background-2: var(--kanban-white-1);
@@ -113,7 +112,7 @@
     --sidenav-border-color: var(--kanban-grey-6);
 
     --checkbox-background: var(--kanban-grey-6);
-    --checkbox-background-hover: var(--kanban-grey-5);
+    --checkbox-background-hover: var(--kanban-purple-2);
 
     --task-card-drop-shadow-opacity: .25;
 
@@ -121,9 +120,9 @@
 
 
 .kanban-dark-theme {
-    --test-background-1: var(--kanban-red-1);
-    --test-background-2: green;
 
+    --kanban-secondary-hover: var(--kanban-white-1);
+    
     // text color for dark backgrounds    
     --text-color-1: var(--kanban-white-1);
     --background-1: var(--kanban-grey-1);
@@ -146,8 +145,8 @@
 
     --sidenav-border-color: var(--kanban-grey-4);
 
-    --checkbox-background: var(--kanban-grey-4);
-    --checkbox-background-hover: var(--kanban-grey-5);
+    --checkbox-background: var(--kanban-grey-2);
+    --checkbox-background-hover: var(--kanban-purple-2);
 
     --task-card-drop-shadow-opacity: 0;
 }

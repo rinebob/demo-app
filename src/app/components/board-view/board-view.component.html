@@ -18,7 +18,7 @@
                     <div class="kanban-icon-segment segment-2"></div>
                     <div class="kanban-icon-segment segment-3"></div>
                 </div>
-
+                
                 <p class="logo-text">kanban</p>
 
             </div>
@@ -30,12 +30,12 @@
 
             <button *ngFor="let board of boards$ | async"
                     type="button"
-                    class="nav-button"
+                    class="sidenav-button"
                     (click)="setSelectedBoard(board)"
                     [class.focused]="getFocusStatus(board.displayName)"
             >
                 <mat-icon>grid_on</mat-icon>
-                <p class="nav-button-text">
+                <p class="sidenav-button-text">
                     {{board.displayName}}
                 </p>
             </button>
@@ -131,7 +131,8 @@
                     <mat-menu #topnavMenu="matMenu" [class]="topnavMenuCssClass">
         
                         <button mat-menu-item (click)="openEditBoardDialog()">Edit Board</button>
-                        <button mat-menu-item class="create-task-menu-item" (click)="openCreateTaskDialog()">Add Task</button>
+                        <button mat-menu-item (click)="openDeleteBoardDialog()" class="delete-board-menu-item">Delete Board</button>
+                        <button mat-menu-item (click)="openCreateTaskDialog()" class="create-task-menu-item">Add Task</button>
                         <button mat-menu-item (click)="openConfigureColumnsDialog()">Configure Columns</button>
                         
                     </mat-menu>

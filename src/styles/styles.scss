@@ -100,9 +100,23 @@ body {
 
     .mdc-list-item__primary-text {
         color: var(--title-text-1);
+    }
 
+    .delete-board-menu-item {
         
+        .mdc-list-item__primary-text {
+            color: var(--kanban-destructive-idle) !important;
 
+        }
+    }
+
+    .create-task-menu-item {
+        display: none;
+
+        @include global.response(md) {
+            display: block;
+
+        }
     }
 }
 
@@ -150,6 +164,7 @@ body {
 .column-settings-panel-class {
     
     background-color: var(--background-2);
+    border-radius: 8px;
 
     .mdc-list-item__primary-text {
         color: var(--title-text-1);
@@ -157,18 +172,19 @@ body {
     }
     
     .mat-mdc-dialog-container {
-        background-color: var(--background-3);
-        border-radius: 8px;
-        width: var(--size-board-dialog-width-xl);
-        padding: var(--size-board-dialog-padding-xl);
-    
-        @include global.response(md) {
-            width: var(--size-board-dialog-width-md);
-            padding: var(--size-board-dialog-padding-md);
-        }
-
-        .mdc-dialog__surface {
+       
+        .mat-mdc-dialog-surface {
+            border-radius: 0;
             box-shadow: none;
+            background-color: var(--background-2);
+            border-radius: 8px;
+            padding: var(--size-board-dialog-padding-xl);
+            width: var(--size-board-dialog-width-xl);
+
+            @include global.response(md) {
+                width: var(--size-board-dialog-width-md);
+                padding: var(--size-board-dialog-padding-md);
+            }
         }
     }
 

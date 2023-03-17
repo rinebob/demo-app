@@ -4,7 +4,7 @@
 
 .board-dialog-container {
     @include global.flexboxLayout(column, flex-start, flex-start);
-    background-color: var(--background-3);
+    background-color: var(--background-2);
    
     .title-container {
         @include global.flexboxLayout(row, flex-start, center);
@@ -51,17 +51,27 @@
 
             .cancel-button {
                 @include kanban.kanbanMainButtonStyles(var(--kanban-secondary-idle), var(--kanban-on-secondary-idle), 40px);
+                @include kanban.kanbanColors($background-color: var(--kanban-secondary-idle), $color: var(--kanban-on-secondary-idle));
                 justify-content: center;
                 margin: 4px 0;
-            }
-
-            .save-button {
-                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
-                justify-content: center;
-                margin: 4px 0;
+                
+                &:hover {
+                    @include kanban.kanbanColors($background-color: var(--kanban-secondary-hover), $color: var(--kanban-on-secondary-hover));
+                    
+                }
             }
     
+            .save-button {
+                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), 40px);
+                @include kanban.kanbanColors;
+                justify-content: center;
+                margin: 4px 0;
+
+                &:hover {
+                    @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+                    
+                }
+            }
         }
     }
-
 }

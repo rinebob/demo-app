@@ -15,7 +15,6 @@
 
         .mat-drawer {
             @include global.flexboxLayout(column, flex-start, space-between);
-            // background-color: var(--dark-background-3);
             background-color: var(--background-3);
             border-right: 1px solid var(--sidenav-border-color);
             width: 300px;
@@ -34,32 +33,37 @@
                     text-transform: uppercase;
                 }
 
-                .nav-button {
-                    @include kanban.kanbanSidenavButtonStyles;
+                .sidenav-button {
                     @include global.flexboxLayout(row, flex-start, center);
+                    @include kanban.kanbanSidenavButtonStyles;
+                    @include kanban.kanbanColors($background-color: var(--background-3), $color: var(--subtitle-text-1));
 
                     mat-icon {
                         margin: 0 16px 0 0;
                     }
-
+                    
                     &-text {
-                        font-weight: lighter;
                         margin: 0;
                         padding: 0;
+                    }
+                    
+                    &:not(.focused) {
+                        
+                        &:hover {
+                            @include kanban.kanbanColors($background-color: var(--kanban-white-1), $color: var(--kanban-primary-idle));
+                        }
                     }
                 }
 
                 .focused {
-                    background-color: var(--kanban-primary-idle);
-                    color: var(--kanban-on-primary-idle);
+                    @include kanban.kanbanColors($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle));
                 }
 
                 
 
                 .create-new-board-button {
                     @include kanban.kanbanHeadingMText;
-                    background-color: var(--background-3);
-                    color: var(--kanban-primary-idle);
+                    @include kanban.kanbanColors($background-color: var(--background-3), $color: var(--kanban-primary-idle));
                     margin: 4px 8px;
                 }
             }
@@ -96,6 +100,10 @@
 
                     mat-icon {
                         margin-right: 15px;
+                    }
+
+                    &:hover {
+                        @include kanban.kanbanSidenavTextButtonStylesHover;
                     }
                 }
             }
@@ -142,6 +150,11 @@
                     
                     .nav-button {
                         @include kanban.kanbanTopnavButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));
+                        @include kanban.kanbanColors;
+
+                        &:hover {
+                            @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+                        }
                         
                         .nav-button-text {
                             margin: 0;
@@ -162,39 +175,26 @@
                             @include kanban.kanbanTopnavButtonStylesMobile;
                             width: 48px;
                         }
-        
-                        button.create-task-menu-item {
-                            display: none;
-        
-                            @include global.response(md) {
-                                display: block;
-        
-                            }
-                        }
                     }
                 }
-        
-                .menu-button-container {
-                    
-                    @include global.response(xl) {
-                        display: block;
-                    }
-                }
-        
-            }
+        }
         
             .show-drawer-button {
-                // @include kanban.kanbanmainButtonStyles(var(--primary-idle), var(--text-color-for-dark-background-1), var(--size-button-tall));    
-                @include kanban.kanbanMainButtonStyles(var(--kanban-primary-idle), var(--kanban-on-primary-idle), var(--size-button-tall));    
-                border-top-left-radius: 0;
-                border-top-right-radius: 100px;
-                border-bottom-right-radius: 100px;
-                border-bottom-left-radius: 0;
-                cursor: pointer;
+                @include global.flexboxLayout(row, center, center);
+                @include kanban.kanbanSidenavButtonStyles;    
+                @include kanban.kanbanButtonTextStyles;
+                @include kanban.kanbanColors;
                 position: absolute;
                 left: 0;
-                margin: 0;
                 top: 90%;
+                width: 56px;
+                
+                margin: 0;
+                padding: 0;
+
+                &:hover {
+                    @include kanban.kanbanColors(var(--kanban-primary-hover), var(--kanban-on-primary-hover));    
+                }
 
                 @include global.response(sm) {
                     display: none;
@@ -316,36 +316,4 @@
         }
     }
 
-}
-
-.task-card {
-    @include kanban.kanbanTaskCardStyles;
-    
-    .task-title {
-        @include kanban.kanbanHeadingMText;
-    }
-
-    .task-subtitle {
-        @include kanban.kanbanBodyMText;
-    }
-    
-    
-}
-
-.no-tasks-container {
-    @include global.flexboxLayout(column, center, center);
-    height: 100%;
-    height: calc(100% - var(--size-nav-bar-height));
-}
-
-.empty-board {
-    @include kanban.kanbanBodyLText;
-    color: var(--subtitle-text-1);
-
-
-}
-
-.add-column-button {
-    @include kanban.kanbanMainButtonStyles;
-    @include kanban.kanbanHeadingMText;
 }

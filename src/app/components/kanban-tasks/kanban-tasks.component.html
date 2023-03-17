@@ -53,13 +53,17 @@
                 <div *ngIf="column.name === 'new column'" 
                     class="new-column-area"
                 >
-                    <button mat-button
-                            class="new-column-button"
-                            (click)="openColumnSettingsDialog()"
-                    >
-                        <mat-icon>settings</mat-icon>
-                            columns
-                    </button>
+                    <div class="column-button-container">
+
+                        <button mat-button
+                                class="new-column-button"
+                                (click)="openColumnSettingsDialog()"
+                        >
+                            <mat-icon>settings</mat-icon>
+                                columns
+                        </button>
+
+                    </div>
                 </div>
 
             </div>
@@ -75,7 +79,7 @@
         
         <p class="empty-board">{{emptyBoardText}}</p>
         <button mat-button
-                class="add-column-button"
+                class="add-task-button"
                 (click)="addNewTask()"
         >
             <mat-icon>add</mat-icon>
