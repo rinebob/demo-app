@@ -18,8 +18,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+// from https://github.com/angular/angularfire/blob/master/samples/modular/src/app/app.module.ts
+import { connectFirestoreEmulator, getFirestore, provideFirestore, enableMultiTabIndexedDbPersistence } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,12 @@ import { ImBoardsTasksService } from './services/im-boards-tasks.service';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BoardsStore } from './services/boards-store.service';
+
+let resolvePersistenceEnabled: (enabled: boolean) => void;
+
+export const persistenceEnabled = new Promise<boolean>(resolve => {
+  resolvePersistenceEnabled = resolve;
+});
 
 @NgModule({
   declarations: [
@@ -53,20 +60,40 @@ import { BoardsStore } from './services/boards-store.service';
     MatSidenavModule,
     MatSlideToggleModule,
 
+    // DO NOT DELETE ///////////////////////////////////
+    // ANGULAR IN-MEMORY WEB API
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     // Use it only in non-prod environment
-    environment.production ? [] : 
-      HttpClientInMemoryWebApiModule.forRoot(
-        ImBoardsTasksService, { dataEncapsulation: false, delay: 100 }),
+    // Boards Service is being intercepted but not firestore calls
+
+    // uncomment this to enable (also need to enable elsewhere)
+    // environment.production ? [] : 
+    //   HttpClientInMemoryWebApiModule.forRoot(
+    //     ImBoardsTasksService, { dataEncapsulation: false, delay: 100 }),
+
+    ///////////////////////////////////////
 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
+    
+    provideFirestore(() => {
+      const firestore = getFirestore();
+      if (environment.useEmulators) {
+          connectFirestoreEmulator(firestore, 'localhost', 8080);
+      }
+      enableMultiTabIndexedDbPersistence(firestore).then(
+        () => resolvePersistenceEnabled(true),
+        () => resolvePersistenceEnabled(false)
+      );
+      return firestore;
+    }),
     StoreModule.forRoot({}, {}),
   ],
-  providers: [MatIconRegistry, BoardsStore],
+  providers: [
+    MatIconRegistry, BoardsStore,
+  ],
   exports: [MatIconModule],
   bootstrap: [AppComponent]
 })

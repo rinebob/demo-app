@@ -69,7 +69,7 @@ export class DeleteConfirmComponent implements OnInit {
       
     } else if (data.task && data.task.id && data.task.boardId) {
       // console.log('dC dE deleting task: ', data.task);
-      this.boardsStore.deleteTask(data.task.id);
+      this.boardsStore.deleteTask(data.task);
       this.dialogRef.close({outcome: DialogCloseResult.DELETE_TASK_COMPLETE});
       
     } else {

@@ -65,7 +65,7 @@ export class DialogService {
     });
   }
 
-  openCreateTaskDialog(boardId: number, theme: string) {
+  openCreateTaskDialog(boardId: string | number, theme: string) {
     const dialogData = {
       boardId,
     }

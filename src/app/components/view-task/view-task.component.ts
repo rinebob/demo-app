@@ -65,7 +65,7 @@ export class ViewTaskComponent {
     
   }
   
-  deleteTask(taskId: number) {
+  deleteTask(taskId: string | number) {
     // console.log('vT dT delete task called.  id: ', taskId);
     this.dialogRef.close({outcome: DialogCloseResult.DELETE_TASK});
 
