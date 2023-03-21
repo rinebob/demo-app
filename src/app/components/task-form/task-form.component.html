@@ -33,9 +33,68 @@
 
             <!-- Subtasks form group -->
 
-        <p class="field-label">Subtasks</p>
+            <p class="field-label">Subtasks</p>
 
-        <div class="subtasks-scroll-container">
+            <ng-container *ngIf="subtasksBS.value && subtasksBS.value.length > 0; else noSubtasks">
+
+                <div class="subtasks-scroll-container">
+
+                    <ng-container formArrayName="subtasks">
+                        
+                        <ng-container *ngFor="let subtaskForm of subtasks.controls; let i=index"
+                        >
+
+                            <div class="subtask-container" [formGroupName]="i">
+
+                                <mat-form-field appearance="outline"
+                            >
+                            
+                                <input matInput
+                                        formControlName="subtaskDescriptionControl-{{i}}"
+                                        placeholder="Subtask title or description"
+                                        type="text"
+                                >
+                            </mat-form-field>
+
+                            </div>
+
+
+                        </ng-container>
+                    
+                    </ng-container>
+                    
+                        
+                        
+                            <!-- <mat-checkbox #checkbox 
+                                        color="primary"
+                                        [value]="''"
+                                        [checked]="getCheckedStatus('')"
+                                        (change)="updateSubtask($event)"
+                            >
+                                
+                            </mat-checkbox> -->
+        
+                            
+                            <!-- <button mat-icon-button
+                                    type="button"
+                                    (click)="deleteSubTask('{{i}}')"
+                                    >
+                                <mat-icon matSuffix>close</mat-icon>
+        
+                            </button> -->
+            
+                </div>
+            
+            </ng-container>
+
+        <ng-template #noSubtasks>
+                        
+            <p class="no-subtasks-text">No subtasks yet.  Click to add.</p>
+            
+        </ng-template>
+
+
+        <!-- <div class="subtasks-scroll-container">
 
             <div class="subtasks-container">
 
@@ -61,12 +120,13 @@
 
             </div>
 
-        </div>
+        </div> -->
 
+        <!-- (click)="addSubTask($event)" -->
         <button mat-flat-button
                 class="add-subtask-button"
                 type="button"
-                (click)="addSubTask($event)"
+                (click)="addSubtask()"
                 >
             <mat-icon>add</mat-icon>
             Add Subtask

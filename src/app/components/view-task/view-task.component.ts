@@ -60,7 +60,7 @@ export class ViewTaskComponent {
   }
   
   editTask(task: Task) {
-    // console.log('vT eT edit task called.  task: ', task.displayName);
+    console.log('vT eT edit task called.  task: ', task.displayName);
     this.dialogRef.close({outcome: DialogCloseResult.EDIT_TASK});
     
   }

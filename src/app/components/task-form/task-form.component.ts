@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Inject, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -8,6 +8,7 @@ import { DialogCloseResult, DialogData, FormMode, SubTask, SubTaskStatus, Task, 
 import { TASK_INITIALIZER } from '../../common/constants';
 import { BoardsService } from 'src/app/services/boards.service';
 import { BoardsStore } from 'src/app/services/boards-store.service';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-task-form',
@@ -16,8 +17,12 @@ import { BoardsStore } from 'src/app/services/boards-store.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskFormComponent {
+  @ViewChildren('checkbox') checkboxes!: QueryList<MatCheckbox>;
   taskBS = new BehaviorSubject<Task>(TASK_INITIALIZER);
   task$: Observable<Task> = this.taskBS;
+
+  subtasksBS = new BehaviorSubject<SubTask[]|undefined>(undefined);
+  subtasks$: Observable<SubTask[]|undefined> = this.subtasksBS;
 
   taskForm: FormGroup;
   displayNameControl = new FormControl('');
@@ -27,6 +32,12 @@ export class TaskFormComponent {
   
   subtaskDescriptionControl = new FormControl('');
   subtasksArray = new FormArray([this.subtaskDescriptionControl]);
+  
+  subtaskForm = new FormGroup({
+    'subtaskDescriptionControl': new FormControl(''),
+    'subtaskStatusControl': new FormControl(SubTaskStatus.NOT_STARTED),
+  });
+  subtasksFormArray: FormArray;
 
   defaultStatusValue = '';
   readonly TaskStatus = TaskStatus;
@@ -42,7 +53,13 @@ export class TaskFormComponent {
   constructor(private boardsService: BoardsService,
             public dialogRef: MatDialogRef<TaskFormComponent>,
             private boardsStore: BoardsStore, private _overlayContainer: OverlayContainer,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+            @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    ) {
+
+      console.log('tF ctor task/subtasks: ', data.task, data.task?.subTasks);
+
+      this.buildSubtaskFormArray();
+
       this.buildTaskForm();
 
       if (data && data.boardId) {
@@ -50,14 +67,23 @@ export class TaskFormComponent {
         this.defaultStatusValue = TaskStatus.NOT_STARTED;
         // console.log('tF ctor board id for create task: ', data.boardId);
         this.populateForm(this.taskBS.value);
-
+        
       }
-
+      
       if (data && data.task) {
         this.formMode = FormMode.EDIT;
         this.taskBS.next(data.task)
         // console.log('tF ctor task to edit: ', data.task);
         this.populateForm(this.taskBS.value);
+        
+        if (data.task.subTasks && data.task.subTasks.length > 0) {
+          console.log('tF ctor subtasks: ', data.task.subTasks);
+          this.subtasksBS.next(data.task.subTasks)
+        } else {
+          console.log('tF ctor no subtasks: ', data.task.subTasks);
+          // const blankSubtask: SubTask = {displayName: '', description: '', status: SubTaskStatus.NOT_STARTED};
+          // this.subtasksBS.next([blankSubtask]);
+        }
       }
 
       if (data && data.theme) {
@@ -75,11 +101,48 @@ export class TaskFormComponent {
       });
   }
 
+  buildSubtaskForm(subtask?: SubTask) {
+    let subtaskForm: FormGroup;
+    if (subtask) {
+      subtaskForm = new FormGroup({
+        'subtaskDescriptionControl': new FormControl(subtask.description),
+        'subtaskStatusControl': new FormControl(subtask.status),
+      });
+
+      // return subtaskForm;
+    } else {
+      subtaskForm = new FormGroup({
+        'subtaskDescriptionControl': new FormControl(''),
+        'subtaskStatusControl': new FormControl(SubTaskStatus.NOT_STARTED),
+      });
+    }
+    console.log('tF bSF subtaskForm: ', subtaskForm);
+    return subtaskForm;
+  }
+
+  buildSubtaskFormArray() {
+    if (this.subtasksBS.value) {
+      for (const subtask of this.subtasksBS.value) {
+        const subtaskForm = this.buildSubtaskForm(subtask)
+        this.subtasksFormArray = new FormArray([subtaskForm]);
+      }
+    } else {
+      const subtaskForm = this.buildSubtaskForm();
+      console.log('tF bSF subtaskForm: ', subtaskForm);
+      this.subtasksFormArray = new FormArray([subtaskForm]);
+    }
+
+    console.log('tF bSFA t.subtasksFormArray: ', this.subtasksFormArray);
+
+  }
+
   buildTaskForm() {
     this.taskForm = new FormGroup({
       'displayNameControl': this.displayNameControl,
       'descriptionControl': this.descriptionControl,
-      'subTasks': this.subtasksArray,
+      // 'subTasks': this.subtasksArray,
+      // 'subtasks': this.subtasksFormArray,
+      'subtasks': new FormArray([]),
       'statusControl': this.statusControl,
     })
   }
@@ -88,8 +151,8 @@ export class TaskFormComponent {
     if (task.subTasks?.length > 0) {
       this.deleteSubTask('0');
       for (const subtask of this.taskBS.value.subTasks) {
-        const subtaskControl = new FormControl(subtask.description);
-        this.subtasksArray.push(subtaskControl);
+        // const subtaskControl = new FormControl(subtask.description);
+        // this.subtasksArray.push(subtaskControl);
       }
     }
 
@@ -114,13 +177,38 @@ export class TaskFormComponent {
     return this.taskForm.get('subTasks') as FormArray;
   }
 
-  addSubTask(event: any) {
-    const subtaskControl = new FormControl('');
-    this.subtasksArray.push(subtaskControl);
+  get subtasks() {
+    return this.taskForm.controls['subtasks'] as FormArray;
+  }
+
+  getCheckedStatus(status: string) {
+    return status === SubTaskStatus.COMPLETED;
+
+  }
+
+  // addSubTask(event: any) {
+  //   const subtaskControl = new FormControl('');
+  //   this.subtasksArray.push(subtaskControl);
+  // }
+
+  addSubtask() {
+    // const blankSubtask: SubTask = {displayName: '', description: '', status: SubTaskStatus.NOT_STARTED};
+    // const subtasks = this.subtasksBS.value ? [...this.subtasksBS.value, blankSubtask] : [blankSubtask];
+    // this.subtasksBS.next(subtasks)
+    const subtaskForm = this.buildSubtaskForm();
+    // this.subtasksFormArray.push(subtaskForm);
+    this.subtasks.push(subtaskForm);
+
+    console.log('tF bSFA t.subtasksFormArray: ', this.subtasks);
+  }
+
+  updateSubtask(event: any) {
+    console.log('tF uS update subtask event: ', event);
   }
 
   deleteSubTask(index: string) {
-    this.subtasksArray.removeAt(Number(index));
+    // this.subtasksArray.removeAt(Number(index));
+    this.subtasks.removeAt(Number(index));
   }
 
   handleSaveTask() {
@@ -132,7 +220,7 @@ export class TaskFormComponent {
       displayName: taskData.displayNameControl,
       description: taskData.descriptionControl,
       status: taskData.statusControl,
-      subTasks: this.taskForm.value.subTasks,
+      subTasks: this.taskBS.value.subTasks,
     }
     
     if (this.formMode === FormMode.EDIT) {
