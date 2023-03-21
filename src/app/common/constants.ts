@@ -60,3 +60,6 @@ export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
     {routerLink: AngExpRoutes.ANIMATIONS, text: 'Animations'},
     {routerLink: AngExpRoutes.SIGNALS, text: 'Signals'},
 ];
+
+export const BOARDS_COLLECTION = 'boards';
+export const TASKS_COLLECTION = 'tasks';

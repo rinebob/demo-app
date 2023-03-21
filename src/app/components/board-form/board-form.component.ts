@@ -80,13 +80,12 @@ export class BoardFormComponent implements OnInit {
     
     // console.log('bF sB board to BE: ', board);
     if (this.formMode === FormMode.EDIT) {
-      board.tasks = this.boardBS.value.tasks,
-      // this.boardsService.updateBoard(board);
+      // board.tasks = this.boardBS.value.tasks,
       this.boardsStore.updateBoard(board);
       this.dialogRef.close({outcome: DialogCloseResult.EDIT_BOARD_COMPLETE});
     } else {
       // console.log('bF sB board object to create: ', board);
-      // this.boardsService.createBoard(board);
+      delete board.id;
       this.boardsStore.createBoard(board);
       this.dialogRef.close({outcome: DialogCloseResult.CREATE_BOARD_COMPLETE});
     }

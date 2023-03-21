@@ -77,7 +77,7 @@
     <mat-drawer-content>
 
         <ng-container *ngIf="selectedBoard$ | async as board">
-    
+        
             <nav class="nav-bar">
             
                 <div class="board-title-container">
@@ -98,7 +98,7 @@
                     </div>
         
                     <p class="board-title">{{board.displayName}}</p>
-        
+                    
                     <button mat-icon-button
                             class="dropdown-icon-button"
                             color="primary"
@@ -110,6 +110,14 @@
                 </div>
                 
                 <div class="buttons-container">
+
+                    <button mat-button
+                            class="nav-button"
+                            (click)="uploadData()"
+                    >
+                        <mat-icon>add</mat-icon>
+                        <p class="nav-button-text">Upload data</p>
+                    </button>
         
                     <button mat-button
                             class="nav-button"
@@ -141,10 +149,10 @@
         
             </nav>
             
+            <!-- (updatedTasks)="handleUpdatedTasks($event)" -->
             <app-kanban-tasks [tasks]="(tasks$ | async)!"
                               [theme]="theme"
                               (addTask)="openCreateTaskDialog()"
-                              (updatedTasks)="handleUpdatedTasks($event)"
             >
             </app-kanban-tasks>
 

@@ -10,6 +10,7 @@ import { BoardsService } from './boards.service';
 export interface BoardsState {
   boards: Board[];
   selectedBoard: Board;
+  tasks: Task[];
   allTasksByStatus: SortedTasks;
   allColumns: Column[];
   allColumnsWithTasks: Column[];
@@ -19,6 +20,7 @@ export interface BoardsState {
 const BOARDS_STORE_INITIALIZER = {
   boards: [],
   selectedBoard: BOARD_INITIALIZER,
+  tasks: [],
   allTasksByStatus: {},
   allColumns: [],
   allColumnsWithTasks: [],
@@ -45,6 +47,19 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     selectedBoard: {...board},
   }));
 
+  // readonly setTasks = this.updater((state, tasks: Task[]) => ({
+  //   ...state,
+  //   tasks: [...tasks],
+  // }));
+
+  readonly setTasks = this.updater((state, tasks: Task[]) => {
+    // console.log('bSt sT set tasks: ', tasks);
+    return {
+      ...state,
+      tasks: [...tasks],
+    }
+  });
+
   readonly setallTasksByStatus = this.updater((state, sortedTasks: SortedTasks) => ({
     ...state,
     allTasksByStatus: {...sortedTasks},
@@ -67,6 +82,10 @@ export class BoardsStore extends ComponentStore<BoardsState> {
 
   readonly boards$: Observable<Board[]> = this.select((state: BoardsState) => state.boards);
   readonly selectedBoard$: Observable<Board> = this.select((state: BoardsState) => state.selectedBoard);
+  readonly tasks$: Observable<Task[]|undefined> = this.select((state: BoardsState) => state.tasks);
+  // readonly tasks$: Observable<Task[]|undefined> = this.select((state: BoardsState) => state.tasks).pipe(
+  //   tap(tasks => {console.log('bsT t tasks obs: ', tasks)})
+  // );
   
   // readonly boards$: Observable<Board[]> = this.select((state: BoardsState) => state.boards).pipe(
   //   tap(boards => {console.log('bS boards$ value: ', boards)})
@@ -92,8 +111,6 @@ export class BoardsStore extends ComponentStore<BoardsState> {
 
     });
 
-
-  // readonly allColumnsWithTasks$: Observable<Column[]> = this.select((state: BoardsState) => state.allColumnsWithTasks);
   readonly userSelectedColumns$: Observable<Column[]> = this.select((state: BoardsState) => state.userSelectedColumns);
   
   readonly allColumnsWithTasks$: Observable<Column[]> = this.select(
@@ -124,14 +141,23 @@ export class BoardsStore extends ComponentStore<BoardsState> {
       // console.log('bSt nOTPC num tasks by status: ', numTasksByStatus);
       return numTasksByStatus;
     });
+
+    //////////////////// EFFECTS //////////////////////
+
+    ///////////////////// BOARDS ///////////////////////////
   
   // getAllBoards
   readonly getAllBoards = this.effect<void>(
     trigger$ => trigger$.pipe(
         switchMap(() => this.boardsService.listBoards().pipe(
         tap(( boards) => {
-          this.setBoards([...boards])
+          // firebase returns a DocumentData[] so need to cast
+          const bds = boards as Board[];
+          this.setBoards([...bds])
           // console.log('bSt gAB all boards: ', boards);
+
+          // in-mem web api
+          // this.setBoards([...boards])
         }))))
   );
 
@@ -154,12 +180,15 @@ export class BoardsStore extends ComponentStore<BoardsState> {
   // create board
   readonly createBoard = this.effect((board$: Observable<Board>) => {
     return board$.pipe(
-      concatMap((board) => this.boardsService.createBoard(board).pipe(
-        tap(board => {
-          // this.addBoard({...board});
-          this.setSelectedBoard({...board});
-          this.getAllBoards();
+      concatMap(board => this.boardsService.createBoard(board).pipe(
+        tap((board) => {
           // console.log('bSt cB created board: ', board);
+          this.setSelectedBoard(board);
+          
+          
+          // in-mem web api
+          // this.setSelectedBoard({...board});
+          // this.getAllBoards();
         }),
         catchError(error => {
           // console.log('bSt gB error: ', error);
@@ -177,8 +206,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
       // }),
       concatMap((board) => this.boardsService.updateBoard(board).pipe(
         tap(board => {
-          // this.setSelectedBoard({...board});
-          this.getAllBoards()
+          // console.log('bSt uB updated board: ', board);
         }),
         catchError(error => {
           console.log('bSt uB error: ', error);
@@ -188,11 +216,10 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     )
   });
 
-  readonly deleteBoard = this.effect((boardId$: Observable<number>) => {
+  readonly deleteBoard = this.effect((boardId$: Observable<string | number>) => {
     return boardId$.pipe(
       concatMap((boardId) => this.boardsService.deleteBoard(boardId).pipe(
         tap(board => {
-          this.getAllBoards()
           // console.log('bSt uB updated board: ', board);
         }),
         catchError(error => {
@@ -203,107 +230,73 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     )
   });
 
+  //////////////////// TASKS //////////////////////////////
+
+  readonly getTasksForBoard = this.effect((boardId$: Observable<string|number>) => {
+    return  boardId$.pipe(
+        switchMap((boardId) => this.boardsService.getTasksForBoard(boardId).pipe(
+        tap((tasks) => {
+          // firebase returns a DocumentData[] so need to cast
+          const tsks = tasks.slice() as Task[];
+          this.setTasks([...tsks])
+          // console.log('bSt gTFB tasks for board: ', boardId, tsks);
+
+          // in-mem web api
+          // this.setBoards([...boards])
+        }))))
+
+  });
+
   readonly createTask = this.effect((task$: Observable<Task>) => {
     return task$.pipe(
       withLatestFrom(this.selectedBoard$),
       concatMap(([task, board]) => {
-        // console.log('bSt cT new task: ', task);
-        // console.log('bSt cT selectedBoard: ', board);
+        console.log('bSt cT new task: ', task);
         
         const title = `${board.displayName} - ${task.displayName}`;
         task.displayName = title;
-        // console.log('bSt cT task with new title: ', task);
+        console.log('bSt cT task with new title: ', task);
         
-        const existingTasks = board.tasks ? board.tasks : [];
-        // console.log('bSt cT existing tasks: ', existingTasks);
-        task.id = existingTasks.length + 1;
-        existingTasks.push(task);
-        board.tasks = [...existingTasks];
-        // console.log('bSt cT board with task: ', board, board.tasks);
-        
-        return this.boardsService.updateBoard(board).pipe(
+        return this.boardsService.createTask(task).pipe(
           tap(task => {
-            this.getAllBoards();
-            // console.log('bSt cT created task: ', task);
+            console.log('bSt cT created task: ', task);
           }),
           catchError(error => {
-            // console.log('bSt cT error: ', error);
+            console.log('bSt cT error: ', error);
             return of(error);
-          })
-        )})
+          }))
+      })
     )
   });
-
-  // readonly createTask = this.effect((task$: Observable<Task>) => {
-  //   return task$.pipe(
-  //     withLatestFrom(this.selectedBoard$),
-  //     map(([task, board]) => {
-  //       const updatedTasks = board.tasks ? [...board.tasks, task] : [task];
-  //       board.tasks = [...updatedTasks];
-  //       return board;
-  //     }),
-  //     concatMap((board) => this.boardsService.updateBoard(board)),
-  //     tap(board => {
-  //         this.getAllBoards();
-  //         console.log('bSt cB created task in board: ', board);
-  //       }),
-  //     catchError(error => {
-  //         console.log('bSt gB error: ', error);
-  //         return of(error);
-  //       })
-  //     )
-  // });
 
   readonly updateTask = this.effect((task$: Observable<Task>) => {
     return task$.pipe(
-      withLatestFrom(this.selectedBoard$),
-      concatMap(([task, board]) => {
-        // console.log('bSt uT new task: ', task);
-        // console.log('bSt uT selectedBoard: ', board);
-        
-        const existingTasks = board.tasks ? board.tasks.filter(t => t.id !== task.id) : [];
-        // console.log('bSt uT existing tasks: ', existingTasks);
-        
-        existingTasks.push(task);
-        board.tasks = [...existingTasks];
-        // console.log('bSt uT board with task: ', board, board.tasks);
-        
-        return this.boardsService.updateBoard(board).pipe(
+      concatMap(task => {
+        console.log('bSt uT updated task: ', task);
+        return this.boardsService.updateTask(task).pipe(
           tap(task => {
-            this.getAllBoards();
-            // console.log('bSt uT updated task: ', task);
+            console.log('bSt uT updated task after BE: ', task);
           }),
           catchError(error => {
-            // console.log('bSt uT error: ', error);
+            console.log('bSt uT error: ', error);
             return of(error);
-          })
-        )})
+          }))
+      })
     )
   });
 
-  readonly deleteTask = this.effect((taskId$: Observable<number>) => {
-    return taskId$.pipe(
-      withLatestFrom(this.selectedBoard$),
-      concatMap(([taskId, board]) => {
-        // console.log('bSt dT task id to delete: ', taskId);
-        // console.log('bSt dT selectedBoard: ', board);
-        
-        const remainingTasks = board.tasks ? board.tasks.filter(t => t.id !== taskId) : [];
-        // console.log('bSt uT remaining tasks: ', [...remainingTasks]);
-
-        board.tasks = [...remainingTasks];
-        
-        // console.log('bSt uT board after delete task: ', board, [...board.tasks]);
-        
-        return this.boardsService.updateBoard(board).pipe(
-          tap( _ => {
-            this.getAllBoards();
+  readonly deleteTask = this.effect((task$: Observable<Task>) => {
+    return task$.pipe(
+      concatMap(task => {
+        return this.boardsService.deleteTask(task).pipe(
+          tap(task => {
+            console.log('bSt dT deleted task: ', task);
           }),
           catchError(error => {
             console.log('bSt dT error: ', error);
             return of(error);
-          })
-        )})
+          }))
+      })
     )
   });
 }

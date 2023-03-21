@@ -19,7 +19,7 @@ export class ListBoardsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  viewBoard(boardId: number) {
+  viewBoard(boardId: string | number) {
     // this.router.navigate(['view', boardId]);
   }
   

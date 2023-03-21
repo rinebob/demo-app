@@ -2,54 +2,29 @@ import { SubTaskStatus } from '../common/interfaces';
 import { SubTask } from '../common/interfaces';
 import { Board, Task, TaskStatus } from '../common/interfaces';
 
-// export interface Task {
-//     displayName: string;
-//     description: string;
-//     boardId: string;
-//     subTasks: string[];
-//     status: TaskStatus;
-// }
-
-// export interface Board {
-//     displayName: string;
-//     status: string;
-//     tasks: string[];
-// }
-
 // Angular In-memory web api requires id property to have number data type
 // TODO: change to string data type to support firebase id when be implemented
 export const DEMO_APP: Board = {
-    id: 1,
-    // entityId: 'demo-app',
     displayName: 'Demo app',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     status: TaskStatus.DEVELOPMENT,
-    tasks: [],
 }
 
 export const TRACKER_APP: Board = {
-    id: 2,
-    // entityId: 'tracker-app',
     displayName: 'Bio data app',
     description: 'Quisquam assumenda neque maxime perspiciatis rerum debitis sit? Nobis sapiente eum ipsa?',
     status: TaskStatus.DEVELOPMENT,
-    tasks: [],
 }
 
 export const TRADING_VIEW_APP: Board = {
-    id: 3,
-    // entityId: 'trading-view-app',
     displayName: 'TradingView clone app',
     description: 'A clone of the trading view app thats very cool',
     status: TaskStatus.DEVELOPMENT,
-    tasks: [],
 }
 
 export const RAW_BOARDS: Board[] = [DEMO_APP, TRACKER_APP, TRADING_VIEW_APP];
 
 export const SCAFFOLD_APP: Task = {
-    id: 1,
-    // entityId: 'scaffold-app',
     displayName: 'Scaffold app',
     description: 'Run the ng new command to create the application',
     boardId: 1,
@@ -58,8 +33,6 @@ export const SCAFFOLD_APP: Task = {
 }
 
 export const IMPLEMENT_INTERFACES: Task = {
-    id: 2,
-    // entityId: 'implement-interfaces',
     displayName: 'Implement interfaces',
     description: 'In file common/interfaces.ts add interfaces for each entity the app tracks',
     boardId: 0,
@@ -68,8 +41,6 @@ export const IMPLEMENT_INTERFACES: Task = {
 }
 
 export const IMPLEMENT_TEST_DATA: Task = {
-    id: 3,
-    // entityId: 'implement-test-data',
     displayName: 'Implement test data',
     description: 'Code the test data for the app',
     boardId: 1,
@@ -78,8 +49,6 @@ export const IMPLEMENT_TEST_DATA: Task = {
 }
 
 export const IMPLEMENT_SERVICE: Task = {
-    id: 4,
-    // entityId: 'implement-service',
     displayName: 'Implement service',
     description: 'Implement the http service to call the backend',
     boardId: 1,
@@ -88,8 +57,6 @@ export const IMPLEMENT_SERVICE: Task = {
 }
 
 export const IMPLEMENT_COMPONENT_STORE: Task = {
-    id: 5,
-    // entityId: 'implement-component-store',
     displayName: 'Implement component store',
     description: 'Implement a NgRx component store service for the main application view',
     boardId: 0,
@@ -98,8 +65,6 @@ export const IMPLEMENT_COMPONENT_STORE: Task = {
 }
 
 export const GENERATE_VIEW_COMPONENT: Task = {
-    id: 6,
-    // entityId: 'generate-view-component',
     displayName: 'Generate view component',
     description: 'Use the angular cli to generate the main view-level smart component',
     boardId: 1,
@@ -108,7 +73,6 @@ export const GENERATE_VIEW_COMPONENT: Task = {
 }
 
 export const IMPLEMENT_VIEW_COMPONENT_LOGIC: Task = {
-    id: 7,
     displayName: 'Implement View component logic',
     description: 'Implement logic for CRUDL operations in View component',
     boardId: 1,
@@ -117,7 +81,6 @@ export const IMPLEMENT_VIEW_COMPONENT_LOGIC: Task = {
 }
 
 export const IMPLEMENT_PRESENTATION_LAYER: Task = {
-    id: 8,
     displayName: 'Implement presentation layer',
     description: 'Implement presentation components to show data in UI',
     boardId: 1,
@@ -126,7 +89,6 @@ export const IMPLEMENT_PRESENTATION_LAYER: Task = {
 }
 
 export const CREATE_SASS_MIXINS: Task = {
-    id: 9,
     displayName: 'Create Sass mixins for UI',
     description: 'Extract scss/css from individual components and create mixins for reusability',
     boardId: 1,
@@ -135,7 +97,6 @@ export const CREATE_SASS_MIXINS: Task = {
 }
 
 export const CREATE_SASS_VARIABLES: Task = {
-    id: 10,
     displayName: 'Create Sass variables',
     description: 'Extract css values from component scss files and create variables in a shared file',
     boardId: 1,
@@ -144,7 +105,6 @@ export const CREATE_SASS_VARIABLES: Task = {
 }
 
 export const FIREBASE_PLANNING: Task = {
-    id: 11,
     displayName: 'Firebase planning',
     description: 'Design Firebase architecture for entire app',
     boardId: 1,
@@ -153,7 +113,6 @@ export const FIREBASE_PLANNING: Task = {
 }
 
 export const FIREBASE_SETUP: Task = {
-    id: 12,
     displayName: 'Firebase setup',
     description: 'Add all necessary projects and infrastructure in Firebase account',
     boardId: 1,
@@ -193,8 +152,6 @@ export const SUBTASK_5: SubTask = {
 
 export const RAW_SUBTASKS = [SUBTASK_1, SUBTASK_2, SUBTASK_3, SUBTASK_4, SUBTASK_5];
 
-
-
 export const RAW_TASKS: Task[] = [
     SCAFFOLD_APP,
     IMPLEMENT_INTERFACES,
@@ -210,7 +167,8 @@ export const RAW_TASKS: Task[] = [
     FIREBASE_SETUP,
 ];
 
-export const BOARDS: Board[] = [
+// DO NOT DELETE - STATIC DATA SET WITH HARD-CODED IDS FOR IN-MEM WEB API
+export const ANG_IN_MEM_API_BOARDS: Board[] = [
     {
         "id": 1,
         "displayName": "Demo app with a long name",

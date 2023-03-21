@@ -42,8 +42,7 @@ export class KanbanTasksComponent {
   themeBS = new BehaviorSubject<string>('');
 
   @Output() addTask = new EventEmitter<void>();
-  @Output() updatedTasks = new EventEmitter<Task[]>();
-
+  
   allColumns$ = this.boardsStore.allColumns$;
   allTasksByStatus$ = this.boardsStore.allTasksByStatus$;
   allColumnsWithTasks$ = this.boardsStore.allColumnsWithTasks$;
@@ -72,7 +71,7 @@ export class KanbanTasksComponent {
     private dialogService: DialogService, private _overlayContainer: OverlayContainer) {
 
     // console.log('-------------------------------');
-    console.log('kT ctor kanban tasks ctor.  theme: ', this.theme);
+    // console.log('kT ctor kanban tasks ctor.  theme: ', this.theme);
 
     this.allColumns$.pipe().subscribe(columns => {
       // console.log('kT ctor all columns sub: ', columns);
@@ -192,7 +191,6 @@ export class KanbanTasksComponent {
 
   dropElement(event: CdkDragDrop<Task[]>) {
     // console.log('kT dE drop element event: ', event);
-    // console.log('kT dE drop item data: ', event.item.data);
     // console.log('kT dE prevind/ind/prevCont/cont ', event.previousIndex, event.currentIndex, event.previousContainer.id, event.container.id);
     
     if (event.previousContainer === event.container) {
@@ -217,12 +215,8 @@ export class KanbanTasksComponent {
       if (movedTask && newColumn && newColumn.name) {
         movedTask.status = newColumn?.name;
         // console.log('kT dE updated moved task: ', {...movedTask});
-        
-        const updatedTaskList = this.tasks.filter(task => task.id !== movedTask.id);
-        updatedTaskList.push(movedTask);
-        
-        this.updatedTasks.emit(updatedTaskList);
-        // console.log('kT dE emitting updated task list');
+
+        this.boardsStore.updateTask(movedTask);
       }
     }
   }

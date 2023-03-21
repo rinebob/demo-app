@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService, RequestInfo } from 'angular-in-memory-web-api';
 
 import { Board, Entity, Task } from '../common/interfaces';
-import { BOARDS, RAW_BOARDS, RAW_TASKS, RAW_SUBTASKS } from '../testing/mock-task-data';
+import { ANG_IN_MEM_API_BOARDS, RAW_BOARDS, RAW_TASKS, RAW_SUBTASKS } from '../testing/mock-task-data';
 import { buildBoardsAndTasks } from '../common/task_utils';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class ImBoardsTasksService  implements InMemoryDbService {
     // Copy the output from the console and paste it into the BOARDS array in
     // mock-task-data.ts.  This is the data source for the mock data in the
     //  in-memory-web-api
-    const boards = [...BOARDS];
+    const boards = [...ANG_IN_MEM_API_BOARDS];
     // console.log('iMBT p requst info: ', reqInfo);
 
     ////// END DO NOT DELETE ////////
