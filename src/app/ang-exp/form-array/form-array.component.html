@@ -1,0 +1,75 @@
+
+<div class="exp-container">
+
+    <form [formGroup]="resumeForm" (ngSubmit)="submitForm()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            
+            <input matInput formControlName="name" />
+                   
+        </mat-form-field>
+
+        <div class="action-buttons-container">
+
+            <button (click)="addSkill()">Add</button>
+            <button (click)="removeAllSkills()">Clear all</button>
+            <button type="submit">Submit</button>
+        
+        </div>
+
+        <ng-container formArrayName="skills">
+
+            <div *ngFor="let control of skills.controls; index as i" class="control-container">
+
+                <ng-container [formGroup]="control">
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Skill</mat-label>
+                    
+                        <input matInput formControlName="skill" />
+                               
+                    </mat-form-field>
+        
+                    <mat-form-field appearance="outline">
+                        <mat-label>Level</mat-label>
+                        
+                        <input matInput formControlName="level" />
+                        
+                    </mat-form-field>
+                    
+                </ng-container>
+                
+                <div class="control-buttons-container">
+                    <button (click)="insertSkill(i)">Insert</button>
+                    <button (click)="replaceSkill(i)">Replace </button>
+                    <button (click)="removeSkill(i)">Remove</button>
+                </div>
+                        
+            </div>
+
+        </ng-container>
+
+    </form>
+
+    <div class="results">
+        
+        <p class="text">Name:
+            <span>{{resumeForm.controls['name'].value}}</span>
+        </p>
+        
+        <p class="text">Skills</p>
+        
+        <div class="values-container" *ngIf="skills.value.length > 0">
+    
+            <div class="value" *ngFor="let skill of skills.value">
+    
+                skill: {{skill.skill}} level: {{skill.level}} 
+            
+            </div>
+        
+        </div>
+
+    </div>
+    
+</div>

@@ -5,6 +5,7 @@ import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { SignalsComponent } from './signals/signals.component';
 import { AngExpRoutes } from '../common/interfaces';
 import { AnimationsComponent } from './animations/animations.component';
+import { FormArrayComponent } from './form-array/form-array.component';
 
 const routes: Routes = [
   { path: '', component: AngExpComponent,
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: AngExpRoutes.DRAG_DROP, component: DragDropComponent },
       { path: AngExpRoutes.ANIMATIONS, component: AnimationsComponent },
       { path: AngExpRoutes.SIGNALS, component: SignalsComponent },
+      { path: AngExpRoutes.FORM_ARRAY, component: FormArrayComponent },
 
     ],
  },
