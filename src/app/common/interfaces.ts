@@ -129,6 +129,7 @@ export interface DialogData {
     DRAG_DROP = 'drag-drop',
     ANIMATIONS = 'animations',
     SIGNALS = 'signals',
+    FORM_ARRAY = 'form-array',
   }
 
   export interface NavButtonConfig {

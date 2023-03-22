@@ -16,9 +16,9 @@
 ////////////// BORDER //////////////////////
 
 
-@mixin border1 {
-    border-radius: 4px;
-    border: 1px solid black;
+@mixin border1($color: black, $radius: 4px) {
+    border-radius: $radius;
+    border: 1px solid $color;
 }
 
 ////////////// END BORDER //////////////////////////// 

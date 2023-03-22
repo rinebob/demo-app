@@ -57,6 +57,7 @@ export const COLUMN_COLOR: ColumnColor = {
 
 export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
     {routerLink: AngExpRoutes.DRAG_DROP, text: 'cdk Drag Drop' },
+    {routerLink: AngExpRoutes.FORM_ARRAY, text: 'Form array'},
     {routerLink: AngExpRoutes.ANIMATIONS, text: 'Animations'},
     {routerLink: AngExpRoutes.SIGNALS, text: 'Signals'},
 ];

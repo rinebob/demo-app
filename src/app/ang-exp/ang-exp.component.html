@@ -2,9 +2,9 @@
 <div class="ang-exp-container">
 
     <mat-drawer-container>
-
+        
+        <!-- opened="true" -->
         <mat-drawer #drawer mode="side"
-                    opened="true"
                     (openedChange)="toggleShowDrawerButton($event)">
 
                     <div class="top-drawer-container">
@@ -13,10 +13,11 @@
 
                         <button *ngFor="let button of ANG_EXP_NAV_BUTTONS"
                                 type="button" 
-                                (click)="drawer.close()"
                                 [routerLink]="button.routerLink"
                                 routerLinkActive="active-link"
                                 class="nav-button"
+                                (click)="drawer.close()"
+                                (click)="setTitle(button.text)"
                         >
                             {{button.text}}
                         </button>
@@ -28,6 +29,13 @@
         <mat-drawer-content>
 
             <nav class="nav-bar">
+
+                <div class="title-container">
+
+                    <span *ngIf="shouldShowOpenDrawerButton" class="title-text">Angular Experiment: </span>
+                    <span class="title-text">{{pageTitle}}</span>
+
+                </div>
             
                 <div class="buttons-container">
         

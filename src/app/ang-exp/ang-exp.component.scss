@@ -64,11 +64,20 @@
         position: relative;
 
         .nav-bar {
-            @include global.flexboxLayout(row, flex-end, center);
+            @include global.flexboxLayout(row, space-between, center);
             background-color: var(--ang-exp-background-3);
             border-bottom: 1px solid lightgrey;
             height: var(--ang-exp-size-nav-bar-height);
             width: 100%;
+
+            .title-container {
+                margin: 0 0 0 20px;
+
+                .title-text {
+                    @include ang-exp.headingXLText;
+                }
+            }
+
         
             .buttons-container {
                 @include global.flexboxLayout(row, flex-start, center);
