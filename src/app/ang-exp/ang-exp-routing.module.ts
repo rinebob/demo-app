@@ -14,6 +14,7 @@ const routes: Routes = [
       { path: AngExpRoutes.ANIMATIONS, component: AnimationsComponent },
       { path: AngExpRoutes.SIGNALS, component: SignalsComponent },
       { path: AngExpRoutes.FORM_ARRAY, component: FormArrayComponent },
+      {path: '', redirectTo: AngExpRoutes.DRAG_DROP, pathMatch: 'full'},
 
     ],
  },

@@ -23,13 +23,15 @@ export class AngExpComponent {
 
   constructor(private router: Router) {
     router.events.pipe(filter((event: Event) => event instanceof NavigationEnd)).subscribe(ev => {
-      const event = ev as RouterEvent;
-      const segments = event.url.split('/');
+      const event = ev as NavigationEnd;
+      const segments = event.urlAfterRedirects.split('/');
       const segment = segments[segments.length - 1];
       this.pageTitle = ANG_EXP_NAV_BUTTONS.find(button => button.routerLink === segment)?.text ?? '';
       
       // console.log('aE ctor router events sub: ', event);
       // console.log('aE ctor url: ', event.url.split('/'));
+      // console.log('aE ctor url: ', event.urlAfterRedirects.split('/'));
+      
       // console.log('aE ctor route endpoint: ', segments[segments.length - 1]);
             
       for (const [key, value] of  Object.entries(event)) {
