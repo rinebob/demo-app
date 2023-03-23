@@ -108,11 +108,11 @@ export class BoardsService  {
     
     // creates a reference to the board document in the collection
     const deleteBoardDocRef = doc(boardsCollectionRef, boardId.toString());
-    console.log('bSvc dB deleteBoardDocRef: ', deleteBoardDocRef);
+    // console.log('bSvc dB deleteBoardDocRef: ', deleteBoardDocRef);
 
     
     const deletedBoard = deleteDoc(deleteBoardDocRef);
-    console.log('bSvc dB deletedBoard: ', deletedBoard);
+    // console.log('bSvc dB deletedBoard: ', deletedBoard);
     
     return of();
     
@@ -134,56 +134,8 @@ export class BoardsService  {
     const data = collectionData(tasksCollnRef);
     // console.log('bSvc gTFB observable of tasks for board: ', data);
     return data;
-    
-    // return of([]);
-
-    // HTTP - DO NOT DELETE (not implemented)
-    // const url = `${BOARDS_BASE_URL}/${boardId}`;
-    // console.log('bSvc gTFB board url: ', url);
-    
-    // return this.http.get<Board>(url).pipe(
-    //   switchMap(board => {
-    //     // use this technique if task objects are not stored in the board object
-    //     // console.log('bSvc gTFB board: ', board);
-    //     // console.log('bSvc gTFB url: ', url);
-    //     // const taskIds = board.tasks.map(task => task.id);
-    //     // const requests = taskIds.map(taskId => this.http.get<Task>(`${TASKS_BASE_URL}/${taskId}`));
-    //     // return forkJoin(requests);
-
-    //     // use this technique if task objects are stored in the board object
-    //     return of(board.tasks ?? []);
-    //   })
-    // );
   }
 
-
-
-  ////////////// BELOW METHODS NOT IMPLEMENTED /////////////
-
-  refreshSelectedBoard(inputBoard: Board) {
-    this.http.get<Board[]>('api/boards').subscribe(boards => {
-      // console.log('bSvc rSB boards after post: ', boards);
-      // this.setBoards(boards);
-      const board: Board | undefined = boards.find(b => b.displayName === inputBoard.displayName);
-
-      if (board && board.id && board.id !== -1) {
-        // this.setSelectedBoard(board.id);
-      } else {
-        // this.setSelectedBoard(1);
-      }
-    });
-  }
-
-  // get all tasks for all boards
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(TASKS_BASE_URL);
-  }
-
-  // get one task from board
-  getTaskFromBoard(boardId: number, taskId: number) {
-  }
-
-  // add task to board
   createTask(newTask: Task) {
     // console.log('bSvc cTIB create task in board. boardId/task: ', newTask.boardId, newTask);
 

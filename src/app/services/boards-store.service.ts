@@ -251,18 +251,18 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     return task$.pipe(
       withLatestFrom(this.selectedBoard$),
       concatMap(([task, board]) => {
-        console.log('bSt cT new task: ', task);
+        // console.log('bSt cT new task: ', task);
         
         const title = `${board.displayName} - ${task.displayName}`;
         task.displayName = title;
-        console.log('bSt cT task with new title: ', task);
+        // console.log('bSt cT task with new title: ', task);
         
         return this.boardsService.createTask(task).pipe(
           tap(task => {
-            console.log('bSt cT created task: ', task);
+            // console.log('bSt cT created task: ', task);
           }),
           catchError(error => {
-            console.log('bSt cT error: ', error);
+            // console.log('bSt cT error: ', error);
             return of(error);
           }))
       })
@@ -272,10 +272,10 @@ export class BoardsStore extends ComponentStore<BoardsState> {
   readonly updateTask = this.effect((task$: Observable<Task>) => {
     return task$.pipe(
       concatMap(task => {
-        console.log('bSt uT updated task: ', task);
+        // console.log('bSt uT updated task: ', task);
         return this.boardsService.updateTask(task).pipe(
           tap(task => {
-            console.log('bSt uT updated task after BE: ', task);
+            // console.log('bSt uT updated task after BE: ', task);
           }),
           catchError(error => {
             console.log('bSt uT error: ', error);
@@ -290,7 +290,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
       concatMap(task => {
         return this.boardsService.deleteTask(task).pipe(
           tap(task => {
-            console.log('bSt dT deleted task: ', task);
+            // console.log('bSt dT deleted task: ', task);
           }),
           catchError(error => {
             console.log('bSt dT error: ', error);
