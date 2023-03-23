@@ -19,7 +19,6 @@
             >
         </mat-form-field>
 
-
             <!-- Description control -->
         
         <p class="field-label">Description</p>
@@ -31,61 +30,47 @@
             >
         </mat-form-field>
 
-            <!-- Subtasks form group -->
+            <!-- Subtasks form array -->
 
             <p class="field-label">Subtasks</p>
 
-            <ng-container *ngIf="subtasksBS.value && subtasksBS.value.length > 0; else noSubtasks">
+            <div class="subtasks-scroll-container">
 
-                <div class="subtasks-scroll-container">
+                <div formArrayName="subtasksFormArray" class="subtasks-container">
 
-                    <ng-container formArrayName="subtasks">
+                    <div *ngFor="let control of subtasksFormArray.controls; index as i" class="subtask-container">
+                    
+                        <ng-container [formGroup]="control">
                         
-                        <ng-container *ngFor="let subtaskForm of subtasks.controls; let i=index"
-                        >
-
-                            <div class="subtask-container" [formGroupName]="i">
-
-                                <mat-form-field appearance="outline"
+                            <mat-checkbox color="primary"
+                                            formControlName="subtaskStatusControl"
+                                            [checked]="control.controls.subtaskStatusControl.value"
                             >
-                            
-                                <input matInput
-                                        formControlName="subtaskDescriptionControl-{{i}}"
-                                        placeholder="Subtask title or description"
-                                        type="text"
-                                >
+                            </mat-checkbox>
+
+                            <mat-form-field appearance="outline" class="description">
+                                <mat-label>Description</mat-label>
+
+                                <input matInput formControlName="subtaskDescriptionControl" />
+
                             </mat-form-field>
 
-                            </div>
-
-
-                        </ng-container>
-                    
-                    </ng-container>
-                    
-                        
-                        
-                            <!-- <mat-checkbox #checkbox 
-                                        color="primary"
-                                        [value]="''"
-                                        [checked]="getCheckedStatus('')"
-                                        (change)="updateSubtask($event)"
-                            >
-                                
-                            </mat-checkbox> -->
-        
-                            
-                            <!-- <button mat-icon-button
+                            <button mat-icon-button
+                                    class="delete-button"
                                     type="button"
                                     (click)="deleteSubTask('{{i}}')"
-                                    >
+                            >
                                 <mat-icon matSuffix>close</mat-icon>
-        
-                            </button> -->
-            
+
+                            </button>
+
+                        </ng-container>
+                        
+                    </div>
+                
                 </div>
-            
-            </ng-container>
+
+            </div>
 
         <ng-template #noSubtasks>
                         
@@ -93,36 +78,6 @@
             
         </ng-template>
 
-
-        <!-- <div class="subtasks-scroll-container">
-
-            <div class="subtasks-container">
-
-                <div class="subtask" formArrayName="subTasks" *ngFor="let subtask of subtasksArray.controls; let i=index">
-                    
-                    <mat-form-field appearance="outline"
-                    >
-                        <input matInput id="subtask-{{i}}"
-                            [formControlName]="i"
-                            placeholder="Subtask title or description"
-                            type="text"
-                        >
-                    </mat-form-field>
-                    <button mat-icon-button
-                            type="button"
-                            (click)="deleteSubTask('{{i}}')"
-                            >
-                        <mat-icon matSuffix>close</mat-icon>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div> -->
-
-        <!-- (click)="addSubTask($event)" -->
         <button mat-flat-button
                 class="add-subtask-button"
                 type="button"
@@ -136,7 +91,7 @@
         
         <p class="field-label">Status</p>
         <mat-form-field appearance="outline">
-            <!-- [panelClass]="(theme$ | async)!" -->
+            
             <mat-select [(value)]="selectedStatus"
                         [panelClass]="themeBS.value"
                         formControlName="statusControl"
@@ -148,6 +103,7 @@
                     {{option | titlecase}}
                 </mat-option>
             </mat-select>
+
         </mat-form-field>
 
             <!-- Action buttons -->

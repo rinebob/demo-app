@@ -44,7 +44,7 @@
 
         .subtasks-scroll-container {
             margin-bottom: 12px;
-            max-height: 234px;
+            max-height: 190px;
             overflow-y: auto;
 
             @include global.response(h-md) {
@@ -54,22 +54,27 @@
             .subtasks-container {
                 @include global.flexboxLayout(column, flex-start, flex-start);
                 
-                .subtask {
-                    @include global.flexboxLayout(row, space-between, center);
+                .subtask-container {
+                    @include global.flexboxLayout(row, space-between, baseline);
+                    padding: 4px 0;
                     width: 100%;
-    
-                    .mat-mdc-form-field {
-                        width: 100%;
+
+                    .description {
+                        width: 80%;
                     }
     
                     ::ng-deep {
                         .mat-mdc-input-element {
                             width: 90%;
                         }
+
+                        .mat-mdc-form-field-subscript-wrapper {
+                            height: 0;
+                        }
                     }
     
-                    button {
-                        margin-top: -24px;
+                    .delete-button {
+                        align-self: center;
                         
                         mat-icon {
                             color: var(--subtitle-text-1);
@@ -90,8 +95,6 @@
             &:hover {
                 @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
             }
-
-
         }
 
         .status-select {
@@ -100,7 +103,6 @@
                 .mat-mdc-select-value-text {
                     color: var(--title-text-1);
                 }
-
             }
         }
 
@@ -119,7 +121,6 @@
                 
                 &:hover {
                     @include kanban.kanbanColors($background-color: var(--kanban-secondary-hover), $color: var(--kanban-on-secondary-hover));
-                    
                 }
             }
     
@@ -133,8 +134,6 @@
                     
                 }
             }
-     
         }
     }
-
 }
