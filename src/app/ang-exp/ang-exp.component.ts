@@ -1,14 +1,16 @@
 import { Component, HostBinding } from '@angular/core';
-import { ActivatedRoute, Event, NavigationEnd, PRIMARY_OUTLET, Router, RouterEvent } from '@angular/router';
+import { ActivatedRoute, ChildrenOutletContexts, Event, NavigationEnd, PRIMARY_OUTLET, Router, RouterEvent } from '@angular/router';
 import { ThemePalette } from '@angular/material/core';
 import { BehaviorSubject, Observable, filter } from 'rxjs';
 
 import { ANG_EXP_NAV_BUTTONS } from '../common/constants';
+import { slideInAnimation } from './animations/animations';
 
 @Component({
   selector: 'app-ang-exp',
   templateUrl: './ang-exp.component.html',
-  styleUrls: ['./ang-exp.component.scss']
+  styleUrls: ['./ang-exp.component.scss'],
+  animations: [slideInAnimation],
 })
 export class AngExpComponent {
   @HostBinding('class') theme = 'ang-exp-light-theme';
@@ -21,7 +23,7 @@ export class AngExpComponent {
 
   readonly ANG_EXP_NAV_BUTTONS = ANG_EXP_NAV_BUTTONS;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private contexts: ChildrenOutletContexts) {
     router.events.pipe(filter((event: Event) => event instanceof NavigationEnd)).subscribe(ev => {
       const event = ev as NavigationEnd;
       const segments = event.urlAfterRedirects.split('/');
@@ -39,8 +41,15 @@ export class AngExpComponent {
 
 
       }
+
+      this.getRouteAnimationData();
     });
 
+  }
+
+  getRouteAnimationData() {
+    // console.log('aE gRAD contexts: ', this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation']);
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 
   toggleTheme() {

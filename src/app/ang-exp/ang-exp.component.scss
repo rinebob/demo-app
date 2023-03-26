@@ -75,6 +75,7 @@
 
                 .title-text {
                     @include ang-exp.headingXLText;
+                    @include ang-exp.angExpColors(var(--ang-exp-white-1), var(--ang-exp-primary));
                 }
             }
 
@@ -83,7 +84,7 @@
                 @include global.flexboxLayout(row, flex-start, center);
                 
                 .nav-button {
-                    @include ang-exp.topnavButtonStyles(var(--size-button-tall));
+                    @include ang-exp.topnavButtonStyles(24px);
                     @include ang-exp.angExpColors;
                     
                 }
