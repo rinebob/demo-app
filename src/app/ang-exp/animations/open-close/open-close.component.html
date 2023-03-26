@@ -1,0 +1,59 @@
+<nav>
+    <button type="button" (click)="toggleIsOpen()">Toggle Open/Close</button>
+    <button type="button" (click)="toggleIsShown()">Toggle Is Shown</button>
+</nav>
+  
+  <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+    <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
+  </div>
+
+  <div @myInsertRemoveTrigger *ngIf="isShown" class="insert-remove-container">
+    <p>The box is inserted</p>
+  </div>
+
+  <div @moshContainerTrigger2 class="todos-container">
+
+    <h1>Yo todos dude!</h1>
+
+    <div class="form-container">
+
+        <button class="list-group-item"
+                (click)="toggleIsOpen()"
+        >
+            Toggle isOpen
+        </button>
+
+        <form [formGroup]="itemForm">
+            <input #itemInput
+                    type="text"
+                    class="form-control"
+                    formControlName="itemInput"
+                    (keyup.enter)="addItem()"
+            >
+
+        </form>
+
+    
+        
+        <div class="list-group">
+        
+            <!-- [@fade]="isOpen" -->
+            <!-- @moshSlide1 -->
+            <!-- @moshSlide2 -->
+            <!-- @moshFadeTrigger3 -->
+            <!-- moshFadeTrigger4 -->
+            <div @moshFadeTrigger4 
+                 class="list-group-item"
+                 type="button"
+                 *ngFor="let item of items"
+                 (click)="removeItem(item)"
+                 (@moshFadeTrigger4.start)="animationStarted($event)"
+                 (@moshFadeTrigger4.done)="animationDone($event)"
+            >
+                {{item}}
+            </div>
+        </div>
+
+    </div>
+
+  </div>

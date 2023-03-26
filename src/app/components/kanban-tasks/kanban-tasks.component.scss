@@ -104,6 +104,7 @@
     .add-task-button {
         @include kanban.kanbanHeadingMText;
         @include kanban.kanbanMainButtonStyles;
+        @include kanban.kanbanColors;
     }
 
 }

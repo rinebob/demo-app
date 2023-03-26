@@ -56,8 +56,13 @@
                 </div>
         
             </nav>
-
             <router-outlet></router-outlet>
+
+            <!-- <div [@routeAnimations]="getRouteAnimationData()">
+
+                <router-outlet></router-outlet>
+
+            </div> -->
 
             <button *ngIf="shouldShowOpenDrawerButton"
                     class="show-drawer-button"

@@ -1,1 +1,42 @@
-<p>animations works!</p>
+
+
+<mat-tab-group mat-stretch-tabs="false"
+               mat-align-tabs="start"
+               animationDuration="0ms"
+               color="primary"
+               (animationDone)="handleTabAnimationDone($event)"
+               (focusChange)="handleTabFocusChange($event)"
+               (selectedIndexChange)="handleSelectedIndexChange($event)"
+               (selectedTabChange)="handleSelectedTabChange($event)"
+
+>
+
+    <mat-tab label="Simple">
+
+        <app-open-close></app-open-close>
+
+    </mat-tab>
+    <mat-tab label="Enter / Leave">
+
+    </mat-tab>
+    <mat-tab label="Multi-step">
+
+    </mat-tab>
+    <mat-tab label="Keyframes">
+
+    </mat-tab>
+    <mat-tab label="Series / Parallel">
+
+    </mat-tab>
+    <mat-tab label="Easings">
+
+    </mat-tab>
+
+    <mat-tab label="angular docs">
+
+    </mat-tab>
+
+</mat-tab-group>
+
+
+

@@ -59,7 +59,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
-
+    
     // DO NOT DELETE ///////////////////////////////////
     // ANGULAR IN-MEMORY WEB API
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
