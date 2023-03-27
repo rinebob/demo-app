@@ -57,18 +57,18 @@
 
     // --font-plus-jakarta-sans: Plus Jakarta sans, "Helvetica Neue", sans-serif;
     --font-plus-jakarta-sans: Plus Jakarta sans;
-    // --font-kanit: Kanit, "Helvetica Neue", sans-serif;
-    // --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
-    // --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
-    // --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
-    // --font-nunito: Nunito, "Helvetica Neue", sans-serif;
+    --font-kanit: Kanit, "Helvetica Neue", sans-serif;
+    --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
+    --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
+    --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
+    --font-nunito: Nunito, "Helvetica Neue", sans-serif;
     
-    --main-font-family: var(--font-plus-jakarta-sans);
+    // --main-font-family: var(--font-plus-jakarta-sans);
     // --main-font-family: var(--font-kanit);
     // --main-font-family: var(--font-josefin-sans);
     // --main-font-family: var(--font-great-vibes);
     // --main-font-family: var(--font-dancing-script);
-    // --main-font-family: var(--font-nunito);
+    --main-font-family: var(--font-nunito);
 }
 
 .app-theme {

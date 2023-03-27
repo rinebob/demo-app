@@ -2,9 +2,47 @@
 
 <mat-sidenav-container>
 
-    <mat-sidenav #sidenav mode="side">
+    <mat-sidenav #sidenav mode="side"
+                 opened="true"
+    >
+
+        <h1 class="title-text">
+            Robert Drake Rinehart
+        </h1>
 
         <div class="top-sidenav-container">
+
+            <button type="button" 
+                    routerLink="/bio"
+                    class="nav-button"
+                    (click)="sidenav.close()"
+            >
+                Home
+            </button>
+
+            <button type="button" 
+                    routerLink="/bio"
+                    class="nav-button"
+                    (click)="sidenav.close()"
+            >
+                Skills
+            </button>
+
+            <button type="button" 
+                    routerLink="/bio"
+                    class="nav-button"
+                    (click)="sidenav.close()"
+            >
+                About
+            </button>
+
+            <button type="button" 
+                    routerLink="/kanban"
+                    class="nav-button"
+                    (click)="sidenav.close()"
+            >
+                Projects
+            </button>
 
             <button type="button" 
                     routerLink="/kanban"

@@ -24,6 +24,16 @@
 ////////////// END BORDER //////////////////////////// 
 
 
+//////////////////// COLORS /////////////////////
+
+@mixin globalColors($background-color: var(--global-primary), $color: var(--global-on-primary)) {
+    background-color: $background-color;
+    color: $color;
+}
+
+//////////////////// END COLORS /////////////////////
+
+
 ////////////// MEDIA BREAKPOINTS ///////////////////// 
 
 @mixin response($breakpoint) {
