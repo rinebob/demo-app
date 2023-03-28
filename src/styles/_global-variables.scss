@@ -1,0 +1,55 @@
+
+
+:root {
+
+    
+    // https://coolors.co/065143-129490-70b77e-e0a890-ce1483
+    --global-brunswick-green: #065143ff;
+    --global-dark-cyan: #129490ff;
+    --global-emerald: #70b77eff;
+    --global-buff: #e0a890ff;
+    --global-red-violet: #ce1483ff;
+
+
+    --global-font-plus-jakarta-sans: Plus Jakarta sans;
+    --global-font-kanit: Kanit, "Helvetica Neue", sans-serif;
+    --global-font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
+    --global-font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
+    --global-font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
+    --global-font-nunito: Nunito, "Helvetica Neue", sans-serif;
+    --global-font-exo: Exo+2, "Helvetica Neue", sans-serif;
+    --global-font-orbitron: Orbitron, "Helvetica Neue", sans-serif;
+
+
+}
+
+$global-font-sizes: (
+    masthead: 48px,
+    heading-xl: 24px,
+    tablet-heading-xl: 20px,
+    heading-l: 18px,
+    heading-m: 15px,
+    heading-s: 12px,
+    body-xl: 16px,
+    body-l: 13px,
+    body-m: 12px,
+);
+
+@function globalFontSize($size) {
+    @return map-get($global-font-sizes, $size);
+}
+
+$global-line-heights: (
+    masthead: 60px,
+    heading-xl: 30px,
+    heading-l: 23px,
+    heading-m: 19px,
+    heading-s: 15px,
+    body-xl: 24px,
+    body-l: 18px,
+    body-m: 15px,
+);
+
+@function globalLineHeight($size) {
+    @return map-get($global-line-heights, $size);
+}

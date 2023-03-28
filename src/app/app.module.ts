@@ -30,6 +30,7 @@ import { ImBoardsTasksService } from './services/im-boards-tasks.service';
 import { StoreModule } from '@ngrx/store';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BoardsStore } from './services/boards-store.service';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 let resolvePersistenceEnabled: (enabled: boolean) => void;
 
@@ -40,6 +41,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
 @NgModule({
   declarations: [
     AppComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,

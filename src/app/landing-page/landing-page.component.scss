@@ -1,0 +1,337 @@
+@use '../../styles/global-mixins' as global;
+@use '../../styles/global-variables' as globalVar;
+
+@import "styles.scss";
+
+:host {
+    @include global.flexboxLayout(column, flex-start, flex-start);
+    @include global.border1;
+    
+    .landing-page-nav {
+        @include global.flexboxLayout(row, space-between, center);
+        background-color: var(--global-dark-cyan);
+        height: 50px;
+        width: 100%;
+
+        h1 {
+            margin: 0 0 0 20px;
+        }
+
+        .nav-buttons-container {
+            @include global.flexboxLayout(row, center, flex-end);
+        }
+    }
+
+    .design-system-container {
+
+        margin: 0 20px;
+
+        .heavy-font {
+            font-weight: 700;
+            font-size: globalVar.globalFontSize(heading-xl);
+            line-height: globalVar.globalLineHeight(heading-xl);
+
+            margin: 20px 0;
+            
+        }
+
+        .regular-font {
+            font-weight: 400;
+            font-size: globalVar.globalFontSize(body-xl);
+            line-height: globalVar.globalLineHeight(body-xl);
+
+            margin: 20px 0;
+        }
+
+        .exo {
+            font-weight: 400;
+            font-family: var(--global-font-exo);
+
+        }
+
+        .kanit {
+            font-family: var(--global-font-kanit);
+        }
+
+        .josefin-sans {
+            font-family: var(--global-font-josefin-sans);
+
+        }
+
+        .great-vibes {
+            font-family: var(--global-font-great-vibes);
+        }
+
+        .nunito {
+            font-family: var(--global-font-nunito);
+        }
+
+        .orbitron {
+            font-family: var(--global-font-orbitron);
+        }
+
+
+        .masthead-text {
+            @include global.textMasthead;
+        }
+
+        .header-text {
+            @include global.textHeader;
+        }
+
+        .title-text {
+            @include global.textTitle;
+        }
+
+        .description-text {
+            @include global.textDescription;
+        }
+
+        .button-text {
+            @include global.textButtonMain;
+        }
+
+        .section-header-text {
+            @include global.textSectionHeader;
+        }
+
+        .sub-header-text {
+            @include global.textSectionSubheader;
+        }
+
+        .list-item-text {
+            @include global.textListItem;
+        }
+
+        .contact-form-placeholder-text {
+            @include global.textPlaceholder;
+        }
+
+        .sidenav-button-text {
+            @include global.textSidenavButton;
+        }
+    }
+
+    .scroll-container {
+        align-self: stretch;
+        background-color: var(--global-emerald);
+        height: calc(100vh - 50px);
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .main-container {
+            flex-grow: 1;
+            width: 100%;
+
+            section {
+                @include global.border1;
+                margin: 20px;
+                padding: 20px;
+
+                .section-header {
+                    @include global.textSectionHeader;
+                    align-self: center;
+                }
+            }
+    
+            .welcome-container {
+                @include global.flexboxLayout(row, flex-start, flex-start);
+                flex-wrap: wrap;
+
+                .welcome {
+                    @include global.border1;
+                    padding: 20px;
+                    max-width: 45%;
+                    flex-grow: 1;
+
+                }
+
+                .welcome-left {
+
+                    .welcome-title-text {
+                        @include global.textHeader;
+                    }
+
+                    .welcome-description-text {
+                        @include global.textDescription;
+                    }
+                        
+                }
+                .welcome-right {
+                    @include global.flexboxLayout(row, center, center);
+
+                    .robert-image {
+                        @include global.border1;
+                        height: 200px;
+                        width: 200px;
+                    }
+
+                }
+
+                .welcome-bottom {
+                    @include global.flexboxLayout(row, center, center);
+                    @include global.border1;
+                    flex-grow: 1;
+
+                    
+                }
+            }
+
+            .skills {
+                @include global.flexboxLayout(column, flex-start, center);
+                
+                .skills-container {
+                    @include global.flexboxLayout(row, space-between, flex-start);
+                    @include global.border1;
+                    flex-wrap: wrap;
+    
+                    .skill-container {
+                        @include global.flexboxLayout(column, flex-start, flex-start);
+                        @include global.border1;
+                        flex-grow: 1;
+                        margin: 0 10px;
+                        padding: 6px 24px;
+                        width: 20%;
+
+                        .skill-title {
+                            @include global.textSectionSubheader;
+                        }
+
+                        .skill-list {
+                            @include global.flexboxLayout(column, flex-start, flex-start);
+                            @include global.border1;
+                            .skill-list-item {
+                                @include global.textListItem;
+                                
+                            }
+                        }
+                    }
+                }
+            }
+
+            .projects {
+                @include global.flexboxLayout(column, flex-start, center);
+                
+                .projects-container {
+                    @include global.flexboxLayout(row, center, flex-start);
+                    @include global.border1;
+                    flex-wrap: wrap;
+                    width: 100%;
+                
+                    .project-container {
+                        @include global.flexboxLayout(column, flex-start, center);
+                        @include global.border1;
+                        flex-grow: 1;
+                        height: 300px;
+                        padding: 20px;
+                        width: 40%;
+
+                        .project-title {
+                            // @include global.textSectionSubheader;
+                            // margin: 50px 0;
+                        }
+
+                        .project-description {
+                            // @include global.textDescription;
+                            text-align: center;
+                            margin-bottom: 30px;
+                            width: 100%;
+                        }
+    
+                    }
+        
+                }
+                
+            }
+    
+    
+    
+            .contact-container {
+                @include global.flexboxLayout(column, center, center);
+                @include global.border1;
+                
+                .contact {
+                    @include global.flexboxLayout(row, space-around, center);
+                    @include global.border1;
+                    // margin-bottom: 20px;
+                    
+                    .contact-left {
+                        @include global.flexboxLayout(column, flex-start, center);
+                        @include global.border1;
+                        width: 45%;
+
+                        .contact-description {
+                            text-align: center;
+                            margin-bottom: 30px;
+                            padding: 20px;
+                        }
+                    }
+                    
+                    .contact-right {
+                        @include global.flexboxLayout(column, center, center);
+                        @include global.border1;
+                        width: 45%;
+    
+                        .form-field {
+                            @include global.border1;
+                            flex-grow: 1;
+                            padding: 10px;
+                            width: 80%;
+    
+                        }
+
+                        button {
+                            margin-top: 20px;
+                        }
+    
+                    }
+                    
+                }
+
+    
+            }
+        }
+
+    }
+
+    .footer-container {
+        @include global.flexboxLayout(row, space-between, center);
+        background-color: var(--global-dark-cyan);
+        height: 50px;
+        padding: 0 20px;
+        
+        .footer-buttons-container {
+            @include global.flexboxLayout(row, flex-end, center);
+        }
+    }
+
+    .header-text {
+        @include global.textHeader;
+        margin: 0;
+    }
+
+    .title-text {
+        @include global.textSectionSubheader;
+        margin: 50px 0;
+    }
+
+    .description-text {
+        @include global.textDescription;
+    }
+
+    .placeholder-text {
+        @include global.textPlaceholder;
+    }
+
+    .main-button {
+        @include global.textButtonMain;
+        margin: 0 10px;
+        padding: 6px 24px;
+    }
+
+    .small-button {
+        @include global.textButtonSmall;
+        margin: 0 6px;
+        padding: 4px 12px;
+    }
+}

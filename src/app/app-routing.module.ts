@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'kanban', pathMatch: 'full'},
+  {path: '', redirectTo: 'robert', pathMatch: 'full'},
+  {path: 'robert', component: LandingPageComponent},
   {
     path: 'kanban',
     loadChildren: () => import('./kanban.module').then(m => m.KanbanModule),
