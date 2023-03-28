@@ -1,5 +1,20 @@
 
 :root {
+
+    // from https://coolors.co/011627-ff0022-41ead4-fdfffc-b91372
+    --rich-black: #011627ff;
+    --red-cmyk: #ff0022ff;
+    --turquoise: #41ead4ff;
+    --baby-powder: #fdfffcff;
+    --red-violet: #b91372ff;
+
+    // https://coolors.co/f46036-2e294e-1b998b-e71d36-c5d86d
+    --space-cadet: #2e294eff;       // primary
+    --giants-orange: #f46036ff;     // secondary
+    --persian-green: #1b998bff;     // accent 1
+    --mindaro: #c5d86dff;           // accent 2
+    --red-pantone: #e71d36ff;       // warn
+
     --ang-exp-purple-1: #635fc7;
     --ang-exp-purple-2: #a8a4ff;
     --ang-exp-grey-1: #000112;
@@ -12,59 +27,81 @@
     --ang-exp-white-2: #f4f7fd;
     --ang-exp-red-1: #ea5555;
     --ang-exp-red-2: #ff9898;
+    
+    --ang-exp-primary: var(--space-cadet);
+    --ang-exp-secondary: var(--giants-orange);
+    --ang-exp-accent-1: var(--persian-green);
+    --ang-exp-accent-2: var(--mindaro);
+    --ang-exp-warn: var(--red-pantone);
 
-    --ang-exp-primary-idle: var(--ang-exp-purple-1);
-    --ang-exp-primary-hover: var(--ang-exp-purple-2);
-    --ang-exp-secondary-idle: var(--ang-exp-white-1);
-    --ang-exp-secondary-hover: rgba(99, 95, 199, .25);
-    --ang-exp-destructive-idle: var(--ang-exp-red-1);
-    --ang-exp-destructive-hover: var(--ang-exp-red-2);
-    --ang-exp-on-primary-idle: var(--ang-exp-white-1);
-    --ang-exp-on-primary-hover: var(--ang-exp-white-1);
-    --ang-exp-on-secondary-idle: var(--ang-exp-purple-1);
-    --ang-exp-on-secondary-hover: var(--ang-exp-purple-1);
-    --ang-exp-on-destructive-idle: var(--ang-exp-white-1);
-    --ang-exp-on-destructive-hover: var(--ang-exp-white-1);
+    --ang-exp-on-primary: var(--ang-exp-white-1);
+    --ang-exp-on-secondary: var(--ang-exp-white-1);
+    --ang-exp-on-accent-1: var(--ang-exp-white-1);
+    --ang-exp-on-accent-2: var(--ang-exp-primary);
+    --ang-exp-on-warn: var(--ang-exp-white-1);
+
+    // --ang-exp-primary-idle: var(--ang-exp-purple-1);
+    // --ang-exp-primary-hover: var(--ang-exp-purple-2);
+    // --ang-exp-secondary-idle: var(--ang-exp-white-1);
+    // --ang-exp-secondary-hover: rgba(99, 95, 199, .25);
+    // --ang-exp-destructive-idle: var(--ang-exp-red-1);
+    // --ang-exp-destructive-hover: var(--ang-exp-red-2);
+    // --ang-exp-on-primary-idle: var(--ang-exp-white-1);
+    // --ang-exp-on-primary-hover: var(--ang-exp-white-1);
+    // --ang-exp-on-secondary-idle: var(--ang-exp-purple-1);
+    // --ang-exp-on-secondary-hover: var(--ang-exp-purple-1);
+    // --ang-exp-on-destructive-idle: var(--ang-exp-white-1);
+    // --ang-exp-on-destructive-hover: var(--ang-exp-white-1);
 
     --ang-exp-size-nav-bar-height: 96px;
 
-     // --font-plus-jakarta-sans: Plus Jakarta sans, "Helvetica Neue", sans-serif;
+    //  --font-plus-jakarta-sans: Plus Jakarta sans, "Helvetica Neue", sans-serif;
     //  --font-plus-jakarta-sans: Plus Jakarta sans;
-     --font-kanit: Kanit, "Helvetica Neue", sans-serif;
-     --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
-     // --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
-     // --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
-     // --font-nunito: Nunito, "Helvetica Neue", sans-serif;
+    //  --font-kanit: Kanit, "Helvetica Neue", sans-serif;
+    //  --font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
+    //  --font-great-vibes: Great Vibes, "Helvetica Neue", sans-serif;
+    //  --font-dancing-script: Dancing Script, "Helvetica Neue", sans-serif;
+     --font-nunito: Nunito, "Helvetica Neue", sans-serif;
      
-    //  --main-font-family: var(--font-plus-jakarta-sans);
-    // --main-font-family: var(--font-kanit);
-    --ang-exp-main-font-family: var(--font-josefin-sans);
-    // --main-font-family: var(--font-great-vibes);
-    // --main-font-family: var(--font-dancing-script);
-    // --main-font-family: var(--font-nunito);
+    // --ang-exp-main-font-family: var(--font-josefin-sans);
+    // --ang-exp-main-font-family: var(--font-plus-jakarta-sans);
+    // --ang-exp-main-font-family: var(--font-kanit);
+    // --ang-exp-main-font-family: var(--font-great-vibes);
+    // --ang-exp-main-font-family: var(--font-dancing-script);
+    --ang-exp-main-font-family: var(--font-nunito);
 }
 
 
 .ang-exp-light-theme {
 
-    --ang-exp-test-background-1: var(--ang-exp-purple-1);
-    --ang-exp-test-background-2: orange;
+    --ang-exp-font: var(--ang-exp-main-font-family);
+    
     --ang-exp-background-1: var(--ang-exp-white-1);
     --ang-exp-background-2: var(--ang-exp-white-1);
     --ang-exp-background-3: var(--ang-exp-white-1);
     --ang-exp-background-4: var(--ang-exp-white-1);
     --ang-exp-background-5: var(--ang-exp-grey-5);
     --ang-exp-background-6: var(--ang-exp-grey-6);
-    --ang-exp-title-text-1: var(--ang-exp-grey-1);
-    --ang-exp-title-text-2: var(--ang-exp-grey-2);
-    --ang-exp-title-text-3: var(--ang-exp-grey-3);
-    --ang-exp-title-text-4: var(--ang-exp-grey-4);
+
+    --ang-exp-title-text-1: var(--ang-exp-primary);
+    --ang-exp-title-text-2: var(--ang-exp-primary);
+    --ang-exp-title-text-3: var(--ang-exp-primary);
+    --ang-exp-title-text-4: var(--ang-exp-primary);
     --ang-exp-subtitle-text-1: var(--ang-exp-grey-5);
     --ang-exp-subtitle-text-2: var(--ang-exp-grey-6);
 
+
+    // --ang-exp-title-text-1: var(--ang-exp-grey-1);
+    // --ang-exp-title-text-2: var(--ang-exp-grey-2);
+    // --ang-exp-title-text-3: var(--ang-exp-grey-3);
+    // --ang-exp-title-text-4: var(--ang-exp-grey-4);
+    // --ang-exp-subtitle-text-1: var(--ang-exp-grey-5);
+    // --ang-exp-subtitle-text-2: var(--ang-exp-grey-6);
+
     // text colors for light backgrounds
-    --ang-exp-text-color-1: var(--ang-exp-purple-1);
-    --ang-exp-text-color-2: var(--ang-exp-purple-2);
+    --ang-exp-text-color-1: var(--ang-exp-primary);
+    --ang-exp-text-color-2: var(--ang-exp-primary);
+
     --ang-exp-drag-preview-background-color: var(--ang-exp-grey-6);
     --ang-exp-drag-preview-placeholder-color: var(--ang-exp-grey-6);
     --ang-exp-drag-preview-text-color: var(--ang-exp-grey-1);
@@ -79,8 +116,8 @@
 
 .ang-exp-dark-theme {
 
-    --ang-exp-test-background-1: var(--ang-exp-red-1);
-    --ang-exp-test-background-2: green;
+    --ang-exp-font: var(--ang-exp-main-font-family);
+    
     --ang-exp-text-color-1: var(--ang-exp-white-1);
     --ang-exp-background-1: var(--ang-exp-grey-1);
     --ang-exp-background-2: var(--ang-exp-grey-2);
@@ -152,3 +189,49 @@ $element-sizes: (
 @function elementSize($element-size) {
     @return map-get($element-sizes, $element-size);
 }
+
+/* CSS HEX */
+// --rich-black: #011627ff;
+// --red-cmyk: #ff0022ff;
+// --turquoise: #41ead4ff;
+// --baby-powder: #fdfffcff;
+// --red-violet: #b91372ff;
+
+/* CSS HSL */
+// --rich-black: hsla(207, 95%, 8%, 1);
+// --red-cmyk: hsla(352, 100%, 50%, 1);
+// --turquoise: hsla(172, 80%, 59%, 1);
+// --baby-powder: hsla(100, 100%, 99%, 1);
+// --red-violet: hsla(326, 81%, 40%, 1);
+
+/* SCSS HEX */
+$rich-black: #011627ff;
+$red-cmyk: #ff0022ff;
+$turquoise: #41ead4ff;
+$baby-powder: #fdfffcff;
+$red-violet: #b91372ff;
+
+/* SCSS HSL */
+$rich-black: hsla(207, 95%, 8%, 1);
+$red-cmyk: hsla(352, 100%, 50%, 1);
+$turquoise: hsla(172, 80%, 59%, 1);
+$baby-powder: hsla(100, 100%, 99%, 1);
+$red-violet: hsla(326, 81%, 40%, 1);
+
+/* SCSS RGB */
+$rich-black: rgba(1, 22, 39, 1);
+$red-cmyk: rgba(255, 0, 34, 1);
+$turquoise: rgba(65, 234, 212, 1);
+$baby-powder: rgba(253, 255, 252, 1);
+$red-violet: rgba(185, 19, 114, 1);
+
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-right: linear-gradient(90deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-bottom: linear-gradient(180deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-left: linear-gradient(270deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-top-right: linear-gradient(45deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-bottom-right: linear-gradient(135deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-top-left: linear-gradient(225deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-bottom-left: linear-gradient(315deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
+$gradient-radial: radial-gradient(#011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);

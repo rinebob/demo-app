@@ -3,10 +3,11 @@
 @use "../styles/kanban-mixins" as kanban;
 @use "../styles/global-mixins" as global;
 @use "../styles/ng-exp-mixins" as ng-exp;
+@use "./kanban-variables" as kanbanVar;
 
 @include mat.core();
 @import "./global-variables";
-@import "./kanban-variables";
+// @import "./kanban-variables";
 @import "./ng-exp-variables";
 
 ////////// ANGULAR MATERIAL THEME ///////////////////
@@ -84,6 +85,11 @@ html, body {
     height: 100%; 
 }
 body { 
+    margin: 0;
+    padding: 0;
+}
+
+p {
     margin: 0;
     padding: 0;
 }
