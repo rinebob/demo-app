@@ -57,6 +57,16 @@
     text-transform: uppercase;
 }
 
+@mixin textSubtitle {
+    @include textSizes($font-size: globalVar.globalFontSize(heading-l), $line-height: globalVar.globalLineHeight(heading-l));
+    font-family: var(--global-font-nunito);
+}
+
+@mixin textAccent {
+    @include textSizes($font-weight: 600, $font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
+    font-family: var(--global-font-nunito);
+}
+
 @mixin textDescription {
     @include textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(body-l), $line-height: globalVar.globalLineHeight(body-l));
     font-family: var(--global-font-exo)
@@ -102,11 +112,71 @@
     
 }
 
+@mixin textHeaderXL {
+    @include textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(heading-xl), $line-height: globalVar.globalLineHeight(heading-xl));
+    font-family: var(--global-font-exo);
+    
+}
 
+@mixin textHeaderL {
+    @include textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(heading-l), $line-height: globalVar.globalLineHeight(heading-l));
+    font-family: var(--global-font-exo);
+    
+}
 
+@mixin textHeaderM {
+    @include textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
+    font-family: var(--global-font-exo);
+    
+}
+
+@mixin textHeaderS {
+    @include textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(heading-s), $line-height: globalVar.globalLineHeight(heading-s));
+    font-family: var(--global-font-exo);
+    
+}
+
+@mixin textBodyL {
+    @include textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(body-l), $line-height: globalVar.globalLineHeight(body-l));
+    font-family: var(--global-font-exo);
+    
+}
+
+@mixin textBodyM {
+    @include textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(body-m), $line-height: globalVar.globalLineHeight(body-m));
+    font-family: var(--global-font-exo);
+    
+}
 
 ////////////////// TYPOGRAPHY //////////////////////////////
+ 
+/////////////////// ELEMENTS ///////////////////////////
 
+@mixin globalSidenavButtonStyles($height: var(--size-button-tall)) {
+    @include textButtonMain;
+    // background-color: $background-color;
+    border: none;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    cursor: pointer;
+    height: $height;
+    margin: 4px 8px;
+    padding: 0 24px;
+    text-align: left;
+    width: 276px;
+}
+
+@mixin globalMainButtonStyles($height: var(--size-button-regular)) {
+    @include flexboxLayout(row, space-between, center);
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    height: $height;
+    margin: 4px 8px;
+    padding: 0 24px;
+}
+
+/////////////////// ELEMENTS ///////////////////////////
 
 ////////////// MEDIA BREAKPOINTS ///////////////////// 
 

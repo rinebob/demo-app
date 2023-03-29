@@ -31,6 +31,9 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BoardsStore } from './services/boards-store.service';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { DesignSystemComponent } from './design-system/design-system.component';
+import { SharedModule } from './shared/shared.module';
+import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-links.module';
 
 let resolvePersistenceEnabled: (enabled: boolean) => void;
 
@@ -42,6 +45,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
   declarations: [
     AppComponent,
     LandingPageComponent,
+    DesignSystemComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,9 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
+
+    SharedModule,
+    SocialIconLinksModule,
     
     // DO NOT DELETE ///////////////////////////////////
     // ANGULAR IN-MEMORY WEB API
@@ -92,6 +99,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
       return firestore;
     }),
     StoreModule.forRoot({}, {}),
+    
   ],
   providers: [
     MatIconRegistry, BoardsStore,

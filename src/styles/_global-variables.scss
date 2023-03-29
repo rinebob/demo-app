@@ -10,6 +10,15 @@
     --global-buff: #e0a890ff;
     --global-red-violet: #ce1483ff;
 
+    --global-grey-1: #000112;
+    --global-grey-2: #20212c;
+    --global-grey-3: #2b2c37;
+    --global-grey-4: #3e3f4e;
+    --global-grey-5: #828fa3;
+    --global-grey-6: #e4ebfa;
+    --global-white-1: #ffffff;
+    --global-white-2: #f4f7fd;
+
 
     --global-font-plus-jakarta-sans: Plus Jakarta sans;
     --global-font-kanit: Kanit, "Helvetica Neue", sans-serif;
@@ -24,11 +33,11 @@
 }
 
 $global-font-sizes: (
-    masthead: 48px,
-    heading-xl: 24px,
+    masthead: 36px,
+    heading-xl: 28px,
     tablet-heading-xl: 20px,
-    heading-l: 18px,
-    heading-m: 15px,
+    heading-l: 22px,
+    heading-m: 16px,
     heading-s: 12px,
     body-xl: 16px,
     body-l: 13px,
