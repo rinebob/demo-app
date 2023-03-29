@@ -4,13 +4,16 @@
 
     <mat-sidenav #sidenav mode="side"
                  opened="true"
+                 (openedChange)="toggleShowSidenavButton($event)"
     >
 
-        <h1 class="title-text">
-            Robert Drake Rinehart
-        </h1>
+        
 
         <div class="top-sidenav-container">
+
+            <h1 class="heading">
+                Robert Drake Rinehart
+            </h1>
 
             <button type="button" 
                     routerLink="/robert"
@@ -60,22 +63,57 @@
                 ng Experiments
             </button>
 
+            <button type="button" 
+                    routerLink="/design-system"
+                    class="nav-button"
+                    (click)="sidenav.close()"
+            >
+                Design system
+            </button>
+
         </div>
 
         <div class="bottom-buttons-container">
+
+            <div class="dark-mode-switch-container">
+                <mat-icon class="material-symbols-outlined">light_mode</mat-icon>
+                <mat-slide-toggle [color]="darkModeToggleButtonColor"
+                                  [checked]="darkModeOn$ | async"
+                                  (change)="toggleTheme()"
+                                
+                ></mat-slide-toggle>
+                <mat-icon class="material-symbols-outlined">dark_mode</mat-icon>
+
+            </div>
+
+            <button class="hide-sidebar-button"
+                    (click)="sidenav.close()"
+            >
+                <mat-icon>visibility_off</mat-icon>
+                Hide Sidebar
+            </button>
         </div>
         
     </mat-sidenav>
     
     <mat-sidenav-content>
+
+                <!-- Button in upper left of child app sidenav to return back to app home -->
+        <button *ngIf="shouldShowOpenSidenavButton"
+                class="return-home-button"
+                (click)="sidenav.open()"
+            >
+            <p class="return-home-button-text">Return home</p>
+        </button>
         
         <router-outlet></router-outlet>
 
+            <!-- Button in lower left to open the sidenav -->
         <button *ngIf="shouldShowOpenSidenavButton"
                 class="show-sidenav-button"
                 (click)="sidenav.open()"
-            >
-            <p class="back-button-text">Other apps</p>
+        >
+            <mat-icon>visibility</mat-icon>
         </button>
 
     </mat-sidenav-content>

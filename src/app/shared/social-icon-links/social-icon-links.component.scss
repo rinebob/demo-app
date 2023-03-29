@@ -1,0 +1,23 @@
+@use '../styles/global-mixins' as global;
+@use '../styles/global-variables' as globalVar;
+@import "styles.scss";
+
+.links-container {
+    @include global.flexboxLayout(row, flex-start, center);
+    
+    .icon-button{
+        background: none;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        
+        &:not(:last-child) {
+            margin-right: 12px;
+            
+        }
+    }
+    
+    .icon-button .icon {
+        width: 28px;
+    }
+}

@@ -9,6 +9,13 @@
 
                     <div class="top-drawer-container">
 
+                            <!-- Button in top left to return to home sidenav -->
+                        <button class="return-home-button"
+                                
+                        >
+                            <p class="back-button-text">Return home</p>
+                        </button>
+
                         <h1 class="heading">Angular Experiments</h1>
 
                         <button *ngFor="let button of ANG_EXP_NAV_BUTTONS"
@@ -64,6 +71,7 @@
 
             </div> -->
 
+                <!-- Button in lower left to open sidenav for this app -->
             <button *ngIf="shouldShowOpenDrawerButton"
                     class="show-drawer-button"
                     (click)="drawer.open()"
