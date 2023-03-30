@@ -198,9 +198,27 @@
             @content;
         }
     }
+
+    @if($breakpoint == sm-md) {
+        @media(max-width: 660px) {
+            @content;
+        }
+    }
     
     @if($breakpoint == sm) {
         @media(max-width: 560px) {
+            @content;
+        }
+    }
+
+    @if($breakpoint == xs) {
+        @media(max-width: 460px) {
+            @content;
+        }
+    }
+
+    @if($breakpoint == xxs) {
+        @media(max-width: 360px) {
             @content;
         }
     }

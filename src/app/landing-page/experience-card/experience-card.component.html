@@ -1,0 +1,50 @@
+<div class="job-container">
+
+    <div class="job-header">
+        
+        <p class="subtitle-text job-headline">
+            {{experience.employer}}
+        </p>
+
+        <p class="subtitle-text">
+            {{experience.tenure}}
+        </p>
+
+    </div>
+
+    <p class="subtitle-text job-headline">
+        {{experience.title}}
+    </p>
+    <p class="accent-text job-headline">
+        {{experience.headline}}
+    </p>
+
+    <ng-container *ngIf="experience.assignments as assignments">
+
+        <ng-container *ngFor="let assignment of assignments">
+
+            <p class="description-text assignment">
+                {{assignment.title}}
+            </p>
+        
+            <p class="description-text">
+                {{assignment.description}}
+            </p>
+
+            <ul *ngIf="assignment.tasks as tasks">
+
+                <li *ngFor="let task of tasks">
+        
+                    <p class="description-text">
+                        {{task.description}}
+                    </p>
+        
+                </li>
+        
+            </ul>
+
+        </ng-container>
+
+    </ng-container>
+
+</div>

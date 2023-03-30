@@ -136,3 +136,39 @@ export interface DialogData {
     routerLink: string;
     text: string;
   }
+
+  export interface SkillData {
+    title: string;
+    imageSrc: string;
+    skills: string[];
+  }
+
+  export interface ProjectData {
+    title: string;
+    description: string;
+    imageSrc: string;
+  }
+
+  export interface ExperienceData {
+    employer: string;
+    tenure: string;
+    title: string;
+    headline: string;
+    description: string;
+    assignments: Assignment[];
+  }
+
+  export interface Assignment {
+    title: string;
+    description: string;
+    tasks: ExperienceTask[];
+  }
+
+  export interface ExperienceTask {
+    description: string;
+  }
+
+  export interface WelcomeButton {
+    url: string;
+    text: string;
+  }
