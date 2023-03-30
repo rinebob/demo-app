@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,6 +35,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DesignSystemComponent } from './design-system/design-system.component';
 import { SharedModule } from './shared/shared.module';
 import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-links.module';
+import { ProjectCardComponent } from './landing-page/project-card/project-card.component';
+import { SkillCardComponent } from './landing-page/skill-card/skill-card.component';
+import { ExperienceCardComponent } from './landing-page/experience-card/experience-card.component';
 
 let resolvePersistenceEnabled: (enabled: boolean) => void;
 
@@ -46,6 +50,9 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     AppComponent,
     LandingPageComponent,
     DesignSystemComponent,
+    ProjectCardComponent,
+    SkillCardComponent,
+    ExperienceCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     ReactiveFormsModule,
 
     MatButtonModule,
+    MatCardModule,
     MatCheckboxModule,
     MatDialogModule,
     MatFormFieldModule,

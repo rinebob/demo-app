@@ -36,7 +36,9 @@ $global-font-sizes: (
     masthead: 36px,
     heading-xl: 28px,
     tablet-heading-xl: 20px,
+    heading-l-xl: 24px,
     heading-l: 22px,
+    heading-m-l: 19px,
     heading-m: 16px,
     heading-s: 12px,
     body-xl: 16px,
@@ -57,6 +59,7 @@ $global-line-heights: (
     body-xl: 24px,
     body-l: 18px,
     body-m: 15px,
+    body-s: 12px,
 );
 
 @function globalLineHeight($size) {

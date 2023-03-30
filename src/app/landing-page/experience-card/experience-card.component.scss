@@ -1,0 +1,34 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+@import "styles.scss";
+
+:host {
+    width: 80%;
+    
+    .job-container {
+        @include global.flexboxLayout(column, flex-start, flex-start);
+        margin: 20px 0;
+        
+        .job-header {
+            @include global.flexboxLayout(row, space-between, center);
+            width: 100%;
+        }
+    
+        .job-headline {
+            margin-bottom: 6px;
+        }
+    
+        .assignment {
+            text-decoration: underline;
+        }
+    
+        .subtitle-text {
+            @include global.textSubtitle;
+        }
+    
+        .description-text {
+            @include global.textDescription;
+        }
+    
+    }
+}
