@@ -1,4 +1,4 @@
-import { Assignment, ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata } from "./interfaces";
+import { Assignment, ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -56,10 +56,11 @@ export const COLUMN_COLOR: ColumnColor = {
 }
 
 export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
-    {routerLink: AngExpRoutes.DRAG_DROP, text: 'cdk Drag Drop' },
-    {routerLink: AngExpRoutes.FORM_ARRAY, text: 'Form array'},
-    {routerLink: AngExpRoutes.ANIMATIONS, text: 'Animations'},
-    {routerLink: AngExpRoutes.SIGNALS, text: 'Signals'},
+    {routerLink: AngExpRoutes.DRAG_DROP, text: 'cdk drag drop' },
+    {routerLink: AngExpRoutes.FORM_ARRAY, text: 'form array'},
+    {routerLink: AngExpRoutes.ANIMATIONS, text: 'animations'},
+    {routerLink: AngExpRoutes.SIGNALS, text: 'signals'},
+    {routerLink: AngExpRoutes.CSS_TRICKS, text: 'css tricks'},
 ];
 
 export const BOARDS_COLLECTION = 'boards';
@@ -108,21 +109,25 @@ export const RINEBOB_PROJECTS: ProjectData[] = [
     {
         title: 'Kanban style Todo App',
         description: 'Manage software development projects from planning to production.  Full backend support through Firebase.  Material CDK drag-drop.',
+        route: '/kanban',
         imageSrc: '../../assets/DemoApp3.png',
     },
     {
         title: 'Stock market charting site clone',
         description: 'Clone of tradingview.com stock charting website.  Extensive D3 implementation for rendering stock prices, scales, indicators and other data.',
+        route: '/charts',
         imageSrc: '',
     },
     {
         title: 'Cubic-bezier animations site clone',
         description: 'Clone of cubic-bezier.com site.  Just because it looks cool.  Canvas, D3, Material components, copy to clipboard',
+        route: '/cubic-bezier',
         imageSrc: '',
     },
     {
         title: 'Bio data app',
         description: 'Personal health data tracking and monitoring app.  Deployed on Firebase with full backend support.  Firebase auth, firestore, deployment.  Material components, D3.',
+        route: '/biodata',
         imageSrc: '',
     },
 ];
@@ -169,11 +174,10 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
 
 export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     {url: '/robert', text: 'home'},
-    {url: '/robert', text: 'skills'},
-    {url: '/robert', text: 'projects'},
-    {url: '/robert', text: 'experience'},
-    {url: '/robert', text: 'contact'},
     {url: '/kanban', text: 'kanban todo app'},
+    {url: '/charts', text: 'trading view chart clone'},
+    {url: '/cubic-bezier', text: 'cubic-bezier site clone'},
+    {url: '/biodata', text: 'bio data app'},
     {url: '/ang-exp', text: 'ng experiments'},
     {url: '/design-system', text: 'design system'},
 ];
@@ -184,3 +188,32 @@ export const WELCOME_BUTTONS: ButtonMetadata[] = [
     {url: '/robert', fragment: 'experience', text: 'experience'},
     {url: '/robert', fragment: 'contact', text: 'contact'},
 ];
+
+export const COMING_SOON_METADATA: ComingSoonDict  = {
+    [RinebobSite.TRADING_VIEW_APP]: {
+        introText: 'Coming very soon',
+        title: 'trading view stock charting website clone',
+        description: 'This is a very cool site where you can create charts of stock prices over time.  You can overlay the chart with various indicators that show price averages, volume, momentum and other details.',
+        screenshot: 'trading view screenshot url',
+    },
+    [RinebobSite.CUBIC_BEZIER_APP]: {
+        introText: 'Coming after trading view clone',
+        title: 'cubic-bezier site clone',
+        description: 'This site looks like a fun project.  User can create css strings for cubic-bezier animations by modifying a cubic bezier curve.  Several curves can be created and compared, then exported for use in a site implementation.',
+        screenshot: 'cubic bezier url',
+    },
+    [RinebobSite.BIO_DATA_APP]:{
+        introText: 'Future plan',
+        title: 'biometric data app',
+        description: 'This app will enable a user to track personal health data such as blood pressure, pulse, weight, body fat, BMI and other data.  Data can then be viewed in charts with various statistical analysis capabilities.',
+        screenshot: 'bio data url',
+    },
+}
+
+export const COMING_SOON_INITIALIZER: ComingSoonMetadata  = {
+    introText: '',
+    title: '',
+    description: '',
+    screenshot: '',
+};
+    

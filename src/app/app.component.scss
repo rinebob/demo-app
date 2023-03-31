@@ -26,6 +26,7 @@
 
             ::ng-deep .mat-drawer-inner-container {
                 @include global.flexboxLayout(column, flex-start, flex-start);
+                background-color: var(--global-white-1);
                 overflow: hidden;
             }
 
@@ -150,7 +151,7 @@
                 padding: 0;
                 position: absolute;
                 left: 0;
-                top: 90%;
+                top: 89%;
                 width: 56px;
 
                 @include global.response(lg) {

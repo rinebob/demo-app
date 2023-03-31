@@ -6,6 +6,7 @@ import { SignalsComponent } from './signals/signals.component';
 import { AngExpRoutes } from '../common/interfaces';
 import { AnimationsComponent } from './animations/animations.component';
 import { FormArrayComponent } from './form-array/form-array.component';
+import { CssTricksComponent } from './css-tricks/css-tricks.component';
 
 const routes: Routes = [
   { path: '', component: AngExpComponent,
@@ -29,7 +30,11 @@ const routes: Routes = [
         path: AngExpRoutes.FORM_ARRAY,
         component: FormArrayComponent,
         data: {animation: 'FormArrayPage'}
-
+      },
+      { 
+        path: AngExpRoutes.CSS_TRICKS,
+        component: CssTricksComponent,
+        data: {animation: 'CssTricksPage'}
       },
       { path: '', redirectTo: AngExpRoutes.ANIMATIONS, pathMatch: 'full' },
 

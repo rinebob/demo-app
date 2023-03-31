@@ -12,10 +12,25 @@ const routes: Routes = [
     loadChildren: () => import('./kanban.module').then(m => m.KanbanModule),
   },
   { 
+    path: 'charts',
+    loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule)
+  },
+  { 
     path: 'ang-exp',
     loadChildren: () => import('./ang-exp/ang-exp.module').then(m => m.AngExpModule) 
   },
-    {path: '**', component: LandingPageComponent},
+  { 
+    path: 'cubic-bezier',
+    loadChildren: () => import('./bezier/bezier.module').then(m => m.BezierModule)
+  },
+  { 
+    path: 'biodata',
+    loadChildren: () => import('./bio/bio.module').then(m => m.BioModule)
+  },
+  {
+    path: '**',
+    component: LandingPageComponent
+  },
 ];
 
 @NgModule({

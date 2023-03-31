@@ -4,24 +4,48 @@
 
 :host {
     @include global.flexboxLayout(column, flex-start, flex-start);
-
+    
     .landing-page-container {
+        overflow-x: hidden;
         position: relative;
+        width: 100%;
 
         .scroll-to-top-button {
             @include global.flexboxLayout(row, center, center);
             @include global.globalOpenSidenavButtonStyles;
             @include global.globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
+            border-radius: 100%;
             margin: 0;
             padding: 0;
             position: absolute;
-            left: 0;
-            top: 85%;
+            left: 93%;
+            top: 89%;
             width: 56px;
             z-index: 10;
 
             &:hover {
                 @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));
+            }
+
+            @include global.response(xl) {
+                left: 92%;
+            }
+
+            @include global.response(lg) {
+                left: 90%;
+            }
+
+            @include global.response(md) {
+                left: 88%;
+            }
+
+            @include global.response(sm-md) {
+                height: 36px;
+                width: 36px;
+            }
+            
+            @include global.response(xs) {
+                left: 82%;
             }
         }
             
@@ -49,7 +73,26 @@
             }
 
             .nav-buttons-container {
-                @include global.flexboxLayout(row, center, flex-end);
+                @include global.flexboxLayout(row, flex-end, center);
+
+                .dark-mode-switch-container {
+                    @include global.flexboxLayout(row, space-between, center);
+                    // background-color: var(--background-2);
+                    margin: 0 22px;
+                    padding: 15px 64px;
+
+                    mat-icon {
+                        // color: var(--subtitle-text-1);
+                    }
+
+                    mat-slide-toggle {
+                        margin: 0 24px;
+                    }
+
+                    @include global.response(sm) {
+                        display: none;                
+                    }
+                }
 
                 app-social-icon-links {
                     margin-right: 20px;
@@ -111,7 +154,7 @@
                         @include global.flexboxLayout(row, center, center);
                     
                     
-                        @include global.response(sm) {
+                        @include global.response(sm-sm) {
                             @include global.flexboxLayout(column, flex-start, center);
                             flex-wrap: inherit;
                         }

@@ -16,6 +16,7 @@ import { SignalsComponent } from './signals/signals.component';
 import { AnimationsComponent } from './animations/animations.component';
 import { FormArrayComponent } from './form-array/form-array.component';
 import { OpenCloseComponent } from './animations/open-close/open-close.component';
+import { CssTricksComponent } from './css-tricks/css-tricks.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { OpenCloseComponent } from './animations/open-close/open-close.component
     SignalsComponent,
     AnimationsComponent,
     FormArrayComponent,
-    OpenCloseComponent
+    OpenCloseComponent,
+    CssTricksComponent
   ],
   imports: [
     CommonModule,

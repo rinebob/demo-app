@@ -9,12 +9,20 @@
                 {{project.description}}
             </p>
 
-            <button mat-flat-button
+            <!-- <button mat-flat-button
                     class="main-button"
                     color="primary"
             >
                 go to project
-            </button>
+            </button> -->
+
+            <a mat-flat-button
+                    class="main-button"
+                    color="primary"
+                    [routerLink]="project.route"
+            >
+                go to project
+            </a>
 
         </div>
 
