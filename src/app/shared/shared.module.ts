@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SocialIconLinksModule } from './social-icon-links/social-icon-links.module';
+import { ComingSoonModule } from './coming-soon/coming-soon.module';
 
 
 
@@ -8,7 +9,8 @@ import { SocialIconLinksModule } from './social-icon-links/social-icon-links.mod
   declarations: [],
   imports: [
     CommonModule,
-    SocialIconLinksModule
+    SocialIconLinksModule,
+    ComingSoonModule
   ],
   exports: [],
 })

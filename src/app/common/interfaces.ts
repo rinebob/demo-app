@@ -130,6 +130,7 @@ export interface DialogData {
     ANIMATIONS = 'animations',
     SIGNALS = 'signals',
     FORM_ARRAY = 'form-array',
+    CSS_TRICKS = 'css-tricks',
   }
 
   export interface NavButtonConfig {
@@ -146,6 +147,7 @@ export interface DialogData {
   export interface ProjectData {
     title: string;
     description: string;
+    route: string;
     imageSrc: string;
   }
 
@@ -172,4 +174,20 @@ export interface DialogData {
     url: string;
     fragment?: string;
     text: string;
+  }
+
+  export interface ComingSoonMetadata {
+    introText: string;
+    title: string;
+    description: string;
+    screenshot: string;
+  }
+  export enum RinebobSite {
+    TRADING_VIEW_APP = 'trading-view-app',
+    CUBIC_BEZIER_APP = 'cubic-bezier-app',
+    BIO_DATA_APP = 'bio-data-app',
+  }
+
+  export interface ComingSoonDict {
+    [key: string]: ComingSoonMetadata;
   }

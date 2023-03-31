@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { RINEBOB_PROJECTS } from 'src/app/common/constants';
 import { ProjectData } from 'src/app/common/interfaces';
 
@@ -11,4 +12,8 @@ import { ProjectData } from 'src/app/common/interfaces';
 export class ProjectCardComponent {
   @Input() project: ProjectData = RINEBOB_PROJECTS[0];
   readonly RINEBOB_PROJECTS = RINEBOB_PROJECTS;
+
+  constructor(private router: Router) {
+
+  }
 }

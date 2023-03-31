@@ -1,0 +1,51 @@
+@use '../styles/global-mixins' as global;
+@use '../styles/global-variables' as globalVar;
+@import "styles.scss";
+
+:host {
+    @include global.flexboxLayout(column, flex-start, center);
+    overflow-x: hidden;
+    
+    .coming-soon-container {
+        @include global.flexboxLayout(column, flex-start, center);
+        padding: 20px;
+        width: 100%;
+
+        .coming-soon {
+            @include global.textSectionSubheader;
+            margin: 0 0 30px;
+        }
+
+        .title {
+            @include global.textMasthead;
+            margin: 0 0 30px;
+            text-align: center;
+            width: 66%;
+            
+        }
+        .description-container {
+            @include global.border1;
+            // @include global.globalBoxShadow;
+
+            // 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+            // 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+            box-shadow: 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+            height: 20vh;
+            margin: 0 0 30px;
+            padding: 10px;
+            width: 50%;
+        }
+
+        .screenshot-container {
+            @include global.border1;
+            @include global.globalBoxShadow;
+            height: 50vh;
+            padding: 10px;
+            width: 80%;
+        }
+
+
+    }
+
+}
