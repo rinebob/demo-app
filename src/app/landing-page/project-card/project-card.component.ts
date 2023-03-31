@@ -9,10 +9,6 @@ import { ProjectData } from 'src/app/common/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectCardComponent {
-
   @Input() project: ProjectData = RINEBOB_PROJECTS[0];
-  
-  
   readonly RINEBOB_PROJECTS = RINEBOB_PROJECTS;
-
 }

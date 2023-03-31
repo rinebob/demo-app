@@ -1,4 +1,4 @@
-import { Assignment, ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, WelcomeButton } from "./interfaces";
+import { Assignment, ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -167,9 +167,20 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
     },
 ];
 
-export const WELCOME_BUTTONS: WelcomeButton[] = [
-    {url: '', text: 'skills'},
-    {url: '', text: 'projects'},
-    {url: '', text: 'experience'},
-    {url: '', text: 'contact'},
+export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
+    {url: '/robert', text: 'home'},
+    {url: '/robert', text: 'skills'},
+    {url: '/robert', text: 'projects'},
+    {url: '/robert', text: 'experience'},
+    {url: '/robert', text: 'contact'},
+    {url: '/kanban', text: 'kanban todo app'},
+    {url: '/ang-exp', text: 'ng experiments'},
+    {url: '/design-system', text: 'design system'},
+];
+
+export const WELCOME_BUTTONS: ButtonMetadata[] = [
+    {url: '/robert', fragment: 'skills', text: 'skills'},
+    {url: '/robert', fragment: 'projects', text: 'projects'},
+    {url: '/robert', fragment: 'experience', text: 'experience'},
+    {url: '/robert', fragment: 'contact', text: 'contact'},
 ];

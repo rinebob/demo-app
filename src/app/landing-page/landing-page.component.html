@@ -1,184 +1,238 @@
+<div class="landing-page-container">
+    
+    <button class="scroll-to-top-button"
+        (click)="scrollToTarget('welcome')"
+    >
+        <mat-icon>keyboard_double_arrow_up</mat-icon>
+    </button>
 
 
-<nav class="landing-page-nav">
-
-    <h1 class="header-text">Robert Rinehart</h1>
-    <div class="nav-buttons-container">
-
-        <app-social-icon-links></app-social-icon-links>
+    <nav class="landing-page-nav">
         
-    </div>
-    
-</nav>
 
-<div class="scroll-container">
+        <div class="title-container">
 
-    <main class="main-container">
+            <button mat-icon-button
+                    class="dropdown-icon-button"
+                    color="primary"
+                    [matMenuTriggerFor]="globalTopnavMenu"
+                    (menuOpened)="handleTopnavMenuOpen()"
+            >
+                <mat-icon>menu</mat-icon>
+            </button>
 
-        <section class="welcome-container">
+            <mat-menu #globalTopnavMenu="matMenu" [class]="globalTopnavMenuCssClass">
 
-            <div class="welcome-top">
+                <ng-container *ngFor="let button of APP_SIDENAV_BUTTONS">
+                    <button type="button"
+                            mat-menu-item
+                            routerLink="{{button.url}}"
+                            class="nav-button"
+                    >
+                        {{button.text}}
+                    </button>
 
-                <div class="welcome welcome-left">
-    
-                    <p class="welcome-title-text">Hello I'm Robert!</p>
-                    <p class="welcome-description-text">I'm a frontend developer specializing in Angular and the Angular ecosystem.  I'm passionate about building terrific websites with lots of engaging features.</p>
-                </div>
-    
-                <div class="welcome welcome-right">
-    
-                    <div class="robert-image">
-    
+                </ng-container>
+                
+            </mat-menu>
+            
+            <h1 class="header-text">Robert Rinehart</h1>
+
+        </div>
+
+        <div class="nav-buttons-container">
+
+            <app-social-icon-links></app-social-icon-links>
+            
+        </div>
+        
+    </nav>
+
+    <div class="scroll-container">
+
+        <main class="main-container"  id="welcome">
+
+            <section class="welcome-container">
+
+                <div class="welcome-top">
+
+                    <div class="welcome welcome-left">
+        
+                        <p class="welcome-title-text">Hello I'm Robert!</p>
+                        <p class="welcome-description-text">I'm a frontend developer specializing in Angular and the Angular ecosystem.  I'm passionate about building terrific websites with lots of engaging features.</p>
                     </div>
-    
+        
+                    <div class="welcome welcome-right">
+        
+                        <div class="robert-image">
+        
+                        </div>
+        
+                    </div>
+
                 </div>
 
-            </div>
-
-            <div class="welcome-bottom">
+                <div class="welcome-bottom">
 
                     <button *ngFor="let button of WELCOME_BUTTONS"
                             mat-stroked-button 
                             color=primary
                             class="main-button"
+                            (click)="scrollToTarget(button.fragment ?? '')"
                     >
                         {{button.text}}
                     </button>
+
+                </div>
+
+            </section>
+
+            <section class="skills" id="skills" #skills>
+                
+                <p class="section-header">
+                    Skills
+                </p>
+
+                <div class="skills-container">
+
+                    <ng-container *ngIf="RINEBOB_SKILLS as skills">
+
+
+                        <ng-container *ngFor="let skill of skills">
+                            
+                            <app-skill-card [skill]="skill"></app-skill-card>
+
+                        </ng-container>
+
+                    </ng-container>
                     
-            </div>
+                </div>
 
-        </section>
+            </section>
 
-        <section class="skills">
-            
-            <p class="section-header">
-                Skills
-            </p>
+            <section class="projects" id="projects" #projects>
 
-            <div class="skills-container">
+                <p class="section-header">
+                    Projects
+                </p>
 
-                <ng-container *ngIf="RINEBOB_SKILLS as skills">
+                <div class="projects-container">
 
+                    <ng-container *ngIf="RINEBOB_PROJECTS as projects">
 
-                    <ng-container *ngFor="let skill of skills">
+                        <ng-container *ngFor="let project of projects">
+                            
+                            <app-project-card [project]="project">
+                            </app-project-card>
+
+                        </ng-container>
                         
-                        <app-skill-card [skill]="skill"></app-skill-card>
+
+                    </ng-container>
+                    
+                </div>
+
+            </section>
+
+            <section class="experience" id="experience" #experience>
+
+                <p class="section-header">
+                    Recent Experience
+                </p>
+
+                <ng-container *ngIf="RINEBOB_EXPERIENCE as experiences">
+
+                    <ng-container *ngFor="let experience of experiences">
+                        
+                        <app-experience-card [experience]="experience">
+                        </app-experience-card>
 
                     </ng-container>
 
                 </ng-container>
-                
-            </div>
 
-        </section>
+            </section>
 
-        <section class="projects">
+            <section class="contact-container" id="contact" #contact>
 
-            <p class="section-header">
-                Projects
-            </p>
+                <p class="section-header">
+                    Contact
+                </p>
 
-            <div class="projects-container">
-
-                <ng-container *ngIf="RINEBOB_PROJECTS as projects">
-
-                    <ng-container *ngFor="let project of projects">
-                        
-                        <app-project-card [project]="project">
-                        </app-project-card>
-
-                    </ng-container>
+                <div class="contact">
                     
+                    <div class="contact-left">
 
-                </ng-container>
-                
-            </div>
-
-        </section>
-
-        <section class="experience">
-
-            <p class="section-header">
-                Recent Experience
-            </p>
-
-            <ng-container *ngIf="RINEBOB_EXPERIENCE as experiences">
-
-                <ng-container *ngFor="let experience of experiences">
-                    
-                    <app-experience-card [experience]="experience">
-                    </app-experience-card>
-
-                </ng-container>
-
-            </ng-container>
-
-            <p class="description-text">
-                Additional work history in resume
-            </p>
-
-        </section>
-
-        <section class="contact-container">
-
-            <p class="section-header">
-                Contact
-            </p>
-
-            <div class="contact">
-                
-                <div class="contact-left">
-
-                        <p class="title-text">Contact me!</p>
-                        <p class="description-text contact-description">I'm currently seeking new opportunities.  If you think my skill set is a match for your needs please contact me here or through any of my channels.</p>
-    
-                </div>
-                
-                <div class="contact-right">
-
-                    <div class="form-field name">
-                        <p class="placeholder-text">Name</p>
+                            <p class="subtitle-text">Contact me!</p>
+                            <p class="description-text contact-description">I'm currently seeking new opportunities and I' really like to hear from you!.  If you think my skill set is a match for your project please contact me here or through any of my channels.  Looking forward to meeting you soon.</p>
+        
                     </div>
                     
-                    <div class="form-field email">
-                        <p class="placeholder-text">Email</p>
-                        
-                    </div>
-                    
-                    <div class="form-field message">
-                        <p class="placeholder-text">Message</p>
+                    <div class="contact-right">
+
+                        <form [formGroup]="contactForm">
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Name</mat-label>
+                                <input matInput 
+                                    formControlName="nameControl"
+                                    placeholder="Name"
+                                    type="text"
+                                >
+
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput 
+                                    formControlName="emailControl"
+                                    placeholder="Email"
+                                    type="email"
+                                >
+
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Message</mat-label>
+                                <textarea matInput 
+                                    formControlName="messageControl"
+                                    placeholder="Message"
+                                    type="text"
+                                >
+                                </textarea>
+
+                            </mat-form-field>
+
+                        </form>
+
+                        <button mat-stroked-button
+                                color=primary
+                                class="main-button"
+                                (click)="handleSendMessage()"
+                        >
+                            Send message
+                        </button>
 
                     </div>
-
-                    <button mat-stroked-button
-                            color=primary
-                            class="main-button"
-                    >
-                        Send message
-                    </button>
 
                 </div>
 
-            </div>
+            </section>
 
-        </section>
+        </main>
 
-    </main>
-
-    <footer class="footer-container">
-
-        <p class="header-text footer-title">Robert Rinehart</p>
-        <div class="footer-buttons-container">
-
-            <app-social-icon-links></app-social-icon-links>
+        <footer class="footer-container">
             
-        </div>
+            <p class="header-text footer-title">Robert Rinehart</p>
+            <div class="footer-buttons-container">
 
-    </footer>
+                <app-social-icon-links></app-social-icon-links>
+                
+            </div>
 
-    
+        </footer>
 
+        
+
+    </div>
 </div>
-
-
-
