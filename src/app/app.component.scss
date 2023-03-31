@@ -1,4 +1,5 @@
 @use '../styles/global-mixins' as global;
+@use '../styles/global-variables' as globalVar;
 @import "styles.scss";
 
 :host {
@@ -15,6 +16,14 @@
             background-color: var(--dark-background-3);
             width: 300px;
 
+            @include global.response(xl) {
+                width: 240px;
+            }
+
+            @include global.response(lg) {
+                display: none;
+            }
+
             ::ng-deep .mat-drawer-inner-container {
                 @include global.flexboxLayout(column, flex-start, flex-start);
                 overflow: hidden;
@@ -25,13 +34,18 @@
                     @include global.textHeader;
                     margin: 34px 34px 33px 20px;
                     text-align: center;
+
+                    @include global.response(xl) {
+                        @include global.textSizes($font-size: globalVar.globalFontSize(heading-l), $line-height: globalVar.globalLineHeight(heading-l));
+                        margin: 28px 28px 26px 16px;
+                    }
                 }
 
                 .nav-button {
                     @include global.flexboxLayout(row, flex-start, center);
                     @include global.globalSidenavButtonStyles;
                     @include global.globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
-
+                    
                     mat-icon {
                         margin: 0 16px 0 0;
                     }
@@ -46,25 +60,12 @@
                         padding: 0;
                     }
                 }
-
-                // .all-boards {
-                //     @include global.globalHeadingSText;
-                //     padding: 0 16px;
-                //     text-transform: uppercase;
-                // }
-
-                // .create-new-board-button {
-                //     @include global.globalHeadingMText;
-                //     background-color: var(--dark-background-3);
-                //     color: var(--primary-idle);
-                // }
             }
 
             .bottom-buttons-container {
                 @include global.flexboxLayout(column, flex-start, center);
                 margin-top: auto;
                 margin-bottom: 50px;
-                // height: 10px;
                 width: 100%;
                 
                 .dark-mode-switch-container {
@@ -84,10 +85,14 @@
 
                 .hide-sidebar-button {
                     @include global.flexboxLayout(row, center, center);
-                    @include global.textHeaderL;
+                    @include global.textHeaderM;
                     @include global.globalColors($background-color: var(--global-white-1), $color: var(--global-grey-5));
                     border: none;
                     cursor: pointer;
+
+                    @include global.response(xl) {
+                        @include global.textSizes($font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
+                    }
                     
                     mat-icon {
                         margin-right: 15px;
@@ -118,6 +123,10 @@
                 top: 96%;
                 z-index: 10;
 
+                @include global.response(lg) {
+                    display: none;
+                }
+
                 &:hover {
                     @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));
                 }
@@ -135,15 +144,18 @@
 
             .show-sidenav-button {
                 @include global.flexboxLayout(row, center, center);
-                @include global.globalSidenavButtonStyles;    
+                @include global.globalOpenSidenavButtonStyles;
                 @include global.globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
+                margin: 0;
+                padding: 0;
                 position: absolute;
                 left: 0;
                 top: 90%;
                 width: 56px;
-                
-                margin: 0;
-                padding: 0;
+
+                @include global.response(lg) {
+                    display: none;
+                }
 
                 &:hover {
                     @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));

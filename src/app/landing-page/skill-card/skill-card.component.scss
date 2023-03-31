@@ -12,6 +12,10 @@ mat-card {
     mat-card-content {
         @include global.flexboxLayout(row, flex-start, center);
         max-width: 400px;
+
+        @include global.response(sm) {
+            padding: 8px;
+        }
         
         .skill-logo {
             margin-right: 16px;

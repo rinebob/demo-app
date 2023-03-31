@@ -168,7 +168,8 @@ export interface DialogData {
     description: string;
   }
 
-  export interface WelcomeButton {
+  export interface ButtonMetadata {
     url: string;
+    fragment?: string;
     text: string;
   }

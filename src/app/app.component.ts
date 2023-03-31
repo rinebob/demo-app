@@ -5,6 +5,8 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { ThemePalette } from '@angular/material/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+import { APP_SIDENAV_BUTTONS } from './common/constants';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,6 +20,8 @@ export class AppComponent {
   darkModeToggleButtonColor: ThemePalette = 'primary';
   darkModeOnBS = new BehaviorSubject(false);
   darkModeOn$: Observable<boolean> = this.darkModeOnBS;
+
+  readonly APP_SIDENAV_BUTTONS = APP_SIDENAV_BUTTONS;
 
   constructor(private router: Router, private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,

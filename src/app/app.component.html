@@ -3,11 +3,8 @@
 <mat-sidenav-container>
 
     <mat-sidenav #sidenav mode="side"
-                 opened="true"
                  (openedChange)="toggleShowSidenavButton($event)"
     >
-
-        
 
         <div class="top-sidenav-container">
 
@@ -15,61 +12,16 @@
                 Robert Drake Rinehart
             </h1>
 
-            <button type="button" 
-                    routerLink="/robert"
-                    class="nav-button"
-                    (click)="sidenav.close()"
-            >
-                Home
-            </button>
+            <ng-container *ngFor="let button of APP_SIDENAV_BUTTONS">
+                <button type="button" 
+                        routerLink="{{button.url}}"
+                        class="nav-button"
+                        (click)="sidenav.close()"
+                >
+                    {{button.text}}
+                </button>
 
-            <button type="button" 
-                    routerLink="/robert"
-                    class="nav-button"
-                    (click)="sidenav.close()"
-            >
-                Skills
-            </button>
-
-            <button type="button" 
-                    routerLink="/robert"
-                    class="nav-button"
-                    (click)="sidenav.close()"
-            >
-                About
-            </button>
-
-            <button type="button" 
-                    routerLink="/kanban"
-                    class="nav-button"
-                    (click)="sidenav.close()"
-            >
-                Projects
-            </button>
-
-            <button type="button" 
-                    routerLink="/kanban"
-                    class="nav-button"
-                    (click)="sidenav.close()"
-            >
-                Kanban Todo App
-            </button>
-
-            <button type="button" 
-                    routerLink="/ang-exp"
-                    class="nav-button"
-                    (click)="sidenav.close()"
-            >
-                ng Experiments
-            </button>
-
-            <button type="button" 
-                    routerLink="/design-system"
-                    class="nav-button"
-                    (click)="sidenav.close()"
-            >
-                Design system
-            </button>
+            </ng-container>
 
         </div>
 
@@ -98,7 +50,7 @@
     
     <mat-sidenav-content>
 
-                <!-- Button in upper left of child app sidenav to return back to app home -->
+                <!-- Button in lower left of child app sidenav to return back to app home -->
         <button *ngIf="shouldShowOpenSidenavButton"
                 class="return-home-button"
                 (click)="sidenav.open()"
@@ -113,7 +65,7 @@
                 class="show-sidenav-button"
                 (click)="sidenav.open()"
         >
-            <mat-icon>visibility</mat-icon>
+            <mat-icon>keyboard_double_arrow_right</mat-icon>
         </button>
 
     </mat-sidenav-content>

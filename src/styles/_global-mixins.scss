@@ -164,6 +164,16 @@
     padding: 0 24px;
     text-align: left;
     width: 276px;
+
+    @include response(xl) {
+        @include textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(heading-s), $line-height: globalVar.globalLineHeight(heading-s));
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        height: calc($height * .8);
+        margin: 3px 6px;
+        padding: 0 20px;
+        width: 220px;
+    }
 }
 
 @mixin globalMainButtonStyles($height: var(--size-button-regular)) {
@@ -174,6 +184,52 @@
     height: $height;
     margin: 4px 8px;
     padding: 0 24px;
+}
+
+@mixin globalOpenSidenavButtonStyles($height: var(--size-button-tall)) {
+    @include textButtonMain;
+    border: none;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    cursor: pointer;
+    height: $height;
+    margin: 4px 8px;
+    padding: 0 24px;
+    text-align: left;
+    width: 56px;
+}
+
+@mixin globalTopnavMenuButtonStyles($height: var(--size-button-tall)) {
+    @include globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: $height;
+    margin: 4px 8px;
+    padding: 0 24px;
+    text-align: left;
+    width: 276px;
+
+    &:hover {
+        @include globalColors($background-color: var(--global-grey-2) !important, $color: var(--global-white-1) !important);
+    }
+    
+    .mdc-list-item__primary-text {
+        @include textButtonMain;
+        @include globalColors($background-color: inherit, $color: inherit);
+    }
+
+    @include response(xl) {
+        @include textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(heading-s), $line-height: globalVar.globalLineHeight(heading-s));
+        height: calc($height * .8);
+        margin: 3px 6px;
+        padding: 0 20px;
+        width: 220px;
+
+        .mdc-list-item__primary-text {
+            @include textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(heading-s), $line-height: globalVar.globalLineHeight(heading-s));
+        }
+    }
 }
 
 /////////////////// ELEMENTS ///////////////////////////
@@ -189,6 +245,12 @@
     
     @if($breakpoint == lg) {
         @media(max-width: 1000px) {
+            @content;
+        }
+    }
+
+    @if($breakpoint == md-lg) {
+        @media(max-width: 880px) {
             @content;
         }
     }
