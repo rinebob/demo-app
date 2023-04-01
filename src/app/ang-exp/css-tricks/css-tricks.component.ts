@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-css-tricks',
@@ -6,10 +7,31 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./css-tricks.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CssTricksComponent {
+export class CssTricksComponent implements AfterViewInit {
+  @ViewChild('cursorRef', {read: ElementRef}) cursorRef: ElementRef;
+  cursor: HTMLElement;
 
   numItems = 25;
   items = new Array(this.numItems);
+
+  constructor() {
+
+  }
+
+  ngAfterViewInit() {
+    this.cursor = this.cursorRef.nativeElement;
+    this.animateCursor();
+  }
+
+  animateCursor() {
+    console.log('cT aC cursor style: ', this.cursor.style);
+
+    window.onmousemove = (e: any) => {
+      // console.log('cT aC on mouse move. event: ', e);
+      this.cursor.style.left = e.clientX + 'px';
+      this.cursor.style.top = e.clientY + 'px';
+    }
+  }
 
   handleTabAnimationDone(event: any) {
     // console.log('a hTAD tab animation done event: ', event);

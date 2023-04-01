@@ -1,0 +1,226 @@
+@use '../styles/global-variables' as globalVar;
+
+@mixin hexContainer {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    // container
+	min-height: calc(100vh - 145px);    // 145 = nav height + tab bar height
+    background-color: #000;
+    position: relative;
+	overflow: hidden;
+
+    .row {
+        display: inline-flex;
+        margin-top: -32px;
+        margin-left: -50px;
+
+        &:nth-child(even) {
+            margin-left: 1px;
+        }
+    }
+}
+
+@mixin animation4SLinearInfinite {
+    animation: animate 4s linear infinite;      // infinite makes it continuous
+
+    // rotates through the color hues to make hex color change in 4s cycles
+    @keyframes animate {
+        0% {
+            filter: hue-rotate(0deg);
+        }
+        100% {
+            filter: hue-rotate(360deg);
+        }
+    }
+}
+
+@mixin animation4SLinearInfiniteBlur($blur: 0) {
+    animation: blur 4s linear infinite;
+    @keyframes blur {
+        0% {
+            filter: hue-rotate(0deg) blur($blur);
+        }
+        100% {
+            filter: hue-rotate(360deg) blur($blur);
+        }
+    }
+}
+
+@mixin hexagonSolid {
+    background-color: #111;
+    height: 110px;
+    position: relative;
+    margin: 1px;
+    width: 100px;
+    // flat side top/bottom - this doesn't look evenly distrib'd.  taller than wide
+    // clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+    // flat side left/right - looks height width ~equal
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+    transition: 2s;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.02);
+        z-index: 10;
+    }
+}
+
+@mixin hexagonOutlined {
+    @include hexagonSolid;
+    margin: 2px;
+
+    // This puts a mask on the solid hexagon so it looks outlined
+    &:after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 4px;
+        right: 4px;
+        background: #111;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        z-index: 1;
+    }
+
+}
+
+@mixin hoverColor($color: #0f0) {
+    &:hover {
+        transition: 0s;
+        background-color: $color;
+    }
+}
+
+@mixin backgroundCircle {
+    background: #0f0;
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        top: 0;
+        left: 0;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+}
+
+@mixin glowingCornersBox {
+    position: relative;
+    background: linear-gradient(45deg, #00ccff, #0e1538, #0e1538, #d400d4);
+    box-shadow: 0 0 0 20px #070c23;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 2px;
+        background: #0e1538;
+        z-index: 2;
+    }
+    
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 2px;
+        background: linear-gradient(45deg, #00ccff, #0e1538, #0e1538, #d400d4);
+        filter: blur(20px);
+    }
+}
+
+@mixin neonButton {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    
+    // configurable
+    color: #2196f3;
+    font-size: 24px;
+    padding: 15px 30px;
+    letter-spacing: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.2s;
+
+    span {
+        position: absolute;
+        display: block;
+            
+        &:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #2196f3);
+        }
+
+        &:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #2196f3);
+        }
+
+        &:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #2196f3);
+        }
+        
+        &:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #2196f3);
+        }
+    }
+
+    &:hover {
+        color: #255784;
+        background-color: #2196f3;
+        box-shadow: 0 0 10px #2196f3,
+                    0 0 40px #2196f3,
+                    0 0 80px #2196f3;
+        transition-delay: 1s;
+
+        span {
+                
+            &:nth-child(1) {
+                left: 100%;
+                transition: 1s;
+            }
+
+            &:nth-child(2) {
+                top: 100%;
+                transition: 1s;
+                transition-delay: 0.25s;
+            }
+
+            &:nth-child(3) {
+                right: 100%;
+                transition: 1s;
+                transition-delay: 0.5s;
+            }
+
+            &:nth-child(4) {
+                bottom: 100%;
+                transition: 1s;
+                transition-delay: 0.75s;
+            }
+
+        }
+    }
+
+
+}

@@ -1,132 +1,138 @@
 @use '../styles/global-mixins' as global;
 @use '../styles/global-variables' as globalVar;
+@use './css-tricks-mixins' as cssTricks;
 @import "styles.scss";
 
-
-.hex-solid-container {
-    // @include global.flexboxLayout(row, flex-start, flex-start);
-
-    // display: flex;
-    //reset
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-
-    // container
-	min-height: calc(100vh - 145px);    // 145 = nav height + tab bar height
-    background-color: #000;
-    position: relative;
-	overflow: hidden;
-
-    animation: animate 4s linear infinite;      // infinite makes it continuous
-
-    // rotates through the color hues to make hex color change in 4s cycles
-    @keyframes animate {
-        0% {
-            filter: hue-rotate(0deg);
-        }
-        100% {
-            filter: hue-rotate(360deg);
-        }
+:host {
+    .mat-mdc-tab-group {
+        height: 100%;
         
-    }
-
-    .row {
-        display: inline-flex;
-        margin-top: -32px;
-        margin-left: -50px;
-
-        &:nth-child(even) {
-            margin-left: 1px;
+        ::ng-deep {
+            .mat-mdc-tab-body-wrapper {
+                height: 100%;
+            }
         }
     }
 
-
-    .hexagon {
-        background-color: #111;
-        height: 110px;
-        position: relative;
-        margin: 2px;
-        width: 100px;
-        // flat side top/bottom - this doesn't look evenly distrib'd.  taller than wide
-        // clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-
-        // flat side left/right - looks height width ~equal
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-
-        transition: 2s;
-
-        &:hover {
-            transition: 0s;
-            background-color: #0f0;
-        }
-
+///////////////////// SOLID HEXAGONS //////////////////////
+    .hex-solid-container {
+        @include cssTricks.hexContainer;
         
+        .hexagon-solid {
+            @include cssTricks.hexagonSolid;
+            @include cssTricks.hoverColor;
+            @include cssTricks.animation4SLinearInfinite;
+        }
+    }
 
-        &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;
-            height: 100%;
-            pointer-events: none;
-            background: rgba(255, 255, 255, 0.02);
+        ///////////////////// OUTLINED HEXAGONS //////////////////////
+    .hex-outlined-container {
+        @include cssTricks.hexContainer;
+
+        .hexagon-outlined {
+            @include cssTricks.hexagonOutlined;
+            @include cssTricks.hoverColor;
+            @include cssTricks.animation4SLinearInfinite;
+        }
+    }
+
+    ///////////////////// HEXAGONS WITH FLOATING CURSOR CIRCLE BLUR ///////////////
+    .hex-cursor-container {
+        @include cssTricks.hexContainer;
+        
+        .hexagon-cursor {
+            @include cssTricks.hexagonSolid;
             z-index: 10;
         }
 
-        // &:after {
-        //     content: '';
-        //     position: absolute;
-        //     top: 4px;
-        //     bottom: 4px;
-        //     left: 4px;
-        //     right: 4px;
-        //     background: #111;
-        //     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        //     z-index: 1;
-        // }
+        #cursor {
+            @include cssTricks.animation4SLinearInfiniteBlur(50px);
+            @include cssTricks.backgroundCircle;
+        }
+    }
 
+    .glowing-stuff-container {
+        @include global.flexboxLayout(column, center, center);
+        background: #0e1538;
+        height: 100%;
+        width: 100%;
         
-
-
-
-    }
-
-    // DO NOT DELETE
-    // creates a hexagon but with verbose before/after pseudo elements.
-    // keeping for reference but will be using the clip-path version above
-    .hexagon-before-after {
-        background-color: black;
-        height: 100px;
-        position: relative;
-        width: 60px;
-
-        &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -30px;
-            width: 0;
-            height: 0;
-            border-right: 30px solid black;
-            border-top: 50px solid transparent;
-            border-bottom: 50px solid transparent;
+        .elements-container {
+            @include global.flexboxLayout(row, space-evenly, center);
+            padding: 40px;
+            width: 100%;
+            
+            .neon-button {
+                @include cssTricks.neonButton;
+            }
         }
-
-        &:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -30px;
-            width: 0;
-            height: 0;
-            border-left: 30px solid black;
-            border-top: 50px solid transparent;
-            border-bottom: 50px solid transparent;
-        }
-
-    }
-    /////////////////////////
     
+        .glowing-corners-container {
+            @include global.flexboxLayout(row, center, center);
+    
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            background: #0e1538;
+            height: 100%;
+            gap: 200px;
+            width: 100%;
+            
+            .box {
+                @include cssTricks.glowingCornersBox;
+                height: 200px;
+                width: 150px;
+                
+                &:nth-child(2) {
+                    background: linear-gradient(45deg, #ffeb3b, #0e1538, #0e1538, #00ffaa);
+                }
+                
+                &:nth-child(2):after {
+                    background: linear-gradient(45deg, #ffeb3b, #0e1538, #0e1538, #00ffaa);
+                }
+    
+            }
+        }
+
+    }
+
+
+}    
+
+// DO NOT DELETE
+// creates a hexagon but with verbose before/after pseudo elements.
+// keeping for reference but will be using the clip-path version above
+.hexagon-before-after {
+    background-color: black;
+    height: 100px;
+    position: relative;
+    width: 60px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -30px;
+        width: 0;
+        height: 0;
+        border-right: 30px solid black;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -30px;
+        width: 0;
+        height: 0;
+        border-left: 30px solid black;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+    }
+
 }
+/////////////////////////
+    
+

@@ -9,36 +9,90 @@
 
 >
 
+    <mat-tab label="Glowing stuff">
+
+        <div class="glowing-stuff-container">
+            
+            <div class="elements-container">
+                
+                <div class="neon-button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    neon button
+                </div>
+    
+            </div>
+    
+            <div class="glowing-corners-container">
+                
+                <div class="box"></div>
+                
+                <div class="box"></div>
+    
+            </div>
+
+        </div>
+
+    </mat-tab>
+
     <mat-tab label="Hexagons solid">
 
         <div class="hex-solid-container">
 
             <div class="row" *ngFor="let row of items">
                 
-                <div class="hexagon" *ngFor="let hex of items"></div>
+                <div class="hexagon-solid" *ngFor="let hex of items"></div>
 
             </div>
 
         </div>
 
     </mat-tab>
-    <!-- <mat-tab label="Enter / Leave">
+    <mat-tab label="Hexagons outlined">
+
+        <div class="hex-outlined-container">
+
+            <div class="row" *ngFor="let row of items">
+                
+                <div class="hexagon-outlined" *ngFor="let hex of items"></div>
+
+            </div>
+
+        </div>
 
     </mat-tab>
-    <mat-tab label="Multi-step">
+
+    <mat-tab label="Hexagons cursor">
+
+        <div class="hex-cursor-container">
+
+            <div class="row" *ngFor="let row of items">
+                
+                <div class="hexagon-cursor" *ngFor="let hex of items"></div>
+
+            </div>
+
+            <div id="cursor" #cursorRef></div>
+            
+        </div>
 
     </mat-tab>
-    <mat-tab label="Keyframes">
 
-    </mat-tab>
-    <mat-tab label="Series / Parallel">
 
-    </mat-tab>
-    <mat-tab label="Easings">
+    
 
-    </mat-tab>
 
-    <mat-tab label="angular docs">
+
+    <!-- <mat-tab label="Series / Parallel">
+
+    </mat-tab> -->
+    <!-- <mat-tab label="Easings">
+
+    </mat-tab> -->
+
+    <!-- <mat-tab label="angular docs">
 
     </mat-tab> -->
 
