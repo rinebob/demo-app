@@ -43,7 +43,7 @@
                         <div class="drag-element-content">
                             <p class="task-title">{{task.displayName}}</p>
                             <p class="task-subtitle">{{task.status}}</p>
-                            <p class="task-subtitle">x of x subtasks</p>
+                            <p class="task-subtitle">{{getNumCompletedSubtasks(task)}} of {{task.subTasks.length}} subtasks completed</p>
                         </div>
             
                     </div>
@@ -77,7 +77,7 @@
 <ng-template #noTasks>
     <div class="no-tasks-container">
         
-        <p class="empty-board">{{emptyBoardText}}</p>
+        <p class="empty-board">{{EMPTY_BOARD_TEXT}}</p>
         <button mat-button
                 class="add-task-button"
                 (click)="addNewTask()"

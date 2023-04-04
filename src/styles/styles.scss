@@ -178,6 +178,7 @@ p {
         
         .mdc-dialog__surface {
             background-color: var(--background-3) !important;
+            overflow: hidden;
         }
     }
 
