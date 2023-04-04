@@ -11,10 +11,14 @@
             .mat-mdc-tab-body-wrapper {
                 height: 100%;
             }
+
+            .mat-mdc-tab-body-content {
+                overflow: hidden
+            }
         }
     }
 
-///////////////////// SOLID HEXAGONS //////////////////////
+        ///////////////////// SOLID HEXAGONS //////////////////////
     .hex-solid-container {
         @include cssTricks.hexContainer;
         
@@ -51,52 +55,86 @@
         }
     }
 
-    .glowing-stuff-container {
-        @include global.flexboxLayout(column, center, center);
-        background: #0e1538;
-        height: 100%;
-        width: 100%;
+    .glowing-stuff-scroll-container {
+        @include global.flexboxLayout(column, flex-start, center);
+        align-self: stretch;
+        height: calc(100vh - 145px);
+        overflow-x: hidden;
+        overflow-y: auto;
         
-        .elements-container {
-            @include global.flexboxLayout(row, space-evenly, center);
-            padding: 40px;
-            width: 100%;
-            
-            .neon-button {
-                @include cssTricks.neonButton;
-            }
-        }
-    
-        .glowing-corners-container {
-            @include global.flexboxLayout(row, center, center);
-    
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        .glowing-stuff-container {
+            @include global.flexboxLayout(column, flex-start, center);
             background: #0e1538;
             height: 100%;
-            gap: 200px;
             width: 100%;
-            
-            .box {
-                @include cssTricks.glowingCornersBox;
-                height: 200px;
-                width: 150px;
-                
-                &:nth-child(2) {
-                    background: linear-gradient(45deg, #ffeb3b, #0e1538, #0e1538, #00ffaa);
-                }
-                
-                &:nth-child(2):after {
-                    background: linear-gradient(45deg, #ffeb3b, #0e1538, #0e1538, #00ffaa);
-                }
-    
-            }
-        }
 
+            /////////////////// PYRAMID /////////////////////////////
+    
+            .pyramid-container {
+                @include global.flexboxLayout(row, center, center);
+                padding: 0 0 300px;
+                width: 100%;
+    
+                background-color: #050505;
+    
+                .pyramid {
+                    @include cssTricks.glowingPyramid;
+                }
+            }
+
+            /////////////////// NEON BUTTON /////////////////////////////
+    
+            .neon-button-container {
+                @include global.flexboxLayout(row, center, center);
+                height: 200px;
+                padding: 40px;
+                width: 100%;
+                
+                .neon-button {
+                    @include cssTricks.neonButton;
+                }
+            }
+
+            /////////////////// GLOWING CORNERS /////////////////////////////
+        
+            .glowing-corners-container {
+                @include global.flexboxLayout(row, center, center);
+        
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                background: #0e1538;
+                height: 500px;
+                gap: 200px;
+                width: 100%;
+                
+                .box {
+                    @include cssTricks.glowingCornersBox;
+                    height: 200px;
+                    width: 150px;
+                    
+                    &:nth-child(2) {
+                        background: linear-gradient(45deg, #ffeb3b, #0e1538, #0e1538, #00ffaa);
+                    }
+                    
+                    &:nth-child(2):after {
+                        background: linear-gradient(45deg, #ffeb3b, #0e1538, #0e1538, #00ffaa);
+                    }
+        
+                }
+            }
+    
+        }
     }
 
-
+    .icon-nav-bar-container {
+        @include global.flexboxLayout(row, center, flex-start);
+        background-color: var(--color);
+        box-sizing: border-box;
+        height: 100vh;
+        overflow: hidden;
+        padding: 50px;
+    }
 }    
 
 // DO NOT DELETE

@@ -1,31 +1,37 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { AppRoutes } from './common/interfaces';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DesignSystemComponent } from './design-system/design-system.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'robert', pathMatch: 'full'},
-  {path: 'robert', component: LandingPageComponent},
-  {path: 'design-system', component: DesignSystemComponent},
+  {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
+  {path: AppRoutes.ROBERT, component: LandingPageComponent},
+  {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
   {
-    path: 'kanban',
+    path: AppRoutes.KANBAN,
     loadChildren: () => import('./kanban.module').then(m => m.KanbanModule),
   },
   { 
-    path: 'charts',
+    path: AppRoutes.CHARTS,
     loadChildren: () => import('./charts/charts.module').then(m => m.ChartsModule)
   },
   { 
-    path: 'ang-exp',
+    path: AppRoutes.ANG_EXP,
     loadChildren: () => import('./ang-exp/ang-exp.module').then(m => m.AngExpModule) 
   },
   { 
-    path: 'cubic-bezier',
+    path: AppRoutes.CUBIC_BEZIER,
     loadChildren: () => import('./bezier/bezier.module').then(m => m.BezierModule)
   },
   { 
-    path: 'biodata',
+    path: AppRoutes.BIODATA,
     loadChildren: () => import('./bio/bio.module').then(m => m.BioModule)
+  },
+  { 
+    path: AppRoutes.MAT_THEME,
+    loadChildren: () => import('./mat-theme/mat-theme.module').then(m => m.MatThemeModule)
   },
   {
     path: '**',

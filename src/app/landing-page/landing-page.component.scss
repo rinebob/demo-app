@@ -60,7 +60,7 @@
                 @include global.flexboxLayout(row, flex-start, center);
                 
                 .dropdown-icon-button {
-                    display: none;
+                    // display: none;
 
                     @include global.response(lg) {
                         display: block;
@@ -109,21 +109,21 @@
             overflow-y: auto;
             position: relative;
 
-            .scroll-to-top-button {
-                @include global.flexboxLayout(row, center, center);
-                @include global.globalOpenSidenavButtonStyles;
-                @include global.globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
-                margin: 0;
-                padding: 0;
-                position: absolute;
-                right: 0;
-                top: 90%;
-                width: 56px;
+            // .scroll-to-top-button {
+            //     @include global.flexboxLayout(row, center, center);
+            //     @include global.globalOpenSidenavButtonStyles;
+            //     @include global.globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
+            //     margin: 0;
+            //     padding: 0;
+            //     position: absolute;
+            //     right: 0;
+            //     top: 90%;
+            //     width: 56px;
 
-                &:hover {
-                    @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));
-                }
-            }
+            //     &:hover {
+            //         @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));
+            //     }
+            // }
             
             .main-container {
                 flex-grow: 1;

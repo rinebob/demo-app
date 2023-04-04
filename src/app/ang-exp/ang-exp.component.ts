@@ -4,6 +4,7 @@ import { ThemePalette } from '@angular/material/core';
 import { BehaviorSubject, Observable, filter } from 'rxjs';
 
 import { ANG_EXP_NAV_BUTTONS } from '../common/constants';
+import { AppTheme } from '../common/interfaces';
 import { slideInAnimation } from './animations/animations';
 
 @Component({
@@ -13,7 +14,7 @@ import { slideInAnimation } from './animations/animations';
   animations: [slideInAnimation],
 })
 export class AngExpComponent {
-  @HostBinding('class') theme = 'ang-exp-light-theme';
+  @HostBinding('class') theme = AppTheme.ANG_EXP_LIGHT;
 
   shouldShowOpenDrawerButton = true;
   darkModeToggleButtonColor: ThemePalette = 'primary';
@@ -30,12 +31,6 @@ export class AngExpComponent {
       const segment = segments[segments.length - 1];
       this.pageTitle = ANG_EXP_NAV_BUTTONS.find(button => button.routerLink === segment)?.text ?? '';
       
-      // console.log('aE ctor router events sub: ', event);
-      // console.log('aE ctor url: ', event.url.split('/'));
-      // console.log('aE ctor url: ', event.urlAfterRedirects.split('/'));
-      
-      // console.log('aE ctor route endpoint: ', segments[segments.length - 1]);
-            
       for (const [key, value] of  Object.entries(event)) {
         // console.log('aE ctor key/value: ', key, value);
 
@@ -54,7 +49,7 @@ export class AngExpComponent {
 
   toggleTheme() {
     // console.log('bV tT toggle dark mode pre: ', this.darkModeOnBS.value);
-    this.theme = this.theme === 'ang-exp-light-theme' ? 'ang-exp-dark-theme' : 'ang-exp-light-theme';
+    this.theme = this.theme === AppTheme.ANG_EXP_LIGHT ? AppTheme.ANG_EXP_DARK : AppTheme.ANG_EXP_LIGHT;
     this.darkModeOnBS.next(!this.darkModeOnBS.value);
     // console.log('bV tT toggle dark mode post: ', this.darkModeOnBS.value);
   }

@@ -9,27 +9,60 @@
 
 >
 
+    <mat-tab label="Icon nav bar">
+
+        <div class="icon-nav-bar-container">
+
+            <app-icon-nav-bar [navBarLinks]="ICON_NAV_BAR_LINKS"></app-icon-nav-bar>
+
+        </div>
+
+    </mat-tab>
+
     <mat-tab label="Glowing stuff">
 
-        <div class="glowing-stuff-container">
+        <div class="glowing-stuff-scroll-container">
+
+            <div class="glowing-stuff-container">
+    
+                <div class="pyramid-container">
+    
+                    <div class="pyramid">
+
+                        <div class="glow"></div>
+    
+                        <div>
             
-            <div class="elements-container">
-                
-                <div class="neon-button">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    neon button
+                            <span style="--i:0"></span>
+                            <span style="--i:1"></span>
+                            <span style="--i:2"></span>
+                            <span style="--i:3"></span>
+                            
+                        </div>
+                    
+                    </div>
+    
                 </div>
-    
-            </div>
-    
-            <div class="glowing-corners-container">
                 
-                <div class="box"></div>
-                
-                <div class="box"></div>
+                <div class="neon-button-container">
+    
+                    <div class="neon-button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        neon button
+                    </div>
+        
+                </div>
+        
+                <div class="glowing-corners-container">
+                    
+                    <div class="box"></div>
+                    
+                    <div class="box"></div>
+        
+                </div>
     
             </div>
 
@@ -85,9 +118,7 @@
 
 
 
-    <!-- <mat-tab label="Series / Parallel">
-
-    </mat-tab> -->
+    x
     <!-- <mat-tab label="Easings">
 
     </mat-tab> -->

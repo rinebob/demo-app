@@ -1,0 +1,96 @@
+<div class="navigation">
+
+    <div class="nav-items-container">
+
+        <ng-container *ngIf="navBarLinks.length > 0">
+
+            <ng-container *ngFor="let link of navBarLinks; let index">
+                
+                <div #navItem id="{{link.name}}" class="nav-item" (click)="animateLink(link.name)">
+                
+                    <div class="link">
+                                
+                        <mat-icon class="material-symbols-outlined">{{link.icon}}</mat-icon>
+                        <span class="text">{{link.linkText | titlecase}}</span>
+        
+                    </div>
+        
+                </div>
+
+            </ng-container>
+        
+        </ng-container>
+
+        <!-- <div #navItem id="navItem1" class="nav-item" (click)="animateLink('navItem1')">
+            
+            <div class="link">
+                        
+                <mat-icon class="material-symbols-outlined">home</mat-icon>
+                <span class="text">Home</span>
+
+            </div>
+
+        </div>
+        
+        <div #navItem id="navItem1" class="nav-item" (click)="animateLink('navItem1')">
+            
+            <div class="link">
+                        
+                <mat-icon class="material-symbols-outlined">home</mat-icon>
+                <span class="text">Home</span>
+
+            </div>
+
+        </div>
+
+        <div #navItem id="navItem2" class="nav-item" (click)="animateLink('navItem2')">
+            
+            <div class="link">
+                        
+                <mat-icon class="icon material-symbols-outlined">person</mat-icon>
+                <span class="text">Profile</span>
+                
+            </div>
+
+        </div>
+
+        <div #navItem id="navItem3" class="nav-item" (click)="animateLink('navItem3')">
+            
+            <div class="link">
+                        
+                <mat-icon class="icon material-symbols-outlined">chat</mat-icon>
+                <span class="text">Message</span>
+
+            </div>
+
+        </div>
+
+
+        <div #navItem id="navItem4" class="nav-item" (click)="animateLink('navItem4')">
+            
+            <div class="link">
+                        
+                <mat-icon class="icon material-symbols-outlined">photo_camera</mat-icon>
+                <span class="text">Photos</span>
+
+            </div>
+
+        </div>
+
+
+        <div #navItem id="navItem5" class="nav-item" (click)="animateLink('navItem5')">
+            
+            <div class="link">
+                        
+                <mat-icon class="icon material-symbols-outlined">settings</mat-icon>
+                <span class="text">Settings</span>
+                
+            </div>
+            
+        </div> -->
+
+        <div class="indicator"></div>
+        
+    </div>
+    
+</div>

@@ -1,4 +1,4 @@
-import { Assignment, ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite } from "./interfaces";
+import { Assignment, ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -173,13 +173,14 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
 ];
 
 export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
-    {url: '/robert', text: 'home'},
-    {url: '/kanban', text: 'kanban todo app'},
-    {url: '/charts', text: 'trading view chart clone'},
-    {url: '/cubic-bezier', text: 'cubic-bezier site clone'},
-    {url: '/biodata', text: 'bio data app'},
-    {url: '/ang-exp', text: 'ng experiments'},
-    {url: '/design-system', text: 'design system'},
+    {url: AppRoutes.ROBERT, text: 'home'},
+    {url: AppRoutes.KANBAN, text: 'kanban todo app'},
+    {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
+    {url: AppRoutes.CUBIC_BEZIER, text: 'cubic-bezier site clone'},
+    {url: AppRoutes.BIODATA, text: 'bio data app'},
+    {url: AppRoutes.ANG_EXP, text: 'ng experiments'},
+    {url: AppRoutes.MAT_THEME, text: 'mat theme'},
+    {url: AppRoutes.DESIGN_SYSTEM, text: 'design system'},
 ];
 
 export const WELCOME_BUTTONS: ButtonMetadata[] = [
@@ -216,4 +217,13 @@ export const COMING_SOON_INITIALIZER: ComingSoonMetadata  = {
     description: '',
     screenshot: '',
 };
-    
+
+export const ICON_NAV_BAR_LINKS: IconNavBarLink[] = [
+    {name: 'home', icon: 'home', linkText: 'home'},
+    {name: 'profile', icon: 'person', linkText: 'profile'},
+    {name: 'message', icon: 'chat', linkText: 'message'},
+    {name: 'photos', icon: 'photo_camera', linkText: 'photos'},
+    {name: 'settings', icon: 'settings', linkText: 'settings'},
+    // {name: '', icon: '', linkText: ''},
+];
+
