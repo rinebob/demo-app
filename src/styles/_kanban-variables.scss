@@ -1,4 +1,4 @@
-
+@use '@angular/material' as mat;
 
 :root {
 
@@ -150,6 +150,74 @@
 
     --task-card-drop-shadow-opacity: 0;
 }
+
+ // based on purple-1.  Hex values obteained from Material color tool
+    // https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+    $kanban-purple-palette: (
+        50: #e9e8f7,
+        100: #c7c6ec,
+        200: #a2a1de,
+        300: #7d7cd1,
+        400: #635fc7,       // primary color
+        500: #4a42bc,
+        600: #4439b1,
+        700: #3c2fa5,
+        800: #34249a,
+        900: #290c83,
+        contrast: (
+            50: rgba(black, 0.87),
+            100: rgba(black, 0.87),
+            200: rgba(black, 0.87),
+            300: white,
+            400: white,
+            500: white,
+            600: white,
+            700: white,
+            800: white,
+            900: white,
+        )
+    );
+
+    // $kanban-primary: mat.define-palette($kanban-purple-palette, 400, 200);
+    // $kanban-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+    $kanban-primary: mat.define-palette($kanban-purple-palette);
+    $kanban-accent: mat.define-palette(mat.$pink-palette);
+
+    // The "warn" palette is optional and defaults to red if not specified.
+    $kanban-warn: mat.define-palette(mat.$red-palette);
+
+    $kanban-light-theme: mat.define-light-theme((
+        color: (
+            primary: $kanban-primary,
+            accent: $kanban-accent,
+            warn: $kanban-warn,
+        ),
+         // Only include `typography` and `density` in the default light theme.
+         // Specify the font to use something other than default Roboto font
+        typography: mat.define-typography-config($font-family: var(--main-font-family)),
+        density: 0,
+        ));
+
+    $kanban-dark-theme: mat.define-dark-theme((
+    color: (
+        primary: $kanban-primary,
+        accent: $kanban-accent,
+        warn: $kanban-warn,
+    ),
+    ));
+
+    // Apply the light theme by default
+    @include mat.core-theme($kanban-light-theme);
+    @include mat.all-component-themes($kanban-light-theme);
+
+    // Apply the dark theme only when the user prefers light themes.
+    @media (prefers-color-scheme: dark) {
+        // Use the `-color` mixins to only apply color styles without reapplying the same
+        // typography and density styles.
+        @include mat.core-color($kanban-dark-theme);
+        // @include mat.all-component-themes($kanban-dark-theme);
+
+   }
 
 $colors: (
         primary-idle: var(--kanban-primary-idle),
