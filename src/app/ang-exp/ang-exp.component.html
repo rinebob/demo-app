@@ -3,18 +3,11 @@
 
     <mat-drawer-container>
         
-        <!-- opened="true" -->
         <mat-drawer #drawer mode="side"
+                    opened="true"
                     (openedChange)="toggleShowDrawerButton($event)">
 
                     <div class="top-drawer-container">
-
-                            <!-- Button in top left to return to home sidenav -->
-                        <button class="return-home-button"
-                                
-                        >
-                            <p class="back-button-text">Return home</p>
-                        </button>
 
                         <h1 class="heading">Angular Experiments</h1>
 
@@ -40,7 +33,7 @@
                 <div class="title-container">
 
                     <span *ngIf="shouldShowOpenDrawerButton" class="title-text">Angular Experiment: </span>
-                    <span class="title-text">{{pageTitle}}</span>
+                    <span class="title-text">{{pageTitle | titlecase}}</span>
 
                 </div>
             

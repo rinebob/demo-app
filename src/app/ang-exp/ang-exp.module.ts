@@ -17,6 +17,7 @@ import { AnimationsComponent } from './animations/animations.component';
 import { FormArrayComponent } from './form-array/form-array.component';
 import { OpenCloseComponent } from './animations/open-close/open-close.component';
 import { CssTricksComponent } from './css-tricks/css-tricks.component';
+import { IconNavBarComponent } from './css-tricks/icon-nav-bar/icon-nav-bar.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CssTricksComponent } from './css-tricks/css-tricks.component';
     AnimationsComponent,
     FormArrayComponent,
     OpenCloseComponent,
-    CssTricksComponent
+    CssTricksComponent,
+    IconNavBarComponent
   ],
   imports: [
     CommonModule,

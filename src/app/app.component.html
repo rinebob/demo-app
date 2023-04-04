@@ -2,8 +2,8 @@
 
 <mat-sidenav-container>
 
-    <!-- opened="true" -->
     <mat-sidenav #sidenav mode="over"
+                 opened="true"
                  (openedChange)="toggleShowSidenavButton($event)"
     >
 
@@ -51,13 +51,14 @@
     
     <mat-sidenav-content>
 
-                <!-- Button in lower left of child app sidenav to return back to app home -->
-        <button *ngIf="shouldShowOpenSidenavButton"
+            <!-- Button in lower left of child app sidenav to return back to app home -->
+        <a *ngIf="shouldShowReturnHomeButton"
+                type="button"
                 class="return-home-button"
-                (click)="sidenav.open()"
+                [routerLink]="APP_SIDENAV_BUTTONS[0].url"
             >
             <p class="return-home-button-text">Return home</p>
-        </button>
+        </a>
         
         <router-outlet></router-outlet>
 

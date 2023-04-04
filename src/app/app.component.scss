@@ -121,11 +121,12 @@
                 left: 0;
                 margin: 0;
                 padding: 4px 8px;
+                text-decoration: none;
                 top: 96%;
                 z-index: 10;
 
                 @include global.response(lg) {
-                    display: none;
+                    // display: none;
                 }
 
                 &:hover {
@@ -155,7 +156,7 @@
                 width: 56px;
 
                 @include global.response(lg) {
-                    display: none;
+                    // display: none;
                 }
 
                 &:hover {

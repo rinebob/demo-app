@@ -125,6 +125,17 @@ export interface DialogData {
 
   export const TASK_STATUS_VALUES = Object.values(TaskStatus);
 
+  export enum AppRoutes {
+    ROBERT = 'robert',
+    KANBAN = 'kanban',
+    CHARTS = 'charts',
+    ANG_EXP = 'ang-exp',
+    CUBIC_BEZIER = 'cubic-bezier',
+    BIODATA = 'biodata',
+    MAT_THEME = 'mat-theme',
+    DESIGN_SYSTEM = 'design-system',
+  }
+
   export enum AngExpRoutes {
     DRAG_DROP = 'drag-drop',
     ANIMATIONS = 'animations',
@@ -183,6 +194,7 @@ export interface DialogData {
     screenshot: string;
   }
   export enum RinebobSite {
+    KANBAN_APP = 'kanban-app',
     TRADING_VIEW_APP = 'trading-view-app',
     CUBIC_BEZIER_APP = 'cubic-bezier-app',
     BIO_DATA_APP = 'bio-data-app',
@@ -190,4 +202,21 @@ export interface DialogData {
 
   export interface ComingSoonDict {
     [key: string]: ComingSoonMetadata;
+  }
+
+  export interface IconNavBarLink {
+    name: string;
+    icon: string;
+    linkText: string;
+  }
+
+  export enum AppTheme {
+    APP_LIGHT = 'app-light-theme',
+    APP_DARK = 'app-dark-theme',
+    ANG_EXP_LIGHT = 'ang-exp-light-theme',
+    ANG_EXP_DARK = 'ang-exp-dark-theme',
+    KANBAN_LIGHT = 'kanban-light-theme',
+    KANBAN_DARK = 'kanban-dark-theme',
+    FALLBACK_LIGHT = 'fallback-light-theme',
+    FALLBACK_DARK = 'fallback-dark-theme',
   }
