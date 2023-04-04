@@ -132,13 +132,13 @@ export const SUBTASK_2: SubTask = {
 
 export const SUBTASK_3: SubTask = {
     displayName: '',
-    description: 'Backend is implemented so you can create a board, tasks and subtasks',
+    description: 'Backend is implemented in Firebase.  This data is coming from Firebase Firestore backend',
     status: SubTaskStatus.DEVELOPMENT,
 }
 
 export const SUBTASK_4: SubTask = {
     displayName: '',
-    description: 'However right now all new boards/tasks etc are persisted in the same account',
+    description: 'However right now security rules are in place to prevent writes to the db',
     status: SubTaskStatus.DEVELOPMENT,
 }
 
