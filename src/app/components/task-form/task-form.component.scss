@@ -40,6 +40,7 @@
         .field-label {
             @include kanban.kanbanBodyMText;
             color: var(--title-text-1);
+            margin-bottom: 8px;
         }
 
         .subtasks-scroll-container {

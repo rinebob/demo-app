@@ -227,3 +227,4 @@ export const ICON_NAV_BAR_LINKS: IconNavBarLink[] = [
     // {name: '', icon: '', linkText: ''},
 ];
 
+export const EMPTY_BOARD_TEXT = 'This board is empty.  Create a new task to get started.';

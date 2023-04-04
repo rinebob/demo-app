@@ -108,6 +108,10 @@
                 }
             }
 
+            @include global.response(sm) {
+                display: none;
+            }
+
         }
 
         .mat-drawer-content {
@@ -173,6 +177,7 @@
         
                         @include global.response(sm) {
                             @include kanban.kanbanTopnavButtonStylesMobile;
+                            @include kanban.kanbanColors;
                             width: 48px;
                         }
                     }

@@ -32,6 +32,7 @@
                     type="button"
                     class="sidenav-button"
                     (click)="setSelectedBoard(board)"
+                    (click)="drawer.close()"
                     [class.focused]="getFocusStatus(board.displayName)"
             >
                 <mat-icon>grid_on</mat-icon>

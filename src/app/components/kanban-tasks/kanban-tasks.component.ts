@@ -5,8 +5,8 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { BoardsStore } from 'src/app/services/boards-store.service';
-import { ALLOCATED_TASKS_INITIALIZER, COLUMN_COLOR, COLUMN_ORDER_FROM_STATUS } from 'src/app/common/constants';
-import { Column, SortedTasks, Task } from '../../common/interfaces';
+import { ALLOCATED_TASKS_INITIALIZER, COLUMN_COLOR, COLUMN_ORDER_FROM_STATUS, EMPTY_BOARD_TEXT } from 'src/app/common/constants';
+import { Column, SortedTasks, SubTaskStatus, Task } from '../../common/interfaces';
 import { allocateTasksToColumns, generateAllColumnsList } from '../../common/task_utils';
 import { DialogService } from 'src/app/services/dialog-service.service';
 
@@ -58,7 +58,7 @@ export class KanbanTasksComponent {
   userSelectedColumns: Column[] = [];
   numTasksByColumn: {[key: string]: number};
   
-  emptyBoardText = 'This board is empty.  Create a new task to get started.';
+  readonly EMPTY_BOARD_TEXT = EMPTY_BOARD_TEXT;
 
   public innerWidth = 0;
 
@@ -161,14 +161,27 @@ export class KanbanTasksComponent {
   }
 
   setSelectedTask(task: Task) {
-    // console.log('kT sST selected task: ', task);
+    console.log('kT sST selected task: ', task);
     this.selectedTaskBS.next(task);
     this.openViewTaskDialog();
+  }
+  
+  getNumCompletedSubtasks(task: Task): number {
+    const subtasks = task.subTasks;
+    let numCompleted = 0;
+    // console.log('kT gNCS subtasks: ', subtasks);
+
+    for (const subtask of subtasks) {
+      if (subtask.status === SubTaskStatus.COMPLETED) {
+        numCompleted ++;
+      }
+    }
+
+    return numCompleted;
   }
 
   openViewTaskDialog() {
     if (this.selectedTaskBS.value) {
-      console.log('kT oVT theme: ', this.theme);
       this.dialogService.openViewTaskDialog(this.selectedTaskBS.value, this.theme);
     }
   }

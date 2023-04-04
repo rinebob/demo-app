@@ -2,8 +2,6 @@ import { SubTaskStatus } from '../common/interfaces';
 import { SubTask } from '../common/interfaces';
 import { Board, Task, TaskStatus } from '../common/interfaces';
 
-// Angular In-memory web api requires id property to have number data type
-// TODO: change to string data type to support firebase id when be implemented
 export const DEMO_APP: Board = {
     displayName: 'Demo app',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
@@ -122,35 +120,41 @@ export const FIREBASE_SETUP: Task = {
 
 export const SUBTASK_1: SubTask = {
     displayName: '',
-    description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. ',
+    description: 'This is the View Task dialog',
     status: SubTaskStatus.COMPLETED,
 }
 
 export const SUBTASK_2: SubTask = {
     displayName: '',
-    description: 'Sequi perspiciatis error repellat debitis sint impedit',
+    description: 'Click the menu in upper right to edit or delete a task',
     status: SubTaskStatus.COMPLETED,
 }
 
 export const SUBTASK_3: SubTask = {
     displayName: '',
-    description: ', quisquam asperiores. Debitis, qui omnis.',
+    description: 'Backend is implemented so you can create a board, tasks and subtasks',
     status: SubTaskStatus.DEVELOPMENT,
 }
 
 export const SUBTASK_4: SubTask = {
     displayName: '',
-    description: ' Tempora repellat earum esse asperiores doloribus et maiores neque!',
+    description: 'However right now all new boards/tasks etc are persisted in the same account',
     status: SubTaskStatus.DEVELOPMENT,
 }
 
 export const SUBTASK_5: SubTask = {
     displayName: '',
-    description: 'Eligendi ad, cupiditate, placeat maxime voluptate nostrum qui odio nulla ',
+    description: 'Authentication/authorization will be implemented soon',
     status: SubTaskStatus.NOT_STARTED,
 }
 
-export const RAW_SUBTASKS = [SUBTASK_1, SUBTASK_2, SUBTASK_3, SUBTASK_4, SUBTASK_5];
+export const SUBTASK_6: SubTask = {
+    displayName: '',
+    description: 'When that is complete you\'ll be able to save your own boards',
+    status: SubTaskStatus.NOT_STARTED,
+}
+
+export const RAW_SUBTASKS = [SUBTASK_1, SUBTASK_2, SUBTASK_3, SUBTASK_4, SUBTASK_5, SUBTASK_6];
 
 export const RAW_TASKS: Task[] = [
     SCAFFOLD_APP,
