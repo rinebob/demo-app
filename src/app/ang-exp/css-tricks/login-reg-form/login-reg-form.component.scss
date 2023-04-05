@@ -1,0 +1,137 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/global-variables' as globalVar;
+@import "styles.scss";
+
+:host {
+    @include global.flexboxLayout(column, flex-start, center);
+    background-color: #223243;
+    box-sizing: border-box;
+    min-height: calc(100vh - 145px);
+    padding: 50px 0;
+    margin: 0;
+    
+    .login-form-container {
+        @include global.flexboxLayout(column, center, center);
+        padding: 40px;
+        border: 8px solid #223243;
+        border-radius: 20px;
+        box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    5px 5px 15px rgba(0,0,0, 0.35),
+                    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    inset 5px 5px 15px rgba(0,0,0, 0.35);
+
+        .form {
+            @include global.flexboxLayout(column, center, flex-start);
+            gap: 25px;
+
+            h2 {
+                color: #fff;
+                font-weight: 500;
+                letter-spacing: 0.1em;
+                align-self: center;
+                
+            }
+            
+            .input-box {
+                @include global.flexboxLayout(row, flex-start, center);
+                position: relative;
+                width: 300px;
+                
+                input {
+                    
+                    padding: 15px 10px 15px 56px;
+                    border: none;
+                    width: 100%;
+                    background: transparent;
+                    border: 1px solid rgba(0,0,0,0.1);
+                    color: #fff;
+                    font-weight: 300;
+                    border-radius: 25px;
+                    font-size: 1em;
+                    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                    5px 5px 15px rgba(0,0,0,0.35);
+                    transition: 0.5s;
+                    outline: none;
+                    
+                    &:valid ~ .placeholder,
+                    &:focus ~ .placeholder {
+                        position: absolute;
+                        left: 40px;
+                        top: -10px;
+                        color: #00dfc4;
+                        border: 1px solid #00dfc4;
+                        background: #223243;
+                        font-size: 0.6em;
+                        padding: 0 8px;
+                        border-radius: 10px;
+                        letter-spacing: 0.1px;
+
+                    }
+                }
+
+                .spacer {
+                    position: absolute;
+                    left: 48px;
+                    height: 16px;
+                    border-left: 1px solid #00dfc4;
+                    z-index: 10;
+                }
+
+                .placeholder {
+
+                    position: absolute;
+                    left: 0;
+                    padding: 12px 10px 12px 60px;
+                    pointer-events: none;
+                    font-size: 1em;
+                    font-weight: 300;
+                    transition: 0.5s;
+                    letter-spacing: 0.05em;
+                    color: rgba(255, 255, 255, 0.5);
+                }
+
+                mat-icon {
+                    position: absolute;
+                    top: 10px;
+                    left: 16px;
+                    width: 25px;
+                    padding: 2px 0;
+                    padding-right: 8px;
+                    color: #00dfc4;
+                    font-size: 22px;
+
+                }
+            }
+
+            .create-button {
+                @include global.flexboxLayout(row, center, center);
+                position: relative;
+                padding: 12px 16px;
+                background: #223243;
+                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                            5px 5px 15px rgba(0,0,0,0.35);
+                border: 1px solid rgba(0,0,0,0.1);
+                border-radius: 25px;
+                width: 260px;
+
+                .button-text {
+                    align-self: center;
+                    color: #fff;
+                    font-size: 1em;
+                    transition: 0.5s;
+                }
+            }
+
+            .footer-text {
+                span {
+
+                }
+            }
+
+
+        }
+    
+    
+    }
+
+}

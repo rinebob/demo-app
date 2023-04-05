@@ -18,6 +18,7 @@ import { FormArrayComponent } from './form-array/form-array.component';
 import { OpenCloseComponent } from './animations/open-close/open-close.component';
 import { CssTricksComponent } from './css-tricks/css-tricks.component';
 import { IconNavBarComponent } from './css-tricks/icon-nav-bar/icon-nav-bar.component';
+import { LoginRegFormComponent } from './css-tricks/login-reg-form/login-reg-form.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { IconNavBarComponent } from './css-tricks/icon-nav-bar/icon-nav-bar.comp
     FormArrayComponent,
     OpenCloseComponent,
     CssTricksComponent,
-    IconNavBarComponent
+    IconNavBarComponent,
+    LoginRegFormComponent
   ],
   imports: [
     CommonModule,

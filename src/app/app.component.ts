@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ThemePalette } from '@angular/material/core';
@@ -26,14 +26,9 @@ export class AppComponent implements OnInit {
   readonly APP_SIDENAV_BUTTONS = APP_SIDENAV_BUTTONS;
 
   constructor(private router: Router, private matIconRegistry: MatIconRegistry,
-    private route: ActivatedRoute, private domSanitizer: DomSanitizer,
+    private domSanitizer: DomSanitizer,
     ) {
 
-      // this.route.url.pipe().subscribe(segments => {
-      //   console.log('a ctor activated route url: ', segments.join(''));
-
-      // });
-    
     // this.matIconRegistry.addSvgIcon(
     //   `logo-light`,
     //   this.domSanitizer.bypassSecurityTrustResourceUrl("./assets/logo-light.svg")
@@ -46,7 +41,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('a ctor activated route snapshot: ', this.route.snapshot.url);
     
     this.router.events.pipe().subscribe(event => {
       // console.log('a ctor url: ', (event as NavigationEnd).url);
@@ -77,7 +71,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleShowSidenavButton(event: any) {
-    console.log('a tSSB event: ', event);
+    // console.log('a tSSB event: ', event);
     this.shouldShowOpenSidenavButton = !this.shouldShowOpenSidenavButton;
   }
 
