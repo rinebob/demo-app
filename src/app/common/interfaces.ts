@@ -220,3 +220,11 @@ export interface DialogData {
     FALLBACK_LIGHT = 'fallback-light-theme',
     FALLBACK_DARK = 'fallback-dark-theme',
   }
+
+  export interface Login {
+    username: string;
+    password: string;
+}
+export interface UserAccount extends Login {
+    emailAddress: string;
+  }

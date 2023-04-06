@@ -29,10 +29,6 @@ const routes: Routes = [
     path: AppRoutes.BIODATA,
     loadChildren: () => import('./bio/bio.module').then(m => m.BioModule)
   },
-  { 
-    path: AppRoutes.MAT_THEME,
-    loadChildren: () => import('./mat-theme/mat-theme.module').then(m => m.MatThemeModule)
-  },
   {
     path: '**',
     component: LandingPageComponent

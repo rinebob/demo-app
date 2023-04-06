@@ -1,0 +1,215 @@
+
+<div class="login-form-container" *ngIf="implementationToShow === 'angular'">
+
+    <form [formGroup]="createAccountForm"
+          class="form"
+          *ngIf="formMode === 'create'"
+          (ngSubmit)="handleSubmitForm()"
+          >
+
+        <h2>Sign Up</h2>
+
+        <div class="input-box">
+            <input type="text"
+                    required="required"
+                    formControlName="usernameControl"
+            >
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">person</mat-icon>
+
+            <span class="placeholder"
+                    [class.error]="username?.invalid && (username?.dirty || username?.touched)"
+            >
+                {{!(username?.invalid && (username?.dirty || username?.touched)) ? 'user name' : 'user name is required'}}
+            </span>
+            
+        </div>
+
+        <div class="input-box">
+            <input type="text" 
+                    required="required"
+                    formControlName="emailControl"
+            >
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">mail</mat-icon>
+            
+            <span class="placeholder"
+                    [class.error]="email?.invalid && (email?.dirty || email?.touched)"
+            >
+                {{!(email?.invalid && (email?.dirty || email?.touched)) ? 'email address' : 'email address is required'}}
+            </span>
+
+        </div>
+
+        <div class="input-box">
+            <input type="text" 
+                    required="required"
+                    formControlName="passwordControl"
+            >
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
+            
+            <span class="placeholder"
+                    [class.error]="password?.invalid && (password?.dirty || password?.touched)"
+            >
+                {{!(password?.invalid && (password?.dirty || password?.touched)) ? 'password' : 'password is required'}}
+            </span>
+
+        </div>
+
+        <div class="input-box">
+            <input type="text" 
+                    required="required"
+                    formControlName="confirmControl"
+            >
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
+            
+            <span class="placeholder"
+                    [class.error]="confirm?.touched && createAccountForm.hasError('passwordsDoNotMatch')"
+            >
+                {{confirm?.touched && createAccountForm.hasError('passwordsDoNotMatch') ? 'passwords do not match' : 'confirm password'}}
+            </span>
+
+        </div>
+
+        <button type="submit" class="create-button"
+                [disabled]="createAccountForm.invalid"
+        >
+            <p class="button-text">Create account</p>
+        </button>
+
+        <p class="footer-text" (click)="toggleForm()">
+            Already a member?
+            <span class="login"> Log in</span>
+        </p>
+
+
+    </form>
+    
+    <form [formGroup]="loginForm"
+          class="form"
+          *ngIf="formMode === 'login'"
+          (ngSubmit)="handleSubmitForm()"
+    >
+
+        <h2>Log in</h2>
+
+        <div class="input-box">
+            <input type="text" 
+                    required="required"
+                    formControlName="loginUserControl"
+            >
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">person</mat-icon>
+            <span class="placeholder"
+                    [class.error]="loginUser?.invalid && (loginUser?.dirty || loginUser?.touched)"
+            >
+                {{!(loginUser?.invalid && (loginUser?.dirty || loginUser?.touched)) ? 'user name' : 'user name is required'}}
+            </span>
+        </div>
+
+        <div class="input-box">
+            <input type="text" 
+                    required="required"
+                    formControlName="loginPasswordControl"
+            >
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
+            <span class="placeholder"
+                    [class.error]="loginPassword?.invalid && (loginPassword?.dirty || loginPassword?.touched)"
+            >
+                {{!(loginPassword?.invalid && (loginPassword?.dirty || loginPassword?.touched)) ? 'password' : 'password is required'}}
+            </span>
+        </div>
+
+        <button type="submit" class="create-button"
+                [disabled]="loginForm.invalid"
+        >
+            <p class="button-text">Log in</p>
+        </button>
+
+        <p class="footer-text" (click)="toggleForm()">
+            Not registered?
+            <span class="login"> Create an account</span>
+        </p>
+
+    </form>
+
+</div>
+
+<!-- //////////////// Empty HTML / CSS implementation /////////////// -->
+
+<div class="login-form-container" *ngIf="implementationToShow === 'primitive'">
+
+    <div class="form" *ngIf="formMode === 'create'">
+
+        <h2>Sign Up</h2>
+
+        <div class="input-box">
+            <input type="text" required="required">
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">person</mat-icon>
+            <span class="placeholder">username</span>
+        </div>
+        <div class="input-box">
+            <input type="text" required="required">
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">mail</mat-icon>
+            <span class="placeholder">email address</span>
+        </div>
+        <div class="input-box">
+            <input type="password" required="required">
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
+            <span class="placeholder">create password</span>
+        </div>
+        <div class="input-box">
+            <input type="password" required="required">
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
+            <span class="placeholder">confirm password</span>
+        </div>
+        
+        <div class="create-button">
+            <p class="button-text">Create account</p>
+        </div>
+
+        <p class="footer-text" (click)="toggleForm()">
+            Already a member?
+            <span class="login"> Log in</span>
+        </p>
+        
+    </div>
+    <div class="form" *ngIf="formMode === 'login'">
+
+        <h2>Log In</h2>
+
+        <div class="input-box">
+            <input type="text" required="required">
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">person</mat-icon>
+            <span class="placeholder">username</span>
+        </div>
+
+        <div class="input-box">
+            <input type="password" required="required">
+            <span class="spacer"></span>
+            <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
+            <span class="placeholder">password</span>
+        </div>
+
+        <!-- [disabled]="loginForm.invalid" -->
+        <div type="submit" class="create-button"
+        >
+            <p class="button-text">Log in</p>
+        </div>
+
+        <p class="footer-text" (click)="toggleForm()">
+            Not registered?
+            <span class="login"> Create an account</span>
+        </p>
+
+    </div>
+
+</div>
