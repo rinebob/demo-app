@@ -1,137 +1,124 @@
 @use '../../../../styles/global-mixins' as global;
 @use '../../../../styles/global-variables' as globalVar;
+@use '../css-tricks-mixins' as cssTricks;
 @import "styles.scss";
 
-:host {
-    @include global.flexboxLayout(column, flex-start, center);
+.login-form-container {
+    @include global.flexboxLayout(column, center, center);
+    @include cssTricks.boxShadowRaisedUpperLeftLowerRight;
     background-color: #223243;
-    box-sizing: border-box;
-    min-height: calc(100vh - 145px);
-    padding: 50px 0;
-    margin: 0;
-    
-    .login-form-container {
-        @include global.flexboxLayout(column, center, center);
-        padding: 40px;
-        border: 8px solid #223243;
-        border-radius: 20px;
-        box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
-                    5px 5px 15px rgba(0,0,0, 0.35),
-                    inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-                    inset 5px 5px 15px rgba(0,0,0, 0.35);
+    border: 8px solid #223243;
+    border-radius: 20px;
+    padding: 40px;
+    width: 360px;
 
-        .form {
-            @include global.flexboxLayout(column, center, flex-start);
-            gap: 25px;
+    .form {
+        @include global.flexboxLayout(column, center, flex-start);
+        font-family: var(--global-font-nunito);
+        
+        h2 {
+            align-self: center;
+            color: #fff;
+            font-family: inherit;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            margin: 0 0 20px;
+        }
 
-            h2 {
-                color: #fff;
-                font-weight: 500;
-                letter-spacing: 0.1em;
-                align-self: center;
-                
-            }
+        .input-box {
+            // @include cssTricks.spiffyInputStyles;
+            @include global.flexboxLayout(row, flex-start, center);
+            margin-bottom: 25px;
+            position: relative;
+            width: 300px;
             
-            .input-box {
-                @include global.flexboxLayout(row, flex-start, center);
-                position: relative;
-                width: 300px;
-                
-                input {
-                    
-                    padding: 15px 10px 15px 56px;
-                    border: none;
-                    width: 100%;
-                    background: transparent;
-                    border: 1px solid rgba(0,0,0,0.1);
-                    color: #fff;
-                    font-weight: 300;
-                    border-radius: 25px;
-                    font-size: 1em;
-                    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
-                    5px 5px 15px rgba(0,0,0,0.35);
-                    transition: 0.5s;
-                    outline: none;
-                    
-                    &:valid ~ .placeholder,
-                    &:focus ~ .placeholder {
-                        position: absolute;
-                        left: 40px;
-                        top: -10px;
-                        color: #00dfc4;
-                        border: 1px solid #00dfc4;
-                        background: #223243;
-                        font-size: 0.6em;
-                        padding: 0 8px;
-                        border-radius: 10px;
-                        letter-spacing: 0.1px;
-
-                    }
-                }
-
-                .spacer {
-                    position: absolute;
-                    left: 48px;
-                    height: 16px;
-                    border-left: 1px solid #00dfc4;
-                    z-index: 10;
-                }
-
-                .placeholder {
-
-                    position: absolute;
-                    left: 0;
-                    padding: 12px 10px 12px 60px;
-                    pointer-events: none;
-                    font-size: 1em;
-                    font-weight: 300;
-                    transition: 0.5s;
-                    letter-spacing: 0.05em;
-                    color: rgba(255, 255, 255, 0.5);
-                }
-
-                mat-icon {
-                    position: absolute;
-                    top: 10px;
-                    left: 16px;
-                    width: 25px;
-                    padding: 2px 0;
-                    padding-right: 8px;
-                    color: #00dfc4;
-                    font-size: 22px;
-
-                }
-            }
-
-            .create-button {
-                @include global.flexboxLayout(row, center, center);
-                position: relative;
-                padding: 12px 16px;
-                background: #223243;
-                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
-                            5px 5px 15px rgba(0,0,0,0.35);
+            input {
+                background: transparent;
                 border: 1px solid rgba(0,0,0,0.1);
                 border-radius: 25px;
-                width: 260px;
+                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                            5px 5px 15px rgba(0,0,0,0.35);
+                color: #fff;
+                font-family: inherit;
+                font-size: 1em;
+                font-weight: 300;
+                outline: none;
+                padding: 15px 10px 15px 56px;
+                width: 100%;
+                
 
-                .button-text {
-                    align-self: center;
-                    color: #fff;
-                    font-size: 1em;
+                &:valid,
+                &:focus {
+                    border: 1px solid #00dfc4;
+                }
+                
+                &:valid ~ .placeholder,
+                &:focus ~ .placeholder {
+                    @include cssTricks.placeholderFocusStyles;
+                    display: inline-block;
+                    position: absolute;
+                    left: 40px;
+                    top: -10px;
                     transition: 0.5s;
                 }
-            }
-
-            .footer-text {
-                span {
-
+                
+                &:focus ~ .placeholder.error {
+                    color: red;
                 }
             }
 
+            .spacer {
+                position: absolute;
+                left: 50px;
+                border-left: 1px solid #00dfc4;
+                height: 16px;
+            }
 
+            .placeholder {
+                @include cssTricks.placeholderText;
+                position: absolute;
+                left: 0;
+            }
+
+            .error {
+                @include cssTricks.placeholderText;
+                position: absolute;
+                left: 0;
+                color: red;
+                font-size: 0.75em;
+                transition: 0.5s;
+            }
+
+            mat-icon {
+                position: absolute;
+                top: 10px;
+                left: 16px;
+                color: #00dfc4;
+                font-size: 22px;
+                padding: 4px 0 2px 8px;
+                width: 25px;
+            }
         }
-    
-    
-    }
 
+        .create-button {
+            @include cssTricks.spiffyButtonStyles;
+            margin-bottom: 25px;
+
+                        
+        }
+
+        .footer-text {
+            align-self: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75em;
+            font-weight: 300;
+
+            span {
+                color: #fff;
+                cursor: pointer;
+                font-weight: 500;
+
+            }
+        }
+    }
 }

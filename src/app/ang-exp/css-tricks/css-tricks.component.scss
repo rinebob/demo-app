@@ -13,9 +13,49 @@
             }
 
             .mat-mdc-tab-body-content {
-                overflow: hidden
+                // overflow: hidden
             }
         }
+    }
+
+        ///////////////////// LOGIN REG FORM /////////////////////
+
+    .login-reg {
+        @include global.flexboxLayout(row, space-evenly, flex-start);
+        background-color: #223243;
+        box-sizing: border-box;
+        margin: 0;
+        min-height: calc(100vh - 145px);
+        padding: 50px 0;
+
+        .form-impl-container {
+            @include global.flexboxLayout(column, flex-start, center);
+
+            .impl-title {
+                color: #fff;
+                font-family: var(--global-font-orbitron);
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                margin: 0 0 20px;
+            }
+        }
+
+        app-login-reg-form {
+            display: inline-flex;
+            
+        }
+    }
+    
+
+        ///////////////////// ICON NAV BAR /////////////////////////    
+
+    .icon-nav-bar-container {
+        @include global.flexboxLayout(row, center, flex-start);
+        background-color: var(--color);
+        box-sizing: border-box;
+        height: 100vh;
+        overflow: hidden;
+        padding: 50px;
     }
 
         ///////////////////// SOLID HEXAGONS //////////////////////
@@ -127,14 +167,7 @@
         }
     }
 
-    .icon-nav-bar-container {
-        @include global.flexboxLayout(row, center, flex-start);
-        background-color: var(--color);
-        box-sizing: border-box;
-        height: 100vh;
-        overflow: hidden;
-        padding: 50px;
-    }
+    
 }    
 
 // DO NOT DELETE
