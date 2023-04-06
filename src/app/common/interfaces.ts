@@ -136,6 +136,8 @@ export interface DialogData {
   export const TASK_STATUS_VALUES = Object.values(TaskStatus);
 
   export enum AppRoutes {
+    LOGIN = 'login',
+    LOGOUT = 'logout',
     ROBERT = 'robert',
     KANBAN = 'kanban',
     CHARTS = 'charts',

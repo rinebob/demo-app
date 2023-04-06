@@ -4,10 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutes } from './common/interfaces';
 import { LandingPageComponent } from './comps/landing-page/landing-page.component';
 import { DesignSystemComponent } from './comps/design-system/design-system.component';
+import { LoginRegComponent } from './comps/login-reg/login-reg.component';
 
 const routes: Routes = [
   // {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
-  {path: '', redirectTo: AppRoutes.AUDIO, pathMatch: 'full'},
+  // {path: '', redirectTo: AppRoutes.AUDIO, pathMatch: 'full'},
+  {path: '', redirectTo: AppRoutes.LOGIN, pathMatch: 'full'},
+  {path: 'login', component: LoginRegComponent},
+  {path: 'logout', component: LoginRegComponent},
   {path: AppRoutes.ROBERT, component: LandingPageComponent},
   {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
   {
@@ -40,7 +44,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: LandingPageComponent
+    component: LoginRegComponent
   },
 ];
 
