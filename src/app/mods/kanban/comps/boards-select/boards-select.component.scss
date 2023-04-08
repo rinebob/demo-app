@@ -1,0 +1,90 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/kanban-mixins' as kanban;
+@import "styles.scss";
+
+:host {
+    overflow: hidden;
+}
+.boards-select-container {
+    @include global.flexboxLayout(column, flex-start, flex-start);
+    background-color: var(--background-3);
+    min-height: 322px;
+    
+    .boards-select-upper {
+        @include global.flexboxLayout(column, space-between, flex-start);
+        margin: 16px 24px 16px 0;
+
+        @include global.response(xs) {
+            margin: 16px 0;
+        }
+
+        .all-boards {
+            @include kanban.kanbanHeadingSText;
+            padding: 0 16px;
+            text-transform: uppercase;
+        }
+
+        .nav-button {
+            @include global.flexboxLayout(row, flex-start, center);
+            @include kanban.kanbanSidenavButtonStyles;
+            @include kanban.kanbanColors($background-color: var(--background-3), $color: var(--subtitle-text-1));
+
+            @include global.response(xs) {
+                padding: 0 10px;
+                width: 212px;
+            }
+    
+            mat-icon {
+                margin: 0 16px 0 0;
+            }
+    
+            &-text {
+                font-weight: lighter;
+                margin: 0;
+                padding: 0;
+
+                @include global.response(xs) {
+                    font-size: 13px;
+                }
+            }
+
+            &:not(.focused) {
+                        
+                &:hover {
+                    @include kanban.kanbanColors($background-color: var(--kanban-white-1), $color: var(--kanban-primary-idle));
+                }
+            }
+
+            
+        }
+
+        .focused {
+            @include kanban.kanbanColors($background-color: var(--kanban-primary-idle), $color: var(--kanban-on-primary-idle));
+        }
+
+        .create-new-board-button {
+            @include kanban.kanbanHeadingMText;
+            @include kanban.kanbanColors($background-color: var(--background-3), $color: var(--kanban-primary-idle));
+            margin: 4px 8px;
+        }
+    }
+
+    .dark-mode-container {
+        @include global.flexboxLayout(row, center, center);
+        align-self: center;
+        background-color: var(--background-2);
+        border-radius: 4px;
+        height: 48px;
+        width: 235px;
+        margin: 0 16px 16px 16px;
+        padding: 6px 0;
+        
+        mat-icon {
+            color: var(--subtitle-text-1);
+        }
+
+        mat-slide-toggle {
+            margin: 0 24px;
+        }
+    }
+}

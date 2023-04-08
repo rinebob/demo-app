@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 import { BoardsStore } from 'src/app/services/boards-store.service';
-import { BoardFormComponent } from '../components/board-form/board-form.component';
-import { BoardsSelectComponent } from '../components/boards-select/boards-select.component';
-import { ColumnSettingsComponent } from '../components/column-settings/column-settings.component';
-import { TaskFormComponent } from '../components/task-form/task-form.component';
+import { BoardFormComponent } from '../mods/kanban/comps/board-form/board-form.component';
+import { BoardsSelectComponent } from '../mods/kanban/comps/boards-select/boards-select.component';
+import { ColumnSettingsComponent } from '../mods/kanban/comps/column-settings/column-settings.component';
+import { TaskFormComponent } from '../mods/kanban/comps/task-form/task-form.component';
 import { Board, Column, DialogCloseResult, DialogData, Task } from '../common/interfaces';
-import { ViewTaskComponent } from '../components/view-task/view-task.component';
-import { DeleteConfirmComponent } from '../components/delete-confirm/delete-confirm.component';
+import { ViewTaskComponent } from '../mods/kanban/comps/view-task/view-task.component';
+import { DeleteConfirmComponent } from '../mods/kanban/comps/delete-confirm/delete-confirm.component';
 
 
 @Injectable({

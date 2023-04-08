@@ -300,8 +300,6 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
     [7]: {
             title: 'edit a task',
             description: `You can change the title, description, status and add/edit/delete subtasks.  Click save to close the dialog and see the results.`,
-            // top: '18%',
-            // left: 'calc(93% - 240px)',
             top: '10%',
             left: 'calc(50% - 240px)',
             pointerTop: '50%',
@@ -311,8 +309,6 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
     [8]: {
             title: 'set task status',
             description: `Changing the status will move the task to a different column.  You’ll see this after you close the dialog.  Make sure the column you choose is displayed otherwise you might not see the task in it’s updated status column.`,
-            // top: '18%',
-            // left: '27%',
             top: '10%',
             left: 'calc(50% - 240px)',
             pointerTop: '50%',
@@ -322,8 +318,6 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
     [9]: {
             title: 'delete a task',
             description: `From the Kanban view, click on a task card to open the View Task dialog, then click the menu in the upper right and select the delete option.`,
-            // top: '18%',
-            // left: '27%',
             top: '10%',
             left: 'calc(50% - 240px)',
             pointerTop: '50%',
@@ -333,8 +327,6 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
     [10]: {
             title: 'move a task to different status',
             description: `In the Kanban view, you can update task status simply by dragging a task card from one column to another.  If the status you want to move the task to isn’t visible, open the Configure columns dialog to enable that column.`,
-            // top: '12%',
-            // left: '74%',
             top: '10%',
             left: 'calc(50% - 240px)',
             pointerTop: '50%',
@@ -344,8 +336,6 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
     [11]: {
             title: 'configure column layout',
             description: `To configure the column layout, click the menu button in the upper right and select the configure columns option, or click the button in the right-most column of the Kanban view.  From there you can select which columns you want to view by checking/unchecking a column.  You can change the display order by dragging a column up or down in the list.  You can quickly select all column, only columns with tasks, or clear all columns using the buttons provided.`,
-            // top: '12%',
-            // left: '74%',
             top: '10%',
             left: 'calc(50% - 240px)',
             pointerTop: '50%',
@@ -360,105 +350,5 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
     //         order: 0,
     //     },
 };
-
-// export const GUIDED_TOUR_TEXT: GuidedTourDict = {
-//     [TourStop.INTRO]: {
-//             title: 'Introduction',
-//             description: `The Kanban Todo app lets you track any software project from design to production.  Start by creating a project (called a board) and then adding tasks as needed.  As work progresses on each task, update the status to show where the task is in the process.  You can also add subtasks to each task.
-
-//             If you registered with a named account, all your work will be saved and available whenever you need it.  Guest accounts are removed after seven days.
-            
-//             You can edit Board details or delete a board by clicking the menu icon in the upper right corner.
-            
-//             To update progress on a task, simply drag it from one column to another.  This will update the task status automatically.  
-            
-//             You can view a task by clicking on it in the kanban board, and edit / delete a task by clicking the menu icon in the upper right of each task card.
-            
-//             Configuring your board columns is easy.  Just click on the Columns button in the right side or open the upper right menu and click the Configure columns button.  Choose the columns you want to view and change their display order by dragging a column name up or down in the list.
-            
-//             Toggle light/dark mode using the button in the lower left.
-//             `,
-//             top: '',
-//             left: '',
-//             order: 0,
-//         },
-//     [TourStop.START]: {
-//             title: 'getting started',
-//             description: `When you first open the Kanban Todo app you’ll see all your existing boards on the left, with the currently selected board name highlighted.  We’ve provided some mock data so you get an idea.  The main view area shows a kanban style layout of all the tasks for that project.  Tasks are arranged in columns based on their current status.`,
-//             top: '20%',
-//             left: '20%',
-//             order: 1,
-//         },
-//     [TourStop.CREATE_BOARD]: {
-//             title: 'create a board',
-//             description: 'Start by creating a board.  Give it a name and optional description and click save.  You’ll see your new board in the list to the left.  Select a board to view by clicking on it in the list.',
-//             top: '30%',
-//             left: '30%',
-//             order: 2,
-//         },
-//     [TourStop.EDIT_BOARD]: {
-//             title: 'edit / delete a board',
-//             description: `If you want to edit board details or delete a board, just click the menu in the upper right and select your desired option.  A dialog will open to help you.`,
-//             top: '40%',
-//             left: '40%',
-//             order: 3,
-//         },
-//     [TourStop.CREATE_TASK]: {
-//             title: 'create a task',
-//             description: `A new board won’t have any tasks.  Click the create task button to create your first task for your board.  Give it a title and description and select a status at the bottom.  You can also add as many subtasks as you like.  Click save and the task will appear in the proper status column .  Note that if the column for the status you select isn’t currently displayed, you won’t see the new task.  Click configure columns to enable that column.`,
-//             top: '50%',
-//             left: '50%',
-//             order: 4,
-//         },
-//     [TourStop.VIEW_TASK]: {
-//             title: 'view a task',
-//             description: `Once you’ve created a task you’ll see it in the kanban view.  Click on the task card to see details.  Click on the menu button in the upper right to edit or delete a task.`,
-//             top: '',
-//             left: '',
-//             order: 5,
-//         },
-//     [TourStop.EDIT_TASK]: {
-//             title: 'edit a task',
-//             description: `You can change the title, description, status and add/edit/delete subtasks.  Click save to close the dialog and see the results.`,
-//             top: '',
-//             left: '',
-//             order: 6,
-//         },
-//     [TourStop.SET_STATUS]: {
-//             title: 'set task status',
-//             description: `Changing the status will move the task to a different column.  You’ll see this after you close the dialog.  Make sure the column you choose is displayed otherwise you might not see the task in it’s updated status column.`,
-//             top: '',
-//             left: '',
-//             order: 7,
-//         },
-//     [TourStop.DELETE_TASK]: {
-//             title: 'delete a task',
-//             description: `From the Kanban view, click on a task card to open the View Task dialog, then click the menu in the upper right and select the delete option.`,
-//             top: '',
-//             left: '',
-//             order: 8,
-//         },
-//     [TourStop.MOVE_TASK]: {
-//             title: 'move a task to different status',
-//             description: `In the Kanban view, you can update task status simply by dragging a task card from one column to another.  If the status you want to move the task to isn’t visible, open the Configure columns dialog to enable that column.`,
-//             top: '',
-//             left: '',
-//             order: 9,
-//         },
-//     [TourStop.CONFIGURE_COLUMNS]: {
-//             title: 'configure column layout',
-//             description: `To configure the column layout, click the menu button in the upper right and select the configure columns option, or click the button in the right-most column of the Kanban view.  From there you can select which columns you want to view by checking/unchecking a column.  You can change the display order by dragging a column up or down in the list.  You can quickly select all column, only columns with tasks, or clear all columns using the buttons provided.`,
-//             top: '',
-//             left: '',
-//             order: 10,
-//         },
-//     // '': {
-//     //         title: '',
-//     //         description: ``,
-//             // top: '',
-//             // left: '',
-//             // order: 0,
-//     //     },
-// };
 
 export const EMPTY_BOARD_TEXT = 'This board is empty.  Create a new task to get started.';

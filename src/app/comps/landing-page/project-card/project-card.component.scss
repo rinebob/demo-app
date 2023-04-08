@@ -1,0 +1,88 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/global-variables' as globalVar;
+@import "styles.scss";
+
+:host {
+    @include global.flexboxLayout(column, center, center);
+
+    .project-container {
+        @include global.flexboxLayout(column, flex-start, center);
+        flex-grow: 1;
+        height: 360px;
+        margin: 10px;
+        position: relative;
+        width: 95%;
+
+        mat-card-content {
+            @include global.flexboxLayout(column, center, center);
+            height: 100%;
+            width: 100%;
+        }
+    
+    
+        .img-overlay {
+            @include global.flexboxLayout(column, center, center);
+            background-color: var(--global-grey-6);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            padding: 10px;
+            width: 66%;
+            z-index: 10;
+            
+            .project-title {
+                @include global.textSectionSubheader;
+                margin: 0 0 10px;
+                text-align: center;
+
+                @include global.response(lg) {
+                    font-size: globalVar.globalFontSize(heading-m-l);
+                }
+    
+                @include global.response(sm-md) {
+                    // font-size: globalVar.globalFontSize(heading-m);
+                    margin: 20px 0;
+                }
+    
+                @include global.response(xs) {
+                    font-size: globalVar.globalFontSize(body-l);
+                    
+                }
+            }
+        
+            .project-description {
+                @include global.textDescription;
+                backdrop-filter: blur(10px);
+                text-align: center;
+                margin-bottom: 10px;
+                width: 80%;
+
+                @include global.response(sm-md) {
+                    display: none;
+                }
+            }
+    
+            .main-button {
+                @include global.textButtonMain;
+                margin: 0 10px;
+                padding: 6px 24px;
+
+                @include global.response(md) {
+                    @include global.textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(heading-s), $line-height: globalVar.globalLineHeight(heading-s));
+                    padding: 4px 20px;
+                    
+                }
+            }
+        }
+        
+        img {
+            display: block;
+            max-height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%
+        }
+    }
+}
