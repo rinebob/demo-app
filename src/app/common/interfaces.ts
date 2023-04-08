@@ -204,6 +204,34 @@ export interface DialogData {
     [key: string]: ComingSoonMetadata;
   }
 
+  export enum TourStop {
+    INTRO = 'intro',
+    START = 'start',
+    CREATE_BOARD = 'create-board',
+    EDIT_BOARD = 'edit-board',
+    CREATE_TASK = 'create-task',
+    VIEW_TASK = 'view-task',
+    EDIT_TASK = 'edit-task',
+    SET_STATUS = 'set-status',
+    DELETE_TASK = 'delete-task',
+    MOVE_TASK = 'move-task',
+    CONFIGURE_COLUMNS = 'configure-columns',
+  }
+
+  export interface GuidedTourMetadata {
+    title: string;
+    description: string;
+    top: string;
+    left: string;
+    pointerTop: string;
+    pointerLeft: string;
+    order: number;
+  }
+
+  export interface GuidedTourDict {
+    [key: string | number]: GuidedTourMetadata;
+  }
+
   export interface IconNavBarLink {
     name: string;
     icon: string;

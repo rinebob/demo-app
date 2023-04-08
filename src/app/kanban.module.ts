@@ -29,6 +29,7 @@ import { KanbanTasksComponent } from './components/kanban-tasks/kanban-tasks.com
 import { ColumnSettingsComponent } from './components/column-settings/column-settings.component';
 import { BoardsSelectComponent } from './components/boards-select/boards-select.component';
 import { DialogShellComponent } from './components/dialog-shell/dialog-shell.component';
+import { GuidedTourComponent } from './components/guided-tour/guided-tour.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DialogShellComponent } from './components/dialog-shell/dialog-shell.com
     ColumnSettingsComponent,
     BoardsSelectComponent,
     DialogShellComponent,
+    GuidedTourComponent,
   ],
   imports: [
     CommonModule,

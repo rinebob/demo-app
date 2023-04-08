@@ -71,6 +71,14 @@
                 <mat-icon>visibility_off</mat-icon>
                 Hide Sidebar
             </button>
+
+            <button class="hide-sidebar-button"
+                    (click)="startGuidedTour()"
+            >
+                <mat-icon class="material-symbols-outlined">info</mat-icon>
+                Take the tour
+            </button>
+
         </div>
 
     </mat-drawer>
@@ -149,8 +157,21 @@
                 </div>
         
             </nav>
+
+            <ng-container *ngIf="(selectedBubble$ | async)! as bubble">
+                <div #guidedTour class="tour-bubble"
+                     [style.top]="bubble.top"
+                     [style.left]="bubble.left"
+                >
+                    <app-guided-tour [selectedBubble]="bubble"
+                                     (next)="handleNextTourStop()"
+                                     (closeTour)="handleCancelTour()"
+                    ></app-guided-tour>
+                </div>
+
+            </ng-container>
             
-            <!-- (updatedTasks)="handleUpdatedTasks($event)" -->
+            
             <app-kanban-tasks [tasks]="(tasks$ | async)!"
                               [theme]="theme"
                               (addTask)="openCreateTaskDialog()"
@@ -166,6 +187,8 @@
             </button>
             
         </ng-container>
+
+        
 
     </mat-drawer-content>
 

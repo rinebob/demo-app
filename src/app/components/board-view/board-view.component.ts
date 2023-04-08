@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { BehaviorSubject, Observable, withLatestFrom } from 'rxjs';
 
-import { BOARD_INITIALIZER } from 'src/app/common/constants';
-import { Board, Column, DialogCloseResult, DialogResult, Task } from 'src/app/common/interfaces';
+import { BOARD_INITIALIZER, GUIDED_TOUR_TEXT } from 'src/app/common/constants';
+import { Board, Column, DialogCloseResult, DialogResult, GuidedTourMetadata, Task, TourStop } from 'src/app/common/interfaces';
 import { ThemePalette } from '@angular/material/core';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { DialogService } from 'src/app/services/dialog-service.service';
@@ -53,6 +53,11 @@ export class BoardViewComponent implements OnInit {
   topnavMenuCssClass = 'board-view-topnav-menu-css';
   boardsSelectPanelClass = 'boards-select-panel-class';
 
+  readonly GUIDED_TOUR_TEXT = GUIDED_TOUR_TEXT;
+  readonly TourStop = TourStop;
+  selectedBubbleBS = new BehaviorSubject<GuidedTourMetadata|undefined>(undefined);
+  selectedBubble$: Observable<GuidedTourMetadata|undefined> = this.selectedBubbleBS;
+  
   constructor(private boardsStore: BoardsStore, private dialogService: DialogService,
     private _overlayContainer: OverlayContainer, private projectsService: FbProjectsService,
     ) {
@@ -231,12 +236,28 @@ export class BoardViewComponent implements OnInit {
     }
   }
   
-  handleUpdatedTasks(tasks: Task[]) {
-    // console.log('bV hUT handle updated tasks: ', tasks);
-    const board = this.selectedBoardBS.value;
-    board.tasks = [...tasks];
+  startGuidedTour() {
+    // console.log('bV oGTD open guided tour called');
+    this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[2])
+  }
 
-    this.boardsStore.updateBoard(board);
+  handleNextTourStop(cancel?: string) {
+    if (this.selectedBubbleBS.value) {
+      const numStops = Object.keys(this.GUIDED_TOUR_TEXT).length;
+      // console.log('bV hNTS tour stop: ', this.selectedBubbleBS.value.order);
+      if (this.selectedBubbleBS.value.order === numStops) {
+        this.handleCancelTour();
+      } else {
+        const nextInd = this.selectedBubbleBS.value.order < numStops ? this.selectedBubbleBS.value.order + 1 : 2;
+        this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[nextInd])
+        // console.log('bV hNTS next tour stop: ', this.selectedBubbleBS.value);
+      }
+    }
+  }
+  
+  handleCancelTour() {
+    this.selectedBubbleBS.next(undefined);
+    // console.log('bV hCT cancel tour: ', this.selectedBubbleBS.value);
   }
 
   applyTheme(theme: string): void {
