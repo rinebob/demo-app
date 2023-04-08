@@ -37,12 +37,12 @@
         .field-label {
             @include kanban.kanbanBodyMText;
             color: var(--title-text-1);
+            margin-bottom: 8px;
         }
 
         .action-buttons {
             @include global.flexboxLayout(column, center, center);
             flex-wrap: wrap;
-            
             width: 100%;
 
             button {
