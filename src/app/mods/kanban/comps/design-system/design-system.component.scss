@@ -1,0 +1,277 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/kanban-mixins' as kanban;
+@import "styles.scss";
+
+.design-container {
+    @include global.flexboxLayout;
+    padding: 12px;
+    
+    .elements {
+        @include global.border1;
+        @include global.flexboxLayout;
+        width: 100%;
+
+        .colors {
+            @include global.border1;
+            @include global.flexboxLayout;
+            flex-wrap: wrap;
+            width: 33%;
+            
+            .color {
+                @include global.border1;
+                flex-grow: 1;
+                height: 40px;
+                width: 10%;
+
+            }
+
+            .color-1 {
+                background-color: var(--purple-1);
+                color: var(--white-1);
+            }
+
+            .color-2 {
+                background-color: var(--purple-2);
+                color: var(--white-1);
+            }
+
+            .color-3 {
+                background-color: var(--grey-1);
+                color: var(--white-1);
+            }
+
+            .color-4 {
+                background-color: var(--grey-2);
+                color: var(--white-1);
+            }
+
+            .color-5 {
+                background-color: var(--grey-3);
+                color: var(--white-1);
+            }
+
+            .color-6 {
+                background-color: var(--grey-4);
+                color: var(--white-1);
+            }
+
+            .color-7 {
+                background-color: var(--grey-5);
+                color: var(--white-1);
+            }
+
+            .color-8 {
+                background-color: var(--grey-6);
+                color: var(--grey-1);
+            }
+
+            .color-9 {
+                background-color: var(--white-1);
+                color: var(--grey-1);
+            }
+
+            .color-10 {
+                background-color: var(--white-2);
+                color: var(--grey-1);
+            }
+
+            .color-11 {
+                background-color: var(--red-1);
+                color: var(--white-1);
+            }
+
+            .color-12 {
+                background-color: var(--red-2);
+                color: var(--white-1);
+            }
+        }
+
+        .interactive {
+            @include global.border1;
+            @include global.flexboxLayout($flex-direction: column, $align-items: center);
+            
+            .buttons {
+                @include global.flexboxLayout($align-items: center);
+                flex-wrap: wrap;
+                
+                .button {
+                    @include kanban.kanbanMainButtonStyles;
+                }
+                
+                .button-1 {
+                    height: 48px;
+                    background-color: var(--primary-idle);
+                }
+
+                .button-2 {
+                    background-color: var(--primary-idle);
+                    
+                }
+                .button-3 {
+                    background-color: var(--secondary-idle);
+                    color: var(--text-color-for-light-background-1)
+                    
+                }
+                .button-4 {
+                    background-color: var(--destructive-idle);
+                    
+                }
+
+                .button-5 {
+                    height: 48px;
+                    background-color: var(--primary-hover);
+                }
+
+                .button-6 {
+                    background-color: var(--primary-hover);
+                    
+                }
+                .button-7 {
+                    background-color: var(--secondary-hover);
+                    color: var(--text-color-for-light-background-1)
+                    
+                }
+                .button-8 {
+                    background-color: var(--destructive-hover);
+                    
+                }
+
+            }
+
+            .fields {
+                @include global.flexboxLayout;
+                width: 100%;
+
+                & > div {
+                    width: 33%;
+                }
+                
+                .checkboxes {
+                    @include global.border1;
+                    // @include global.flexboxLayout($flex-direction: column);
+                    width: 33%;
+                    display: block;
+
+                    .checkbox {
+                        @include global.border1;
+                        // @include global.flexboxLayout;
+                        // display: block;
+                    }
+
+                    .checkbox-container {
+                        @include global.flexboxLayout($align-items: center);
+
+                     
+                    }
+
+                    .checkbox-label {
+                        @include kanban.kanbanBodyMText;
+                        display: block;
+
+                    }
+                    
+                    .checkbox-idle {
+                        color: var(--light-title-text-1);
+
+                    }
+
+                    .checkbox-hovered {
+                        color: var(--light-title-text-1);
+                        background-color: var(--secondary-hover);
+                        border-radius: 4px;
+
+                    }
+
+                    .checkbox-completed {
+                        color: var(--checkbox-completed-text-color);
+                        opacity: .5;
+                        text-decoration-line: line-through;
+
+                    }
+                }
+                
+                .text-fields {
+                    @include global.border1;
+                    @include global.flexboxLayout($flex-direction: column);
+                    width: 33%;
+
+                    .text-field {
+                        @include global.border1;
+                        @include global.flexboxLayout;
+                    }
+                }
+                
+                .dropdown {
+                    @include global.border1;
+                    @include global.flexboxLayout($flex-direction: column);
+                    width: 33%;
+                }
+
+
+            }
+        }
+
+    }
+
+    .typography {
+        display: none;
+        @include global.border1;
+        width: 0;
+        .spacer {
+            margin-bottom: 20px;
+        }
+
+        .light-styles {
+            background-color: var(--light-background-1);
+    
+            .light-heading-xl{
+                @include kanban.kanbanHeadingXLText;
+                
+            }
+            .light-heading-l{
+                @include kanban.kanbanHeadingLText;
+            }
+            .light-heading-m{
+                @include kanban.kanbanHeadingMText;
+            }
+            .light-heading-s{
+                @include kanban.kanbanHeadingSText;
+            }
+            .light-body-l{
+                @include kanban.kanbanBodyLText;
+            }
+            .light-body-m{
+                @include kanban.kanbanBodyMText;
+            }
+        }
+    
+        .dark-styles {
+            background-color: var(--dark-background-1);
+    
+            .dark-heading-xl{
+                @include kanban.kanbanHeadingXLText;
+                
+            }
+            .dark-heading-l{
+                @include kanban.kanbanHeadingLText;
+            }
+            .dark-heading-m{
+                @include kanban.kanbanHeadingMText;
+            }
+            .dark-heading-s{
+                @include kanban.kanbanHeadingSText;
+            }
+            .dark-body-l{
+                @include kanban.kanbanBodyLText;
+            }
+            .dark-body-m{
+                @include kanban.kanbanBodyMText;
+            }
+        }
+
+    }
+
+
+
+
+}

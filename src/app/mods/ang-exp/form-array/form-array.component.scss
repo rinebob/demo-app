@@ -1,0 +1,72 @@
+@use '../../../../styles/styles.scss';
+@use '../../../../styles/global-mixins' as global;
+
+:host {
+    @include global.flexboxLayout(column, flex-start, center);
+    @include global.border1;
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 10px;
+    
+    .exp-container {
+        @include global.flexboxLayout(column, space-around, center);
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 20px;
+    
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .action-buttons-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin: 10px;
+        }
+
+        .control-container {
+            @include global.flexboxLayout(row, space-around, center);
+            @include global.border1;
+            padding: 4px;
+
+            mat-form-field {
+                width: 40%;
+    
+                ::ng-deep {
+                    .mat-mdc-form-field-subscript-wrapper {
+                        height: 0;
+                    }
+                }
+            }
+        
+            .control-buttons-container {
+                @include global.flexboxLayout(column, flex-start, flex-start);
+            }
+        }
+
+        .results {
+            @include global.flexboxLayout(column, flex-start, flex-start);
+            align-self: flex-start;
+
+            .text {
+                margin: 4px 0;
+            }
+    
+            .values-container {
+                @include global.flexboxLayout(column, flex-start, flex-start);
+                @include global.border1;
+                align-self: flex-start;
+                flex-wrap: wrap;
+                padding: 4px;
+    
+                .value {
+                    // @include global.border1;
+                    padding: 4px;
+                }
+            }
+        }
+    
+    }
+}

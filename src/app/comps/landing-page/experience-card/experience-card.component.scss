@@ -1,0 +1,57 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/global-variables' as globalVar;
+@import "styles.scss";
+
+:host {
+    width: 80%;
+    
+    @include global.response(xl) {
+        width: 90%;
+    }
+    
+    .job-container {
+        @include global.flexboxLayout(column, flex-start, flex-start);
+        margin: 20px 0;
+        
+        @include global.response(sm-md) {
+            margin: 0;
+            
+        }
+        
+        .job-header {
+            @include global.flexboxLayout(row, space-between, center);
+            width: 100%;
+            
+            @include global.response(sm-md) {
+                @include global.flexboxLayout(column, flex-start, flex-start);
+            }
+        }
+    
+        .job-headline {
+            margin-bottom: 6px;
+        }
+    
+        .assignment {
+            text-decoration: underline;
+        }
+    
+        .subtitle-text {
+            @include global.textSubtitle;
+            @include global.textSizes($font-size: globalVar.globalFontSize(heading-m-l), $line-height: globalVar.globalLineHeight(heading-m-l));
+
+            @include global.response(xl) {
+                @include global.textSizes($font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
+            }
+
+            @include global.response(sm-md) {
+                text-align: center;
+                width: 100%;
+            }
+        }
+    
+        .description-text {
+            @include global.textDescription;
+        }
+    
+    }
+}

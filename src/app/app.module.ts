@@ -27,17 +27,19 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { ImBoardsTasksService } from './services/im-boards-tasks.service';
 import { StoreModule } from '@ngrx/store';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { BoardsStore } from './services/boards-store.service';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { DesignSystemComponent } from './design-system/design-system.component';
+import { LandingPageComponent } from './comps/landing-page/landing-page.component';
+import { DesignSystemComponent } from './comps/design-system/design-system.component';
 import { SharedModule } from './shared/shared.module';
 import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-links.module';
-import { ProjectCardComponent } from './landing-page/project-card/project-card.component';
-import { SkillCardComponent } from './landing-page/skill-card/skill-card.component';
-import { ExperienceCardComponent } from './landing-page/experience-card/experience-card.component';
+import { ProjectCardComponent } from './comps/landing-page/project-card/project-card.component';
+import { SkillCardComponent } from './comps/landing-page/skill-card/skill-card.component';
+import { ExperienceCardComponent } from './comps/landing-page/experience-card/experience-card.component';
+
+// for angular in memory web api
+// import { ImBoardsTasksService } from './services/im-boards-tasks.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 let resolvePersistenceEnabled: (enabled: boolean) => void;
 
