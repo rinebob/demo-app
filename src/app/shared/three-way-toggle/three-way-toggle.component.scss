@@ -1,0 +1,118 @@
+@use '../../../styles/global-mixins' as global;
+@import "styles.scss";
+
+.switch-container {
+    position: relative;
+    height: 28px;
+    width: 120px;
+
+    @include global.response(sm) {
+        height: 20px;
+        width: 86px;
+    }
+
+    .slide-trough {
+        background-color: var(--global-background-1);
+        border-radius: 15px;
+        height: 100%;
+        
+        width: 100%;
+        
+        position:absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        
+        @include global.response(sm) {
+            border-radius: 10px;
+        }
+    }
+
+    mat-icon {
+        color: var(--global-grey-5);
+        position: absolute;
+        z-index: 3;
+
+        @include global.response(sm) {
+            font-size: 18px;
+        }
+
+        &:first-of-type {
+            margin-left: 8px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            
+            @include global.response(sm) {
+                margin-left: 5px;
+                top: 0;
+                transform: translateY(0%);
+                
+            }
+        }
+
+        &:nth-of-type(2) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            @include global.response(sm) {
+                margin-left: 5px;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                
+            }
+        }
+        
+        &:last-of-type {
+            margin-right: 8px;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+
+            @include global.response(sm) {
+                margin-right: 0;
+                top: 0;
+                right: 0;
+                transform: translateX(0%);
+                
+            }
+        }
+    }
+
+    .active-circle {
+        border: 20px solid #04b0ee; 
+        border-radius: 20px;
+        position: absolute;
+        z-index: 2;
+        transition: .5s ease;
+
+        @include global.response(sm) {
+            border: 14px solid #04b0ee; 
+            border-radius: 14px;
+        }
+    }
+    
+    .light-mode {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+    
+    .dark-mode {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .css-tricks-mode {
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+
+    .active {
+        color: var(--global-grey-2);
+    }
+}

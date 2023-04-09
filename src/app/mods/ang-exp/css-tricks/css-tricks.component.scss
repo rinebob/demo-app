@@ -18,8 +18,83 @@
         }
     }
 
-        ///////////////////// LOGIN REG FORM /////////////////////
+        ///////////////////// THREE-WAY TOGLE SWITCH /////////////////////
 
+    .switch {
+        @include global.flexboxLayout(column, flex-start, center);
+        background-color: var(--global-grey-3);
+        box-sizing: border-box;
+        gap: 40px;
+        margin: 0;
+        min-height: calc(100vh - 145px);
+        padding: 50px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+        ///////////////////// ROTATING GRADIENT /////////////////////
+
+    .rotate-gradient {
+        @include global.flexboxLayout(column, center, center);
+        background-color: #151320;
+        box-sizing: border-box;
+        gap: 40px;
+        margin: 0;
+        min-height: calc(100vh - 145px);
+        padding: 50px 0;
+        position: relative;
+        overflow: hidden;
+        
+        .gradient-container {
+            @include global.flexboxLayout(column, center, center);
+            
+            &:before {
+                content: '';
+                // background-image: conic-gradient(#04b0ee 20deg, transparent 120deg);
+                background-image: conic-gradient(#04b0ee 60deg, transparent 80deg);
+                background-color: #151320;
+                height: 200%;
+                width: 200%;
+                position: absolute;
+                left: -50%;
+                top: -50%;
+                // animation: rotate 4s infinite linear;
+            }
+
+            @keyframes rotate {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+    
+            &:after {
+                content: '';
+                background-color: #151320;
+                border-radius: 8px;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                clip-path: polygon(0% 0%, 0% 100%, 5% 100%, 5% 5%, 95% 5%, 95% 95%, 5% 95%, 5% 100%, 100% 100%, 100% 0%);
+            }
+            
+            .box {
+                background-color: #151320;
+                position: absolute;
+                height: 89.5%;
+                width: 89.5%;
+                box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+                overflow: hidden;
+            }
+        }
+    }
+
+    ///////////////////// LOGIN REG FORM /////////////////////
+    
     .login-reg {
         @include global.flexboxLayout(row, space-evenly, flex-start);
         background-color: #223243;

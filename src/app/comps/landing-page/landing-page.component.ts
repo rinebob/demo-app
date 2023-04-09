@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 import { ScrollService } from '../../services/scroll-service.service';
 import { APP_SIDENAV_BUTTONS, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, WELCOME_BUTTONS } from 'src/app/common/constants';
+import { ViewMode } from 'src/app/common/interfaces';
 
 @Component({
   selector: 'app-landing-page',
@@ -28,6 +29,8 @@ export class LandingPageComponent implements OnInit {
   globalTopnavMenuCssClass = 'global-topnav-menu-css';
   fragment = '';
 
+  viewMode: ViewMode = 'light';
+
   constructor(private route:ActivatedRoute,
     private scrollService: ScrollService,
     private router:Router) {}
@@ -36,6 +39,11 @@ export class LandingPageComponent implements OnInit {
     this.contactForm.valueChanges.pipe().subscribe(changes => {
       // console.log('lP ngOI contact form value changes sub: ', changes);
     });
+  }
+
+  handleUpdateViewMode(mode: ViewMode) {
+    // console.log('cT hUVM update view mode: ', mode);
+    this.viewMode = mode;
   }
 
   handleTopnavMenuOpen() {

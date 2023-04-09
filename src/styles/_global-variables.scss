@@ -31,6 +31,11 @@
     // for css tricks Icon nav bar
     --color: #222327;
 
+    --global-background-1: var(--global-grey-2);
+    --global-background-2: var(--global-grey-5);
+    --global-foreground-1: var(--global-grey-2);
+    --global-foreground-2: var(--global-grey-1);
+
 }
 
 $global-font-sizes: (

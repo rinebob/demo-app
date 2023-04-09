@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -29,13 +27,16 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { BoardsStore } from './services/boards-store.service';
+
 import { LandingPageComponent } from './comps/landing-page/landing-page.component';
 import { DesignSystemComponent } from './comps/design-system/design-system.component';
-import { SharedModule } from './shared/shared.module';
-import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-links.module';
 import { ProjectCardComponent } from './comps/landing-page/project-card/project-card.component';
 import { SkillCardComponent } from './comps/landing-page/skill-card/skill-card.component';
 import { ExperienceCardComponent } from './comps/landing-page/experience-card/experience-card.component';
+
+import { SharedModule } from './shared/shared.module';
+import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-links.module';
+import { ThreeWayToggleModule } from './shared/three-way-toggle/three-way-toggle.module';
 
 // for angular in memory web api
 // import { ImBoardsTasksService } from './services/im-boards-tasks.service';
@@ -78,6 +79,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
 
     SharedModule,
     SocialIconLinksModule,
+    ThreeWayToggleModule,
     
     // DO NOT DELETE ///////////////////////////////////
     // ANGULAR IN-MEMORY WEB API
