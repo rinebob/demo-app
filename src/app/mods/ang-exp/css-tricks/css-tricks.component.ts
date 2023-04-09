@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, AfterViewInit, ViewChild, ViewChildren, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ICON_NAV_BAR_LINKS } from 'src/app/common/constants';
+
+type ViewMode = 'light' | 'dark' | 'css-tricks';
 
 @Component({
   selector: 'app-css-tricks',
@@ -12,12 +14,12 @@ export class CssTricksComponent implements AfterViewInit {
   @ViewChild('cursorRef', {read: ElementRef}) cursorRef: ElementRef;
   cursor: HTMLElement;
 
-  // @ViewChildren('navItem', {read: ElementRef}) links: ElementRef[];
-
   numItems = 25;
   items = new Array(this.numItems);
 
   readonly ICON_NAV_BAR_LINKS = ICON_NAV_BAR_LINKS;
+
+  viewMode: ViewMode = 'light';
 
   constructor() {
 
@@ -36,6 +38,11 @@ export class CssTricksComponent implements AfterViewInit {
 
     // this.animateLink('navItem1');
 
+  }
+
+  handleUpdateViewMode(mode: ViewMode) {
+    // console.log('cT hUVM update view mode: ', mode);
+    this.viewMode = mode;
   }
 
   animateCursor() {

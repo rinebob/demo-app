@@ -9,6 +9,32 @@
 
 >
 
+    <mat-tab label="3-way switch">
+
+        <div class="switch">
+
+            <app-three-way-toggle (mode)="handleUpdateViewMode($event)"
+            >
+            </app-three-way-toggle>
+
+        </div>
+
+    </mat-tab>
+
+    <mat-tab label="Rotating gradient" class="rotate-gradient">
+
+        <div class="rotate-gradient">
+
+            <div class="gradient-container">
+
+                <div class="box"></div>
+
+            </div>
+
+        </div>
+
+    </mat-tab>
+
     <mat-tab label="Login reg form" class="login-reg">
 
         <div class="login-reg">

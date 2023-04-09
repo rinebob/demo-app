@@ -255,4 +255,6 @@ export interface DialogData {
 }
 export interface UserAccount extends Login {
     emailAddress: string;
-  }
+}
+
+export type ViewMode = 'light' | 'dark' | 'css-tricks';

@@ -1,0 +1,32 @@
+<div class="switch-container">
+
+    <div class="slide-trough"></div>
+    
+    <mat-icon class="material-symbols-outlined"
+              (click)="updateActiveMode('light')"
+              [class.active]="viewMode === 'light'"
+    >
+        light_mode
+    </mat-icon>
+            
+    <mat-icon class="material-symbols-outlined"
+              (click)="updateActiveMode('dark')"
+              [class.active]="viewMode === 'dark'"
+    >
+        dark_mode
+    </mat-icon>
+        
+    <mat-icon class="material-symbols-outlined"
+              (click)="updateActiveMode('css-tricks')"
+              [class.active]="viewMode === 'css-tricks'"
+    >
+        electric_bolt
+    </mat-icon>
+    
+    <div class="active-circle"
+        [class.light-mode]="viewMode === 'light'"
+        [class.dark-mode]="viewMode === 'dark'"
+        [class.css-tricks-mode]="viewMode === 'css-tricks'"
+    ></div>
+
+</div>

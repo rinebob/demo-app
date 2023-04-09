@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { AngExpRoutingModule } from './ang-exp-routing.module';
@@ -19,6 +20,8 @@ import { OpenCloseComponent } from './animations/open-close/open-close.component
 import { CssTricksComponent } from './css-tricks/css-tricks.component';
 import { IconNavBarComponent } from './css-tricks/icon-nav-bar/icon-nav-bar.component';
 import { LoginRegFormComponent } from './css-tricks/login-reg-form/login-reg-form.component';
+
+import { ThreeWayToggleModule } from 'src/app/shared/three-way-toggle/three-way-toggle.module';
 
 
 @NgModule({
@@ -42,10 +45,11 @@ import { LoginRegFormComponent } from './css-tricks/login-reg-form/login-reg-for
     MatIconModule,
     MatInputModule,
     MatSidenavModule,
+    MatSlideToggleModule,
     MatTabsModule,
 
-
-    AngExpRoutingModule
+    AngExpRoutingModule,
+    ThreeWayToggleModule,
   ]
 })
 export class AngExpModule { }
