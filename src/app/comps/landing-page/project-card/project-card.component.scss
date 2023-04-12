@@ -1,5 +1,6 @@
 @use '../../../../styles/global-mixins' as global;
 @use '../../../../styles/global-variables' as globalVar;
+@use '../landing-page-variables' as landingPageVar;
 @import "styles.scss";
 
 :host {
@@ -7,6 +8,7 @@
 
     .project-container {
         @include global.flexboxLayout(column, flex-start, center);
+        background-color: var(--project-card-background-color);
         flex-grow: 1;
         height: 360px;
         margin: 10px;
@@ -22,7 +24,7 @@
     
         .img-overlay {
             @include global.flexboxLayout(column, center, center);
-            background-color: var(--global-grey-6);
+            background-color: var(--project-card-overlay-background-color);
             backdrop-filter: blur(10px);
             border-radius: 4px;
             padding: 10px;
@@ -31,6 +33,7 @@
             
             .project-title {
                 @include global.textSectionSubheader;
+                color: var(--project-card-overlay-header-text-color);
                 margin: 0 0 10px;
                 text-align: center;
 
@@ -51,6 +54,7 @@
         
             .project-description {
                 @include global.textDescription;
+                color: var(--project-card-overlay-description-text-color);
                 backdrop-filter: blur(10px);
                 text-align: center;
                 margin-bottom: 10px;
@@ -63,6 +67,8 @@
     
             .main-button {
                 @include global.textButtonMain;
+                background-color: var(--project-card-overlay-button-background-color);
+                color: var(--project-card-overlay-button-text-color);
                 margin: 0 10px;
                 padding: 6px 24px;
 

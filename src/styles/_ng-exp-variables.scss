@@ -1,12 +1,10 @@
+@use '@angular/material' as mat;
+@use '../styles/global-variables';
+@use "sass:map";
 
 :root {
 
-    // from https://coolors.co/011627-ff0022-41ead4-fdfffc-b91372
-    --rich-black: #011627ff;
-    --red-cmyk: #ff0022ff;
-    --turquoise: #41ead4ff;
-    --baby-powder: #fdfffcff;
-    --red-violet: #b91372ff;
+    
 
     // https://coolors.co/f46036-2e294e-1b998b-e71d36-c5d86d
     --space-cadet: #2e294eff;       // primary
@@ -14,19 +12,6 @@
     --persian-green: #1b998bff;     // accent 1
     --mindaro: #c5d86dff;           // accent 2
     --red-pantone: #e71d36ff;       // warn
-
-    --ang-exp-purple-1: #635fc7;
-    --ang-exp-purple-2: #a8a4ff;
-    --ang-exp-grey-1: #000112;
-    --ang-exp-grey-2: #20212c;
-    --ang-exp-grey-3: #2b2c37;
-    --ang-exp-grey-4: #3e3f4e;
-    --ang-exp-grey-5: #828fa3;
-    --ang-exp-grey-6: #e4ebfa;
-    --ang-exp-white-1: #ffffff;
-    --ang-exp-white-2: #f4f7fd;
-    --ang-exp-red-1: #ea5555;
-    --ang-exp-red-2: #ff9898;
     
     --ang-exp-primary: var(--space-cadet);
     --ang-exp-secondary: var(--giants-orange);
@@ -34,24 +19,11 @@
     --ang-exp-accent-2: var(--mindaro);
     --ang-exp-warn: var(--red-pantone);
 
-    --ang-exp-on-primary: var(--ang-exp-white-1);
-    --ang-exp-on-secondary: var(--ang-exp-white-1);
-    --ang-exp-on-accent-1: var(--ang-exp-white-1);
-    --ang-exp-on-accent-2: var(--ang-exp-primary);
-    --ang-exp-on-warn: var(--ang-exp-white-1);
-
-    // --ang-exp-primary-idle: var(--ang-exp-purple-1);
-    // --ang-exp-primary-hover: var(--ang-exp-purple-2);
-    // --ang-exp-secondary-idle: var(--ang-exp-white-1);
-    // --ang-exp-secondary-hover: rgba(99, 95, 199, .25);
-    // --ang-exp-destructive-idle: var(--ang-exp-red-1);
-    // --ang-exp-destructive-hover: var(--ang-exp-red-2);
-    // --ang-exp-on-primary-idle: var(--ang-exp-white-1);
-    // --ang-exp-on-primary-hover: var(--ang-exp-white-1);
-    // --ang-exp-on-secondary-idle: var(--ang-exp-purple-1);
-    // --ang-exp-on-secondary-hover: var(--ang-exp-purple-1);
-    // --ang-exp-on-destructive-idle: var(--ang-exp-white-1);
-    // --ang-exp-on-destructive-hover: var(--ang-exp-white-1);
+    --ang-exp-on-primary: var(--global-white-1);
+    --ang-exp-on-secondary: var(--global-white-1);
+    --ang-exp-on-accent-1: var(--global-white-1);
+    --ang-exp-on-accent-2: var(--global-primary);
+    --ang-exp-on-warn: var(--global-white-1);
 
     --ang-exp-size-nav-bar-height: 96px;
 
@@ -71,75 +43,145 @@
     --ang-exp-main-font-family: var(--font-nunito);
 }
 
+// // based on space-cadet color (#2e294e) above.  Hex values obteained from Material color tool
+// // https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+// $ang-exp-space-cadet-palette: (
+//     50: #e9eaf0,
+//     100: #c7cadb,
+//     200: #a4a8c2,
+//     300: #8286a9,
+//     400: #696c97,
+//     500: #525387,
+//     600: #4b4c7e,
+//     700: #434273,
+//     800: #3b3966,
+//     900: #2e294e,       // space cadet
+//     contrast: (
+//         50: rgba(black, 0.87),
+//         100: rgba(black, 0.87),
+//         200: rgba(black, 0.87),
+//         300: rgba(black, 0.87),
+//         400: white,
+//         500: white,
+//         600: white,
+//         700: white,
+//         800: white,
+//         900: white,
+//     )
+// );
 
-.ang-exp-light-theme {
+// $ang-exp-giants-orange-palette: (
+//     50:  #f8eae8,
+//     100: #facdc0,
+//     200: #f8ad98,
+//     300: #f68e70,
+//     400: #f57551,
+//     500: #f45f36,       // primary
+//     600: #e95932,
+//     700: #db532d,
+//     800: #cd4c2a,
+//     900: #b24224,
+//     contrast: (
+//         50: rgba(black, 0.87),
+//         100: rgba(black, 0.87),
+//         200: rgba(black, 0.87),
+//         300: rgba(black, 0.87),
+//         400: rgba(black, 0.87),
+//         500: white,
+//         600: white,
+//         700: white,
+//         800: white,
+//         900: white,
+//     )
+// );
 
-    --ang-exp-font: var(--ang-exp-main-font-family);
+// $ang-exp-dark-theme: mat.define-dark-theme((
+//     color: (
+//         primary: mat.define-palette($ang-exp-space-cadet-palette),
+//         accent: mat.define-palette($ang-exp-giants-orange-palette)
+//     ),
+//     typography: mat.define-typography-config(),
+//     density: 0,
+// ));
+
+// $ang-exp-light-theme: mat.define-light-theme((
+//     color: (
+//         primary: mat.define-palette($ang-exp-space-cadet-palette),
+//         accent: mat.define-palette($ang-exp-giants-orange-palette)
+//     ),
+// ));
+
+// @include mat.core-theme($ang-exp-light-theme);
+// @include mat.all-component-themes($ang-exp-light-theme);
+
+// .ang-exp-dark-theme {
+//     @include mat.core-theme($ang-exp-dark-theme);
+//     @include mat.all-component-themes($ang-exp-dark-theme);
+// }
+
+// .ang-exp-light-theme {
+
+//     --ang-exp-font: var(--ang-exp-main-font-family);
     
-    --ang-exp-background-1: var(--ang-exp-white-1);
-    --ang-exp-background-2: var(--ang-exp-white-1);
-    --ang-exp-background-3: var(--ang-exp-white-1);
-    --ang-exp-background-4: var(--ang-exp-white-1);
-    --ang-exp-background-5: var(--ang-exp-grey-5);
-    --ang-exp-background-6: var(--ang-exp-grey-6);
+//     --ang-exp-background-1: var(--global-white-1);
+//     --ang-exp-background-2: var(--global-white-1);
+//     --ang-exp-background-3: var(--global-white-1);
+//     --ang-exp-background-4: var(--global-white-1);
+//     --ang-exp-background-5: var(--global-grey-5);
+//     --ang-exp-background-6: var(--global-grey-6);
 
-    --ang-exp-title-text-1: var(--ang-exp-primary);
-    --ang-exp-title-text-2: var(--ang-exp-primary);
-    --ang-exp-title-text-3: var(--ang-exp-primary);
-    --ang-exp-title-text-4: var(--ang-exp-primary);
-    --ang-exp-subtitle-text-1: var(--ang-exp-grey-5);
-    --ang-exp-subtitle-text-2: var(--ang-exp-grey-6);
+//     --ang-exp-title-text-1: var(--ang-exp-primary);
+//     --ang-exp-title-text-2: var(--ang-exp-primary);
+//     --ang-exp-title-text-3: var(--ang-exp-primary);
+//     --ang-exp-title-text-4: var(--ang-exp-primary);
+//     --ang-exp-subtitle-text-1: var(--global-grey-5);
+//     --ang-exp-subtitle-text-2: var(--global-grey-6);
 
+//     // text colors for light backgrounds
+//     --ang-exp-text-color-1: var(--ang-exp-primary);
+//     --ang-exp-text-color-2: var(--ang-exp-primary);
 
-    // --ang-exp-title-text-1: var(--ang-exp-grey-1);
-    // --ang-exp-title-text-2: var(--ang-exp-grey-2);
-    // --ang-exp-title-text-3: var(--ang-exp-grey-3);
-    // --ang-exp-title-text-4: var(--ang-exp-grey-4);
-    // --ang-exp-subtitle-text-1: var(--ang-exp-grey-5);
-    // --ang-exp-subtitle-text-2: var(--ang-exp-grey-6);
+//     --ang-exp-drag-preview-background-color: var(--global-grey-6);
+//     --ang-exp-drag-preview-placeholder-color: var(--global-grey-6);
+//     --ang-exp-drag-preview-text-color: var(--global-grey-1);
+//     --ang-exp-drag-preview-outline-color: var(--global-grey-5);
+//     --ang-exp-sidenav-border-color: var(--global-grey-6);
+//     --ang-exp-checkbox-background: var(--global-grey-6);
+//     --ang-exp-checkbox-background-hover: var(--global-grey-5);
+//     --ang-exp-task-card-drop-shadow-opacity: .25;
 
-    // text colors for light backgrounds
-    --ang-exp-text-color-1: var(--ang-exp-primary);
-    --ang-exp-text-color-2: var(--ang-exp-primary);
-
-    --ang-exp-drag-preview-background-color: var(--ang-exp-grey-6);
-    --ang-exp-drag-preview-placeholder-color: var(--ang-exp-grey-6);
-    --ang-exp-drag-preview-text-color: var(--ang-exp-grey-1);
-    --ang-exp-drag-preview-outline-color: var(--ang-exp-grey-5);
-    --ang-exp-sidenav-border-color: var(--ang-exp-grey-6);
-    --ang-exp-checkbox-background: var(--ang-exp-grey-6);
-    --ang-exp-checkbox-background-hover: var(--ang-exp-grey-5);
-    --ang-exp-task-card-drop-shadow-opacity: .25;
-
-}
+// }
 
 
-.ang-exp-dark-theme {
+// .ang-exp-dark-theme {
 
-    --ang-exp-font: var(--ang-exp-main-font-family);
+//     @include mat.core-theme($ang-exp-dark-theme);
+//     @include mat.all-component-themes($ang-exp-dark-theme);
+
+//     --ang-exp-font: var(--ang-exp-main-font-family);
     
-    --ang-exp-text-color-1: var(--ang-exp-white-1);
-    --ang-exp-background-1: var(--ang-exp-grey-1);
-    --ang-exp-background-2: var(--ang-exp-grey-2);
-    --ang-exp-background-3: var(--ang-exp-grey-3);
-    --ang-exp-background-4: var(--ang-exp-grey-4);
-    --ang-exp-background-5: var(--ang-exp-grey-5);
-    --ang-exp-background-6: var(--ang-exp-grey-6);
-    --ang-exp-title-text-1: var(--ang-exp-white-1);
-    --ang-exp-title-text-2: var(--ang-exp-white-1);
-    --ang-exp-title-text-3: var(--ang-exp-white-1);
-    --ang-exp-title-text-4: var(--ang-exp-white-1);
-    --ang-exp-subtitle-text-1: var(--ang-exp-grey-5);
-    --ang-exp-subtitle-text-2: var(--ang-exp-grey-5);
-    --ang-exp-drag-preview-background-color: var(--ang-exp-grey-5);
-    --ang-exp-drag-preview-placeholder-color: var(--ang-exp-grey-6);
-    --ang-exp-drag-preview-text-color: var(--ang-exp-white-1);
-    --ang-exp-drag-preview-outline-color: var(--ang-exp-grey-4);
-    --ang-exp-sidenav-border-color: var(--ang-exp-grey-4);
-    --ang-exp-checkbox-background: var(--ang-exp-grey-4);
-    --ang-exp-checkbox-background-hover: var(--ang-exp-grey-5);
-    --ang-exp-task-card-drop-shadow-opacity: 0;
-}
+//     --ang-exp-text-color-1: var(--global-white-1);
+//     --ang-exp-background-1: var(--global-grey-1);
+//     --ang-exp-background-2: var(--global-grey-2);
+//     --ang-exp-background-3: var(--global-grey-3);
+//     --ang-exp-background-4: var(--global-grey-4);
+//     --ang-exp-background-5: var(--global-grey-5);
+//     --ang-exp-background-6: var(--global-grey-6);
+//     --ang-exp-title-text-1: var(--global-white-1);
+//     --ang-exp-title-text-2: var(--global-white-1);
+//     --ang-exp-title-text-3: var(--global-white-1);
+//     --ang-exp-title-text-4: var(--global-white-1);
+//     --ang-exp-subtitle-text-1: var(--global-grey-5);
+//     --ang-exp-subtitle-text-2: var(--global-grey-5);
+//     --ang-exp-drag-preview-background-color: var(--global-grey-5);
+//     --ang-exp-drag-preview-placeholder-color: var(--global-grey-6);
+//     --ang-exp-drag-preview-text-color: var(--global-white-1);
+//     --ang-exp-drag-preview-outline-color: var(--global-grey-4);
+//     --ang-exp-sidenav-border-color: var(--global-grey-4);
+//     --ang-exp-checkbox-background: var(--global-grey-4);
+//     --ang-exp-checkbox-background-hover: var(--global-grey-5);
+//     --ang-exp-task-card-drop-shadow-opacity: 0;
+// }
 
 $font-sizes: (
     heading-xl: 24px,
@@ -189,49 +231,3 @@ $element-sizes: (
 @function elementSize($element-size) {
     @return map-get($element-sizes, $element-size);
 }
-
-/* CSS HEX */
-// --rich-black: #011627ff;
-// --red-cmyk: #ff0022ff;
-// --turquoise: #41ead4ff;
-// --baby-powder: #fdfffcff;
-// --red-violet: #b91372ff;
-
-/* CSS HSL */
-// --rich-black: hsla(207, 95%, 8%, 1);
-// --red-cmyk: hsla(352, 100%, 50%, 1);
-// --turquoise: hsla(172, 80%, 59%, 1);
-// --baby-powder: hsla(100, 100%, 99%, 1);
-// --red-violet: hsla(326, 81%, 40%, 1);
-
-/* SCSS HEX */
-$rich-black: #011627ff;
-$red-cmyk: #ff0022ff;
-$turquoise: #41ead4ff;
-$baby-powder: #fdfffcff;
-$red-violet: #b91372ff;
-
-/* SCSS HSL */
-$rich-black: hsla(207, 95%, 8%, 1);
-$red-cmyk: hsla(352, 100%, 50%, 1);
-$turquoise: hsla(172, 80%, 59%, 1);
-$baby-powder: hsla(100, 100%, 99%, 1);
-$red-violet: hsla(326, 81%, 40%, 1);
-
-/* SCSS RGB */
-$rich-black: rgba(1, 22, 39, 1);
-$red-cmyk: rgba(255, 0, 34, 1);
-$turquoise: rgba(65, 234, 212, 1);
-$baby-powder: rgba(253, 255, 252, 1);
-$red-violet: rgba(185, 19, 114, 1);
-
-/* SCSS Gradient */
-$gradient-top: linear-gradient(0deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-right: linear-gradient(90deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-bottom: linear-gradient(180deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-left: linear-gradient(270deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-top-right: linear-gradient(45deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-bottom-right: linear-gradient(135deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-top-left: linear-gradient(225deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-bottom-left: linear-gradient(315deg, #011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);
-$gradient-radial: radial-gradient(#011627ff, #ff0022ff, #41ead4ff, #fdfffcff, #b91372ff);

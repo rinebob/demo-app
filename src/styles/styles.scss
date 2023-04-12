@@ -1,83 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
-@use "../styles/kanban-mixins" as kanban;
-@use "../styles/global-mixins" as global;
-@use "../styles/ng-exp-mixins" as ng-exp;
-@use "./kanban-variables" as kanbanVar;
+@use "./kanban-mixins" as kanban;
+@use "./global-mixins" as global;
+@use "./ng-exp-mixins" as ng-exp;
+@use '../app/comps/landing-page/landing-page-variables' as landingPageVar;
 
 @include mat.core();
 @import "./global-variables";
-// @import "./kanban-variables";
-@import "./ng-exp-variables";
 
 ////////// ANGULAR MATERIAL THEME ///////////////////
 
-    // based on purple-1.  Hex values obteained from Material color tool
-    // https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
-    $kanban-purple-palette: (
-        50: #e9e8f7,
-        100: #c7c6ec,
-        200: #a2a1de,
-        300: #7d7cd1,
-        400: #635fc7,       // primary color
-        500: #4a42bc,
-        600: #4439b1,
-        700: #3c2fa5,
-        800: #34249a,
-        900: #290c83,
-        contrast: (
-            50: rgba(black, 0.87),
-            100: rgba(black, 0.87),
-            200: rgba(black, 0.87),
-            300: white,
-            400: white,
-            500: white,
-            600: white,
-            700: white,
-            800: white,
-            900: white,
-        )
-    );
+    // $app-primary-light: mat.define-palette(mat.$indigo-palette);
+    // $app-secondary-light: mat.define-palette(mat.$pink-palette);
+    // $app-warn-light: mat.define-palette(mat.$red-palette);
+    // $app-primary: mat.define-palette(mat.$indigo-palette);
+    // $app-secondary: mat.define-palette(mat.$pink-palette);
+    $app-primary: mat.define-palette(mat.$cyan-palette);
+    $app-secondary: mat.define-palette(mat.$blue-grey-palette);
+    $app-warn: mat.define-palette(mat.$red-palette);
+    
+    // $app-primary-dark: mat.define-palette(mat.$cyan-palette);
+    // $app-secondary-dark: mat.define-palette(mat.$blue-grey-palette);
+    // $app-warn-dark: mat.define-palette(mat.$amber-palette);
 
-    $kanban-primary: mat.define-palette($kanban-purple-palette, 400, 200);
-    $kanban-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-    // The "warn" palette is optional and defaults to red if not specified.
-    $kanban-warn: mat.define-palette(mat.$red-palette);
-
-    $kanban-light-theme: mat.define-light-theme((
-        color: (
-            primary: $kanban-primary,
-            accent: $kanban-accent,
-            warn: $kanban-warn,
-        ),
-         // Only include `typography` and `density` in the default light theme.
-         // Specify the font to use something other than default Roboto font
-        typography: mat.define-typography-config($font-family: var(--main-font-family)),
-        density: 0,
-        ));
-
-    $kanban-dark-theme: mat.define-dark-theme((
+$app-light-theme: mat.define-light-theme((
     color: (
-        primary: $kanban-primary,
-        accent: $kanban-accent,
-        warn: $kanban-warn,
-    ),
-    ));
+            primary: $app-primary,
+            accent: $app-secondary,
+            warn: $app-warn,
+    )
+));
 
-    // Apply the light theme by default
-    @include mat.core-theme($kanban-light-theme);
-    @include mat.all-component-themes($kanban-light-theme);
+$app-dark-theme: mat.define-dark-theme((
+    color: (
+            primary: $app-primary,
+            accent: $app-secondary,
+            warn: $app-warn,
+    )
+));
 
-    // Apply the dark theme only when the user prefers light themes.
-    @media (prefers-color-scheme: dark) {
-        // Use the `-color` mixins to only apply color styles without reapplying the same
-        // typography and density styles.
-        @include mat.core-color($kanban-dark-theme);
-        // @include mat.all-component-themes($kanban-dark-theme);
+// @include mat.core-theme($app-light-theme);
+// @include mat.all-component-themes($app-light-theme);
 
-   }
+// .app-dark-theme {
+//     @include mat.core-theme($app-dark-theme);
+//     @include mat.all-component-themes($app-dark-theme);
+// }
 
+// @include mat.core-theme($ang-exp-light-theme);
+
+// Apply the dark theme only when the user prefers light themes.
+// @media (prefers-color-scheme: dark) {
+//     // Use the `-color` mixins to only apply color styles without reapplying the same
+//     // typography and density styles.
+//     @include mat.core-color($app-dark-theme);
+//     @include mat.all-component-themes($app-dark-theme);
+
+// }
 
    ////////////////////////////////////////////////////////////
 

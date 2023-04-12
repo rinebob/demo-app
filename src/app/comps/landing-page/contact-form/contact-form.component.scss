@@ -1,0 +1,92 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/global-variables' as globalVar;
+@use '../landing-page-variables' as landingPageVar;
+@use '../../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
+@import "styles.scss";
+
+:host {
+
+    .form-element {
+        @include global.flexboxLayout(column, flex-start, center);
+    
+        .input-box {
+            @include global.flexboxLayout(row, flex-start, center);
+            margin-bottom: 25px;
+            position: relative;
+            width: 300px;
+            
+            input, textarea {
+                background: transparent;
+                border: 1px solid rgba(0,0,0,0.1);
+                border-radius: 25px;
+                box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                            5px 5px 15px rgba(0,0,0,0.35);
+                color: var(--contact-section-form-placeholder-text-color);
+                font-family: inherit;
+                font-size: 1em;
+                font-weight: 300;
+                outline: none;
+                padding: 15px 10px 15px 56px;
+                width: 100%;
+    
+                &:valid,
+                &:focus {
+                    border: 1px solid var(--contact-section-form-outline-color);
+                }
+                
+                &:valid ~ .placeholder,
+                &:focus ~ .placeholder {
+                    @include cssTricks.placeholderFocusStyles;
+                    background-color: var(--contact-section-form-placeholder-background-color);
+                    border: 1px solid var(--contact-section-form-outline-color);
+                    color: var(--contact-section-form-placeholder-text-color);
+                    display: inline-block;
+                    font-size: 0.8em;
+                    position: absolute;
+                    left: 40px;
+                    top: -10px;
+                    transition: 0.5s;
+                }
+                
+                &:focus ~ .placeholder.error {
+                    color: red;
+                }
+            }
+    
+            .spacer {
+                position: absolute;
+                left: 50px;
+                border-left: 1px solid var(--contact-section-form-outline-color);
+                height: 16px;
+            }
+    
+            .placeholder {
+                @include cssTricks.placeholderText;
+                color: var(--contact-section-form-placeholder-text-color);
+                position: absolute;
+                left: 0;
+            }
+    
+            .error {
+                @include cssTricks.placeholderText;
+                position: absolute;
+                left: 0;
+                color: var(--landing-page-warn);
+                transition: 0.5s;
+            }
+    
+            mat-icon {
+                position: absolute;
+                left: 16px;
+                color: var(--contact-section-form-icon-color);
+                font-size: 22px;
+                padding: 4px 0 2px 8px;
+                width: 25px;
+            }
+        }
+    
+        .main-button {
+            @include landingPageVar.contactSpiffyButtonStyles;
+        }
+    }
+}

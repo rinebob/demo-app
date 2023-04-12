@@ -1,0 +1,22 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+@import "styles.scss";
+
+.dark-mode-switch-container {
+    @include global.flexboxLayout(row, space-between, center);
+    // background-color: var(--background-2);
+    margin: 0 22px;
+    padding: 15px 64px;
+
+    mat-icon {
+        // color: var(--subtitle-text-1);
+    }
+
+    mat-slide-toggle {
+        margin: 0 24px;
+    }
+
+    @include global.response(sm) {
+        display: none;                
+    }
+}

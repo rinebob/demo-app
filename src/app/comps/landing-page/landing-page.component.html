@@ -6,9 +6,7 @@
         <mat-icon>keyboard_double_arrow_up</mat-icon>
     </button>
 
-
     <nav class="landing-page-nav">
-        
 
         <div class="title-container">
 
@@ -77,8 +75,6 @@
                 <div class="welcome-bottom">
 
                     <button *ngFor="let button of WELCOME_BUTTONS"
-                            mat-stroked-button 
-                            color=primary
                             class="main-button"
                             (click)="scrollToTarget(button.fragment ?? '')"
                     >
@@ -98,7 +94,6 @@
                 <div class="skills-container">
 
                     <ng-container *ngIf="RINEBOB_SKILLS as skills">
-
 
                         <ng-container *ngFor="let skill of skills">
                             
@@ -172,48 +167,7 @@
                     
                     <div class="contact-right">
 
-                        <form [formGroup]="contactForm">
-
-                            <mat-form-field appearance="outline">
-                                <mat-label>Name</mat-label>
-                                <input matInput 
-                                    formControlName="nameControl"
-                                    placeholder="Name"
-                                    type="text"
-                                >
-
-                            </mat-form-field>
-
-                            <mat-form-field appearance="outline">
-                                <mat-label>Email</mat-label>
-                                <input matInput 
-                                    formControlName="emailControl"
-                                    placeholder="Email"
-                                    type="email"
-                                >
-
-                            </mat-form-field>
-
-                            <mat-form-field appearance="outline">
-                                <mat-label>Message</mat-label>
-                                <textarea matInput 
-                                    formControlName="messageControl"
-                                    placeholder="Message"
-                                    type="text"
-                                >
-                                </textarea>
-
-                            </mat-form-field>
-
-                        </form>
-
-                        <button mat-stroked-button
-                                color=primary
-                                class="main-button"
-                                (click)="handleSendMessage()"
-                        >
-                            Send message
-                        </button>
+                        <app-contact-form (contact)="handleContactSubmission($event)"></app-contact-form>
 
                     </div>
 
@@ -233,7 +187,6 @@
             </div>
 
         </footer>
-
         
 
     </div>

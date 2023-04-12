@@ -1,0 +1,59 @@
+
+
+<form [formGroup]="contactForm" (ngSubmit)="handleSubmitForm()" class="form-element">
+
+    <div class="input-box">
+        <input type="text"
+                required="required"
+                formControlName="nameControl"
+        >
+        <span class="spacer"></span>
+        <mat-icon class="icon material-symbols-outlined">person</mat-icon>
+
+        <span class="placeholder"
+                [class.error]="name?.invalid && (name?.dirty || name?.touched)"
+        >
+            {{!(name?.invalid && (name?.dirty || name?.touched)) ? 'name' : 'name is required'}}
+        </span>
+        
+    </div>
+
+    <div class="input-box">
+        <input type="text" 
+                required="required"
+                formControlName="emailControl"
+        >
+        <span class="spacer"></span>
+        <mat-icon class="icon material-symbols-outlined">mail</mat-icon>
+        
+        <span class="placeholder"
+                [class.error]="email?.invalid && (email?.dirty || email?.touched)"
+        >
+            {{!(email?.invalid && (email?.dirty || email?.touched)) ? 'email address' : 'email address is required'}}
+        </span>
+
+    </div>
+
+    <div class="input-box">
+        <textarea type="text" 
+                required="required"
+                formControlName="messageControl"
+        ></textarea>
+        <span class="spacer"></span>
+        <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
+        
+        <span class="placeholder"
+                [class.error]="message?.invalid && (message?.dirty || message?.touched)"
+        >
+            {{!(message?.invalid && (message?.dirty || message?.touched)) ? 'message' : 'message is required'}}
+        </span>
+
+    </div>
+
+    <button class="main-button"
+            type="submit"
+    >
+        Send message
+    </button>
+
+</form>

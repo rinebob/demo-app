@@ -1,5 +1,6 @@
 @use '../../../../styles/global-mixins' as global;
 @use '../../../../styles/global-variables' as globalVar;
+@use '../landing-page-variables' as landingPageVar;
 @import "styles.scss";
 
 :host {
@@ -33,11 +34,34 @@
     
         .assignment {
             text-decoration: underline;
+            margin: 0 0 10px;
+        }
+
+        .description {
+            margin: 0 0 8px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li::before {
+            content: "\2022";
+            color: var(--landing-page-body-text-color);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+          }
+
+        .task {
+            margin-bottom: 8px;
         }
     
         .subtitle-text {
             @include global.textSubtitle;
             @include global.textSizes($font-size: globalVar.globalFontSize(heading-m-l), $line-height: globalVar.globalLineHeight(heading-m-l));
+            color: var(--experience-section-subheader-text-color);
 
             @include global.response(xl) {
                 @include global.textSizes($font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
@@ -48,9 +72,15 @@
                 width: 100%;
             }
         }
+
+        .accent-text {
+            @include global.textDescription;
+            color: var(--experience-section-body-text-color);
+        }
     
         .description-text {
             @include global.textDescription;
+            color: var(--experience-section-body-text-color);
         }
     
     }

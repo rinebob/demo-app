@@ -1,24 +1,26 @@
 @use '../../../../styles/global-mixins' as global;
 @use '../../../../styles/global-variables' as globalVar;
+@use '../landing-page-variables' as landingPageVar;
 @import "styles.scss";
 
 mat-card {
-    @include global.flexboxLayout(column, flex-start, center);
+    @include global.flexboxLayout(column, flex-start, flex-start);
+    @include global.globalBoxShadow;
+    background-color: var(--landing-page-primary);
     flex-grow: 1;
     margin: 0 10px;
     padding: 6px 24px;
-    background-color: inherit;
     
     mat-card-content {
         @include global.flexboxLayout(row, flex-start, center);
-        max-width: 400px;
+        padding: 16px 0;
+        width: 100%;
 
         @include global.response(sm) {
             padding: 8px;
         }
         
         .skill-logo {
-            margin-right: 16px;
             width: globalVar.globalFontSize(heading-xl);
             
             
@@ -35,22 +37,29 @@ mat-card {
                 
             }
         }
+
+        .text-container {
+            @include global.flexboxLayout(row, center, center);
+            width: 100%;
+            
+            .skill-title {
+                @include global.textSectionSubheader;
+                color: var(--landing-page-on-primary);
     
-        .skill-title {
-            @include global.textSectionSubheader;
-
-            @include global.response(lg) {
-                font-size: globalVar.globalFontSize(heading-m-l);
-            }
-
-            @include global.response(sm-md) {
-                font-size: globalVar.globalFontSize(heading-m);
-            }
-
-            @include global.response(xxs) {
-                font-size: globalVar.globalFontSize(heading-m-l);
-                
+                @include global.response(lg) {
+                    font-size: globalVar.globalFontSize(heading-m-l);
+                }
+    
+                @include global.response(sm-md) {
+                    font-size: globalVar.globalFontSize(heading-m);
+                }
+    
+                @include global.response(xxs) {
+                    font-size: globalVar.globalFontSize(heading-m-l);
+                    
+                }
             }
         }
+    
     }
 }

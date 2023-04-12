@@ -258,3 +258,9 @@ export interface UserAccount extends Login {
 }
 
 export type ViewMode = 'light' | 'dark' | 'css-tricks';
+
+export interface Contact {
+  name: string;
+  email: string;
+  message: string;
+}

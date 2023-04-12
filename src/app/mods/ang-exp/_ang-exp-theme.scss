@@ -1,0 +1,245 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use '../../../styles/ng-exp-mixins' as ang-exp;
+
+// based on space-cadet color (#2e294e) above.  Hex values obteained from Material color tool
+// https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+$ang-exp-space-cadet-palette: (
+    50: #e9eaf0,
+    100: #c7cadb,
+    200: #a4a8c2,
+    300: #8286a9,
+    400: #696c97,
+    500: #525387,
+    600: #4b4c7e,
+    700: #434273,
+    800: #3b3966,
+    900: #2e294e,       // space cadet
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: white,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+    )
+);
+
+$ang-exp-giants-orange-palette: (
+    50:  #f8eae8,
+    100: #facdc0,
+    200: #f8ad98,
+    300: #f68e70,
+    400: #f57551,
+    500: #f45f36,       // primary
+    600: #e95932,
+    700: #db532d,
+    800: #cd4c2a,
+    900: #b24224,
+    contrast: (
+        50: rgba(black, 0.87),
+        100: rgba(black, 0.87),
+        200: rgba(black, 0.87),
+        300: rgba(black, 0.87),
+        400: rgba(black, 0.87),
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+    )
+);
+
+/*
+notes from: https://material.angular.io/guide/theming
+Constructing the theme first requires defining your primary and accent palettes, with an optional warn palette. The define-palette Sass function accepts a color palette, described in the Palettes section above, as well as four optional hue numbers. These four hues represent, in order: the "default" hue, a "lighter" hue, a "darker" hue, and a "text" hue. Components use these hues to choose the most appropriate color for different parts of themselves.
+*/
+
+$ang-exp-primary: mat.define-palette($ang-exp-space-cadet-palette);
+$ang-exp-secondary: mat.define-palette($ang-exp-giants-orange-palette);
+$ang-exp-warn: mat.define-palette(mat.$red-palette);
+
+/*
+You can construct a theme by calling either define-light-theme or define-dark-theme with the result from define-palette. The choice of a light versus a dark theme determines the background and foreground colors used throughout the components.
+*/
+
+$ang-exp-light-theme: mat.define-light-theme((
+    color: (
+            primary: $ang-exp-primary,
+            accent: $ang-exp-secondary,
+            warn: $ang-exp-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+));
+
+$ang-exp-dark-theme: mat.define-dark-theme((
+    color: (
+            primary: $ang-exp-primary,
+            accent: $ang-exp-secondary,
+            warn: $ang-exp-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+));
+
+@mixin color($theme) {
+    // Get the color config from the theme.
+    $color-config: mat.get-color-config($theme);
+
+    // Get each color palette from the color-config.
+    $primary-palette: map.get($color-config, 'primary');
+    $secondary-palette: map.get($color-config, 'secondary');
+    $warn-palette: map.get($color-config, 'warn');
+
+    .ang-exp-container {
+        
+        .mat-drawer {
+    
+            /*
+            Now that theme theme-based styles reside in mixins, we can extract the values we need from the theme passed into the mixins.
+    
+            .my-carousel-button {
+                // Read the 500 hue from the primary color palette.
+                color: mat.get-color-from-palette($primary-palette, 500);
+            }
+    
+            */
+            background-color: var(--ang-exp-background-3);
+            // background-color: blue;
+        }
+
+    }
+
+
+    .nav-button {
+        @include ang-exp.angExpColors($background-color: var(--background-3), $color: var(--subtitle-text-1));
+        
+        &:not(.active-link) {
+                
+            &:hover {
+                @include ang-exp.angExpColors(var(--ang-exp-primary-hover), var(--ang-exp-on-primary-hover));
+         
+            }
+        }
+
+    }
+
+    .active-link {
+        @include ang-exp.angExpColors;
+    }
+
+    .mat-drawer-content {
+        background-color: var(--ang-exp-background-2);
+        // background-color: blue;
+
+        .nav-bar {
+            background-color: var(--ang-exp-background-3);
+
+            .title-container {
+                
+                .title-text {
+                    @include ang-exp.angExpColors(var(--ang-exp-white-1), var(--ang-exp-primary));
+                }
+            }
+
+        
+            .buttons-container {
+                
+                .nav-button {
+                    @include ang-exp.angExpColors;
+                    
+                }
+            }
+        }
+
+        .show-drawer-button {
+            @include ang-exp.angExpColors;
+        }
+    }
+
+
+}
+
+@mixin typography($theme) {
+    .heading {
+        @include ang-exp.headingXLText;
+     
+    }
+
+    .title-text {
+        @include ang-exp.headingXLText;
+    }
+}
+
+@mixin theme($theme) {
+    $color-config: mat.get-color-config($theme);
+    @if $color-config != null {
+      @include color($theme);
+    }
+  
+    $typography-config: mat.get-typography-config($theme);
+    @if $typography-config != null {
+      @include typography($theme);
+    }
+  }
+
+  
+.ang-exp-light-theme {
+
+    @include theme($ang-exp-light-theme);
+    /*
+    The core-theme Sass mixin emits prerequisite styles for common features used by multiple components, such as ripples. This mixin must be included once per theme.
+    */
+    @include mat.core-theme($ang-exp-light-theme);
+
+
+    /*
+    Each Angular Material component has a mixin for each color , typography, and density. For example, MatButton declares button-color, button-typography, and button-density. Each mixin emits only the styles corresponding to that area of customization.
+
+    Additionally, each component has a "theme" mixin that emits all styles that depend on the theme config. This theme mixin only emits color, typography, or density styles if you provided a corresponding configuration to define-light-theme or define-dark-theme.
+
+    Apply the styles for each of the components used in your application by including each of their theme Sass mixins.
+    */
+
+    // import { MatFormFieldModule } from '@angular/material/form-field';
+    // import { MatIconModule } from '@angular/material/icon';
+    // import { MatInputModule } from '@angular/material/input';
+    // import { MatSidenavModule } from '@angular/material/sidenav';
+    // import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+    // import { MatTabsModule } from '@angular/material/tabs';
+
+    @include mat.form-field-theme($ang-exp-light-theme);
+    @include mat.icon-theme($ang-exp-light-theme);
+    @include mat.input-theme($ang-exp-light-theme);
+    @include mat.sidenav-theme($ang-exp-light-theme);
+    @include mat.slide-toggle-theme($ang-exp-light-theme);
+    @include mat.tabs-theme($ang-exp-light-theme);
+
+    /*
+    As an alternative to listing every component that your application uses, Angular Material offers Sass mixins that includes styles for all components in the library: all-component-colors, all-component-typographies, all-component-densities, and all-component-themes. These mixins behave the same as individual component mixins, except they emit styles for core-theme and all 35+ components in Angular Material. Unless your application uses every single component, this will produce unnecessary CSS
+    */
+
+    // @include mat.all-component-themes($ang-exp-light-theme);
+}
+
+
+.ang-exp-dark-theme {
+
+    @include theme($ang-exp-dark-theme);
+    
+    @include mat.core-theme($ang-exp-dark-theme);
+
+    @include mat.form-field-theme($ang-exp-dark-theme);
+    @include mat.icon-theme($ang-exp-dark-theme);
+    @include mat.input-theme($ang-exp-dark-theme);
+    @include mat.sidenav-theme($ang-exp-dark-theme);
+    @include mat.slide-toggle-theme($ang-exp-dark-theme);
+    @include mat.tabs-theme($ang-exp-dark-theme);
+
+    // @include mat.all-component-themes($ang-exp-dark-theme);
+}

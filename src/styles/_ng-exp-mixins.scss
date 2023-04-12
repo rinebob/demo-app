@@ -1,5 +1,49 @@
 @use './global-mixins' as global;
 @use './ng-exp-variables' as angExpVar;
+// @use '@angular/material' as mat;
+
+///////////////////// MATERIAL THEME //////////////////
+
+// $ang-exp-primary: mat.define-palette(angExpVar.$ang-exp-space-cadet-palette);
+// $ang-exp-accent: mat.define-palette(angExpVar.$ang-exp-giants-orange-palette);
+
+// // The "warn" palette is optional and defaults to red if not specified.
+// $ang-exp-warn: mat.define-palette(mat.$red-palette);
+
+// $ang-exp-light-theme: mat.define-light-theme((
+//     color: (
+//         primary: $ang-exp-primary,
+//         accent: $ang-exp-accent,
+//         warn: $ang-exp-warn,
+//     ),
+//         // Only include `typography` and `density` in the default light theme.
+//         // Specify the font to use something other than default Roboto font
+//     typography: mat.define-typography-config($font-family: var(--ang-exp-main-font-family)),
+//     density: 0,
+//     ));
+
+// $ang-exp-dark-theme: mat.define-dark-theme((
+// color: (
+//     primary: $ang-exp-primary,
+//     accent: $ang-exp-accent,
+//     warn: $ang-exp-warn,
+// ),
+// ));
+
+// Apply the light theme by default
+// @include mat.core-theme($ang-exp-light-theme);
+// @include mat.all-component-themes($ang-exp-light-theme);
+
+// Apply the dark theme only when the user prefers light themes.
+// @media (prefers-color-scheme: dark) {
+//     // Use the `-color` mixins to only apply color styles without reapplying the same
+//     // typography and density styles.
+//     @include mat.core-color($ang-exp-dark-theme);
+//     @include mat.all-component-themes($ang-exp-dark-theme);
+
+//    }
+
+///////////////////// MATERIAL THEME //////////////////
 
 ////////////////// COLORS /////////////////////////
 
@@ -13,7 +57,7 @@
 ////////////// TYPOGRAPHY //////////////////////////
 
 @mixin headingXLText {
-    color: var(--ang-exp-title-text-1);
+    // color: var(--ang-exp-title-text-1);
     font-weight: 700;
     font-size: angExpVar.fontSize(heading-xl);
     line-height: angExpVar.lineHeight(heading-xl);
@@ -31,7 +75,7 @@
 }
 
 @mixin headingLText {
-    color: var(--ang-exp-title-text-1);
+    // color: var(--ang-exp-title-text-1);
     font-weight: 700;
     font-size: angExpVar.fontSize(heading-lg);
     line-height: angExpVar.lineHeight(heading-lg);
@@ -39,7 +83,7 @@
 }
 
 @mixin headingMText {
-    color: var(--ang-exp-title-text-1);
+    // color: var(--ang-exp-title-text-1);
     font-weight: 700;
     font-size: angExpVar.fontSize(heading-md);
     line-height: angExpVar.lineHeight(heading-md);
@@ -47,7 +91,7 @@
 }
 
 @mixin headingSText {
-    color: var(--ang-exp-subtitle-text-1);
+    // color: var(--ang-exp-subtitle-text-1);
     font-weight: 700;
     font-size: angExpVar.fontSize(heading-sm);
     line-height: angExpVar.lineHeight(heading-sm);
