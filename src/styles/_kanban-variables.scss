@@ -71,17 +71,6 @@
     --main-font-family: var(--font-nunito);
 }
 
-.app-theme {
-    --background-1: var(--kanban-white-1);
-    --background-2: var(--kanban-white-1);
-    --background-3: var(--kanban-white-1);
-    --title-text-1: var(--kanban-grey-1);
-    --title-text-2: var(--kanban-grey-2);
-    --title-text-3: var(--kanban-grey-3);
-    --title-text-4: var(--kanban-grey-4);
-    --subtitle-text-1: var(--kanban-grey-5);
-    --subtitle-text-2: var(--kanban-grey-6);
-}
 
 .kanban-light-theme {
 
@@ -207,14 +196,14 @@
     ));
 
     // Apply the light theme by default
-    @include mat.core-theme($kanban-light-theme);
-    @include mat.all-component-themes($kanban-light-theme);
+    // @include mat.core-theme($kanban-light-theme);
+    // @include mat.all-component-themes($kanban-light-theme);
 
     // Apply the dark theme only when the user prefers light themes.
     @media (prefers-color-scheme: dark) {
         // Use the `-color` mixins to only apply color styles without reapplying the same
         // typography and density styles.
-        @include mat.core-color($kanban-dark-theme);
+        // @include mat.core-color($kanban-dark-theme);
         // @include mat.all-component-themes($kanban-dark-theme);
 
    }

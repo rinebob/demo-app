@@ -1,28 +1,200 @@
-
+@use '../../../styles/global-mixins' as global;
+@use '../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
 
 :root {
 
-    // raw colors
+    // colors
+
+    --some-color-1: #223243;
+
+    // from https://coolors.co/011627-ff0022-41ead4-fdfffc-b91372
+    --landing-page-one: #41ead4ff;    // turquoise
+    --landing-page-two: #b91372ff;   // red-violet
+    --landing-page-three: #fdfffcff;  // baby powder
+    --landing-page-four: #011627ff;   // rich black
+    --landing-page-five: #ff0022ff;     // red-cmyk
+    
+    --landing-page-primary: var(--landing-page-one);
+    --landing-page-secondary: var(--landing-page-two);
+    --landing-page-accent-1: var(--landing-page-three);
+    --landing-page-accent-2: var(--landing-page-four);
+    --landing-page-warn: var(--landing-page-five);
+    --landing-page-on-primary: var(--landing-page-four);
+    --landing-page-on-secondary: var(--global-white-1);
+    --landing-page-on-accent-1: var(--landing-page-four);
+    --landing-page-on-warn: var(--global-white-1);
+
+    // --landing-page-header-text-color: var(--global-grey-2);
+    // --landing-page-body-text-color: var(--global-grey-3);
+
+}
 
 
-    // primary accent warn 
+.landing-page-dark-theme {
 
-    // on primary accent warn
+    // Nav bar
+    --landing-page-nav-background-color: var(--global-grey-3);
+    --hamburger-menu-icon-color: var(--landing-page-primary);
+    --three-way-switch-track-background-color: var(--landing-page-primary);
+    // --three-way-switch-icon-inactive-color: var(--);
+    // --three-way-switch-icon-active-color: var(--);
+    // --three-way-switch-icon-active-background-color: var(--);
 
+    // main page
+    --landing-page-button-background-color: var(--landing-page-primary);
+    --landing-page-button-text-color: var(--landing-page-on-primary);
+    // --landing-page-heavy-border-color: var(--landing-page-four);
+    --landing-page-heavy-border-color: var(--global-grey-2);
 
-    // fonts
+    --landing-page-header-text-color: var(--global-white-1);
+    --landing-page-body-text-color: var(--global-white-1);
 
-    // main font family
+    --landing-page-background-color: var(--global-grey-2);
+    // --welcome-left-background-color: var(--global-grey-2);
+    // --welcome-right-background-color: var(--global-grey-2);
 
+    --section-button-background-color: var(--landing-page-primary);
+    --section-button-text-color: var(--landing-page-on-primary);
+
+    --section-header-text-color: var(--global-white-1);
+    --skill-section-background-color: var(--global-grey-2);
+    --skill-card-background-color: var(--landing-page-primary);
+    // --skill-card-box-shadow: var(--);
+
+    // --project-section-background-color: var(--global-grey-2);
+    --project-card-background-color: var(--landing-page-primary);
+    // --project-card-box-shadow: var(--);
+    --project-card-overlay-background-color: var(--landing-page-accent-1);
+    --project-card-overlay-header-text-color: var(--landing-page-on-accent-1);
+    --project-card-overlay-description-text-color: var(--landing-page-on-accent-1);
+    --project-card-overlay-button-background-color: var(--landing-page-secondary);
+    --project-card-overlay-button-text-color: var(--landing-page-on-secondary);
+
+    // --experience-section-background-color: var(--);
+    --experience-section-subheader-text-color: var(--landing-page-header-text-color);
+    --experience-section-body-text-color: var(--landing-page-body-text-color);
+    
+    --contact-section-background-color: var(--landing-page-background-color);
+    --contact-section-subheader-text-color: var(--landing-page-header-text-color);
+    --contact-section-body-text-color: var(--landing-page-body-text-color);
+    --contact-section-form-outline-color: var(--landing-page-primary);
+    --contact-section-form-placeholder-background-color: var(--contact-section-background-color);
+    --contact-section-form-placeholder-text-color: var(--landing-page-body-text-color);
+    --contact-section-form-icon-color: var(--landing-page-primary);
+    --contact-section-send-message-button-background-color: var(--landing-page-primary);
+    --contact-section-send-message-button-text-color: var(--landing-page-on-primary);
+
+    --footer-background-color: var(--global-grey-3);
+    --footer-text-color: var(--global-white-1);
 
 }
 
 .landing-page-light-theme {
+
+    // --landing-page-primary: var(--landing-page-one);
+    // --landing-page-secondary: var(--landing-page-two);
+    // --landing-page-accent-1: var(--landing-page-three);
+    // --landing-page-warn: var(--landing-page-five);
+    // --landing-page-on-primary: var(--landing-page-four);
+    // --landing-page-on-secondary: var(--global-white-1);
+    // --landing-page-on-accent-1: var(--landing-page-four);
+    // --landing-page-on-warn: var(--global-white-1);
+
+    // Nav bar
+    
+    // main page
+    --landing-page-button-background-color: var(--landing-page-primary);
+    --landing-page-button-text-color: var(--landing-page-on-primary);
+    // --landing-page-heavy-border-color: var(--landing-page-four);
+    --landing-page-heavy-border-color: var(--global-grey-6);
+
+    --landing-page-button-background-color: var(--landing-page-primary);
+    --landing-page-button-text-color: var(--landing-page-on-primary);
+
+    --landing-page-header-text-color: var(--global-grey-2);
+    --landing-page-body-text-color: var(--global-grey-3);
+
+    // --landing-page-nav-background-color: var(--global-white-1);
+    --landing-page-nav-background-color: var(--landing-page-primary);
+    --hamburger-menu-icon-color: var(--landing-page-on-primary);
+    --three-way-switch-track-background-color: var(--landing-page-primary);
+    --three-way-switch-icon-inactive-color: var(--global-grey-5);
+    --three-way-switch-icon-active-color: var(--global-grey-2);
+    --three-way-switch-icon-active-background-color: var(--landing-page-primary);
+
+    --landing-page-background-color: var(--global-white-1);
+    --welcome-left-background-color: var(--global-white-1);
+    --welcome-right-background-color: var(--global-white-1);
+
+    --section-button-background-color: var(--landing-page-primary);
+    --section-button-text-color: var(--landing-page-on-primary);
+
+    --section-header-text-color: var(--landing-page-header-text-color);
+    --skill-section-background-color: var(--global-white-1);
+    --skill-card-background-color: var(--landing-page-accent-1);
+    --skill-card-box-shadow: var(--);
+
+    --project-section-background-color: var(--global-white-1);
+    --project-card-background-color: var(--landing-page-secondary);
+    // --project-card-box-shadow: var(--);
+    --project-card-overlay-background-color: var(--landing-page-primary);
+    --project-card-overlay-header-text-color: var(--landing-page-on-primary);
+    --project-card-overlay-description-text-color: var(--landing-page-on-primary);
+    --project-card-overlay-button-background-color: var(--landing-page-secondary);
+    --project-card-overlay-button-text-color: var(--landing-page-on-secondary);
+
+    --experience-section-background-color: var(--global-white-1);
+    --experience-section-subheader-text-color: var(--landing-page-header-text-color);
+    --experience-section-body-text-color: var(--landing-page-body-text-color);
+    
+    --contact-section-background-color: var(--landing-page-background-color);
+    --contact-section-subheader-text-color: var(--landing-page-header-text-color);
+    --contact-section-body-text-color: var(--landing-page-body-text-color);
+    --contact-section-form-outline-color: var(--landing-page-accent-2);
+    --contact-section-form-placeholder-background-color: var(--contact-section-background-color);
+    --contact-section-form-placeholder-text-color: var(--landing-page-accent-2);
+    --contact-section-form-icon-color: var(--landing-page-accent-2);
+    --contact-section-send-message-button-background-color: var(--landing-page-primary);
+    --contact-section-send-message-button-text-color: var(--landing-page-on-primary);
+
+    --footer-background-color: var(--landing-page-primary);
+    --footer-text-color: var(--landing-page-on-primary);
+
+
+    
     
 }
 
-.landing-page-dark-theme {
+// from css tricks spiffyButtonStyles mixin
+@mixin contactSpiffyButtonStyles {
+    @include global.flexboxLayout(row, center, center);
+    @include contactBoxShadowRaisedUpperLeftLowerRight;
+    @include global.textButtonMain;
+    background-color: var(--landing-page-button-background-color);
+    border: none;
+    border-radius: 25px;
+    color: var(--landing-page-button-text-color);
+    cursor: pointer;
+    font-weight: 700;
+    padding: 10px 0;
+    width: 100%;
 
+    .button-text {
+        align-self: center;
+        font-size: 1em;
+        transition: 0.5s;
+    }
+}
+
+@mixin contactBoxShadowRaisedUpperLeftLowerRight {
+    box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                5px 5px 15px rgba(0,0,0, 0.35),
+                inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+                inset 5px 5px 15px rgba(0,0,0, 0.35);
+}
+
+@mixin contactBorder8pxSolid($color: black) {
+    border: 8px solid $color;
 }
 
 // $color lookup var

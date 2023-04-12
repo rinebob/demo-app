@@ -37,6 +37,7 @@ import { ExperienceCardComponent } from './comps/landing-page/experience-card/ex
 import { SharedModule } from './shared/shared.module';
 import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-links.module';
 import { ThreeWayToggleModule } from './shared/three-way-toggle/three-way-toggle.module';
+import { ContactFormComponent } from './comps/landing-page/contact-form/contact-form.component';
 
 // for angular in memory web api
 // import { ImBoardsTasksService } from './services/im-boards-tasks.service';
@@ -56,6 +57,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     ProjectCardComponent,
     SkillCardComponent,
     ExperienceCardComponent,
+    ContactFormComponent,
   ],
   imports: [
     BrowserModule,

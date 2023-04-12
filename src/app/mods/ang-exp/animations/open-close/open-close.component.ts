@@ -40,34 +40,34 @@ export class OpenCloseComponent {
 
   toggleIsOpen() {
     this.isOpen = !this.isOpen;
-    console.log('oC t toggle button. t.open post: ', this.isOpen); 
+    // console.log('oC t toggle button. t.open post: ', this.isOpen); 
   }
 
   toggleIsShown() {
     this.isShown = !this.isShown;
-    console.log('oC t toggle button. t.open post: ', this.isShown); 
+    // console.log('oC t toggle button. t.open post: ', this.isShown); 
   }
 
   addItem() {
     const value = this.itemForm.controls['itemInput'].value;
-    console.log('oC aI item input value: ', value);
+    // console.log('oC aI item input value: ', value);
     
     this.items.push(value ?? '')
     
   }
   
   removeItem(item: string) {
-    console.log('oC rI removed item/items pre: ', item, this.items);
+    // console.log('oC rI removed item/items pre: ', item, this.items);
     this.items = this.items.filter(i => i !== item);
-    console.log('oC rI items post: ', this.items);
+    // console.log('oC rI items post: ', this.items);
 
   }
 
   animationStarted(event: any) {
-    console.log('oC aS animation event: ', event);
+    // console.log('oC aS animation event: ', event);
   }
 
   animationDone(event: any) {
-    console.log('oC aD animation event: ', event);
+    // console.log('oC aD animation event: ', event);
   }
 }

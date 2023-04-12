@@ -27,17 +27,14 @@
                 {{assignment.title}}
             </p>
         
-            <p class="description-text">
+            <p class="description-text description">
                 {{assignment.description}}
             </p>
 
             <ul *ngIf="assignment.tasks as tasks">
 
-                <li *ngFor="let task of tasks">
-        
-                    <p class="description-text">
-                        {{task.description}}
-                    </p>
+                <li *ngFor="let task of tasks" class="description-text task">
+                    {{task.description}}
         
                 </li>
         

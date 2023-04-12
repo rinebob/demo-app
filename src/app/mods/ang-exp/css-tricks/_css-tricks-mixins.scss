@@ -286,7 +286,7 @@
                 5px 5px 15px rgba(0,0,0, 0.35),
                 inset -5px -5px 15px rgba(255, 255, 255, 0.1),
                 inset 5px 5px 15px rgba(0,0,0, 0.35);
-    }
+}
 
 @mixin placeholderText {
     color: rgba(255, 255, 255, 0.5);
@@ -302,11 +302,11 @@
     position: absolute;
     left: 40px;
     top: -10px;
-    background: #223243;
+    background-color: #223243;
     border: 1px solid #00dfc4;
     border-radius: 10px;
     color: #00dfc4;
-    font-size: 0.6em;
+    font-size: 0.8em;
     letter-spacing: 0.1px;
     padding: 0 8px;
 }
@@ -321,6 +321,7 @@
     @include global.flexboxLayout(row, center, center);
     @include boxShadowRaisedUpperLeftLowerRight;
     background: #00dfc4;
+    border: none;
     border-radius: 25px;
     color: #223243;
     cursor: pointer;
@@ -334,4 +335,8 @@
         font-size: 1em;
         transition: 0.5s;
     }
+}
+
+@mixin border8pxSolid($color: black) {
+    border: 8px solid $color;
 }

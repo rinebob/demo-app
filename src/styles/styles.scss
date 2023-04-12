@@ -1,15 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@angular/material' as mat;
-@use "../styles/kanban-mixins" as kanban;
-@use "../styles/global-mixins" as global;
-@use "../styles/ng-exp-mixins" as ng-exp;
-// @use "../app/mods/ang-exp/ang-exp-theme" as angExpTheme;
-@use "./kanban-variables" as kanbanVar;
+@use "./kanban-mixins" as kanban;
+@use "./global-mixins" as global;
+@use "./ng-exp-mixins" as ng-exp;
+@use '../app/comps/landing-page/landing-page-variables' as landingPageVar;
 
 @include mat.core();
 @import "./global-variables";
-// @import "./kanban-variables";
-// @import "./ng-exp-variables";
 
 ////////// ANGULAR MATERIAL THEME ///////////////////
 
@@ -45,10 +42,10 @@ $app-dark-theme: mat.define-dark-theme((
 // @include mat.core-theme($app-light-theme);
 // @include mat.all-component-themes($app-light-theme);
 
-.app-dark-theme {
-    @include mat.core-theme($app-dark-theme);
-    @include mat.all-component-themes($app-dark-theme);
-}
+// .app-dark-theme {
+//     @include mat.core-theme($app-dark-theme);
+//     @include mat.all-component-themes($app-dark-theme);
+// }
 
 // @include mat.core-theme($ang-exp-light-theme);
 

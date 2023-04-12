@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 import { ScrollService } from '../../services/scroll-service.service';
 import { APP_SIDENAV_BUTTONS, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, WELCOME_BUTTONS } from 'src/app/common/constants';
-import { ViewMode } from 'src/app/common/interfaces';
+import { Contact, ViewMode } from 'src/app/common/interfaces';
+import { ThemePalette } from '@angular/material/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-landing-page',
@@ -13,6 +15,7 @@ import { ViewMode } from 'src/app/common/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements OnInit {
+  @HostBinding('class') theme = 'landing-page-light-theme';
 
   contactForm = new FormGroup({
     nameControl: new FormControl(''),
@@ -29,7 +32,9 @@ export class LandingPageComponent implements OnInit {
   globalTopnavMenuCssClass = 'global-topnav-menu-css';
   fragment = '';
 
-  viewMode: ViewMode = 'light';
+  viewModeToggleButtonColor: ThemePalette = 'primary';
+  viewModeBS = new BehaviorSubject<ViewMode>('light');
+  viewModeOn$: Observable<ViewMode> = this.viewModeBS;
 
   constructor(private route:ActivatedRoute,
     private scrollService: ScrollService,
@@ -41,21 +46,31 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
-  handleUpdateViewMode(mode: ViewMode) {
-    // console.log('cT hUVM update view mode: ', mode);
-    this.viewMode = mode;
-  }
-
   handleTopnavMenuOpen() {
     // console.log('lP hTMO handle global topnav menu open called');
   }
 
-  handleSendMessage() {
-    // console.log('lP hSM contact form value: ', this.contactForm.value);
+  handleContactSubmission(contact: Contact) {
+    // console.log('lP hSM contact: ', contact);
   }
 
   handleClearForm() {
 
+  }
+
+  handleUpdateViewMode(mode: ViewMode) {
+    // console.log('lP hUVM mode switch: ', mode);
+    
+    if (mode === 'light') {
+      this.theme = 'landing-page-light-theme';
+      
+    } else {
+      this.theme = 'landing-page-dark-theme';
+
+    }
+
+    this.viewModeBS.next(mode);
+    // console.log('bV tT toggle dark mode post: ', this.darkModeOn);
   }
 
   scrollToTarget(target: string) {

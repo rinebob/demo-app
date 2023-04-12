@@ -19,19 +19,19 @@ export class AnimationsComponent {
 
 
   handleTabAnimationDone(event: any) {
-    console.log('a hTAD tab animation done event: ', event);
+    // console.log('a hTAD tab animation done event: ', event);
   }
 
   handleTabFocusChange(event: any) {
-    console.log('a hTFC tab focus change event: ', event);
+    // console.log('a hTFC tab focus change event: ', event);
   }
 
   handleSelectedIndexChange(event: any) {
-    console.log('a hSIC tab selected index change event: ', event);
+    // console.log('a hSIC tab selected index change event: ', event);
   }
   
   handleSelectedTabChange(event: any) {
-    console.log('a hSTC tab selected tab change event: ', event);
+    // console.log('a hSTC tab selected tab change event: ', event);
   }
 
 

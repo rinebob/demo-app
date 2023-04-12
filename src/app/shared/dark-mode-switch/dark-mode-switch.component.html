@@ -1,0 +1,20 @@
+<div class="dark-mode-switch-container">
+    <mat-icon class="material-symbols-outlined"
+              color="primary"
+    >
+        light_mode
+    </mat-icon>
+
+    
+    <mat-slide-toggle color="primary"
+                      [color]="darkModeToggleButtonColor"
+                      [checked]="darkModeOn$ | async"
+                      (change)="toggleTheme()"
+    ></mat-slide-toggle>
+    <mat-icon class="material-symbols-outlined"
+              color="primary"
+    >
+        dark_mode
+    </mat-icon>
+
+</div>
