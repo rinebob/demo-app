@@ -30,48 +30,215 @@
     // --lp-accent-2: var(--landing-page-four);
     // --lp-on-accent-2: var(--global-white-1);
 
+    ///////////////// COLOR SCHEMES FOR LIGHT MODE ///////////////////////////
+
+    --byzantium: #820263ff;
+    --dogwood-rose: #d90368ff;
+    --timberwolf: #eadedaff;
+    --space-cadet: #2e294eff;
+    --gold: #ffd400ff;
+
+    --lp-background: var(--timberwolf);
+    --lp-on-background: var(--space-cadet);
+    --lp-primary: var(--space-cadet);
+    --lp-on-primary: var(--gold);
+    --lp-secondary: var(--dogwood-rose);
+    --lp-on-secondary: var(--gold);
+    --lp-accent-1: var(--byzantium);
+    --lp-on-accent-1: var(--gold);
+    --lp-accent-2: var(--gold);
+    --lp-on-accent-2: var(--dogwood-rose);
+
+    // --lp-background: var(--timberwolf);
+    // --lp-on-background: var(--space-cadet);
+    // --lp-primary: var(--space-cadet);
+    // --lp-on-primary: var(--timberwolf);
+    // --lp-secondary: var(--gold);
+    // --lp-on-secondary: var(--byzantium);
+    // --lp-accent-1: var(--dogwood-rose);
+    // --lp-on-accent-1: var(--gold);
+    // --lp-accent-2: var(--byzantium);
+    // --lp-on-accent-2: var(--gold);
+
+    // --lp-background: var(--timberwolf);
+    // --lp-on-background: var(--byzantium);
+    // --lp-primary: var(--byzantium);
+    // --lp-on-primary: var(--gold);
+    // --lp-secondary: var(--dogwood-rose);
+    // --lp-on-secondary: var(--gold);
+    // --lp-accent-1: var(--space-cadet);
+    // --lp-on-accent-1: var(--gold);
+    // --lp-accent-2: var(--space-cadet);
+    // --lp-on-accent-2: var(--gold);
+
+    --marian-blue: #3d3b8eff;
+    --glaucous: #6883baff;
+    --seasalt: #f9f9f9ff;
+    --thulian-pink: #e072a4ff;
+    --celadon: #b0e298ff;
+
+    // --lp-background: var(--seasalt);
+    // --lp-on-background: var(--marian-blue);
+    // --lp-primary: var(--marian-blue);
+    // --lp-on-primary: var(--seasalt);
+    // --lp-secondary: var(--thulian-pink);
+    // --lp-on-secondary: var(--marian-blue);
+    // --lp-accent-1: var(--celadon);
+    // --lp-on-accent-1: var(--marian-blue);
+    // --lp-accent-2: var(--glaucous);
+    // --lp-on-accent-2: var(--seasalt);
+
+    --rose-quartz: #aba9bfff;
+    --periwinkle: #beb7dfff;
+    --nyanza: #d4f2d2ff;
+    --russian-violet: #34113fff;
+    --battleship-gray: #868784ff;
+
+    // --lp-background: var(--nyanza);
+    // --lp-on-background: var(--marian-blue);
+    // --lp-primary: var(--marian-blue);
+    // --lp-on-primary: var(--nyanza);
+    // --lp-secondary: var(--rose-quartz);
+    // --lp-on-secondary: var(--russian-violet);
+    // --lp-accent-1: var(--russian-violet);
+    // --lp-on-accent-1: var(--nyanza);
+    // --lp-accent-2: var(--russian-violet);
+    // --lp-on-accent-2: var(--nyanza);
+
+    --saffron: #e3b505ff;
+    --penn-red: #95190cff;
+    --tyrian-purple: #610345ff;
+    --teal: #107e7dff;
+    --indigo-dye: #044b7fff;
+
+    // --lp-background: var(--saffron);
+    // --lp-on-background: var(--indigo-dye);
+    // --lp-primary: var(--penn-red);
+    // --lp-on-primary: var(--saffron);
+    // --lp-secondary: var(--teal);
+    // --lp-on-secondary: var(--tyrian-purple);
+    // --lp-accent-1: var(--indigo-dye);
+    // --lp-on-accent-1: var(--saffron);
+    // --lp-accent-2: var(--tyrian-purple);
+    // --lp-on-accent-2: var(--saffron);
+
+    --tyrian-purple: #5f0f40ff;
+    --carmine: #9a031eff;
+    --ut-orange: #fb8b24ff;
+    --spanish-orange: #e36414ff;
+    --midnight-green: #0f4c5cff;
+
+    // --lp-background: var(--seasalt);
+    // --lp-on-background: var(--tyrian-purple);
+    // --lp-primary: var(--tyrian-purple);
+    // --lp-on-primary: var(--seasalt);
+    // --lp-secondary: var(--midnight-green);
+    // --lp-on-secondary: var(--ut-orange);
+    // --lp-accent-1: var(--carmine);
+    // --lp-on-accent-1: var(--seasalt);
+    // --lp-accent-2: var(--ut-orange);
+    // --lp-on-accent-2: var(--midnight-green);
+
+    --cerulean: #086788ff;
+    --blue-green: #07a0c3ff;
+    --jonquil: #f0c808ff;
+    --papaya-whip: #fff1d0ff;
+    --rojo: #dd1c1aff;
+
+    // --lp-background: var(--papaya-whip);
+    // --lp-on-background: var(--cerulean);
+    // --lp-primary: var(--blue-green);
+    // --lp-on-primary: var(--papaya-whip);
+    // --lp-secondary: var(--jonquil);
+    // --lp-on-secondary: var(--cerulean);
+    // --lp-accent-1: var(--rojo);
+    // --lp-on-accent-1: var(--papaya-whip);
+    // --lp-accent-2: var(--cerulean);
+    // --lp-on-accent-2: var(--jonquil);
+
+    ///////////////// COLOR SCHEMES FOR DARK MODE ///////////////////////////
+    
     --turquoise: #41ead4ff;    // one
     --red-violet: #b91372ff;   // two
     --baby-powder: #fdfffcff;  // three
     --rich-black: #011627ff;   // four
     --red-cmyk: #ff0022ff;     // five
+    
+    // --lp-background: var(--global-white-1);
+    // --lp-on-background: var(--rich-black);
+    // --lp-primary: var(--turquoise);
+    // --lp-on-primary: var(--rich-black);
+    // --lp-secondary: var(--red-violet);
+    // --lp-on-secondary: var(--global-white-1);
+    // --lp-accent-1: var(--baby-powder);
+    // --lp-on-accent-1: var(--rich-black);
+    // --lp-accent-2: var(--rich-black);
+    // --lp-on-accent-2: var(--global-white-1);
 
-    --lp-background: var(--global-white-1);
-    --lp-on-background: var(--rich-black);
-    --lp-primary: var(--turquoise);
-    --lp-on-primary: var(--rich-black);
-    --lp-secondary: var(--red-violet);
-    --lp-on-secondary: var(--global-white-1);
-    --lp-accent-1: var(--baby-powder);
-    --lp-on-accent-1: var(--rich-black);
-    --lp-accent-2: var(--rich-black);
-    --lp-on-accent-2: var(--global-white-1);
+    // --lp-dark-background: var(--global-grey-2);
+    // // --lp-dark-background: var(--rich-black);     // rich black is too dark for a background
+    // --lp-dark-on-background: var(--baby-powder);
+    // --lp-dark-primary: var(--turquoise);
+    // --lp-dark-on-primary: var(--rich-black);
+    // --lp-dark-secondary: var(--red-violet);
+    // --lp-dark-on-secondary: var(--aureolin);
+    // --lp-dark-accent-1: var(--raspberry);
+    // --lp-dark-on-accent-1: var(--baby-powder);
+    // --lp-dark-accent-2: var(--aureolin);
+    // --lp-dark-on-accent-2: var(--red-violet);
 
-    --lp-dark-background: var(--rich-black);
-    --lp-dark-on-background: var(--global-white-1);
+    // --lp-dark-background: var(--rich-black);     // rich black is too dark for a background
+    --lp-dark-background: var(--global-grey-2);
+    --lp-dark-on-background: var(--baby-powder);
     --lp-dark-primary: var(--turquoise);
     --lp-dark-on-primary: var(--rich-black);
     --lp-dark-secondary: var(--red-violet);
-    --lp-dark-on-secondary: var(--baby-powder);
-    --lp-dark-accent-1: var(--baby-powder);
+    --lp-dark-on-secondary: var(--aureolin);
+    --lp-dark-accent-1: var(--turquoise);
     --lp-dark-on-accent-1: var(--rich-black);
-    --lp-dark-accent-2: var(--rich-black);
-    --lp-dark-on-accent-2: var(--global-white-1);
-    
+    --lp-dark-accent-2: var(--aureolin);
+    --lp-dark-on-accent-2: var(--red-violet);
+
+    // glowing colors
+    --raspberry: #dd1155ff;
+    --folly: #FF1654;
+    --brilliant-rose: #f15bb5ff;
+    --mint: #00cc99ff;
+    --emerald: #35CE8D;
+    --aquamarine: #00f5d4ff;
+    --amaranth-purple: #aa1155ff;
+    --purpureus: #AF42AE;
+    --mauveine: #802392;
+    --purple-pizazz: #F65BE3;
+    --amethyst: #9b5de5ff;
+    --medium-slate-blue: #7161EF;
+    --deep-sky-blue: #00bbf9ff;
+    --maize: #fee440ff;
+    --aureolin: #F7E733;
+
+    // uses colors from all sets above
+    // --lp-dark-background: var(--global-grey-2);
+    // --lp-dark-on-background: var(--jonquil);
+    // --lp-dark-primary: var(--amaranth-purple);
+    // --lp-dark-on-primary: var(--global-grey-2);
+    // --lp-dark-secondary: var(--emerald);
+    // --lp-dark-on-secondary: var(--aureolin);
+    // --lp-dark-accent-1: var(--deep-sky-blue);
+    // --lp-dark-on-accent-1: var(--maize);
+    // --lp-dark-accent-2: var(--aureolin);
+    // --lp-dark-on-accent-2: var(--emerald);
+
    
-    
-    // EXPERIMENTAL COLOR SCHEMES
-    
-    // --lp-background: var(--);
-    // --lp-on-background: var(--);
-    // --lp-primary: var(--);
-    // --lp-on-primary: var(--);
-    // --lp-secondary: var(--);
-    // --lp-on-secondary: var(--);
-    // --lp-accent-1: var(--);
-    // --lp-on-accent-1: var(--);
-    // --lp-accent-2: var(--);
-    // --lp-on-accent-2: var(--);
+    // --lp-background: var(--);        // lightest color
+    // --lp-on-background: var(--);     // darkest color
+    // --lp-primary: var(--);           // darkest color
+    // --lp-on-primary: var(--);        // lightest color
+    // --lp-secondary: var(--);         // brightest color
+    // --lp-on-secondary: var(--);      // pick
+    // --lp-accent-1: var(--);          // remaining color
+    // --lp-on-accent-1: var(--);       // pick
+    // --lp-accent-2: var(--);          // set to on-secondary
+    // --lp-on-accent-2: var(--);       // set to secondary
   
     // --lp-dark-background: var(--);
     // --lp-dark-on-background: var(--);
@@ -83,12 +250,86 @@
     // --lp-dark-on-accent-1: var(--);
     // --lp-dark-accent-2: var(--);
     // --lp-dark-on-accent-2: var(--);
-  
+   
+}
+
+.landing-page-light-theme {
+
+
+    // Nav bar
+    --landing-page-nav-background-color: var(--lp-primary);
+    --landing-page-nav-text-color: var(--lp-on-primary);
+
+    --hamburger-menu-icon-color: var(--lp-on-primary);
+
+    --topnav-menu-item-color: var(--lp-background);
+    --topnav-menu-item-text-color: var(--lp-on-background);
+    --topnav-menu-item-active-color: var(--lp-secondary);
+    --topnav-menu-item-text-active-color: var(--lp-on-secondary);
+    --topnav-menu-item-hover-color: var(--lp-accent-2);
+    --topnav-menu-item-text-hover-color: var(--lp-on-accent-2);
+
+    --lp-three-way-toggle-border-color: var(--lp-accent-1);
+    --lp-three-way-toggle-trough-color: var(--lp-primary);
+    --lp-three-way-toggle-icon-color: var(--lp-accent-1);
+    --lp-three-way-toggle-icon-active-color: var(--lp-on-accent-1);
+
+    --social-icon-backing-circle-color: var(--landing-page-nav-text-color);
     
+    // main page
+    --landing-page-background-color: var(--lp-background);
+
+    --landing-page-header-text-color: var(--lp-on-background);
+    --landing-page-body-text-color: var(--lp-on-background);
+    
+    --landing-page-button-background-color: var(--lp-primary);
+    --landing-page-button-text-color: var(--lp-on-primary);
+    --landing-page-button-hover-background-color: var(--lp-secondary);
+    --landing-page-button-hover-text-color: var(--lp-on-secondary);
+    
+    --landing-page-heavy-border-color: var(--lp-background);
+
+    --section-header-text-color: var(--lp-on-background);
+    --section-button-background-color: var(--lp-on-background);
+    --section-button-text-color: var(--lp-on-primary);
+
+    --skill-card-background-color: var(--lp-primary);
+    --skill-card-title-color: var(--lp-on-primary);
+
+    // --project-card-background-color: var(--lp-accent-2);
+    --project-card-background-color: var(--lp-secondary);
+    --project-card-overlay-background-color: var(--lp-accent-1);
+    --project-card-overlay-header-text-color: var(--lp-on-accent-1);
+    --project-card-overlay-description-text-color: var(--lp-on-accent-1);
+    --project-card-overlay-button-background-color: var(--lp-secondary);
+    --project-card-overlay-button-text-color: var(--lp-on-secondary);
+
+    --experience-section-subheader-text-color: var(--lp-on-background);
+    --experience-section-body-text-color: var(--lp-on-background);
+    
+    --contact-section-subheader-text-color: var(--lp-on-background);
+    --contact-section-body-text-color: var(--lp-on-background);
+    --contact-section-form-outline-color: var(--lp-primary);
+    --contact-section-form-placeholder-background-color: var(--lp-background);
+    --contact-section-form-placeholder-text-color: var(--lp-on-background);
+    --contact-section-form-icon-color: var(--lp-primary);
+
+    --contact-section-send-message-button-background-color: var(--lp-primary);
+    --contact-section-send-message-button-text-color: var(--lp-on-primary);
+
+    --scroll-to-top-button-background-color: var(--lp-primary);
+    --scroll-to-top-button-text-color: var(--lp-on-primary);
+    --scroll-to-top-button-hover-background-color: var(--lp-secondary);
+    --scroll-to-top-button-hover-text-color: var(--lp-on-secondary);
+    
+
+    --footer-background-color: var(--lp-primary);
+    --footer-text-color: var(--lp-on-primary);
+
+
     
     
 }
-
 
 .landing-page-dark-theme {
 
@@ -97,11 +338,20 @@
     --landing-page-nav-text-color: var(--lp-dark-on-primary);
     
     --hamburger-menu-icon-color: var(--lp-dark-on-primary);
-    
-    --lp-three-way-toggle-border-color: var(--lp-dark-on-primary);
+
+    --topnav-menu-item-color: var(--lp-dark-background);
+    --topnav-menu-item-text-color: var(--lp-dark-on-background);
+    --topnav-menu-item-active-color: var(--lp-dark-secondary);
+    --topnav-menu-item-text-active-color: var(--lp-dark-on-secondary);
+    --topnav-menu-item-hover-color: var(--lp-dark-accent-2);
+    --topnav-menu-item-text-hover-color: var(--lp-dark-on-accent-2);
+
+    --lp-three-way-toggle-border-color: var(--lp-dark-on-accent-2);
     --lp-three-way-toggle-trough-color: var(--lp-dark-primary);
     --lp-three-way-toggle-icon-color: var(--lp-dark-accent-1);
-    --lp-three-way-toggle-icon-active-color: var(--lp-dark-primary);
+    --lp-three-way-toggle-icon-active-color: var(--lp-dark-on-accent-1);
+
+    --social-icon-backing-circle-color: var(--landing-page-nav-background-color);
 
     // main page
     --landing-page-background-color: var(--lp-dark-background);
@@ -122,12 +372,10 @@
 
     --skill-card-background-color: var(--lp-dark-primary);
     --skill-card-title-color: var(--lp-dark-on-primary);
-
-    // --skill-card-background-color: var(--lp-dark-accent-1);
-    // --skill-card-title-color: var(--lp-dark-on-accent-1);
     
     // --project-card-background-color: var(--lp-dark-primary);
-    --project-card-background-color: var(--lp-dark-accent-2);
+    // --project-card-background-color: var(--lp-dark-accent-2);
+    --project-card-background-color: var(--lp-dark-secondary);
     --project-card-overlay-background-color: var(--lp-dark-accent-1);
     --project-card-overlay-header-text-color: var(--lp-dark-on-accent-1);
     --project-card-overlay-description-text-color: var(--lp-dark-on-accent-1);
@@ -156,74 +404,6 @@
 
 }
 
-.landing-page-light-theme {
-
-
-    // Nav bar
-    --landing-page-nav-background-color: var(--lp-primary);
-    --landing-page-nav-text-color: var(--lp-on-primary);
-
-    --hamburger-menu-icon-color: var(--lp-on-primary);
-
-    --lp-three-way-toggle-border-color: var(--lp-on-primary);
-    --lp-three-way-toggle-trough-color: var(--lp-primary);
-    --lp-three-way-toggle-icon-color: var(--lp-accent-1);
-    --lp-three-way-toggle-icon-active-color: var(--lp-primary);
-    
-    // main page
-    --landing-page-background-color: var(--lp-background);
-
-    --landing-page-header-text-color: var(--lp-on-background);
-    --landing-page-body-text-color: var(--lp-on-background);
-    
-    --landing-page-button-background-color: var(--lp-primary);
-    --landing-page-button-text-color: var(--lp-on-primary);
-    --landing-page-button-hover-background-color: var(--lp-secondary);
-    --landing-page-button-hover-text-color: var(--lp-on-secondary);
-    
-    --landing-page-heavy-border-color: var(--lp-background);
-
-    --section-header-text-color: var(--lp-on-background);
-    --section-button-background-color: var(--lp-on-background);
-    --section-button-text-color: var(--lp-on-primary);
-
-    // --skill-card-background-color: var(--lp-accent-1);
-    // --skill-card-title-color: var(--lp-on-accent-1);
-    --skill-card-background-color: var(--lp-primary);
-    --skill-card-title-color: var(--lp-on-primary);
-
-    --project-card-background-color: var(--lp-accent-2);
-    --project-card-overlay-background-color: var(--lp-accent-1);
-    --project-card-overlay-header-text-color: var(--lp-on-accent-1);
-    --project-card-overlay-description-text-color: var(--lp-on-accent-1);
-    --project-card-overlay-button-background-color: var(--lp-secondary);
-    --project-card-overlay-button-text-color: var(--lp-on-secondary);
-
-    --experience-section-subheader-text-color: var(--lp-on-background);
-    --experience-section-body-text-color: var(--lp-on-background);
-    
-    --contact-section-subheader-text-color: var(--lp-on-background);
-    --contact-section-body-text-color: var(--lp-on-background);
-    --contact-section-form-outline-color: var(--lp-primary);
-    --contact-section-form-placeholder-background-color: var(--lp-background);
-    --contact-section-form-placeholder-text-color: var(--lp-on-background);
-    --contact-section-form-icon-color: var(--lp-primary);
-
-    --contact-section-send-message-button-background-color: var(--lp-primary);
-    --contact-section-send-message-button-text-color: var(--lp-on-primary);
-
-    --scroll-to-top-button-background-color: var(--lp-primary);
-    --scroll-to-top-button-text-color: var(--lp-on-primary);
-    --scroll-to-top-button-hover-background-color: var(--lp-secondary);
-    --scroll-to-top-button-hover-text-color: var(--lp-on-secondary);
-
-    --footer-background-color: var(--lp-primary);
-    --footer-text-color: var(--lp-on-primary);
-
-
-    
-    
-}
 
 // from css tricks spiffyButtonStyles mixin
 @mixin contactSpiffyButtonStyles {
@@ -271,6 +451,41 @@
 // use global vars for font sizes and line heights
 
 // landing page material palette and theme vars
+
+////////////////////////////////////////
+
+// ORIGINAL COLOR SCHEME - DO NOT DELETE
+
+// --turquoise: #41ead4ff;    // one
+// --red-violet: #b91372ff;   // two
+// --baby-powder: #fdfffcff;  // three
+// --rich-black: #011627ff;   // four
+// --red-cmyk: #ff0022ff;     // five
+
+// --lp-background: var(--global-white-1);
+// --lp-on-background: var(--rich-black);
+// --lp-primary: var(--turquoise);
+// --lp-on-primary: var(--rich-black);
+// --lp-secondary: var(--red-violet);
+// --lp-on-secondary: var(--global-white-1);
+// --lp-accent-1: var(--baby-powder);
+// --lp-on-accent-1: var(--rich-black);
+// --lp-accent-2: var(--rich-black);
+// --lp-on-accent-2: var(--global-white-1);
+
+// --lp-dark-background: var(--global-grey-2);
+// // --lp-dark-background: var(--rich-black);     // rich black is too dark for a background
+// --lp-dark-on-background: var(--global-white-1);
+// --lp-dark-primary: var(--turquoise);
+// --lp-dark-on-primary: var(--rich-black);
+// --lp-dark-secondary: var(--red-violet);
+// --lp-dark-on-secondary: var(--baby-powder);
+// --lp-dark-accent-1: var(--baby-powder);
+// --lp-dark-on-accent-1: var(--rich-black);
+// --lp-dark-accent-2: var(--global-white-1);
+// --lp-dark-on-accent-2: var(--rich-black);
+
+//////////////////////////////////////////////////
 
 // COLOR SCHEMES FROM COOLORS
 /* CSS HEX */

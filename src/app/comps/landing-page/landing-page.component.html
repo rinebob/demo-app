@@ -19,7 +19,10 @@
                 <mat-icon>menu</mat-icon>
             </button>
 
-            <mat-menu #globalTopnavMenu="matMenu" [class]="globalTopnavMenuCssClass">
+            <mat-menu #globalTopnavMenu="matMenu"
+                      [class]="globalTopnavMenuCssClass"
+                      (menuOpened)="handleTopnavMenuOpen()"
+            >
 
                 <ng-container *ngFor="let button of APP_SIDENAV_BUTTONS">
                     <button type="button"
@@ -62,13 +65,19 @@
 
                     <div class="welcome welcome-left">
         
-                        <p class="welcome-title-text">Hello I'm Robert!</p>
-                        <p class="welcome-description-text">I'm a frontend developer specializing in Angular and the Angular ecosystem.  I'm passionate about building terrific websites with lots of engaging features.</p>
+                        <h2 class="welcome-title-text">Hello!</h2>
+                    
+                        <div class="name-container">
+                            <p class="welcome-pre-name-text">I'm </p><p class="welcome-name-text">Robert</p>
+                        </div>
+                        
+                        <p class="welcome-description-text">{{WELCOME_TEXT}}</p>
+                    
                     </div>
         
                     <div class="welcome welcome-right">
         
-                        <div class="robert-image">
+                        <div class="welcome-image">
         
                         </div>
         

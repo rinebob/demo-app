@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   @HostBinding('class') theme = AppTheme.APP_LIGHT;
   title = 'demo-app';
   
-  shouldShowOpenSidenavButton = true;
+  shouldShowOpenSidenavButton = false;
   shouldShowReturnHomeButton = false;
   darkModeToggleButtonColor: ThemePalette = 'primary';
   darkModeOnBS = new BehaviorSubject(false);
@@ -47,7 +47,8 @@ export class AppComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         // console.log('a ctor router event: ', event.url);
         const segments = event.url.split('/');
-        // console.log('a ctor router event: ', segments, segments[1]);
+        // console.log('a ctor route segments/segments[1]: ', segments, segments[1]);
+        // console.log('a ctor segments contains robert: ', segments.includes(AppRoutes.ROBERT));
         if (!segments.includes(AppRoutes.ROBERT) && !segments.includes(AppRoutes.DESIGN_SYSTEM)) {
           this.shouldShowReturnHomeButton = true;
         } else {
@@ -72,7 +73,7 @@ export class AppComponent implements OnInit {
 
   toggleShowSidenavButton(event: any) {
     // console.log('a tSSB event: ', event);
-    this.shouldShowOpenSidenavButton = !this.shouldShowOpenSidenavButton;
+    // this.shouldShowOpenSidenavButton = !this.shouldShowOpenSidenavButton;
   }
 
   

@@ -54,13 +54,20 @@
 
 @mixin textHeader {
     @include textSizes($font-size: globalVar.globalFontSize(heading-xl), $line-height: globalVar.globalLineHeight(heading-xl));
-    font-family: var(--global-font-orbitron);
+    font-family: var(--global-font-nunito);
+    text-transform: uppercase;
 }
 
 @mixin textTitle {
-    @include textSizes($font-size: globalVar.globalFontSize(heading-l), $line-height: globalVar.globalLineHeight(heading-l));
-    font-family: var(--global-font-exo);
+    @include textSizes($font-size: globalVar.globalFontSize(heading-xl), $line-height: globalVar.globalLineHeight(heading-xl));
+    font-family: var(--global-font-orbitron);
     text-transform: uppercase;
+}
+
+@mixin textName {
+    @include textSizes($font-size: globalVar.globalFontSize(masthead), $line-height: globalVar.globalLineHeight(masthead));
+    font-family: var(--global-font-nunito);
+    text-transform: none;
 }
 
 @mixin textSubtitle {
@@ -71,6 +78,12 @@
 @mixin textAccent {
     @include textSizes($font-weight: 600, $font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
     font-family: var(--global-font-nunito);
+}
+
+@mixin welcomeTextDescription {
+    @include textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(body-l), $line-height: globalVar.globalLineHeight(body-xl));
+    font-family: var(--global-font-exo);
+    letter-spacing: 1px;
 }
 
 @mixin textDescription {

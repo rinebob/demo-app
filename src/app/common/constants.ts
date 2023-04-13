@@ -112,24 +112,24 @@ export const RINEBOB_PROJECTS: ProjectData[] = [
         route: '/kanban',
         imageSrc: '../../assets/DemoApp3.png',
     },
-    {
-        title: 'Stock market charting site clone',
-        description: 'Clone of tradingview.com stock charting website.  Extensive D3 implementation for rendering stock prices, scales, indicators and other data.',
-        route: '/charts',
-        imageSrc: '',
-    },
-    {
-        title: 'Cubic-bezier animations site clone',
-        description: 'Clone of cubic-bezier.com site.  Just because it looks cool.  Canvas, D3, Material components, copy to clipboard',
-        route: '/cubic-bezier',
-        imageSrc: '',
-    },
-    {
-        title: 'Bio data app',
-        description: 'Personal health data tracking and monitoring app.  Deployed on Firebase with full backend support.  Firebase auth, firestore, deployment.  Material components, D3.',
-        route: '/biodata',
-        imageSrc: '',
-    },
+    // {
+    //     title: 'Stock market charting site clone',
+    //     description: 'Clone of tradingview.com stock charting website.  Extensive D3 implementation for rendering stock prices, scales, indicators and other data.',
+    //     route: '/charts',
+    //     imageSrc: '',
+    // },
+    // {
+    //     title: 'Cubic-bezier animations site clone',
+    //     description: 'Clone of cubic-bezier.com site.  Just because it looks cool.  Canvas, D3, Material components, copy to clipboard',
+    //     route: '/cubic-bezier',
+    //     imageSrc: '',
+    // },
+    // {
+    //     title: 'Bio data app',
+    //     description: 'Personal health data tracking and monitoring app.  Deployed on Firebase with full backend support.  Firebase auth, firestore, deployment.  Material components, D3.',
+    //     route: '/biodata',
+    //     imageSrc: '',
+    // },
 ];
 
 export const RINEBOB_EXPERIENCE: ExperienceData[] = [
@@ -175,12 +175,12 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
 export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     {url: AppRoutes.ROBERT, text: 'home'},
     {url: AppRoutes.KANBAN, text: 'kanban todo app'},
-    {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
-    {url: AppRoutes.CUBIC_BEZIER, text: 'cubic-bezier site clone'},
-    {url: AppRoutes.BIODATA, text: 'bio data app'},
-    {url: AppRoutes.ANG_EXP, text: 'ng experiments'},
-    {url: AppRoutes.MAT_THEME, text: 'mat theme'},
-    {url: AppRoutes.DESIGN_SYSTEM, text: 'design system'},
+    // {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
+    // {url: AppRoutes.CUBIC_BEZIER, text: 'cubic-bezier site clone'},
+    // {url: AppRoutes.BIODATA, text: 'bio data app'},
+    // {url: AppRoutes.ANG_EXP, text: 'ng experiments'},
+    // {url: AppRoutes.MAT_THEME, text: 'mat theme'},
+    // {url: AppRoutes.DESIGN_SYSTEM, text: 'design system'},
 ];
 
 export const WELCOME_BUTTONS: ButtonMetadata[] = [
@@ -352,3 +352,5 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
 };
 
 export const EMPTY_BOARD_TEXT = 'This board is empty.  Create a new task to get started.';
+
+export const WELCOME_TEXT = 'I\'m a frontend developer specializing in Angular and the Angular ecosystem.  I really love working with Angular!  It\'s amazing how easily you can bring your ideas to the web no matter how big or small.  I\'m super excited and eager to join an Angular team and make an important contribution on a special project!';

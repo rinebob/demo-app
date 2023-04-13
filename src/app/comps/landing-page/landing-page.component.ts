@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { ScrollService } from '../../services/scroll-service.service';
-import { APP_SIDENAV_BUTTONS, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, WELCOME_BUTTONS } from 'src/app/common/constants';
+import { APP_SIDENAV_BUTTONS, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
 import { Contact, ViewMode } from 'src/app/common/interfaces';
 import { ThemePalette } from '@angular/material/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -28,7 +29,8 @@ export class LandingPageComponent implements OnInit {
   readonly RINEBOB_PROJECTS = RINEBOB_PROJECTS;
   readonly APP_SIDENAV_BUTTONS = APP_SIDENAV_BUTTONS;
   readonly WELCOME_BUTTONS = WELCOME_BUTTONS;
-
+  readonly WELCOME_TEXT = WELCOME_TEXT;
+  
   globalTopnavMenuCssClass = 'global-topnav-menu-css';
   fragment = '';
 
@@ -38,7 +40,11 @@ export class LandingPageComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,
     private scrollService: ScrollService,
-    private router:Router) {}
+    private router:Router,
+    private _overlayContainer: OverlayContainer, 
+    ) {
+      this.applyTheme(this.theme);
+    }
 
   ngOnInit () {
     this.initializeViewMode();
@@ -49,6 +55,7 @@ export class LandingPageComponent implements OnInit {
 
   handleTopnavMenuOpen() {
     // console.log('lP hTMO handle global topnav menu open called');
+    this.applyTheme(this.theme);
   }
 
   handleContactSubmission(contact: Contact) {
@@ -100,6 +107,20 @@ export class LandingPageComponent implements OnInit {
   scrollToTarget(target: string) {
     // console.log('lP sTT scroll target: ', target);
     this.scrollService.scrollToElementById(target);
+  }
+
+  applyTheme(theme: string): void {
+    // remove old theme class and add new theme class
+    const overlayContainerClasses = this._overlayContainer.getContainerElement().classList;
+    // console.log('lP aT container classes pre: ', overlayContainerClasses);
+    const themeClassesToRemove = Array.from(overlayContainerClasses)
+    .filter((item: string) => item.includes('landing-page-'));
+    if (themeClassesToRemove.length) {
+      overlayContainerClasses.remove(...themeClassesToRemove);
+    }
+    // console.log('lP aT adding theme: ', theme);
+    overlayContainerClasses.add(theme);
+    // console.log('lP aT container classes post: ', overlayContainerClasses);
   }
 
 
