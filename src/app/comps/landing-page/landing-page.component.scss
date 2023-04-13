@@ -112,7 +112,7 @@
 
             .main-container {
                 flex-grow: 1;
-                max-width: 1200px;
+                max-width: 1000px;
                 width: 100%;
 
                 section {
@@ -147,9 +147,8 @@
                         }
 
                         .welcome {
-                            // @include global.border1;
                             height: 100%;
-                            padding: 50px;
+                            padding: 20px 50px;
                             max-width: 45%;
                             flex-grow: 1;
                             
@@ -171,18 +170,37 @@
                             }
         
                             .welcome-title-text {
-                                @include global.textHeader;
+                                @include global.textTitle;
                                 color: var(--landing-page-header-text-color);
-                                margin: 30px 0;
+                                margin: 20px 0;
                                 text-align: center;
-        
+
                                 @include global.response(md) {
                                     margin: 10px 0;
+                                }
+
+                            }
+
+                            .name-container {
+                                @include global.flexboxLayout(row, flex-start, baseline);
+                                margin-bottom: 40px;
+                                
+                                .welcome-pre-name-text {
+                                    @include global.textTitle;
+                                    color: var(--landing-page-header-text-color);
+                                    font-size: globalVar.globalFontSize(heading-l);
+                                    margin-right: 16px;
+                                }
+                                
+                                .welcome-name-text {
+                                    @include global.textName;
+                                    color: var(--landing-page-header-text-color);
+                                    
                                 }
                             }
         
                             .welcome-description-text {
-                                @include global.textDescription;
+                                @include global.welcomeTextDescription;
                                 color: var(--landing-page-body-text-color);
                                 margin-bottom: 50px;
                                 text-align: center;
@@ -196,7 +214,7 @@
                         .welcome-right {
                             @include global.flexboxLayout(row, center, center);
                             
-                            .robert-image {
+                            .welcome-image {
                                 // @include global.border1;
                                 height: 200px;
                                 width: 200px;
@@ -217,7 +235,7 @@
                         @include global.response(md) {
                             flex-wrap: wrap;
 
-                            button {
+                            .main-button {
                                 margin: 4px;
                                 width: 45%;
                             }
@@ -226,7 +244,7 @@
                         @include global.response(sm) {
                             @include global.flexboxLayout(column, center, center);
 
-                            button {
+                            .main-button {
                                 margin: 4px;
                                 width: 80%;
                             }

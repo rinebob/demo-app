@@ -74,14 +74,14 @@ p {
 }
 
 .global-topnav-menu-css {
-    @include global.globalColors($background-color: var(--landing-page-accent-2), $color: var(--landing-page-on-accent-2));
+    @include global.globalColors($background-color: var(--topnav-menu-item-color), $color: var(--topnav-menu-item-text-color));
     border-radius: 0 !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0;
+    
     .topnav-active {
-        @include global.globalColors(var(--landing-page-secondary), var(--landing-page-on-secondary));
+        @include global.globalColors(var(--topnav-menu-item-active-color), var(--topnav-menu-item-text-active-color));
     }
     
     .mat-mdc-menu-content {
@@ -90,12 +90,12 @@ p {
     
     button.mat-mdc-menu-item {
         @include global.globalTopnavMenuButtonStyles;
-        width: 100% !important;
         margin: 0 !important;
-        border-radius: 0 !important;
+        width: 100%;
+        border-radius: 0;
         
         &:hover {
-            @include global.globalColors(var(--landing-page-accent-1), var(--landing-page-on-accent-1));
+            @include global.globalColors(var(--topnav-menu-item-hover-color) !important, var(--topnav-menu-item-text-hover-color) !important);
             
         }
     }

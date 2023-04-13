@@ -8,17 +8,30 @@
     
     .icon-button{
         background: none;
-        padding: 0;
         border: 0;
         cursor: pointer;
+        padding: 0;
+        position: relative;
         
         &:not(:last-child) {
             margin-right: 18px;
-            
         }
+    }
+
+    .github-backing-circle {
+        position: absolute;
+        background-color: var(--social-icon-backing-circle-color);
+        height: 24px;
+        width: 24px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
     }
     
     .icon-button .icon {
+        position: relative;
         width: 28px;
+        z-index: 10;
     }
 }
