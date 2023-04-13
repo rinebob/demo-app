@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 type ViewMode = 'light' | 'dark' | 'css-tricks';
 
@@ -9,9 +9,8 @@ type ViewMode = 'light' | 'dark' | 'css-tricks';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ThreeWayToggleComponent {
+  @Input() viewMode: ViewMode = 'light';
   @Output() mode = new EventEmitter<ViewMode>();
-
-  viewMode: ViewMode = 'light';
 
   updateActiveMode(mode: ViewMode) {
     // console.log('tWT uAM update view mode: ', mode);

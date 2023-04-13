@@ -5,6 +5,7 @@
 
 :host {
     @include global.flexboxLayout(column, flex-start, flex-start);
+    transition: all 0.5s ease;
     
     .landing-page-container {
         overflow-x: hidden;
@@ -14,7 +15,7 @@
         .scroll-to-top-button {
             @include global.flexboxLayout(row, center, center);
             @include global.globalOpenSidenavButtonStyles;
-            @include global.globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
+            @include global.globalColors($background-color: var(--scroll-to-top-button-background-color), $color: var(--scroll-to-top-button-text-color));
             border-radius: 100%;
             margin: 0;
             padding: 0;
@@ -25,7 +26,7 @@
             z-index: 10;
 
             &:hover {
-                @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));
+                @include global.globalColors($background-color: var(--scroll-to-top-button-hover-background-color), $color: var(--scroll-to-top-button-hover-text-color));
             }
 
             @include global.response(xl) {
@@ -79,6 +80,11 @@
 
                 app-three-way-toggle {
                     margin: 0 40px;
+                    
+                    // applies style from parent to child component
+                    --three-way-toggle-border-color: var(--lp-three-way-toggle-border-color);
+                    --three-way-toggle-trough-color: var(--lp-three-way-toggle-trough-color);
+                    --three-way-toggle-icon-active-color: var(--lp-three-way-toggle-icon-active-color);
 
                     @include global.response(sm) {
                         margin: 0 20px;
@@ -141,7 +147,7 @@
                         }
 
                         .welcome {
-                            @include global.border1;
+                            // @include global.border1;
                             height: 100%;
                             padding: 50px;
                             max-width: 45%;
@@ -191,7 +197,7 @@
                             @include global.flexboxLayout(row, center, center);
                             
                             .robert-image {
-                                @include global.border1;
+                                // @include global.border1;
                                 height: 200px;
                                 width: 200px;
                             }
@@ -330,7 +336,7 @@
 
         .header-text {
             @include global.textHeader;
-            color: var(--landing-page-header-text-color);
+            color: var(--landing-page-nav-text-color);
             margin: 0;
 
             @include global.response(sm-md) {

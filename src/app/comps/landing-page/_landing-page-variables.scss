@@ -6,159 +6,219 @@
     // colors
 
     --some-color-1: #223243;
-
-    // from https://coolors.co/011627-ff0022-41ead4-fdfffc-b91372
-    --landing-page-one: #41ead4ff;    // turquoise
-    --landing-page-two: #b91372ff;   // red-violet
-    --landing-page-three: #fdfffcff;  // baby powder
-    --landing-page-four: #011627ff;   // rich black
-    --landing-page-five: #ff0022ff;     // red-cmyk
     
-    --landing-page-primary: var(--landing-page-one);
-    --landing-page-secondary: var(--landing-page-two);
-    --landing-page-accent-1: var(--landing-page-three);
-    --landing-page-accent-2: var(--landing-page-four);
-    --landing-page-warn: var(--landing-page-five);
-    --landing-page-on-primary: var(--landing-page-four);
-    --landing-page-on-secondary: var(--global-white-1);
-    --landing-page-on-accent-1: var(--landing-page-four);
-    --landing-page-on-warn: var(--global-white-1);
+    --lp-warn: red;
+    --lp-on-warn: white;
 
-    // --landing-page-header-text-color: var(--global-grey-2);
-    // --landing-page-body-text-color: var(--global-grey-3);
+    // DO NOT DELETE - THIS IS THE SCHEME USED FOR ORIGINAL DESIGN
+    // from https://coolors.co/011627-ff0022-41ead4-fdfffc-b91372
 
+    // needs background colors
+
+    --lp-one: #41ead4ff;    // turquoise
+    --lp-two: #b91372ff;   // red-violet
+    --lp-three: #fdfffcff;  // baby powder
+    --lp-four: #011627ff;   // rich black
+    --lp-five: #ff0022ff;     // red-cmyk
+
+    // --lp-primary: var(--landing-page-one);
+    // --lp-on-primary: var(--landing-page-four);
+    // --lp-secondary: var(--landing-page-two);
+    // --lp-on-secondary: var(--global-white-1);
+    // --lp-accent-1: var(--landing-page-three);
+    // --lp-on-accent-1: var(--landing-page-four);
+    // --lp-accent-2: var(--landing-page-four);
+    // --lp-on-accent-2: var(--global-white-1);
+
+    --turquoise: #41ead4ff;    // one
+    --red-violet: #b91372ff;   // two
+    --baby-powder: #fdfffcff;  // three
+    --rich-black: #011627ff;   // four
+    --red-cmyk: #ff0022ff;     // five
+
+    --lp-background: var(--global-white-1);
+    --lp-on-background: var(--rich-black);
+    --lp-primary: var(--turquoise);
+    --lp-on-primary: var(--rich-black);
+    --lp-secondary: var(--red-violet);
+    --lp-on-secondary: var(--global-white-1);
+    --lp-accent-1: var(--baby-powder);
+    --lp-on-accent-1: var(--rich-black);
+    --lp-accent-2: var(--rich-black);
+    --lp-on-accent-2: var(--global-white-1);
+
+    --lp-dark-background: var(--rich-black);
+    --lp-dark-on-background: var(--global-white-1);
+    --lp-dark-primary: var(--turquoise);
+    --lp-dark-on-primary: var(--rich-black);
+    --lp-dark-secondary: var(--red-violet);
+    --lp-dark-on-secondary: var(--baby-powder);
+    --lp-dark-accent-1: var(--baby-powder);
+    --lp-dark-on-accent-1: var(--rich-black);
+    --lp-dark-accent-2: var(--rich-black);
+    --lp-dark-on-accent-2: var(--global-white-1);
+    
+   
+    
+    // EXPERIMENTAL COLOR SCHEMES
+    
+    // --lp-background: var(--);
+    // --lp-on-background: var(--);
+    // --lp-primary: var(--);
+    // --lp-on-primary: var(--);
+    // --lp-secondary: var(--);
+    // --lp-on-secondary: var(--);
+    // --lp-accent-1: var(--);
+    // --lp-on-accent-1: var(--);
+    // --lp-accent-2: var(--);
+    // --lp-on-accent-2: var(--);
+  
+    // --lp-dark-background: var(--);
+    // --lp-dark-on-background: var(--);
+    // --lp-dark-primary: var(--);
+    // --lp-dark-on-primary: var(--);
+    // --lp-dark-secondary: var(--);
+    // --lp-dark-on-secondary: var(--);
+    // --lp-dark-accent-1: var(--);
+    // --lp-dark-on-accent-1: var(--);
+    // --lp-dark-accent-2: var(--);
+    // --lp-dark-on-accent-2: var(--);
+  
+    
+    
+    
 }
 
 
 .landing-page-dark-theme {
 
     // Nav bar
-    --landing-page-nav-background-color: var(--global-grey-3);
-    --hamburger-menu-icon-color: var(--landing-page-primary);
-    --three-way-switch-track-background-color: var(--landing-page-primary);
-    // --three-way-switch-icon-inactive-color: var(--);
-    // --three-way-switch-icon-active-color: var(--);
-    // --three-way-switch-icon-active-background-color: var(--);
+    --landing-page-nav-background-color: var(--lp-dark-primary);
+    --landing-page-nav-text-color: var(--lp-dark-on-primary);
+    
+    --hamburger-menu-icon-color: var(--lp-dark-on-primary);
+    
+    --lp-three-way-toggle-border-color: var(--lp-dark-on-primary);
+    --lp-three-way-toggle-trough-color: var(--lp-dark-primary);
+    --lp-three-way-toggle-icon-color: var(--lp-dark-accent-1);
+    --lp-three-way-toggle-icon-active-color: var(--lp-dark-primary);
 
     // main page
-    --landing-page-button-background-color: var(--landing-page-primary);
-    --landing-page-button-text-color: var(--landing-page-on-primary);
-    // --landing-page-heavy-border-color: var(--landing-page-four);
-    --landing-page-heavy-border-color: var(--global-grey-2);
+    --landing-page-background-color: var(--lp-dark-background);
 
-    --landing-page-header-text-color: var(--global-white-1);
-    --landing-page-body-text-color: var(--global-white-1);
+    --landing-page-header-text-color: var(--lp-dark-on-background);
+    --landing-page-body-text-color: var(--lp-dark-on-background);
 
-    --landing-page-background-color: var(--global-grey-2);
-    // --welcome-left-background-color: var(--global-grey-2);
-    // --welcome-right-background-color: var(--global-grey-2);
-
-    --section-button-background-color: var(--landing-page-primary);
-    --section-button-text-color: var(--landing-page-on-primary);
-
-    --section-header-text-color: var(--global-white-1);
-    --skill-section-background-color: var(--global-grey-2);
-    --skill-card-background-color: var(--landing-page-primary);
-    // --skill-card-box-shadow: var(--);
-
-    // --project-section-background-color: var(--global-grey-2);
-    --project-card-background-color: var(--landing-page-primary);
-    // --project-card-box-shadow: var(--);
-    --project-card-overlay-background-color: var(--landing-page-accent-1);
-    --project-card-overlay-header-text-color: var(--landing-page-on-accent-1);
-    --project-card-overlay-description-text-color: var(--landing-page-on-accent-1);
-    --project-card-overlay-button-background-color: var(--landing-page-secondary);
-    --project-card-overlay-button-text-color: var(--landing-page-on-secondary);
-
-    // --experience-section-background-color: var(--);
-    --experience-section-subheader-text-color: var(--landing-page-header-text-color);
-    --experience-section-body-text-color: var(--landing-page-body-text-color);
+    --landing-page-button-background-color: var(--lp-dark-primary);
+    --landing-page-button-text-color: var(--lp-dark-on-primary);
+    --landing-page-button-hover-background-color: var(--lp-dark-secondary);
+    --landing-page-button-hover-text-color: var(--lp-dark-on-secondary);
     
-    --contact-section-background-color: var(--landing-page-background-color);
-    --contact-section-subheader-text-color: var(--landing-page-header-text-color);
-    --contact-section-body-text-color: var(--landing-page-body-text-color);
-    --contact-section-form-outline-color: var(--landing-page-primary);
-    --contact-section-form-placeholder-background-color: var(--contact-section-background-color);
-    --contact-section-form-placeholder-text-color: var(--landing-page-body-text-color);
-    --contact-section-form-icon-color: var(--landing-page-primary);
-    --contact-section-send-message-button-background-color: var(--landing-page-primary);
-    --contact-section-send-message-button-text-color: var(--landing-page-on-primary);
+    --landing-page-heavy-border-color: var(--lp-dark-background);
 
-    --footer-background-color: var(--global-grey-3);
-    --footer-text-color: var(--global-white-1);
+    --section-header-text-color: var(--lp-dark-on-background);
+    --section-button-background-color: var(--lp-dark-primary);
+    --section-button-text-color: var(--lp-dark-on-primary);
+
+    --skill-card-background-color: var(--lp-dark-primary);
+    --skill-card-title-color: var(--lp-dark-on-primary);
+
+    // --skill-card-background-color: var(--lp-dark-accent-1);
+    // --skill-card-title-color: var(--lp-dark-on-accent-1);
+    
+    // --project-card-background-color: var(--lp-dark-primary);
+    --project-card-background-color: var(--lp-dark-accent-2);
+    --project-card-overlay-background-color: var(--lp-dark-accent-1);
+    --project-card-overlay-header-text-color: var(--lp-dark-on-accent-1);
+    --project-card-overlay-description-text-color: var(--lp-dark-on-accent-1);
+    --project-card-overlay-button-background-color: var(--lp-dark-secondary);
+    --project-card-overlay-button-text-color: var(--lp-dark-on-secondary);
+
+    --experience-section-subheader-text-color: var(--lp-dark-on-background);
+    --experience-section-body-text-color: var(--lp-dark-on-background);
+    
+    --contact-section-subheader-text-color: var(--lp-dark-on-background);
+    --contact-section-body-text-color: var(--lp-dark-on-background);
+    --contact-section-form-outline-color: var(--lp-dark-primary);
+    --contact-section-form-placeholder-background-color: var(--lp-dark-background);
+    --contact-section-form-placeholder-text-color: var(--lp-dark-on-background);
+    --contact-section-form-icon-color: var(--lp-dark-primary);
+    --contact-section-send-message-button-background-color: var(--lp-dark-primary);
+    --contact-section-send-message-button-text-color: var(--lp-dark-on-primary);
+
+    --scroll-to-top-button-background-color: var(--lp-dark-primary);
+    --scroll-to-top-button-text-color: var(--lp-dark-on-primary);
+    --scroll-to-top-button-hover-background-color: var(--lp-dark-secondary);
+    --scroll-to-top-button-hover-text-color: var(--lp-dark-on-secondary);
+
+    --footer-background-color: var(--lp-dark-primary);
+    --footer-text-color: var(--lp-dark-on-primary);
 
 }
 
 .landing-page-light-theme {
 
-    // --landing-page-primary: var(--landing-page-one);
-    // --landing-page-secondary: var(--landing-page-two);
-    // --landing-page-accent-1: var(--landing-page-three);
-    // --landing-page-warn: var(--landing-page-five);
-    // --landing-page-on-primary: var(--landing-page-four);
-    // --landing-page-on-secondary: var(--global-white-1);
-    // --landing-page-on-accent-1: var(--landing-page-four);
-    // --landing-page-on-warn: var(--global-white-1);
 
     // Nav bar
+    --landing-page-nav-background-color: var(--lp-primary);
+    --landing-page-nav-text-color: var(--lp-on-primary);
+
+    --hamburger-menu-icon-color: var(--lp-on-primary);
+
+    --lp-three-way-toggle-border-color: var(--lp-on-primary);
+    --lp-three-way-toggle-trough-color: var(--lp-primary);
+    --lp-three-way-toggle-icon-color: var(--lp-accent-1);
+    --lp-three-way-toggle-icon-active-color: var(--lp-primary);
     
     // main page
-    --landing-page-button-background-color: var(--landing-page-primary);
-    --landing-page-button-text-color: var(--landing-page-on-primary);
-    // --landing-page-heavy-border-color: var(--landing-page-four);
-    --landing-page-heavy-border-color: var(--global-grey-6);
+    --landing-page-background-color: var(--lp-background);
 
-    --landing-page-button-background-color: var(--landing-page-primary);
-    --landing-page-button-text-color: var(--landing-page-on-primary);
-
-    --landing-page-header-text-color: var(--global-grey-2);
-    --landing-page-body-text-color: var(--global-grey-3);
-
-    // --landing-page-nav-background-color: var(--global-white-1);
-    --landing-page-nav-background-color: var(--landing-page-primary);
-    --hamburger-menu-icon-color: var(--landing-page-on-primary);
-    --three-way-switch-track-background-color: var(--landing-page-primary);
-    --three-way-switch-icon-inactive-color: var(--global-grey-5);
-    --three-way-switch-icon-active-color: var(--global-grey-2);
-    --three-way-switch-icon-active-background-color: var(--landing-page-primary);
-
-    --landing-page-background-color: var(--global-white-1);
-    --welcome-left-background-color: var(--global-white-1);
-    --welcome-right-background-color: var(--global-white-1);
-
-    --section-button-background-color: var(--landing-page-primary);
-    --section-button-text-color: var(--landing-page-on-primary);
-
-    --section-header-text-color: var(--landing-page-header-text-color);
-    --skill-section-background-color: var(--global-white-1);
-    --skill-card-background-color: var(--landing-page-accent-1);
-    --skill-card-box-shadow: var(--);
-
-    --project-section-background-color: var(--global-white-1);
-    --project-card-background-color: var(--landing-page-secondary);
-    // --project-card-box-shadow: var(--);
-    --project-card-overlay-background-color: var(--landing-page-primary);
-    --project-card-overlay-header-text-color: var(--landing-page-on-primary);
-    --project-card-overlay-description-text-color: var(--landing-page-on-primary);
-    --project-card-overlay-button-background-color: var(--landing-page-secondary);
-    --project-card-overlay-button-text-color: var(--landing-page-on-secondary);
-
-    --experience-section-background-color: var(--global-white-1);
-    --experience-section-subheader-text-color: var(--landing-page-header-text-color);
-    --experience-section-body-text-color: var(--landing-page-body-text-color);
+    --landing-page-header-text-color: var(--lp-on-background);
+    --landing-page-body-text-color: var(--lp-on-background);
     
-    --contact-section-background-color: var(--landing-page-background-color);
-    --contact-section-subheader-text-color: var(--landing-page-header-text-color);
-    --contact-section-body-text-color: var(--landing-page-body-text-color);
-    --contact-section-form-outline-color: var(--landing-page-accent-2);
-    --contact-section-form-placeholder-background-color: var(--contact-section-background-color);
-    --contact-section-form-placeholder-text-color: var(--landing-page-accent-2);
-    --contact-section-form-icon-color: var(--landing-page-accent-2);
-    --contact-section-send-message-button-background-color: var(--landing-page-primary);
-    --contact-section-send-message-button-text-color: var(--landing-page-on-primary);
+    --landing-page-button-background-color: var(--lp-primary);
+    --landing-page-button-text-color: var(--lp-on-primary);
+    --landing-page-button-hover-background-color: var(--lp-secondary);
+    --landing-page-button-hover-text-color: var(--lp-on-secondary);
+    
+    --landing-page-heavy-border-color: var(--lp-background);
 
-    --footer-background-color: var(--landing-page-primary);
-    --footer-text-color: var(--landing-page-on-primary);
+    --section-header-text-color: var(--lp-on-background);
+    --section-button-background-color: var(--lp-on-background);
+    --section-button-text-color: var(--lp-on-primary);
+
+    // --skill-card-background-color: var(--lp-accent-1);
+    // --skill-card-title-color: var(--lp-on-accent-1);
+    --skill-card-background-color: var(--lp-primary);
+    --skill-card-title-color: var(--lp-on-primary);
+
+    --project-card-background-color: var(--lp-accent-2);
+    --project-card-overlay-background-color: var(--lp-accent-1);
+    --project-card-overlay-header-text-color: var(--lp-on-accent-1);
+    --project-card-overlay-description-text-color: var(--lp-on-accent-1);
+    --project-card-overlay-button-background-color: var(--lp-secondary);
+    --project-card-overlay-button-text-color: var(--lp-on-secondary);
+
+    --experience-section-subheader-text-color: var(--lp-on-background);
+    --experience-section-body-text-color: var(--lp-on-background);
+    
+    --contact-section-subheader-text-color: var(--lp-on-background);
+    --contact-section-body-text-color: var(--lp-on-background);
+    --contact-section-form-outline-color: var(--lp-primary);
+    --contact-section-form-placeholder-background-color: var(--lp-background);
+    --contact-section-form-placeholder-text-color: var(--lp-on-background);
+    --contact-section-form-icon-color: var(--lp-primary);
+
+    --contact-section-send-message-button-background-color: var(--lp-primary);
+    --contact-section-send-message-button-text-color: var(--lp-on-primary);
+
+    --scroll-to-top-button-background-color: var(--lp-primary);
+    --scroll-to-top-button-text-color: var(--lp-on-primary);
+    --scroll-to-top-button-hover-background-color: var(--lp-secondary);
+    --scroll-to-top-button-hover-text-color: var(--lp-on-secondary);
+
+    --footer-background-color: var(--lp-primary);
+    --footer-text-color: var(--lp-on-primary);
 
 
     
@@ -170,14 +230,21 @@
     @include global.flexboxLayout(row, center, center);
     @include contactBoxShadowRaisedUpperLeftLowerRight;
     @include global.textButtonMain;
-    background-color: var(--landing-page-button-background-color);
+    @include global.globalColors(var(--landing-page-button-background-color), var(--landing-page-button-text-color));
+    // background-color: var(--landing-page-button-background-color);
     border: none;
     border-radius: 25px;
-    color: var(--landing-page-button-text-color);
+    // color: var(--landing-page-button-text-color);
     cursor: pointer;
     font-weight: 700;
+    letter-spacing: 4px;
     padding: 10px 0;
     width: 100%;
+    
+    &:hover {
+        @include global.globalColors(var(--landing-page-button-hover-background-color), var(--landing-page-button-hover-text-color));
+
+    }
 
     .button-text {
         align-self: center;
@@ -204,3 +271,147 @@
 // use global vars for font sizes and line heights
 
 // landing page material palette and theme vars
+
+// COLOR SCHEMES FROM COOLORS
+/* CSS HEX */
+// --snow: #fbf5f3ff;
+// --fulvous: #e28413ff;
+// --oxford-blue: #000022ff;
+// --rusty-red: #de3c4bff;
+// --cardinal: #c42847ff;
+
+/* CSS HEX */
+// --uranian-blue: #bce7fdff;
+// --lilac: #c492b1ff;
+// --raspberry-rose: #af3b6eff;
+// --charcoal: #424651ff;
+// --spring-green: #21fa90ff;
+
+// COLOR SCHEMES
+//      --yinmn-blue: #2e5077;
+//     --orange-peel: #ffa630;
+//     --moonstone: #4da1a9;
+//     --tea-green: #d7e8ba;
+//     --tyrian-purple: #611c35;
+
+//     --lp-background: var(--tea-green);
+//     --lp-on-background: var(--yinmn-blue);
+    
+//     --lp-primary: var(--yinmn-blue);
+//     --lp-on-primary: var(--tea-green);
+    
+//     --lp-secondary: var(--orange-peel);
+//     --lp-on-secondary: var(--tyrian-purple);
+    
+//     --lp-accent-1: var(--moonstone);
+//     --lp-on-accent-1: var(--tea-green);
+    
+//     --lp-accent-2: var(--tyrian-purple);
+//     --lp-on-accent-2: var(--yinmn-blue);
+    
+//     --lp-warn: var(--red-pantone);
+//     --lp-on-warn: var(--global-white-1);
+    
+//     --lp-dark-background: var(--yinmn-blue);
+//     --lp-dark-on-background: var(--tea-green);
+
+//     --lp-dark-primary: var(--orange-peel);
+//     --lp-dark-on-primary: var(--tyrian-purple);
+    
+//     --lp-dark-secondary: var(--moonstone);
+//     --lp-dark-on-secondary: var(--tea-green);
+    
+//     --lp-dark-accent-1: var(--tyrian-purple);
+//     --lp-dark-accent-2: var(--tea-green);
+    
+//     --lp-dark-on-accent-1: var(--tea-green);
+//     --lp-dark-on-accent-2: var(--yinmn-blue);
+
+
+// --uranian-blue: #bce7fdff;
+//     --lilac: #c492b1ff;
+//     --raspberry-rose: #af3b6eff;
+//     --charcoal: #424651ff;
+//     --spring-green: #21fa90ff;
+
+//     --lp-background: var(--uranian-blue);
+//     --lp-on-background: var(--charcoal);
+//     --lp-primary: var(--raspberry-rose);
+//     --lp-on-primary: var(--uranian-blue);
+//     --lp-secondary: var(--spring-green);
+//     --lp-on-secondary: var(--charcoal);
+//     --lp-accent-1: var(--lilac);
+//     --lp-on-accent-1: var(--charcoal);
+//     --lp-accent-2: var(--spring-green);
+//     --lp-on-accent-2: var(--charcoal);
+    
+//     --lp-dark-background: var(--charcoal);
+//     --lp-dark-on-background: var(--uranian-blue);
+//     --lp-dark-primary: var(--spring-green);
+//     --lp-dark-on-primary: var(--raspberry-rose);
+//     --lp-dark-secondary: var(--raspberry-rose);
+//     --lp-dark-on-secondary: var(--charcoal);
+//     --lp-dark-accent-1: var(--lilac);
+//     --lp-dark-on-accent-1: var(--charcoal);
+//     --lp-dark-accent-2: var(--lilac);
+//     --lp-dark-on-accent-2: var(--charcoal);
+
+
+// --lp-five: var(--red-pantone);
+    
+    // --lp-one: var(--space-cadet);
+    // --lp-one: var(--giants-orange);
+    // --lp-one: var(--persian-green);
+    // --lp-one: var(--mindaro);
+
+    // --lp-two: var(--space-cadet);
+    // --lp-two: var(--giants-orange);
+    // --lp-two: var(--persian-green);
+    // --lp-two: var(--mindaro);
+    
+    // --lp-three: var(--space-cadet);
+    // --lp-three: var(--giants-orange);
+    // --lp-three: var(--persian-green);
+    // --lp-three: var(--mindaro);
+    
+    // --lp-four: var(--space-cadet);
+    // --lp-four: var(--giants-orange);
+    // --lp-four: var(--persian-green);
+    // --lp-four: var(--mindaro);
+    
+    
+    
+    // --lp-primary: var(--lp-one);
+    // --lp-secondary: var(--lp-two);
+    // --lp-accent-1: var(--lp-three);
+    // --lp-accent-2: var(--lp-four);
+    // --lp-warn: var(--lp-five);
+    // --lp-on-primary: var(--lp-four);
+    // --lp-on-secondary: var(--global-white-1);
+    // --lp-on-accent-1: var(--lp-four);
+    // --lp-on-accent-2: var(--global-white-1);
+    // --lp-on-warn: var(--global-white-1);
+
+
+    // --lp-background: var(--);
+    // --lp-on-background: var(--);
+    // --lp-primary: var(--);
+    // --lp-on-primary: var(--);
+    // --lp-secondary: var(--);
+    // --lp-on-secondary: var(--);
+    // --lp-accent-1: var(--);
+    // --lp-on-accent-1: var(--);
+    // --lp-accent-2: var(--);
+    // --lp-on-accent-2: var(--);
+  
+    // --lp-dark-background: var(--);
+    // --lp-dark-on-background: var(--);
+    // --lp-dark-primary: var(--);
+    // --lp-dark-on-primary: var(--);
+    // --lp-dark-secondary: var(--);
+    // --lp-dark-on-secondary: var(--);
+    // --lp-dark-accent-1: var(--);
+    // --lp-dark-on-accent-1: var(--);
+    // --lp-dark-accent-2: var(--);
+    // --lp-dark-on-accent-2: var(--);
+    
