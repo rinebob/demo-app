@@ -25,6 +25,7 @@
                     <button type="button"
                             mat-menu-item
                             routerLink="/{{button.url}}"
+                            routerLinkActive="topnav-active"
                             class="nav-button"
                     >
                         {{button.text}}
@@ -40,7 +41,10 @@
 
         <div class="nav-buttons-container">
 
-            <app-three-way-toggle (mode)="handleUpdateViewMode($event)"></app-three-way-toggle>
+            <app-three-way-toggle [viewMode]="viewModeBS.value"
+                                  (mode)="handleUpdateViewMode($event)"
+            >
+            </app-three-way-toggle>
 
             <app-social-icon-links></app-social-icon-links>
             

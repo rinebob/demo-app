@@ -49,7 +49,7 @@
                 }
                 
                 &:focus ~ .placeholder.error {
-                    color: red;
+                    color: var(--lp-warn);
                 }
             }
     
@@ -71,7 +71,7 @@
                 @include cssTricks.placeholderText;
                 position: absolute;
                 left: 0;
-                color: var(--landing-page-warn);
+                color: var(--lp-warn);
                 transition: 0.5s;
             }
     

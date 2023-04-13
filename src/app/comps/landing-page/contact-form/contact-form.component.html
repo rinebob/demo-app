@@ -13,7 +13,7 @@
         <span class="placeholder"
                 [class.error]="name?.invalid && (name?.dirty || name?.touched)"
         >
-            {{!(name?.invalid && (name?.dirty || name?.touched)) ? 'name' : 'name is required'}}
+            {{name?.invalid && (name?.dirty || name?.touched) ? 'name is required' : 'name'}}
         </span>
         
     </div>

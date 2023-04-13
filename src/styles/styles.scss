@@ -74,11 +74,16 @@ p {
 }
 
 .global-topnav-menu-css {
+    @include global.globalColors($background-color: var(--landing-page-accent-2), $color: var(--landing-page-on-accent-2));
     border-radius: 0 !important;
     max-width: 100% !important;
     overflow: hidden !important;
     padding: 0 !important;
 
+    .topnav-active {
+        @include global.globalColors(var(--landing-page-secondary), var(--landing-page-on-secondary));
+    }
+    
     .mat-mdc-menu-content {
         padding: 0 !important;
     }
@@ -88,6 +93,11 @@ p {
         width: 100% !important;
         margin: 0 !important;
         border-radius: 0 !important;
+        
+        &:hover {
+            @include global.globalColors(var(--landing-page-accent-1), var(--landing-page-on-accent-1));
+            
+        }
     }
 
     @include global.response(xs) {

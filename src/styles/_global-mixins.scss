@@ -206,7 +206,6 @@
 }
 
 @mixin globalTopnavMenuButtonStyles($height: var(--size-button-tall)) {
-    @include globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -216,10 +215,6 @@
     text-align: left;
     width: 276px;
 
-    &:hover {
-        @include globalColors($background-color: var(--global-grey-2) !important, $color: var(--global-white-1) !important);
-    }
-    
     .mdc-list-item__primary-text {
         @include textButtonMain;
         @include globalColors($background-color: inherit, $color: inherit);

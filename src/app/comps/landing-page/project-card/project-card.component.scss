@@ -34,7 +34,7 @@
             .project-title {
                 @include global.textSectionSubheader;
                 color: var(--project-card-overlay-header-text-color);
-                margin: 0 0 10px;
+                margin: 0 0 20px;
                 text-align: center;
 
                 @include global.response(lg) {
@@ -42,7 +42,6 @@
                 }
     
                 @include global.response(sm-md) {
-                    // font-size: globalVar.globalFontSize(heading-m);
                     margin: 20px 0;
                 }
     
@@ -66,11 +65,12 @@
             }
     
             .main-button {
-                @include global.textButtonMain;
+                @include landingPageVar.contactSpiffyButtonStyles;
                 background-color: var(--project-card-overlay-button-background-color);
                 color: var(--project-card-overlay-button-text-color);
-                margin: 0 10px;
-                padding: 6px 24px;
+                margin: 10px 0;
+                
+                width: 75%;
 
                 @include global.response(md) {
                     @include global.textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(heading-s), $line-height: globalVar.globalLineHeight(heading-s));
@@ -81,6 +81,7 @@
         }
         
         img {
+            border-radius: 4px;
             display: block;
             max-height: 100%;
             object-fit: cover;
@@ -88,7 +89,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%
+            width: 100%
         }
     }
 }

@@ -6,7 +6,7 @@
 mat-card {
     @include global.flexboxLayout(column, flex-start, flex-start);
     @include global.globalBoxShadow;
-    background-color: var(--landing-page-primary);
+    background-color: var(--skill-card-background-color);
     flex-grow: 1;
     margin: 0 10px;
     padding: 6px 24px;
@@ -44,7 +44,7 @@ mat-card {
             
             .skill-title {
                 @include global.textSectionSubheader;
-                color: var(--landing-page-on-primary);
+                color: var(--skill-card-title-color);
     
                 @include global.response(lg) {
                     font-size: globalVar.globalFontSize(heading-m-l);

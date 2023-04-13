@@ -15,7 +15,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements OnInit {
-  @HostBinding('class') theme = 'landing-page-light-theme';
+  @HostBinding('class') theme = 'landing-page-dark-theme';
 
   contactForm = new FormGroup({
     nameControl: new FormControl(''),
@@ -41,6 +41,7 @@ export class LandingPageComponent implements OnInit {
     private router:Router) {}
 
   ngOnInit () {
+    this.initializeViewMode();
     this.contactForm.valueChanges.pipe().subscribe(changes => {
       // console.log('lP ngOI contact form value changes sub: ', changes);
     });
@@ -59,18 +60,41 @@ export class LandingPageComponent implements OnInit {
   }
 
   handleUpdateViewMode(mode: ViewMode) {
-    // console.log('lP hUVM mode switch: ', mode);
+    // console.log('lP hUVM change to view mode: ', mode);
+
+    this.setViewModePreference(mode);
     
+  }
+
+  initializeViewMode() {
+    const preferredMode = this.getViewModePreference();
+    this.setViewModePreference(preferredMode);
+  }
+
+  getViewModePreference() {
+    let preferredMode: ViewMode;
+    if(localStorage.getItem('view-mode-preference')) {
+      // console.log('lP gVMP view mode in local storage: ', localStorage.getItem('view-mode-preference'));
+      preferredMode = localStorage.getItem('view-mode-preference') as ViewMode;
+    } else {
+      // console.log('lP gVMP match media: ', window.matchMedia('(prefers-color-scheme: light)').matches);
+      preferredMode = window.matchMedia('(prefers-color-scheme: light)').matches
+        ? 'light'
+        : 'dark';
+    }
+    return preferredMode;
+  }
+
+  setViewModePreference(mode: ViewMode) {
+    
+    localStorage.setItem('view-mode-preference', mode);
+    // console.log('lP sVMP set view mode in local storage: ', localStorage.getItem('view-mode-preference'));
+    this.viewModeBS.next(mode);
     if (mode === 'light') {
       this.theme = 'landing-page-light-theme';
-      
     } else {
       this.theme = 'landing-page-dark-theme';
-
     }
-
-    this.viewModeBS.next(mode);
-    // console.log('bV tT toggle dark mode post: ', this.darkModeOn);
   }
 
   scrollToTarget(target: string) {
