@@ -199,11 +199,35 @@
                 .welcome-container {
                     @include global.flexboxLayout(column, center, center);
 
-                    .welcome-header {
-                        display: none;
+                    .welcome-pre-name-text {
+                        @include global.textTitle;
+                        color: var(--landing-page-header-text-color);
+                        font-size: globalVar.globalFontSize(heading-l);
+                        text-align: center;
+                    }
+                    
+                    .welcome-name-text {
+                        @include global.textName;
+                        color: var(--landing-page-header-name-text-color);
+                    }
 
-                        @include global.response(sm-sm) {
-                            display: block;
+                    .welcome-name-description {
+                        @include global.textTitle;
+                        color: var(--landing-page-header-text-color);
+                        font-size: globalVar.globalFontSize(heading-m);
+                        margin-top: 20px;
+                        text-align: center;
+                    }
+
+                    .welcome-header {
+                        
+                        app-name-intro {
+
+                            display: none;
+
+                            @include global.response(sm-sm) {
+                                display: block;
+                            }
                         }
                             
                         .welcome-title-text {
@@ -220,20 +244,7 @@
 
                         .name-container {
                             @include global.flexboxLayout(row, flex-start, baseline);
-                            margin-bottom: 40px;
-                            
-                            .welcome-pre-name-text {
-                                @include global.textTitle;
-                                color: var(--landing-page-header-text-color);
-                                font-size: globalVar.globalFontSize(heading-l);
-                                margin-right: 16px;
-                            }
-                            
-                            .welcome-name-text {
-                                @include global.textName;
-                                color: var(--landing-page-header-name-text-color);
-                                
-                            }
+                            margin-bottom: 30px;
                         }
 
                     }
@@ -278,43 +289,11 @@
                                 order: 2;
                             }
 
-                            .left-name-container {
-
+                            app-name-intro {
                                 @include global.response(sm-sm) {
                                     display: none;
                                 }
-
-                                .welcome-title-text {
-                                    @include global.textTitle;
-                                    color: var(--landing-page-header-text-color);
-                                    margin: 20px 0;
-                                    text-align: center;
-    
-                                    @include global.response(md) {
-                                        margin: 10px 0;
-                                    }
-    
-                                }
-    
-                                .name-container {
-                                    @include global.flexboxLayout(row, flex-start, baseline);
-                                    margin-bottom: 40px;
-                                    
-                                    .welcome-pre-name-text {
-                                        @include global.textTitle;
-                                        color: var(--landing-page-header-text-color);
-                                        font-size: globalVar.globalFontSize(heading-l);
-                                        margin-right: 16px;
-                                    }
-                                    
-                                    .welcome-name-text {
-                                        @include global.textName;
-                                        color: var(--landing-page-header-name-text-color);
-                                        
-                                    }
-                                }
                             }
-        
         
                             .welcome-description-text {
                                 @include global.welcomeTextDescription;
@@ -336,7 +315,6 @@
                             }
                             
                             .welcome-image {
-                                // @include global.border1;
                                 height: 200px;
                                 width: 200px;
                             }
