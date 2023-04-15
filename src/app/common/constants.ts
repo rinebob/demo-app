@@ -110,7 +110,7 @@ export const RINEBOB_PROJECTS: ProjectData[] = [
         title: 'Kanban style Todo App',
         description: 'Manage software development projects from planning to production.  Full backend support through Firebase.  Material CDK drag-drop.',
         route: '/kanban',
-        imageSrc: '../../assets/DemoApp3.png',
+        imageSrc: '../../assets/DemoApp5.png',
     },
     // {
     //     title: 'Stock market charting site clone',

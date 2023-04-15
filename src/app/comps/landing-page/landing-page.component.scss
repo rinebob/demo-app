@@ -6,6 +6,7 @@
 :host {
     @include global.flexboxLayout(column, flex-start, flex-start);
     transition: all 0.5s ease;
+    background-color: var(--landing-page-background-color);
     
     .landing-page-container {
         overflow-x: hidden;
@@ -104,23 +105,83 @@
         .scroll-container {
             @include global.flexboxLayout(column, flex-start, center);
             align-self: stretch;
-            background-color: var(--landing-page-background-color);
-            height: calc(100vh - 50px);
+            background-color: var(--scroll-container-background-color);
+            height: calc(100vh - 100px);
             overflow-x: hidden;
             overflow-y: auto;
             position: relative;
 
+            .animations-container-top {
+                @include global.flexboxLayout(column, flex-start, flex-start);
+                width: 100%;
+                height: fit-content;
+                
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+
+                .half-row {
+                    display: inline-flex;
+                    margin-top: -33px;
+                    margin-left: -50px;
+                    z-index: 4;
+
+                    .hexagon-half {
+                        @include landingPageVar.halfHexagonTopOutlined;
+                        @include landingPageVar.hoverColor;
+                        @include landingPageVar.animation4SLinearInfinite;
+
+                    }
+                }
+                
+                .rows-container {
+                    @include landingPageVar.hexContainer;
+                }
+            }
+
+            .animations-container-bottom {
+                @include global.flexboxLayout(column, flex-end, flex-start);
+                width: 100%;
+                height: fit-content;
+                
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1;
+                transform: translateY(-100%);
+                
+                .rows-container {
+                    @include landingPageVar.hexContainer;
+                }
+            }
+
             .main-container {
                 flex-grow: 1;
                 max-width: 1000px;
-                width: 100%;
-
+                width: 80%;
+                
+                @include global.response(md) {
+                    width: 90%;
+                }
+                
                 section {
-                    @include landingPageVar.contactBorder8pxSolid(var(--landing-page-heavy-border-color));
+                    @include landingPageVar.contactBorderSolid(2px, var(--landing-page-heavy-border-color));
                     @include landingPageVar.contactBoxShadowRaisedUpperLeftLowerRight;
+                    background-color: var(--landing-page-background-color);
                     border-radius: 20px;
-                    margin: 20px;
+                    margin: 40px 20px 0 20px;
                     padding: 20px;
+                    position: relative;
+                    z-index: 3;
+
+                    &:last-of-type {
+                        margin-bottom: 40px;
+                    }
+
+                    &:hover {
+                        @include landingPageVar.contactBorderSolid(2px, var(--landing-page-heavy-border-hover-color));
+                    }
 
                     .section-header {
                         @include global.textSectionHeader;
@@ -137,6 +198,45 @@
         
                 .welcome-container {
                     @include global.flexboxLayout(column, center, center);
+
+                    .welcome-header {
+                        display: none;
+
+                        @include global.response(sm-sm) {
+                            display: block;
+                        }
+                            
+                        .welcome-title-text {
+                            @include global.textTitle;
+                            color: var(--landing-page-header-text-color);
+                            margin: 20px 0;
+                            text-align: center;
+
+                            @include global.response(md) {
+                                margin: 10px 0;
+                            }
+
+                        }
+
+                        .name-container {
+                            @include global.flexboxLayout(row, flex-start, baseline);
+                            margin-bottom: 40px;
+                            
+                            .welcome-pre-name-text {
+                                @include global.textTitle;
+                                color: var(--landing-page-header-text-color);
+                                font-size: globalVar.globalFontSize(heading-l);
+                                margin-right: 16px;
+                            }
+                            
+                            .welcome-name-text {
+                                @include global.textName;
+                                color: var(--landing-page-header-name-text-color);
+                                
+                            }
+                        }
+
+                    }
                     
                     .welcome-top {
                         @include global.flexboxLayout(row, center, center);
@@ -151,13 +251,18 @@
                             padding: 20px 50px;
                             max-width: 45%;
                             flex-grow: 1;
+
+                            @include global.response(md-lg) {
+                                max-width: 100%;
+                                padding: 20px;
+                            }
                             
                             @include global.response(md) {
                                 max-width: 100%;
                                 padding: 20px;
                             }
                         }
-        
+
                         .welcome-left {
                             @include global.flexboxLayout(column, flex-start, center);
                             margin-right: 20px;
@@ -168,36 +273,48 @@
                                 margin: 0;
                                 max-width: 100%;
                             }
-        
-                            .welcome-title-text {
-                                @include global.textTitle;
-                                color: var(--landing-page-header-text-color);
-                                margin: 20px 0;
-                                text-align: center;
 
-                                @include global.response(md) {
-                                    margin: 10px 0;
-                                }
-
+                            @include global.response(sm-sm) {
+                                order: 2;
                             }
 
-                            .name-container {
-                                @include global.flexboxLayout(row, flex-start, baseline);
-                                margin-bottom: 40px;
-                                
-                                .welcome-pre-name-text {
+                            .left-name-container {
+
+                                @include global.response(sm-sm) {
+                                    display: none;
+                                }
+
+                                .welcome-title-text {
                                     @include global.textTitle;
                                     color: var(--landing-page-header-text-color);
-                                    font-size: globalVar.globalFontSize(heading-l);
-                                    margin-right: 16px;
+                                    margin: 20px 0;
+                                    text-align: center;
+    
+                                    @include global.response(md) {
+                                        margin: 10px 0;
+                                    }
+    
                                 }
-                                
-                                .welcome-name-text {
-                                    @include global.textName;
-                                    color: var(--landing-page-header-text-color);
+    
+                                .name-container {
+                                    @include global.flexboxLayout(row, flex-start, baseline);
+                                    margin-bottom: 40px;
                                     
+                                    .welcome-pre-name-text {
+                                        @include global.textTitle;
+                                        color: var(--landing-page-header-text-color);
+                                        font-size: globalVar.globalFontSize(heading-l);
+                                        margin-right: 16px;
+                                    }
+                                    
+                                    .welcome-name-text {
+                                        @include global.textName;
+                                        color: var(--landing-page-header-name-text-color);
+                                        
+                                    }
                                 }
                             }
+        
         
                             .welcome-description-text {
                                 @include global.welcomeTextDescription;
@@ -213,6 +330,10 @@
                         }
                         .welcome-right {
                             @include global.flexboxLayout(row, center, center);
+
+                            @include global.response(sm-sm) {
+                                order: 1;
+                            }
                             
                             .welcome-image {
                                 // @include global.border1;
@@ -232,11 +353,11 @@
                             width: 20%;
                         }
 
-                        @include global.response(md) {
+                        @include global.response(lg) {
                             flex-wrap: wrap;
 
                             .main-button {
-                                margin: 4px;
+                                margin: 8px;
                                 width: 45%;
                             }
                         }
@@ -245,8 +366,16 @@
                             @include global.flexboxLayout(column, center, center);
 
                             .main-button {
-                                margin: 4px;
+                                // margin: 4px;
                                 width: 80%;
+                            }
+                        }
+
+                        @include global.response(xxs) {
+                            
+                            .main-button {
+                                margin: 4px;
+                                width: 90%;
                             }
                         }
                     }
@@ -263,15 +392,19 @@
                             margin: 8px 0;
                             width: 25%;
                             
-                            @include global.response(md) {
+                            @include global.response(lg) {
                                 width: 33%;
+                            }
+                            
+                            @include global.response(md-lg) {
+                                width: 50%;
                             }
 
                             @include global.response(sm) {
                                 width: 50%;
                             }
 
-                            @include global.response(xxs) {
+                            @include global.response(xs-sm) {
                                 width: 100%;
                             }
                         }
@@ -287,7 +420,7 @@
                         width: 100%;
 
                         app-project-card {
-                            width: 50%;
+                            // width: 50%;
 
                             @include global.response(sm-md) {
                                 height: 200px;
@@ -307,7 +440,7 @@
                     .contact {
                         @include global.flexboxLayout(row, space-around, center);
                         
-                        @include global.response(sm) {
+                        @include global.response(md) {
                             @include global.flexboxLayout(column, flex-start, center);
 
                         }
@@ -316,14 +449,16 @@
                             @include global.flexboxLayout(column, flex-start, center);
                             width: 45%;
 
-                            @include global.response(sm) {
+                            @include global.response(md) {
                                 width: 100%;
                             }
 
                             .contact-description {
-                                text-align: center;
+                                @include global.welcomeTextDescription;
+                                letter-spacing: 1px;
                                 margin-bottom: 30px;
                                 padding: 20px;
+                                text-align: center;
                                 
                                 @include global.response(sm) {
                                     margin-bottom: 10px;
@@ -334,20 +469,42 @@
                         .contact-right {
                             @include global.flexboxLayout(column, center, center);
                             width: 45%;
+
+                            @include global.response(md) {
+                                width: 100%;
+                            }
+
+                            app-contact-form {
+                                width: 80%;
+                                margin-bottom: 20px;
+                            }
                         }
                     }
                 }
             }
 
-            .footer-container {
-                @include global.flexboxLayout(row, space-between, center);
-                align-self: stretch;
-                background-color: var(--footer-background-color);
-                padding: 10px 20px;
+            // .footer-container {
+            //     @include global.flexboxLayout(row, space-between, center);
+            //     align-self: stretch;
+            //     background-color: var(--footer-background-color);
+            //     padding: 10px 20px;
+            //     z-index: 2;
                 
-                .footer-buttons-container {
-                    @include global.flexboxLayout(row, flex-end, center);
-                }
+            //     .footer-buttons-container {
+            //         @include global.flexboxLayout(row, flex-end, center);
+            //     }
+            // }
+        }
+
+        .footer-container {
+            @include global.flexboxLayout(row, space-between, center);
+            align-self: stretch;
+            background-color: var(--footer-background-color);
+            padding: 10px 20px;
+            z-index: 2;
+            
+            .footer-buttons-container {
+                @include global.flexboxLayout(row, flex-end, center);
             }
         }
 

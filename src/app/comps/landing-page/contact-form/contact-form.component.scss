@@ -1,7 +1,7 @@
 @use '../../../../styles/global-mixins' as global;
 @use '../../../../styles/global-variables' as globalVar;
 @use '../landing-page-variables' as landingPageVar;
-@use '../../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
+// @use '../../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
 @import "styles.scss";
 
 :host {
@@ -13,8 +13,8 @@
             @include global.flexboxLayout(row, flex-start, center);
             margin-bottom: 25px;
             position: relative;
-            width: 300px;
-            
+            width: 100%;
+ 
             input, textarea {
                 background: transparent;
                 border: 1px solid rgba(0,0,0,0.1);
@@ -36,7 +36,7 @@
                 
                 &:valid ~ .placeholder,
                 &:focus ~ .placeholder {
-                    @include cssTricks.placeholderFocusStyles;
+                    @include landingPageVar.placeholderFocusStyles;
                     background-color: var(--contact-section-form-placeholder-background-color);
                     border: 1px solid var(--contact-section-form-outline-color);
                     color: var(--contact-section-form-placeholder-text-color);
@@ -61,14 +61,14 @@
             }
     
             .placeholder {
-                @include cssTricks.placeholderText;
+                @include landingPageVar.placeholderText;
                 color: var(--contact-section-form-placeholder-text-color);
                 position: absolute;
                 left: 0;
             }
     
             .error {
-                @include cssTricks.placeholderText;
+                @include landingPageVar.placeholderText;
                 position: absolute;
                 left: 0;
                 color: var(--lp-warn);

@@ -1,4 +1,5 @@
 @use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
 @use '../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
 
 :root {
@@ -216,6 +217,9 @@
     --maize: #fee440ff;
     --aureolin: #F7E733;
 
+    // for dark mode scroll container background
+    --full-black: #000;
+
     // uses colors from all sets above
     // --lp-dark-background: var(--global-grey-2);
     // --lp-dark-on-background: var(--jonquil);
@@ -280,6 +284,7 @@
     --landing-page-background-color: var(--lp-background);
 
     --landing-page-header-text-color: var(--lp-on-background);
+    --landing-page-header-name-text-color: var(--lp-primary);
     --landing-page-body-text-color: var(--lp-on-background);
     
     --landing-page-button-background-color: var(--lp-primary);
@@ -288,6 +293,9 @@
     --landing-page-button-hover-text-color: var(--lp-on-secondary);
     
     --landing-page-heavy-border-color: var(--lp-background);
+    --landing-page-heavy-border-hover-color: var(--lp-primary);
+
+    --scroll-container-background-color: var(--lp-background);
 
     --section-header-text-color: var(--lp-on-background);
     --section-button-background-color: var(--lp-on-background);
@@ -357,6 +365,7 @@
     --landing-page-background-color: var(--lp-dark-background);
 
     --landing-page-header-text-color: var(--lp-dark-on-background);
+    --landing-page-header-name-text-color: var(--lp-dark-primary);
     --landing-page-body-text-color: var(--lp-dark-on-background);
 
     --landing-page-button-background-color: var(--lp-dark-primary);
@@ -365,8 +374,12 @@
     --landing-page-button-hover-text-color: var(--lp-dark-on-secondary);
     
     --landing-page-heavy-border-color: var(--lp-dark-background);
+    --landing-page-heavy-border-hover-color: var(--lp-dark-primary);
 
-    --section-header-text-color: var(--lp-dark-on-background);
+    --scroll-container-background-color: var(--full-black);
+
+    // --section-header-text-color: var(--lp-dark-on-background);
+    --section-header-text-color: var(--lp-dark-primary);
     --section-button-background-color: var(--lp-dark-primary);
     --section-button-text-color: var(--lp-dark-on-primary);
 
@@ -404,6 +417,40 @@
 
 }
 
+// for skill card
+@mixin textSkillCardHeader {
+    @include global.textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(heading-l), $line-height: globalVar.globalLineHeight(heading-l));    
+    font-family: var(--global-font-nunito);
+}
+
+// for contact form
+@mixin placeholderText {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    padding: 12px 10px 12px 60px;
+    pointer-events: none;
+    transition: 0.5s;
+
+    @include global.response(xs) {
+        font-size: globalVar.globalFontSize(body-m);
+    }
+}
+
+@mixin placeholderFocusStyles {
+    position: absolute;
+    left: 40px;
+    top: -10px;
+    background-color: #223243;
+    border: 1px solid #00dfc4;
+    border-radius: 10px;
+    color: #00dfc4;
+    font-size: 0.8em;
+    letter-spacing: 0.1px;
+    padding: 0 8px;
+}
+
 
 // from css tricks spiffyButtonStyles mixin
 @mixin contactSpiffyButtonStyles {
@@ -411,14 +458,13 @@
     @include contactBoxShadowRaisedUpperLeftLowerRight;
     @include global.textButtonMain;
     @include global.globalColors(var(--landing-page-button-background-color), var(--landing-page-button-text-color));
-    // background-color: var(--landing-page-button-background-color);
     border: none;
     border-radius: 25px;
-    // color: var(--landing-page-button-text-color);
     cursor: pointer;
     font-weight: 700;
     letter-spacing: 4px;
     padding: 10px 0;
+    text-align: center;
     width: 100%;
     
     &:hover {
@@ -426,11 +472,30 @@
 
     }
 
-    .button-text {
-        align-self: center;
-        font-size: 1em;
-        transition: 0.5s;
+    @include global.response(lg-xl) {
+        font-size: globalVar.globalFontSize(heading-s-m);
+        letter-spacing: 2px;
     }
+
+    @include global.response(md-lg) {
+        // font-size: globalVar.globalFontSize(heading-s-m);
+        letter-spacing: 0;
+    }
+
+    @include global.response(md) {
+        font-size: globalVar.globalFontSize(heading-m);
+        letter-spacing: 2px;
+    }
+    
+    @include global.response(sm) {
+        letter-spacing: 4px;
+    }
+    
+    @include global.response(xxs) {
+        font-size: globalVar.globalFontSize(heading-s-m);
+        letter-spacing: 1px;
+    }
+
 }
 
 @mixin contactBoxShadowRaisedUpperLeftLowerRight {
@@ -440,9 +505,173 @@
                 inset 5px 5px 15px rgba(0,0,0, 0.35);
 }
 
-@mixin contactBorder8pxSolid($color: black) {
-    border: 8px solid $color;
+@mixin contactBorderSolid($size: 8px, $color: black) {
+    border: $size solid $color;
 }
+
+//////////////////////////// HEXAGONS //////////////////////////
+
+@mixin hexContainer {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+    // container
+	// min-height: calc(100vh - 145px);    // 145 = nav height + tab bar height
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
+    
+    .row {
+        display: inline-flex;
+
+
+        margin-top: -32px;
+        margin-left: -50px;
+
+        // margin-top: -19px;
+        // margin-left: -25px;
+
+        &:first-of-type {
+            margin-top: -55px;
+        }
+
+        &:nth-child(even) {
+            margin-left: 1px;
+        }
+
+        .hexagon-outlined {
+            @include hexagonOutlined;
+            @include hoverColor;
+            @include animation4SLinearInfinite;
+
+        }
+    }
+    
+}
+
+@mixin animation4SLinearInfinite {
+    animation: animate 4s linear infinite;      // infinite makes it continuous
+
+    // rotates through the color hues to make hex color change in 4s cycles
+    @keyframes animate {
+        0% {
+            filter: hue-rotate(0deg);
+        }
+        100% {
+            filter: hue-rotate(360deg);
+        }
+    }
+}
+
+@mixin hexagonSolid {
+    background-color: #111;
+    position: relative;
+    margin: 1px;
+
+    height: 110px;
+    width: 100px;
+
+    // height: 55px;
+    // width: 50px;
+
+
+    // flat side top/bottom - this doesn't look evenly distrib'd.  taller than wide
+    // clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+
+    // flat side left/right - looks height width ~equal
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+    transition: 2s;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.02);
+        z-index: 10;
+    }
+}
+
+@mixin hexagonOutlined {
+    @include hexagonSolid;
+    
+    margin: 2px;
+    
+    // margin: 1px;
+
+    // This puts a mask on the solid hexagon so it looks outlined
+    &:after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 4px;
+        right: 4px;
+        background: #111;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        z-index: 1;
+    }
+
+}
+
+@mixin halfHexagonTopOutlined {
+    background-color: #111;
+    position: relative;
+    margin: 2px;
+
+    // height: 110px;
+    // width: 100px;
+
+    height: 55px;
+    width: 100px;
+    clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
+    
+    // height: 110px;
+    // width: 100px;
+    // clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%);
+
+    transition: 2s;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.02);
+        z-index: 10;
+    }
+
+    // This puts a mask on the solid hexagon so it looks outlined
+    &:after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        bottom: 0;
+        left: 4px;
+        right: 4px;
+        background: #111;
+        clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
+        z-index: 1;
+    }
+}
+
+@mixin hoverColor($color: #0f0) {
+    &:hover {
+        transition: 0s;
+        background-color: $color;
+    }
+}
+
+///////////////////////////////////////////////////////////////
 
 // $color lookup var
 

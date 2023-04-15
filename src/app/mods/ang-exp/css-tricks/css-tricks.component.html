@@ -9,6 +9,20 @@
 
 >
 
+    <mat-tab label="Hexagons outlined">
+
+        <div class="hex-outlined-container">
+
+            <div class="row" *ngFor="let row of items">
+                
+                <div class="hexagon-outlined" *ngFor="let hex of items"></div>
+
+            </div>
+
+        </div>
+
+    </mat-tab>
+
     <mat-tab label="3-way switch">
 
         <div class="switch">
@@ -138,10 +152,12 @@
         </div>
 
     </mat-tab>
-    <mat-tab label="Hexagons outlined">
+    
+    <!-- <mat-tab label="Hexagons outlined">
 
         <div class="hex-outlined-container">
 
+            <div class="hexagon-outlined" *ngFor="let hex of items"></div>
             <div class="row" *ngFor="let row of items">
                 
                 <div class="hexagon-outlined" *ngFor="let hex of items"></div>
@@ -150,7 +166,7 @@
 
         </div>
 
-    </mat-tab>
+    </mat-tab> -->
 
     <mat-tab label="Hexagons cursor">
 
