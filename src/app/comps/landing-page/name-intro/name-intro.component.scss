@@ -1,0 +1,41 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/global-variables' as globalVar;
+@use '../landing-page-variables' as landingPageVar;
+@import "styles.scss";
+
+.name-intro-container {
+    @include global.flexboxLayout(column, flex-start, center);
+    margin-bottom: 30px;
+
+    .welcome-title-text {
+        @include global.textTitle;
+        color: var(--landing-page-header-text-color);
+        margin: 20px 0;
+        text-align: center;
+
+        @include global.response(md) {
+            margin: 10px 0;
+        }
+
+    }
+    
+    .welcome-pre-name-text {
+        @include global.textTitle;
+        color: var(--landing-page-header-text-color);
+        font-size: globalVar.globalFontSize(heading-l);
+        text-align: center;
+    }
+    
+    .welcome-name-text {
+        @include global.textName;
+        color: var(--landing-page-header-name-text-color);
+    }
+
+    .welcome-name-description {
+        @include global.textTitle;
+        color: var(--landing-page-header-name-description-text-color);
+        font-size: globalVar.globalFontSize(heading-m);
+        margin-top: 20px;
+        text-align: center;
+    }
+}
