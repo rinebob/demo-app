@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject, OnInit, ViewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -15,8 +16,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent implements AfterViewInit, OnInit {
   @HostBinding('class') theme = 'landing-page-dark-theme';
+  @ViewChild('scrollContainer') scrollContainer: ElementRef;
+  @ViewChild('mainContainer') mainContainer: ElementRef;
 
   contactForm = new FormGroup({
     nameControl: new FormControl(''),
@@ -38,10 +41,38 @@ export class LandingPageComponent implements OnInit {
   viewModeBS = new BehaviorSubject<ViewMode>('light');
   viewModeOn$: Observable<ViewMode> = this.viewModeBS;
 
+
+  ////////// HEXAGON ROW SIZING /////////////
+  // Hexagon size = 110px x 100px
+  // Height of a row of hexagons when properly aligned.  Used to calc the number of
+  // rows of hexagons to render for the page background effect
+  // Height of hexagon (110px) plus row margin top (-32px) plus 2px margin = 80px;
+  rowHeight = 81;
+
+  // Hexagon size = 55px x 50px
+  // Height of hexagon (55px) plus row margin top (-19px) plus 1px margin = 37px;
+  // rowHeight = 37;
+
+
+  numRowsBS = new BehaviorSubject<number>(0);
+  numRows$: Observable<number> = this.numRowsBS;
+  
+  // numItems = 20;
+  numItemsBS = new BehaviorSubject<number>(0);
+  numItems$: Observable<number> = this.numItemsBS;
+  rows1: any[] = [];
+  rows2: any[] = [];
+  scrollHeight = 0;
+  scrollWidth = 0;
+  
+  itemWidth = 51;
+  items: any[] = [];
+  
   constructor(private route:ActivatedRoute,
     private scrollService: ScrollService,
     private router:Router,
-    private _overlayContainer: OverlayContainer, 
+    private _overlayContainer: OverlayContainer,
+    @Inject(DOCUMENT) private document: Document,
     ) {
       this.applyTheme(this.theme);
     }
@@ -51,6 +82,39 @@ export class LandingPageComponent implements OnInit {
     this.contactForm.valueChanges.pipe().subscribe(changes => {
       // console.log('lP ngOI contact form value changes sub: ', changes);
     });
+  }
+
+  ngAfterViewInit(): void {
+    const scrollCoords = this.scrollContainer.nativeElement.getBoundingClientRect();
+    const mainCoords = this.mainContainer.nativeElement.getBoundingClientRect();
+    // console.log('lP ngAVI main container coords: ', coords);
+    console.log('lP ngAVI scroll width/main height: ', scrollCoords.width, mainCoords.height);
+
+    this.scrollHeight = mainCoords.height;
+    this.scrollWidth = scrollCoords.width;
+    
+    let numRows = Math.floor(mainCoords.height / this.rowHeight);
+
+    numRows = numRows % 2 === 0 ? numRows : numRows - 1;
+
+    const numItems = Math.ceil(scrollCoords.width / this.itemWidth)
+    
+    
+    console.log('lP ngAVI numRows/numItems: ', numRows, numItems);
+    this.numRowsBS.next(numRows);
+    this.numItemsBS.next(numItems);
+    this.updateNumRows();
+    
+    
+  }
+  
+  updateNumRows() {
+    const numRows = Math.floor(this.numRowsBS.value);
+    // console.log('lP uNR numRows: ', numRows);
+    this.rows1 = new Array(numRows);
+    this.rows2 = new Array(7);
+    this.items = new Array(this.numItemsBS.value);
+    
   }
 
   handleTopnavMenuOpen() {
@@ -67,7 +131,7 @@ export class LandingPageComponent implements OnInit {
   }
 
   handleUpdateViewMode(mode: ViewMode) {
-    // console.log('lP hUVM change to view mode: ', mode);
+    console.log('lP hUVM change to view mode: ', mode);
 
     this.setViewModePreference(mode);
     
@@ -75,6 +139,7 @@ export class LandingPageComponent implements OnInit {
 
   initializeViewMode() {
     const preferredMode = this.getViewModePreference();
+    // console.log('lP iVM preferred mode: ', preferredMode);
     this.setViewModePreference(preferredMode);
   }
 
@@ -97,6 +162,7 @@ export class LandingPageComponent implements OnInit {
     localStorage.setItem('view-mode-preference', mode);
     // console.log('lP sVMP set view mode in local storage: ', localStorage.getItem('view-mode-preference'));
     this.viewModeBS.next(mode);
+    // console.log('lP sVMP view mode post: ', this.viewModeBS.value);
     if (mode === 'light') {
       this.theme = 'landing-page-light-theme';
     } else {

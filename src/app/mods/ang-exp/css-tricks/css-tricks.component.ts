@@ -14,7 +14,7 @@ export class CssTricksComponent implements AfterViewInit {
   @ViewChild('cursorRef', {read: ElementRef}) cursorRef: ElementRef;
   cursor: HTMLElement;
 
-  numItems = 25;
+  numItems = 30;
   items = new Array(this.numItems);
 
   readonly ICON_NAV_BAR_LINKS = ICON_NAV_BAR_LINKS;

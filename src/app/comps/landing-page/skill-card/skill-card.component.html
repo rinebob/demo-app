@@ -5,7 +5,12 @@
 
         <mat-card-content>
             
-            <img src="{{skill.imageSrc}}" alt="skill image" class="skill-logo">
+            <div class="logo-container">
+                
+                <div class="github-backing-circle" *ngIf="skill.title === 'Git'"></div>
+                <img src="{{skill.imageSrc}}" alt="skill image" class="skill-logo">
+
+            </div>
 
             <div class="text-container">
                 

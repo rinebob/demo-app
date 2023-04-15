@@ -86,8 +86,8 @@
     letter-spacing: 1px;
 }
 
-@mixin textDescription {
-    @include textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(body-l), $line-height: globalVar.globalLineHeight(body-l));
+@mixin textDescription($font-weight: 400, $font-size: globalVar.globalFontSize(body-l), $line-height: globalVar.globalLineHeight(body-l)) {
+    @include textSizes($font-weight, $font-size, $line-height);
     font-family: var(--global-font-exo)
 }
 
@@ -256,6 +256,12 @@
             @content;
         }
     }
+
+    @if($breakpoint == lg-xl) {
+        @media(max-width: 1100px) {
+            @content;
+        }
+    }
     
     @if($breakpoint == lg) {
         @media(max-width: 1000px) {
@@ -289,6 +295,12 @@
     
     @if($breakpoint == sm) {
         @media(max-width: 560px) {
+            @content;
+        }
+    }
+    
+    @if($breakpoint == xs-sm) {
+        @media(max-width: 500px) {
             @content;
         }
     }

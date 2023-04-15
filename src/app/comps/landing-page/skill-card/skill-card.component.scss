@@ -10,32 +10,79 @@ mat-card {
     flex-grow: 1;
     margin: 0 10px;
     padding: 6px 24px;
+
+    @include global.response(xl) {
+        padding: 6px 18px;
+    }
+
+    @include global.response(xl) {
+        padding: 6px 24px;
+    }
+    
+    @include global.response(sm-md) {
+        margin: 0 6px;
+        padding: 6px 12px;
+    }
+    
+    @include global.response(sm) {
+        margin: 0 4px;
+        padding: 12px;
+    }
+
+    @include global.response(xs-sm) {
+        margin: 0 10px;
+        padding: 6px 24px;
+    }
     
     mat-card-content {
         @include global.flexboxLayout(row, flex-start, center);
         padding: 16px 0;
         width: 100%;
+        position: relative;
 
+        @include global.response(sm-md) {
+            padding: 12px 8px;
+        }
+        
         @include global.response(sm) {
-            padding: 8px;
+            padding: 0;
+        }
+
+        @include global.response(xs-sm) {
+            padding: 16px 0;
+        }
+       
+        @include global.response(xxs) {
+            padding: 8px 0;
         }
         
         .skill-logo {
+            position: relative;
             width: globalVar.globalFontSize(heading-xl);
             
-            
-            @include global.response(lg) {
-                width: globalVar.globalFontSize(heading-l-xl);
-            }
-
             @include global.response(sm-md) {
-                width: globalVar.globalFontSize(heading-m-l);
+                width: globalVar.globalFontSize(heading-l);
             }
 
-            @include global.response(xxs) {
-                width: globalVar.globalFontSize(heading-l-xl);
+            @include global.response(xs-sm) {
+                width: globalVar.globalFontSize(heading-xl);
                 
             }
+        }
+
+        .logo-container {
+            position: relative;
+        }
+
+        .github-backing-circle {
+            position: absolute;
+            background-color: var(--social-icon-backing-circle-color);
+            height: 20px;
+            width: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
         }
 
         .text-container {
@@ -43,20 +90,27 @@ mat-card {
             width: 100%;
             
             .skill-title {
-                @include global.textSectionSubheader;
+                @include landingPageVar.textSkillCardHeader;
                 color: var(--skill-card-title-color);
-    
-                @include global.response(lg) {
+
+                @include global.response(xl) {
                     font-size: globalVar.globalFontSize(heading-m-l);
                 }
     
-                @include global.response(sm-md) {
+                @include global.response(md-lg) {
+                    font-size: globalVar.globalFontSize(heading-l);
+                }
+    
+                @include global.response(sm) {
                     font-size: globalVar.globalFontSize(heading-m);
                 }
-    
+                
+                @include global.response(xs-sm) {
+                    font-size: globalVar.globalFontSize(heading-l);
+                }
+                
                 @include global.response(xxs) {
-                    font-size: globalVar.globalFontSize(heading-m-l);
-                    
+                    font-size: globalVar.globalFontSize(heading-m);
                 }
             }
         }

@@ -55,21 +55,57 @@
         
     </nav>
 
-    <div class="scroll-container">
+    <div class="scroll-container" #scrollContainer>
 
-        <main class="main-container"  id="welcome">
+        <div class="animations-container-top" *ngIf="viewModeBS.value === 'dark'">
+
+            <div class="rows-container">
+                
+                <div class="row" *ngFor="let row of rows1">
+                        
+                    <div class="hexagon-outlined" *ngFor="let hex of items"></div>
+    
+                </div>
+
+            </div>
+
+            <div class="half-row">
+                        
+                <div class="hexagon-half" *ngFor="let hex of items"></div>
+
+            </div>
+
+        </div>
+
+        <main class="main-container"  id="welcome"  #mainContainer>
 
             <section class="welcome-container">
+
+                <div class="welcome-header">
+
+                    <h2 class="welcome-title-text">Hello!</h2>
+                    
+                    <div class="name-container">
+                        <p class="welcome-pre-name-text">I'm </p><p class="welcome-name-text">Robert</p>
+                    </div>
+
+                </div>
 
                 <div class="welcome-top">
 
                     <div class="welcome welcome-left">
-        
-                        <h2 class="welcome-title-text">Hello!</h2>
-                    
-                        <div class="name-container">
-                            <p class="welcome-pre-name-text">I'm </p><p class="welcome-name-text">Robert</p>
+
+                        <div class="left-name-container">
+                            
+                            <h2 class="welcome-title-text">Hello!</h2>
+                        
+                            <div class="name-container">
+                                <p class="welcome-pre-name-text">I'm </p>
+                                <p class="welcome-name-text">Robert</p>
+                            </div>
+
                         </div>
+        
                         
                         <p class="welcome-description-text">{{WELCOME_TEXT}}</p>
                     
@@ -173,8 +209,8 @@
                     
                     <div class="contact-left">
 
-                            <p class="subtitle-text">Contact me!</p>
-                            <p class="description-text contact-description">I'm currently seeking new opportunities and I' really like to hear from you!.  If you think my skill set is a match for your project please contact me here or through any of my channels.  Looking forward to meeting you soon.</p>
+                            <p class="subtitle-text">Let's get in touch!</p>
+                            <p class="description-text contact-description">I'm currently seeking new opportunities and I' really like to hear from you!.  If you think my skill set is a match for your team please contact me here or through any of my channels.  I love coding and I'll be a dedicated and focused employee.  Looking forward to meeting you soon.</p>
         
                     </div>
                     
@@ -190,7 +226,7 @@
 
         </main>
 
-        <footer class="footer-container">
+        <!-- <footer class="footer-container">
             
             <p class="header-text footer-title">Robert Rinehart</p>
             <div class="footer-buttons-container">
@@ -199,8 +235,19 @@
                 
             </div>
 
-        </footer>
+        </footer> -->
         
 
     </div>
+
+    <footer class="footer-container">
+            
+        <p class="header-text footer-title">Robert Rinehart</p>
+        <div class="footer-buttons-container">
+
+            <app-social-icon-links></app-social-icon-links>
+            
+        </div>
+
+    </footer>
 </div>
