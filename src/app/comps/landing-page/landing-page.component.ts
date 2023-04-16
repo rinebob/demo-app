@@ -1,12 +1,12 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject, OnInit, ViewChild } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import {Subject, fromEvent} from 'rxjs';
+import {debounceTime, takeUntil} from 'rxjs/operators';
 
 import { ScrollService } from '../../services/scroll-service.service';
-import { APP_SIDENAV_BUTTONS, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
-import { Contact, ViewMode } from 'src/app/common/interfaces';
+import { APP_SIDENAV_BUTTONS, CONTACT_MESSAGE_TEXT, CONTACT_SUBTITLE_TEXT, LANDING_PAGE_THEME_START_TEXT, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, ROBERT_RINEHART_TEXT, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
+import { AppTheme, Contact, LandingPageSection, ViewMode } from 'src/app/common/interfaces';
 import { ThemePalette } from '@angular/material/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -16,11 +16,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./landing-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingPageComponent implements AfterViewInit, OnInit {
-  @HostBinding('class') theme = 'landing-page-dark-theme';
+export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
+  @HostBinding('class') theme = AppTheme.LANDING_PAGE_DARK;
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
   @ViewChild('mainContainer') mainContainer: ElementRef;
-
+  destroy = new Subject<void>();
+  
   contactForm = new FormGroup({
     nameControl: new FormControl(''),
     emailControl: new FormControl(''),
@@ -32,7 +33,11 @@ export class LandingPageComponent implements AfterViewInit, OnInit {
   readonly RINEBOB_PROJECTS = RINEBOB_PROJECTS;
   readonly APP_SIDENAV_BUTTONS = APP_SIDENAV_BUTTONS;
   readonly WELCOME_BUTTONS = WELCOME_BUTTONS;
+  readonly ROBERT_RINEHART_TEXT = ROBERT_RINEHART_TEXT;
   readonly WELCOME_TEXT = WELCOME_TEXT;
+  readonly CONTACT_MESSAGE_TEXT = CONTACT_MESSAGE_TEXT;
+  readonly CONTACT_SUBTITLE_TEXT = CONTACT_SUBTITLE_TEXT;
+  readonly LandingPageSection = LandingPageSection;
   
   globalTopnavMenuCssClass = 'global-topnav-menu-css';
   fragment = '';
@@ -48,35 +53,27 @@ export class LandingPageComponent implements AfterViewInit, OnInit {
   // rows of hexagons to render for the page background effect
   // Height of hexagon (110px) plus row margin top (-32px) plus 2px margin = 80px;
   rowHeight = 81;
+  itemWidth = 51;
 
   // Hexagon size = 55px x 50px
   // Height of hexagon (55px) plus row margin top (-19px) plus 1px margin = 37px;
   // rowHeight = 37;
-
-
+  
   numRowsBS = new BehaviorSubject<number>(0);
-  numRows$: Observable<number> = this.numRowsBS;
+  rowsBS = new BehaviorSubject<any[]>(new Array(0));
+  rows$: Observable<any[]> = this.rowsBS;
   
-  // numItems = 20;
   numItemsBS = new BehaviorSubject<number>(0);
-  numItems$: Observable<number> = this.numItemsBS;
-  rows1: any[] = [];
-  rows2: any[] = [];
-  scrollHeight = 0;
-  scrollWidth = 0;
-  
-  itemWidth = 51;
-  items: any[] = [];
-  
-  constructor(private route:ActivatedRoute,
-    private scrollService: ScrollService,
-    private router:Router,
+  itemsBS = new BehaviorSubject<any[]>(new Array(this.numItemsBS.value));
+  items$: Observable<any[]> = this.itemsBS;
+    
+  constructor(private scrollService: ScrollService,
     private _overlayContainer: OverlayContainer,
-    @Inject(DOCUMENT) private document: Document,
     ) {
       this.applyTheme(this.theme);
-    }
-
+      this.initializeViewportCoords();
+  }
+    
   ngOnInit () {
     this.initializeViewMode();
     this.contactForm.valueChanges.pipe().subscribe(changes => {
@@ -85,36 +82,50 @@ export class LandingPageComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    const scrollCoords = this.scrollContainer.nativeElement.getBoundingClientRect();
-    const mainCoords = this.mainContainer.nativeElement.getBoundingClientRect();
-    // console.log('lP ngAVI main container coords: ', coords);
-    console.log('lP ngAVI scroll width/main height: ', scrollCoords.width, mainCoords.height);
+    setTimeout(() => {
+      this.getScreenCoords();
+      this.updateNumRows();
+    });
+  }
 
-    this.scrollHeight = mainCoords.height;
-    this.scrollWidth = scrollCoords.width;
-    
-    let numRows = Math.floor(mainCoords.height / this.rowHeight);
+  ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
+  }
 
-    numRows = numRows % 2 === 0 ? numRows : numRows - 1;
+  initializeViewportCoords() {
+    fromEvent(window, 'resize').pipe(
+      debounceTime(300),
+      takeUntil(this.destroy)
+    ).subscribe((event: any) => {
+      // console.log('lP iVC window resize sub: ', event);
+      this.getScreenCoords();
+      this.updateNumRows();
+    });
+  }
 
-    const numItems = Math.ceil(scrollCoords.width / this.itemWidth)
-    
-    
-    console.log('lP ngAVI numRows/numItems: ', numRows, numItems);
-    this.numRowsBS.next(numRows);
-    this.numItemsBS.next(numItems);
-    this.updateNumRows();
-    
-    
+  getScreenCoords() {
+    if (this.scrollContainer && this.mainContainer) {
+      const scrollCoords = this.scrollContainer.nativeElement.getBoundingClientRect();
+      const mainCoords = this.mainContainer.nativeElement.getBoundingClientRect();
+      // console.log('lP gSC main container coords: ', mainCoords);
+      // console.log('lP gSC scroll width/main height: ', scrollCoords.width, mainCoords.height);
+  
+      let numRows = Math.floor(mainCoords.height / this.rowHeight);
+      numRows = numRows % 2 === 0 ? numRows : numRows - 1;
+      const numItems = Math.ceil(scrollCoords.width / this.itemWidth)
+      
+      // console.log('lP gSC numRows/numItems: ', numRows, numItems);
+      this.numRowsBS.next(numRows);
+      this.numItemsBS.next(numItems);
+    }
   }
   
   updateNumRows() {
     const numRows = Math.floor(this.numRowsBS.value);
     // console.log('lP uNR numRows: ', numRows);
-    this.rows1 = new Array(numRows);
-    this.rows2 = new Array(7);
-    this.items = new Array(this.numItemsBS.value);
-    
+    this.rowsBS.next(new Array(numRows));
+    this.itemsBS.next(new Array(this.numItemsBS.value));
   }
 
   handleTopnavMenuOpen() {
@@ -131,10 +142,8 @@ export class LandingPageComponent implements AfterViewInit, OnInit {
   }
 
   handleUpdateViewMode(mode: ViewMode) {
-    console.log('lP hUVM change to view mode: ', mode);
-
+    // console.log('lP hUVM change to view mode: ', mode);
     this.setViewModePreference(mode);
-    
   }
 
   initializeViewMode() {
@@ -158,15 +167,14 @@ export class LandingPageComponent implements AfterViewInit, OnInit {
   }
 
   setViewModePreference(mode: ViewMode) {
-    
     localStorage.setItem('view-mode-preference', mode);
     // console.log('lP sVMP set view mode in local storage: ', localStorage.getItem('view-mode-preference'));
     this.viewModeBS.next(mode);
     // console.log('lP sVMP view mode post: ', this.viewModeBS.value);
     if (mode === 'light') {
-      this.theme = 'landing-page-light-theme';
+      this.theme = AppTheme.LANDING_PAGE_LIGHT;
     } else {
-      this.theme = 'landing-page-dark-theme';
+      this.theme = AppTheme.LANDING_PAGE_DARK;
     }
   }
 
@@ -180,7 +188,7 @@ export class LandingPageComponent implements AfterViewInit, OnInit {
     const overlayContainerClasses = this._overlayContainer.getContainerElement().classList;
     // console.log('lP aT container classes pre: ', overlayContainerClasses);
     const themeClassesToRemove = Array.from(overlayContainerClasses)
-    .filter((item: string) => item.includes('landing-page-'));
+    .filter((item: string) => item.includes(LANDING_PAGE_THEME_START_TEXT));
     if (themeClassesToRemove.length) {
       overlayContainerClasses.remove(...themeClassesToRemove);
     }

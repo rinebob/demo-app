@@ -1,4 +1,4 @@
-import { Assignment, ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict, TourStop } from "./interfaces";
+import { ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -137,7 +137,7 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
         employer: 'EPAM Systems, Inc. – Newtown, PA',
         tenure: 'August 2019 to February 2023',
         title: 'Senior Software Engineer',
-        headline: 'Frontend developer assigned to Google (Sunnyvale, CA) account.',
+        headline: 'Frontend developer assigned to Google (Sunnyvale, CA) account',
         description: '',
         assignments: [
             {
@@ -353,4 +353,12 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
 
 export const EMPTY_BOARD_TEXT = 'This board is empty.  Create a new task to get started.';
 
-export const WELCOME_TEXT = 'I\'m a frontend developer specializing in Angular and the Angular ecosystem.  I really love working with Angular!  It\'s amazing how easily you can bring your ideas to the web no matter how big or small.  I\'m super excited and eager to join an Angular team and make an important contribution on a special project!';
+export const ROBERT_RINEHART_TEXT = 'robert rinehart';
+
+export const WELCOME_TEXT = 'I\'m a frontend developer specializing in Angular and the Angular ecosystem.  Coding is my passion and Angular is how I make the magic happen!  With Angular it\'s amazing how easily you can bring your ideas to the web no matter how big or small.  I\'m super excited and eager to join an Angular team and make an important contribution to a special company!';
+
+export const LANDING_PAGE_THEME_START_TEXT = 'landing-page-';
+
+export const CONTACT_SUBTITLE_TEXT = 'Let\'s get in touch!';
+
+export const CONTACT_MESSAGE_TEXT = 'I\'m currently seeking new opportunities and I\'d really like to hear from you!  If you think my skill set is a match for your team please contact me here or through LinkedIn.  I love coding and I\'ll be a dedicated and focused employee.  Looking forward to meeting you soon.';

@@ -33,12 +33,14 @@
 
     ///////////////// COLOR SCHEMES FOR LIGHT MODE ///////////////////////////
 
+    // USE THIS ONE
     --byzantium: #820263ff;
     --dogwood-rose: #d90368ff;
     --timberwolf: #eadedaff;
     --space-cadet: #2e294eff;
     --gold: #ffd400ff;
 
+    // USE THIS ONE
     --lp-background: var(--timberwolf);
     --lp-on-background: var(--space-cadet);
     --lp-primary: var(--space-cadet);
@@ -285,7 +287,8 @@
 
     --landing-page-header-text-color: var(--lp-on-background);
     --landing-page-header-name-text-color: var(--lp-primary);
-    --landing-page-header-name-description-text-color: var(--lp-secondary);
+    --landing-page-header-name-description-text-color: var(--lp-on-secondary);
+    --landing-page-header-name-description-text-background-color: var(--lp-secondary);
     --landing-page-body-text-color: var(--lp-on-background);
     
     --landing-page-button-background-color: var(--lp-primary);
@@ -358,7 +361,7 @@
     --lp-three-way-toggle-border-color: var(--lp-dark-on-accent-2);
     --lp-three-way-toggle-trough-color: var(--lp-dark-primary);
     --lp-three-way-toggle-icon-color: var(--lp-dark-accent-1);
-    --lp-three-way-toggle-icon-active-color: var(--lp-dark-on-accent-1);
+    --lp-three-way-toggle-icon-active-color: var(--lp-dark-accent-2);
 
     --social-icon-backing-circle-color: var(--landing-page-nav-background-color);
 
@@ -367,7 +370,8 @@
 
     --landing-page-header-text-color: var(--lp-dark-on-background);
     --landing-page-header-name-text-color: var(--lp-dark-primary);
-    --landing-page-header-name-description-text-color: var(--lp-dark-secondary);
+    --landing-page-header-name-description-text-color: var(--lp-dark-accent-2);
+    --landing-page-header-name-description-text-background-color: var(--lp-dark-secondary);
     --landing-page-body-text-color: var(--lp-dark-on-background);
 
     --landing-page-button-background-color: var(--lp-dark-primary);
@@ -397,7 +401,9 @@
     --project-card-overlay-button-background-color: var(--lp-dark-secondary);
     --project-card-overlay-button-text-color: var(--lp-dark-on-secondary);
 
-    --experience-section-subheader-text-color: var(--lp-dark-on-background);
+    --experience-section-subheader-text-color: var(--lp-dark-primary);
+    --experience-section-accent-text-color: var(--lp-dark-secondary);
+    --experience-section-accent-text-background-color: var(--lp-dark-accent-1);
     --experience-section-body-text-color: var(--lp-dark-on-background);
     
     --contact-section-subheader-text-color: var(--lp-dark-on-background);

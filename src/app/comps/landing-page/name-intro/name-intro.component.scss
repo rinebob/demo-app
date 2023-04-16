@@ -32,10 +32,15 @@
     }
 
     .welcome-name-description {
-        @include global.textTitle;
+        @include global.textButtonMain;
+        background-color: var(--landing-page-header-name-description-text-background-color);
+        border-radius: 18px;
         color: var(--landing-page-header-name-description-text-color);
         font-size: globalVar.globalFontSize(heading-m);
+        font-weight: 700;
+        letter-spacing: 3px;
         margin-top: 20px;
+        padding: 10px 20px;
         text-align: center;
     }
 }

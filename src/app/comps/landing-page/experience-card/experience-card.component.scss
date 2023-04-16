@@ -62,9 +62,10 @@
         .subtitle-text {
             @include global.textSubtitle;
             @include global.textSizes($font-size: globalVar.globalFontSize(heading-m-l), $line-height: globalVar.globalLineHeight(heading-m-l));
+            align-self: center;
             color: var(--experience-section-subheader-text-color);
 
-            @include global.response(xl) {
+            @include global.response(lg) {
                 @include global.textSizes($font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
             }
 
@@ -76,13 +77,22 @@
 
         .accent-text {
             @include global.textDescription;
-            color: var(--experience-section-body-text-color);
+            align-self: center;
+            background-color: var(--landing-page-header-name-description-text-background-color);
+            border-radius: 30px;
+            color: var(--landing-page-header-name-description-text-color);
+            font-size: globalVar.globalFontSize(body-l);
+            letter-spacing: 3px;
+            margin: 10px 0 24px;
+            padding: 15px 20px;
+            text-align: center;
+            text-transform: uppercase;
         }
     
         .description-text {
             @include global.textDescription;
+            line-height: globalVar.globalLineHeight(body-xl);
             color: var(--experience-section-body-text-color);
-            line-height: 22px;
         }
     }
 }
