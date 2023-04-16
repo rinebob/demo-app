@@ -241,6 +241,8 @@ export interface DialogData {
   export enum AppTheme {
     APP_LIGHT = 'app-light-theme',
     APP_DARK = 'app-dark-theme',
+    LANDING_PAGE_LIGHT = 'landing-page-light-theme',
+    LANDING_PAGE_DARK = 'landing-page-dark-theme',
     ANG_EXP_LIGHT = 'ang-exp-light-theme',
     ANG_EXP_DARK = 'ang-exp-dark-theme',
     KANBAN_LIGHT = 'kanban-light-theme',
@@ -263,4 +265,11 @@ export interface Contact {
   name: string;
   email: string;
   message: string;
+}
+
+export enum LandingPageSection {
+  SKILLS = 'skills',
+  PROJECTS = 'projects',
+  EXPERIENCE = 'recent experience',
+  CONTACT = 'contact',
 }

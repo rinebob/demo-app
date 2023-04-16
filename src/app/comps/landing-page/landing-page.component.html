@@ -38,7 +38,7 @@
                 
             </mat-menu>
             
-            <h1 class="header-text">Robert Rinehart</h1>
+            <h1 class="header-text">{{ROBERT_RINEHART_TEXT | uppercase}}</h1>
 
         </div>
 
@@ -58,12 +58,12 @@
     <div class="scroll-container" #scrollContainer>
 
         <div class="animations-container-top" *ngIf="viewModeBS.value === 'dark'">
-
+        
             <div class="rows-container">
                 
-                <div class="row" *ngFor="let row of rows1">
+                <div class="row" *ngFor="let row of rows$ | async">
                         
-                    <div class="hexagon-outlined" *ngFor="let hex of items"></div>
+                    <div class="hexagon-outlined" *ngFor="let hex of items$ | async"></div>
     
                 </div>
 
@@ -71,7 +71,7 @@
 
             <div class="half-row">
                         
-                <div class="hexagon-half" *ngFor="let hex of items"></div>
+                <div class="hexagon-half" *ngFor="let hex of items$ | async"></div>
 
             </div>
 
@@ -123,9 +123,9 @@
             <section class="skills" id="skills" #skills>
                 
                 <p class="section-header">
-                    Skills
+                    {{LandingPageSection.SKILLS | uppercase}}
                 </p>
-
+                
                 <div class="skills-container">
 
                     <ng-container *ngIf="RINEBOB_SKILLS as skills">
@@ -145,7 +145,7 @@
             <section class="projects" id="projects" #projects>
 
                 <p class="section-header">
-                    Projects
+                    {{LandingPageSection.PROJECTS | uppercase}}
                 </p>
 
                 <div class="projects-container">
@@ -169,7 +169,7 @@
             <section class="experience" id="experience" #experience>
 
                 <p class="section-header">
-                    Recent Experience
+                    {{LandingPageSection.EXPERIENCE | uppercase}}
                 </p>
 
                 <ng-container *ngIf="RINEBOB_EXPERIENCE as experiences">
@@ -188,21 +188,28 @@
             <section class="contact-container" id="contact" #contact>
 
                 <p class="section-header">
-                    Contact
+                    {{LandingPageSection.CONTACT | uppercase}}
                 </p>
 
                 <div class="contact">
                     
                     <div class="contact-left">
 
-                            <p class="subtitle-text">Let's get in touch!</p>
-                            <p class="description-text contact-description">I'm currently seeking new opportunities and I' really like to hear from you!.  If you think my skill set is a match for your team please contact me here or through any of my channels.  I love coding and I'll be a dedicated and focused employee.  Looking forward to meeting you soon.</p>
+                            <p class="subtitle-text">
+                                {{CONTACT_SUBTITLE_TEXT}}
+                            </p>
+                            
+                            <p class="description-text contact-description">
+                                {{CONTACT_MESSAGE_TEXT}}
+                            </p>
         
                     </div>
                     
                     <div class="contact-right">
 
                         <app-contact-form (contact)="handleContactSubmission($event)"></app-contact-form>
+
+                        <!-- <p class="form-not-working">Sorry!  The form isn't hooked up yet.</p> -->
 
                     </div>
 
@@ -212,23 +219,11 @@
 
         </main>
 
-        <!-- <footer class="footer-container">
-            
-            <p class="header-text footer-title">Robert Rinehart</p>
-            <div class="footer-buttons-container">
-
-                <app-social-icon-links></app-social-icon-links>
-                
-            </div>
-
-        </footer> -->
-        
-
     </div>
 
     <footer class="footer-container">
             
-        <p class="header-text footer-title">Robert Rinehart</p>
+        <p class="header-text footer-title">{{ROBERT_RINEHART_TEXT | uppercase}}</p>
         <div class="footer-buttons-container">
 
             <app-social-icon-links></app-social-icon-links>
