@@ -1,0 +1,82 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+@use './audio-variables' as audioVar;
+
+
+/////////////////// TEXT /////////////////////
+
+@mixin logoText {
+    font: 700 normal 25px/35px var(--au-main-font-family);
+}
+
+@mixin header1Text {
+    font: 700 normal 56px/58px var(--au-main-font-family);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@mixin header2Text {
+    font: 700 normal 40px/44px var(--au-main-font-family);
+    letter-spacing: 1.43px;
+    text-transform: uppercase;
+}
+
+@mixin header3Text {
+    font: 700 normal 32px/36px var(--au-main-font-family);
+    letter-spacing: 1.14px;
+    text-transform: uppercase;
+}
+
+@mixin header4Text {
+    font: 700 normal 28px/38.25px var(--au-main-font-family);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@mixin header5Text {
+    font: 700 normal 24px/32.8px var(--au-main-font-family);
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+}
+
+@mixin header6Text {
+    font: 700 normal 18px/24.6px var(--au-main-font-family);
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+@mixin overlineText {
+    font: 400 normal 14px/19.1px var(--au-main-font-family);
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+@mixin subtitleText {
+    font: 700 normal 13px/25px var(--au-main-font-family);
+    letter-spacing: 0.93px;
+    text-transform: uppercase;
+}
+
+@mixin bodyText {
+    font: 500 normal 15px/25px var(--au-main-font-family);
+
+}
+
+@mixin buttonText {
+    font: 700 normal 13px/18px var(--au-main-font-family);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@mixin buttonStyles {
+    @include buttonText;
+    padding: 15px 30px;
+    
+}
+
+@mixin audioColors($backgroundColor: var(--au-primary-idle), $color: var(--au-on-primary-idle)) {
+    background-color: $backgroundColor;
+    color: $color;
+
+}
+

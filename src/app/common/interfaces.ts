@@ -134,6 +134,7 @@ export interface DialogData {
     BIODATA = 'biodata',
     MAT_THEME = 'mat-theme',
     DESIGN_SYSTEM = 'design-system',
+    AUDIO = 'audio',
   }
 
   export enum AngExpRoutes {

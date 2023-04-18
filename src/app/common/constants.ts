@@ -175,6 +175,7 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
 export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     {url: AppRoutes.ROBERT, text: 'home'},
     {url: AppRoutes.KANBAN, text: 'kanban todo app'},
+    {url: AppRoutes.AUDIO, text: 'audiophile ecom site'},
     // {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
     // {url: AppRoutes.CUBIC_BEZIER, text: 'cubic-bezier site clone'},
     // {url: AppRoutes.BIODATA, text: 'bio data app'},

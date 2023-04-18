@@ -1,0 +1,36 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+
+:root {
+
+    --au-black: #000000;
+    --au-white: #ffffff;
+ 
+    --au-background-color: #0e0e0e;
+    --au-on-background-color: #fff;
+
+    --au-primary-idle: #d87d4a;
+    --au-on-primary-idle: var(--au-white);
+
+    --au-primary-hover: #fbaf85;
+    --au-secondary-idle: #101010;
+    --au-secondary-hover: #ffffff;
+    --au-accent-1-idle: #f1f1f1;
+    --au-accent-1-hover: #000000;
+    --au-accent-2: #fafafa;
+
+    --au-font-manrope: Manrope;
+    --au-main-font-family: var(--au-font-manrope);
+
+    --au-main-side-padding: 165px;
+
+    --nav-header-background-color: var(--au-background-color);
+    --nav-header-text-color: var(--au-on-background-color);
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

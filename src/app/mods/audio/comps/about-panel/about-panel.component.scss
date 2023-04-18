@@ -1,0 +1,47 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+.about-panel-container {
+    @include global.flexboxLayout(row, center, flex-start);
+    background-color: var(--au-white);
+    flex-grow: 1;
+    
+    .about-panel-inner-container {
+        @include global.flexboxLayout(row, space-between, center);
+        // @include global.border1(black, 1px);
+        height: 588px;
+        max-width: 1110px;
+        width: 100%;
+        
+        .left {
+            // @include global.border1(black, 1px);
+            width: 50%;
+
+            .about-text {
+                max-width: 445px;
+            }
+
+            .red-text {
+                color: var(--au-primary-idle);
+            }
+        }
+        
+        img {
+            border-radius: 8px;
+            height: 588px;
+            width: 540px;
+            
+        }
+    }
+
+    .about-headline-text {
+        @include audioMixin.header2Text;
+    }
+    
+    .description-text {
+        @include audioMixin.bodyText;
+
+    }
+}
