@@ -1,0 +1,57 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+.banner-container {
+    @include global.flexboxLayout(row, center, center);
+    background-color: var(--nav-header-background-color);
+    height: 632px;
+    flex-grow: 1;
+
+    .banner-inner-container {
+        @include global.flexboxLayout(row, space-between, center);
+        background-image: url(../../../../../assets/audio/home/desktop/image-hero.jpg);
+        background-size: cover;
+        height: 100%;
+        max-width: 1440px;
+        width: 100%;
+        background-origin: border-box;
+        background-position-y: bottom;
+        // clip-path: circle(28.3% at 67% 54%);
+
+        .left {
+            @include global.flexboxLayout(column, space-between, flex-start);
+            // @include global.border1(white, 1px);
+            margin-top: 128px;
+            width: 50%;
+            z-index: 1;
+
+            .status-text {
+                @include audioMixin.overlineText;
+                color: var(--nav-header-text-color);
+                margin-bottom: 24px;
+                opacity: 50%;
+            }
+            
+            .headline {
+                @include audioMixin.header1Text;
+                color: var(--nav-header-text-color);
+                margin-bottom: 24px;
+            }
+            
+            .description {
+                @include audioMixin.bodyText;
+                color: var(--au-on-background-color);
+                opacity: 75%;
+                max-width: 66%;
+                margin-bottom: 40px;
+            }
+            
+            .see-product-button {
+                @include audioMixin.buttonStyles;
+                @include audioMixin.audioColors;
+            }
+        }
+    }
+}

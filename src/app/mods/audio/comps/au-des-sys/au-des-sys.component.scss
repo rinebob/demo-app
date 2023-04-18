@@ -1,0 +1,11 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+:host {
+    @include global.flexboxLayout(column, flex-start, center);
+    height: 100vh;
+    width: 100%;
+
+}

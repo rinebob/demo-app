@@ -6,7 +6,8 @@ import { LandingPageComponent } from './comps/landing-page/landing-page.componen
 import { DesignSystemComponent } from './comps/design-system/design-system.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
+  // {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
+  {path: '', redirectTo: AppRoutes.AUDIO, pathMatch: 'full'},
   {path: AppRoutes.ROBERT, component: LandingPageComponent},
   {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
   { 
     path: AppRoutes.BIODATA,
     loadChildren: () => import('./mods/bio/bio.module').then(m => m.BioModule)
+  },
+  { 
+    path: AppRoutes.AUDIO,
+    loadChildren: () => import('./mods/audio/audio.module').then(m => m.AudioModule)
   },
   {
     path: '**',

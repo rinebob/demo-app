@@ -103,7 +103,6 @@
         }
 
         .mat-sidenav-content {
-            background-color: var(--background-2);
             overflow-y: hidden;
             position: relative;
     
@@ -125,17 +124,12 @@
                 top: 96%;
                 z-index: 10;
 
-                @include global.response(lg) {
-                    // display: none;
-                }
-
                 &:hover {
                     @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));
                 }
                 
                 .return-home-button-text {
                     @include global.textHeaderM;
-                    // color: transparent;
                     font-size: 10px;
                     font-weight: lighter;
                     letter-spacing: 1.25px;
@@ -154,10 +148,6 @@
                 left: 0;
                 top: 89%;
                 width: 56px;
-
-                @include global.response(lg) {
-                    // display: none;
-                }
 
                 &:hover {
                     @include global.globalColors($background-color: var(--global-grey-2), $color: var(--global-white-1));

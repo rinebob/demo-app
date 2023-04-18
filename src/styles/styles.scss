@@ -4,6 +4,7 @@
 @use "./global-mixins" as global;
 @use "./ng-exp-mixins" as ng-exp;
 @use '../app/comps/landing-page/landing-page-variables' as landingPageVar;
+@use '../app/mods/audio/audio-variables' as audioVar;
 
 @include mat.core();
 @import "./global-variables";
