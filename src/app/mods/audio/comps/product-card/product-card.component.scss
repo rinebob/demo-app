@@ -3,55 +3,64 @@
 @use '../../audio-mixins' as audioMixin;
 @use '../../audio-variables' as audioVar;
 
-.banner-container {
+.product-card-container {
     @include global.flexboxLayout(row, center, center);
-    background-color: var(--nav-header-background-color);
-    height: 632px;
+    background-color: var(--au-light-background);
+    height: 560px;
     flex-grow: 1;
 
-    .banner-inner-container {
+    .product-card-inner-container {
         @include global.flexboxLayout(row, space-between, center);
-        background-image: url(../../../../../assets/audio/home/desktop/image-hero.jpg);
-        background-size: cover;
+        // @include global.border1(black, 1px);
+        
         height: 100%;
         max-width: 1110px;
         width: 100%;
         background-origin: border-box;
         background-position-y: bottom;
-        // clip-path: circle(28.3% at 67% 54%);
 
         .left {
+            background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg);
+            background-size: cover;
+            height: 100%;
+            width: 560px;
+    
+        }
+    
+        .right {
             @include global.flexboxLayout(column, space-between, flex-start);
-            // @include global.border1(white, 1px);
-            margin-top: 128px;
+            // @include global.border1(black, 1px);
             width: 50%;
             z-index: 1;
-
+            margin-left: 30px;
+    
             .status-text {
                 @include audioMixin.overlineText;
-                color: var(--nav-header-text-color);
+                color: var(--au-primary-idle);
                 margin-bottom: 24px;
                 opacity: 50%;
             }
-            
+    
             .headline {
                 @include audioMixin.header1Text;
-                color: var(--nav-header-text-color);
+                color: var(--au-black);
                 margin-bottom: 24px;
             }
-            
+    
             .description {
                 @include audioMixin.bodyText;
-                color: var(--au-on-background-color);
+                color: var(--au-black);
                 opacity: 75%;
                 max-width: 66%;
                 margin-bottom: 40px;
             }
-            
+    
             .see-product-button {
                 @include audioMixin.buttonStyles;
                 @include audioMixin.audioColors;
             }
         }
+
     }
+
 }

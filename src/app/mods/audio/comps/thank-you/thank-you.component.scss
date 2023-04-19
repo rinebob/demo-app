@@ -1,0 +1,126 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+.thank-you-container {
+    @include global.flexboxLayout(column, flex-start, flex-start);
+    @include audioMixin.audioColors(var(--au-light-background), var(--au-on-light-background));
+    border-radius: 8px;
+    padding: 48px;
+    position: relative;
+    width: 540px;
+
+    .checkmark-circle {
+        background-color: var(--au-primary-idle);
+        border-radius: 50%;
+        height: 64px;
+        margin-bottom: 33px;
+        position: relative;
+        width: 64px;
+
+        &:before {
+            content: '';
+            border-right: 4px solid var(--au-white);
+            border-bottom: 4px solid var(--au-white);
+            position: absolute;
+            transform: rotate(45deg);
+            height: 20px;
+            width: 8px;
+            top: 26%;
+            left: 43%;
+            
+        }
+    }
+    
+    .header-text {
+        @include audioMixin.header3Text;
+        margin-bottom: 24px;
+        max-width: 284px;
+    }
+    
+    .message-text {
+        @include audioMixin.bodyText;
+        margin-bottom: 33px;
+        opacity: 0.5;
+
+    }
+
+    .summary-container {
+        @include global.flexboxLayout(row, space-between, center);
+        margin-bottom: 46px;
+        width: 100%;
+        
+        .left {
+            @include global.flexboxLayout(column, space-between, center);
+            padding: 24px;
+            width: 50%;
+            
+            .product-container {
+                @include global.flexboxLayout(row, space-between, flex-start);
+                border-bottom: 1px solid rgba(0,0,0,.08);
+                margin-bottom: 12px;
+                padding-bottom: 12px;
+                width: 100%;
+                
+                img {
+                    width: 52px;
+                }
+                
+                .info-container {
+                    @include global.flexboxLayout(column, space-between, flex-start);
+                    
+                    .product-name-text {
+                        @include audioMixin.bodyText;
+                        font-weight: 700;
+                        margin: 0;
+                        text-transform: uppercase;
+                    }
+    
+                    .price-text {
+                        @include audioMixin.bodyText;
+                        margin: 0;
+                        font-weight: 700;
+                        opacity: 0.5;
+                    }
+                }
+
+                .amount-text {
+                    @include audioMixin.bodyText;
+                    font-weight: 700;
+                    opacity: 0.5;
+                }
+            }
+
+            .remaining-items-text {
+                font: 700 normal 12px/16px var(--au-main-font-family);
+                opacity: 0.5;
+            }
+        }
+
+        .right {
+            background-color: var(--au-black);
+            border-radius: 0 8px 8px 0;
+            width: 50%;
+            padding: 41px 32px;
+
+            .grand-total-text {
+                font: 500 normal 15px/25px var(--au-main-font-family);
+                color: var(--au-white);
+                opacity: 0.5;
+                text-transform: uppercase;
+            }
+
+            .total-cost-text {
+                @include audioMixin.header6Text;
+                color: var(--au-white);
+            }
+        }
+    }
+
+    .back-to-home-button {
+        @include audioMixin.buttonStyles;
+        @include audioMixin.audioColors;
+        width: 100%;
+    }
+}

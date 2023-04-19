@@ -1,0 +1,104 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+.cart-detail-container {
+    @include global.flexboxLayout(column, space-between, flex-start);
+    @include global.border1;
+    padding: 24px;
+    width: 377px;
+
+    .cart-header {
+        @include global.flexboxLayout(row, space-between, center);
+        margin-bottom: 32px;
+        width: 100%;
+        
+        .headline-text {
+            @include audioMixin.header6Text;
+        }
+        
+        .remove-all-text {
+            @include audioMixin.bodyText;
+            opacity: 0.5;
+            text-transform: capitalize;
+            
+        }
+        
+    }
+    
+    .products-list-container {
+        @include global.flexboxLayout(column, space-between, flex-start);
+        margin-bottom: 32px;
+        width: 100%;
+        
+        .product-container {
+            @include global.flexboxLayout(row, space-between, center);
+            margin-bottom: 24px;
+            width: 100%;
+            
+            img {
+                width: 64px;
+            }
+            
+            .product-info-container {
+                @include global.flexboxLayout(column, space-between, flex-start);
+
+                .product-title-text {
+                    @include audioMixin.bodyText;
+                    font-weight: 700;
+                    margin: 0;
+                    text-transform: uppercase;
+
+                }
+
+                .product-cost-text {
+                    @include audioMixin.bodyText;
+                    opacity: 0.5;
+
+                }
+            }
+
+            .quantity-container {
+                @include global.flexboxLayout(row, space-between, center);
+                    
+                .counter-button {
+                    @include audioMixin.subtitleText;
+                    @include audioMixin.audioColors(var(--au-light-background), var(--au-black));
+                    margin-right: 20px;
+                    opacity: 0.25;
+                }
+                
+                .count {
+                    @include audioMixin.subtitleText;
+                    margin-right: 16px;
+                }
+            }
+        }
+
+    }
+
+    .total-container {
+        @include global.flexboxLayout(row, space-between, center);
+        margin-bottom: 24px;
+        width: 100%;
+
+        .total-text {
+            @include audioMixin.bodyText;
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+
+        .amount-text {
+            @include audioMixin.header6Text;
+
+        }
+    }
+
+    .checkout-button {
+        @include audioMixin.buttonStyles;
+        @include audioMixin.audioColors;
+        width: 100%;
+    }
+
+}

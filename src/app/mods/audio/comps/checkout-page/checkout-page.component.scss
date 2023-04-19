@@ -1,0 +1,45 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+:host {
+    @include global.flexboxLayout(column, flex-start, center);
+    height: 100vh;
+    width: 100%;
+    background-color: var(--au-light-background);
+    color: var(--au-on-light-background);
+    overflow: auto;
+
+    app-nav-header,
+    app-breadcrumb-panel,
+    app-nav-footer {
+        width: 100%;
+    }
+
+    .checkout-container {
+        @include global.flexboxLayout(row, flex-start, flex-start);
+        // @include global.border1;
+        padding: 54px 0;
+        width: 1110px;
+
+        .left {
+            // @include global.border1;
+            padding: 0 48px;
+            
+            .header-text {
+                @include audioMixin.header3Text;
+                margin-bottom: 41px;
+            }
+        }
+
+        .right {
+            @include global.flexboxLayout(column, flex-start, flex-start);
+            
+            .summary-text {
+                @include audioMixin.header6Text;
+            }
+        }
+    }
+
+}

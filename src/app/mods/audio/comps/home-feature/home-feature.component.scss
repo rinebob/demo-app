@@ -5,7 +5,7 @@
 
 .home-feature-container {
     @include global.flexboxLayout(row, center, center);
-    background-color: var(--au-white);
+    background-color: var(--au-light-background);
     flex-grow: 1;
     
     .home-feature-inner-container {
