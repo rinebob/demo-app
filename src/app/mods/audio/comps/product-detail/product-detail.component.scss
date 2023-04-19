@@ -1,0 +1,174 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+.product-detail-container {
+    @include global.flexboxLayout(row, center, center);
+    background-color: var(--au-light-background);
+    flex-grow: 1;
+
+    .product-detail-inner-container {
+        @include global.flexboxLayout(column, space-between, flex-start);
+        // @include global.border1(black, 1px);
+        
+        height: 100%;
+        max-width: 1110px;
+        width: 100%;
+        background-origin: border-box;
+        background-position-y: bottom;
+        
+        .top {
+            @include global.flexboxLayout(row, space-between, flex-start);
+            margin-bottom: 160px;
+            
+            .left {
+                background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-product.jpg);
+                background-size: cover;
+                height: 540px;
+                width: 560px;
+            }
+    
+            .right {
+                @include global.flexboxLayout(column, space-between, flex-start);
+                // @include global.border1(black, 1px);
+                width: 50%;
+                z-index: 1;
+                margin-left: 30px;
+        
+                .status-text {
+                    @include audioMixin.overlineText;
+                    color: var(--au-primary-idle);
+                    margin-bottom: 24px;
+                    opacity: 50%;
+                }
+        
+                .headline {
+                    @include audioMixin.header1Text;
+                    color: var(--au-black);
+                    margin-bottom: 24px;
+                }
+        
+                .description {
+                    @include audioMixin.bodyText;
+                    color: var(--au-black);
+                    opacity: 75%;
+                    max-width: 66%;
+                    margin-bottom: 40px;
+                }
+    
+                .price {
+                    @include audioMixin.header6Text;
+                    margin-bottom: 46px;
+    
+                }
+    
+                .quantity-container {
+                    @include global.flexboxLayout(row, space-between, center);
+                    
+                    .counter-button {
+                        @include audioMixin.subtitleText;
+                        @include audioMixin.audioColors(var(--au-light-background), var(--au-black));
+                        margin-right: 20px;
+                        opacity: 0.25;
+    
+                        &:last-of-type {
+                            margin-right: 32px;
+                        }
+                        
+                    }
+                    
+                    .count {
+                        @include audioMixin.subtitleText;
+                        margin-right: 16px;
+                    }
+                    
+                    .see-product-button {
+                        @include audioMixin.buttonStyles;
+                        @include audioMixin.audioColors;
+                    }
+    
+                }
+        
+            }
+
+        }
+
+        .bottom {
+            @include global.flexboxLayout;
+            margin-bottom: 160px;
+            
+            .bottom-left {
+                @include global.flexboxLayout(column, space-between, flex-start);
+                width: 66%;
+                
+                
+            }
+            
+            .bottom-right {
+                @include global.flexboxLayout(column, space-between, flex-start);
+
+                .contents-text {
+                    @include audioMixin.bodyText;
+
+                    .quantity-text {
+                        @include audioMixin.subtitleText;
+                        color: var(--au-primary-idle);
+                        margin-right: 24px;
+
+                    }
+                }
+            }
+
+            .headline-text {
+                @include audioMixin.header3Text;
+                margin-bottom: 32px;
+            }
+            
+            .description-text {
+                @include audioMixin.bodyText;
+                max-width: 80%;
+
+            }
+        }
+
+        .product-images {
+            @include global.flexboxLayout;
+            
+            .left {
+                @include global.flexboxLayout(column, space-between, flex-start);
+                margin-right: 30px;
+
+                .one {
+                    background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg);
+                    background-size: cover;
+                    border-radius: 8px;
+                    height: 280px;
+                    margin-bottom: 32px;
+                    width: 445px;
+                    
+                }
+                
+                .two {
+                    background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg);
+                    background-size: cover;
+                    border-radius: 8px;
+                    height: 280px;
+                    width: 445px;
+                    
+                }
+            }
+            
+            .right {
+                background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg);
+                background-size: cover;
+                border-radius: 8px;
+                height: 592px;
+                width: 635px;
+
+            }
+        }
+
+
+    }
+}

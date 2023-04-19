@@ -1,0 +1,45 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+.also-like-container {
+    @include global.flexboxLayout(row, center, center);
+    
+    .also-like-inner-container {
+        @include global.flexboxLayout(column, space-between, center);
+        height: 100%;
+        max-width: 1110px;
+        width: 100%;
+        
+        .headline-text {
+            @include audioMixin.header3Text;
+            margin-bottom: 64px;
+        }
+        
+        .bottom-container {
+            @include global.flexboxLayout(row, space-between, center);
+            
+            .product-container {
+                @include global.flexboxLayout(column, flex-start, center);
+
+                img {
+                    margin-bottom: 40px;
+                    width: 350px;
+                }
+                
+                .product-headline-text {
+                    @include audioMixin.header5Text;
+                    margin-bottom: 32px;
+
+                }
+
+                .see-product-button {
+                    @include audioMixin.buttonStyles;
+                    @include audioMixin.audioColors;
+                }
+            }
+        }
+    }
+
+}

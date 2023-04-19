@@ -9,6 +9,11 @@
     --au-background-color: #0e0e0e;
     --au-on-background-color: #fff;
 
+    --au-light-background: #f2f2f2;
+    --au-on-light-background: #0e0e0e;
+    --au-dark-background: #0e0e0e;
+    --au-on-dark-background: #f2f2f2;
+
     --au-primary-idle: #d87d4a;
     --au-on-primary-idle: var(--au-white);
 
@@ -26,6 +31,8 @@
 
     --nav-header-background-color: var(--au-background-color);
     --nav-header-text-color: var(--au-on-background-color);
+
+    --au-checkout-form-control-border-color: #cfcfcf;
 
 }
 

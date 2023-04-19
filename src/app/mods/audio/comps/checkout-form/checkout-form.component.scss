@@ -1,0 +1,95 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+form {
+    @include global.flexboxLayout(column, space-between, flex-start);
+    // @include global.border1;
+    max-width: 736px;
+    
+    .section-header-text {
+        @include audioMixin.subtitleText;
+        color: var(--au-primary-idle);
+        margin-bottom: 16px;
+    }
+    
+    .form-section {
+        @include global.flexboxLayout(row, space-between, flex-start);
+        // @include global.border1;
+        flex-wrap: wrap;
+        width: 100%;
+        
+    }
+    
+    .control-container {
+        @include global.flexboxLayout(column, flex-end, flex-start);
+        // @include global.border1;
+        margin-bottom: 24px;
+        width: 48%;
+
+        &:first-child {
+            margin-right: 16px;
+        }
+
+        &.wide-control {
+            margin-right: 0;
+            width: 100%;
+        }
+
+        &.radio-container {
+            @include global.flexboxLayout(row, flex-start, flex-start);
+            
+            .left {
+                margin-right: 24px;
+                width: 48%;
+            }
+            
+            .right {
+                @include global.flexboxLayout(column, space-between, flex-start);
+                width: 48%;
+
+                .radio-control {
+                    @include global.flexboxLayout(row, flex-start, center);
+                    background-color: var(--au-white);
+                    border: 1px solid var(--au-checkout-form-control-border-color);
+                    border-radius: 8px;
+                    padding: 18px 24px;
+                    width: 100%;
+
+                    &:first-of-type {
+                        margin-bottom: 24px;
+                    }
+
+                    input {
+                        margin-right: 16px;
+                    }
+
+                    label {
+                        margin: 0;
+                    }
+                }
+
+            }
+        }
+    }
+
+    label {
+        @include audioMixin.checkoutFormLabelText;
+        margin-bottom: 9px;
+        text-transform: capitalize;
+    }
+
+    .checkout-form-control {
+        border: 1px solid var(--au-checkout-form-control-border-color);
+        border-radius: 8px;
+        padding: 18px 24px;
+        width: 100%;
+    }
+
+    input::placeholder {
+        @include audioMixin.checkoutFormPlaceholderText;
+        
+    }
+
+}

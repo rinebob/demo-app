@@ -10,7 +10,7 @@
     .inner-container {
         @include global.flexboxLayout(row, space-between, center);
         border-bottom: 1px solid var(--global-grey-5);
-        max-width: 1440px;
+        max-width: 1110px;
         width: 100%;
         
         .header-title {

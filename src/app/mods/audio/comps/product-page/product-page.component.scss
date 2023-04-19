@@ -1,7 +1,7 @@
-@use '../../../styles/global-mixins' as global;
-@use '../../../styles/global-variables' as globalVar;
-@use './audio-mixins' as audioMixin;
-@use './audio-variables' as audioVar;
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
 
 :host {
     @include global.flexboxLayout(column, flex-start, center);
@@ -10,12 +10,12 @@
     background-color: var(--au-light-background);
     color: var(--au-on-light-background);
     overflow: auto;
-   
 
     app-nav-header,
-    app-banner,
+    app-breadcrumb-panel,
+    app-product-detail,
     app-shop-panel,
-    app-home-feature,
+    app-also-like-panel,
     app-about-panel,
     app-nav-footer {
         width: 100%;
@@ -24,16 +24,17 @@
     app-banner {
         margin-bottom: 123px;
     }
+
+    app-product-detail {
+        margin-bottom: 160px;
+    }
     
+    app-also-like-panel,
     app-shop-panel {
         margin-bottom: 168px;
     }
     
-    app-home-feature,
     app-about-panel {
         margin-bottom: 200px;
     }
-
-
-
 }

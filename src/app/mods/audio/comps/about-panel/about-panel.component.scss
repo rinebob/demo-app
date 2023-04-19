@@ -5,7 +5,7 @@
 
 .about-panel-container {
     @include global.flexboxLayout(row, center, flex-start);
-    background-color: var(--au-white);
+    background-color: var(--au-light-background);
     flex-grow: 1;
     
     .about-panel-inner-container {

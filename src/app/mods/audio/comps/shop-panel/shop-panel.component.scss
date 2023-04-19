@@ -5,7 +5,7 @@
 
 .shop-panel-container {
     @include global.flexboxLayout(row, center, center);
-    background-color: var(--au-white);
+    background-color: var(--au-light-background);
     flex-grow: 1;
     height: 284px;
     
@@ -34,7 +34,8 @@
             
             .shop-text {
                 @include audioMixin.subtitleText;
-                color: var(--global-grey-5);
+                color: var(--au-black);
+                opacity: 0.5;
             }
         }
     }
