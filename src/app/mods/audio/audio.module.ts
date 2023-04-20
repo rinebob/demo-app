@@ -23,6 +23,8 @@ import { CheckoutPageComponent } from './comps/checkout-page/checkout-page.compo
 import { CheckoutFormComponent } from './comps/checkout-form/checkout-form.component';
 import { CartSummaryComponent } from './comps/cart-summary/cart-summary.component';
 import { ThankYouComponent } from './comps/thank-you/thank-you.component';
+import { HomePageComponent } from './comps/home-page/home-page.component';
+import { NavLinksComponent } from './comps/nav-links/nav-links.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { ThankYouComponent } from './comps/thank-you/thank-you.component';
     CheckoutFormComponent,
     CartSummaryComponent,
     ThankYouComponent,
+    HomePageComponent,
+    NavLinksComponent,
   ],
   imports: [
     CommonModule,

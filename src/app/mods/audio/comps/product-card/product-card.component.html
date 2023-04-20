@@ -4,19 +4,21 @@
 
     <div class="product-card-inner-container">
         
-        <div class="left"></div>
+        <img src="{{product.categoryImage['desktop']}}" class="product-image"
+             [class.order-two]="!even"
+        >
     
-        <div class="right">
+        <div class="product-description">
     
-            <p class="status-text">new product</p>
+            <p class="status-text" *ngIf="product.new">{{AppText.NEW_PRODUCT}}</p>
     
-            <p class="headline">xx 99 mark ii headphones</p>
+            <p class="headline">{{product.name}}</p>
     
-            <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque earum explicabo esse mollitia culpa consequatur atque commodi.</p>
-    
-            <button class="see-product-button">
-                see product
-            </button>
+            <p class="description">{{product.description}}</p>
+            
+            <a [routerLink]="['../../products', product.slug]" type="button" class="see-product-button">
+                {{AppText.SEE_PRODUCT}}
+            </a>
     
         </div>
 

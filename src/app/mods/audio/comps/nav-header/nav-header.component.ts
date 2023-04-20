@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { NavButtons } from '../../common/au-constants';
-
 @Component({
   selector: 'app-nav-header',
   templateUrl: './nav-header.component.html',
@@ -9,7 +7,5 @@ import { NavButtons } from '../../common/au-constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavHeaderComponent {
-
-  readonly NavButtons = NavButtons;
 
 }

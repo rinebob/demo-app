@@ -3,26 +3,27 @@
 @use '../../audio-mixins' as audioMixin;
 @use '../../audio-variables' as audioVar;
 
-.product-page-container {
+.home-page-container {
     @include global.flexboxLayout(column, flex-start, center);
     background-color: var(--au-light-background);
     color: var(--au-on-light-background);
     width: 100%;
 
-    app-breadcrumb-panel,
-    app-product-detail,
+    app-banner,
     app-shop-panel,
-    app-also-like-panel {
+    app-home-feature {
         width: 100%;
     }
-    
-    app-product-detail {
-        margin-bottom: 160px;
+
+    app-banner {
+        margin-bottom: 123px;
     }
-    
-    app-also-like-panel,
+
     app-shop-panel {
         margin-bottom: 168px;
     }
+    
+    app-home-feature {
+        margin-bottom: 200px;
+    }
 }
-

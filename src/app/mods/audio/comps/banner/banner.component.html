@@ -6,15 +6,15 @@
 
         <div class="left">
 
-            <p class="status-text">new product</p>
+            <p class="status-text">{{AppText.NEW_PRODUCT}}</p>
 
-            <p class="headline">xx 99 mark ii headphones</p>
+            <p class="headline">{{AppText.XX99_HEADPHONES}}</p>
 
-            <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque earum explicabo esse mollitia culpa consequatur atque commodi.</p>
+            <p class="description">{{BANNER_TEXT}}</p>
 
-            <button class="see-product-button">
-                see product
-            </button>
+            <a [routerLink]="['../products', AppText.XX99_HEADPHONES_SLUG]" type="button" class="see-product-button">
+                {{AppText.SEE_PRODUCT}}
+            </a>
 
         </div>
 

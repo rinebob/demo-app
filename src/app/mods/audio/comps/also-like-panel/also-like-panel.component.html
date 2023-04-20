@@ -1,25 +1,30 @@
 
-
 <div class="also-like-container">
 
     <div class="also-like-inner-container">
         
-        <p class="headline-text">you may also like</p>
+        <p class="headline-text">{{AppText.ALSO_LIKE}}</p>
 
         <div class="bottom-container">
     
-            <!-- ngFor here -->
-            <div class="product-container">
+            <ng-container *ngFor="let product of products">
+      
+                <div class="product-container">
+                    
+                    <img src="{{product.image['desktop']}}" alt="">
                 
-                <img src="../../../../../assets/audio/shared/desktop/image-xx99-mark-one-headphones.jpg" alt="">
-            
-                <div class="product-headline-text">xx99 mark i</div>
-            
-                <button class="see-product-button">see product</button>
-            
-            </div>
+                    <div class="product-headline-text">{{product.name}}</div>
+                
+                    <a [routerLink]="['../../products', product.slug]" type="button" class="see-product-button">
+                        {{AppText.SEE_PRODUCT}}
+                    </a>
+                
+                </div>
+
+            </ng-container>
 
         </div>
 
     </div>
+    
 </div>

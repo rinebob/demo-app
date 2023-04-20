@@ -4,8 +4,14 @@
     
     <div class="breadcrumb-panel-inner-container">
         
-        <p class="breadcrumb-text">go back</p>
-
+        <a [routerLink]="[url]"
+            type="text"
+            routerLinkActive="active"
+            class="nav-link"
+        >
+            {{AppText.GO_BACK}}
+        </a>
+    
     </div>
 
 </div>

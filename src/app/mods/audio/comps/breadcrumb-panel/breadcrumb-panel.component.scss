@@ -12,11 +12,14 @@
         @include global.flexboxLayout(row, flex-start, center);
         max-width: 1110px;
         width: 100%;
-        
-        .breadcrumb-text {
+
+        a {
             @include audioMixin.bodyText;
+            color: rgba(0,0,0,0.5);
             padding: 76px 0 56px;
+            text-decoration: none;
             text-transform: capitalize;
+
         }
     }
 }

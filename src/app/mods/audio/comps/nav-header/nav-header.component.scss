@@ -6,6 +6,7 @@
 .nav-header-container {
     @include global.flexboxLayout(row, center, center);
     background-color: var(--nav-header-background-color);
+    width: 100%;
     
     .inner-container {
         @include global.flexboxLayout(row, space-between, center);
@@ -16,17 +17,6 @@
         .header-title {
             @include audioMixin.logoText;
             color: var(--nav-header-text-color);
-        }
-    
-        .nav-links-container {
-            @include global.flexboxLayout(row, space-between, center);
-    
-            .nav-link {
-                @include audioMixin.subtitleText;
-                color: var(--nav-header-text-color);
-                margin: 20px;
-                padding: 6px 20px;
-            }
         }
     
         mat-icon {

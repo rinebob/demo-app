@@ -1,15 +1,25 @@
-<app-nav-header></app-nav-header>
 
-<div class="category-header">
+<div class="category-page-container">
+    
+    <div class="category-header">
+    
+        <p class="category-title">{{category$ | async}}</p>
+    
+    </div>
 
-    <p class="category-title">headphones</p>
+    <ng-container *ngIf="products$ | async as products">
+
+        <ng-container *ngFor="let product of products; even as isEven">
+            
+            <app-product-card [product]="product"
+                              [even]="isEven"            
+            ></app-product-card>
+
+        </ng-container>
+        
+    </ng-container>
+    
+    <app-shop-panel [url]="url"></app-shop-panel>
 
 </div>
 
-<app-product-card></app-product-card>
-
-<app-shop-panel></app-shop-panel>
-
-<app-about-panel></app-about-panel>
-
-<app-nav-footer></app-nav-footer>

@@ -6,28 +6,26 @@
         
         <div class="top">
             
-            <div class="left">
-        
-            </div>
+            <img src="{{product.image['desktop']}}">
         
             <div class="right">
         
-                <p class="status-text">new product</p>
+                <p class="status-text" *ngIf="product.new">{{AppText.NEW_PRODUCT}}</p>
         
-                <p class="headline">xx 99 mark ii headphones</p>
+                <p class="headline">{{product.name}}</p>
         
-                <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque earum explicabo esse mollitia culpa consequatur atque commodi.</p>
+                <p class="description">{{product.description}}</p>
     
-                <p class="price">$2,999</p>
+                <p class="price">$ {{product.price}}</p>
         
                 <div class="quantity-container">
                     
-                    <p class="counter-button">-</p>
-                    <p class="count">1</p>
-                    <p class="counter-button">+</p>
+                    <p class="counter-button" (click)="incrementCount(-1)">-</p>
+                    <p class="count">{{count}}</p>
+                    <p class="counter-button" (click)="incrementCount(1)">+</p>
                     
-                    <button class="see-product-button">
-                        add to cart
+                    <button class="see-product-button" (click)="addToCart()">
+                        {{AppText.ADD_TO_CART}}
                     </button>
     
                 </div>
@@ -40,20 +38,25 @@
 
             <div class="bottom-left">
 
-                <p class="headline-text">features</p>
+                <p class="headline-text">{{AppText.FEATURES}}</p>
 
-                <p class="description-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam illo quae aliquid molestiae, ipsam assumenda, fuga in velit nostrum nobis deleniti. Iure vitae nisi enim dolore quis earum laborum minus vero suscipit, molestiae dolor sequi itaque modi porro tempora illum sit necessitatibus ipsam quos, possimus laudantium cumque voluptatem quae facilis?</p>
+                <p class="description-text">{{product.features}}</p>
 
             </div>
 
             <div class="bottom-right">
 
-                <p class="headline-text">in the box</p>
+                <p class="headline-text">{{AppText.IN_THE_BOX}}</p>
 
-                <p class="contents-text"> 
-                    <span class="quantity-text">1x</span>
-                    headphone unit
-                </p>
+                <ng-container *ngFor="let item of product.includes">
+                    
+                    <p class="contents-text"> 
+                        <span class="quantity-text">{{item.quantity}} x</span>
+                        {{item.item}}
+                    </p>
+
+                </ng-container>
+                
 
             </div>
 
@@ -62,14 +65,15 @@
         <div class="product-images">
             
             <div class="left">
-            
-                <div class="one"></div>
-                <div class="two"></div>
 
-            </div>
+                <img src="{{product.gallery['first']['desktop']}}" class="one">
             
-            <div class="right"></div>
-        
+                <img src="{{product.gallery['second']['desktop']}}" class="two">
+                
+            </div>
+
+            <img src="{{product.gallery['third']['desktop']}}" class="right">
+            
         </div>
 
     </div>

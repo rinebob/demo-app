@@ -9,7 +9,7 @@
 
             <div class="nav-links-container">
     
-                <a class="nav-link" *ngFor="let button of NavButtons">{{button.text}}</a>
+                <app-nav-links></app-nav-links>
         
             </div>
 
@@ -19,9 +19,9 @@
 
             <div class="left">
 
-                <p class="description-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quae nisi numquam vero, inventore tempore quasi perferendis nobis, aut facere unde saepe ex corporis dolores suscipit veniam incidunt voluptate deleniti</p>
+                <p class="description-text description">{{FOOTER_TEXT}}</p>
 
-                <p class="description-text copyright">copyright 2023.  all rights reserved</p>
+                <p class="description-text copyright">{{FOOTER_COPYRIGHT}}</p>
 
             </div>
 
