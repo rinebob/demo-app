@@ -80,11 +80,6 @@
             background-size: cover;
             padding: 101px 95px;
             width: 100%;
-
-            .see-product-button {
-                @include audioMixin.buttonStyles;
-                @include audioMixin.audioColors(transparent, var(--au-black));
-            }
         }
         
         .bottom {
@@ -104,13 +99,14 @@
                 height: 320px;
                 width: 540px;
                 padding: 101px 95px;
-                
-                .see-product-button {
-                    @include audioMixin.buttonStyles;
-                    @include audioMixin.audioColors(transparent, var(--au-black));
-                }
             }
         }
+    }
+
+    .see-product-button {
+        @include audioMixin.buttonStyles;
+        @include audioMixin.audioColors(transparent, var(--au-black));
+        @include audioMixin.border;
     }
 
     .headline-text {

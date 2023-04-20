@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-audio-view',
   templateUrl: './audio-view.component.html',
   styleUrls: ['./audio-view.component.scss']
 })
-export class AudioViewComponent {
+export class AudioViewComponent implements OnInit {
+  
+  ngOnInit(): void {
+    
+  }
 
 }

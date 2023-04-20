@@ -1,0 +1,11 @@
+<div class="nav-links-container">
+    
+    <a *ngFor="let button of NAV_BUTTONS"
+        [routerLink]="['category/', button.link]"
+        routerLinkActive="active"
+        class="nav-link"
+    >
+        {{button.text}}
+    </a>
+
+</div>

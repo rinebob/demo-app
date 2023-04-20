@@ -3,14 +3,12 @@
 @use '../../audio-mixins' as audioMixin;
 @use '../../audio-variables' as audioVar;
 
-:host {
+.checkout-page-container {
     @include global.flexboxLayout(column, flex-start, center);
-    height: 100vh;
     width: 100%;
     background-color: var(--au-light-background);
     color: var(--au-on-light-background);
-    overflow: auto;
-
+    
     app-nav-header,
     app-breadcrumb-panel,
     app-nav-footer {

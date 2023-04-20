@@ -10,7 +10,12 @@
 
             <p class="category-text">{{category.displayName | uppercase}}</p>
 
-            <p class="shop-text"> shop ></p>
+            <a  [routerLink]="[url, category.name]"
+                routerLinkActive="active"
+                class="shop-text"
+            >
+                {{AppText.SHOP}}
+            </a>
 
         </div>
 

@@ -17,11 +17,15 @@
 
                 <div class="text-container">
                     
-                    <p class="headline-text headline">zx9 speaker</p>
+                    <p class="headline-text headline">{{AppText.ZX9_SPEAKER}}</p>
                     
-                    <p class="description-text description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus id optio culpa sunt porro nesciunt magni maxime aut iste inventore.</p>
+                    <p class="description-text description">{{HOME_FEATURE_TEXT}}</p>
     
-                    <button class="see-product-button">see product</button>
+                    <!-- <button class="see-product-button">{{AppText.SEE_PRODUCT}}</button> -->
+            
+                    <a [routerLink]="['../products', AppText.ZX9_SPEAKER_SLUG]" type="button" class="see-product-button">
+                        {{AppText.SEE_PRODUCT}}
+                    </a>
 
                 </div>
                 
@@ -31,9 +35,13 @@
         
         <div class="feature middle">
             
-            <p class="sub-headline-text">zx7 speaker</p>
+            <p class="sub-headline-text">{{AppText.ZX7_SPEAKER}}</p>
             
-            <button class="see-product-button">see product</button>
+            <!-- <button class="see-product-button">{{AppText.SEE_PRODUCT}}</button> -->
+            
+            <a [routerLink]="['../products', AppText.ZX7_SPEAKER_SLUG]" type="button" class="see-product-button">
+                {{AppText.SEE_PRODUCT}}
+            </a>
             
         </div>
         
@@ -43,9 +51,13 @@
 
             <div class="right">
 
-                <p class="sub-headline-text">yx1 earphones</p>
+                <p class="sub-headline-text">{{AppText.YX1_HEADPHONES}}</p>
                 
-                <button class="see-product-button">see product</button>
+                <!-- <button class="see-product-button">{{AppText.SEE_PRODUCT}}</button> -->
+
+                <a [routerLink]="['../products', AppText.YX1_HEADPHONES_SLUG]" type="button" class="see-product-button">
+                    {{AppText.SEE_PRODUCT}}
+                </a>
 
             </div>
 

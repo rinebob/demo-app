@@ -22,10 +22,7 @@
             @include global.flexboxLayout(row, space-between, flex-start);
             margin-bottom: 160px;
             
-            .left {
-                background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-product.jpg);
-                background-size: cover;
-                height: 540px;
+            img {
                 width: 560px;
             }
     
@@ -140,8 +137,6 @@
                 margin-right: 30px;
 
                 .one {
-                    background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-gallery-1.jpg);
-                    background-size: cover;
                     border-radius: 8px;
                     height: 280px;
                     margin-bottom: 32px;
@@ -150,8 +145,6 @@
                 }
                 
                 .two {
-                    background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-gallery-2.jpg);
-                    background-size: cover;
                     border-radius: 8px;
                     height: 280px;
                     width: 445px;
@@ -160,8 +153,6 @@
             }
             
             .right {
-                background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-gallery-3.jpg);
-                background-size: cover;
                 border-radius: 8px;
                 height: 592px;
                 width: 635px;

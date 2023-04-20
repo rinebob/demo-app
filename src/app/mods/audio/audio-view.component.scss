@@ -3,37 +3,27 @@
 @use './audio-mixins' as audioMixin;
 @use './audio-variables' as audioVar;
 
-:host {
+.audio-view-container {
     @include global.flexboxLayout(column, flex-start, center);
-    height: 100vh;
     width: 100%;
     background-color: var(--au-light-background);
     color: var(--au-on-light-background);
-    overflow: auto;
-   
-
+    
     app-nav-header,
-    app-banner,
-    app-shop-panel,
-    app-home-feature,
     app-about-panel,
     app-nav-footer {
         width: 100%;
     }
-
-    app-banner {
-        margin-bottom: 123px;
+    
+    .scroll-container {
+        height: calc(100vh - 78px);
+        overflow: auto;
+        width: 100%;
+        
+        app-about-panel {
+            display: flex;
+            margin-bottom: 200px;
+        }
     }
     
-    app-shop-panel {
-        margin-bottom: 168px;
-    }
-    
-    app-home-feature,
-    app-about-panel {
-        margin-bottom: 200px;
-    }
-
-
-
 }

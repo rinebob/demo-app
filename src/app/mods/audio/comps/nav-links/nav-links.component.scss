@@ -1,0 +1,20 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../audio-mixins' as audioMixin;
+@use '../../audio-variables' as audioVar;
+
+.nav-links-container {
+    @include global.flexboxLayout(row, space-between, center);
+
+    .nav-link {
+        @include audioMixin.subtitleText;
+        color: var(--nav-header-text-color);
+        margin: 20px;
+        padding: 6px 20px;
+        text-decoration: none;
+
+        .active {
+            color: var(--au-primary-idle);
+        }
+    }
+}

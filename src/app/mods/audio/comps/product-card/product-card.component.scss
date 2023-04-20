@@ -19,15 +19,16 @@
         background-origin: border-box;
         background-position-y: bottom;
 
-        .left {
-            background-image: url(../../../../../assets/audio/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg);
-            background-size: cover;
+        .order-two {
+            order: 2;
+        }
+
+        .product-image {
             height: 100%;
             width: 560px;
-    
         }
     
-        .right {
+        .product-description {
             @include global.flexboxLayout(column, space-between, flex-start);
             // @include global.border1(black, 1px);
             width: 50%;
