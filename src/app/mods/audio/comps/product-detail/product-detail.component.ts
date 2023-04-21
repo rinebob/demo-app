@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
 import { PRODUCT_INITIALIZER } from '../../common/au-constants';
-import { AddToCartProduct, AppText, Product } from '../../common/au-interfaces';
+import { AddToCartProduct, AppText, CartItem, Product } from '../../common/au-interfaces';
+import { AudioStore } from '../../services/audio-store.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -22,11 +24,13 @@ export class ProductDetailComponent {
   }
   productBS = new BehaviorSubject<Product>(PRODUCT_INITIALIZER);
 
-  @Output() addedProduct = new EventEmitter<AddToCartProduct>();
-
   count = 1;
 
   readonly AppText = AppText;
+
+  constructor(readonly audioStore: AudioStore) {
+
+  }
 
   incrementCount(delta: number) {
     this.count = this.count + delta;
@@ -35,13 +39,12 @@ export class ProductDetailComponent {
   }
   
   addToCart() {
-    const item: AddToCartProduct = {
-      id: this.productBS.value.id,
-      slug: this.productBS.value.slug,
+    const item: CartItem = {
+      [this.productBS.value.slug]: this.count
     }
     
-    // console.log('pD aTC add to cart item: ', item);
-    this.addedProduct.emit(item);
+    console.log('pD aTC add to cart item: ', item);
+    this.audioStore.addItemToCart(item);
 
   }
 

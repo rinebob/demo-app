@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AudioRoutingModule } from './audio-routing.module';
@@ -54,6 +55,7 @@ import { NavLinksComponent } from './comps/nav-links/nav-links.component';
   imports: [
     CommonModule,
 
+    MatDialogModule,
     MatIconModule,
 
     AudioRoutingModule,

@@ -1,4 +1,25 @@
-import { Product } from './au-interfaces';
+import { CartItem, Product } from './au-interfaces';
+
+export const POPULATED_SHOPPING_CART: CartItem[] = [
+  {
+      "xx99-mark-two-headphones": 2
+  },
+  {
+      "xx99-mark-one-headphones": 3
+  },
+  {
+      "xx59-headphones": 4
+  },
+  {
+      "zx7-speaker": 3
+  },
+  {
+      "zx9-speaker": 3
+  },
+  {
+      "yx1-earphones": 3
+  }
+];
 
 export const AUDIO_PRODUCTS: Product [] = [
     {

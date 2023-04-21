@@ -3,44 +3,111 @@
 <div class="cart-detail-container">
 
     <div class="cart-header">
-        <p class="headline-text">cart (3)</p>
-        <p class="remove-all-text">remove all</p>
+        
+        <ng-container *ngIf="mode === 'detail'; else summary">
+            
+            <p class="headline-text">{{AppText.CART}} ({{itemsCount}})</p>
+            <button class="remove-all-button" (click)="handleRemoveAll()">{{AppText.REMOVE_ALL}}</button>
+            <button class="close-button" (click)="handleCloseDialog()">x</button>
+            
+        </ng-container>
+        
+        <ng-template #summary>
+            
+            <p class="headline-text">{{AppText.SUMMARY}}</p>
+
+        </ng-template>
+        
+        
     </div>
 
     <div class="products-list-container">
 
-        <div class="product-container">
+        <ng-container *ngIf="productsInCart$ | async as products">
 
-            <img src="../../../../../assets/audio/cart/image-xx99-mark-two-headphones.jpg" alt="">
-
-            <div class="product-info-container">
+            <div class="scroll-container">
                 
-                <p class="product-title-text">xx99 mkii</p>
-                
-                <p class="product-cost-text">$ 2,999</p>
-
-            </div>
-            
-            
-            <div class="quantity-container">ac
+                <ng-container *ngFor="let product of products">
                     
-                <p class="counter-button">-</p>
-                <p class="count">1</p>
-                <p class="counter-button">+</p>
-                
+                    <div class="product-container">
+            
+                        <img src="{{product.image['desktop']}}" alt="">
+            
+                        <div class="product-info-container">
+                            
+                            <p class="product-title-text">{{product.name}}</p>
+                            
+                            <p class="product-cost-text">$ {{product.price}}</p>
+            
+                        </div>
+                        
+                        <div class="quantity-container">
+                                
+                            <button class="counter-button" (click)="handleIncrementCount(product.slug, -1)">-</button>
+                            <p class="count">{{product.count}}</p>
+                            <button class="counter-button" (click)="handleIncrementCount(product.slug, 1)">+</button>
+                            <button class="counter-button delete-button" (click)="handleRemoveItemFromCart(product.slug)"> <mat-icon class="material-symbols-outlined">delete</mat-icon> </button>
+                            
+                        </div>
+            
+                    </div>
+    
+                </ng-container>
+
             </div>
 
+            
+            <ng-container *ngIf="products.length === 0">
+
+                <div class="empty-cart-container">
+
+                    <p class="empty-cart-text">your cart is currently empty</p>
+
+                </div>
+
+            </ng-container>
+
+        </ng-container>
+
+        
+
+    </div>
+
+    <ng-container *ngIf="currentOrder$ | async  as order">
+        
+        <div class="total-container">
+    
+            <p class="total-text">{{AppText.TOTAL}}</p>
+            <p class="amount-text">{{order.totalCost | currency}}</p>
+    
+        </div>
+    
+        <div class="total-container">
+    
+            <p class="total-text">{{AppText.SHIPPING}}</p>
+            <p class="amount-text">{{order.shippingCost | currency}}</p>
+    
+        </div>
+    
+        <div class="total-container">
+    
+            <p class="total-text">{{AppText.VAT_INCLUDED}}</p>
+            <p class="amount-text">{{order.vatCost | currency}}</p>
+    
+        </div>
+    
+        <div class="total-container">
+    
+            <p class="total-text">{{AppText.GRAND_TOTAL}}</p>
+            <p class="amount-text">{{order.grandTotal | currency}}</p>
+    
         </div>
 
-    </div>
+    </ng-container>
+    
 
-    <div class="total-container">
 
-        <p class="total-text">total</p>
-        <p class="amount-text">$ 5,396</p>
-
-    </div>
-
-    <button class="checkout-button">checkout</button>
+    <button *ngIf="mode === 'detail'" class="checkout-button" (click)="handleProceedToCheckout()">{{AppText.CHECKOUT}}</button>
+    <button *ngIf="mode === 'summary'" class="checkout-button" (click)="handleContinueAndPay()">{{AppText.CONTINUE_AND_PAY}}</button>
 
 </div>

@@ -36,9 +36,4 @@ export class ProductPageComponent {
       // console.log('pP ctor product BS value: ', this.productBS.value);
     })
   }
-
-  addProductToCart(item: AddToCartProduct) {
-    // console.log('pP aPTC added to cart: ', item);
-  }
-
 }
