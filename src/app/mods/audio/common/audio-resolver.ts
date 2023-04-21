@@ -6,6 +6,7 @@ import { Product } from '../common/au-interfaces';
 import { ProductsService } from '../services/products.service';
 import { PRODUCT_INITIALIZER } from './au-constants';
 
+// for implementation using inject function
 // https://angular.io/guide/router-tutorial-toh#fetch-data-before-navigating
 
 @Injectable({providedIn: 'root'})

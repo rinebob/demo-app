@@ -1,4 +1,4 @@
-import { Category, NavButtonConfig, Product } from "./au-interfaces";
+import { AudioState, Category, Customer, NavButtonConfig, Order, PaymentMethod, Product } from "./au-interfaces";
 
 export const NAV_BUTTONS: NavButtonConfig[] = [
     {text: 'home', link: 'home'},
@@ -47,3 +47,38 @@ and sound specialists who are devoted to helping you get the most out of persona
 visit our demo facility - we’re open 7 days a week.`;
 
 export const FOOTER_COPYRIGHT = `copyright 2023.  all rights reserved`;
+
+export const CUSTOMER_INITIALIZER: Customer = {
+    name: '',
+    email: '',
+    phoneNumber: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+    paymentMethod: PaymentMethod.COD,
+  }
+
+  export const ORDER_INITIALIZER: Order = {
+    customer: '',
+    products: [],
+    totalCost: 0,
+    shippingCost: 0,
+    vatCost: 0,
+    grandTotal: 0,
+    totalItemsCount: 0,
+    orderDate: new Date(),
+  }
+
+  export const AUDIO_STATE_INITIALIZER: AudioState = {
+    customer: CUSTOMER_INITIALIZER,
+    cart: [],
+    order: ORDER_INITIALIZER,
+  }
+
+  // 20% VAT tax rate for customer order
+  export const VAT_TAX_RATE = 0.2;
+
+  // $50 shipping cost per order
+  export const SHIPPING_COST = 50;

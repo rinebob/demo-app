@@ -25,6 +25,7 @@ export interface Product {
     includes: Content[];
     gallery: {[key: string]: {[key: string]: string}};
     others: RelatedProduct[];
+    count?: number;
 }
 
 export interface Content {
@@ -58,6 +59,14 @@ export enum AppText {
     YX1_HEADPHONES_SLUG = 'yx1-earphones',
     XX99_HEADPHONES = 'xx 99 mark ii headphones',
     XX99_HEADPHONES_SLUG = 'xx99-mark-two-headphones',
+    REMOVE_ALL = 'remove all',
+    CART = 'cart',
+    TOTAL = 'total',
+    SUMMARY = 'summary',
+    SHIPPING = 'shipping',
+    VAT_INCLUDED = 'vat (included)',
+    GRAND_TOTAL = 'grand total',
+    
 
 }
 
@@ -65,3 +74,62 @@ export interface AddToCartProduct {
     id: number;
     slug: string;
 }
+
+export enum PaymentMethod {
+    COD = 'cash on delivery',
+    E_MONEY = 'e-money',
+  }
+  
+  export interface Customer {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    country: string;
+    paymentMethod: PaymentMethod;
+    eMoneyNumber?: string;
+    eMoneyPin?: string;
+  }
+
+  export interface CartItemData {
+    quantity: number;
+    price: number;
+  }
+
+  export interface CartItem {
+    [key: string]: number;      // key is product slug, value is quantity ordered
+  }
+  
+  export interface Order {
+    customer: string;
+    products: CartItem[];
+    totalCost: number;
+    shippingCost: number;
+    vatCost: number;
+    grandTotal: number;
+    totalItemsCount: number;
+    orderDate: Date;
+  }
+  
+  export interface AudioState {
+    customer: Customer;
+    cart: CartItem[];
+    order: Order;
+  }
+
+  export interface CustomerOrders {
+    // key is customer id/displayname value is all the orders for that customer   
+    [key: string]: Order[];
+  }
+
+  export enum AudioDialogCloseResult {
+    PROCEED_TO_CHECKOUT = 'proceed to checkout',
+  }
+
+  export enum CartDetailMode {
+    SUMMARY = 'summary',
+    DETAIL = 'detail',
+  }

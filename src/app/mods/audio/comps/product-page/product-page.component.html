@@ -5,20 +5,12 @@
     
     <ng-container *ngIf="(product$ | async)! as product">
         
-        <app-product-detail [product]="product"
-                            (addedProduct)="addProductToCart($event)"
-        ></app-product-detail>
+        <app-product-detail [product]="product"></app-product-detail>
         
         <app-also-like-panel [products]="product.others"></app-also-like-panel>
         
         <app-shop-panel [url]="url"></app-shop-panel>
 
     </ng-container>
-    
-
-    
-    
 
 </div>
-
-
