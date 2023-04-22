@@ -13,6 +13,18 @@
         padding: 6px 20px;
         text-decoration: none;
 
+        &:last-of-type {
+            margin-right: 0;
+            padding-right: 0;
+        }
+
+        @include audioMixin.response(xl) {
+            &:first-of-type {
+                margin-left: 0;
+                padding-left: 0;
+            }
+        }
+
         .active {
             color: var(--au-primary-idle);
         }

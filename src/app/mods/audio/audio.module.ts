@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AudioRoutingModule } from './audio-routing.module';
 import { AudioViewComponent } from './audio-view.component';
@@ -60,6 +61,7 @@ import { NavLinksComponent } from './comps/nav-links/nav-links.component';
     
     MatDialogModule,
     MatIconModule,
+    MatMenuModule,
 
     AudioRoutingModule,
   ]

@@ -2,12 +2,12 @@
 
 <div class="product-card-container">
 
-    <div class="product-card-inner-container">
+    <div class="product-card-inner-container" [class.order-one]="product.new">
         
-        <img src="{{product.categoryImage['desktop']}}" class="product-image"
-             [class.order-two]="!even"
+        <img src="{{product.categoryImage[viewportMode]}}" class="product-image"
+             [class.order-two]="!even && viewportMode === 'desktop'"
         >
-    
+
         <div class="product-description">
     
             <p class="status-text" *ngIf="product.new">{{AppText.NEW_PRODUCT}}</p>

@@ -6,7 +6,11 @@
         
         <div class="top">
             
-            <img src="{{product.image['desktop']}}">
+            <div class="left">
+                
+                <img src="{{product.image[viewportMode]}}">
+
+            </div>
         
             <div class="right">
         
@@ -48,16 +52,15 @@
 
                 <p class="headline-text">{{AppText.IN_THE_BOX}}</p>
 
-                <ng-container *ngFor="let item of product.includes">
+                <div class="contents-container">
                     
-                    <p class="contents-text"> 
+                    <p class="contents-text" *ngFor="let item of product.includes"> 
                         <span class="quantity-text">{{item.quantity}} x</span>
                         {{item.item}}
                     </p>
 
-                </ng-container>
+                </div>
                 
-
             </div>
 
         </div>
@@ -66,13 +69,13 @@
             
             <div class="left">
 
-                <img src="{{product.gallery['first']['desktop']}}" class="one">
+                <img src="{{product.gallery['first'][viewportMode]}}" class="one">
             
-                <img src="{{product.gallery['second']['desktop']}}" class="two">
+                <img src="{{product.gallery['second'][viewportMode]}}" class="two">
                 
             </div>
 
-            <img src="{{product.gallery['third']['desktop']}}" class="right">
+            <img src="{{product.gallery['third'][viewportMode]}}" class="right">
             
         </div>
 

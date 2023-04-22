@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
-import { AppText, RelatedProduct } from '../../common/au-interfaces';
+import { AppText, RelatedProduct, ViewportMode } from '../../common/au-interfaces';
 
 @Component({
   selector: 'app-also-like-panel',
@@ -11,7 +11,6 @@ import { AppText, RelatedProduct } from '../../common/au-interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlsoLikePanelComponent {
-
   @Input()
   set products(products: RelatedProduct[]) {
     if (products) {
@@ -23,6 +22,16 @@ export class AlsoLikePanelComponent {
     return this.productsBS.value;
   }
   productsBS = new BehaviorSubject<RelatedProduct[]>([]);
+
+  @Input()
+  set viewportMode(viewportMode: ViewportMode) {
+    // console.log('pC @i viewportMode: ', viewportMode);
+    this.viewportModeBS.next(viewportMode);
+  };
+  get viewportMode() {
+    return this.viewportModeBS.value;
+  }
+  viewportModeBS = new BehaviorSubject<ViewportMode>(ViewportMode.DESKTOP);
 
   readonly AppText = AppText;
 

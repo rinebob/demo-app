@@ -15,12 +15,29 @@
         max-width: 1110px;
         width: 100%;
         
+        @include audioMixin.response(xl) {
+            @include global.flexboxLayout(column, center, center);
+            max-width: 768px;
+        }
+        
         .left {
             // @include global.border1(black, 1px);
             width: 50%;
 
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, center, center);
+                order: 2;
+                text-align: center;
+                width: 573px;
+            }
+
             .about-text {
                 max-width: 445px;
+
+                @include audioMixin.response(xl) {
+                    max-width: 573px;
+                    margin-bottom: 32px;
+                }
             }
 
             .red-text {
@@ -28,10 +45,20 @@
             }
         }
         
-        img {
+        .img {
+            background-image: url(../../../../../assets/audio/shared/desktop/image-best-gear.jpg);
             border-radius: 8px;
             height: 588px;
             width: 540px;
+            
+            @include audioMixin.response(xl) {
+                background-image: url(../../../../../assets/audio/shared/tablet/image-best-gear.jpg);
+                background-size: cover;
+                height: 300px;
+                width: 689px;
+                margin-bottom: 63px;
+                order: 1;
+            }
             
         }
     }

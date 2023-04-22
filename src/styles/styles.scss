@@ -215,3 +215,18 @@ p {
     border: none;
     border-radius: 8px;
 }
+
+.nav-menu-panel-class {
+    :host {
+        justify-content: center;
+    }
+    background-color: var(--au-light-background) !important;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.nav-menu-container {
+    top: 82px;
+    width: 100%;
+}

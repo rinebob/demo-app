@@ -5,7 +5,9 @@
     
     <ng-container *ngIf="(product$ | async)! as product">
         
-        <app-product-detail [product]="product"></app-product-detail>
+        <app-product-detail [product]="product"
+                            [viewportMode]="viewportMode"
+        ></app-product-detail>
         
         <app-also-like-panel [products]="product.others"></app-also-like-panel>
         

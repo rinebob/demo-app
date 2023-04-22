@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { BehaviorSubject } from 'rxjs';
 
 import { PRODUCT_INITIALIZER } from '../../common/au-constants';
-import { AppText, CartItem, Product } from '../../common/au-interfaces';
+import { AppText, CartItem, Product, ViewportMode } from '../../common/au-interfaces';
 import { AudioStore } from '../../services/audio-store.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 
@@ -24,6 +24,16 @@ export class ProductDetailComponent {
     return this.productBS.value;
   }
   productBS = new BehaviorSubject<Product>(PRODUCT_INITIALIZER);
+
+  @Input()
+  set viewportMode(viewportMode: ViewportMode) {
+    // console.log('pC @i viewportMode: ', viewportMode);
+    this.viewportModeBS.next(viewportMode);
+  };
+  get viewportMode() {
+    return this.viewportModeBS.value;
+  }
+  viewportModeBS = new BehaviorSubject<ViewportMode>(ViewportMode.DESKTOP);
 
   count = 1;
 

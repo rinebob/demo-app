@@ -11,6 +11,11 @@
         height: 100%;
         max-width: 1110px;
         width: 100%;
+
+        @include audioMixin.response(xl) {
+            max-width: 768px;
+            padding: 0 40px;
+        }
         
         .headline-text {
             @include audioMixin.header3Text;
@@ -26,6 +31,11 @@
                 img {
                     margin-bottom: 40px;
                     width: 350px;
+                    
+                    @include audioMixin.response(xl) {
+                        width: 223px;
+                        
+                    }
                 }
                 
                 .product-headline-text {

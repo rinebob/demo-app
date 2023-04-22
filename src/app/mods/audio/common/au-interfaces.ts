@@ -1,3 +1,4 @@
+import { ElementRef } from "@angular/core";
 
 
 export interface NavButtonConfig {
@@ -40,6 +41,7 @@ export interface RelatedProduct {
 }
 
 export enum AppText {
+    LOGO_TEXT = 'audiophile',
     NEW_PRODUCT = 'new product',
     SEE_PRODUCT = 'see product',
     ADD_TO_CART = 'add to cart',
@@ -141,4 +143,12 @@ export enum PaymentMethod {
     mode?: CartDetailMode;
     order?: Order;
     product?: Product;
+    ref?: ElementRef;
+    url?: string;
+  }
+
+  export enum ViewportMode {
+    DESKTOP = 'desktop',
+    TABLET = 'tablet',
+    MOBILE = 'mobile',
   }

@@ -4,64 +4,103 @@
 @use '../../audio-variables' as audioVar;
 
 .footer-container {
-    @include global.flexboxLayout(row, center, center);
+    @include global.flexboxLayout(column, flex-start, center);
     background-color: var(--nav-header-background-color);
-    
+
     .footer-inner-container {
         @include global.flexboxLayout(column, space-between, stretch);
-        max-width: 1440px;
+        margin: 0 0 48px;
+        max-width: 1110px;
         width: 100%;
+
+        @include audioMixin.response(xl) {
+            @include global.flexboxLayout(column, center, center);
+            max-width: 768px;
+            padding: 0 40px;
+        }
+
+        .accent-bar {
+            background-color: var(--au-primary-idle);
+            height: 4px;
+            margin-bottom: 71px;
+            width: 100px;
+            
+            @include audioMixin.response(xl) {
+                align-self: flex-start;
+                margin-bottom: 56px;
+             
+            }
+
+        }
         
         .footer-top {
             @include global.flexboxLayout(row, space-between, center);
             margin-bottom: 36px;
+            
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, center, flex-start);
+                margin-bottom: 32px;
+                width: 100%;
+            }
 
             .logo-text {
                 @include audioMixin.logoText;
                 color: var(--nav-header-text-color);
             }
             
-            .nav-links-container {
-                @include global.flexboxLayout(row, space-between, center);
-                
-                
-                .nav-link {
-                    @include audioMixin.subtitleText;
-                    color: var(--nav-header-text-color);
-                    margin: 20px;
-                    padding: 6px 20px;
-                    
-                }
-            }
         }
         
         .footer-bottom {
             @include global.flexboxLayout(row, space-between, center);
+            position: relative;
+
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, center, flex-start);
+                width: 100%;
+            }
+            
+            .left {
+                @include global.flexboxLayout(column, space-between, flex-start);
+                width: 50%;
+                opacity: 50%;
+    
+                @include audioMixin.response(xl) {
+                    @include global.flexboxLayout(column, center, flex-start);
+                    width: 100%;
+                }
+    
+                .description {
+                    margin-bottom: 56px;
+                    
+                    @include audioMixin.response(xl) {
+                        margin-bottom: 80px;
+                        max-width: 689px;
+                    }
+                }
+    
+                .copyright {
+                    text-transform: capitalize;
+                }
+            }
+            
+            .right {
+                @include global.flexboxLayout(row, flex-end, center);
+
+                @include audioMixin.response(xl) {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                 
+                }
+    
+                .icon {
+                    margin-right: 10px;
+                }
+                
+            }
             
         }
         
-        .left {
-            @include global.flexboxLayout(column, space-between, flex-start);
-            width: 50%;
-            opacity: 50%;
-
-            .description {
-                margin-bottom: 56px;
-            }
-
-            .copyright {
-                text-transform: capitalize;
-            }
-        }
-        
-        .right {
-            @include global.flexboxLayout(row, flex-end, center);
-
-            .icon {
-                margin-right: 10px;
-            }
-            
-        }
     }
 
     .description-text {

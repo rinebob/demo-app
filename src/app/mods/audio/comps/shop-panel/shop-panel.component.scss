@@ -3,17 +3,29 @@
 @use '../../audio-mixins' as audioMixin;
 @use '../../audio-variables' as audioVar;
 
+.dialog-height {
+    height: 407px;
+}
+
+.regular-height {
+    height: 284px;
+
+}
+
 .shop-panel-container {
     @include global.flexboxLayout(row, center, center);
     background-color: var(--au-light-background);
-    flex-grow: 1;
-    height: 284px;
     
     .shop-panel-inner-container {
         @include global.flexboxLayout(row, space-between, center);
         // @include global.border1(black, 1px);
         max-width: 1110px;
         width: 100%;
+
+        @include audioMixin.response(xl) {
+            max-width: 768px;
+            padding: 0 40px;
+        }
         
         .category-container {
             @include global.flexboxLayout(column, flex-start, center);
@@ -34,7 +46,9 @@
             
             .shop-text {
                 @include audioMixin.subtitleText;
+                border: none;
                 color: var(--au-black);
+                cursor: pointer;
                 opacity: 0.5;
                 text-decoration: none;
             }
