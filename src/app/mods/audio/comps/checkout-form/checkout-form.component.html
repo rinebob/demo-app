@@ -1,5 +1,9 @@
 
-<form>
+<button class="populate-form-button" (click)="populateCheckoutForm()">
+    populate form
+</button>
+
+<form [formGroup]="checkoutForm">
 
         <!-- billing details -->
     <p class="section-header-text">billing details</p>
@@ -9,14 +13,18 @@
         <div class="control-container">
             
             <label for="name">name</label>
-            <input type="text" placeholder="name" class="checkout-form-control">
+            <input type="text" placeholder="name" class="checkout-form-control"
+                    formControlName="nameControl"
+            >
 
         </div>
 
         <div class="control-container">
             
             <label for="email">email address</label>
-            <input type="text" placeholder="email address" class="checkout-form-control">
+            <input type="text" placeholder="email address" class="checkout-form-control"
+                   formControlName="emailControl"
+            >
 
         </div>
 
@@ -24,7 +32,9 @@
         <div class="control-container">
             
             <label for="phone">phone number</label>
-            <input type="text" placeholder="phone number" class="checkout-form-control">
+            <input type="text" placeholder="phone number" class="checkout-form-control"
+                   formControlName="phoneControl"
+            >
 
         </div>
 
@@ -39,35 +49,45 @@
     <div class="control-container wide-control">
 
         <label for="address">address</label>
-        <input type="text" placeholder="address" class="checkout-form-control">
+        <input type="text" placeholder="address" class="checkout-form-control"
+               formControlName="addressControl"
+        >
 
     </div>
 
     <div class="control-container">
 
         <label for="city">city</label>
-        <input type="text" placeholder="city" class="checkout-form-control">
+        <input type="text" placeholder="city" class="checkout-form-control"
+               formControlName="cityControl"
+        >
 
     </div>
     
     <div class="control-container">
         
         <label for="state">state</label>
-        <input type="text" placeholder="state" class="checkout-form-control">
+        <input type="text" placeholder="state" class="checkout-form-control"
+               formControlName="stateControl"
+        >
         
     </div>
     
     <div class="control-container">
         
         <label for="zipcode">zip code</label>
-        <input type="text" placeholder="zip code" class="checkout-form-control">
+        <input type="text" placeholder="zip code" class="checkout-form-control"
+               formControlName="zipControl"
+        >
         
     </div>
     
     <div class="control-container">
 
         <label for="country">country</label>
-        <input type="text" placeholder="country" class="checkout-form-control">
+        <input type="text" placeholder="country" class="checkout-form-control"
+               formControlName="countryControl"
+        >
         
     </div>
 
@@ -90,34 +110,41 @@
                 
                 <div class="radio-control">
                     
-                    <input type="radio" id="COD" value="COD" name="paymentMethod">
+                    <input type="radio" id="COD" value="COD" name="paymentMethodControl"
+                           formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === 'cash on delivery'"
+                    />
                     <label for="COD">Cash on Delivery</label>
     
                 </div>
                 
                 <div class="radio-control">
     
-                    <input type="radio" id="e-Money" value="e-Money" name="paymentMethod">
+                    <input type="radio" id="e-Money" value="e-Money" name="paymentMethodControl"
+                           formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === 'e-Money'"
+                    >
                     <label for="e-Money">e-Money</label>
                     
                 </div>
 
             </div>
 
-
         </div>
 
         <div class="control-container">
             
             <label for="e-MoneyNumber">e Money Number</label>
-            <input type="text" placeholder="e-Money Number" class="checkout-form-control">
+            <input type="text" placeholder="e-Money Number" class="checkout-form-control"
+                   formControlName="eMoneyNumberControl"
+            >
 
         </div>
 
         <div class="control-container">
             
             <label for="eMoneyPin">e-Money PIN</label>
-            <input type="text" placeholder="e-Money PIN" class="checkout-form-control">
+            <input type="text" placeholder="e-Money PIN" class="checkout-form-control"
+                   formControlName="eMoneyPinControl"
+            >
 
         </div>
 

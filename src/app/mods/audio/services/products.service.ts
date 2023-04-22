@@ -23,9 +23,9 @@ export class ProductsService {
     return of(products);
   }
   
-  productById(id: number) {
-    const product = AUDIO_PRODUCTS.find(product => product.id === id);
+  productById(slug: string) {
+    const product = AUDIO_PRODUCTS.find(product => product.slug === slug);
     // console.log('pS product by id: ', product);
-    return of(product);
+    return product;
   }
 }

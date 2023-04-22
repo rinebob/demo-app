@@ -4,39 +4,44 @@
 
     <div class="checkmark-circle"></div>
 
-    <div class="header-text">thank you for your order</div>
+    <div class="header-text">{{AppText.THANK_YOU_MESSAGE}}</div>
 
-    <div class="message-text">You will receive an email confirmation shortly.</div>
+    <div class="message-text">{{AppText.CONFIRMATION_MESSAGE}}</div>
 
-    <div class="summary-container">
+    <ng-container *ngIf="product">
+    
+        <div class="summary-container">
 
-        <div class="left">
-
-            <div class="product-container">
-                
-                <img src="../../../../../assets/audio/cart/image-xx99-mark-two-headphones.jpg" alt="">
-                
-                <div class="info-container">
+            <div class="left">
+    
+                <div class="product-container">
                     
-                    <p class="product-name-text">xx99 mkii</p>
-                    <p class="price-text">$ 2,999</p>
+                    <img src="../../../../../assets/audio/cart/image-xx99-mark-two-headphones.jpg" alt="">
+                    
+                    <div class="info-container">
+                        
+                        <p class="product-name-text">{{product.name}}</p>
+                        <p class="price-text">{{product.price | currency}}</p>
 
+                    </div>
+                    
+                    <p class="amount-text">x{{quantity}}</p>
+                
                 </div>
                 
-                <p class="amount-text">x1</p>
-            
+                <p class="remaining-items-text" *ngIf="numOtherItems > 0">and {{numOtherItems}} other item(s)</p>
+                
             </div>
             
-            <p class="remaining-items-text">and 2 other item(s)</p>
-        
+            <div class="right">
+                <p class="grand-total-text">{{AppText.GRAND_TOTAL}}</p>
+                <p class="total-cost-text">{{order.grandTotal | currency}}</p>
+            </div>
+            
         </div>
+    
+    </ng-container>
 
-        <div class="right">
-            <p class="grand-total-text">grand total</p>
-            <p class="total-cost-text">$ 5,446</p>
-        </div>
+    <button class="back-to-home-button" (click)="handleCloseDialog()">{{AppText.BACK_TO_HOME}}</button>
 
-    </div>
-
-    <button class="back-to-home-button">back to home</button>
 </div>

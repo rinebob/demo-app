@@ -1,4 +1,18 @@
-import { CartItem, Product } from './au-interfaces';
+import { CartItem, Customer, PaymentMethod, Product } from './au-interfaces';
+
+export const MOCK_CUSTOMER: Customer = {
+  name: 'Joe Smith',
+  email: 'joe@smith.com',
+  phoneNumber: '555 555 5555',
+  address: '123 Shady Bend Ln',
+  city: 'Someplace',
+  state: 'OT',
+  zip: '90125',
+  country: 'USA',
+  paymentMethod: PaymentMethod.COD,
+  eMoneyNumber: '123abc',
+  eMoneyPin: 'pin',
+}
 
 export const POPULATED_SHOPPING_CART: CartItem[] = [
   {

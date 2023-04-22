@@ -6,16 +6,20 @@
     <div class="checkout-container">
     
         <div class="left">
-    
+
             <p class="header-text">checkout</p>
     
-            <app-checkout-form></app-checkout-form>
+            <app-checkout-form (formValidity)="handleCustomerFormValidity($event)"
+                               (customer)="handleCustomerFromForm($event)"
+            >
+            </app-checkout-form>
     
         </div>
     
         <div class="right">
     
-            <app-cart-detail></app-cart-detail>
+            <app-cart-detail [customerFormValidity]="(customerFormValidity$ | async)!"
+                             (continueAndPay)="handleContinueAndPay()"></app-cart-detail>
 
         </div>
     

@@ -58,10 +58,12 @@ export const CUSTOMER_INITIALIZER: Customer = {
     zip: '',
     country: '',
     paymentMethod: PaymentMethod.COD,
+    eMoneyNumber: '',
+    eMoneyPin: '',
   }
 
   export const ORDER_INITIALIZER: Order = {
-    customer: '',
+    customer: CUSTOMER_INITIALIZER,
     products: [],
     totalCost: 0,
     shippingCost: 0,

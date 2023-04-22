@@ -148,9 +148,21 @@
 
     .checkout-button {
         @include audioMixin.buttonStyles;
-        @include audioMixin.audioColors;
         border: none;
         width: 100%;
+
+    }
+    
+    .disabled {
+        @include audioMixin.audioColors(var(--au-primary-hover));
+        cursor: default;
+
+    }
+
+    .enabled {
+        @include audioMixin.audioColors;
+        cursor: pointer;
+
     }
 
 }

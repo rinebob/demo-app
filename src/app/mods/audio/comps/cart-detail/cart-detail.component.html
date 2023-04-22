@@ -81,33 +81,50 @@
             <p class="amount-text">{{order.totalCost | currency}}</p>
     
         </div>
-    
-        <div class="total-container">
-    
-            <p class="total-text">{{AppText.SHIPPING}}</p>
-            <p class="amount-text">{{order.shippingCost | currency}}</p>
-    
-        </div>
-    
-        <div class="total-container">
-    
-            <p class="total-text">{{AppText.VAT_INCLUDED}}</p>
-            <p class="amount-text">{{order.vatCost | currency}}</p>
-    
-        </div>
-    
-        <div class="total-container">
-    
-            <p class="total-text">{{AppText.GRAND_TOTAL}}</p>
-            <p class="amount-text">{{order.grandTotal | currency}}</p>
-    
-        </div>
 
+        <ng-container *ngIf="mode === 'summary'">
+            
+            <div class="total-container">
+        
+                <p class="total-text">{{AppText.SHIPPING}}</p>
+                <p class="amount-text">{{order.shippingCost | currency}}</p>
+        
+            </div>
+        
+            <div class="total-container">
+        
+                <p class="total-text">{{AppText.VAT_INCLUDED}}</p>
+                <p class="amount-text">{{order.vatCost | currency}}</p>
+        
+            </div>
+        
+            <div class="total-container">
+        
+                <p class="total-text">{{AppText.GRAND_TOTAL}}</p>
+                <p class="amount-text">{{order.grandTotal | currency}}</p>
+        
+            </div>
+
+        </ng-container>
+        
     </ng-container>
     
+    <button *ngIf="mode === 'detail'"
+            class="checkout-button"
+            (click)="handleProceedToCheckout()"
+    >
+        {{AppText.CHECKOUT}}
+
+    </button>
 
 
-    <button *ngIf="mode === 'detail'" class="checkout-button" (click)="handleProceedToCheckout()">{{AppText.CHECKOUT}}</button>
-    <button *ngIf="mode === 'summary'" class="checkout-button" (click)="handleContinueAndPay()">{{AppText.CONTINUE_AND_PAY}}</button>
+    <button *ngIf="mode === 'summary'"
+            class="checkout-button disabled"
+            (click)="handleContinueAndPay()"
+            [disabled]="shouldDisablePayButton"
+            [class.enabled]="!shouldDisablePayButton"
+    >
+        {{AppText.CONTINUE_AND_PAY}}
+    </button>
 
 </div>

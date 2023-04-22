@@ -3,6 +3,15 @@
 @use '../../audio-mixins' as audioMixin;
 @use '../../audio-variables' as audioVar;
 
+.populate-form-button {
+    @include audioMixin.subtitleText;
+    @include audioMixin.audioColors;
+    border: none;
+    color: var(--nav-header-text-color);
+    margin: 20px;
+    padding: 2px 6px;
+}
+
 form {
     @include global.flexboxLayout(column, space-between, flex-start);
     // @include global.border1;

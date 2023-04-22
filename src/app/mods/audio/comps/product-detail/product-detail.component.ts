@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { BehaviorSubject } from 'rxjs';
 
 import { PRODUCT_INITIALIZER } from '../../common/au-constants';
-import { AddToCartProduct, AppText, CartItem, Product } from '../../common/au-interfaces';
+import { AppText, CartItem, Product } from '../../common/au-interfaces';
 import { AudioStore } from '../../services/audio-store.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -28,7 +29,7 @@ export class ProductDetailComponent {
 
   readonly AppText = AppText;
 
-  constructor(readonly audioStore: AudioStore) {
+  constructor(readonly audioStore: AudioStore, readonly localStorage: LocalStorageService) {
 
   }
 
@@ -43,8 +44,11 @@ export class ProductDetailComponent {
       [this.productBS.value.slug]: this.count
     }
     
-    console.log('pD aTC add to cart item: ', item);
+    // console.log('pD aTC add to cart item: ', item);
     this.audioStore.addItemToCart(item);
+    const data = JSON.stringify(item);
+    // console.log('pD aTC saving item to storage: ', data);
+    this.localStorage.saveData('cart', data);
 
   }
 

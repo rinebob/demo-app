@@ -17,9 +17,16 @@ export class AudioStore extends ComponentStore<AudioState> {
 
   readonly setCustomer = this.updater((state, customer: Customer) => ({
     ...state,
-    ...customer,
+    customer: {...customer},
   }));
 
+  // readonly setCustomer = this.updater((state, customer: Customer) => {
+
+  //   return {
+  //     ...state,
+  //     customer: {...customer},
+  //   }
+  // });
 
   // Checks whether an item already exists in the cart, and if so, increments 
   // the quantity with the additional quantity.  Otherwise just adds the
@@ -117,6 +124,13 @@ export class AudioStore extends ComponentStore<AudioState> {
   readonly setCustomerOrder = this.updater((state, order: Order) => ({
     ...state,
     order: order
+  }));
+
+  readonly reset = this.updater((state) => ({
+    ...state,
+    customer: {...AUDIO_STATE_INITIALIZER.customer},
+    cart: [],
+    order: {...AUDIO_STATE_INITIALIZER.order},
   }));
 
   //////////////////// SELECTORS ////////////////////////////
