@@ -1,4 +1,4 @@
-import { AudioState, Category, Customer, NavButtonConfig, Order, PaymentMethod, Product } from "./au-interfaces";
+import { AudioState, Category, Customer, NavButtonConfig, Order, PaymentMethod, Product, ViewportMode } from "./au-interfaces";
 
 export const NAV_BUTTONS: NavButtonConfig[] = [
     {text: 'home', link: 'home'},
@@ -84,3 +84,9 @@ export const CUSTOMER_INITIALIZER: Customer = {
 
   // $50 shipping cost per order
   export const SHIPPING_COST = 50;
+
+  export const VIEWPORT_MIN_SIZE = new Map<ViewportMode, number>([
+    [ViewportMode.DESKTOP, 1200],
+    [ViewportMode.TABLET, 760],
+    [ViewportMode.MOBILE, 0],
+  ]);

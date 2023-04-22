@@ -1,15 +1,25 @@
 
 <nav class="nav-header-container">
 
-    <div class="inner-container">
+    <div class="inner-container" #navHeaderContainer>
+
+        <button class="open-menu-button" (click)="handleOpenNavMenu()">
+            
+            <mat-icon class="menu-icon">menu</mat-icon>
+
+        </button>
         
-        <p class="header-title">audiophile</p>
+        <p class="header-title">{{AppText.LOGO_TEXT}}</p>
 
         <app-nav-links></app-nav-links>
 
         <button class="populate-cart-button" (click)="populateCart()">populate cart</button>
     
-        <mat-icon class="material-symbols-outlined" (click)="handleShowShoppingCart()">shopping_cart</mat-icon>
+        <button class="show-cart-button">
+
+            <mat-icon class="material-symbols-outlined" (click)="handleShowShoppingCart()">shopping_cart</mat-icon>
+
+        </button>
 
     </div>
 

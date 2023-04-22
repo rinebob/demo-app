@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Product } from '../../common/au-interfaces';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
-import { AppText } from '../../common/au-interfaces';
+import { AppText, Product, ViewportMode } from '../../common/au-interfaces';
 import { PRODUCT_INITIALIZER } from '../../common/au-constants';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -13,6 +12,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductCardComponent {
+  @Input()
+  set viewportMode(viewportMode: ViewportMode) {
+    // console.log('pC @i viewportMode: ', viewportMode);
+    this.viewportModeBS.next(viewportMode);
+  };
+  get viewportMode() {
+    return this.viewportModeBS.value;
+  }
+  viewportModeBS = new BehaviorSubject<ViewportMode>(ViewportMode.DESKTOP);
+
   @Input()
   set even(even: boolean) {
     // console.log('pC @i even: ', even);

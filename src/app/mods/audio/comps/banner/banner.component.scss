@@ -7,8 +7,7 @@
     @include global.flexboxLayout(row, center, center);
     background-color: var(--nav-header-background-color);
     height: 632px;
-    flex-grow: 1;
-
+    
     .banner-inner-container {
         @include global.flexboxLayout(row, space-between, center);
         background-image: url(../../../../../assets/audio/home/desktop/image-hero.jpg);
@@ -18,7 +17,11 @@
         width: 100%;
         background-origin: border-box;
         background-position-y: bottom;
-        // clip-path: circle(28.3% at 67% 54%);
+        
+        @include audioMixin.response(xl) {
+            background-image: url(../../../../../assets/audio/home/tablet/image-header.jpg);
+            max-width: 768px;
+        }
 
         .left {
             @include global.flexboxLayout(column, space-between, flex-start);
@@ -27,17 +30,27 @@
             width: 50%;
             z-index: 1;
 
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, center, center);
+                width: 100%;
+            }
+
             .status-text {
                 @include audioMixin.overlineText;
                 color: var(--nav-header-text-color);
                 margin-bottom: 24px;
                 opacity: 50%;
+
             }
             
             .headline {
                 @include audioMixin.header1Text;
                 color: var(--nav-header-text-color);
                 margin-bottom: 24px;
+                
+                @include audioMixin.response(xl) {
+                    text-align: center;
+                }
             }
             
             .description {
@@ -46,6 +59,11 @@
                 opacity: 75%;
                 max-width: 66%;
                 margin-bottom: 40px;
+
+                @include audioMixin.response(xl) {
+                    max-width: 350px;
+                    text-align: center;
+                }
             }
             
             .see-product-button {

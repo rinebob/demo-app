@@ -14,6 +14,10 @@
         max-width: 1110px;
         width: 100%;
 
+        @include audioMixin.response(xl) {
+            max-width: 960px;
+        }
+
         .feature {
             border-radius: 8px;
             width: 100%;
@@ -29,15 +33,30 @@
             background-color: var(--au-primary-idle);
             background-image: url(../../../../../assets/audio/home/desktop/pattern-circles.svg);
             background-size: cover;
+
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, center, center);
+                max-width: 689px;
+            }
             
             .left {
                 @include global.flexboxLayout(row, flex-end, flex-end);
                 // @include global.border1(black, 1px);
                 height: 560px;
                 width: 540px;
+                
+                @include audioMixin.response(xl) {
+                    @include global.flexboxLayout(column, center, center);
+                    height: 300px;
+                    width: 100%;
+                }
 
                 img {
                     width: 410px;
+
+                    @include audioMixin.response(xl) {
+                        width: 200px;
+                    }
                 }
             }
             
@@ -46,16 +65,33 @@
                 @include global.flexboxLayout(row, center, flex-end);
                 // @include global.border1(black, 1px);
                 align-self: center;
+
+                @include audioMixin.response(xl) {
+                    @include global.flexboxLayout(column, center, center);
+                 
+                }
                 
                 .text-container {
                     margin-right: 95px;
                     width: 350px;
                     
+                    @include audioMixin.response(xl) {
+                        @include global.flexboxLayout(column, center, center);
+                        width: 50%;
+                        margin: 0;
+                        text-align: center;
+                     
+                    }
+                    
                     .headline {
-                        @include global.flexboxLayout(column, space-between, flex-start);
+                        // @include global.flexboxLayout(column, space-between, flex-start);
                         color: var(--au-white);
                         margin-bottom: 24px;
                         width: 100px;
+
+                        @include audioMixin.response(xl) {
+                            width: 100%;
+                        }
                         
                     }
                     
@@ -68,6 +104,10 @@
                     .see-product-button {
                         @include audioMixin.buttonStyles;
                         @include audioMixin.audioColors(var(--au-black), var(--au-white));
+
+                        @include audioMixin.response(xl) {
+                            margin-bottom: 64px;
+                        }
                     }
                 }
             }
@@ -76,10 +116,16 @@
         .middle {
             @include global.flexboxLayout(column, space-between, flex-start);
             // @include global.border1(black, 1px);
-            background-image: url(../../../../../assets/audio/home/desktop/image-speaker-zx7.jpg);
+            background-image: url(../../../../../assets/audio/home/tablet/image-speaker-zx7.jpg);
             background-size: cover;
             padding: 101px 95px;
             width: 100%;
+            
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, center, flex-start);
+                max-width: 689px;
+                padding: 101px 62px;
+            }
         }
         
         .bottom {
@@ -87,18 +133,37 @@
             // @include global.border1(black, 1px);
             width: 100%;
             
-            img {
+            @include audioMixin.response(xl) {
+                max-width: 689px;
+            }
+            
+            div.img {
+                background-image: url(../../../../../assets/audio/home/desktop/image-earphones-yx1.jpg);
                 border-radius: 8px;
                 height: 320px;
                 width: 540px;
+                
+                @include audioMixin.response(xl) {
+                    background-image: url(../../../../../assets/audio/home/tablet/image-earphones-yx1.jpg);
+                    background-size: cover;
+                    height: 320px;
+                    
+                }
                 
             }
             
             .right {
                 @include global.flexboxLayout(column, center, flex-start);
                 height: 320px;
-                width: 540px;
                 padding: 101px 95px;
+                width: 540px;
+                
+                @include audioMixin.response(xl) {
+                    height: 320px;
+                    padding: 101px 62px;
+                    width: 339px;
+                    
+                }
             }
         }
     }

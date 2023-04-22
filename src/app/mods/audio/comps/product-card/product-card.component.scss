@@ -9,15 +9,23 @@
     height: 560px;
     flex-grow: 1;
 
+    .order-one {
+        order: 1;
+    }
+
     .product-card-inner-container {
         @include global.flexboxLayout(row, space-between, center);
         // @include global.border1(black, 1px);
-        
         height: 100%;
         max-width: 1110px;
         width: 100%;
         background-origin: border-box;
         background-position-y: bottom;
+
+        @include audioMixin.response(xl) {
+            @include global.flexboxLayout(column, center, center);
+            max-width: 768px;
+        }
 
         .order-two {
             order: 2;
@@ -34,18 +42,32 @@
             width: 50%;
             z-index: 1;
             margin-left: 30px;
+
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, flex-start, center);
+                text-align: center;
+                width: 100%;
+            }
     
             .status-text {
                 @include audioMixin.overlineText;
                 color: var(--au-primary-idle);
                 margin-bottom: 24px;
                 opacity: 50%;
+                
+                @include audioMixin.response(xl) {
+                    margin-bottom: 16px;
+                }
             }
     
             .headline {
                 @include audioMixin.header1Text;
                 color: var(--au-black);
                 margin-bottom: 24px;
+
+                @include audioMixin.response(xl) {
+                    margin-bottom: 32px;
+                }
             }
     
             .description {
@@ -54,6 +76,10 @@
                 opacity: 75%;
                 max-width: 66%;
                 margin-bottom: 40px;
+
+                @include audioMixin.response(xl) {
+                    margin-bottom: 24px;
+                }
             }
     
             .see-product-button {

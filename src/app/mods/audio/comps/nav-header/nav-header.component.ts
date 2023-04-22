@@ -1,12 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DialogPosition, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { BehaviorSubject, take } from 'rxjs';
 
 import { CartDetailComponent } from '../cart-detail/cart-detail.component';
+import { ShopPanelComponent } from '../shop-panel/shop-panel.component';
 import { AudioStore } from '../../services/audio-store.service';
-import { CartItem } from '../../common/au-interfaces';
+// import { LocalStorageService } from '../../services/local-storage.service';
+import { AppText, CartDetailMode, CartItem } from '../../common/au-interfaces';
 import { POPULATED_SHOPPING_CART } from '../../common/audio-mock-data';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-header',
@@ -15,25 +17,51 @@ import { ActivatedRoute, Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavHeaderComponent {
+  @ViewChild('navHeaderContainer') navHeaderContainer: ElementRef;
 
+  navMenuPanelClass = 'nav-menu-panel-class';
   shoppingCartPanelClass = 'shopping-cart-panel-class';
+  overlayPanelClass = ['nav-menu-container'];
 
   cart$ = this.audioStore.cart$;
   shoppingCartBS = new BehaviorSubject<CartItem[]>([]);
 
+  readonly AppText = AppText;
+
   constructor(readonly dialog: MatDialog, readonly audioStore: AudioStore,
     readonly router: Router, readonly route: ActivatedRoute,
+    // readonly localStorage: LocalStorageService,
     ) {
     this.cart$.pipe().subscribe(cart => {
       // console.log('nH ctor shopping cart sub: ', cart);
       this.shoppingCartBS.next(cart);
     });
   }
+  
+  handleOpenNavMenu() {
+    // console.log('nH hONM open nav menu dialog called. nav header comp: ', this.navHeaderContainer);
+
+    const config = new MatDialogConfig();
+
+    const position: DialogPosition = {top: '90px', left: '0'}
+    config.position = position;
+    config.panelClass = this.navMenuPanelClass;
+    config.data = {ref: this.navHeaderContainer}
+    const dialogRef = this.dialog.open(ShopPanelComponent, config);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('nH hSSC nav menu dialog closed.  result: ', result);
+      // console.log('nH hSSC t.route: ', this.route);
+      this.router.navigate(['/audio/category', result]);
+
+    });
+
+  }
 
   handleShowShoppingCart() {
     // console.log('nH hSSC open shopping cart dialog called');
     const config = new MatDialogConfig();
     config.panelClass = this.shoppingCartPanelClass;
+    config.data = {mode: CartDetailMode.DETAIL};
     const dialogRef = this.dialog.open(CartDetailComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       // console.log('nH hSSC shopping cart dialog closed.  result: ', result);
@@ -48,6 +76,17 @@ export class NavHeaderComponent {
       this.audioStore.addItemToCart(item);
       
     }
+
+    this.cart$.pipe(take(1)).subscribe(cart => {
+      if (cart.length > 0) {
+        
+        const data = JSON.stringify(cart);
+        // console.log('pD aTC saving item to storage: ', data);
+        // this.localStorage.saveData('cart', data);
+
+      }
+      
+    });
 
   }
 }

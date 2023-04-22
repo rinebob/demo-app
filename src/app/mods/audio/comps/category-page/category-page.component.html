@@ -11,7 +11,8 @@
 
         <ng-container *ngFor="let product of products; even as isEven">
             
-            <app-product-card [product]="product"
+            <app-product-card [viewportMode]="viewportMode"
+                              [product]="product"
                               [even]="isEven"            
             ></app-product-card>
 

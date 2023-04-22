@@ -13,6 +13,11 @@
         max-width: 1110px;
         width: 100%;
 
+        @include audioMixin.response(xl) {
+            max-width: 768px;
+            padding: 0 40px;
+        }
+
         a {
             @include audioMixin.bodyText;
             color: rgba(0,0,0,0.5);

@@ -23,6 +23,10 @@
     app-also-like-panel,
     app-shop-panel {
         margin-bottom: 168px;
+        
+        @include audioMixin.response(xl) {
+            margin-bottom: 120px;
+        }
     }
 }
 
