@@ -1,19 +1,53 @@
-import { ChangeDetectionStrategy, Component, OnInit, Optional } from '@angular/core';
-import { MatDialogRef} from '@angular/material/dialog';
+import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnInit, Optional, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { AUDIO_PRODUCTS } from '../../common/audio-mock-data';
-import { AppText, AudioDialogCloseResult, CartDetailMode, CartItem, Order, Product } from '../../common/au-interfaces';
+import { AppText, AudioDialogCloseResult, CartDetailMode, CartDialogData, CartItem, Order, Product } from '../../common/au-interfaces';
 import { AudioStore } from '../../services/audio-store.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { ORDER_INITIALIZER, SHIPPING_COST, VAT_TAX_RATE } from '../../common/au-constants';
 
 @Component({
   selector: 'app-cart-detail',
   templateUrl: './cart-detail.component.html',
   styleUrls: ['./cart-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartDetailComponent implements OnInit {
+
+  @Input()
+  set customerFormValidity(validity: string) {
+    
+    if (validity) {
+      this.customerFormValidityBS.next(validity);
+
+    }
+    
+    console.log('cD @i checkout form validity: ', this.customerFormValidityBS.value);
+    
+  }
+  get customerFormValidity() {
+    return this.customerFormValidityBS.value;
+  }
+  customerFormValidityBS = new BehaviorSubject<string>('INVALID');
+  
+  get customerFormInvalid() {
+    let invalid = true;
+    if (this.customerFormValidity === 'VALID') {
+      invalid = false;
+    } 
+    console.log('cD @i checkout form invalid: ', invalid);
+    return invalid;
+  }
+  
+  get shouldDisablePayButton() {
+    const should = (!this.currentOrderBS.value || 
+                          this.currentOrderBS.value.products.length === 0)
+                   || this.customerFormInvalid;
+    return should;
+  }
+
+  @Output() readonly continueAndPay = new EventEmitter<void>()
 
   mode: CartDetailMode = CartDetailMode.SUMMARY;
 
@@ -30,9 +64,15 @@ export class CartDetailComponent implements OnInit {
   currentOrderBS = new BehaviorSubject<Order>(ORDER_INITIALIZER);
   currentOrder$: Observable<Order> = this.currentOrderBS;
 
+
   constructor(@Optional() public dialogRef: MatDialogRef<CartDetailComponent>,
-    readonly audioStore: AudioStore,
-    ) {}
+              @Optional() @Inject(MAT_DIALOG_DATA) readonly data: CartDialogData,
+              readonly audioStore: AudioStore,
+    ) {
+      if (data && data.mode) {
+        this.mode = data.mode;
+      }
+    }
 
   ngOnInit() {
     this.getCartProducts();
@@ -49,7 +89,7 @@ export class CartDetailComponent implements OnInit {
       if (cart.length > 0) {
         
         for (const item of cart) {
-          console.log('cD gCP item: ', item);
+          // console.log('cD gCP item: ', item);
   
           const slug = Object.keys(item)[0];
   
@@ -76,10 +116,7 @@ export class CartDetailComponent implements OnInit {
         this.itemsCount = 0;
       }
 
-      this.updateLocalCartState();
-
       this.updateLocalOrderState();
-
     });
   }
 
@@ -171,13 +208,12 @@ export class CartDetailComponent implements OnInit {
     this.itemsCount = itemsCount;
 
     const shippingCost = itemsCount > 0 ? SHIPPING_COST : 0;
-    const vatCost = totalCost * VAT_TAX_RATE;
-    const grandTotal = totalCost + vatCost + shippingCost;
+    const vatCost = Math.floor(totalCost * VAT_TAX_RATE);
+    const grandTotal = Math.floor(totalCost + vatCost + shippingCost);
     
     const currentOrder: Order = {
-      customer: '',
       products: this.cartBS.value,
-      totalCost,
+      totalCost: Math.floor(totalCost),
       shippingCost,
       vatCost,
       grandTotal, 
@@ -185,7 +221,7 @@ export class CartDetailComponent implements OnInit {
       orderDate: new Date(),
     }
     
-    console.log('cD uLCS current order: ', currentOrder);
+    // console.log('cD uLCS current order: ', currentOrder);
     this.currentOrderBS.next(currentOrder);
   }
 
@@ -202,7 +238,9 @@ export class CartDetailComponent implements OnInit {
   }
 
   handleContinueAndPay() {
-    console.log('cD hCAP continue and pay called');
+    // console.log('cD hCAP cart detail continue and pay called. current order: ', this.currentOrderBS.value);
+    this.audioStore.setCustomerOrder(this.currentOrderBS.value);
+    this.continueAndPay.emit();
 
   }
 }

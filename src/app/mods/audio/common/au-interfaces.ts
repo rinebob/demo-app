@@ -66,6 +66,9 @@ export enum AppText {
     SHIPPING = 'shipping',
     VAT_INCLUDED = 'vat (included)',
     GRAND_TOTAL = 'grand total',
+    THANK_YOU_MESSAGE = 'thank you for your order',
+    CONFIRMATION_MESSAGE = 'You will receive an email confirmation shortly.',
+    
     
 
 }
@@ -89,7 +92,7 @@ export enum PaymentMethod {
     state: string;
     zip: string;
     country: string;
-    paymentMethod: PaymentMethod;
+    paymentMethod?: PaymentMethod;
     eMoneyNumber?: string;
     eMoneyPin?: string;
   }
@@ -104,7 +107,7 @@ export enum PaymentMethod {
   }
   
   export interface Order {
-    customer: string;
+    customer?: Customer;
     products: CartItem[];
     totalCost: number;
     shippingCost: number;
@@ -132,4 +135,10 @@ export enum PaymentMethod {
   export enum CartDetailMode {
     SUMMARY = 'summary',
     DETAIL = 'detail',
+  }
+
+  export interface CartDialogData {
+    mode?: CartDetailMode;
+    order?: Order;
+    product?: Product;
   }
