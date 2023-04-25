@@ -9,30 +9,71 @@
     background-color: var(--au-light-background);
     color: var(--au-on-light-background);
     
-    app-nav-header,
     app-breadcrumb-panel,
     app-nav-footer {
         width: 100%;
     }
 
-    .checkout-container {
+    .checkout-page-inner-container {
         @include global.flexboxLayout(row, flex-start, flex-start);
         // @include global.border1;
-        padding: 54px 0;
         width: 1110px;
+        
+        @include audioMixin.response(xl) {
+            @include global.flexboxLayout(column, flex-start, center);
+            width: 768px;
+            padding: 0 40px;
+        }
+
+        @include audioMixin.response(md) {
+            width: 660px;
+            
+        }
+
+        @include audioMixin.response(sm-sm) {
+            width: 560px;
+            
+        }
 
         .left {
             // @include global.border1;
-            padding: 0 48px;
+            margin-right: 30px;
+            padding: 54px 48px 48px 48px;
+
+            @include audioMixin.response(xl) {
+                margin-bottom: 10px;
+                margin-right: 0;
+                padding: 30px 28px;
+            }
+
+            @include audioMixin.response(md) {
+                @include global.flexboxLayout(column, flex-start, center);
+                width: 100%
+            }
 
             .header-text {
                 @include audioMixin.header3Text;
                 margin-bottom: 41px;
             }
+
+            app-checkout-form {
+                width: 100%;
+            }
+
         }
 
         .right {
             @include global.flexboxLayout(column, flex-start, flex-start);
+            
+            @include audioMixin.response(xl) {
+                @include global.flexboxLayout(column, flex-start, center);
+                width: 100%;
+
+                app-cart-detail {
+                    width: 100%;
+                }
+            
+            }
             
             .summary-text {
                 @include audioMixin.header6Text;

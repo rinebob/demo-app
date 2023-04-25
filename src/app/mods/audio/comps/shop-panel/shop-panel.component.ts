@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef  } from '@angular/materi
 import { Router } from '@angular/router';
 
 import { CATEGORIES, NAV_BUTTONS } from '../../common/au-constants';
-import { AppText, CartDialogData, Category } from '../../common/au-interfaces';
+import { AppText, CartDialogData } from '../../common/au-interfaces';
 
 @Component({
   selector: 'app-shop-panel',
@@ -40,11 +40,16 @@ export class ShopPanelComponent implements OnInit {
     if (this.triggerElementRef) {
       const config: MatDialogConfig = new MatDialogConfig();
       const rect = this.triggerElementRef.nativeElement.getBoundingClientRect();
-      console.log('sP ngOI rect: ', rect);
+      // console.log('sP ngOI rect: ', rect);
+
+      const navPadding = 80;  // total left + right padding in nav-header element
+      
       config.position = { left: `${rect.left}px`, top: `${rect.bottom}px`};
       config.width = `${rect.right - rect.left}px`;
-      // 284px component height plus 56px/67px top/bottom padding when used as menu
-      config.height = '407px'; 
+      
+      // console.log('sP ngOI width: ', config.width);
+      
+      
       this.navMenuDialogRef.updateSize(config.width, config.height);
       this.navMenuDialogRef.updatePosition(config.position);
     }

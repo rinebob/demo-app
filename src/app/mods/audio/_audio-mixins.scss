@@ -45,6 +45,12 @@
     text-transform: uppercase;
 }
 
+@mixin header7Text {
+    font: 700 normal 15px/18px var(--au-main-font-family);
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
 @mixin overlineText {
     font: 400 normal 14px/19.1px var(--au-main-font-family);
     letter-spacing: 10px;
@@ -120,11 +126,11 @@
         }
     }
 
-    // @if($breakpoint == md-lg) {
-    //     @media(max-width: 880px) {
-    //         @content;
-    //     }
-    // }
+    @if($breakpoint == md-lg) {
+        @media(max-width: 880px) {
+            @content;
+        }
+    }
     
     @if($breakpoint == md) {
         @media(max-width: 760px) {
@@ -132,17 +138,17 @@
         }
     }
 
-    // @if($breakpoint == sm-md) {
-    //     @media(max-width: 660px) {
-    //         @content;
-    //     }
-    // }
+    @if($breakpoint == sm-md) {
+        @media(max-width: 660px) {
+            @content;
+        }
+    }
 
-    // @if($breakpoint == sm-sm) {
-    //     @media(max-width: 600px) {
-    //         @content;
-    //     }
-    // }
+    @if($breakpoint == sm-sm) {
+        @media(max-width: 600px) {
+            @content;
+        }
+    }
     
     @if($breakpoint == sm) {
         @media(max-width: 560px) {
@@ -150,11 +156,11 @@
         }
     }
     
-    // @if($breakpoint == xs-sm) {
-    //     @media(max-width: 500px) {
-    //         @content;
-    //     }
-    // }
+    @if($breakpoint == xs-sm) {
+        @media(max-width: 500px) {
+            @content;
+        }
+    }
 
     @if($breakpoint == xs) {
         @media(max-width: 460px) {

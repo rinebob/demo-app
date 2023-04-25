@@ -36,6 +36,11 @@
                         width: 223px;
                         
                     }
+
+                    @include audioMixin.response(md) {
+                        width: 190px;
+                        
+                    }
                 }
                 
                 .product-headline-text {

@@ -11,19 +11,38 @@
 
     app-banner,
     app-shop-panel,
-    app-home-feature {
+    app-home-feature,
+    app-about-panel {
         width: 100%;
     }
 
     app-banner {
         margin-bottom: 123px;
-    }
 
-    app-shop-panel {
-        margin-bottom: 168px;
+        @include audioMixin.response(sm) {
+            margin-bottom: 40px;
+        }
     }
     
-    app-home-feature {
-        margin-bottom: 200px;
+    app-shop-panel {
+        margin-bottom: 168px;
+        
+        @include audioMixin.response(sm) {
+            margin-bottom: 120px;
+        }
     }
+    
+    app-home-feature,
+    app-about-panel {
+        margin-bottom: 200px;
+
+        @include audioMixin.response(xl) {
+            margin-bottom: 96px;
+        }
+
+        @include audioMixin.response(sm) {
+            margin-bottom: 120px;
+        }
+    }
+    
 }

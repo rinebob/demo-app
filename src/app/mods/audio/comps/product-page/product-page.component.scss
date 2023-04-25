@@ -28,5 +28,13 @@
             margin-bottom: 120px;
         }
     }
+
+    app-about-panel {
+        margin-bottom: 160px;
+
+        @include audioMixin.response(xl) {
+            margin-bottom: 96px;
+        }
+    }
 }
 

@@ -47,6 +47,7 @@ export enum AppText {
     ADD_TO_CART = 'add to cart',
     CHECKOUT = 'checkout',
     CONTINUE_AND_PAY = 'continue & pay',
+    HOME = 'home',
     BACK_TO_HOME = 'back to home',
     FEATURES = 'features',
     IN_THE_BOX = 'in the box',
@@ -151,4 +152,8 @@ export enum PaymentMethod {
     DESKTOP = 'desktop',
     TABLET = 'tablet',
     MOBILE = 'mobile',
+  }
+
+  export interface ImageByViewport {
+    [key: string]: string;
   }

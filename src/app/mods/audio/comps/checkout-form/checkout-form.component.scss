@@ -29,6 +29,11 @@ form {
         flex-wrap: wrap;
         width: 100%;
         
+        @include audioMixin.response(md) {
+            @include global.flexboxLayout(column, space-between, flex-start);
+
+        }
+        
     }
     
     .control-container {
@@ -36,6 +41,10 @@ form {
         // @include global.border1;
         margin-bottom: 24px;
         width: 48%;
+        
+        @include audioMixin.response(md) {
+            width: 100%;
+        }
 
         &:first-child {
             margin-right: 16px;

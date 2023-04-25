@@ -32,6 +32,11 @@
                 max-width: 768px;
             }
 
+            @include audioMixin.response(sm) {
+                @include global.flexboxLayout(column, center, center);
+                
+            }
+
             .left {
                 @include global.flexboxLayout(row, center, center);
                 width: 50%;
@@ -44,9 +49,7 @@
                      
                     }
                 }
-
             }
-            
     
             .right {
                 @include global.flexboxLayout(column, space-between, flex-start);
@@ -54,6 +57,19 @@
                 width: 50%;
                 z-index: 1;
                 margin-left: 30px;
+                
+                @include audioMixin.response(md) {
+                    @include global.flexboxLayout(column, center, center);
+                    margin-left: 0;
+                    text-align: center;
+                    width: 66%;
+                 
+                }
+
+                @include audioMixin.response(sm) {
+                    width: 100%;
+                    
+                }
 
                 .status-text {
                     @include audioMixin.overlineText;
@@ -154,12 +170,23 @@
                     width: 100%;
                 }
 
+                @include audioMixin.response(sm) {
+                    text-align: center;
+                    
+                }
+
+                .headline-text {
+                    width: 100%;
+                }
+
                 .description-text {
                     max-width: 80%;
 
                     @include audioMixin.response(xl) {
                         max-width: 100%;
                     }
+
+                    
     
                 }
             }
@@ -172,11 +199,21 @@
                     width: 100%;
                 }
 
+                @include audioMixin.response(sm) {
+                    @include global.flexboxLayout(column, center, center);
+                    width: 100%;
+                }
+
                 .contents-container {
 
                     @include audioMixin.response(xl) {
                         @include global.flexboxLayout(column, space-between, flex-start);
                         width: 50%;
+                    }
+                    
+                    @include audioMixin.response(sm) {
+                        @include global.flexboxLayout(column, space-between, flex-start);
+                        width: 66%;
                     }
                     
                     .contents-text {
@@ -232,6 +269,12 @@
                         margin-bottom: 20px;
                     }
                     
+                    @include audioMixin.response(md) {
+                        height: 150px;
+                        width: 240px;
+                        margin-bottom: 20px;
+                    }
+                    
                 }
                 
                 .two {
@@ -242,6 +285,11 @@
                     @include audioMixin.response(xl) {
                         height: 174px;
                         width: 277px;
+                    }
+
+                    @include audioMixin.response(md) {
+                        height: 150px;
+                        width: 240px;
                     }
                     
                 }
@@ -255,6 +303,12 @@
                 @include audioMixin.response(xl) {
                     height: 368px;
                     width: 395px;
+                }
+
+                @include audioMixin.response(md) {
+                    height: 318px;
+                    width: 342px;
+                 
                 }
 
             }

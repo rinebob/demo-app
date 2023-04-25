@@ -3,7 +3,7 @@
 
     <app-breadcrumb-panel></app-breadcrumb-panel>
     
-    <div class="checkout-container">
+    <div class="checkout-page-inner-container">
     
         <div class="left">
 
@@ -19,7 +19,9 @@
         <div class="right">
     
             <app-cart-detail [customerFormValidity]="(customerFormValidity$ | async)!"
-                             (continueAndPay)="handleContinueAndPay()"></app-cart-detail>
+                             (continueAndPay)="handleContinueAndPay()"
+            >
+            </app-cart-detail>
 
         </div>
     

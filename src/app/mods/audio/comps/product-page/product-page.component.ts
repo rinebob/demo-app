@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AddToCartProduct, Product, ViewportMode } from '../../common/au-interfaces';
 import { PRODUCT_INITIALIZER, VIEWPORT_MIN_SIZE } from '../../common/au-constants';
 import { UrlService } from '../../services/url.service';
+import { ViewportService } from '../../services/viewport.service';
 
 @Component({
   selector: 'app-product-page',
@@ -16,13 +17,11 @@ export class ProductPageComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    this.innerWidth = window.innerWidth;
-    // console.log('cP oR inner width: ', this.innerWidth);
-    this.updateViewportMode();
+    this.viewportService.updateViewportMode(window.innerWidth);
   }
 
-  innerWidth = 0;
   viewportMode: ViewportMode = ViewportMode.DESKTOP;
+  viewportMode$ = this.viewportService.viewportMode$;
 
   productBS = new BehaviorSubject<Product>(PRODUCT_INITIALIZER);
   product$: Observable<Product> = this.productBS;
@@ -32,9 +31,14 @@ export class ProductPageComponent {
   url = '../../category'
 
   constructor(private router: Router, private route: ActivatedRoute,
-      readonly urlService: UrlService,
+      readonly urlService: UrlService, readonly viewportService: ViewportService
     ) {
-    // console.log('pP ctor route: ', route);
+      
+      this.viewportMode$.pipe().subscribe(mode => {
+        // console.log('pP ctor viewport mode sub: ', mode);
+        this.viewportMode = mode;
+        
+      });
     
 
   }
@@ -46,28 +50,6 @@ export class ProductPageComponent {
       // console.log('pP ctor product BS value: ', this.productBS.value);
     })
 
-    const width = window.innerWidth;
-    // console.log('cP ngOI inner width: ', width);
-    this.innerWidth = width;
-    this.updateViewportMode();
-  }
-
-  updateViewportMode() {
-    const width = this.innerWidth;
-    // console.log('cP uVM inner width: ', width);
-    
-    const desktopMin = VIEWPORT_MIN_SIZE.get(ViewportMode.DESKTOP)!;
-    const tabletMin = VIEWPORT_MIN_SIZE.get(ViewportMode.TABLET)!;
-    
-    if (width > desktopMin) {
-      this.viewportMode = ViewportMode.DESKTOP;
-    } else if (width < desktopMin && width >= tabletMin ) {
-      this.viewportMode = ViewportMode.TABLET;
-    } else {
-      this.viewportMode = ViewportMode.MOBILE;
-    }
-    
-    // console.log('cP uVM final viewport mode: ', this.viewportMode);
-
+    this.viewportService.updateViewportMode(window.innerWidth);
   }
 }

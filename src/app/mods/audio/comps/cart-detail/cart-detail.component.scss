@@ -3,15 +3,19 @@
 @use '../../audio-mixins' as audioMixin;
 @use '../../audio-variables' as audioVar;
 
+.tablet-width {
+    @include audioMixin.response(xl) {
+    }
+}
+
 .cart-detail-container {
     @include global.flexboxLayout(column, space-between, flex-start);
     // @include global.border1;
     background-color: var(--au-light-background) !important;
-    min-width: 400px;
     min-height: 400px;
-    padding: 24px;
+    padding: 24px 32px 32px 32px;
+    min-width: 350px;
     
-
     .cart-header {
         @include global.flexboxLayout(row, space-between, center);
         margin-bottom: 32px;
@@ -35,7 +39,6 @@
             @include audioMixin.header6Text;
             border: none;
             cursor: pointer;
-            // color: var(--au-black);
             opacity: 0.5;
         }
         
@@ -43,13 +46,12 @@
     
     .products-list-container {
         @include global.flexboxLayout(column, space-between, flex-start);
-        margin-bottom: 16px;
+        margin-bottom: 32px;
         width: 100%;
 
         .scroll-container {
             @include global.flexboxLayout(column, flex-start, center);
             align-self: stretch;
-            // background-color: var(--scroll-container-background-color);
             max-height: 480px;
             padding: 24px 16px 24px 12px;
             overflow-x: hidden;
@@ -64,17 +66,30 @@
                 img {
                     margin-right: 12px;
                     width: 64px;
+
+                    @include audioMixin.response(xs) {
+                        display: none;
+                    }
                 }
                 
                 .product-info-container {
                     @include global.flexboxLayout(column, space-between, flex-start);
                     margin-right: 30px;
+                    
+                    @include audioMixin.response(sm) {
+                        margin-right: 12px;
+                    }
     
                     .product-title-text {
                         @include audioMixin.bodyText;
                         font-weight: 700;
                         margin: 0;
                         text-transform: uppercase;
+
+                        @include audioMixin.response(sm) {
+                            font-size: 13px;
+                            max-width: 100px;
+                        }
     
                     }
     
@@ -88,6 +103,10 @@
                 .quantity-container {
                     @include global.flexboxLayout(row, space-between, center);
                     margin-left: auto;
+
+                    @include audioMixin.response(sm) {
+                        font-size: 13px;
+                    }
                         
                     .counter-button {
                         @include audioMixin.header6Text;
@@ -95,19 +114,35 @@
                         border: none;
                         cursor: pointer;
                         opacity: 0.25;
+
+                        @include audioMixin.response(sm) {
+                            font-size: 13px;
+                        }
                         
                         &:not(:last-of-type) {
                             margin-right: 20px;
+                            
+                            @include audioMixin.response(sm) {
+                                margin-right: 10px;
+                            }
                         }
                     }
     
                     .delete-button {
                         @include global.flexboxLayout(row, center, center);
+
+                        @include audioMixin.response(sm) {
+                            display: none;
+                        }
                     }
                     
                     .count {
                         @include audioMixin.subtitleText;
                         margin: 0 16px 0 0;
+
+                        @include audioMixin.response(sm) {
+                            font-size: 13px;
+                        }
                     }
                 }
             }
@@ -148,6 +183,7 @@
 
     .checkout-button {
         @include audioMixin.buttonStyles;
+        @include audioMixin.audioColors;
         border: none;
         width: 100%;
 
