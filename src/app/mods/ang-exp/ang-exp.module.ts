@@ -22,6 +22,7 @@ import { IconNavBarComponent } from './css-tricks/icon-nav-bar/icon-nav-bar.comp
 import { LoginRegFormComponent } from './css-tricks/login-reg-form/login-reg-form.component';
 
 import { ThreeWayToggleModule } from 'src/app/shared/three-way-toggle/three-way-toggle.module';
+import { GridExpComponent } from './grid-exp/grid-exp.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ThreeWayToggleModule } from 'src/app/shared/three-way-toggle/three-way-
     OpenCloseComponent,
     CssTricksComponent,
     IconNavBarComponent,
-    LoginRegFormComponent
+    LoginRegFormComponent,
+    GridExpComponent
   ],
   imports: [
     CommonModule,
