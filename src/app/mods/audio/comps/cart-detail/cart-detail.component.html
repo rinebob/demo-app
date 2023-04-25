@@ -1,6 +1,7 @@
 
-
-<div class="cart-detail-container">
+<div class="cart-detail-container"
+    [class.tablet-width]="mode === 'summary'"
+>
 
     <div class="cart-header">
         
@@ -17,7 +18,6 @@
             <p class="headline-text">{{AppText.SUMMARY}}</p>
 
         </ng-template>
-        
         
     </div>
 
@@ -109,22 +109,12 @@
         
     </ng-container>
     
-    <button *ngIf="mode === 'detail'"
-            class="checkout-button"
-            (click)="handleProceedToCheckout()"
-    >
-        {{AppText.CHECKOUT}}
-
-    </button>
-
-
-    <button *ngIf="mode === 'summary'"
-            class="checkout-button disabled"
-            (click)="handleContinueAndPay()"
+    <button class="checkout-button disabled"
+            (click)="handleProceed()"
             [disabled]="shouldDisablePayButton"
             [class.enabled]="!shouldDisablePayButton"
     >
-        {{AppText.CONTINUE_AND_PAY}}
+        {{mode === CartDetailMode.DETAIL ? AppText.CHECKOUT : AppText.CONTINUE_AND_PAY}}
     </button>
 
 </div>

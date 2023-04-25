@@ -6,7 +6,7 @@
 .banner-container {
     @include global.flexboxLayout(row, center, center);
     background-color: var(--nav-header-background-color);
-    height: 632px;
+    // height: 639px;
     
     .banner-inner-container {
         @include global.flexboxLayout(row, space-between, center);
@@ -16,23 +16,43 @@
         max-width: 1110px;
         width: 100%;
         background-origin: border-box;
-        background-position-y: bottom;
+        background-repeat: no-repeat;
+        background-position: bottom;
         
         @include audioMixin.response(xl) {
-            background-image: url(../../../../../assets/audio/home/tablet/image-header.jpg);
-            max-width: 768px;
+            background-image: none;
+            max-width: 960px;
+        }
+
+        @include audioMixin.response(md) {
+            max-width: 620px;
+        }
+
+        @include audioMixin.response(sm) {
+            max-width: 375px;
         }
 
         .left {
-            @include global.flexboxLayout(column, space-between, flex-start);
+            @include global.flexboxLayout(column, center, flex-start);
             // @include global.border1(white, 1px);
-            margin-top: 128px;
+            height: 640px;
             width: 50%;
             z-index: 1;
 
             @include audioMixin.response(xl) {
                 @include global.flexboxLayout(column, center, center);
+                background-image: url(../../../../../assets/audio/home/tablet/image-header.jpg);
+                background-origin: border-box;
+                background-position: bottom;
+                background-repeat: no-repeat;
+                background-size: cover;
+                // max-width: 768px;
                 width: 100%;
+
+            }
+
+            @include audioMixin.response(sm-md) {
+                height: 520px;
             }
 
             .status-text {
@@ -51,6 +71,10 @@
                 @include audioMixin.response(xl) {
                     text-align: center;
                 }
+                
+                @include audioMixin.response(xl) {
+                    @include audioMixin.header3Text;
+                }
             }
             
             .description {
@@ -63,6 +87,10 @@
                 @include audioMixin.response(xl) {
                     max-width: 350px;
                     text-align: center;
+                }
+                
+                @include audioMixin.response(sm) {
+                    max-width: 340px;
                 }
             }
             

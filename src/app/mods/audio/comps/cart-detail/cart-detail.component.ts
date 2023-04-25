@@ -17,14 +17,10 @@ export class CartDetailComponent implements OnInit {
 
   @Input()
   set customerFormValidity(validity: string) {
-    
     if (validity) {
       this.customerFormValidityBS.next(validity);
-
     }
-    
     console.log('cD @i checkout form validity: ', this.customerFormValidityBS.value);
-    
   }
   get customerFormValidity() {
     return this.customerFormValidityBS.value;
@@ -41,14 +37,23 @@ export class CartDetailComponent implements OnInit {
   }
   
   get shouldDisablePayButton() {
-    const should = (!this.currentOrderBS.value || 
-                          this.currentOrderBS.value.products.length === 0)
-                   || this.customerFormInvalid;
+    let should = false;
+    if (this.mode === CartDetailMode.DETAIL) {
+      should = !this.currentOrderBS.value || 
+        this.currentOrderBS.value.products.length === 0;
+    } else {
+      should = 
+        !this.currentOrderBS.value 
+        || this.currentOrderBS.value.products.length === 0
+        || this.customerFormInvalid;
+   }
+
     return should;
   }
 
   @Output() readonly continueAndPay = new EventEmitter<void>()
 
+  readonly CartDetailMode = CartDetailMode;
   mode: CartDetailMode = CartDetailMode.SUMMARY;
 
   itemsCount = 0;
@@ -125,7 +130,7 @@ export class CartDetailComponent implements OnInit {
   }
 
   handleCloseDialog() {
-    this.dialogRef.close({result: 'cart dialog closed dude'});
+    this.dialogRef.close({result: 'cart dialog closed'});
   }
 
   handleIncrementCount(slug: string, delta: number) {
@@ -162,27 +167,6 @@ export class CartDetailComponent implements OnInit {
       }
     }
 
-    this.totalCost = cost;
-    this.itemsCount = count;
-  }
-
-  updateLocalCartState() {
-    let cost = 0;
-    let count = 0;
-    let cart: CartItem[] = []
-    for (const item of this.productsInCartBS.value) {
-      if (item.count) {
-        const itemCost = item.count * item.price;
-        count += item.count;
-        cost += itemCost;
-
-        const cartItem: CartItem = {[item.slug]: item.count};
-        cart.push(cartItem);
-      }
-    }
-    
-    this.cartBS.next(cart);
-    // console.log('cD uLCS updated local cart: ', this.cartBS.value);
     this.totalCost = cost;
     this.itemsCount = count;
   }
@@ -225,22 +209,25 @@ export class CartDetailComponent implements OnInit {
     this.currentOrderBS.next(currentOrder);
   }
 
-  handleProceedToCheckout() {
-    const cart = this.cartBS.value;
-    this.audioStore.removeAllCartItems();
-    for (const item of cart) {
-      if (Object.values(item)[0] > 0) {
-        this.audioStore.addItemToCart(item);
+  handleProceed() {
+
+    if (this.mode === CartDetailMode.DETAIL) {
+
+      const cart = this.cartBS.value;
+      this.audioStore.removeAllCartItems();
+      for (const item of cart) {
+        if (Object.values(item)[0] > 0) {
+          this.audioStore.addItemToCart(item);
+        }
       }
+
+      this.dialogRef.close({result: AudioDialogCloseResult.PROCEED_TO_CHECKOUT});
+
+    } else {
+      // console.log('cD hCAP cart detail continue and pay called. current order: ', this.currentOrderBS.value);
+      this.audioStore.setCustomerOrder(this.currentOrderBS.value);
+      this.continueAndPay.emit();
+
     }
-
-    this.dialogRef.close({result: AudioDialogCloseResult.PROCEED_TO_CHECKOUT});
-  }
-
-  handleContinueAndPay() {
-    // console.log('cD hCAP cart detail continue and pay called. current order: ', this.currentOrderBS.value);
-    this.audioStore.setCustomerOrder(this.currentOrderBS.value);
-    this.continueAndPay.emit();
-
   }
 }

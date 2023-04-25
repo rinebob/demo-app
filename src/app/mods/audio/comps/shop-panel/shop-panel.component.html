@@ -7,27 +7,42 @@
 
     <div class="shop-panel-inner-container">
 
-        <div class="category-container" *ngFor="let category of CATEGORIES">
-
-            <img src="{{category.image}}" class="img">
-
-            <p class="category-text">{{category.displayName | uppercase}}</p>
-
-            <button *ngIf="dialogMode === true" class="shop-text" (click)="handleNavigation(category.name)">
-                
-                {{AppText.SHOP}}
-
-            </button>
-
-            <a *ngIf="dialogMode === false"
-               [routerLink]="[url, category.name]"
-               routerLinkActive="active"
-               class="shop-text"
-            >
-                {{AppText.SHOP}}
-            </a>
+        <div class="categories-container">
+            
+            <div class="category-container" *ngFor="let category of CATEGORIES">
+    
+                <div class="image-container">
+                    
+                    <img src="{{category.image}}" class="img">
+    
+                </div>
+    
+                <p class="category-text">{{category.displayName | uppercase}}</p>
+    
+                <button *ngIf="dialogMode === true" class="shop-text" (click)="handleNavigation(category.name)">
+                    
+                    {{AppText.SHOP}}
+    
+                </button>
+    
+                <a *ngIf="dialogMode === false"
+                   [routerLink]="[url, category.name]"
+                   routerLinkActive="active"
+                   class="shop-text"
+                >
+                    {{AppText.SHOP}}
+                </a>
+    
+            </div>
 
         </div>
 
+        <button *ngIf="dialogMode === true" class="shop-text" (click)="handleNavigation(AppText.HOME)">
+                
+            {{AppText.BACK_TO_HOME}}
+
+        </button>
+
     </div>
+
 </div>

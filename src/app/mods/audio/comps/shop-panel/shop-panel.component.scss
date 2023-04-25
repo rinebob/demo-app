@@ -5,10 +5,21 @@
 
 .dialog-height {
     height: 407px;
+    
+    @include audioMixin.response(md) {
+        height: 320px;
+     
+    }
+    
 }
 
 .regular-height {
     height: 284px;
+    
+    @include audioMixin.response(sm) {
+        height: 100%;
+     
+    }
 
 }
 
@@ -17,41 +28,78 @@
     background-color: var(--au-light-background);
     
     .shop-panel-inner-container {
-        @include global.flexboxLayout(row, space-between, center);
+        @include global.flexboxLayout(column, space-evenly, center);
         // @include global.border1(black, 1px);
+        height: 100%;
         max-width: 1110px;
         width: 100%;
 
         @include audioMixin.response(xl) {
-            max-width: 768px;
-            padding: 0 40px;
+            max-width: 960px;
+        }
+
+        @include audioMixin.response(lg) {
+            max-width: 820px;
         }
         
-        .category-container {
-            @include global.flexboxLayout(column, flex-start, center);
-            // @include global.border1(black, 1px);
-            height: 100%;
-            width: 33%;
-            
-            .img {
-                // @include global.border1(black, 1px);
-                margin-bottom: 36px;
-                width: 123px;
-            }
+        @include audioMixin.response(md-lg) {
+            max-width: 680px;
+            padding: 0 24px;
+        }
+        
+        @include audioMixin.response(md) {
+            max-width: 580px;
+        }
 
-            .category-text {
-                @include audioMixin.header6Text;
-                margin-bottom: 15px;
+        @include audioMixin.response(sm) {
+            max-width: 375px;
+        }
+        
+        .categories-container {
+            @include global.flexboxLayout(row, space-between, center);
+            width: 100%;
+            
+            @include audioMixin.response(sm) {
+                @include global.flexboxLayout(column, flex-start, center);
             }
             
-            .shop-text {
-                @include audioMixin.subtitleText;
-                border: none;
-                color: var(--au-black);
-                cursor: pointer;
-                opacity: 0.5;
-                text-decoration: none;
+            .category-container {
+                @include global.flexboxLayout(column, flex-start, center);
+                // @include global.border1(black, 1px);
+                height: 100%;
+                width: 33%;
+    
+                .image-container {
+                    @include global.flexboxLayout(row, center, center);
+                    height: 120px;
+                    margin-bottom: 36px;
+                    width: 123px;
+                    
+                    .img {
+                        // @include global.border1(black, 1px);
+                        width: 123px;
+                    }
+                }
+    
+                .category-text {
+                    @include audioMixin.header6Text;
+                    margin-bottom: 15px;
+                    
+                    @include audioMixin.response(md) {
+                        @include audioMixin.header7Text;
+                    }
+                }
             }
+        }
+        
+        
+        .shop-text {
+            @include audioMixin.subtitleText;
+            border: none;
+            color: var(--au-black);
+            cursor: pointer;
+            opacity: 0.5;
+            text-decoration: none;
         }
     }
 }

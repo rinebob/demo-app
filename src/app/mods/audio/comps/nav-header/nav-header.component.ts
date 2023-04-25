@@ -7,7 +7,7 @@ import { CartDetailComponent } from '../cart-detail/cart-detail.component';
 import { ShopPanelComponent } from '../shop-panel/shop-panel.component';
 import { AudioStore } from '../../services/audio-store.service';
 // import { LocalStorageService } from '../../services/local-storage.service';
-import { AppText, CartDetailMode, CartItem } from '../../common/au-interfaces';
+import { AppText, AudioDialogCloseResult, CartDetailMode, CartItem } from '../../common/au-interfaces';
 import { POPULATED_SHOPPING_CART } from '../../common/audio-mock-data';
 
 @Component({
@@ -43,15 +43,16 @@ export class NavHeaderComponent {
 
     const config = new MatDialogConfig();
 
-    const position: DialogPosition = {top: '90px', left: '0'}
-    config.position = position;
     config.panelClass = this.navMenuPanelClass;
     config.data = {ref: this.navHeaderContainer}
     const dialogRef = this.dialog.open(ShopPanelComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       // console.log('nH hSSC nav menu dialog closed.  result: ', result);
       // console.log('nH hSSC t.route: ', this.route);
-      this.router.navigate(['/audio/category', result]);
+      if (result) {
+        this.router.navigate(['/audio/category', result]);
+
+      }
 
     });
 
@@ -65,7 +66,12 @@ export class NavHeaderComponent {
     const dialogRef = this.dialog.open(CartDetailComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       // console.log('nH hSSC shopping cart dialog closed.  result: ', result);
-      this.router.navigate(['./checkout'], {relativeTo: this.route});
+
+      if (result && result === AudioDialogCloseResult.PROCEED_TO_CHECKOUT) {
+      
+        this.router.navigate(['./checkout'], {relativeTo: this.route});
+
+      }
 
     });
   }

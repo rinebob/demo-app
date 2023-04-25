@@ -17,8 +17,16 @@
         @include audioMixin.response(xl) {
             @include global.flexboxLayout(row, flex-start, center);
             border: none;
-            max-width: 768px;
+            max-width: 960px;
             padding: 0 40px;
+        }
+
+        @include audioMixin.response(md-lg) {
+            max-width: 680px;
+        }
+
+        @include audioMixin.response(md) {
+            max-width: 580px;
         }
 
         .open-menu-button {
@@ -67,8 +75,7 @@
         .show-cart-button {
             background-color: var(--nav-header-background-color);
             border: none;
-            margin-left: auto;
-
+            
             mat-icon {
                 color: var(--nav-header-text-color);
                 cursor: pointer;

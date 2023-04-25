@@ -6,37 +6,74 @@
 .about-panel-container {
     @include global.flexboxLayout(row, center, flex-start);
     background-color: var(--au-light-background);
-    flex-grow: 1;
+    width: 100%;
     
     .about-panel-inner-container {
         @include global.flexboxLayout(row, space-between, center);
         // @include global.border1(black, 1px);
-        height: 588px;
+        max-height: 588px;
         max-width: 1110px;
         width: 100%;
         
         @include audioMixin.response(xl) {
+            max-width: 960px;
+        }
+        
+        @include audioMixin.response(lg) {
+            max-width: 820px;
+        }
+        
+        @include audioMixin.response(md-lg) {
             @include global.flexboxLayout(column, center, center);
-            max-width: 768px;
+            max-width: 680px;
+        }
+        
+        @include audioMixin.response(md) {
+            max-width: 580px;
+        }
+
+        @include audioMixin.response(sm) {
+            max-width: 330px;
+            max-height: 1000px;
         }
         
         .left {
+            @include global.flexboxLayout(column, center, flex-start);
             // @include global.border1(black, 1px);
             width: 50%;
-
+            
             @include audioMixin.response(xl) {
-                @include global.flexboxLayout(column, center, center);
-                order: 2;
-                text-align: center;
-                width: 573px;
+                max-width: 570px;
             }
+            
+            @include audioMixin.response(md-lg) {
+                margin-top: 63px;
+                text-align: center;
+                width: 100%;
+                order: 2;
 
+            }
+            
             .about-text {
                 max-width: 445px;
 
                 @include audioMixin.response(xl) {
-                    max-width: 573px;
+                    max-width: 345px;
                     margin-bottom: 32px;
+                }
+
+                @include audioMixin.response(md-lg) {
+                    max-width: 100%;
+                    order: 2;
+    
+                }
+
+                @include audioMixin.response(md) {
+                    // max-width: 200px;
+                }
+
+                @include audioMixin.response(sm-sm) {
+                    // max-width: 480px;
                 }
             }
 
@@ -47,17 +84,23 @@
         
         .img {
             background-image: url(../../../../../assets/audio/shared/desktop/image-best-gear.jpg);
+            background-size: cover;
+            background-position: center;
             border-radius: 8px;
             height: 588px;
-            width: 540px;
+            width: 50%;
             
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 background-image: url(../../../../../assets/audio/shared/tablet/image-best-gear.jpg);
-                background-size: cover;
+            }
+            
+            @include audioMixin.response(md-lg) {
+                width: 100%;
+            }
+            
+            @include audioMixin.response(sm) {
+                background-image: url(../../../../../assets/audio/shared/mobile/image-best-gear.jpg);
                 height: 300px;
-                width: 689px;
-                margin-bottom: 63px;
-                order: 1;
             }
             
         }
@@ -69,6 +112,5 @@
     
     .description-text {
         @include audioMixin.bodyText;
-
     }
 }

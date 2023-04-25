@@ -86,7 +86,8 @@ export const CUSTOMER_INITIALIZER: Customer = {
   export const SHIPPING_COST = 50;
 
   export const VIEWPORT_MIN_SIZE = new Map<ViewportMode, number>([
-    [ViewportMode.DESKTOP, 1200],
-    [ViewportMode.TABLET, 760],
+    [ViewportMode.DESKTOP, 1000],
+    // [ViewportMode.TABLET, 760],
+    [ViewportMode.TABLET, 460],
     [ViewportMode.MOBILE, 0],
   ]);

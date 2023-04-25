@@ -36,5 +36,13 @@
     app-shop-panel {
         margin-bottom: 168px;
     }
+
+    app-about-panel {
+        margin-bottom: 200px;
+
+        @include audioMixin.response(xl) {
+            margin-bottom: 96px;
+        }
+    }
 }
 

@@ -5,6 +5,7 @@
 @use "./ng-exp-mixins" as ng-exp;
 @use '../app/comps/landing-page/landing-page-variables' as landingPageVar;
 @use '../app/mods/audio/audio-variables' as audioVar;
+@use '../app/mods/audio/audio-mixins' as audioMixin;
 
 @include mat.core();
 @import "./global-variables";
@@ -222,8 +223,18 @@ p {
     }
     background-color: var(--au-light-background) !important;
     border: none;
-    border-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    // 284px component height plus 56px/67px top/bottom padding when used as menu
+    height: 407px;
+    max-width: 100vw !important;
     width: 100%;
+
+    @include audioMixin.response(md) {
+        height: 320px;
+     
+    }
 }
 
 .nav-menu-container {

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Product, ViewportMode } from '../../common/au-interfaces';
-import { VIEWPORT_MIN_SIZE } from '../../common/au-constants';
+import { ViewportService } from '../../services/viewport.service';
 
 @Component({
   selector: 'app-category-page',
@@ -15,13 +15,13 @@ export class CategoryPageComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    this.innerWidth = window.innerWidth;
-    console.log('pP oR inner width: ', this.innerWidth);
-    this.updateViewportMode();
+    // console.log('cP oR inner width: ', this.innerWidth);
+    this.viewportService.updateViewportMode(window.innerWidth);
   }
 
-  innerWidth = 0;
   viewportMode: ViewportMode = ViewportMode.DESKTOP;
+
+  viewportMode$ = this.viewportService.viewportMode$;
 
   category = '';
   categoryBS = new BehaviorSubject<string>('');
@@ -31,7 +31,8 @@ export class CategoryPageComponent implements OnInit {
 
   url = '../'
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute,
+              readonly viewportService: ViewportService) {
     
     // console.log('cP ctor route: ', route);
     
@@ -46,6 +47,12 @@ export class CategoryPageComponent implements OnInit {
       // console.log('cP ctor router events sub: ', event);
     });
 
+    this.viewportMode$.pipe().subscribe(mode => {
+      // console.log('pP ctor viewport mode sub: ', mode);
+      this.viewportMode = mode;
+      
+    });
+
   }
 
   ngOnInit(): void {
@@ -58,10 +65,7 @@ export class CategoryPageComponent implements OnInit {
       // console.log('cP ctor products BS value: ', this.productsBS.value);
     })
 
-    const width = window.innerWidth;
-    console.log('pP ngOI inner width: ', width);
-    this.innerWidth = width;
-    this.updateViewportMode();
+    this.viewportService.updateViewportMode(window.innerWidth);
 
   }
 
@@ -79,24 +83,4 @@ export class CategoryPageComponent implements OnInit {
     
     return orderedProducts;
   }
-
-  updateViewportMode() {
-    const width = this.innerWidth;
-    // console.log('cP uVM inner width: ', width);
-    
-    const desktopMin = VIEWPORT_MIN_SIZE.get(ViewportMode.DESKTOP)!;
-    const tabletMin = VIEWPORT_MIN_SIZE.get(ViewportMode.TABLET)!;
-    
-    if (width > desktopMin) {
-      this.viewportMode = ViewportMode.DESKTOP;
-    } else if (width < desktopMin && width >= tabletMin ) {
-      this.viewportMode = ViewportMode.TABLET;
-    } else {
-      this.viewportMode = ViewportMode.MOBILE;
-    }
-    
-    // console.log('pP uVM final viewport mode: ', this.viewportMode);
-
-  }
-
 }
