@@ -15,7 +15,7 @@
         width: 100%;
         
         @include audioMixin.response(xl) {
-            @include global.flexboxLayout(row, flex-start, center);
+            @include global.flexboxLayout(row, space-between, center);
             border: none;
             max-width: 960px;
             padding: 0 40px;
@@ -75,6 +75,10 @@
         .show-cart-button {
             background-color: var(--nav-header-background-color);
             border: none;
+
+            @include audioMixin.response(xl) {
+                margin-left: auto;
+            }
             
             mat-icon {
                 color: var(--nav-header-text-color);

@@ -1,0 +1,121 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/ng-exp-variables' as angExpVar;
+@use '../../../../styles/ng-exp-mixins' as angExpMixin;
+// @use '../app/mods/ang-exp/ang-exp-theme' as angExpTheme;
+
+
+// --grid-exp-lg-width: 1440px;
+// --grid-exp-md-width: 768px;
+// --grid-exp-sm-width: 375px;
+// --grid-exp-lg-inner-width: 1110px;
+// --grid-exp-md-inner-width: 689px;
+// --grid-exp-sm-inner-width: 327px;
+
+.scroll-container {
+    height: calc(100vh - 96px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .grid-exp-container {
+        display: grid;
+        grid-template-columns: 1fr var(--grid-exp-sm-inner-width) 1fr;
+        grid-template-rows: 80px minmax(100px auto) 80px;
+        justify-content: center;
+        height: 100%;
+
+        @include angExpMixin.response(md) {
+            grid-template-columns: 1fr var(--grid-exp-md-inner-width) 1fr;
+        }
+
+        @include angExpMixin.response(lg) {
+            grid-template-columns: 1fr var(--grid-exp-lg-inner-width) 1fr;
+        }
+
+        .nav-header {
+            @include global.flexboxLayout(row, space-between, center);
+            background-color: blue;
+            grid-area: 1 / 1 / 2 / 13;
+            
+            .nav-buttons {
+                @include global.flexboxLayout(row, space-between, center);
+                width: 200px;
+
+                .nav-button {
+                    @include angExpMixin.angExpColors(var(--ang-exp-light-primary), var(--ang-exp-on-light-primary));
+                    border: none;
+                    padding: 8px 20px;
+                    text-transform: uppercase;                    
+                }
+
+            }
+
+            mat-icon {
+                color: white;
+            }
+
+        }
+
+        .home {
+            background-color: red;
+            grid-area: 2 / 2 / 3 / 12;
+            height: 1500px;
+            width: var(--grid-exp-sm-inner-width);
+
+            @include angExpMixin.response(md) {
+                width: var(--grid-exp-md-inner-width);
+            }
+    
+            @include angExpMixin.response(lg) {
+                width: var(--grid-exp-lg-inner-width);
+            }
+            
+            .shop-panel {
+                background-color: lightseagreen;
+                @include global.flexboxLayout;
+            }
+            
+            .home-feature {
+                @include global.flexboxLayout;
+                background-color: lightblue;
+            }
+            
+            .about-panel {
+                @include global.flexboxLayout;
+                background-color: lightcoral;
+            }
+        }
+
+        .nav-footer {
+            background-color: green;
+            @include global.flexboxLayout(column, space-between, flex-start);
+            grid-area: 3 / 1 / 4 / 13;
+            border: 1px solid black;
+            padding: 20px;
+            z-index: 1;
+
+        }
+        
+    
+        .item {
+            height: 100px;
+            width: 100px;
+            background-color: slateblue;
+            border: 1px solid black;
+        }
+    
+        .text {
+            @include global.border1;
+            color: black;
+            // margin: 20px;
+            // padding: 50px 20px;
+            text-transform: uppercase;
+        }
+    
+        .logo-text {
+            font: 700 normal 36px/50px var(--main-font-family);
+            margin: 0;
+        }
+    
+        
+    }
+}
