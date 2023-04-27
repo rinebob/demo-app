@@ -9,6 +9,10 @@
     border: none;
     color: var(--nav-header-text-color);
     padding: 2px 6px;
+
+    &:hover {
+        background-color: var(--au-primary-hover);
+    }
 }
 
 form {

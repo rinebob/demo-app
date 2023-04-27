@@ -19,7 +19,7 @@
         <div class="right">
     
             <app-cart-detail [customerFormValidity]="(customerFormValidity$ | async)!"
-                             (continueAndPay)="handleContinueAndPay()"
+                             (continueAndPay)="handleContinueAndPay($event)"
             >
             </app-cart-detail>
 

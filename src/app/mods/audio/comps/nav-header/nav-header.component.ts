@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogPosition, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { BehaviorSubject, take } from 'rxjs';
@@ -7,8 +7,9 @@ import { CartDetailComponent } from '../cart-detail/cart-detail.component';
 import { ShopPanelComponent } from '../shop-panel/shop-panel.component';
 import { AudioStore } from '../../services/audio-store.service';
 // import { LocalStorageService } from '../../services/local-storage.service';
-import { AppText, AudioDialogCloseResult, CartDetailMode, CartItem } from '../../common/au-interfaces';
+import { AppText, AudioDialogCloseResult, CartDetailMode, CartItem, ViewportMode } from '../../common/au-interfaces';
 import { POPULATED_SHOPPING_CART } from '../../common/audio-mock-data';
+import { ViewportService } from '../../services/viewport.service';
 
 @Component({
   selector: 'app-nav-header',
@@ -18,6 +19,14 @@ import { POPULATED_SHOPPING_CART } from '../../common/audio-mock-data';
 })
 export class NavHeaderComponent {
   @ViewChild('navHeaderContainer') navHeaderContainer: ElementRef;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.viewportService.updateViewportMode(window.innerWidth);
+  }
+
+  viewportMode: ViewportMode = ViewportMode.DESKTOP;
+  viewportMode$ = this.viewportService.viewportMode$;
 
   navMenuPanelClass = 'nav-menu-panel-class';
   shoppingCartPanelClass = 'shopping-cart-panel-class';
@@ -29,9 +38,15 @@ export class NavHeaderComponent {
   readonly AppText = AppText;
 
   constructor(readonly dialog: MatDialog, readonly audioStore: AudioStore,
-    readonly router: Router, readonly route: ActivatedRoute,
+    readonly router: Router, readonly route: ActivatedRoute, readonly viewportService: ViewportService,
     // readonly localStorage: LocalStorageService,
     ) {
+
+    this.viewportMode$.pipe().subscribe(mode => {
+      // console.log('nH ctor viewport mode sub: ', mode);
+      this.viewportMode = mode;
+    });
+
     this.cart$.pipe().subscribe(cart => {
       // console.log('nH ctor shopping cart sub: ', cart);
       this.shoppingCartBS.next(cart);
@@ -62,7 +77,7 @@ export class NavHeaderComponent {
     // console.log('nH hSSC open shopping cart dialog called');
     const config = new MatDialogConfig();
     config.panelClass = this.shoppingCartPanelClass;
-    config.data = {mode: CartDetailMode.DETAIL, ref: this.navHeaderContainer};
+    config.data = {mode: CartDetailMode.DETAIL, ref: this.navHeaderContainer, viewportMode: this.viewportMode};
     const dialogRef = this.dialog.open(CartDetailComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       // console.log('nH hSSC shopping cart dialog closed.  result: ', result);

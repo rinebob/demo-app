@@ -34,7 +34,7 @@
             text-transform: capitalize;
 
             &:hover {
-                background-color: var(--au-primary-hover);
+                color: var(--au-primary-hover);
             }
             
         }
@@ -46,7 +46,7 @@
             opacity: 0.5;
 
             &:hover {
-                background-color: var(--au-primary-hover);
+                color: var(--au-primary-hover);
             }
         }
         
@@ -104,28 +104,22 @@
 
                     @include audioMixin.response(md) {
                         font-size: 13px;
-                    }   
+                    }
+
                     .counter-button {
                         @include audioMixin.header6Text;
                         @include audioMixin.audioColors(var(--au-light-background), var(--au-black));
                         border: none;
                         cursor: pointer;
                         opacity: 0.25;
+                        padding: 0 10px;
 
                         @include audioMixin.response(md) {
                             font-size: 13px;
                         }
                         
-                        &:not(:last-of-type) {
-                            margin-right: 20px;
-
-                            @include audioMixin.response(md) {
-                                margin-right: 10px;
-                            }
-                         
-
                         &:hover {
-                            background-color: var(--au-primary-hover);
+                            color: var(--au-primary-hover);
                         }
                     }
     
@@ -137,13 +131,13 @@
                         }
 
                         &:hover {
-                            background-color: var(--au-primary-hover);
+                            color: var(--au-primary-hover);
                         }
                     }
                     
                     .count {
                         @include audioMixin.subtitleText;
-                        margin: 0 16px 0 0;
+                        margin: 0 8px;
                     }
                 }
 
@@ -175,8 +169,12 @@
 
     .total-container {
         @include global.flexboxLayout(row, space-between, center);
-        margin-bottom: 24px;
+        margin-bottom: 8px;
         width: 100%;
+
+        p { 
+            margin: 0;
+        }
         
         @include audioMixin.response(md) {
             margin-bottom: 8px;
@@ -195,6 +193,10 @@
         .grand-total-text {
             color: var(--au-primary-idle);
 
+        }
+
+        &.grand-total-container {
+            margin: 16px 0 32px;
         }
     }
 

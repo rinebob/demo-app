@@ -215,6 +215,11 @@ p {
     background-color: var(--au-light-background) !important;
     border: none;
     border-radius: 8px;
+
+    .mat-mdc-dialog-surface {
+        background-color: inherit !important;
+        overflow-x: hidden;
+    }
 }
 
 .nav-menu-panel-class {

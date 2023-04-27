@@ -3,23 +3,31 @@
 
     <div class="inner-container" #navHeaderContainer>
 
-        <button class="open-menu-button" (click)="handleOpenNavMenu()">
+        <div class="left">
             
-            <mat-icon class="menu-icon">menu</mat-icon>
+            <button class="open-menu-button" (click)="handleOpenNavMenu()">
+                
+                <mat-icon class="menu-icon">menu</mat-icon>
+    
+            </button>
+            
+            <p class="header-title">{{AppText.LOGO_TEXT}}</p>
 
-        </button>
-        
-        <p class="header-title">{{AppText.LOGO_TEXT}}</p>
+        </div>
 
         <app-nav-links></app-nav-links>
 
-        <button class="populate-cart-button" (click)="populateCart()">populate cart</button>
+        <div class="right">
+            
+            <button class="populate-cart-button" (click)="populateCart()">fill cart</button>
+        
+            <button class="show-cart-button">
     
-        <button class="show-cart-button">
+                <mat-icon class="material-symbols-outlined" (click)="handleShowShoppingCart()">shopping_cart</mat-icon>
+    
+            </button>
 
-            <mat-icon class="material-symbols-outlined" (click)="handleShowShoppingCart()">shopping_cart</mat-icon>
-
-        </button>
+        </div>
 
     </div>
 

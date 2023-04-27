@@ -137,8 +137,12 @@
                         @include audioMixin.audioColors(var(--au-light-background), var(--au-black));
                         border: none;
                         cursor: pointer;
-                        padding: 0 10px;
                         opacity: 0.25;
+                        padding: 0 10px;
+
+                        &:hover {
+                            color: var(--au-primary-hover);
+                        }
                     }
                     
                     .count {

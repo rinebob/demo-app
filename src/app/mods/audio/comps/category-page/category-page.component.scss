@@ -25,6 +25,10 @@
             @include audioMixin.header2Text;
             @include audioMixin.audioColors(var(--au-background-color), var(--au-on-background-color));
             padding: 100px 0;
+
+            @include audioMixin.response(md) {
+                @include audioMixin.header4Text;
+            }
         }
     }
     

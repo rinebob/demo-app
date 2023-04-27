@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take, withLatestFrom } from 'rxjs/operators';
 
-import { AppText, Customer, Order } from '../../common/au-interfaces';
+import { AppText, Customer, Order, Product, ViewportMode } from '../../common/au-interfaces';
 import { AudioStore } from '../../services/audio-store.service';
 import { ProductsService } from '../../services/products.service';
 import { ThankYouComponent } from '../thank-you/thank-you.component';
+import { ViewportService } from '../../services/viewport.service';
 
 @Component({
   selector: 'app-checkout-page',
@@ -16,6 +17,13 @@ import { ThankYouComponent } from '../thank-you/thank-you.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckoutPageComponent {
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.viewportService.updateViewportMode(window.innerWidth);
+  }
+
+  viewportMode: ViewportMode = ViewportMode.DESKTOP;
+  viewportMode$ = this.viewportService.viewportMode$;
 
   customer$ = this.audioStore.customer$;
   order$ = this.audioStore.order$;
@@ -29,9 +37,12 @@ export class CheckoutPageComponent {
 
   constructor(readonly audioStore: AudioStore, readonly dialog: MatDialog,
               readonly productsService: ProductsService, readonly router: Router, 
-              readonly route: ActivatedRoute,
+              readonly route: ActivatedRoute,  readonly viewportService: ViewportService,
     ) {
-
+      this.viewportMode$.pipe().subscribe(mode => {
+        // console.log('cP ctor viewport mode sub: ', mode);
+        this.viewportMode = mode;
+      });
   }
 
   handleCustomerFormValidity(validity: string) {
@@ -44,7 +55,7 @@ export class CheckoutPageComponent {
     // console.log('cP hCFF customer from checkout form: ', {...customer});
   }
   
-  handleContinueAndPay() {
+  handleContinueAndPay(products: Product[]) {
     // console.log('cP hCFF checkout page handle continue and pay called');
 
     // this.customer$.pipe(take(1)).subscribe(customer => {
@@ -61,12 +72,12 @@ export class CheckoutPageComponent {
 
       this.audioStore.setCustomerOrder({...order});
 
-      this.openThankYouDialog(order);
+      this.openThankYouDialog(order, products);
 
     });
   }
 
-  openThankYouDialog(order: Order) {
+  openThankYouDialog(order: Order, products: Product[]) {
     // console.log('cP oTYD order: ', order);
 
     if (order && order.products.length > 0) {
@@ -76,7 +87,7 @@ export class CheckoutPageComponent {
   
       const config = new MatDialogConfig();
       config.panelClass = this.thankYouPanelClass;
-      config.data = {order, product};
+      config.data = {order, product, viewportMode: this.viewportMode, products};
       const dialogRef = this.dialog.open(ThankYouComponent, config);
       dialogRef.afterClosed().subscribe(result => {
         // console.log('cP oTYD thank you dialog closed.  result: ', result);
