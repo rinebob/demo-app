@@ -13,17 +13,24 @@
         max-width: 1110px;
         width: 100%;
 
-        @include audioMixin.response(xl) {
-            max-width: 768px;
-            padding: 0 40px;
+        @include audioMixin.response(lg) {
+            max-width: var(--au-md-inner-width);
+        }
+        
+        @include audioMixin.response(md) {
+            max-width: var(--au-sm-inner-width);
         }
 
         a {
             @include audioMixin.bodyText;
             color: rgba(0,0,0,0.5);
-            padding: 76px 0 38px;
+            // padding: 76px 0 38px;
             text-decoration: none;
             text-transform: capitalize;
+
+            &:hover {
+                color: var(--au-primary-hover);
+            }
 
         }
     }

@@ -1,5 +1,5 @@
 
-<div class="cart-detail-container"
+<div class="cart-detail-container" #cartDetailContainer
     [class.tablet-width]="mode === 'summary'"
 >
 
@@ -41,7 +41,7 @@
             
                         </div>
                         
-                        <div class="quantity-container">
+                        <div class="quantity-container" *ngIf="mode === 'detail'; else amounts">
                                 
                             <button class="counter-button" (click)="handleIncrementCount(product.slug, -1)">-</button>
                             <p class="count">{{product.count}}</p>
@@ -49,6 +49,15 @@
                             <button class="counter-button delete-button" (click)="handleRemoveItemFromCart(product.slug)"> <mat-icon class="material-symbols-outlined">delete</mat-icon> </button>
                             
                         </div>
+
+                        <ng-template #amounts>
+                            <div class="amount-container">
+
+                                <p class="amount">x{{product.count}}</p>
+
+                            </div>
+                            
+                        </ng-template>
             
                     </div>
     
@@ -101,7 +110,7 @@
             <div class="total-container">
         
                 <p class="total-text">{{AppText.GRAND_TOTAL}}</p>
-                <p class="amount-text">{{order.grandTotal | currency}}</p>
+                <p class="amount-text grand-total-text">{{order.grandTotal | currency}}</p>
         
             </div>
 

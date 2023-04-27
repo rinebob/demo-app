@@ -6,8 +6,6 @@
 .product-card-container {
     @include global.flexboxLayout(row, center, center);
     background-color: var(--au-light-background);
-    height: 560px;
-    flex-grow: 1;
 
     .order-one {
         order: 1;
@@ -22,7 +20,7 @@
         background-origin: border-box;
         background-position-y: bottom;
 
-        @include audioMixin.response(xl) {
+        @include audioMixin.response(lg) {
             @include global.flexboxLayout(column, center, center);
             max-width: 768px;
         }
@@ -32,8 +30,11 @@
         }
 
         .product-image {
-            height: 100%;
-            width: 560px;
+            height: 560px;
+
+            @include audioMixin.response(lg) {
+                height: 220px;
+            }
         }
     
         .product-description {
@@ -43,7 +44,7 @@
             z-index: 1;
             margin-left: 30px;
 
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 @include global.flexboxLayout(column, flex-start, center);
                 text-align: center;
                 width: 100%;
@@ -54,8 +55,8 @@
                 color: var(--au-primary-idle);
                 margin-bottom: 24px;
                 opacity: 50%;
-                
-                @include audioMixin.response(xl) {
+
+                @include audioMixin.response(lg) {
                     margin-bottom: 16px;
                 }
             }
@@ -65,7 +66,7 @@
                 color: var(--au-black);
                 margin-bottom: 24px;
 
-                @include audioMixin.response(xl) {
+                @include audioMixin.response(lg) {
                     margin-bottom: 32px;
                 }
             }
@@ -77,7 +78,7 @@
                 max-width: 66%;
                 margin-bottom: 40px;
 
-                @include audioMixin.response(xl) {
+                @include audioMixin.response(lg) {
                     margin-bottom: 24px;
                 }
             }
@@ -85,9 +86,12 @@
             .see-product-button {
                 @include audioMixin.buttonStyles;
                 @include audioMixin.audioColors;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--au-primary-hover);
+                }
             }
         }
-
     }
-
 }

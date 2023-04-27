@@ -6,7 +6,6 @@
 .banner-container {
     @include global.flexboxLayout(row, center, center);
     background-color: var(--nav-header-background-color);
-    // height: 639px;
     
     .banner-inner-container {
         @include global.flexboxLayout(row, space-between, center);
@@ -18,18 +17,14 @@
         background-origin: border-box;
         background-repeat: no-repeat;
         background-position: bottom;
-        
-        @include audioMixin.response(xl) {
+
+        @include audioMixin.response(lg) {
             background-image: none;
-            max-width: 960px;
+            max-width: var(--au-md-inner-width);
         }
-
+        
         @include audioMixin.response(md) {
-            max-width: 620px;
-        }
-
-        @include audioMixin.response(sm) {
-            max-width: 375px;
+            max-width: var(--au-sm-inner-width);
         }
 
         .left {
@@ -39,20 +34,15 @@
             width: 50%;
             z-index: 1;
 
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 @include global.flexboxLayout(column, center, center);
                 background-image: url(../../../../../assets/audio/home/tablet/image-header.jpg);
                 background-origin: border-box;
                 background-position: bottom;
                 background-repeat: no-repeat;
                 background-size: cover;
-                // max-width: 768px;
                 width: 100%;
 
-            }
-
-            @include audioMixin.response(sm-md) {
-                height: 520px;
             }
 
             .status-text {
@@ -60,7 +50,6 @@
                 color: var(--nav-header-text-color);
                 margin-bottom: 24px;
                 opacity: 50%;
-
             }
             
             .headline {
@@ -68,12 +57,9 @@
                 color: var(--nav-header-text-color);
                 margin-bottom: 24px;
                 
-                @include audioMixin.response(xl) {
-                    text-align: center;
-                }
-                
-                @include audioMixin.response(xl) {
+                @include audioMixin.response(lg) {
                     @include audioMixin.header3Text;
+                    text-align: center;
                 }
             }
             
@@ -84,19 +70,19 @@
                 max-width: 66%;
                 margin-bottom: 40px;
 
-                @include audioMixin.response(xl) {
-                    max-width: 350px;
+                @include audioMixin.response(lg) {
+                    max-width: var(--au-sm-inner-width);
                     text-align: center;
-                }
-                
-                @include audioMixin.response(sm) {
-                    max-width: 340px;
                 }
             }
             
             .see-product-button {
                 @include audioMixin.buttonStyles;
                 @include audioMixin.audioColors;
+
+                &:hover {
+                    @include audioMixin.audioColors(var(--au-primary-hover), var(--au-on-primary-idle))
+                }
             }
         }
     }

@@ -71,6 +71,22 @@ export enum AppText {
     GRAND_TOTAL = 'grand total',
     THANK_YOU_MESSAGE = 'thank you for your order',
     CONFIRMATION_MESSAGE = 'You will receive an email confirmation shortly.',
+    BILLING_DETAILS = 'billing details',
+    NAME = 'name',
+    EMAIL_ADDRESS = 'email address',
+    PHONE_NUMBER = 'phone number',
+    SHIPPING_INFO = 'shipping info',
+    ADDRESS = 'address',
+    CITY = 'city',
+    STATE = 'state',
+    ZIP_CODE = 'zip code',
+    COUNTRY = 'country',
+    PAYMENT_DETAILS = 'payment details',
+    PAYMENT_METHOD = 'payment method',
+    CASH_ON_DELIVERY = 'cash on delivery',
+    E_MONEY = 'e-Money',
+    E_MONEY_NUMBER = 'e-Money Number',
+    E_MONEY_PIN = 'e-Money PIN',
     
     
 

@@ -9,22 +9,39 @@
     color: var(--au-on-light-background);
     width: 100%;
 
+    app-breadcrumb-panel {
+        margin: 76px 0 38px;
+
+        @include audioMixin.response(lg) {
+            margin: 33px 0 24px;
+        }
+
+        @include audioMixin.response(lg) {
+            margin: 16px 0 24px;
+        }
+    }
+
     app-breadcrumb-panel,
     app-product-detail,
     app-shop-panel,
-    app-also-like-panel {
+    app-also-like-panel,
+    app-about-panel {
         width: 100%;
     }
     
     app-product-detail {
         margin-bottom: 160px;
+
+        @include audioMixin.response(lg) {
+            margin-bottom: 120px;
+        }
     }
     
     app-also-like-panel,
     app-shop-panel {
         margin-bottom: 168px;
-        
-        @include audioMixin.response(xl) {
+
+        @include audioMixin.response(lg) {
             margin-bottom: 120px;
         }
     }
@@ -32,7 +49,7 @@
     app-about-panel {
         margin-bottom: 160px;
 
-        @include audioMixin.response(xl) {
+        @include audioMixin.response(lg) {
             margin-bottom: 96px;
         }
     }
