@@ -23,10 +23,10 @@
                 <p class="price">$ {{product.price}}</p>
         
                 <div class="quantity-container">
-                    
-                    <p class="counter-button" (click)="incrementCount(-1)">-</p>
+
+                    <button class="counter-button" (click)="incrementCount(-1)">-</button>
                     <p class="count">{{count}}</p>
-                    <p class="counter-button" (click)="incrementCount(1)">+</p>
+                    <button class="counter-button" (click)="incrementCount(1)">+</button>
                     
                     <button class="see-product-button" (click)="addToCart()">
                         {{AppText.ADD_TO_CART}}

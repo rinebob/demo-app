@@ -6,13 +6,13 @@
 <form [formGroup]="checkoutForm">
 
         <!-- billing details -->
-    <p class="section-header-text">billing details</p>
+    <p class="section-header-text">{{AppText.BILLING_DETAILS}}</p>
 
     <div class="form-section">
         
         <div class="control-container">
             
-            <label for="name">name</label>
+            <label for="name">{{AppText.NAME}}</label>
             <input type="text" placeholder="name" class="checkout-form-control"
                     formControlName="nameControl"
             >
@@ -21,7 +21,7 @@
 
         <div class="control-container">
             
-            <label for="email">email address</label>
+            <label for="email">{{AppText.EMAIL_ADDRESS}}</label>
             <input type="text" placeholder="email address" class="checkout-form-control"
                    formControlName="emailControl"
             >
@@ -31,7 +31,7 @@
         
         <div class="control-container">
             
-            <label for="phone">phone number</label>
+            <label for="phone">{{AppText.PHONE_NUMBER}}</label>
             <input type="text" placeholder="phone number" class="checkout-form-control"
                    formControlName="phoneControl"
             >
@@ -42,13 +42,13 @@
 
 
     <!-- shipping info -->
-<p class="section-header-text">shipping info</p>
+<p class="section-header-text">{{AppText.SHIPPING_INFO}}</p>
 
 <div class="form-section">
 
     <div class="control-container wide-control">
 
-        <label for="address">address</label>
+        <label for="address">{{AppText.ADDRESS}}</label>
         <input type="text" placeholder="address" class="checkout-form-control"
                formControlName="addressControl"
         >
@@ -57,7 +57,7 @@
 
     <div class="control-container">
 
-        <label for="city">city</label>
+        <label for="city">{{AppText.CITY}}</label>
         <input type="text" placeholder="city" class="checkout-form-control"
                formControlName="cityControl"
         >
@@ -66,7 +66,7 @@
     
     <div class="control-container">
         
-        <label for="state">state</label>
+        <label for="state">{{AppText.STATE}}</label>
         <input type="text" placeholder="state" class="checkout-form-control"
                formControlName="stateControl"
         >
@@ -75,7 +75,7 @@
     
     <div class="control-container">
         
-        <label for="zipcode">zip code</label>
+        <label for="zipcode">{{AppText.ZIP_CODE}}</label>
         <input type="text" placeholder="zip code" class="checkout-form-control"
                formControlName="zipControl"
         >
@@ -84,7 +84,7 @@
     
     <div class="control-container">
 
-        <label for="country">country</label>
+        <label for="country">{{AppText.COUNTRY}}</label>
         <input type="text" placeholder="country" class="checkout-form-control"
                formControlName="countryControl"
         >
@@ -94,7 +94,7 @@
 </div>
     
         <!-- payment details -->
-    <p class="section-header-text">payment details</p>
+    <p class="section-header-text">{{AppText.PAYMENT_DETAILS}}</p>
 
     <div class="form-section">
 
@@ -102,7 +102,7 @@
             
             <div class="left">
                 
-                <label for="paymentMethod">payment method</label>
+                <label for="paymentMethod">{{AppText.PAYMENT_METHOD}}</label>
 
             </div>
 
@@ -113,7 +113,7 @@
                     <input type="radio" id="COD" value="COD" name="paymentMethodControl"
                            formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === 'cash on delivery'"
                     />
-                    <label for="COD">Cash on Delivery</label>
+                    <label for="COD">{{AppText.CASH_ON_DELIVERY}}</label>
     
                 </div>
                 
@@ -122,7 +122,7 @@
                     <input type="radio" id="e-Money" value="e-Money" name="paymentMethodControl"
                            formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === 'e-Money'"
                     >
-                    <label for="e-Money">e-Money</label>
+                    <label for="e-Money">{{AppText.E_MONEY}}</label>
                     
                 </div>
 
@@ -132,7 +132,7 @@
 
         <div class="control-container">
             
-            <label for="e-MoneyNumber">e Money Number</label>
+            <label for="e-MoneyNumber">{{AppText.E_MONEY_NUMBER}}</label>
             <input type="text" placeholder="e-Money Number" class="checkout-form-control"
                    formControlName="eMoneyNumberControl"
             >
@@ -141,7 +141,7 @@
 
         <div class="control-container">
             
-            <label for="eMoneyPin">e-Money PIN</label>
+            <label for="eMoneyPin">{{AppText.E_MONEY_PIN}}</label>
             <input type="text" placeholder="e-Money PIN" class="checkout-form-control"
                    formControlName="eMoneyPinControl"
             >

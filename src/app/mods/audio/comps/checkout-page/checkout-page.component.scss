@@ -8,6 +8,27 @@
     width: 100%;
     background-color: var(--au-light-background);
     color: var(--au-on-light-background);
+    margin-bottom: 141px;
+
+    @include audioMixin.response(lg) {
+        margin-bottom: 116px;
+    }
+
+    @include audioMixin.response(md) {
+        margin-bottom: 97px;
+    }
+
+    app-breadcrumb-panel {
+        margin: 79px 0 38px;
+
+        @include audioMixin.response(lg) {
+            margin: 48px 0 24px;
+        }
+
+        @include audioMixin.response(md) {
+            margin: 16px 0 24px;
+        }
+    }
     
     app-breadcrumb-panel,
     app-nav-footer {
@@ -17,22 +38,15 @@
     .checkout-page-inner-container {
         @include global.flexboxLayout(row, flex-start, flex-start);
         // @include global.border1;
-        width: 1110px;
-        
-        @include audioMixin.response(xl) {
+        max-width: 1110px;
+
+        @include audioMixin.response(lg) {
             @include global.flexboxLayout(column, flex-start, center);
-            width: 768px;
-            padding: 0 40px;
+            max-width: var(--au-md-inner-width);
         }
-
+        
         @include audioMixin.response(md) {
-            width: 660px;
-            
-        }
-
-        @include audioMixin.response(sm-sm) {
-            width: 560px;
-            
+            max-width: var(--au-sm-inner-width);
         }
 
         .left {
@@ -40,20 +54,25 @@
             margin-right: 30px;
             padding: 54px 48px 48px 48px;
 
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 margin-bottom: 10px;
                 margin-right: 0;
                 padding: 30px 28px;
-            }
-
-            @include audioMixin.response(md) {
-                @include global.flexboxLayout(column, flex-start, center);
                 width: 100%
             }
-
+            
+            @include audioMixin.response(md) {
+                @include global.flexboxLayout(column, flex-start, center);
+                padding: 24px;
+            }
             .header-text {
                 @include audioMixin.header3Text;
                 margin-bottom: 41px;
+                
+                @include audioMixin.response(md) {
+                    @include global.flexboxLayout(column, flex-start, center);
+                    margin-bottom: 32px;
+                }
             }
 
             app-checkout-form {
@@ -64,8 +83,8 @@
 
         .right {
             @include global.flexboxLayout(column, flex-start, flex-start);
-            
-            @include audioMixin.response(xl) {
+
+            @include audioMixin.response(lg) {
                 @include global.flexboxLayout(column, flex-start, center);
                 width: 100%;
 

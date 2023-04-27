@@ -2,7 +2,6 @@
 
 <div class="shop-panel-container"
      [class.regular-height]="dialogMode === false"
-     [class.dialog-height]="dialogMode === true"
 >
 
     <div class="shop-panel-inner-container">
@@ -31,15 +30,20 @@
                    class="shop-text"
                 >
                     {{AppText.SHOP}}
+                    
+                    <mat-icon class="material-icons-outlined">chevron_right</mat-icon>
+                    
                 </a>
     
             </div>
 
         </div>
 
-        <button *ngIf="dialogMode === true" class="shop-text" (click)="handleNavigation(AppText.HOME)">
+        <button *ngIf="dialogMode === true" class="shop-text back-button" (click)="handleNavigation(AppText.HOME)">
                 
             {{AppText.BACK_TO_HOME}}
+
+            <mat-icon class="material-icons-outlined">chevron_right</mat-icon>
 
         </button>
 

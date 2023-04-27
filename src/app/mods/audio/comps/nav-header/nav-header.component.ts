@@ -44,7 +44,7 @@ export class NavHeaderComponent {
     const config = new MatDialogConfig();
 
     config.panelClass = this.navMenuPanelClass;
-    config.data = {ref: this.navHeaderContainer}
+    config.data = {ref: this.navHeaderContainer};
     const dialogRef = this.dialog.open(ShopPanelComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       // console.log('nH hSSC nav menu dialog closed.  result: ', result);
@@ -62,7 +62,7 @@ export class NavHeaderComponent {
     // console.log('nH hSSC open shopping cart dialog called');
     const config = new MatDialogConfig();
     config.panelClass = this.shoppingCartPanelClass;
-    config.data = {mode: CartDetailMode.DETAIL};
+    config.data = {mode: CartDetailMode.DETAIL, ref: this.navHeaderContainer};
     const dialogRef = this.dialog.open(CartDetailComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       // console.log('nH hSSC shopping cart dialog closed.  result: ', result);

@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnInit, Optional, Output } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { AUDIO_PRODUCTS } from '../../common/audio-mock-data';
@@ -13,8 +13,7 @@ import { ORDER_INITIALIZER, SHIPPING_COST, VAT_TAX_RATE } from '../../common/au-
   styleUrls: ['./cart-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartDetailComponent implements OnInit {
-
+export class CartDetailComponent implements AfterViewInit, OnInit {
   @Input()
   set customerFormValidity(validity: string) {
     if (validity) {
@@ -51,7 +50,12 @@ export class CartDetailComponent implements OnInit {
     return should;
   }
 
-  @Output() readonly continueAndPay = new EventEmitter<void>()
+  @Output() readonly continueAndPay = new EventEmitter<void>();
+
+  @ViewChild('cartDetailContainer') cartDetailContainerRef: ElementRef;
+
+  private triggerElementRef: ElementRef;
+  private cartDetailDialogRef: MatDialogRef<CartDetailComponent>;
 
   readonly CartDetailMode = CartDetailMode;
   mode: CartDetailMode = CartDetailMode.SUMMARY;
@@ -77,10 +81,47 @@ export class CartDetailComponent implements OnInit {
       if (data && data.mode) {
         this.mode = data.mode;
       }
+
+      this.cartDetailDialogRef = dialogRef;
+      if (data && data.ref) {
+        this.triggerElementRef = data.ref;
+        this.mode = CartDetailMode.DETAIL;
+
+      }
     }
 
   ngOnInit() {
     this.getCartProducts();
+  }
+  
+  ngAfterViewInit(): void {
+
+    if (this.cartDetailContainerRef) {
+      setTimeout(() => {
+        this.setDialogPosition();
+      }, 0);
+    }
+  }
+
+  setDialogPosition() {
+    if (this.triggerElementRef && this.cartDetailContainerRef) {
+      const config: MatDialogConfig = new MatDialogConfig();
+      const rect = this.triggerElementRef.nativeElement.getBoundingClientRect();
+      const distBelowNav = 32;  // vertical distance from nav bar to open dialog
+
+      // console.log('cD sDP triggerRect: ', rect);
+      
+      // getBoundingClientRect is reporting incorrect width for dialog
+      // using dist from left screen edge to rect plus 12px for scrollbar width
+      // as distance from right screen edge to right side of dialog
+      const rightDist = rect.left + 12;
+      config.position = { right: `${rightDist}px`, top: `${rect.bottom + distBelowNav}px`};
+      
+      // console.log('cD sDP config width: ', config.width);
+      
+      this.cartDetailDialogRef.updatePosition(config.position);
+      // console.log('cD sDP dialog position: ', config.position);
+    }
   }
 
   getCartProducts() {
@@ -221,7 +262,8 @@ export class CartDetailComponent implements OnInit {
         }
       }
 
-      this.dialogRef.close({result: AudioDialogCloseResult.PROCEED_TO_CHECKOUT});
+      // console.log('cD hCAP cart detail proceed to checkout called.  current order: ', this.currentOrderBS.value);
+      this.dialogRef.close(AudioDialogCloseResult.PROCEED_TO_CHECKOUT);
 
     } else {
       // console.log('cD hCAP cart detail continue and pay called. current order: ', this.currentOrderBS.value);

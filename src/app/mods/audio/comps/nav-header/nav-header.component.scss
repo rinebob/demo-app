@@ -14,34 +14,24 @@
         max-width: 1110px;
         width: 100%;
         
-        @include audioMixin.response(xl) {
-            @include global.flexboxLayout(row, space-between, center);
-            border: none;
-            max-width: 960px;
-            padding: 0 40px;
+        @include audioMixin.response(lg) {
+            max-width: var(--au-md-inner-width);
         }
-
-        @include audioMixin.response(md-lg) {
-            max-width: 680px;
-        }
-
+        
         @include audioMixin.response(md) {
-            max-width: 580px;
+            max-width: var(--au-sm-inner-width);
         }
 
         .open-menu-button {
             @include audioMixin.audioColors(var(--nav-header-background-color), var(--nav-header-text-color));
             border: none;
             cursor: pointer;
+            display: none;
             margin: 6px 42px 0 0;
             
-            display: none;
-            
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 display: block;
             }
-
-
         }
         
         .header-title {
@@ -49,15 +39,14 @@
             color: var(--nav-header-text-color);
             margin: 31px 0 32px;
             
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 margin: 27px 0 28px;
-             
             }
         }
 
         app-nav-links {
 
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 display: none;
             }
         }
@@ -69,20 +58,24 @@
             color: var(--nav-header-text-color);
             margin: 20px 20px 20px auto;
             padding: 2px 6px;
-            
         }
-    
+
         .show-cart-button {
             background-color: var(--nav-header-background-color);
             border: none;
 
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 margin-left: auto;
             }
             
             mat-icon {
-                color: var(--nav-header-text-color);
+                color: var(--nav-header-on-background-color);
                 cursor: pointer;
+
+                &:hover {
+                    color: var(--au-primary-idle);
+                    
+                }
 
             }
         }

@@ -37,23 +37,24 @@ export class ShopPanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setDialogPosition();
+  }
+
+  setDialogPosition() {
     if (this.triggerElementRef) {
       const config: MatDialogConfig = new MatDialogConfig();
       const rect = this.triggerElementRef.nativeElement.getBoundingClientRect();
-      // console.log('sP ngOI rect: ', rect);
+      // console.log('sP sDP rect: ', rect);
 
-      const navPadding = 80;  // total left + right padding in nav-header element
-      
       config.position = { left: `${rect.left}px`, top: `${rect.bottom}px`};
       config.width = `${rect.right - rect.left}px`;
       
-      // console.log('sP ngOI width: ', config.width);
+      // console.log('sP sDP width: ', config.width);
       
       
       this.navMenuDialogRef.updateSize(config.width, config.height);
       this.navMenuDialogRef.updatePosition(config.position);
     }
-
   }
 
   handleNavigation(category: string) {

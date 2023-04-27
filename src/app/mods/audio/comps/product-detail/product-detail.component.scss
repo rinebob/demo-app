@@ -17,36 +17,46 @@
         background-origin: border-box;
         background-position-y: bottom;
 
-        @include audioMixin.response(xl) {
-            max-width: 768px;
-            padding: 0 40px;
+        @include audioMixin.response(lg) {
+            max-width: var(--au-md-inner-width);
+        }
+        
+        @include audioMixin.response(md) {
+            max-width: var(--au-sm-inner-width);
         }
         
         .top {
             @include global.flexboxLayout(row, space-between, flex-start);
             margin-bottom: 160px;
-            
-            @include audioMixin.response(xl) {
-                @include global.flexboxLayout(row, center, center);
+
+            @include audioMixin.response(lg) {
+                // @include global.flexboxLayout(row, center, center);
                 margin-bottom: 120px;
                 max-width: 768px;
             }
 
-            @include audioMixin.response(sm) {
-                @include global.flexboxLayout(column, center, center);
+            @include audioMixin.response(md) {
+                @include global.flexboxLayout(column, space-between, flex-start);
                 
             }
-
             .left {
                 @include global.flexboxLayout(row, center, center);
                 width: 50%;
+
+                @include audioMixin.response(md) {
+                    @include global.flexboxLayout(column, space-between, center);
+                    width: 100%;
+                }
                 
                 img {
                     width: 560px;
-                    
-                    @include audioMixin.response(xl) {
+
+                    @include audioMixin.response(lg) {
                         width: 280px;
-                     
+                    }
+
+                    @include audioMixin.response(md) {
+                        width: 100%;
                     }
                 }
             }
@@ -58,17 +68,15 @@
                 z-index: 1;
                 margin-left: 30px;
                 
-                @include audioMixin.response(md) {
-                    @include global.flexboxLayout(column, center, center);
-                    margin-left: 0;
-                    text-align: center;
+                @include audioMixin.response(lg) {
+                    margin-left: 70px;
                     width: 66%;
-                 
                 }
-
-                @include audioMixin.response(sm) {
+                
+                @include audioMixin.response(md) {
+                    @include global.flexboxLayout(column, space-between, flex-start);
+                    margin-left: 0;
                     width: 100%;
-                    
                 }
 
                 .status-text {
@@ -76,11 +84,10 @@
                     color: var(--au-primary-idle);
                     margin-bottom: 24px;
                     opacity: 50%;
-                    
-                    @include audioMixin.response(xl) {
+
+                    @include audioMixin.response(lg) {
                         font-size: 12px;
                         margin-bottom: 17px;
-                     
                     }
                 }
                 
@@ -88,11 +95,10 @@
                     @include audioMixin.header1Text;
                     color: var(--au-black);
                     margin-bottom: 24px;
-                    
-                    @include audioMixin.response(xl) {
+
+                    @include audioMixin.response(lg) {
                         @include audioMixin.header4Text;
                         margin-bottom: 32px;
-                     
                     }
                 }
         
@@ -102,11 +108,10 @@
                     opacity: 75%;
                     max-width: 66%;
                     margin-bottom: 40px;
-                    
-                    @include audioMixin.response(xl) {
+
+                    @include audioMixin.response(lg) {
                         margin-bottom: 32px;
                         max-width: 100%;
-                     
                     }
                 }
     
@@ -114,65 +119,63 @@
                     @include audioMixin.header6Text;
                     margin-bottom: 46px;
 
-                    @include audioMixin.response(xl) {
+                    @include audioMixin.response(lg) {
                         margin-bottom: 32px;
-                    }
-    
+                    }    
                 }
     
                 .quantity-container {
                     @include global.flexboxLayout(row, space-between, center);
+                    margin-left: 16px;
+                    
+                    @include audioMixin.response(md) {
+                        margin-left: 0;
+                    }
                     
                     .counter-button {
                         @include audioMixin.subtitleText;
                         @include audioMixin.audioColors(var(--au-light-background), var(--au-black));
-                        margin-right: 20px;
+                        border: none;
+                        cursor: pointer;
+                        padding: 0 10px;
                         opacity: 0.25;
-    
-                        &:last-of-type {
-                            margin-right: 32px;
-                        }
-                        
                     }
                     
                     .count {
                         @include audioMixin.subtitleText;
-                        margin-right: 16px;
+                        margin: 0 8px;
                     }
                     
                     .see-product-button {
                         @include audioMixin.buttonStyles;
                         @include audioMixin.audioColors;
-                    }
-    
-                }
-        
-            }
+                        cursor: pointer;
+                        margin-left: 32px;
 
+                        &:hover {
+                            background-color: var(--au-primary-hover);
+                        }
+                    }
+                }
+            }
         }
 
         .bottom {
             @include global.flexboxLayout;
             margin-bottom: 160px;
 
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 @include global.flexboxLayout(column, space-between, center);
                 margin-bottom: 120px;
-             
             }
             
             .bottom-left {
                 @include global.flexboxLayout(column, space-between, flex-start);
                 width: 66%;
-                
-                @include audioMixin.response(xl) {
+
+                @include audioMixin.response(lg) {
                     margin-bottom: 120px;
                     width: 100%;
-                }
-
-                @include audioMixin.response(sm) {
-                    text-align: center;
-                    
                 }
 
                 .headline-text {
@@ -182,38 +185,35 @@
                 .description-text {
                     max-width: 80%;
 
-                    @include audioMixin.response(xl) {
+                    @include audioMixin.response(lg) {
                         max-width: 100%;
                     }
-
-                    
-    
                 }
             }
             
             .bottom-right {
                 @include global.flexboxLayout(column, space-between, flex-start);
-                
-                @include audioMixin.response(xl) {
+
+                @include audioMixin.response(lg) {
                     @include global.flexboxLayout(row, space-between, flex-start);
                     width: 100%;
                 }
 
-                @include audioMixin.response(sm) {
-                    @include global.flexboxLayout(column, center, center);
+                @include audioMixin.response(md) {
+                    @include global.flexboxLayout(column, flex-start, flex-start);
                     width: 100%;
                 }
 
                 .contents-container {
 
-                    @include audioMixin.response(xl) {
+                    @include audioMixin.response(lg) {
                         @include global.flexboxLayout(column, space-between, flex-start);
                         width: 50%;
                     }
                     
-                    @include audioMixin.response(sm) {
+                    @include audioMixin.response(md) {
                         @include global.flexboxLayout(column, space-between, flex-start);
-                        width: 66%;
+                        width: 100%;
                     }
                     
                     .contents-text {
@@ -243,18 +243,27 @@
 
         .product-images {
             @include global.flexboxLayout;
-            
-            @include audioMixin.response(xl) {
+
+            @include audioMixin.response(lg) {
                 @include global.flexboxLayout(row, center, center);
                 width: 100%;
+            }
+            
+            @include audioMixin.response(md) {
+                @include global.flexboxLayout(column, flex-start, center);
             }
             
             .left {
                 @include global.flexboxLayout(column, space-between, flex-start);
                 margin-right: 30px;
-                
-                @include audioMixin.response(xl) {
+
+                @include audioMixin.response(lg) {
                     margin-right: 18px;
+                }
+                
+                @include audioMixin.response(md) {
+                    margin: 0 0 20px;
+                    width: 100%;
                 }
 
                 .one {
@@ -262,36 +271,33 @@
                     height: 280px;
                     margin-bottom: 32px;
                     width: 445px;
-                    
-                    @include audioMixin.response(xl) {
+
+                    @include audioMixin.response(lg) {
                         height: 174px;
                         width: 277px;
                         margin-bottom: 20px;
                     }
                     
                     @include audioMixin.response(md) {
-                        height: 150px;
-                        width: 240px;
-                        margin-bottom: 20px;
-                    }
-                    
+                        height: 174px;
+                        width: 327px;
+                    }                    
                 }
                 
                 .two {
                     border-radius: 8px;
                     height: 280px;
                     width: 445px;
-                    
-                    @include audioMixin.response(xl) {
+
+                    @include audioMixin.response(lg) {
                         height: 174px;
                         width: 277px;
                     }
 
                     @include audioMixin.response(md) {
-                        height: 150px;
-                        width: 240px;
-                    }
-                    
+                        height: 174px;
+                        width: 327px;
+                    }                    
                 }
             }
             
@@ -300,20 +306,17 @@
                 height: 592px;
                 width: 635px;
 
-                @include audioMixin.response(xl) {
+                @include audioMixin.response(lg) {
                     height: 368px;
                     width: 395px;
                 }
 
                 @include audioMixin.response(md) {
-                    height: 318px;
-                    width: 342px;
-                 
+                    height: 368px;
+                    width: 327px;
                 }
 
             }
         }
-
-
     }
 }

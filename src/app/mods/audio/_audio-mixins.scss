@@ -45,9 +45,15 @@
     text-transform: uppercase;
 }
 
-@mixin header7Text {
-    font: 700 normal 15px/18px var(--au-main-font-family);
-    letter-spacing: 1.3px;
+@mixin shopPanelMdDialogHeaderText {
+    font: 700 normal 15px/20.5px var(--au-main-font-family);
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+}
+
+@mixin shopPanelMdDialogShopText {
+    font: 700 normal 13px/18px var(--au-main-font-family);
+    letter-spacing: 1px;
     text-transform: uppercase;
 }
 
@@ -106,83 +112,31 @@
 
 /////////////////// RESPONSIVE BREAKPOINTS /////////////////////
 
+    // --au-lg-width: 1440px;
+    // --au-md-width: 768px;
+    // --au-sm-width: 375px;
+    // --au-lg-inner-width: 1110px;
+    // --au-md-inner-width: 689px;
+    // --au-sm-inner-width: 327px;
 
 @mixin response($breakpoint) {
-    @if($breakpoint == xl) {
-        @media(max-width: 1200px) {
-            @content;
-        }
-    }
 
-    // @if($breakpoint == lg-xl) {
-    //     @media(max-width: 1100px) {
-    //         @content;
-    //     }
-    // }
-    
     @if($breakpoint == lg) {
-        @media(max-width: 1000px) {
-            @content;
-        }
-    }
-
-    @if($breakpoint == md-lg) {
-        @media(max-width: 880px) {
+        @media(max-width: 1440px) {
             @content;
         }
     }
     
     @if($breakpoint == md) {
-        @media(max-width: 760px) {
+        @media(max-width: 768px) {
             @content;
         }
     }
 
-    @if($breakpoint == sm-md) {
-        @media(max-width: 660px) {
-            @content;
-        }
-    }
-
-    @if($breakpoint == sm-sm) {
-        @media(max-width: 600px) {
-            @content;
-        }
-    }
-    
     @if($breakpoint == sm) {
-        @media(max-width: 560px) {
-            @content;
-        }
-    }
-    
-    @if($breakpoint == xs-sm) {
-        @media(max-width: 500px) {
+        @media(max-width: 375px) {
             @content;
         }
     }
 
-    @if($breakpoint == xs) {
-        @media(max-width: 460px) {
-            @content;
-        }
-    }
-
-    // @if($breakpoint == xxs) {
-    //     @media(max-width: 360px) {
-    //         @content;
-    //     }
-    // }
-
-    // @if($breakpoint == h-md) {
-    //     @media(max-height: 760px) {
-    //         @content;
-    //     }
-    // }
-
-    // @if($breakpoint == h-sm) {
-    //     @media(max-height: 560px) {
-    //         @content;
-    //     }
-    // }
 }

@@ -12,9 +12,12 @@
         max-width: 1110px;
         width: 100%;
 
-        @include audioMixin.response(xl) {
-            max-width: 768px;
-            padding: 0 40px;
+        @include audioMixin.response(lg) {
+            max-width: var(--au-md-inner-width);
+        }
+        
+        @include audioMixin.response(md) {
+            max-width: var(--au-sm-inner-width);
         }
         
         .headline-text {
@@ -25,21 +28,23 @@
         .bottom-container {
             @include global.flexboxLayout(row, space-between, center);
             
+            @include audioMixin.response(md) {
+                @include global.flexboxLayout(column, flex-start, center);
+            }
+
             .product-container {
                 @include global.flexboxLayout(column, flex-start, center);
-
+                
                 img {
                     margin-bottom: 40px;
                     width: 350px;
-                    
-                    @include audioMixin.response(xl) {
+
+                    @include audioMixin.response(lg) {
                         width: 223px;
-                        
                     }
 
                     @include audioMixin.response(md) {
                         width: 190px;
-                        
                     }
                 }
                 
@@ -52,6 +57,11 @@
                 .see-product-button {
                     @include audioMixin.buttonStyles;
                     @include audioMixin.audioColors;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: var(--au-primary-hover);
+                    }
                 }
             }
         }

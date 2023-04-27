@@ -14,7 +14,7 @@
     background-color: var(--au-light-background) !important;
     min-height: 400px;
     padding: 24px 32px 32px 32px;
-    min-width: 350px;
+    min-width: 327px;
     
     .cart-header {
         @include global.flexboxLayout(row, space-between, center);
@@ -32,6 +32,10 @@
             cursor: pointer;
             opacity: 0.5;
             text-transform: capitalize;
+
+            &:hover {
+                background-color: var(--au-primary-hover);
+            }
             
         }
 
@@ -40,6 +44,10 @@
             border: none;
             cursor: pointer;
             opacity: 0.5;
+
+            &:hover {
+                background-color: var(--au-primary-hover);
+            }
         }
         
     }
@@ -66,17 +74,13 @@
                 img {
                     margin-right: 12px;
                     width: 64px;
-
-                    @include audioMixin.response(xs) {
-                        display: none;
-                    }
                 }
                 
                 .product-info-container {
                     @include global.flexboxLayout(column, space-between, flex-start);
                     margin-right: 30px;
-                    
-                    @include audioMixin.response(sm) {
+
+                    @include audioMixin.response(md) {
                         margin-right: 12px;
                     }
     
@@ -85,12 +89,6 @@
                         font-weight: 700;
                         margin: 0;
                         text-transform: uppercase;
-
-                        @include audioMixin.response(sm) {
-                            font-size: 13px;
-                            max-width: 100px;
-                        }
-    
                     }
     
                     .product-cost-text {
@@ -104,10 +102,9 @@
                     @include global.flexboxLayout(row, space-between, center);
                     margin-left: auto;
 
-                    @include audioMixin.response(sm) {
+                    @include audioMixin.response(md) {
                         font-size: 13px;
-                    }
-                        
+                    }   
                     .counter-button {
                         @include audioMixin.header6Text;
                         @include audioMixin.audioColors(var(--au-light-background), var(--au-black));
@@ -115,40 +112,54 @@
                         cursor: pointer;
                         opacity: 0.25;
 
-                        @include audioMixin.response(sm) {
+                        @include audioMixin.response(md) {
                             font-size: 13px;
                         }
                         
                         &:not(:last-of-type) {
                             margin-right: 20px;
-                            
-                            @include audioMixin.response(sm) {
+
+                            @include audioMixin.response(md) {
                                 margin-right: 10px;
                             }
+                         
+
+                        &:hover {
+                            background-color: var(--au-primary-hover);
                         }
                     }
     
                     .delete-button {
                         @include global.flexboxLayout(row, center, center);
 
-                        @include audioMixin.response(sm) {
+                        @include audioMixin.response(md) {
                             display: none;
+                        }
+
+                        &:hover {
+                            background-color: var(--au-primary-hover);
                         }
                     }
                     
                     .count {
                         @include audioMixin.subtitleText;
                         margin: 0 16px 0 0;
+                    }
+                }
 
-                        @include audioMixin.response(sm) {
-                            font-size: 13px;
-                        }
+                .amount-container {
+                    @include global.flexboxLayout(row, flex-end, center);
+                    margin-left: auto;
+
+                    .amount {
+                        @include audioMixin.bodyText;
+                        font-weight: 700;
+                        margin: 0;
+                        opacity: 0.5;
                     }
                 }
             }
         }
-        
-
     }
 
     .empty-cart-container {
@@ -159,8 +170,6 @@
         .empty-cart-text {
             @include audioMixin.bodyText;
             text-transform: capitalize;
-
-
         }
     }
 
@@ -168,15 +177,23 @@
         @include global.flexboxLayout(row, space-between, center);
         margin-bottom: 24px;
         width: 100%;
+        
+        @include audioMixin.response(md) {
+            margin-bottom: 8px;
+        }
 
         .total-text {
             @include audioMixin.bodyText;
             opacity: 0.5;
             text-transform: uppercase;
         }
-
+        
         .amount-text {
             @include audioMixin.header6Text;
+        }
+
+        .grand-total-text {
+            color: var(--au-primary-idle);
 
         }
     }
@@ -185,20 +202,23 @@
         @include audioMixin.buttonStyles;
         @include audioMixin.audioColors;
         border: none;
+        cursor: pointer;
+        margin-bottom: 32px;
         width: 100%;
-
     }
     
     .disabled {
         @include audioMixin.audioColors(var(--au-primary-hover));
         cursor: default;
-
     }
 
     .enabled {
         @include audioMixin.audioColors;
         cursor: pointer;
 
+        &:hover {
+            background-color: var(--au-primary-hover);
+        }
     }
 
 }

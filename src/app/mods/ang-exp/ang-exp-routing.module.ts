@@ -7,6 +7,7 @@ import { AngExpRoutes } from '../../common/interfaces';
 import { AnimationsComponent } from './animations/animations.component';
 import { FormArrayComponent } from './form-array/form-array.component';
 import { CssTricksComponent } from './css-tricks/css-tricks.component';
+import { GridExpComponent } from './grid-exp/grid-exp.component';
 
 const routes: Routes = [
   { path: '', component: AngExpComponent,
@@ -36,7 +37,12 @@ const routes: Routes = [
         component: CssTricksComponent,
         data: {animation: 'CssTricksPage'}
       },
-      { path: '', redirectTo: AngExpRoutes.ANIMATIONS, pathMatch: 'full' },
+      { 
+        path: AngExpRoutes.CSS_GRID,
+        component: GridExpComponent,
+        data: {animation: 'CssGridPage'}
+      },
+      { path: '', redirectTo: AngExpRoutes.CSS_GRID, pathMatch: 'full' },
 
     ],
  },

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MOCK_CUSTOMER } from '../../common/audio-mock-data';
-import { Customer } from '../../common/au-interfaces';
+import { AppText, Customer } from '../../common/au-interfaces';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -30,6 +30,8 @@ export class CheckoutFormComponent {
   paymentMethodControl = new FormControl('', Validators.required);
   eMoneyNumberControl = new FormControl('');
   eMoneyPinControl = new FormControl('');
+
+  readonly AppText = AppText;
 
   constructor() {
     this.buildCheckoutForm();

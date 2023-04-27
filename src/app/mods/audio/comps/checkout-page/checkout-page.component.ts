@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { take, withLatestFrom } from 'rxjs/operators';
 
-import { Customer, Order } from '../../common/au-interfaces';
+import { AppText, Customer, Order } from '../../common/au-interfaces';
 import { AudioStore } from '../../services/audio-store.service';
 import { ProductsService } from '../../services/products.service';
 import { ThankYouComponent } from '../thank-you/thank-you.component';
@@ -24,6 +24,8 @@ export class CheckoutPageComponent {
   customerFormValidity$: Observable<string> = this.customerFormValidityBS;;
 
   thankYouPanelClass = 'shopping-cart-panel-class';
+
+  readonly AppText = AppText;
 
   constructor(readonly audioStore: AudioStore, readonly dialog: MatDialog,
               readonly productsService: ProductsService, readonly router: Router, 

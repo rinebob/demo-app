@@ -7,7 +7,7 @@
     @include global.flexboxLayout(row, space-between, center);
     width: 100%;
 
-    @include audioMixin.response(sm) {
+    @include audioMixin.response(md) {
         @include global.flexboxLayout(column, center, center);
 
     }
@@ -15,13 +15,21 @@
     .nav-link {
         @include audioMixin.subtitleText;
         color: var(--nav-header-text-color);
-        margin: 20px;
-        padding: 6px 20px;
         text-decoration: none;
 
-        @include audioMixin.response(sm) {
-            @include global.flexboxLayout(column, center, center);
-    
+        @include audioMixin.response(md) {
+
+            &:not(:last-of-type) {
+                margin-bottom: 16px;
+            }
+        }
+
+        &:not(:last-of-type) {
+            margin-right: 34px;
+            
+            @include audioMixin.response(md) {
+                margin-right: 0;
+            }
         }
 
         &:last-of-type {
@@ -29,21 +37,11 @@
             @include audioMixin.response(sm) {
                 margin-right: 20px;
                 padding-right: 20px;
-        
             }
         }
 
-        @include audioMixin.response(xl) {
-            &:first-of-type {
-                margin-left: 0;
-                padding-left: 0;
-
-                @include audioMixin.response(sm) {
-                    margin-left: 20px;
-                    padding-left: 20px;
-            
-                }
-            }
+        &:hover {
+            @include audioMixin.audioColors(var(--au-background-color), var(--au-primary-idle))
         }
 
         .active {

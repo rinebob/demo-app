@@ -14,24 +14,12 @@
         max-width: 1110px;
         width: 100%;
 
-        @include audioMixin.response(xl) {
-            max-width: 960px;
-        }
-        
         @include audioMixin.response(lg) {
-            max-width: 820px;
+            max-width: var(--au-md-inner-width);
         }
         
-        @include audioMixin.response(md-lg) {
-            max-width: 680px;
-        }
-
         @include audioMixin.response(md) {
-            max-width: 580px;
-        }
-
-        @include audioMixin.response(sm) {
-            max-width: 330px;
+            max-width: var(--au-sm-inner-width);
         }
 
         .feature {
@@ -50,7 +38,7 @@
             background-image: url(../../../../../assets/audio/home/desktop/pattern-circles.svg);
             background-size: cover;
 
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 @include global.flexboxLayout(column, center, center);
             }
             
@@ -60,7 +48,7 @@
                 height: 560px;
                 width: 540px;
                 
-                @include audioMixin.response(xl) {
+                @include audioMixin.response(lg) {
                     @include global.flexboxLayout(column, center, center);
                     height: 300px;
                     width: 100%;
@@ -69,7 +57,7 @@
                 img {
                     width: 410px;
 
-                    @include audioMixin.response(xl) {
+                    @include audioMixin.response(lg) {
                         width: 200px;
                     }
                 }
@@ -81,24 +69,22 @@
                 // @include global.border1(black, 1px);
                 align-self: center;
 
-                @include audioMixin.response(xl) {
+                @include audioMixin.response(lg) {
                     @include global.flexboxLayout(column, center, center);
-                 
                 }
                 
                 .text-container {
                     margin-right: 95px;
                     width: 350px;
                     
-                    @include audioMixin.response(xl) {
+                    @include audioMixin.response(lg) {
                         @include global.flexboxLayout(column, center, center);
                         width: 50%;
                         margin: 0;
                         text-align: center;
-                     
                     }
 
-                    @include audioMixin.response(sm) {
+                    @include audioMixin.response(md) {
                         width: 100%;
                         padding: 24px;
                         text-align: center;
@@ -109,33 +95,29 @@
                         margin-bottom: 24px;
                         width: 100px;
 
-                        @include audioMixin.response(xl) {
+                        @include audioMixin.response(lg) {
                             width: 100%;
                         }
                         
-                        @include audioMixin.response(sm) {
+                        @include audioMixin.response(md) {
                             width: 50%;
                         }
-                        
-                        
-                        
                     }
                     
                     .description {
                         color: var(--au-white);
                         margin-bottom: 40px;
-
                     }
 
                     .see-product-button {
                         @include audioMixin.buttonStyles;
                         @include audioMixin.audioColors(var(--au-black), var(--au-white));
 
-                        @include audioMixin.response(xl) {
+                        @include audioMixin.response(lg) {
                             margin-bottom: 64px;
                         }
                         
-                        @include audioMixin.response(xl) {
+                        @include audioMixin.response(md) {
                             margin-bottom: 50px;
                         }
                     }
@@ -153,16 +135,13 @@
             padding: 100px 62px;
             width: 100%;
             
-            @include audioMixin.response(xl) {
+            @include audioMixin.response(lg) {
                 @include global.flexboxLayout(column, center, flex-start);
+                background-image: url(../../../../../assets/audio/home/tablet/image-speaker-zx7.jpg);
                 padding: 101px 62px;
             }
-                
-            @include audioMixin.response(lg) {
-                background-image: url(../../../../../assets/audio/home/tablet/image-speaker-zx7.jpg);
-            }
             
-            @include audioMixin.response(sm) {
+            @include audioMixin.response(md) {
                 background-image: url(../../../../../assets/audio/home/mobile/image-speaker-zx7.jpg);
                 padding: 101px 24px;
             }
@@ -173,9 +152,8 @@
             // @include global.border1(black, 1px);
             width: 100%;
             
-            @include audioMixin.response(sm) {
+            @include audioMixin.response(md) {
                 @include global.flexboxLayout(column, space-between, center);
-            
             }
             
             .img {
@@ -185,17 +163,16 @@
                 border-radius: 8px;
                 height: 320px;
                 width: 50%;
-                
-                @include audioMixin.response(xl) {
+
+                @include audioMixin.response(lg) {
                     background-image: url(../../../../../assets/audio/home/tablet/image-earphones-yx1.jpg);
                     height: 320px;
                 }
                 
-                @include audioMixin.response(sm) {
+                @include audioMixin.response(md) {
                     background-image: url(../../../../../assets/audio/home/mobile/image-earphones-yx1.jpg);
                     width: 100%;
                 }
-                
             }
             
             .right {
@@ -203,14 +180,14 @@
                 height: 320px;
                 padding: 101px 95px;
                 width: 540px;
-                
-                @include audioMixin.response(xl) {
+
+                @include audioMixin.response(lg) {
                     height: 320px;
                     padding: 101px 62px;
                     width: 339px;
-                    
                 }
-                @include audioMixin.response(sm) {
+
+                @include audioMixin.response(md) {
                     height: 247px;
                     padding: 41px 0 41px 24px;
                 }
@@ -227,7 +204,7 @@
     .headline-text {
         @include audioMixin.header1Text;
         
-        @include audioMixin.response(xl) {
+        @include audioMixin.response(lg) {
             @include audioMixin.header3Text;
         }
     }
