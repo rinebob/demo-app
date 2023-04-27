@@ -1,6 +1,6 @@
 
 <button class="populate-form-button" (click)="populateCheckoutForm()">
-    populate form
+    fill form
 </button>
 
 <form [formGroup]="checkoutForm">
@@ -111,7 +111,7 @@
                 <div class="radio-control">
                     
                     <input type="radio" id="COD" value="COD" name="paymentMethodControl"
-                           formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === 'cash on delivery'"
+                           formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === PaymentMethod.COD"
                     />
                     <label for="COD">{{AppText.CASH_ON_DELIVERY}}</label>
     
@@ -120,7 +120,7 @@
                 <div class="radio-control">
     
                     <input type="radio" id="e-Money" value="e-Money" name="paymentMethodControl"
-                           formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === 'e-Money'"
+                           formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === PaymentMethod.E_MONEY"
                     >
                     <label for="e-Money">{{AppText.E_MONEY}}</label>
                     

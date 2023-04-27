@@ -87,6 +87,7 @@ export enum AppText {
     E_MONEY = 'e-Money',
     E_MONEY_NUMBER = 'e-Money Number',
     E_MONEY_PIN = 'e-Money PIN',
+    VIEW_LESS = 'view less',
     
     
 
@@ -162,6 +163,8 @@ export enum PaymentMethod {
     product?: Product;
     ref?: ElementRef;
     url?: string;
+    viewportMode?: ViewportMode;
+    products?: Product[],
   }
 
   export enum ViewportMode {

@@ -21,63 +21,88 @@
         @include audioMixin.response(md) {
             max-width: var(--au-sm-inner-width);
         }
-
-        .open-menu-button {
-            @include audioMixin.audioColors(var(--nav-header-background-color), var(--nav-header-text-color));
-            border: none;
-            cursor: pointer;
-            display: none;
-            margin: 6px 42px 0 0;
+        
+        .left {
+            @include global.flexboxLayout(row, flex-start, center);
             
-            @include audioMixin.response(lg) {
-                display: block;
+            .open-menu-button {
+                @include audioMixin.audioColors(var(--nav-header-background-color), var(--nav-header-text-color));
+                border: none;
+                cursor: pointer;
+                display: none;
+                margin: 6px 42px 0 0;
+                
+                @include audioMixin.response(lg) {
+                    display: block;
+                }
+                
+                @include audioMixin.response(md) {
+                    margin: 6px 18px 0 0;
+                }
             }
+            
+            .header-title {
+                @include audioMixin.logoText;
+                color: var(--nav-header-text-color);
+                margin: 31px 0 32px;
+                
+                @include audioMixin.response(lg) {
+                    margin: 27px 0 28px;
+                }
+            }
+            
         }
         
-        .header-title {
-            @include audioMixin.logoText;
-            color: var(--nav-header-text-color);
-            margin: 31px 0 32px;
-            
-            @include audioMixin.response(lg) {
-                margin: 27px 0 28px;
-            }
-        }
-
+        
         app-nav-links {
-
+            
             @include audioMixin.response(lg) {
                 display: none;
             }
         }
-
-        .populate-cart-button {
-            @include audioMixin.subtitleText;
-            @include audioMixin.audioColors;
-            border: none;
-            color: var(--nav-header-text-color);
-            margin: 20px 20px 20px auto;
-            padding: 2px 6px;
-        }
-
-        .show-cart-button {
-            background-color: var(--nav-header-background-color);
-            border: none;
-
-            @include audioMixin.response(lg) {
-                margin-left: auto;
-            }
+        
+        .right {
+            @include global.flexboxLayout(row, flex-end, center);
             
-            mat-icon {
-                color: var(--nav-header-on-background-color);
-                cursor: pointer;
-
-                &:hover {
-                    color: var(--au-primary-idle);
+            .populate-cart-button {
+                @include audioMixin.subtitleText;
+                @include audioMixin.audioColors;
+                border: none;
+                color: var(--nav-header-text-color);
+                margin: 0 20px;
+                padding: 2px 6px;
+                
+                @include audioMixin.response(md) {
+                    margin: 0 8px;
                     
                 }
 
+                &:hover {
+                    background-color: var(--au-primary-hover);
+                }
             }
+    
+            .show-cart-button {
+                background-color: var(--nav-header-background-color);
+                border: none;
+    
+                @include audioMixin.response(lg) {
+                    // margin-left: auto;
+                }
+                
+                mat-icon {
+                    color: var(--nav-header-on-background-color);
+                    cursor: pointer;
+    
+                    &:hover {
+                        color: var(--au-primary-idle);
+                        
+                    }
+    
+                }
+            }
+
         }
+
     }
 }

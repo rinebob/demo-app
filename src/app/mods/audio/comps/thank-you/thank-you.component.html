@@ -8,28 +8,36 @@
 
     <div class="message-text">{{AppText.CONFIRMATION_MESSAGE}}</div>
 
-    <ng-container *ngIf="product">
+    <ng-container *ngIf="products$ | async as products">
     
         <div class="summary-container">
 
             <div class="left">
-    
-                <div class="product-container">
-                    
-                    <img src="../../../../../assets/audio/cart/image-xx99-mark-two-headphones.jpg" alt="">
-                    
-                    <div class="info-container">
-                        
-                        <p class="product-name-text">{{product.name}}</p>
-                        <p class="price-text">{{product.price | currency}}</p>
 
+                <div class="products-container">
+                    
+                    <div class="product-container" *ngFor="let product of products">
+                        
+                        <img src="{{product.image[viewportMode]}}" alt="">
+                        
+                        <div class="info-container">
+                            
+                            <p class="product-name-text">{{product.name}}</p>
+                            <p class="price-text">{{product.price | currency}}</p>
+    
+                        </div>
+                        
+                        <p class="amount-text">x{{product.count}}</p>
+                    
                     </div>
                     
-                    <p class="amount-text">x{{quantity}}</p>
-                
                 </div>
-                
-                <p class="remaining-items-text" *ngIf="numOtherItems > 0">and {{numOtherItems}} other item(s)</p>
+    
+                <button class="show-other-items-button"
+                        (click)="handleToggleOtherItems()"
+                >
+                    {{showAllItems ? AppText.VIEW_LESS : showOtherItemsButtonText}}
+                </button>
                 
             </div>
             

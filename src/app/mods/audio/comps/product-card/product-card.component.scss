@@ -62,12 +62,16 @@
             }
     
             .headline {
-                @include audioMixin.header1Text;
+                @include audioMixin.header2Text;
                 color: var(--au-black);
                 margin-bottom: 24px;
 
                 @include audioMixin.response(lg) {
                     margin-bottom: 32px;
+                }
+                
+                @include audioMixin.response(md) {
+                    @include audioMixin.header4Text;
                 }
             }
     

@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from '@angular/material
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { AUDIO_PRODUCTS } from '../../common/audio-mock-data';
-import { AppText, AudioDialogCloseResult, CartDetailMode, CartDialogData, CartItem, Order, Product } from '../../common/au-interfaces';
+import { AppText, AudioDialogCloseResult, CartDetailMode, CartDialogData, CartItem, Order, Product, ViewportMode } from '../../common/au-interfaces';
 import { AudioStore } from '../../services/audio-store.service';
 import { ORDER_INITIALIZER, SHIPPING_COST, VAT_TAX_RATE } from '../../common/au-constants';
 
@@ -50,7 +50,7 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
     return should;
   }
 
-  @Output() readonly continueAndPay = new EventEmitter<void>();
+  @Output() readonly continueAndPay = new EventEmitter<Product[]>();
 
   @ViewChild('cartDetailContainer') cartDetailContainerRef: ElementRef;
 
@@ -73,6 +73,7 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
   currentOrderBS = new BehaviorSubject<Order>(ORDER_INITIALIZER);
   currentOrder$: Observable<Order> = this.currentOrderBS;
 
+  viewportMode: ViewportMode = ViewportMode.DESKTOP;
 
   constructor(@Optional() public dialogRef: MatDialogRef<CartDetailComponent>,
               @Optional() @Inject(MAT_DIALOG_DATA) readonly data: CartDialogData,
@@ -80,6 +81,10 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
     ) {
       if (data && data.mode) {
         this.mode = data.mode;
+      }
+
+      if (data && data.viewportMode) {
+        this.viewportMode = data.viewportMode;
       }
 
       this.cartDetailDialogRef = dialogRef;
@@ -115,12 +120,15 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
       // using dist from left screen edge to rect plus 12px for scrollbar width
       // as distance from right screen edge to right side of dialog
       const rightDist = rect.left + 12;
-      config.position = { right: `${rightDist}px`, top: `${rect.bottom + distBelowNav}px`};
+
+      const nonMobilePosition = { right: `${rightDist}px`, top: `${rect.bottom + distBelowNav}px`};
+      const mobilePosition = { top: `${rect.bottom + distBelowNav}px`};
+
+      config.position = this.viewportMode === ViewportMode.MOBILE ? mobilePosition : nonMobilePosition;
       
-      // console.log('cD sDP config width: ', config.width);
-      
-      this.cartDetailDialogRef.updatePosition(config.position);
       // console.log('cD sDP dialog position: ', config.position);
+      this.cartDetailDialogRef.updatePosition(config.position);
+      
     }
   }
 
@@ -268,7 +276,7 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
     } else {
       // console.log('cD hCAP cart detail continue and pay called. current order: ', this.currentOrderBS.value);
       this.audioStore.setCustomerOrder(this.currentOrderBS.value);
-      this.continueAndPay.emit();
+      this.continueAndPay.emit(this.productsInCartBS.value);
 
     }
   }

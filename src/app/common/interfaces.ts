@@ -143,6 +143,7 @@ export interface DialogData {
     SIGNALS = 'signals',
     FORM_ARRAY = 'form-array',
     CSS_TRICKS = 'css-tricks',
+    CSS_GRID = 'css-grid',
   }
 
   export interface NavButtonConfig {
