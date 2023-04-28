@@ -6,24 +6,15 @@
 :host {
     width: 80%;
     
-    @include global.response(xl) {
-        width: 90%;
-    }
-    
     .job-container {
         @include global.flexboxLayout(column, flex-start, flex-start);
         margin: 20px 0;
-        
-        @include global.response(sm-md) {
-            margin: 0;
-            
-        }
         
         .job-header {
             @include global.flexboxLayout(row, space-between, center);
             width: 100%;
             
-            @include global.response(sm-md) {
+            @include landingPageVar.response(md) {
                 @include global.flexboxLayout(column, flex-start, flex-start);
             }
         }
@@ -36,6 +27,10 @@
         .assignment {
             text-decoration: underline;
             margin: 0 0 10px;
+
+            @include landingPageVar.response(md) {
+                text-align: center;
+            }
         }
 
         .description {
@@ -64,15 +59,6 @@
             @include global.textSizes($font-size: globalVar.globalFontSize(heading-m-l), $line-height: globalVar.globalLineHeight(heading-m-l));
             align-self: center;
             color: var(--experience-section-subheader-text-color);
-
-            @include global.response(lg) {
-                @include global.textSizes($font-size: globalVar.globalFontSize(heading-m), $line-height: globalVar.globalLineHeight(heading-m));
-            }
-
-            @include global.response(sm-md) {
-                text-align: center;
-                width: 100%;
-            }
         }
 
         .accent-text {

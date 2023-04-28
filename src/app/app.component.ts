@@ -1,9 +1,9 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ThemePalette } from '@angular/material/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 
 import { APP_SIDENAV_BUTTONS } from './common/constants';
 import { AppRoutes, AppTheme } from './common/interfaces';
@@ -13,7 +13,8 @@ import { AppRoutes, AppTheme } from './common/interfaces';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>()
   @HostBinding('class') theme = AppTheme.APP_LIGHT;
   title = 'demo-app';
   
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     
-    this.router.events.pipe().subscribe(event => {
+    this.router.events.pipe(takeUntil(this.destroy$)).subscribe(event => {
       // console.log('a ctor url: ', (event as NavigationEnd).url);
       if (event instanceof NavigationEnd) {
         // console.log('a ctor router event: ', event.url);
@@ -58,6 +59,11 @@ export class AppComponent implements OnInit {
 
     });
   };
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   getFocusStatus(appName: string) {
     // return this.selectedBoardBS.value.displayName === appName;

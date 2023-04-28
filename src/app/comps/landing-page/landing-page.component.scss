@@ -30,25 +30,12 @@
                 @include global.globalColors($background-color: var(--scroll-to-top-button-hover-background-color), $color: var(--scroll-to-top-button-hover-text-color));
             }
 
-            @include global.response(xl) {
-                left: 92%;
-            }
-
-            @include global.response(lg) {
+            @include landingPageVar.response(lg) {
                 left: 90%;
             }
 
-            @include global.response(md) {
+            @include landingPageVar.response(md) {
                 left: 88%;
-            }
-
-            @include global.response(sm-md) {
-                height: 36px;
-                width: 36px;
-            }
-            
-            @include global.response(xs) {
-                left: 82%;
             }
         }
             
@@ -65,10 +52,6 @@
                 
                 .dropdown-icon-button {
                     color: var(--hamburger-menu-icon-color);
-
-                    @include global.response(lg) {
-                        display: block;
-                    }
                 }
                 
                 h1 {
@@ -87,11 +70,11 @@
                     --three-way-toggle-trough-color: var(--lp-three-way-toggle-trough-color);
                     --three-way-toggle-icon-active-color: var(--lp-three-way-toggle-icon-active-color);
 
-                    @include global.response(sm) {
+                    @include landingPageVar.response(lg) {
                         margin: 0 20px;
                     }
 
-                    @include global.response(xxs) {
+                    @include landingPageVar.response(md) {
                         display: none;
                     }
                 }
@@ -110,7 +93,7 @@
             overflow-x: hidden;
             overflow-y: auto;
             position: relative;
-
+            
             .animations-container-top {
                 @include global.flexboxLayout(column, flex-start, flex-start);
                 width: 100%;
@@ -156,11 +139,14 @@
 
             .main-container {
                 flex-grow: 1;
-                max-width: 1000px;
-                width: 80%;
-                
-                @include global.response(md) {
-                    width: 90%;
+                width: var(--lp-lg-inner-width);
+
+                @include landingPageVar.response(lg) {
+                    width: var(--lp-md-inner-width);
+                }
+
+                @include landingPageVar.response(md) {
+                    width: var(--lp-sm-inner-width);
                 }
                 
                 section {
@@ -187,10 +173,6 @@
                         align-self: center;
                         margin-bottom: 20px;
                         text-align: center;
-
-                        @include global.response(lg) {
-                            @include global.textSizes($font-size: globalVar.globalFontSize(heading-l-xl), $line-height: globalVar.globalLineHeight(heading-l-xl));
-                        }
                     }
                 }
         
@@ -222,7 +204,7 @@
                         app-name-intro {
                             display: none;
 
-                            @include global.response(sm-sm) {
+                            @include landingPageVar.response(lg) {
                                 display: block;
                             }
                         }
@@ -232,10 +214,6 @@
                             color: var(--landing-page-header-text-color);
                             margin: 20px 0;
                             text-align: center;
-
-                            @include global.response(md) {
-                                margin: 10px 0;
-                            }
                         }
 
                         .name-container {
@@ -247,25 +225,18 @@
                     .welcome-top {
                         @include global.flexboxLayout(row, center, center);
 
-                        @include global.response(sm-sm) {
+                        @include landingPageVar.response(lg) {
                             @include global.flexboxLayout(column, flex-start, center);
                             flex-wrap: inherit;
                         }
 
                         .welcome {
                             height: 100%;
-                            padding: 20px 50px;
                             max-width: 45%;
                             flex-grow: 1;
 
-                            @include global.response(md-lg) {
+                            @include landingPageVar.response(lg) {
                                 max-width: 100%;
-                                padding: 20px;
-                            }
-                            
-                            @include global.response(md) {
-                                max-width: 100%;
-                                padding: 20px;
                             }
                         }
 
@@ -273,19 +244,14 @@
                             @include global.flexboxLayout(column, flex-start, center);
                             margin-right: 20px;
                             align-self: stretch;
-        
-                            @include global.response(md) {
-                                align-self: inherit;
-                                margin: 0;
-                                max-width: 100%;
-                            }
-
-                            @include global.response(sm-sm) {
+                            
+                            @include landingPageVar.response(lg) {
+                                margin-right: 0;
                                 order: 2;
                             }
 
                             app-name-intro {
-                                @include global.response(sm-sm) {
+                                @include landingPageVar.response(lg) {
                                     display: none;
                                 }
                             }
@@ -297,22 +263,38 @@
                                 margin: 10px 0 20px;
                                 text-align: center;
                                 
-                                @include global.response(md) {
+                                @include landingPageVar.response(lg) {
                                     margin-bottom: 20px;
+                                    padding: 0 50px;
+                                }
+                                
+                                @include landingPageVar.response(md) {
+                                    padding: 0 20px;
                                 }
                             }
                                 
                         }
                         .welcome-right {
                             @include global.flexboxLayout(row, center, center);
-
-                            @include global.response(sm-sm) {
+                            
+                            @include landingPageVar.response(md) {
                                 order: 1;
                             }
                             
                             .welcome-image {
-                                height: 200px;
-                                width: 200px;
+                                margin: 10px 0;
+                                img {
+                                    border-radius: 8px;
+                                    height: 300px;
+                            
+                                    @include landingPageVar.response(lg) {
+                                        height: 250px;
+                                    }
+                                    
+                                    @include landingPageVar.response(md) {
+                                        height: 200px;
+                                    }
+                                }
                             }
                         }
                     }
@@ -327,7 +309,7 @@
                             width: 20%;
                         }
 
-                        @include global.response(lg) {
+                        @include landingPageVar.response(lg) {
                             flex-wrap: wrap;
 
                             .main-button {
@@ -336,19 +318,11 @@
                             }
                         }
 
-                        @include global.response(sm) {
+                        @include landingPageVar.response(md) {
                             @include global.flexboxLayout(column, center, center);
 
                             .main-button {
                                 width: 80%;
-                            }
-                        }
-
-                        @include global.response(xxs) {
-                            
-                            .main-button {
-                                margin: 4px;
-                                width: 90%;
                             }
                         }
                     }
@@ -364,20 +338,12 @@
                         app-skill-card {
                             margin: 8px 0;
                             width: 25%;
-                            
-                            @include global.response(lg) {
-                                width: 33%;
-                            }
-                            
-                            @include global.response(md-lg) {
+
+                            @include landingPageVar.response(lg) {
                                 width: 50%;
                             }
-
-                            @include global.response(sm) {
-                                width: 50%;
-                            }
-
-                            @include global.response(xs-sm) {
+            
+                            @include landingPageVar.response(md) {
                                 width: 100%;
                             }
                         }
@@ -391,14 +357,6 @@
                         @include global.flexboxLayout(row, flex-start, flex-start);
                         flex-wrap: wrap;
                         width: 100%;
-
-                        app-project-card {
-
-                            @include global.response(sm-md) {
-                                height: 200px;
-                                width: 100%;
-                            }
-                        }
                     }
                 }
 
@@ -412,16 +370,15 @@
                     .contact {
                         @include global.flexboxLayout(row, space-around, center);
                         
-                        @include global.response(md) {
+                        @include landingPageVar.response(md) {
                             @include global.flexboxLayout(column, flex-start, center);
-
                         }
-                        
+
                         .contact-left {
                             @include global.flexboxLayout(column, flex-start, center);
                             width: 45%;
 
-                            @include global.response(md) {
+                            @include landingPageVar.response(md) {
                                 width: 100%;
                             }
 
@@ -432,7 +389,7 @@
                                 padding: 20px;
                                 text-align: center;
                                 
-                                @include global.response(sm) {
+                                @include landingPageVar.response(md) {
                                     margin-bottom: 10px;
                                 }
                             }
@@ -443,7 +400,7 @@
                             position: relative;
                             width: 45%;
 
-                            @include global.response(md) {
+                            @include landingPageVar.response(md) {
                                 width: 100%;
                             }
 
@@ -452,13 +409,17 @@
                                 margin-bottom: 20px;
                             }
 
-                            // .form-not-working {
-                            //     position: absolute;
-                            //     top: 100%;
-                            //     left: 0;
-                            //     transform: rotateY('-45deg');
-                            //     z-index: 5;
-                            // }
+                            .form-not-ready-text {
+                                color: var(--lp-secondary);
+                                font-size: 10px;
+                                max-width: 300px;
+                                text-align: center;
+                                
+                                .linked-in-link {
+                                    text-decoration: none;
+                                    font-weight: 700;
+                                }
+                            }
                         }
                     }
                 }
@@ -469,7 +430,8 @@
             @include global.flexboxLayout(row, space-between, center);
             align-self: stretch;
             background-color: var(--footer-background-color);
-            padding: 10px 20px;
+            min-height: 50px;
+            padding: 0 20px;
             z-index: 2;
             
             .footer-buttons-container {
@@ -479,13 +441,17 @@
 
 
         .header-text {
-            @include global.textHeader;
+            @include global.textSubtitle;
             color: var(--landing-page-nav-text-color);
             letter-spacing: 4px;
             margin: 0;
 
-            @include global.response(sm-md) {
+            @include landingPageVar.response(lg) {
                 font-size: globalVar.globalFontSize(heading-l)
+            }
+            
+            @include landingPageVar.response(md) {
+                font-size: globalVar.globalFontSize(heading-m)
             }
         }
 

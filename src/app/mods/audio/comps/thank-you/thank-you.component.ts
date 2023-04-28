@@ -14,7 +14,7 @@ export class ThankYouComponent {
 
   order: Order;
   products: Product[];
-  quantity = 0;
+  totalProducts = 0;
   numOtherItems = 0;
   showAllItems = false;
 
@@ -29,17 +29,21 @@ export class ThankYouComponent {
   constructor(@Inject(MAT_DIALOG_DATA) readonly data: CartDialogData,
               public dialogRef: MatDialogRef<ThankYouComponent>,
   ) {
-    // console.log('tY ctor order/product: ', data.order, data.product);
-    // console.log('tY ctor order/products: ', data.order, data.products);
-
+    // console.log('tY ctor order: ', data.order);
+    // console.log('tY ctor product: ', data.product);
+    // console.log('tY ctor products: ', data.products);
+    
     if (data && data.viewportMode) {
       this.viewportMode = data.viewportMode;
     }
-
+    
     if (data.order && data.products) {
+      // console.log('tY ctor initializing vars: ', data.products);
       this.order = data.order;
       this.products = data.products;
+      this.totalProducts = data.products.length;
       
+      this.productsBS.next(this.showAllItems ? this.products : [this.products[0]]);
       this.initializeVars();
 
     }
@@ -47,17 +51,31 @@ export class ThankYouComponent {
 
   initializeVars() {
     this.numOtherItems = 0;
-    for (const item of this.products.slice(1)) {
-      this.numOtherItems += item.count ?? 0;
-      this.showOtherItemsButtonText = `and ${this.numOtherItems} other item(s)`
-      // console.log('tY iV other items count/button text: ', this.numOtherItems, this.showOtherItemsButtonText);
-      this.productsBS.next(this.showAllItems ? this.products : [this.products[0]]);
+    const otherItems = this.products.slice(1);
+    if (otherItems.length > 0) {
+      
+      for (const item of otherItems) {
+        this.numOtherItems += item.count ?? 0;
+        this.showOtherItemsButtonText = `and ${this.numOtherItems} other item(s)`;
+        // console.log('tY iV other items count/button text: ', this.numOtherItems, this.showOtherItemsButtonText);
+        // console.log('tY iV products bs pre: ', this.productsBS.value);
+        // this.productsBS.next(this.showAllItems ? this.products : [this.products[0]]);
+        // console.log('tY iV products bs post: ', this.productsBS.value);
+      }
+      
+    } else {
+      this.productsBS.next(this.products);
+      this.numOtherItems = this.products[0].count ?? 0;
+      this.showOtherItemsButtonText = `${this.numOtherItems} total item(s) in your cart`;
+
     }
   }
 
   handleToggleOtherItems() {
-    this.showAllItems = !this.showAllItems;
-    this.productsBS.next(this.showAllItems ? this.products : [this.products[0]]);
+    if (this.products.length > 1) {
+      this.showAllItems = !this.showAllItems;
+      this.productsBS.next(this.showAllItems ? this.products : [this.products[0]]);
+    }
 
   }
 

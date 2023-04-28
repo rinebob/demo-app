@@ -5,6 +5,7 @@
 
 :host {
     @include global.flexboxLayout(column, center, center);
+    width: 100%;
 
     .project-container {
         @include global.flexboxLayout(column, flex-start, center);
@@ -15,6 +16,10 @@
         margin: 10px;
         position: relative;
         width: 95%;
+
+        @include landingPageVar.response(lg) {
+            height: inherit;
+        }
 
         mat-card-content {
             @include global.flexboxLayout(column, center, center);
@@ -37,18 +42,13 @@
                 color: var(--project-card-overlay-header-text-color);
                 margin: 0 0 20px;
                 text-align: center;
-
-                @include global.response(lg) {
-                    font-size: globalVar.globalFontSize(heading-m-l);
-                }
-    
-                @include global.response(sm-md) {
+                
+                @include landingPageVar.response(lg) {
                     margin: 20px 0;
                 }
-    
-                @include global.response(xs) {
-                    font-size: globalVar.globalFontSize(body-l);
-                    
+
+                @include landingPageVar.response(md) {
+                    font-size: globalVar.globalFontSize(heading-m-l);
                 }
             }
         
@@ -60,7 +60,7 @@
                 margin-bottom: 10px;
                 width: 80%;
 
-                @include global.response(sm-md) {
+                @include landingPageVar.response(md) {
                     display: none;
                 }
             }
@@ -70,13 +70,11 @@
                 background-color: var(--project-card-overlay-button-background-color);
                 color: var(--project-card-overlay-button-text-color);
                 margin: 10px 0;
-                
                 width: 75%;
 
-                @include global.response(md) {
+                @include landingPageVar.response(lg) {
                     @include global.textSizes($font-weight: 400, $font-size: globalVar.globalFontSize(heading-s), $line-height: globalVar.globalLineHeight(heading-s));
                     padding: 4px 20px;
-                    
                 }
             }
         }

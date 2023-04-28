@@ -1,7 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogPosition, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
 
 import { CartDetailComponent } from '../cart-detail/cart-detail.component';
 import { ShopPanelComponent } from '../shop-panel/shop-panel.component';
@@ -17,7 +17,8 @@ import { ViewportService } from '../../services/viewport.service';
   styleUrls: ['./nav-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavHeaderComponent {
+export class NavHeaderComponent implements OnDestroy {
+  readonly destroy$ = new Subject<void>();
   @ViewChild('navHeaderContainer') navHeaderContainer: ElementRef;
 
   @HostListener('window:resize', ['$event'])
@@ -42,15 +43,20 @@ export class NavHeaderComponent {
     // readonly localStorage: LocalStorageService,
     ) {
 
-    this.viewportMode$.pipe().subscribe(mode => {
+    this.viewportMode$.pipe(takeUntil(this.destroy$)).subscribe(mode => {
       // console.log('nH ctor viewport mode sub: ', mode);
       this.viewportMode = mode;
     });
 
-    this.cart$.pipe().subscribe(cart => {
+    this.cart$.pipe(takeUntil(this.destroy$)).subscribe(cart => {
       // console.log('nH ctor shopping cart sub: ', cart);
       this.shoppingCartBS.next(cart);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
   
   handleOpenNavMenu() {

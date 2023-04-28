@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { Login, UserAccount } from 'src/app/common/interfaces';
 import { passwordsMatchValidator } from 'src/app/shared/validators';
 
@@ -9,7 +10,8 @@ import { passwordsMatchValidator } from 'src/app/shared/validators';
   styleUrls: ['./login-reg-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginRegFormComponent {
+export class LoginRegFormComponent implements OnDestroy {
+  readonly destroy$ = new Subject<void>();
   @Input() implementationToShow: 'angular' | 'primitive' = 'angular';
 
   formMode: 'create' | 'login' = 'create';
@@ -40,34 +42,39 @@ export class LoginRegFormComponent {
   constructor() {
     this.buildForm();
 
-    this.createAccountForm.valueChanges.pipe().subscribe(changes => {
+    this.createAccountForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('lRF ctor createAccountForm value changes sub: ', changes);
     });
 
     
-    this.createAccountForm.statusChanges.pipe().subscribe(changes => {
+    this.createAccountForm.statusChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('lRF ctor createAccountForm status changes sub: ', changes);
       // console.log('lRF ctor createAccountForm errors: ', this.createAccountForm.errors);
       // console.log('lRF ctor has pw error: ', this.createAccountForm.hasError('passwordsDoNotMatch'));
       // console.log('lRF ctor confirm touched: ', this.confirm?.touched);
     });
     
-    this.loginForm.valueChanges.pipe().subscribe(changes => {
+    this.loginForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('lRF ctor loginForm value changes sub: ', changes);
     });
     
-    this.loginForm.statusChanges.pipe().subscribe(changes => {
+    this.loginForm.statusChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('lRF ctor loginForm status changes sub: ', changes);
     });
 
-    this.usernameControl.valueChanges.pipe().subscribe(changes => {
+    this.usernameControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('lRF ctor usernameControl value sub: ', changes);
       // console.log('lRF ctor usernameControl status: ', this.usernameControl.status);
     });
     
-    this.usernameControl.statusChanges.pipe().subscribe(changes => {
+    this.usernameControl.statusChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('lRF ctor usernameControl status sub: ', changes);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   buildForm() {

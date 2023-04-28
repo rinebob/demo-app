@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MOCK_CUSTOMER } from '../../common/audio-mock-data';
 import { AppText, Customer, PaymentMethod } from '../../common/au-interfaces';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-checkout-form',
@@ -11,8 +12,8 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./checkout-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckoutFormComponent {
-
+export class CheckoutFormComponent implements OnDestroy {
+  readonly destroy$ = new Subject<void>();
   @Output() readonly formValidity = new EventEmitter<string>();
   @Output() readonly customer = new EventEmitter<Customer>();
 
@@ -37,8 +38,8 @@ export class CheckoutFormComponent {
   constructor() {
     this.buildCheckoutForm();
 
-    this.checkoutForm.statusChanges.pipe().subscribe(changes => {
-      console.log('cF ctor checkout form status changes sub: ', changes);
+    this.checkoutForm.statusChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
+      // console.log('cF ctor checkout form status changes sub: ', changes);
 
       this.formValidity.emit(changes);
 
@@ -69,6 +70,11 @@ export class CheckoutFormComponent {
     });
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   buildCheckoutForm() {
     this.checkoutForm = new FormGroup({
       'nameControl': this.nameControl,
@@ -87,7 +93,7 @@ export class CheckoutFormComponent {
   }
 
   populateCheckoutForm() {
-    console.log('cP pCF populate form called');
+    // console.log('cP pCF populate form called');
 
     this.checkoutForm.patchValue({
       'nameControl': MOCK_CUSTOMER.name,

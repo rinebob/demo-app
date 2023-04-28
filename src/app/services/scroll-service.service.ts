@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { Inject, Injectable } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
 
 @Injectable({
   providedIn: "root"
 })
 export class ScrollService {
-  constructor(private router: Router) {}
+  constructor(@Inject(DOCUMENT) private document: Document ) {}
 
   scrollToElementById(id: string) {
     const element = this.__getElementById(id);
@@ -18,15 +18,16 @@ export class ScrollService {
 
   private __getElementById(id: string): HTMLElement | undefined {
     // console.log("sS gEBI element id: ", id);
-    const element = document.getElementById(id);
+    const element = this.document.getElementById(id);
     // console.log("sS gEBI element: ", element);
     if (element) {
       return element;
-
+      
     } else return undefined;
   }
   
   scrollToElement(element: HTMLElement) {
     element.scrollIntoView({ behavior: "smooth" });
+    // console.log("sS sTE element: ", element);
   }
 }

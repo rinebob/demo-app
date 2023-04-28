@@ -9,7 +9,6 @@
     border-radius: 8px;
     padding: 48px;
     position: relative;
-    width: 540px;
     
     @include audioMixin.response(md) {
         padding: 32px;
@@ -73,7 +72,7 @@
         }
         
         .left {
-            @include global.flexboxLayout(column, space-between, center);
+            @include global.flexboxLayout(column, center, center);
             padding: 24px;
             width: 50%;
             
@@ -86,16 +85,19 @@
                 border-bottom: 1px solid rgba(0,0,0,.08);
                 max-height: 300px;
                 overflow-y: auto;
+                overflow-x: hidden;
+                padding: 8px 12px 8px 0;
                 
                 .product-container {
                     @include global.flexboxLayout(row, flex-start, flex-start);
-                    margin-bottom: 12px;
-                    padding-bottom: 12px;
                     width: 100%;
                     
                     @include audioMixin.response(md) {
-                        // @include global.flexboxLayout(row, space-between, center);
                         padding: 24px 24px 12px 24px;
+                    }
+                    
+                    &:not(:last-of-type) {
+                        margin-bottom: 12px;
                     }
                     
                     img {
@@ -139,6 +141,10 @@
                 @include audioMixin.response(md) {
                     margin: 12px 0 25px;
                 
+                }
+
+                &.disabled {
+                    cursor: default;
                 }
             }
         }

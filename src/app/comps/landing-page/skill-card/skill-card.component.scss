@@ -11,63 +11,23 @@ mat-card {
     margin: 0 10px;
     padding: 6px 24px;
 
-    @include global.response(xl) {
+    @include global.response(lg) {
         padding: 6px 18px;
     }
 
-    @include global.response(xl) {
+    @include global.response(md) {
         padding: 6px 24px;
-    }
-    
-    @include global.response(sm-md) {
-        margin: 0 6px;
-        padding: 6px 12px;
-    }
-    
-    @include global.response(sm) {
-        margin: 0 4px;
-        padding: 12px;
     }
 
-    @include global.response(xs-sm) {
-        margin: 0 10px;
-        padding: 6px 24px;
-    }
-    
     mat-card-content {
         @include global.flexboxLayout(row, flex-start, center);
         padding: 16px 0;
         width: 100%;
         position: relative;
-
-        @include global.response(sm-md) {
-            padding: 12px 8px;
-        }
-        
-        @include global.response(sm) {
-            padding: 0;
-        }
-
-        @include global.response(xs-sm) {
-            padding: 16px 0;
-        }
-       
-        @include global.response(xxs) {
-            padding: 8px 0;
-        }
         
         .skill-logo {
             position: relative;
             width: globalVar.globalFontSize(heading-xl);
-            
-            @include global.response(sm-md) {
-                width: globalVar.globalFontSize(heading-l);
-            }
-
-            @include global.response(xs-sm) {
-                width: globalVar.globalFontSize(heading-xl);
-                
-            }
         }
 
         .logo-container {
@@ -92,26 +52,6 @@ mat-card {
             .skill-title {
                 @include landingPageVar.textSkillCardHeader;
                 color: var(--skill-card-title-color);
-
-                @include global.response(xl) {
-                    font-size: globalVar.globalFontSize(heading-m-l);
-                }
-    
-                @include global.response(md-lg) {
-                    font-size: globalVar.globalFontSize(heading-l);
-                }
-    
-                @include global.response(sm) {
-                    font-size: globalVar.globalFontSize(heading-m);
-                }
-                
-                @include global.response(xs-sm) {
-                    font-size: globalVar.globalFontSize(heading-l);
-                }
-                
-                @include global.response(xxs) {
-                    font-size: globalVar.globalFontSize(heading-m);
-                }
             }
         }
     

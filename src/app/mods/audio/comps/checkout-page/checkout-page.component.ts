@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take, withLatestFrom } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { take, takeUntil, withLatestFrom } from 'rxjs/operators';
 
 import { AppText, Customer, Order, Product, ViewportMode } from '../../common/au-interfaces';
 import { AudioStore } from '../../services/audio-store.service';
@@ -16,7 +16,8 @@ import { ViewportService } from '../../services/viewport.service';
   styleUrls: ['./checkout-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CheckoutPageComponent {
+export class CheckoutPageComponent implements OnDestroy {
+  readonly destroy$ = new Subject<void>();
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.viewportService.updateViewportMode(window.innerWidth);
@@ -39,14 +40,19 @@ export class CheckoutPageComponent {
               readonly productsService: ProductsService, readonly router: Router, 
               readonly route: ActivatedRoute,  readonly viewportService: ViewportService,
     ) {
-      this.viewportMode$.pipe().subscribe(mode => {
+      this.viewportMode$.pipe(takeUntil(this.destroy$)).subscribe(mode => {
         // console.log('cP ctor viewport mode sub: ', mode);
         this.viewportMode = mode;
       });
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   handleCustomerFormValidity(validity: string) {
-    console.log('cP hCFV checkout form validity: ', validity);
+    // console.log('cP hCFV checkout form validity: ', validity);
     this.customerFormValidityBS.next(validity);
   }
 

@@ -2,13 +2,13 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, HostBind
 import { FormControl, FormGroup } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {Subject, fromEvent} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {debounceTime, takeUntil} from 'rxjs/operators';
 
 import { ScrollService } from '../../services/scroll-service.service';
 import { APP_SIDENAV_BUTTONS, CONTACT_MESSAGE_TEXT, CONTACT_SUBTITLE_TEXT, LANDING_PAGE_THEME_START_TEXT, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, ROBERT_RINEHART_TEXT, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
-import { AppTheme, Contact, LandingPageSection, ViewMode } from 'src/app/common/interfaces';
+import { AppTheme, Contact, LandingPageSection, RinebobUrl, LpScrollTargetId, ViewMode } from 'src/app/common/interfaces';
 import { ThemePalette } from '@angular/material/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-landing-page',
@@ -17,6 +17,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>();
   @HostBinding('class') theme = AppTheme.LANDING_PAGE_DARK;
   @ViewChild('scrollContainer') scrollContainer: ElementRef;
   @ViewChild('mainContainer') mainContainer: ElementRef;
@@ -38,6 +39,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
   readonly CONTACT_MESSAGE_TEXT = CONTACT_MESSAGE_TEXT;
   readonly CONTACT_SUBTITLE_TEXT = CONTACT_SUBTITLE_TEXT;
   readonly LandingPageSection = LandingPageSection;
+  readonly LpScrollTargetId = LpScrollTargetId;
   
   globalTopnavMenuCssClass = 'global-topnav-menu-css';
   fragment = '';
@@ -46,6 +48,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
   viewModeBS = new BehaviorSubject<ViewMode>('light');
   viewModeOn$: Observable<ViewMode> = this.viewModeBS;
 
+  readonly RinebobUrl = RinebobUrl;
 
   ////////// HEXAGON ROW SIZING /////////////
   // Hexagon size = 110px x 100px
@@ -76,7 +79,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
     
   ngOnInit () {
     this.initializeViewMode();
-    this.contactForm.valueChanges.pipe().subscribe(changes => {
+    this.contactForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('lP ngOI contact form value changes sub: ', changes);
     });
   }

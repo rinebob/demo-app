@@ -35,6 +35,7 @@
     
                 <button class="show-other-items-button"
                         (click)="handleToggleOtherItems()"
+                        [class.disabled]="totalProducts < 2"
                 >
                     {{showAllItems ? AppText.VIEW_LESS : showOtherItemsButtonText}}
                 </button>

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 import { HOME_FEATURE_TEXT } from '../../common/au-constants';
 import { AppText, ViewportMode } from '../../common/au-interfaces';
 import { ViewportService } from '../../services/viewport.service';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { ViewportService } from '../../services/viewport.service';
   styleUrls: ['./home-feature.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeFeatureComponent implements OnInit {
+export class HomeFeatureComponent implements OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>();
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     // console.log('cP oR inner width: ', window.innerWidth);
@@ -27,19 +29,22 @@ export class HomeFeatureComponent implements OnInit {
     return `${this.sourceUrl}/${this.viewportMode}`
   }
 
-
-
   readonly AppText = AppText;
   readonly HOME_FEATURE_TEXT = HOME_FEATURE_TEXT;
 
   constructor(readonly viewportService: ViewportService) {
-    this.viewportMode$.pipe().subscribe(mode => {
+    this.viewportMode$.pipe(takeUntil(this.destroy$)).subscribe(mode => {
       // console.log('hF ctor viewport mode sub: ', mode);
       this.viewportMode = mode;
       // console.log('hF ctor image url: ', this.imageUrl)
       
     });
 
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   ngOnInit(): void {

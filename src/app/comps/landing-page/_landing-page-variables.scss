@@ -256,6 +256,13 @@
     // --lp-dark-on-accent-1: var(--);
     // --lp-dark-accent-2: var(--);
     // --lp-dark-on-accent-2: var(--);
+
+    --lp-lg-width: 1440px;
+    --lp-md-width: 768px;
+    --lp-sm-width: 375px;
+    --lp-lg-inner-width: 1110px;
+    --lp-md-inner-width: 689px;
+    --lp-sm-inner-width: 327px;
    
 }
 
@@ -337,9 +344,6 @@
 
     --footer-background-color: var(--lp-primary);
     --footer-text-color: var(--lp-on-primary);
-
-
-    
     
 }
 
@@ -425,6 +429,39 @@
 
 }
 
+
+/////////////////// RESPONSIVE BREAKPOINTS /////////////////////
+
+    // --lp-lg-width: 1440px;
+    // --lp-md-width: 768px;
+    // --lp-sm-width: 375px;
+    // --lp-lg-inner-width: 1110px;
+    // --lp-md-inner-width: 689px;
+    // --lp-sm-inner-width: 327px;
+
+    @mixin response($breakpoint) {
+
+        @if($breakpoint == lg) {
+            @media(max-width: 1440px) {
+                @content;
+            }
+        }
+        
+        @if($breakpoint == md) {
+            @media(max-width: 768px) {
+                @content;
+            }
+        }
+    
+        @if($breakpoint == sm) {
+            @media(max-width: 375px) {
+                @content;
+            }
+        }
+    
+    }
+    
+
 // for skill card
 @mixin textSkillCardHeader {
     @include global.textSizes($font-weight: 700, $font-size: globalVar.globalFontSize(heading-l), $line-height: globalVar.globalLineHeight(heading-l));    
@@ -480,30 +517,9 @@
 
     }
 
-    @include global.response(lg-xl) {
-        font-size: globalVar.globalFontSize(heading-s-m);
-        letter-spacing: 2px;
-    }
-
-    @include global.response(md-lg) {
-        // font-size: globalVar.globalFontSize(heading-s-m);
-        letter-spacing: 0;
-    }
-
     @include global.response(md) {
-        font-size: globalVar.globalFontSize(heading-m);
         letter-spacing: 2px;
     }
-    
-    @include global.response(sm) {
-        letter-spacing: 4px;
-    }
-    
-    @include global.response(xxs) {
-        font-size: globalVar.globalFontSize(heading-s-m);
-        letter-spacing: 1px;
-    }
-
 }
 
 @mixin contactBoxShadowRaisedUpperLeftLowerRight {
@@ -524,8 +540,6 @@
     margin: 0;
     padding: 0;
     
-    // container
-	// min-height: calc(100vh - 145px);    // 145 = nav height + tab bar height
     background-color: #000;
     position: relative;
     overflow: hidden;
@@ -533,13 +547,8 @@
     
     .row {
         display: inline-flex;
-
-
         margin-top: -32px;
         margin-left: -50px;
-
-        // margin-top: -19px;
-        // margin-left: -25px;
 
         &:first-of-type {
             margin-top: -55px;
@@ -581,10 +590,6 @@
     height: 110px;
     width: 100px;
 
-    // height: 55px;
-    // width: 50px;
-
-
     // flat side top/bottom - this doesn't look evenly distrib'd.  taller than wide
     // clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 
@@ -611,8 +616,6 @@
     
     margin: 2px;
     
-    // margin: 1px;
-
     // This puts a mask on the solid hexagon so it looks outlined
     &:after {
         content: '';
@@ -630,20 +633,11 @@
 
 @mixin halfHexagonTopOutlined {
     background-color: #111;
-    position: relative;
-    margin: 2px;
-
-    // height: 110px;
-    // width: 100px;
-
-    height: 55px;
-    width: 100px;
     clip-path: polygon(50% 0%, 100% 50%, 100% 100%, 0% 100%, 0% 50%);
-    
-    // height: 110px;
-    // width: 100px;
-    // clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%);
-
+    height: 55px;
+    margin: 2px;
+    position: relative;
+    width: 100px;
     transition: 2s;
 
     &:before {

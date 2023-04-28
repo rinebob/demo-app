@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 
 interface Skill {
   level: string;
@@ -17,7 +17,8 @@ interface Resume {
   styleUrls: ['./form-array.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormArrayComponent implements OnInit {
+export class FormArrayComponent implements OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>();
 
   skills = new FormArray([
     new FormGroup({
@@ -32,13 +33,18 @@ export class FormArrayComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.skills.valueChanges.pipe().subscribe(changes => {
+    this.skills.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('fA ngOI skills value changes sub: ', changes);
     });
 
-    this.resumeForm.valueChanges.pipe().subscribe(changes => {
+    this.resumeForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('fA ngOI resume form value changes sub: ', changes);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
   
   addSkill() {
