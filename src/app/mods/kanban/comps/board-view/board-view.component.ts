@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { BehaviorSubject, Observable, withLatestFrom } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil, withLatestFrom } from 'rxjs';
 
 import { BOARD_INITIALIZER, GUIDED_TOUR_TEXT } from 'src/app/common/constants';
 import { Board, Column, DialogCloseResult, DialogResult, GuidedTourMetadata, Task, TourStop } from 'src/app/common/interfaces';
@@ -16,7 +16,8 @@ import { FbProjectsService } from 'src/app/services/fb-projects.service';
   styleUrls: ['./board-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BoardViewComponent implements OnInit {
+export class BoardViewComponent implements OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>();
   @HostBinding('class') theme = 'kanban-light-theme';
   
   boards$ = this.boardsStore.boards$;
@@ -88,7 +89,7 @@ export class BoardViewComponent implements OnInit {
 
       });
 
-      this.selectedBoard$.pipe().subscribe(board => {
+      this.selectedBoard$.pipe(takeUntil(this.destroy$)).subscribe(board => {
         // console.log('bV ctor store selected board sub: ', board);
         if (board && board.displayName !== '') {
           this.selectedBoardBS.next(board);
@@ -96,30 +97,30 @@ export class BoardViewComponent implements OnInit {
         }
       });
 
-      this.allColumns$.pipe().subscribe(columns => {
+      this.allColumns$.pipe(takeUntil(this.destroy$)).subscribe(columns => {
         // console.log('bV ctor all columns sub: ', columns);
         this.allColumns = columns;
       });
 
-      this.userSelectedColumns$.pipe().subscribe(columns => {
+      this.userSelectedColumns$.pipe(takeUntil(this.destroy$)).subscribe(columns => {
         // console.log('bV ctor user selected columns sub: ', columns);
         this.userSelectedColumns = columns;
       });
   
-      this.numberOfTasksPerColumn$.pipe().subscribe(numbers => {
+      this.numberOfTasksPerColumn$.pipe(takeUntil(this.destroy$)).subscribe(numbers => {
         // console.log('bV ctor num tasks by column sub: ', numbers);
         this.numTasksByColumn = numbers;
       });
 
-      // this.boards$.pipe().subscribe((boards) => {
+      // this.boards$.pipe(takeUntil(this.destroy$)).subscribe((boards) => {
       //   console.log('bV ctor boards store sub: ', boards);
       // });
 
-      // this.selectedBoard$.pipe().subscribe(board => {
+      // this.selectedBoard$.pipe(takeUntil(this.destroy$)).subscribe(board => {
       //   console.log('bV ctor boards store selected board sub: ', board);
       // });
 
-      this.tasks$.pipe().subscribe(tasks => {
+      this.tasks$.pipe(takeUntil(this.destroy$)).subscribe(tasks => {
         // console.log('bV ctor tasks sub: ', tasks);
         if (tasks && tasks.length > 0) {
           this.tasksBS.next(tasks);
@@ -129,6 +130,11 @@ export class BoardViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   uploadData() {

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { Contact } from 'src/app/common/interfaces';
 
 @Component({
@@ -8,7 +9,8 @@ import { Contact } from 'src/app/common/interfaces';
   styleUrls: ['./contact-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>();
   @Output() contact = new EventEmitter<Contact>();
 
   contactForm: FormGroup;
@@ -16,7 +18,7 @@ export class ContactFormComponent implements OnInit {
   nameControl = new FormControl('', [Validators.required]);
   emailControl = new FormControl('', Validators.required);
   messageControl = new FormControl('', Validators.required);
-  
+    
 
   get name() {return this.contactForm.get('nameControl')}
   get email() {return this.contactForm.get('emailControl')}
@@ -27,9 +29,14 @@ export class ContactFormComponent implements OnInit {
   }
   
   ngOnInit () {
-    this.contactForm.valueChanges.pipe().subscribe(changes => {
+    this.contactForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       // console.log('cF ngOI contact form value changes sub: ', changes);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   buildForm() {

@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Inject, Input, OnInit, Optional, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Inject, Input, OnDestroy, OnInit, Optional, Output, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from '@angular/material/dialog';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 
 import { AUDIO_PRODUCTS } from '../../common/audio-mock-data';
 import { AppText, AudioDialogCloseResult, CartDetailMode, CartDialogData, CartItem, Order, Product, ViewportMode } from '../../common/au-interfaces';
@@ -13,13 +13,14 @@ import { ORDER_INITIALIZER, SHIPPING_COST, VAT_TAX_RATE } from '../../common/au-
   styleUrls: ['./cart-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartDetailComponent implements AfterViewInit, OnInit {
+export class CartDetailComponent implements AfterViewInit, OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>();
   @Input()
   set customerFormValidity(validity: string) {
     if (validity) {
       this.customerFormValidityBS.next(validity);
     }
-    console.log('cD @i checkout form validity: ', this.customerFormValidityBS.value);
+    // console.log('cD @i checkout form validity: ', this.customerFormValidityBS.value);
   }
   get customerFormValidity() {
     return this.customerFormValidityBS.value;
@@ -31,7 +32,7 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
     if (this.customerFormValidity === 'VALID') {
       invalid = false;
     } 
-    console.log('cD @i checkout form invalid: ', invalid);
+    // console.log('cD @i checkout form invalid: ', invalid);
     return invalid;
   }
   
@@ -108,6 +109,11 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   setDialogPosition() {
     if (this.triggerElementRef && this.cartDetailContainerRef) {
       const config: MatDialogConfig = new MatDialogConfig();
@@ -133,7 +139,7 @@ export class CartDetailComponent implements AfterViewInit, OnInit {
   }
 
   getCartProducts() {
-    this.cart$.pipe().subscribe(cart => {
+    this.cart$.pipe(takeUntil(this.destroy$)).subscribe(cart => {
       // console.log('cD gCP cart sub: ', cart);
       
       this.cartBS.next([...cart]);

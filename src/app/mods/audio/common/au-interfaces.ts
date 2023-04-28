@@ -176,3 +176,7 @@ export enum PaymentMethod {
   export interface ImageByViewport {
     [key: string]: string;
   }
+
+  export enum AuScrollTargetId {
+    AUDIO_NAV = 'audio-nav',
+  }

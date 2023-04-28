@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Inject, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { DialogCloseResult, DialogData, FormMode, SubTask, SubTaskStatus, Task, TaskStatus, TASK_STATUS_VALUES } from 'src/app/common/interfaces';
 import { TASK_INITIALIZER } from '../../../../common/constants';
@@ -15,7 +15,8 @@ import { MatCheckbox } from '@angular/material/checkbox';
   styleUrls: ['./task-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnDestroy {
+  readonly destroy$ = new Subject<void>();
   @ViewChildren('checkbox') checkboxes!: QueryList<MatCheckbox>;
   taskBS = new BehaviorSubject<Task>(TASK_INITIALIZER);
   task$: Observable<Task> = this.taskBS;
@@ -75,13 +76,18 @@ export class TaskFormComponent {
         this.applyTheme(data.theme);
       }
 
-      // this.statusControl.valueChanges.pipe().subscribe(changes => {
+      // this.statusControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       //   console.log('tF ctor status control values sub: ', changes);
       // });
 
-      // this.taskForm.valueChanges.pipe().subscribe(changes => {
+      // this.taskForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(changes => {
       //   console.log('tF ctor task form values sub: ', changes);
       // });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   getSubtaskStatusBoolValue(status: string) {

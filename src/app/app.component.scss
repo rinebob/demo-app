@@ -108,8 +108,7 @@
     
             .return-home-button {
                 @include global.globalMainButtonStyles(var(--size-button-tall));
-                @include global.globalColors($background-color: var(--global-grey-5), $color: var(--global-white-1));
-
+                @include global.globalColors($background-color: var(--lp-primary), $color: var(--lp-on-primary));
                 border-top-left-radius: 0;
                 border-top-right-radius: 100px;
                 border-bottom-right-radius: 100px;

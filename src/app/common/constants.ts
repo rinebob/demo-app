@@ -131,6 +131,12 @@ export const RINEBOB_PROJECTS: ProjectData[] = [
     //     route: '/biodata',
     //     imageSrc: '',
     // },
+    {
+        title: 'Audiophile eCommerce site',
+        description: 'Implementation of stock ecommerce site design from FrontendMentor.com.  Focus is on styling and navigation.  Extensive Sass usage to achieve responsive styling.',
+        route: '/audio',
+        imageSrc: '../../assets/audio/audiophile-project-2.png',
+    },
 ];
 
 export const RINEBOB_EXPERIENCE: ExperienceData[] = [

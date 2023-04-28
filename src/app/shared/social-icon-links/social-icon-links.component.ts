@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { RinebobUrl } from '../../common/interfaces';
+
 
 @Component({
   selector: 'app-social-icon-links',
@@ -10,9 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SocialIconLinksComponent {
 
-  githubUrl = 'https://github.com/rinebob';
-
-  linkedInUrl = 'https://www.linkedin.com/in/robert-rinehart';
+  readonly RinebobUrl = RinebobUrl;
 
   constructor(private router: Router) {
 

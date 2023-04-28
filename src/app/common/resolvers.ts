@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, Subject, of, takeUntil } from 'rxjs';
 
 import { BoardsService } from '../services/boards.service';
 import { Board } from './interfaces';
@@ -8,7 +8,8 @@ import { BOARD_INITIALIZER } from './constants';
 import { BoardsStore } from '../services/boards-store.service';
 
 @Injectable({providedIn: 'root'})
-export class BoardsResolver implements Resolve<Board[]> {
+export class BoardsResolver implements OnDestroy, Resolve<Board[]> {
+    readonly destroy$ = new Subject<void>()
 
     constructor(readonly boardsStore: BoardsStore) {}
 
@@ -17,17 +18,20 @@ export class BoardsResolver implements Resolve<Board[]> {
         this.boardsStore.getAllBoards();
         const boards: Board[] = [];
         const boards$: Observable<Board[]> = this.boardsStore.boards$;
-        boards$.pipe().subscribe(boards => {
+        boards$.pipe(takeUntil(this.destroy$)).subscribe(boards => {
             if (boards && boards.length > 0) {
                 // console.log('r nR r resolved boards: ', boards);
                  boards = [...boards];
             } 
         });
 
-
-        // return this.boardsStore.boards$;
         return of(boards);
     }
+
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+      }
 
 }
 // @Injectable({providedIn: 'root'})

@@ -275,3 +275,16 @@ export enum LandingPageSection {
   EXPERIENCE = 'recent experience',
   CONTACT = 'contact',
 }
+
+export enum RinebobUrl {
+  GITHUB = 'https://github.com/rinebob',
+  LINKED_IN = 'https://www.linkedin.com/in/robert-rinehart',
+}
+
+export enum LpScrollTargetId {
+  WELCOME = '',
+  SKILLS = '',
+  PROJECTS = '',
+  EXPERIENCE = '',
+  CONTACT = '',
+}

@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, OnDestroy, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { ALLOCATED_TASKS_INITIALIZER, COLUMN_COLOR, COLUMN_ORDER_FROM_STATUS, EMPTY_BOARD_TEXT } from 'src/app/common/constants';
@@ -16,7 +16,8 @@ import { DialogService } from 'src/app/services/dialog-service.service';
   styleUrls: ['./kanban-tasks.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KanbanTasksComponent {
+export class KanbanTasksComponent implements OnDestroy {
+  readonly destroy$ = new Subject<void>();
   @Input()
   set tasks(tasks: Task[]) {
     this.tasksBS.next(tasks);
@@ -73,23 +74,23 @@ export class KanbanTasksComponent {
     // console.log('-------------------------------');
     // console.log('kT ctor kanban tasks ctor.  theme: ', this.theme);
 
-    this.allColumns$.pipe().subscribe(columns => {
+    this.allColumns$.pipe(takeUntil(this.destroy$)).subscribe(columns => {
       // console.log('kT ctor all columns sub: ', columns);
       this.allColumns = columns;
     });
 
-    this.allTasksByStatus$.pipe().subscribe(allocatedTasks => {
+    this.allTasksByStatus$.pipe(takeUntil(this.destroy$)).subscribe(allocatedTasks => {
       // console.log('kT ctor allocated tasks sub: ', allocatedTasks);
       this.allocatedTasks = allocatedTasks;
     });
 
-    this.userSelectedColumns$.pipe().subscribe(columns => {
+    this.userSelectedColumns$.pipe(takeUntil(this.destroy$)).subscribe(columns => {
       // console.log('kT ctor user selected columns sub pre: ', this.userSelectedColumns);
       this.userSelectedColumns = columns;
       // console.log('kT ctor user selected columns sub post: ', this.userSelectedColumns);
     });
 
-    this.numberOfTasksPerColumn$.pipe().subscribe(numbers => {
+    this.numberOfTasksPerColumn$.pipe(takeUntil(this.destroy$)).subscribe(numbers => {
       // console.log('kT ctor num tasks by column sub: ', numbers);
       this.numTasksByColumn = numbers;
     });
@@ -97,6 +98,11 @@ export class KanbanTasksComponent {
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   initializeTasks(tasks: Task[]) {
