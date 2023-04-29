@@ -1,7 +1,7 @@
 <div class="landing-page-container">
     
     <button class="scroll-to-top-button"
-        (click)="scrollToTarget('welcome')"
+        (click)="scrollToTarget(LpScrollTargetId.SCROLL_TARGET)"
     >
         <mat-icon>keyboard_double_arrow_up</mat-icon>
     </button>
@@ -56,6 +56,8 @@
     </nav>
 
     <div class="scroll-container" #scrollContainer>
+
+        <div class="scroll-target" id="{{LpScrollTargetId.SCROLL_TARGET}}"></div>
 
         <div class="animations-container-top" *ngIf="viewModeBS.value === 'dark'">
         

@@ -35,7 +35,10 @@
             }
 
             @include landingPageVar.response(md) {
-                left: 88%;
+                left: 85%;
+                top: 85%;
+                height: 38px;
+                width: 38px;
             }
         }
             
