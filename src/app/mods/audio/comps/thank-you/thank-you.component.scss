@@ -12,7 +12,7 @@
     
     @include audioMixin.response(md) {
         padding: 32px;
-        width: 327px;
+        max-width: 327px;
     }
 
     .checkmark-circle {
