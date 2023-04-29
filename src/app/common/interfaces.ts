@@ -282,9 +282,10 @@ export enum RinebobUrl {
 }
 
 export enum LpScrollTargetId {
-  WELCOME = '',
-  SKILLS = '',
-  PROJECTS = '',
-  EXPERIENCE = '',
-  CONTACT = '',
+  SCROLL_TARGET = 'scroll-target',
+  WELCOME = 'welcome',
+  SKILLS = 'skills',
+  PROJECTS = 'projects',
+  EXPERIENCE = 'experience',
+  CONTACT = 'contact',
 }
