@@ -1,0 +1,101 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+@use './trader-variables' as traderVar;
+
+/////////////////// TEXT /////////////////////
+
+@mixin trMastheadText {
+    font: 700 normal 56px/58px var(--tr-title-font-family);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@mixin trHeader1Text {
+    font: 700 normal 40px/44px var(--tr-main-font-family);
+    letter-spacing: 1.43px;
+    text-transform: uppercase;
+}
+
+@mixin trHeader2Text {
+    font: 700 normal 32px/36px var(--tr-main-font-family);
+    letter-spacing: 1.14px;
+    text-transform: uppercase;
+}
+
+@mixin trHeader6Text {
+    font: 700 normal 18px/25px var(--tr-main-font-family);
+    letter-spacing: 1.3px;
+    // text-transform: uppercase;
+}
+
+@mixin trOverlineText {
+    font: 400 normal 14px/19.1px var(--tr-body-font-family);
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+@mixin trBodyText {
+    font: 500 normal 15px/25px var(--tr-body-font-family);
+}
+
+@mixin trAccentText {
+    font: 700 normal 12px/16px var(--tr-accent-font-family);
+}
+
+///////////////////////////// ELEMENTS //////////////////////
+
+@mixin trBorder($thickness: 1px, $color: var(--tr-black)) {
+    border: $thickness solid $color;
+}
+
+@mixin trButtonText {
+    font: 700 normal 13px/18px var(--tr-title-font-family);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@mixin trButtonStyles {
+    @include trButtonText;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+@mixin traderColors($backgroundColor: var(--tr-primary-idle), $color: var(--tr-on-primary-idle)) {
+    background-color: $backgroundColor;
+    color: $color;
+
+}
+
+/////////////////// RESPONSIVE BREAKPOINTS /////////////////////
+
+    // --au-lg-width: 1440px;
+    // --au-md-width: 768px;
+    // --au-sm-width: 375px;
+    // --au-lg-inner-width: 1110px;
+    // --au-md-inner-width: 689px;
+    // --au-sm-inner-width: 327px;
+
+@mixin trResponse($breakpoint) {
+
+    @if($breakpoint == lg) {
+        @media(max-width: 1440px) {
+            @content;
+        }
+    }
+    
+    @if($breakpoint == md) {
+        @media(max-width: 768px) {
+            @content;
+        }
+    }
+
+    @if($breakpoint == sm) {
+        @media(max-width: 375px) {
+            @content;
+        }
+    }
+
+}

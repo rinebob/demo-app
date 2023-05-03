@@ -1,0 +1,113 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../trader-variables' as traderVar;
+@use '../../trader-mixins' as traderMixin;
+@import "styles.scss";
+
+:host {
+    @include global.flexboxLayout(column, flex-start, center);
+    box-sizing: border-box;
+    height: 100%;
+    padding: 20px;
+    width: 100%;
+    
+    .des-sys-container {
+        @include global.flexboxLayout(column, space-evenly, center);
+        @include traderMixin.trBorder($color: var(--tr-dark-primary-idle));
+        @include traderMixin.traderColors($backgroundColor: var(--tr-container-background-color), $color: var(--tr-container-on-background-color));
+        border-radius: 8px;
+        flex-grow: 1;
+        width: 90%;
+
+        .color-container {
+            @include global.flexboxLayout(row, space-evenly, center);
+            @include traderMixin.trBorder($color: var(--tr-white));
+            @include traderMixin.traderColors($backgroundColor: var(--tr-white), $color: var(--tr-black));
+            flex-wrap: wrap;
+            padding: 20px;
+            width: 100%;
+            
+            .color {
+                @include global.flexboxLayout(column, center, center);
+                @include traderMixin.trBorder($color: var(--tr-black));
+                height: 100px;
+                margin: 20px;
+                width: 40%;
+                
+                &-1 {
+                    @include traderMixin.traderColors($backgroundColor: var(--tr-dark-primary-idle), $color: var(--tr-dark-primary-on-idle));
+                }
+                
+                &-2 {
+                    @include traderMixin.traderColors($backgroundColor: var(--tr-dark-secondary-idle), $color: var(--tr-dark-secondary-on-idle));
+                }
+                
+                &-3 {
+                    @include traderMixin.traderColors($backgroundColor: var(--tr-dark-accent-1-idle), $color: var(--tr-dark-accent-1-on-idle));
+                }
+                
+                &-4 {
+                    @include traderMixin.traderColors($backgroundColor: var(--tr-dark-accent-2-idle), $color: var(--tr-dark-accent-2-on-idle));
+                }
+            }
+        }
+
+        .window {
+            @include traderMixin.trBorder($color: var(--tr-electric-border));
+            border-radius: 8px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 80%;
+        }
+        
+        .header {
+            @include global.flexboxLayout(column, space-evenly, center);
+        }
+        
+        .windows-container {
+            @include global.flexboxLayout(row, space-evenly, flex-start);
+
+            .main-window {
+                @include global.flexboxLayout(column, flex-start, center);
+                @include traderMixin.trBorder($color: var(--tr-electric-border));
+                margin-bottom: 30px;
+                width: 50%;
+            }
+            
+            .accent-window {
+                @include global.flexboxLayout(column, flex-start, center);
+                @include traderMixin.trBorder($color: var(--tr-electric-border));
+                width: 50%;
+            }
+        }
+
+        .tr-text {
+            margin: 8px;
+        }
+    
+        .masthead-text {
+            @include traderMixin.trMastheadText;
+        }
+        
+        .header-one-text {
+            @include traderMixin.trHeader1Text;
+        }
+
+        .header-two-text {
+            @include traderMixin.trHeader2Text;
+        }
+
+        .header-six-text {
+            @include traderMixin.trHeader6Text;
+        }
+
+        .body-text {
+            @include traderMixin.trBodyText;
+        }
+        
+        .accent-text {
+            @include traderMixin.trAccentText;
+        }
+    }
+}
