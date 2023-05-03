@@ -1,0 +1,129 @@
+
+
+
+:root {
+
+    --oxford-blue: #0b132bff;
+    --space-cadet: #1c2541ff;
+    --yinmn-blue: #3a506bff;
+    --verdigris: #5bc0beff;
+    --fluorescent-cyan: #6fffe9ff;
+
+    --tr-dark-primary-idle: var(--yinmn-blue);
+    --tr-dark-primary-on-idle: var(--fluorescent-cyan);
+    --tr-dark-primary-hover: var(--verdigris);
+    --tr-dark-primary-on-hover: var(--space-cadet);
+    --tr-dark-secondary-idle: var(--fluorescent-cyan);
+    --tr-dark-secondary-on-idle: var(--space-cadet);
+    --tr-dark-secondary-hover: var(--oxford-blue);
+    --tr-dark-secondary-on-hover: var(--verdigris);
+    --tr-dark-accent-1-idle: var(--oxford-blue);
+    --tr-dark-accent-1-on-idle: var(--fluorescent-cyan);
+    --tr-dark-accent-1-hover: var(--space-cadet);
+    --tr-dark-accent-1-on-hover: var(--verdigris);
+    --tr-dark-accent-2-idle: var(--space-cadet);
+    --tr-dark-accent-2-on-idle: var(--verdigris);
+
+    --tr-electric-border: var(--fluorescent-cyan);
+    
+
+    // --tr-dark-primary-idle: var(--);
+    // --tr-dark-primary-on-idle: var(--);
+    // --tr-dark-primary-hover: var(--));
+    // --tr-dark-primary-on-hover: var(--);
+    // --tr-dark-secondary-idle: var(--);
+    // --tr-dark-secondary-on-idle: var(--);
+    // --tr-dark-secondary-hover: var(--);
+    // --tr-dark-secondary-on-hover: var(--);
+    // --tr-dark-accent-1-idle: var(--);
+    // --tr-dark-accent-1-on-idle: var(--);
+    // --tr-dark-accent-1-on-hover: var(--);
+    // --tr-dark-accent-2-idle: var(--);
+    // --tr-dark-accent-2-on-idle: var(--);
+    // --tr-electric-border: var(--);
+
+
+
+    --tr-black: #000000;
+    --tr-white: #ffffff;
+ 
+    --tr-font-noto: Noto Sans Display, "Helvetica Neue", sans-serif;
+    --tr-font-saira: Saira, "Helvetica Neue", sans-serif;
+    --tr-font-nunito: Nunito, "Helvetica Neue", sans-serif;
+    --tr-font-josefin-sans: Josefin sans, "Helvetica Neue", sans-serif;
+
+    --tr-title-font-family: var(--tr-font-noto);
+    --tr-main-font-family: var(--tr-font-saira);
+    --tr-body-font-family: var(--tr-font-nunito);
+    --tr-accent-font-family: var(--tr-font-josefin-sans);
+    
+
+    //////////////// DOM ELEMENTS //////////////////////
+    
+    --tr-dark-background-color: var(--oxford-blue);
+    --tr-dark-on-background-color: var(--tr-dark-primary-idle);
+
+    --tr-nav-background-color: var(--tr-dark-accent-2-idle);
+    --tr-nav-on-background-color: var(--tr-dark-accent-2-on-idle);
+    
+    --tr-container-background-color: var(--tr-dark-secondary-on-idle);
+    --tr-container-on-background-color: var(--tr-dark-secondary-idle);
+    --tr-container-text-color: var(--tr-dark-secondary-idle);
+
+
+    // template
+    // --tr-dark-primary-idle: var(--);
+    // --tr-dark-primary-on-idle: var(--);
+    // --tr-dark-primary-hover: var(--));
+    // --tr-dark-primary-on-hover: var(--);
+    // --tr-dark-secondary-idle: var(--);
+    // --tr-dark-secondary-on-idle: var(--);
+    // --tr-dark-secondary-hover: var(--);
+    // --tr-dark-secondary-on-hover: var(--);
+    // --tr-dark-accent-1-idle: var(--);
+    // --tr-dark-accent-1-on-idle: var(--);
+    // --tr-dark-accent-1-on-hover: var(--);
+    // --tr-dark-accent-2-idle: var(--);
+    // --tr-dark-accent-2-on-idle: var(--);
+    // --tr-electric-border: var(--);
+
+    // legacy from audio
+
+    // --tr-lg-width: 1440px;
+    // --tr-md-width: 768px;
+    // --tr-sm-width: 375px;
+    // --tr-lg-inner-width: 1110px;
+    // --tr-md-inner-width: 689px;
+    // --tr-sm-inner-width: 327px;
+
+    // other palettes
+
+    // --black: #050505ff;
+    // --blue-munsell: #1b9aaaff;
+    // --bone: #dddbcbff;
+    // --old-lace: #f5f1e3ff;
+    // --white: #ffffffff;
+
+    // --malachite: #04e762ff;
+    // --selective-yellow: #f5b700ff;
+    // --mexican-pink: #dc0073ff;
+    // --bleu-de-france: #008bf8ff;
+    // --chartreuse: #89fc00ff;
+
+    // --dark-green: #042a2bff;
+    // --moonstone: #5eb1bfff;
+    // --light-cyan: #cdedf6ff;
+    // --orange-crayola: #ef7b45ff;
+    // --chili-red: #d84727ff;
+
+
+
+
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

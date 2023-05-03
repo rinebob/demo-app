@@ -34,6 +34,10 @@ const routes: Routes = [
     path: AppRoutes.AUDIO,
     loadChildren: () => import('./mods/audio/audio.module').then(m => m.AudioModule)
   },
+  { 
+    path: AppRoutes.TRADER,
+    loadChildren: () => import('./mods/trader/trader.module').then(m => m.TraderModule) 
+  },
   {
     path: '**',
     component: LandingPageComponent

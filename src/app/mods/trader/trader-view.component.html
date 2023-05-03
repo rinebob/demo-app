@@ -1,0 +1,28 @@
+
+<div class="trader-container">
+
+    <div class="trader-nav-bar">
+
+        <div class="buttons-container">
+
+            <a *ngFor="let button of TRADER_NAV_BUTTONS"
+                [routerLink]="button.url"
+                routerLinkActive="active"
+                type=button
+                class="nav-button"
+            >
+                {{button.text | uppercase}}
+            </a>
+
+        </div>
+        
+        <button class="button hide-button">Hide toolbar</button>
+        
+    </div>
+    
+    <router-outlet></router-outlet>
+
+</div>
+
+
+

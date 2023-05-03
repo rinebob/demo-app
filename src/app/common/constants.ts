@@ -184,6 +184,7 @@ export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     {url: AppRoutes.KANBAN, text: 'kanban todo app'},
     {url: AppRoutes.AUDIO, text: 'audiophile ecom site'},
     // {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
+    {url: AppRoutes.TRADER, text: 'trading view chart clone'},
     // {url: AppRoutes.CUBIC_BEZIER, text: 'cubic-bezier site clone'},
     // {url: AppRoutes.BIODATA, text: 'bio data app'},
     // {url: AppRoutes.ANG_EXP, text: 'ng experiments'},

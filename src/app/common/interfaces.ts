@@ -129,6 +129,7 @@ export interface DialogData {
     ROBERT = 'robert',
     KANBAN = 'kanban',
     CHARTS = 'charts',
+    TRADER = 'trader',
     ANG_EXP = 'ang-exp',
     CUBIC_BEZIER = 'cubic-bezier',
     BIODATA = 'biodata',
