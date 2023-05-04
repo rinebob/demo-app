@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AppModule } from 'src/app/app.module';
 import { NameIntroComponent } from './name-intro.component';
 
 describe('NameIntroComponent', () => {
@@ -8,7 +9,8 @@ describe('NameIntroComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NameIntroComponent ]
+      declarations: [ NameIntroComponent ],
+      imports: [AppModule]
     })
     .compileComponents();
 

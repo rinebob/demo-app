@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SharedModule } from '../shared.module';
 import { DarkModeSwitchComponent } from './dark-mode-switch.component';
 
 describe('DarkModeSwitchComponent', () => {
@@ -8,7 +9,8 @@ describe('DarkModeSwitchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DarkModeSwitchComponent ]
+      declarations: [ DarkModeSwitchComponent ],
+      imports: [ SharedModule ],
     })
     .compileComponents();
 

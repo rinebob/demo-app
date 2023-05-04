@@ -58,6 +58,16 @@ export interface Column {
     display?: boolean;
 }
 
+export interface BoardsState {
+  boards: Board[];
+  selectedBoard: Board;
+  tasks: Task[];
+  allTasksByStatus: SortedTasks;
+  allColumns: Column[];
+  allColumnsWithTasks: Column[];
+  userSelectedColumns: Column[];
+}
+
 export enum FormMode {
     CREATE = 'create',
     EDIT = 'edit',

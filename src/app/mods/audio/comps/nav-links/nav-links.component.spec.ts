@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
+import { AudioModule } from '../../audio.module';
 import { NavLinksComponent } from './nav-links.component';
 
 describe('NavLinksComponent', () => {
@@ -8,7 +10,11 @@ describe('NavLinksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavLinksComponent ]
+      declarations: [ NavLinksComponent ],
+      imports: [
+        AudioModule,
+        RouterTestingModule.withRoutes([]) 
+      ],
     })
     .compileComponents();
 

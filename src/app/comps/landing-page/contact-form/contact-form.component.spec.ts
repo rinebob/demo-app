@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppModule } from 'src/app/app.module';
 
 import { ContactFormComponent } from './contact-form.component';
 
@@ -8,7 +9,10 @@ describe('ContactFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContactFormComponent ]
+      declarations: [ ContactFormComponent ],
+      imports: [
+        AppModule
+      ],
     })
     .compileComponents();
 

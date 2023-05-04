@@ -1,18 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
-import { TraderComponent } from './trader-view.component';
+import { TraderModule } from './trader.module';
+import { TraderViewComponent } from './trader-view.component';
 
-describe('TraderComponent', () => {
-  let component: TraderComponent;
-  let fixture: ComponentFixture<TraderComponent>;
+describe('TraderViewComponent', () => {
+  let component: TraderViewComponent;
+  let fixture: ComponentFixture<TraderViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TraderComponent ]
+      declarations: [ TraderViewComponent ],
+      imports: [ TraderModule ],
+      providers: [ 
+        { provide: ActivatedRoute, useValue: {} } 
+      ],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TraderComponent);
+    fixture = TestBed.createComponent(TraderViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

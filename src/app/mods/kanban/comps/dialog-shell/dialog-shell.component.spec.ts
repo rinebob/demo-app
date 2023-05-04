@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { KanbanModule } from '../../kanban.module';
 import { DialogShellComponent } from './dialog-shell.component';
 
 describe('DialogShellComponent', () => {
@@ -8,7 +9,8 @@ describe('DialogShellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogShellComponent ]
+      declarations: [ DialogShellComponent ],
+      imports: [ KanbanModule ],
     })
     .compileComponents();
 

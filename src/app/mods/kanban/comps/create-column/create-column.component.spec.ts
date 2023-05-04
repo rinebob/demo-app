@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { KanbanModule } from '../../kanban.module';
 import { CreateColumnComponent } from './create-column.component';
 
 describe('CreateColumnComponent', () => {
@@ -8,7 +9,8 @@ describe('CreateColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateColumnComponent ]
+      declarations: [ CreateColumnComponent ],
+      imports: [ KanbanModule ],
     })
     .compileComponents();
 

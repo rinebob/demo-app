@@ -1,6 +1,6 @@
-@use '../styles/global-mixins' as global;
-@use '../styles/global-variables' as globalVar;
-@import "styles.scss";
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+@import "../../../styles/styles.scss";
 
 .links-container {
     @include global.flexboxLayout(row, flex-start, center);

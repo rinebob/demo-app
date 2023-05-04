@@ -1,7 +1,7 @@
 @use '../../../../styles/global-mixins' as global;
 @use '../../../../styles/global-variables' as globalVar;
 @use '../landing-page-variables' as landingPageVar;
-@import "styles.scss";
+@import "../../../../styles/styles.scss";
 
 .name-intro-container {
     @include global.flexboxLayout(column, flex-start, center);

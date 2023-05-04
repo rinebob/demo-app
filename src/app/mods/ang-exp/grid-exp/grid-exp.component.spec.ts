@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngExpModule } from '../ang-exp.module';
 import { GridExpComponent } from './grid-exp.component';
 
 describe('GridExpComponent', () => {
@@ -8,7 +9,8 @@ describe('GridExpComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GridExpComponent ]
+      declarations: [ GridExpComponent ],
+      imports: [ AngExpModule ],
     })
     .compileComponents();
 

@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AngExpModule } from '../ang-exp.module';
 import { CssTricksComponent } from './css-tricks.component';
 
 describe('CssTricksComponent', () => {
@@ -8,7 +10,11 @@ describe('CssTricksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CssTricksComponent ]
+      declarations: [ CssTricksComponent ],
+      imports: [
+        AngExpModule,
+        NoopAnimationsModule,
+      ],
     })
     .compileComponents();
 

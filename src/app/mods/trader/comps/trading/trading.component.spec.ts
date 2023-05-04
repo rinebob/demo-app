@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TraderModule } from '../../trader.module';
 import { TradingComponent } from './trading.component';
 
 describe('TradingComponent', () => {
@@ -8,7 +9,8 @@ describe('TradingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TradingComponent ]
+      declarations: [ TradingComponent ],
+      imports: [ TraderModule ],
     })
     .compileComponents();
 

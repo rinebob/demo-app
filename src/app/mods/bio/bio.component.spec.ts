@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { BioModule } from './bio.module';
 import { BioComponent } from './bio.component';
 
 describe('BioComponent', () => {
@@ -8,7 +9,8 @@ describe('BioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BioComponent ]
+      declarations: [ BioComponent ],
+      imports: [ BioModule ],
     })
     .compileComponents();
 

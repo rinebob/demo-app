@@ -38,8 +38,8 @@ export class ThankYouComponent {
     }
     
     if (data.order && data.products) {
-      // console.log('tY ctor initializing vars: ', data.products);
       this.order = data.order;
+      // console.log('tY ctor initializing vars. t.order: ', this.order);
       this.products = data.products;
       this.totalProducts = data.products.length;
       

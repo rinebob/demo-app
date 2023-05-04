@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Firestore } from '@angular/fire/firestore';
+import { FirebaseAppModule } from '@angular/fire/app';
 
+import { KanbanModule } from '../../kanban.module';
 import { DeleteConfirmComponent } from './delete-confirm.component';
+import { BoardsStore } from 'src/app/services/boards-store.service';
 
 describe('DeleteConfirmComponent', () => {
   let component: DeleteConfirmComponent;
@@ -8,7 +13,17 @@ describe('DeleteConfirmComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteConfirmComponent ]
+      declarations: [ DeleteConfirmComponent ],
+      imports: [ 
+        FirebaseAppModule,
+        KanbanModule,
+       ],
+      providers: [
+        BoardsStore,
+        {provide: MatDialogRef, useValue: {}},
+        {provide: MAT_DIALOG_DATA, useValue: []},
+        {provide: Firestore, useValue: {}},
+      ],
     })
     .compileComponents();
 

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SharedModule } from '../shared.module';
 import { ComingSoonComponent } from './coming-soon.component';
 
 describe('ComingSoonComponent', () => {
@@ -8,7 +9,8 @@ describe('ComingSoonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ComingSoonComponent ]
+      declarations: [ ComingSoonComponent ],
+      imports: [ SharedModule ],
     })
     .compileComponents();
 
