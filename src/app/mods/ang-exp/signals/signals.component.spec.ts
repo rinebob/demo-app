@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngExpModule } from '../ang-exp.module';
 import { SignalsComponent } from './signals.component';
 
 describe('SignalsComponent', () => {
@@ -8,7 +9,8 @@ describe('SignalsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignalsComponent ]
+      declarations: [ SignalsComponent ],
+      imports: [ AngExpModule ],
     })
     .compileComponents();
 

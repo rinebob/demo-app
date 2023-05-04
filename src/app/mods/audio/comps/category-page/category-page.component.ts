@@ -33,10 +33,12 @@ export class CategoryPageComponent implements OnDestroy, OnInit {
   readonly URL = '../'
   readonly AuScrollTargetId = AuScrollTargetId;
 
-  constructor(private router: Router, private route: ActivatedRoute,
+  constructor(private router: Router, readonly route: ActivatedRoute,
               private scrollService: ScrollService,
               readonly viewportService: ViewportService) {
-    
+                
+    // console.log('cP ctor route paramMap: ', route.paramMap);
+
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
       // console.log('cP ctor route params: ', params);
       this.categoryBS.next(params.get('id') ?? '');

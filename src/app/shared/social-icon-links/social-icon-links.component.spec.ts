@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SharedModule } from '../shared.module';
 import { SocialIconLinksComponent } from './social-icon-links.component';
 
 describe('SocialIconLinksComponent', () => {
@@ -8,7 +9,8 @@ describe('SocialIconLinksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SocialIconLinksComponent ]
+      declarations: [ SocialIconLinksComponent ],
+      imports: [ SharedModule ],
     })
     .compileComponents();
 

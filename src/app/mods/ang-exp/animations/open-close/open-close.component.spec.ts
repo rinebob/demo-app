@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AngExpModule } from '../../ang-exp.module';
 import { OpenCloseComponent } from './open-close.component';
 
 describe('OpenCloseComponent', () => {
@@ -8,7 +10,11 @@ describe('OpenCloseComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OpenCloseComponent ]
+      declarations: [ OpenCloseComponent ],
+      imports: [
+        AngExpModule,
+        NoopAnimationsModule,
+      ],
     })
     .compileComponents();
 

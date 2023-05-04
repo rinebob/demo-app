@@ -2,7 +2,7 @@
 @use '../../../styles/global-variables' as globalVar;
 @use './trader-variables' as traderVar;
 @use './trader-mixins' as traderMixin;
-@import "styles.scss";
+@import "../../../styles/styles.scss";
 
 :host {
     height: 100vh;

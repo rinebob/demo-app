@@ -67,6 +67,16 @@ export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
 export const BOARDS_COLLECTION = 'boards';
 export const TASKS_COLLECTION = 'tasks';
 
+export const BOARDS_STORE_INITIALIZER = {
+    boards: [],
+    selectedBoard: BOARD_INITIALIZER,
+    tasks: [],
+    allTasksByStatus: {},
+    allColumns: [],
+    allColumnsWithTasks: [],
+    userSelectedColumns: [],
+  };
+
 export const RINEBOB_SKILLS: SkillData[] = [
     {title: 'Angular', imageSrc: '../../../assets/angular.png', skills: [
         'Core', 'Common', 'Forms', 'Http client', 'Router', 'Animations', 'CLI',

@@ -3,29 +3,9 @@ import { ComponentStore } from '@ngrx/component-store';
 import { Observable, of } from 'rxjs';
 import { concatMap, tap, switchMap, catchError, withLatestFrom, map } from 'rxjs/operators';
 
-import { Board, Column, SortedTasks, Task } from '../common/interfaces';
-import { BOARD_INITIALIZER } from '../common/constants';
+import { Board, BoardsState, Column, SortedTasks, Task } from '../common/interfaces';
+import { BOARD_INITIALIZER, BOARDS_STORE_INITIALIZER } from '../common/constants';
 import { BoardsService } from './boards.service';
-
-export interface BoardsState {
-  boards: Board[];
-  selectedBoard: Board;
-  tasks: Task[];
-  allTasksByStatus: SortedTasks;
-  allColumns: Column[];
-  allColumnsWithTasks: Column[];
-  userSelectedColumns: Column[];
-}
-
-const BOARDS_STORE_INITIALIZER = {
-  boards: [],
-  selectedBoard: BOARD_INITIALIZER,
-  tasks: [],
-  allTasksByStatus: {},
-  allColumns: [],
-  allColumnsWithTasks: [],
-  userSelectedColumns: [],
-};
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
+import { AudioModule } from '../../audio.module';
 import { ShopPanelComponent } from './shop-panel.component';
 
 describe('ShopPanelComponent', () => {
@@ -8,7 +9,11 @@ describe('ShopPanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShopPanelComponent ]
+      declarations: [ ShopPanelComponent ],
+      imports: [ AudioModule ],
+      providers: [ 
+        { provide: ActivatedRoute, useValue: {} } 
+      ],
     })
     .compileComponents();
 

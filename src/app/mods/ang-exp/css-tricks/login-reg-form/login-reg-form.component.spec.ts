@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngExpModule } from '../../ang-exp.module';
 import { LoginRegFormComponent } from './login-reg-form.component';
 
 describe('LoginRegFormComponent', () => {
@@ -8,7 +9,8 @@ describe('LoginRegFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginRegFormComponent ]
+      declarations: [ LoginRegFormComponent ],
+      imports: [ AngExpModule ],
     })
     .compileComponents();
 

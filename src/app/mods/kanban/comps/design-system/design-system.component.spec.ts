@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { KanbanModule } from '../../kanban.module';
 import { DesignSystemComponent } from './design-system.component';
 
 describe('DesignSystemComponent', () => {
@@ -8,7 +9,8 @@ describe('DesignSystemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DesignSystemComponent ]
+      declarations: [ DesignSystemComponent ],
+      imports: [ KanbanModule ],
     })
     .compileComponents();
 

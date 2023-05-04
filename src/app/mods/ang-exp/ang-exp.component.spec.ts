@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ActivatedRoute } from '@angular/router';
 
+import { AngExpModule } from './ang-exp.module';
 import { AngExpComponent } from './ang-exp.component';
 
 describe('AngExpComponent', () => {
@@ -8,7 +11,14 @@ describe('AngExpComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AngExpComponent ]
+      declarations: [ AngExpComponent ],
+      imports: [ 
+        AngExpModule,
+        NoopAnimationsModule,
+       ],
+       providers: [ 
+        { provide: ActivatedRoute, useValue: {} } 
+      ],
     })
     .compileComponents();
 
