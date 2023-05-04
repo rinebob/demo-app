@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { BezierModule } from './bezier.module'
 import { BezierComponent } from './bezier.component';
 
 describe('BezierComponent', () => {
@@ -8,7 +9,8 @@ describe('BezierComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BezierComponent ]
+      declarations: [ BezierComponent ],
+      imports: [ BezierModule ],
     })
     .compileComponents();
 

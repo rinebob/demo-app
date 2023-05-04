@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
+import { AudioModule } from '../../audio.module';
 import { BreadcrumbPanelComponent } from './breadcrumb-panel.component';
 
 describe('BreadcrumbPanelComponent', () => {
@@ -8,7 +10,11 @@ describe('BreadcrumbPanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BreadcrumbPanelComponent ]
+      declarations: [ BreadcrumbPanelComponent ],
+      imports: [ AudioModule ],
+      providers: [ 
+        { provide: ActivatedRoute, useValue: {} } 
+      ],
     })
     .compileComponents();
 

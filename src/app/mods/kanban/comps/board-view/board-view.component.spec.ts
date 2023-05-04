@@ -1,18 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { Firestore } from '@angular/fire/firestore';
+import { FirebaseAppModule } from '@angular/fire/app';
 
-import { ViewBoardComponent } from './board-view.component';
+import { KanbanModule } from '../../kanban.module';
+import { BoardViewComponent } from './board-view.component';
+import { BoardsStore } from '../../../../services/boards-store.service';
 
-describe('ViewBoardComponent', () => {
-  let component: ViewBoardComponent;
-  let fixture: ComponentFixture<ViewBoardComponent>;
+describe('BoardViewComponent', () => {
+  let component: BoardViewComponent;
+  let fixture: ComponentFixture<BoardViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewBoardComponent ]
+      declarations: [ BoardViewComponent ],
+      imports: [ 
+        FirebaseAppModule,
+        KanbanModule,
+        NoopAnimationsModule,
+       ],
+      providers: [ 
+        BoardsStore,
+        {provide: Firestore, useValue: {}}
+       ],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewBoardComponent);
+    fixture = TestBed.createComponent(BoardViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

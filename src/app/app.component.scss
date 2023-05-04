@@ -1,6 +1,6 @@
 @use '../styles/global-mixins' as global;
 @use '../styles/global-variables' as globalVar;
-@import "styles.scss";
+@import "../styles/styles.scss";
 
 :host {
     @include global.flexboxLayout(row, flex-start, flex-start);

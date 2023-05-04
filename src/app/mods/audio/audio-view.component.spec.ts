@@ -1,18 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
-import { AudioComponent } from './audio-view.component';
+import { AudioModule } from './audio.module';
+import { AudioViewComponent } from './audio-view.component';
 
-describe('AudioComponent', () => {
-  let component: AudioComponent;
-  let fixture: ComponentFixture<AudioComponent>;
+describe('AudioViewComponent', () => {
+  let component: AudioViewComponent;
+  let fixture: ComponentFixture<AudioViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AudioComponent ]
+      declarations: [ AudioViewComponent ],
+      imports: [ AudioModule ],
+      providers: [ 
+        { provide: ActivatedRoute, useValue: {} } 
+      ],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AudioComponent);
+    fixture = TestBed.createComponent(AudioViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AngExpModule } from '../ang-exp.module';
 import { FormArrayComponent } from './form-array.component';
 
 describe('FormArrayComponent', () => {
@@ -8,7 +10,11 @@ describe('FormArrayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormArrayComponent ]
+      declarations: [ FormArrayComponent ],
+      imports: [ 
+        AngExpModule,
+        NoopAnimationsModule,
+      ],
     })
     .compileComponents();
 

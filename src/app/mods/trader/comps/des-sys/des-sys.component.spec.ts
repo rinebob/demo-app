@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TraderModule } from '../../trader.module';
 import { DesignSystemComponent } from './des-sys.component';
 
 describe('DesignSystemComponent', () => {
@@ -8,7 +9,8 @@ describe('DesignSystemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DesignSystemComponent ]
+      declarations: [ DesignSystemComponent ],
+      imports: [ TraderModule ],
     })
     .compileComponents();
 

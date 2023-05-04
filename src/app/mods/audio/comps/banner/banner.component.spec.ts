@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ActivatedRoute } from '@angular/router';
+import { AudioModule } from '../../audio.module';
 import { BannerComponent } from './banner.component';
 
 describe('BannerComponent', () => {
@@ -8,7 +9,11 @@ describe('BannerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BannerComponent ]
+      declarations: [ BannerComponent ],
+      imports: [ AudioModule ],
+      providers: [ 
+        { provide: ActivatedRoute, useValue: {} } 
+      ],
     })
     .compileComponents();
 

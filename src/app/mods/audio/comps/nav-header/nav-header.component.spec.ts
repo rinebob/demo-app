@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
+import { AudioModule } from '../../audio.module';
 import { NavHeaderComponent } from './nav-header.component';
 
 describe('NavHeaderComponent', () => {
@@ -8,7 +10,11 @@ describe('NavHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavHeaderComponent ]
+      declarations: [ NavHeaderComponent ],
+      imports: [ AudioModule ],
+      providers: [ 
+        { provide: ActivatedRoute, useValue: {} } 
+      ],
     })
     .compileComponents();
 

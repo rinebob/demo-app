@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AudioModule } from '../../audio.module';
 import { CartDetailComponent } from './cart-detail.component';
 
 describe('CartDetailComponent', () => {
@@ -8,7 +9,8 @@ describe('CartDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartDetailComponent ]
+      declarations: [ CartDetailComponent ],
+      imports: [ AudioModule ],
     })
     .compileComponents();
 

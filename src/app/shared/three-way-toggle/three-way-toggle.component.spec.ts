@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SharedModule } from '../shared.module';
 import { ThreeWayToggleComponent } from './three-way-toggle.component';
 
 describe('ThreeWayToggleComponent', () => {
@@ -8,7 +9,8 @@ describe('ThreeWayToggleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ThreeWayToggleComponent ]
+      declarations: [ ThreeWayToggleComponent ],
+      imports: [ SharedModule ],
     })
     .compileComponents();
 

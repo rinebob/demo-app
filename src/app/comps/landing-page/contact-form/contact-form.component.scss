@@ -1,8 +1,7 @@
 @use '../../../../styles/global-mixins' as global;
 @use '../../../../styles/global-variables' as globalVar;
 @use '../landing-page-variables' as landingPageVar;
-// @use '../../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
-@import "styles.scss";
+@import "../../../../styles/styles.scss";
 
 :host {
 

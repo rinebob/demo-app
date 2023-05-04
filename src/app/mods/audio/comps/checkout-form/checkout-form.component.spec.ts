@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AudioModule } from '../../audio.module';
 import { CheckoutFormComponent } from './checkout-form.component';
 
 describe('CheckoutFormComponent', () => {
@@ -8,7 +9,8 @@ describe('CheckoutFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CheckoutFormComponent ]
+      declarations: [ CheckoutFormComponent ],
+      imports: [ AudioModule ],
     })
     .compileComponents();
 

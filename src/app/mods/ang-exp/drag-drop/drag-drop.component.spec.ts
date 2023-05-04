@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { AngExpModule } from '../ang-exp.module';
 import { DragDropComponent } from './drag-drop.component';
 
 describe('DragDropComponent', () => {
@@ -8,7 +9,8 @@ describe('DragDropComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DragDropComponent ]
+      declarations: [ DragDropComponent ],
+      imports: [ AngExpModule ],
     })
     .compileComponents();
 

@@ -1,7 +1,7 @@
 @use '../../../../../styles/global-mixins' as global;
 @use '../../../../../styles/global-variables' as globalVar;
 @use '../css-tricks-mixins' as cssTricks;
-@import "styles.scss";
+@import "../../../../../styles/styles.scss";
 
 .login-form-container {
     @include global.flexboxLayout(column, center, center);
