@@ -26,4 +26,10 @@ describe('NavHeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should have logo fill cart button and shopping cart icon button and nav links component
+
+  // fill cart button click should populate shopping cart object
+
+  // shopping cart button click should redirect to checkout page
 });

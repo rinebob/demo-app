@@ -26,4 +26,8 @@ describe('NavLinksComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should have four links (home headphones speakers earphones)
+  
+  // should redirect user when link clicked
 });

@@ -24,4 +24,10 @@ describe('ContactFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should have title and text
+
+  // form should be created
+
+  // populating form and clicking button should call method with correct form value
 });
