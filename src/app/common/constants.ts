@@ -1,4 +1,4 @@
-import { ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict } from "./interfaces";
+import { ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict, BoardsState } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -190,7 +190,7 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
 ];
 
 export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
-    {url: AppRoutes.LOGIN, text: 'login'},
+    // {url: AppRoutes.LOGIN, text: 'login'},
     {url: AppRoutes.ROBERT, text: 'home'},
     {url: AppRoutes.KANBAN, text: 'kanban todo app'},
     {url: AppRoutes.AUDIO, text: 'audiophile ecom site'},
@@ -201,7 +201,7 @@ export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     // {url: AppRoutes.ANG_EXP, text: 'ng experiments'},
     // {url: AppRoutes.MAT_THEME, text: 'mat theme'},
     // {url: AppRoutes.DESIGN_SYSTEM, text: 'design system'},
-    {url: AppRoutes.LOGOUT, text: 'logout'},
+    // {url: AppRoutes.LOGOUT, text: 'logout'},
 ];
 
 export const WELCOME_BUTTONS: ButtonMetadata[] = [

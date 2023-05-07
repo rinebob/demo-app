@@ -48,7 +48,17 @@
                     (click)="openCreateBoardDialog()"
             >
                 <mat-icon>add</mat-icon>
-                Create New Board
+                create new board
+            </button>
+
+            <button mat-flat-button
+                    type="button"
+                    class="create-new-board-button"
+                    disableRipple="true"
+                    (click)="handleAddSampleBoard()"
+            >
+                <mat-icon>add</mat-icon>
+                add sample board
             </button>
 
         </div>
@@ -127,6 +137,14 @@
                         <mat-icon>add</mat-icon>
                         <p class="nav-button-text">Upload data</p>
                     </button>
+
+                    <button mat-button
+                            class="nav-button"
+                            (click)="handleResetStore()"
+                    >
+                        <mat-icon>add</mat-icon>
+                        <p class="nav-button-text">Reset store</p>
+                    </button>
         
                     <button mat-button
                             class="nav-button"
@@ -151,6 +169,7 @@
                         <button mat-menu-item (click)="openDeleteBoardDialog()" class="delete-board-menu-item">Delete Board</button>
                         <button mat-menu-item (click)="openCreateTaskDialog()" class="create-task-menu-item">Add Task</button>
                         <button mat-menu-item (click)="openConfigureColumnsDialog()">Configure Columns</button>
+                        <button mat-menu-item (click)="handleLogout()">Log out</button>
                         
                     </mat-menu>
                     

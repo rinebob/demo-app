@@ -5,6 +5,7 @@ import { AppRoutes } from './common/interfaces';
 import { LandingPageComponent } from './comps/landing-page/landing-page.component';
 import { DesignSystemComponent } from './comps/design-system/design-system.component';
 import { LoginRegComponent } from './comps/login-reg/login-reg.component';
+import { canActivateKanban } from './services/kanban.guard';
 
 const routes: Routes = [
   // {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {
     path: AppRoutes.KANBAN,
     loadChildren: () => import('./mods/kanban/kanban.module').then(m => m.KanbanModule),
+    // canActivate: [canActivateKanban],
   },
   { 
     path: AppRoutes.CHARTS,

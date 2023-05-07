@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 
 import { BoardsStore } from 'src/app/services/boards-store.service';
-import { Board, DialogCloseResult, DialogData, FormMode, Task, TaskStatus} from '../../../../common/interfaces';
+import { Board, DialogCloseResult, DialogData, FormMode, TaskStatus} from '../../../../common/interfaces';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
-import { DialogShellComponent } from '../dialog-shell/dialog-shell.component';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-board-form',
@@ -14,7 +15,12 @@ import { DialogShellComponent } from '../dialog-shell/dialog-shell.component';
   styleUrls: ['./board-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoardFormComponent implements OnInit {
+export class BoardFormComponent implements OnDestroy, OnInit {
+  readonly destroy$ = new Subject<void>();
+
+  user$ = this.userService.user$;
+  ownerUidBS = new BehaviorSubject<string>('');
+
   boardForm: FormGroup;
   displayNameControl = new FormControl('');
   descriptionControl = new FormControl('');
@@ -28,8 +34,10 @@ export class BoardFormComponent implements OnInit {
   boardBS = new BehaviorSubject<Board>(BOARD_INITIALIZER);
 
   constructor(private boardsStore: BoardsStore,
-    public dialogRef: MatDialogRef<BoardFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+              readonly userService: UserService, 
+              public dialogRef: MatDialogRef<BoardFormComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) {
 
     // super();
 
@@ -49,9 +57,21 @@ export class BoardFormComponent implements OnInit {
       this.populateForm(this.boardBS.value);
 
     }
+
+    this.user$.pipe(takeUntil(this.destroy$)).subscribe((user: User | null) => {
+      if (user) {
+        this.ownerUidBS.next(user?.uid);
+        // console.log('bF ctor user id/value: ',user.uid, user);
+      }
+    });
   }
 
   ngOnInit() {}
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   buildBoardForm() {
     this.boardForm = new FormGroup({
@@ -75,12 +95,11 @@ export class BoardFormComponent implements OnInit {
       id: this.boardBS.value.id ?? undefined ,
       displayName: boardData.displayNameControl,
       description: boardData.descriptionControl,
-      // status: boardData.statusControl,
+      ownerUid: this.ownerUidBS.value,
     }
-    
+
     // console.log('bF sB board to BE: ', board);
     if (this.formMode === FormMode.EDIT) {
-      // board.tasks = this.boardBS.value.tasks,
       this.boardsStore.updateBoard(board);
       this.dialogRef.close({outcome: DialogCloseResult.EDIT_BOARD_COMPLETE});
     } else {
