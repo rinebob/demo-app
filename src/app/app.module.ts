@@ -33,6 +33,8 @@ import { DesignSystemComponent } from './comps/design-system/design-system.compo
 import { ProjectCardComponent } from './comps/landing-page/project-card/project-card.component';
 import { SkillCardComponent } from './comps/landing-page/skill-card/skill-card.component';
 import { ExperienceCardComponent } from './comps/landing-page/experience-card/experience-card.component';
+import { LoginRegComponent } from './comps/login-reg/login-reg.component';
+import { connectAuthEmulator } from 'firebase/auth';
 
 import { SharedModule } from './shared/shared.module';
 import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-links.module';
@@ -60,6 +62,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     ExperienceCardComponent,
     ContactFormComponent,
     NameIntroComponent,
+    LoginRegComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,17 +104,23 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     ///////////////////////////////////////
 
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
+    provideAuth(() => {
+      const auth = getAuth();
+      if (environment.useEmulators) {
+        connectAuthEmulator(auth, 'http://localhost:9099', {disableWarnings: false});
+      }
+      return auth;
+    }),
     
     provideFirestore(() => {
       const firestore = getFirestore();
       if (environment.useEmulators) {
           connectFirestoreEmulator(firestore, 'localhost', 8080);
       }
-      enableMultiTabIndexedDbPersistence(firestore).then(
-        () => resolvePersistenceEnabled(true),
-        () => resolvePersistenceEnabled(false)
-      );
+      // enableMultiTabIndexedDbPersistence(firestore).then(
+      //   () => resolvePersistenceEnabled(true),
+      //   () => resolvePersistenceEnabled(false)
+      // );
       return firestore;
     }),
     StoreModule.forRoot({}, {}),

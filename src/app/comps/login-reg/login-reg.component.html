@@ -1,0 +1,52 @@
+
+<!-- <div class="logo-container"> -->
+
+    <div class="kanban-logo-container">
+
+        <div class="kanban-icon-container">
+            <div class="kanban-icon-segment segment-1"></div>
+            <div class="kanban-icon-segment segment-2"></div>
+            <div class="kanban-icon-segment segment-3"></div>
+        </div>
+        
+        <p class="logo-text">kanban</p>
+
+    </div>
+
+<!-- </div> -->
+
+
+<h1 class="title-text">Register / Sign in</h1>
+
+<div class="login-container">
+
+
+    <div class="panel-container left">
+        <p class="header-text">Registration instructions</p>
+
+        <ng-container *ngFor="let item of LOGIN_INSTRUCTIONS">
+
+            <p class="instruction-text">{{item}}</p>
+
+        </ng-container>
+        
+
+    </div>
+    
+    <div class="panel-container right">
+
+        <button class="anonymous-button" (click)="signInAnonymously()">
+
+            <mat-icon>login</mat-icon>
+            
+            <span>Sign in as guest</span>
+            
+        </button>
+
+        <div class="auth-container" id="firebaseui-auth-container"></div>
+        
+
+    </div>
+    <!-- <div id="loading">Loading...</div> -->
+
+</div>

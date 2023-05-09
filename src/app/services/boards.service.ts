@@ -29,12 +29,17 @@ export class BoardsService  {
 
   // get all boards
   listBoards(): Observable<DocumentData[]> {
+    console.log('bS lB list boards called');
 
     // FIREBASE
       const boards = collection(this.db, BOARDS_COLLECTION);
-      // const data = collectionData(boards);
+      const data = collectionData(boards);
       // console.log('bSvc lB boards: ', data);
+      data.subscribe(boards => {
+        // console.log('bS lB boards data sub: ', boards);
+      });
       return collectionData(boards);
+      // return of([]);
       
 
     // HTTP - DO NOT DELETE

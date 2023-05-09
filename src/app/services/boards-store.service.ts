@@ -60,20 +60,28 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     userSelectedColumns: [...columns],
   }));
 
+  readonly reset = this.updater((state) => ({
+    ...state,
+    ...BOARDS_STORE_INITIALIZER
+  }));
+
   readonly boards$: Observable<Board[]> = this.select((state: BoardsState) => state.boards);
   readonly selectedBoard$: Observable<Board> = this.select((state: BoardsState) => state.selectedBoard);
   readonly tasks$: Observable<Task[]|undefined> = this.select((state: BoardsState) => state.tasks);
-  // readonly tasks$: Observable<Task[]|undefined> = this.select((state: BoardsState) => state.tasks).pipe(
-  //   tap(tasks => {console.log('bsT t tasks obs: ', tasks)})
-  // );
   
   // readonly boards$: Observable<Board[]> = this.select((state: BoardsState) => state.boards).pipe(
   //   tap(boards => {console.log('bS boards$ value: ', boards)})
   // );
+
   // readonly selectedBoard$: Observable<Board> = this.select((state: BoardsState) => state.selectedBoard).pipe(
   //   tap(board => {console.log('bS selectedBoard$ value: ', board)})
   // );
-
+  
+  // readonly tasks$: Observable<Task[]|undefined> = this.select((state: BoardsState) => state.tasks).pipe(
+  //   tap(tasks => {console.log('bsT t tasks obs: ', tasks)})
+  // );
+  
+  
   readonly allTasksByStatus$: Observable<SortedTasks> = this.select((state: BoardsState) => state.allTasksByStatus);
   readonly allCols$: Observable<Column[]> = this.select((state: BoardsState) => state.allColumns);
 

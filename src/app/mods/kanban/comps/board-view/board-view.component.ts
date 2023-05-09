@@ -1,14 +1,18 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ThemePalette } from '@angular/material/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { BehaviorSubject, Observable, Subject, takeUntil, withLatestFrom } from 'rxjs';
+import { User } from '@angular/fire/auth';
 
 import { BOARD_INITIALIZER, GUIDED_TOUR_TEXT } from 'src/app/common/constants';
 import { Board, Column, DialogCloseResult, DialogResult, GuidedTourMetadata, Task, TourStop } from 'src/app/common/interfaces';
-import { ThemePalette } from '@angular/material/core';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { DialogService } from 'src/app/services/dialog-service.service';
-
 import { FbProjectsService } from 'src/app/services/fb-projects.service';
+import { UserService } from 'src/app/services/user.service';
+import { buildBoardsAndTasks } from '../../../../common/task_utils';
+import { SAMPLE_APP, RAW_TASKS, RAW_SUBTASKS } from 'src/app/testing/mock-task-data';
 
 @Component({
   selector: 'app-board-view',
@@ -19,6 +23,14 @@ import { FbProjectsService } from 'src/app/services/fb-projects.service';
 export class BoardViewComponent implements OnDestroy, OnInit {
   readonly destroy$ = new Subject<void>();
   @HostBinding('class') theme = 'kanban-light-theme';
+
+  user$ = this.userService.user$;
+  authState$ = this.userService.authState$;
+  idToken$ = this.userService.idToken$;
+  isLoggedIn$ = this.userService.isLoggedIn$;
+  isLoggedOut$ = this.userService.isLoggedOut$;
+
+  ownerUidBS = new BehaviorSubject<string>('');
   
   boards$ = this.boardsStore.boards$;
   selectedBoard$ = this.boardsStore.selectedBoard$;
@@ -61,6 +73,7 @@ export class BoardViewComponent implements OnDestroy, OnInit {
   
   constructor(private boardsStore: BoardsStore, private dialogService: DialogService,
     private _overlayContainer: OverlayContainer, private projectsService: FbProjectsService,
+    readonly userService: UserService, readonly router: Router,
     ) {
 
       // console.log('-------------------------------');
@@ -125,7 +138,44 @@ export class BoardViewComponent implements OnDestroy, OnInit {
         if (tasks && tasks.length > 0) {
           this.tasksBS.next(tasks);
 
+        } else {
+          
+          // create the sample tasks for the sample board if they don't already exist
+
+          const sampleBoard = this.boardsBS.value.find(board => board.displayName === 'Sample app')
+          // console.log('bV ctor sample board: ', sampleBoard);
+
+          if (sampleBoard && tasks?.length === 0) {
+            this.addTasksToSampleBoard(sampleBoard);
+          }
         }
+      });
+
+      this.user$.pipe(takeUntil(this.destroy$)).subscribe((user: User | null) => {
+        //handle user state changes here. Note, that user will be null if there is no currently logged in user.
+        // console.log('lP ctor user subscription: ',user);
+        if (user) {
+          this.ownerUidBS.next(user.uid);
+        }
+        // console.log('lP ctor user subscription: ',user?.uid);
+      });
+  
+      this.authState$.pipe(takeUntil(this.destroy$)).subscribe((user: User | null) => {
+        //handle auth state changes here. Note, that user will be null if there is no currently logged in user.
+        // console.log('lP ctor auth state subscription: ',user);
+      });
+  
+      this.idToken$.pipe(takeUntil(this.destroy$)).subscribe((token: string | null) => {
+        //handle idToken changes here. Note, that user will be null if there is no currently logged in user.
+        // console.log('lP ctor id token subscription: ', token);
+      });
+  
+      this.isLoggedIn$.pipe(takeUntil(this.destroy$)).subscribe((status: boolean) => {
+        // console.log('lP ctor logged in?: ', status);
+      });
+      
+      this.isLoggedOut$.pipe(takeUntil(this.destroy$)).subscribe((status: boolean) => {
+        // console.log('lP ctor logged out?: ', status);
       });
   }
 
@@ -140,6 +190,38 @@ export class BoardViewComponent implements OnDestroy, OnInit {
   uploadData() {
     // console.log('bV uD upload data called');
     this.projectsService.uploadData();
+  }
+
+  handleResetStore() {
+    this.boardsStore.reset();
+  }
+
+  // creates the sample board only.  Entry point for adding tasks is in the boards
+  //  subscription in ctor
+  handleAddSampleBoard() {
+    const sampleBoard = buildBoardsAndTasks([SAMPLE_APP], RAW_TASKS, RAW_SUBTASKS);
+    // console.log('bV hASB sampleBoard: ', sampleBoard);
+    
+    const board = sampleBoard.boards[0];
+    board.ownerUid = this.ownerUidBS.value;
+    // console.log('bV hASB board to BE: ', board);
+    this.boardsStore.createBoard(board);
+  }
+
+  // Adds tasks to sample board created above
+  addTasksToSampleBoard(board: Board) {
+    // console.log('bV aTTSB sample board pre tasks: ', board);
+    const sampleBoard = buildBoardsAndTasks([SAMPLE_APP], RAW_TASKS, RAW_SUBTASKS);
+    const {tasks} = sampleBoard;
+
+    
+    for (const task of tasks) {
+      task.boardId = board.id;
+      task.ownerUid = this.ownerUidBS.value;
+      // console.log('bV hASB task to BE: ', task);
+      this.boardsStore.createTask(task);
+    }
+    
   }
   
   initializeBoardAndTasks(board: Board) {
@@ -294,5 +376,11 @@ export class BoardViewComponent implements OnDestroy, OnInit {
   toggleShowDrawerButton(event: any) {
     // console.log('bV tSSB event: ', event);
     this.shouldShowOpenDrawerButton = !this.shouldShowOpenDrawerButton;
+  }
+
+  handleLogout() {
+    // console.log('bV hL board view logging out');
+    this.userService.logout();
+    this.router.navigateByUrl('login');
   }
 }

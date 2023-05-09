@@ -7,6 +7,8 @@ import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 
 import { APP_SIDENAV_BUTTONS } from './common/constants';
 import { AppRoutes, AppTheme } from './common/interfaces';
+import { UserService } from './services/user.service';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',

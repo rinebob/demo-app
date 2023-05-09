@@ -2,6 +2,12 @@ import { SubTaskStatus } from '../common/interfaces';
 import { SubTask } from '../common/interfaces';
 import { Board, Task, TaskStatus } from '../common/interfaces';
 
+export const SAMPLE_APP: Board = {
+    displayName: 'Sample app',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    status: TaskStatus.DEVELOPMENT,
+}
+
 export const DEMO_APP: Board = {
     displayName: 'Demo app',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
