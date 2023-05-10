@@ -68,8 +68,9 @@ export class DialogService {
   openCreateTaskDialog(boardId: string | number, theme: string) {
     const dialogData = {
       boardId,
+      theme,
     }
-    // console.log('dS oCTD create task called. boardId: ', boardId);
+    // console.log('dS oCTD create task called. boardId/theme: ', boardId, theme);
     const config = new MatDialogConfig();
     config.panelClass = [this.taskFormPanelClass, theme];
     config.data = dialogData;

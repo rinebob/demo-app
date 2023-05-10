@@ -1,9 +1,10 @@
 import { SubTaskStatus } from '../common/interfaces';
 import { SubTask } from '../common/interfaces';
 import { Board, Task, TaskStatus } from '../common/interfaces';
+import { SAMPLE_APP_DISPLAY_NAME } from '../common/constants';
 
 export const SAMPLE_APP: Board = {
-    displayName: 'Sample app',
+    displayName: SAMPLE_APP_DISPLAY_NAME,
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     status: TaskStatus.DEVELOPMENT,
 }

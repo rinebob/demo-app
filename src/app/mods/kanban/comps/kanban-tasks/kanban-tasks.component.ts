@@ -29,7 +29,6 @@ export class KanbanTasksComponent implements OnDestroy {
     return this.tasksBS.value;
   }
   tasksBS = new BehaviorSubject<Task[]>([]);
-
   
   @Input()
   set theme(theme: string) {
@@ -167,7 +166,7 @@ export class KanbanTasksComponent implements OnDestroy {
   }
 
   setSelectedTask(task: Task) {
-    console.log('kT sST selected task: ', task);
+    // console.log('kT sST selected task: ', task);
     this.selectedTaskBS.next(task);
     this.openViewTaskDialog();
   }

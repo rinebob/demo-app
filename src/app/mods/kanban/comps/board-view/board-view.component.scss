@@ -125,8 +125,9 @@
                 background-color: var(--background-3);
                 border-bottom: 1px solid var(--sidenav-border-color);
                 height: var(--size-nav-bar-height);
+                position: relative;
                 width: 100%;
-        
+
                 .board-title-container {
                     @include global.flexboxLayout(row, flex-start, center);
                     margin: 0 0 0 16px;
@@ -181,9 +182,48 @@
                             @include kanban.kanbanColors;
                             width: 48px;
                         }
+
+                        &.disabled {
+                            @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+                        }
                     }
                 }
-        }
+
+                .login-info-container {
+                    @include global.flexboxLayout(row, flex-end, center);
+                    position: absolute;
+                    top: 96px;
+                    left: 100%;
+                    padding-right: 20px;
+                    transform: translate(-100%, -100%);
+                    width: 100%;
+
+                    .logged-in-as-text {
+                        color: var(--kanban-logged-in-as-text-color);
+                        font-size: 9px;
+                        margin: 0;
+                    }
+                }
+            }
+
+            .no-boards-container {
+                @include global.flexboxLayout(column, center, center);
+                height: 100%;
+                height: calc(100% - var(--size-nav-bar-height));
+            
+                .empty-board {
+                    @include kanban.kanbanHeadingLText;
+                    color: var(--subtitle-text-1);
+                    margin-bottom: 20px;
+                }
+            
+                .add-board-button {
+                    @include kanban.kanbanHeadingMText;
+                    @include kanban.kanbanMainButtonStyles;
+                    @include kanban.kanbanColors;
+                }
+            
+            }
         
             .show-drawer-button {
                 @include global.flexboxLayout(row, center, center);

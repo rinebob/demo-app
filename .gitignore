@@ -36,6 +36,8 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/kanban-data
+/kanban-users
 
 #firebase config file
 /src/environments/firebase-config.ts
