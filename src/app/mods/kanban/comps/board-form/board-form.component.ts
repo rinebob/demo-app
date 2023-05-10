@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { User } from '@angular/fire/auth';
 
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { Board, DialogCloseResult, DialogData, FormMode, TaskStatus} from '../../../../common/interfaces';
 import { BOARD_INITIALIZER } from 'src/app/common/constants';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-board-form',
@@ -38,12 +38,6 @@ export class BoardFormComponent implements OnDestroy, OnInit {
               public dialogRef: MatDialogRef<BoardFormComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {
-
-    // super();
-
-    // this.theme = data.theme ? data.theme : 'kanban-light-theme';
-
-    // console.log('bF ctor theme from dialog shell/dialog data: ', this.theme, data.theme);
 
     this.buildBoardForm();
     // console.log('bF ctor dialog data: ', data);

@@ -149,6 +149,21 @@ export class BoardsStore extends ComponentStore<BoardsState> {
         }))))
   );
 
+  readonly getAllBoardsForUser = this.effect<string>((userId$: Observable<string>) => {
+    return userId$.pipe(
+    switchMap((userId) => {
+      // console.log('bSvc gABFU userId: ', userId);
+
+      return this.boardsService.listBoardsForUser(userId).pipe(
+        tap(( boards) => {
+          // firebase returns a DocumentData[] so need to cast as Board[]
+          const bds = boards as Board[];
+          this.setBoards([...bds])
+          // console.log('bSt gAB all boards for user: ', boards);
+        }))}
+      ))
+  });
+
   // getOneBoard from id
   readonly getBoard = this.effect((boardId$: Observable<number>) => {
     return boardId$.pipe(
@@ -171,8 +186,11 @@ export class BoardsStore extends ComponentStore<BoardsState> {
       concatMap(board => this.boardsService.createBoard(board).pipe(
         tap((board) => {
           // console.log('bSt cB created board: ', board);
+          if (board.ownerUid) {
+            // console.log('bSt cB get boards for user: ', board.ownerUid);
+            this.getAllBoardsForUser(board.ownerUid);
+          }
           this.setSelectedBoard(board);
-          
           
           // in-mem web api
           // this.setSelectedBoard({...board});
@@ -240,10 +258,6 @@ export class BoardsStore extends ComponentStore<BoardsState> {
       withLatestFrom(this.selectedBoard$),
       concatMap(([task, board]) => {
         // console.log('bSt cT new task: ', task);
-        
-        const title = `${board.displayName} - ${task.displayName}`;
-        task.displayName = title;
-        // console.log('bSt cT task with new title: ', task);
         
         return this.boardsService.createTask(task).pipe(
           tap(task => {

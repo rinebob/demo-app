@@ -2,6 +2,22 @@ rules_version = '2';
 service cloud.firestore {
     match /databases/{database}/documents {
 
+        function hasRequest() {
+            return request;
+        }
+
+        function hasAuth() {
+            return request.auth.uid;
+        }
+
+        function hasResource() {
+            return request.resource;
+        }
+        
+        function hasData() {
+            return request.resource.data['ownerUid'];
+        }
+
         function isAuthenticated() {
             return request.auth.uid != null;
         }
@@ -17,12 +33,16 @@ service cloud.firestore {
 
         match /boards/{boardId} {
             allow read: if isAuthenticated();
-            allow write: if isAuthenticated();
+            allow create: if debug(debug(isOwnedByUser()));
+            allow update: if debug(debug(isOwnedByUser()));
+            allow delete: if debug(debug(isAuthenticated()));
             
 
             match /tasks/{taskId} {
                 allow read: if isAuthenticated();
-                allow write: if isAuthenticated();
+                allow create: if isOwnedByUser();
+                allow update: if isOwnedByUser();
+                allow delete: if isAuthenticated();
             }
         }
     }

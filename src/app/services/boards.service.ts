@@ -1,16 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators'
-
+import { Observable, of, from, take } from 'rxjs';
 import 'firebase/firestore';
-import {DocumentData, Firestore, collection, collectionData, deleteDoc, doc, setDoc, updateDoc} from '@angular/fire/firestore';
+import {DocumentData, Firestore, collection, collectionData, deleteDoc, doc, query, setDoc, updateDoc, where} from '@angular/fire/firestore';
 
 import { Board, Task } from '../common/interfaces';
 import { BOARDS_COLLECTION, TASKS_COLLECTION } from '../common/constants';
 
 const BOARDS_BASE_URL = 'api/boards';
-const TASKS_BASE_URL = 'api/tasks';
 
 @Injectable({
   providedIn: 'any',
@@ -33,18 +30,31 @@ export class BoardsService  {
 
     // FIREBASE
       const boards = collection(this.db, BOARDS_COLLECTION);
-      const data = collectionData(boards);
-      // console.log('bSvc lB boards: ', data);
-      data.subscribe(boards => {
-        // console.log('bS lB boards data sub: ', boards);
-      });
       return collectionData(boards);
-      // return of([]);
+      
+      // const data = collectionData(boards);
+      // data.subscribe(boards => {
+      //   console.log('bS lB boards data sub: ', boards);
+      // });
       
 
     // HTTP - DO NOT DELETE
     // Initializes the ang in-memory web api
     // return this.http.get<Board[]>(BOARDS_BASE_URL);
+  }
+
+  // get all boards for an authenticated user with userId (auth.uid)
+  listBoardsForUser(userId: string): Observable<DocumentData[]> {
+    // console.log('bS lBFU list boards for user: ', userId);
+
+    const boards = collection(this.db, BOARDS_COLLECTION);
+    const q = query(boards, where('ownerUid', '==', userId));
+    return collectionData(q);
+
+    // const data = collectionData(q);
+    // data.subscribe(boards => {
+    //   console.log('bS lB boards data sub: ', boards);
+    // });
   }
 
   // get one board
@@ -62,7 +72,7 @@ export class BoardsService  {
 
   createBoard(inputBoard: Board): Observable<Board> {
     // FIREBASE
-    // console.log('bSvc cP input inputBoard: ', inputBoard);
+    console.log('bSvc cB inputBoard: ', inputBoard);
     const boardsCollectionRef = collection(this.db, BOARDS_COLLECTION);
 
     const docRef = doc(boardsCollectionRef);
@@ -114,10 +124,30 @@ export class BoardsService  {
     // creates a reference to the board document in the collection
     const deleteBoardDocRef = doc(boardsCollectionRef, boardId.toString());
     // console.log('bSvc dB deleteBoardDocRef: ', deleteBoardDocRef);
+    
+    // Delete the tasks for this board
+    this.getTasksForBoard(boardId).pipe(take(1)).subscribe(tasks => {
+      if (tasks && tasks.length > 0) {
+        // console.log('bSvc dB tasks to delete: ', tasks);
+        
+        for (const task of tasks as Task[]) {
+          // console.log('bSvc dB deleting task with id: ', task['id']);
+
+          this.deleteTask(task);
+        }
+      }
+
+    });
+
 
     
     const deletedBoard = deleteDoc(deleteBoardDocRef);
     // console.log('bSvc dB deletedBoard: ', deletedBoard);
+    
+    // from(deletedBoard).pipe().subscribe(board => {
+    //   // fyi board is undefined
+    //   console.log('bSvc dB deletedBoard: ', board);
+    // });
     
     return of();
     
@@ -161,7 +191,7 @@ export class BoardsService  {
   
   // update task in board
   updateTask(task: Task) {
-    console.log('bSvc uTIB update task in board. boardId/taskId/task: ', task.boardId, task.id, task);
+    // console.log('bSvc uTIB update task in board. boardId/taskId/task: ', task.boardId, task.id, task);
 
     // FIREBASE
     const tasksCollnRef = collection(this.db, `${BOARDS_COLLECTION}/${task.boardId}/${TASKS_COLLECTION}`);
@@ -184,7 +214,7 @@ export class BoardsService  {
   
   // delete task in board
   deleteTask(task: Task) {
-    console.log('bSvc dT delete task: ', task);
+    // console.log('bSvc dT delete task: ', task);
 
     // FIREBASE
     const tasksCollnRef = collection(this.db, `${BOARDS_COLLECTION}/${task.boardId}/${TASKS_COLLECTION}`);
