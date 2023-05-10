@@ -106,6 +106,8 @@
 
     --task-card-drop-shadow-opacity: .25;
 
+    --kanban-logged-in-as-text-color: var(--kanban-grey-5);
+
 }
 
 
@@ -139,6 +141,8 @@
     --checkbox-background-hover: var(--kanban-purple-2);
 
     --task-card-drop-shadow-opacity: 0;
+
+    --kanban-logged-in-as-text-color: var(--kanban-grey-5);
 }
 
 // // $kanban-primary: mat.define-palette($kanban-purple-palette, 400, 200);

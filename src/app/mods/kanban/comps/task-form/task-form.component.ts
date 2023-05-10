@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, Component, Inject, OnDestroy, QueryList, ViewC
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take, takeUntil } from 'rxjs';
+import { User } from '@angular/fire/auth';
 
 import { DialogCloseResult, DialogData, FormMode, SubTask, SubTaskStatus, Task, TaskStatus, TASK_STATUS_VALUES } from 'src/app/common/interfaces';
 import { TASK_INITIALIZER } from '../../../../common/constants';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-task-form',
@@ -23,6 +25,8 @@ export class TaskFormComponent implements OnDestroy {
 
   subtasksBS = new BehaviorSubject<SubTask[]|undefined>(undefined);
   subtasks$: Observable<SubTask[]|undefined> = this.subtasksBS;
+
+  selectedBoard$ = this.boardsStore.selectedBoard$;
 
   taskForm: FormGroup;
   displayNameControl = new FormControl('');
@@ -47,12 +51,25 @@ export class TaskFormComponent implements OnDestroy {
   theme$: Observable<string[]> = this.themeBS;
   taskFormPanelClass = 'task-form-panel-class';
 
+  user$ = this.userService.user$;
+  ownerUidBS = new BehaviorSubject<string>('');
+
   constructor(public dialogRef: MatDialogRef<TaskFormComponent>,
             private boardsStore: BoardsStore, private _overlayContainer: OverlayContainer,
             @Inject(MAT_DIALOG_DATA) public data: DialogData,
+            readonly userService: UserService,
     ) {
 
+      console.log('tF ctor dialog data: ', data);
+
       // console.log('tF ctor task/subtasks: ', data.task, data.task?.subTasks);
+
+      this.user$.pipe(takeUntil(this.destroy$)).subscribe((user: User | null) => {
+        if (user) {
+          this.ownerUidBS.next(user?.uid);
+          // console.log('tF ctor user id/value: ',user.uid, user);
+        }
+      });
 
       this.buildTaskForm();
 
@@ -72,7 +89,8 @@ export class TaskFormComponent implements OnDestroy {
 
       if (data && data.theme) {
         this.themeBS.next([this.taskFormPanelClass, data.theme]);
-        // console.log('tF ctor dialog data theme: ', this.themeBS.value);
+        console.log('tF ctor dialog data theme: ', data.theme);
+        console.log('tF ctor themeBS: ', this.themeBS.value);
         this.applyTheme(data.theme);
       }
 
@@ -107,7 +125,7 @@ export class TaskFormComponent implements OnDestroy {
         'subtaskStatusControl': new FormControl(false),
       });
     }
-    console.log('tF bSF subtaskForm: ', subtaskForm);
+    // console.log('tF bSF subtaskForm: ', subtaskForm);
     return subtaskForm;
   }
 
@@ -137,7 +155,7 @@ export class TaskFormComponent implements OnDestroy {
       // console.log('tF pF subtasksFormArray pre: ', subtasksFormArray.value);
       
       for (const subtask of task.subTasks) {
-        console.log('tF pF subtask: ', subtask);
+        // console.log('tF pF subtask: ', subtask);
         const subtaskForm = new FormGroup({
           'subtaskDescriptionControl': new FormControl(subtask.description),
           'subtaskStatusControl': new FormControl(this.getSubtaskStatusBoolValue(subtask.status)),
@@ -176,6 +194,10 @@ export class TaskFormComponent implements OnDestroy {
   }
 
   handleSaveTask() {
+    let boardDisplayName = '';
+    this.selectedBoard$.pipe(take(1)).subscribe(board => {
+      boardDisplayName = board.displayName;
+    });
     const taskData = this.taskForm.value;
     // console.log('tF hST task form values: ', taskData);
     
@@ -197,9 +219,11 @@ export class TaskFormComponent implements OnDestroy {
 
     const task: Task = {
       id: this.taskBS.value.id ?? undefined,
-      displayName: taskData.displayNameControl,
+      // displayName: taskData.displayNameControl,
+      displayName: `${boardDisplayName} - ${taskData.displayNameControl}`,
       description: taskData.descriptionControl,
       status: taskData.statusControl,
+      ownerUid: this.ownerUidBS.value,
       subTasks,
     }
     

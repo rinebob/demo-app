@@ -26,13 +26,13 @@
             <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
             <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
         
-            <p class="all-boards">all boards ({{numBoards}})</p>
-
+            <p class="all-boards">all boards ({{numBoards$ | async}})</p>
+            
             <button *ngFor="let board of boards$ | async"
                     type="button"
                     class="sidenav-button"
-                    (click)="setSelectedBoard(board)"
                     (click)="drawer.close()"
+                    (click)="setSelectedBoard(board)"
                     [class.focused]="getFocusStatus(board.displayName)"
             >
                 <mat-icon>grid_on</mat-icon>
@@ -51,7 +51,8 @@
                 create new board
             </button>
 
-            <button mat-flat-button
+            <button *ngIf="(sampleBoardExists$ | async) === false"
+                    mat-flat-button
                     type="button"
                     class="create-new-board-button"
                     disableRipple="true"
@@ -130,25 +131,27 @@
                 
                 <div class="buttons-container">
 
-                    <button mat-button
+                    <!-- <button mat-button
                             class="nav-button"
                             (click)="uploadData()"
                     >
                         <mat-icon>add</mat-icon>
                         <p class="nav-button-text">Upload data</p>
-                    </button>
+                    </button> -->
 
-                    <button mat-button
+                    <!-- <button mat-button
                             class="nav-button"
                             (click)="handleResetStore()"
                     >
                         <mat-icon>add</mat-icon>
                         <p class="nav-button-text">Reset store</p>
-                    </button>
+                    </button> -->
         
                     <button mat-button
                             class="nav-button"
                             (click)="openCreateTaskDialog()"
+                            [disabled]="(numBoards$ | async)! === 0"
+                            [class.disabled]="(numBoards$ | async)! === 0"
                     >
                         <mat-icon>add</mat-icon>
                         <p class="nav-button-text">Add Task</p>
@@ -174,10 +177,17 @@
                     </mat-menu>
                     
                 </div>
+
+                <div class="login-info-container" *ngIf="user$ | async as user">
+                
+                    <p class="logged-in-as-text">{{loggedInAsText}}</p>
+                
+                </div>
         
             </nav>
 
             <ng-container *ngIf="(selectedBubble$ | async)! as bubble">
+
                 <div #guidedTour class="tour-bubble"
                      [style.top]="bubble.top"
                      [style.left]="bubble.left"
@@ -186,17 +196,39 @@
                                      (next)="handleNextTourStop()"
                                      (closeTour)="handleCancelTour()"
                     ></app-guided-tour>
+
                 </div>
 
             </ng-container>
-            
-            
-            <app-kanban-tasks [tasks]="(tasks$ | async)!"
-                              [theme]="theme"
-                              (addTask)="openCreateTaskDialog()"
-            >
-            </app-kanban-tasks>
 
+            <ng-container *ngIf="(numBoards$ | async)! === 0; else kanbanTasks">
+
+                <div class="no-boards-container">
+                    
+                    <p class="empty-board">{{NO_BOARDS_TEXT}}</p>
+
+                    <button mat-button
+                            class="add-board-button"
+                            (click)="openCreateBoardDialog()"
+                    >
+                        <mat-icon>add</mat-icon>
+                        Add New Board
+                    </button>
+            
+                </div>
+            
+            </ng-container>
+
+            <ng-template #kanbanTasks>
+
+                <app-kanban-tasks [tasks]="(tasks$ | async)!"
+                                  [theme]="theme"
+                                  (addTask)="openCreateTaskDialog()"
+                >
+                </app-kanban-tasks>
+
+            </ng-template>
+            
                 <!-- Button in lower left to open drawer for this app -->
             <button *ngIf="shouldShowOpenDrawerButton"
                     class="show-drawer-button"

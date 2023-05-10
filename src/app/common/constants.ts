@@ -66,6 +66,7 @@ export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
 
 export const BOARDS_COLLECTION = 'boards';
 export const TASKS_COLLECTION = 'tasks';
+export const SAMPLE_APP_DISPLAY_NAME = 'Sample app';
 
 export const BOARDS_STORE_INITIALIZER = {
     boards: [],
@@ -373,6 +374,8 @@ export const GUIDED_TOUR_TEXT: GuidedTourDict = {
 };
 
 export const EMPTY_BOARD_TEXT = 'This board is empty.  Create a new task to get started.';
+
+export const NO_BOARDS_TEXT = 'You don\'t have any boards yet.  Create a new board to get started.';
 
 export const ROBERT_RINEHART_TEXT = 'robert rinehart';
 

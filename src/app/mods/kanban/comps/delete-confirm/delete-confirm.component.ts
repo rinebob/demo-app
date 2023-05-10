@@ -58,7 +58,7 @@ export class DeleteConfirmComponent implements OnInit {
   
   deleteEntity() {
     const data = this.data;
-    console.log('dC dE data: ', data);
+    // console.log('dC dE data: ', data);
     
     if (data.board && data.board.id) {
       // console.log('dC dE type = board: ', data.board);

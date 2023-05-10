@@ -4,30 +4,27 @@ import { ALLOCATED_TASKS_INITIALIZER, COLUMN_ORDER_FROM_STATUS } from './constan
 export function buildBoardsAndTasks(boardsSource: Board[], tasksSource: Task[], subTasksSource: SubTask[]) {
     let boards: Board[] = [];
     let tasks: Task[] = [];
+    // console.log('tU bBAT taskSource: ', tasksSource);
     
     for (const board of boardsSource) {
       const boardId = board.id;
-    //   console.log('tU bBAT board/id: ', board, boardId);
+      // console.log('tU bBAT board/id: ', board, boardId);
       for (const task of tasksSource) {
-        // console.log('tU bBAT pre taskId: ', task.entityId);
         const newTask: Task = {
           displayName: `${board.displayName} - ${task.displayName}`,
           description: task.description,
           boardId: boardId,
-          // subTasks: task.subTasks,
           subTasks: [...subTasksSource],
           status: board.status === TaskStatus.NOT_STARTED ? TaskStatus.NOT_STARTED : task.status,
         }
-        // console.log('tU bBAT post taskId: ', newTask.entityId);
+        // console.log('tU bBAT new task: ', {...newTask});
 
-        board.tasks?.push(newTask);
-        
         tasks.push(newTask);
       }
 
       boards.push(board);
     }
-    // console.log('tU bBAT boards/tasks: ', boards, tasks);
+    // console.log('tU bBAT boards/tasks: ', boards, [...tasks]);
 
     return {boards, tasks};
   }
