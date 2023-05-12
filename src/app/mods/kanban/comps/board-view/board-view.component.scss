@@ -27,11 +27,18 @@
 
             .top-drawer-container {
 
-                .all-boards {
+                .all-boards-text {
                     @include kanban.kanbanHeadingSText;
                     margin: 16px 0 0;
                     padding: 0 16px;
                     text-transform: uppercase;
+                }
+
+                .nav-scroll-container {
+                    max-height: 40vh;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    width: 300px;
                 }
 
                 .sidenav-button {

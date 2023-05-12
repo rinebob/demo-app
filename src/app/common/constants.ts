@@ -379,19 +379,18 @@ export const NO_BOARDS_TEXT = 'You don\'t have any boards yet.  Create a new boa
 
 export const ROBERT_RINEHART_TEXT = 'robert rinehart';
 
-export const WELCOME_TEXT = 'I\'m a frontend developer specializing in Angular and the Angular ecosystem.  Coding is my passion and Angular is how I make the magic happen!  With Angular it\'s amazing how easily you can bring your ideas to the web no matter how big or small.  I\'m super excited and eager to join an Angular team and make an important contribution to a special company!';
+export const WELCOME_TEXT = 'I\'m a frontend developer specializing in Angular and the Angular ecosystem.  Coding is my passion and Angular is how I make the magic happen!  With Angular it\'s amazing how easily you can bring your ideas to the web no matter how big or small.  Web development has the power to impact so many lives and I really enjoy knowing my work can make a difference.';
 
 export const LANDING_PAGE_THEME_START_TEXT = 'landing-page-';
 
 export const CONTACT_SUBTITLE_TEXT = 'Let\'s get in touch!';
 
-export const CONTACT_MESSAGE_TEXT = 'I\'m currently seeking new opportunities and I\'d really like to hear from you!  If you think my skill set is a match for your team please contact me here or through LinkedIn.  I love coding and I\'ll be a dedicated and focused employee.  Looking forward to meeting you soon.';
+export const CONTACT_MESSAGE_TEXT = 'I\'m currently seeking new opportunities and I\'d really like to hear from you!  If you think my skill set is a match for your team please contact me here or through LinkedIn.  I love coding and I\'ll be a dedicated and focused employee.  I\'m super excited and eager to join an Angular team and make an important contribution to a special company!  Looking forward to meeting you soon.';
 
 export const LOGIN_INSTRUCTIONS = [
-    'Thanks for visiting my Kanban Todo app.  Use guest registration for a quick tour to see all the features in action.',
-    'Once inside there is a guided tour that will show you all of the main capabilities.',
-    'However, it\'s also a fully function project tracking app!  You can create your own project (called a board) and add tasks and subtasks, and track completion progress.',
-    'If you do this, though, you\'ll want to create a named account, as guest accounts are deleted after seven days.  You can use login with Google, your Github account or any email address.',
+    'Thanks for visiting my Kanban Todo app.  Use guest registration for one-time access to see all the features in action (click the guided tour button in the lower left for a quick introduction).',
+    'This app also has full backend support!  You can create your own project (called a board) and add tasks and subtasks, and track completion progress.',
+    'Create a named account to save any work to the database (guest accounts can\'t be logged into a second time).  You can use login with Google, your Github account or any email address.',
     'We\'ll send an email verification to the address provided, just click on the link and you\'ll be good to go!',
     'Thanks for stopping by!'
 ];

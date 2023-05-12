@@ -26,21 +26,25 @@
             <!-- <mat-icon svgIcon="logo-light" color="primary"></mat-icon>
             <mat-icon svgIcon="icon-light-theme" color="primary"></mat-icon> -->
         
-            <p class="all-boards">all boards ({{numBoards$ | async}})</p>
-            
-            <button *ngFor="let board of boards$ | async"
-                    type="button"
-                    class="sidenav-button"
-                    (click)="drawer.close()"
-                    (click)="setSelectedBoard(board)"
-                    [class.focused]="getFocusStatus(board.displayName)"
-            >
-                <mat-icon>grid_on</mat-icon>
-                <p class="sidenav-button-text">
-                    {{board.displayName}}
-                </p>
-            </button>
+            <p class="all-boards-text">all boards ({{numBoards$ | async}})</p>
 
+            <div class="nav-scroll-container">
+                
+                <button *ngFor="let board of boards$ | async"
+                        type="button"
+                        class="sidenav-button"
+                        (click)="drawer.close()"
+                        (click)="setSelectedBoard(board)"
+                        [class.focused]="getFocusStatus(board.displayName)"
+                >
+                    <mat-icon>grid_on</mat-icon>
+                    <p class="sidenav-button-text">
+                        {{board.displayName}}
+                    </p>
+                </button>
+
+            </div>
+            
             <button mat-flat-button
                     type="button"
                     class="create-new-board-button"

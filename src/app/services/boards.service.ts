@@ -45,7 +45,7 @@ export class BoardsService  {
 
   // get all boards for an authenticated user with userId (auth.uid)
   listBoardsForUser(userId: string): Observable<DocumentData[]> {
-    // console.log('bS lBFU list boards for user: ', userId);
+    // console.log('bSvc lBFU list boards for user: ', userId);
 
     const boards = collection(this.db, BOARDS_COLLECTION);
     const q = query(boards, where('ownerUid', '==', userId));
@@ -72,7 +72,7 @@ export class BoardsService  {
 
   createBoard(inputBoard: Board): Observable<Board> {
     // FIREBASE
-    console.log('bSvc cB inputBoard: ', inputBoard);
+    // console.log('bSvc cB inputBoard: ', inputBoard);
     const boardsCollectionRef = collection(this.db, BOARDS_COLLECTION);
 
     const docRef = doc(boardsCollectionRef);
