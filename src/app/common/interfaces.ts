@@ -113,7 +113,8 @@ export enum DialogCloseResult {
   COLUMN_SETTINGS_CANCELLED = 'column-settings-cancelled',
   SET_SELECTED_BOARD = "SET_SELECTED_BOARD",
   OPEN_CREATE_BOARD_DIALOG = "OPEN_CREATE_BOARD_DIALOG",
-  TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE"
+  TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE",
+  ADD_SAMPLE_BOARD = "ADD_SAMPLE_BOARD",
 }
 
 export interface DialogData {
@@ -127,6 +128,7 @@ export interface DialogData {
     darkModeOn?: boolean,
     theme?: string;
     selectedBoard?: string;
+    showSampleBoardButton?: boolean;
   }
 
   export interface DialogResult {

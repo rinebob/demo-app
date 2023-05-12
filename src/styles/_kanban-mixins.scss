@@ -187,3 +187,28 @@
 }
 
 ////////////// END TYPOGRAPHY //////////////////////
+
+////////////// RESPONSIVE BREAKPOINTS //////////////////////
+
+
+@mixin response($breakpoint) {
+
+    @if($breakpoint == lg) {
+        @media(max-width: 1440px) {
+            @content;
+        }
+    }
+    
+    @if($breakpoint == md) {
+        @media(max-width: 768px) {
+            @content;
+        }
+    }
+
+    @if($breakpoint == sm) {
+        @media(max-width: 375px) {
+            @content;
+        }
+    }
+
+}

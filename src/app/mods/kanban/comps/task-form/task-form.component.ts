@@ -31,7 +31,7 @@ export class TaskFormComponent implements OnDestroy {
   taskForm: FormGroup;
   displayNameControl = new FormControl('');
   descriptionControl = new FormControl('');
-  selectedStatus = TaskStatus.NOT_STARTED
+  selectedStatus = TaskStatus.PLANNING;
   statusControl = new FormControl(this.selectedStatus);
   
   subtasksFormArray = new FormArray([
@@ -60,7 +60,7 @@ export class TaskFormComponent implements OnDestroy {
             readonly userService: UserService,
     ) {
 
-      console.log('tF ctor dialog data: ', data);
+      // console.log('tF ctor dialog data: ', data);
 
       // console.log('tF ctor task/subtasks: ', data.task, data.task?.subTasks);
 
@@ -89,8 +89,8 @@ export class TaskFormComponent implements OnDestroy {
 
       if (data && data.theme) {
         this.themeBS.next([this.taskFormPanelClass, data.theme]);
-        console.log('tF ctor dialog data theme: ', data.theme);
-        console.log('tF ctor themeBS: ', this.themeBS.value);
+        // console.log('tF ctor dialog data theme: ', data.theme);
+        // console.log('tF ctor themeBS: ', this.themeBS.value);
         this.applyTheme(data.theme);
       }
 
@@ -144,7 +144,7 @@ export class TaskFormComponent implements OnDestroy {
     this.taskForm.patchValue({
       'displayNameControl': task.displayName ?? '',
       'descriptionControl': task.description ?? '',
-      'statusControl': task.status ?? '',
+      'statusControl': task.status ?? TaskStatus.PLANNING,
     });
     this.taskForm.removeControl('subtasksFormArray');
  
@@ -174,8 +174,6 @@ export class TaskFormComponent implements OnDestroy {
       // console.log('tF pF this.subtasksFormArray: ', this.subtasksFormArray);
       this.taskForm.addControl('subtasksFormArray', this.subtasksFormArray);
     }
-    // this.defaultStatusValue = task.status;
-
   }
 
   get subtaskControls() {
@@ -194,10 +192,6 @@ export class TaskFormComponent implements OnDestroy {
   }
 
   handleSaveTask() {
-    let boardDisplayName = '';
-    this.selectedBoard$.pipe(take(1)).subscribe(board => {
-      boardDisplayName = board.displayName;
-    });
     const taskData = this.taskForm.value;
     // console.log('tF hST task form values: ', taskData);
     
@@ -219,8 +213,7 @@ export class TaskFormComponent implements OnDestroy {
 
     const task: Task = {
       id: this.taskBS.value.id ?? undefined,
-      // displayName: taskData.displayNameControl,
-      displayName: `${boardDisplayName} - ${taskData.displayNameControl}`,
+      displayName: taskData.displayNameControl,
       description: taskData.descriptionControl,
       status: taskData.statusControl,
       ownerUid: this.ownerUidBS.value,

@@ -2,112 +2,117 @@
 @use '../../../../../styles/kanban-mixins' as kanban;
 @import "styles.scss";
 
-.scroll-container {
-    height: calc(100vh - var(--size-nav-bar-height));
-    overflow: hidden;
-    
-    .columns-container {
-        @include global.flexboxLayout(row, flex-start, flex-start);
-        height: 100%;
-        margin: 0 24px;
-        overflow-x: auto;
+:host {
+    height: 100%;
+    width: 100%;
 
-        .column-container {
-            @include global.flexboxLayout(column, stretch, flex-start);
-            margin: 4px 12px;
-            height: calc(100vh - calc(var(--size-nav-bar-height) + 64px));
-            min-width: 250px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            padding: 0 4px;
-            
-            .column-header {
-                @include global.flexboxLayout(row, flex-start, center);
-                margin: 24px 0;
+    .scroll-container {
+        height: calc(100vh - var(--size-nav-bar-height));
+        overflow: hidden;
+        
+        .columns-container {
+            @include global.flexboxLayout(row, flex-start, flex-start);
+            height: 100%;
+            margin: 0 24px;
+            overflow-x: auto;
 
-                .color-circle {
-                    border-radius: 100%;
-                    height: 12px;
-                    margin-right: 12px;
-                    width: 12px;
+            .column-container {
+                @include global.flexboxLayout(column, stretch, flex-start);
+                margin: 4px 12px;
+                height: calc(100vh - calc(var(--size-nav-bar-height) + 64px));
+                min-width: 250px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: 0 4px;
+                
+                .column-header {
+                    @include global.flexboxLayout(row, flex-start, center);
+                    margin: 24px 0;
+
+                    .color-circle {
+                        border-radius: 100%;
+                        height: 12px;
+                        margin-right: 12px;
+                        width: 12px;
+                    }
+
+                    .column-header-text {
+                        @include kanban.kanbanHeadingSText;
+                        color: var(--subtitle-text-1);
+                        margin: 0;
+                        text-transform: uppercase;
+                    }
                 }
+            }
 
-                .column-header-text {
-                    @include kanban.kanbanHeadingSText;
+            .new-column-area {
+                @include global.flexboxLayout(row, center, center);
+                background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
+                border-radius: 6px;
+                height: 80vh;
+                margin-top: 64px;
+                width: 100%;
+
+                .column-button-container {
+
+                    @include kanban.kanbanHeadingXLText;
                     color: var(--subtitle-text-1);
-                    margin: 0;
-                    text-transform: uppercase;
-                }
-            }
-        }
-
-        .new-column-area {
-            @include global.flexboxLayout(row, center, center);
-            background: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
-            border-radius: 6px;
-            height: 80vh;
-            margin-top: 64px;
-            width: 100%;
-
-            .column-button-container {
-
-                @include kanban.kanbanHeadingXLText;
-                color: var(--subtitle-text-1);
-                text-transform: capitalize;
-                white-space: normal;
-                
-                &:hover {
-                    @include kanban.kanbanSidenavTextButtonStylesHover;
-                }
-            }
-
-            .new-column-button {
-                @include kanban.kanbanHeadingXLText;
-                color: var(--subtitle-text-1);
-                text-transform: capitalize;
-                white-space: normal;
-                
-                &:hover {
-                    @include kanban.kanbanSidenavTextButtonStylesHover;
+                    text-transform: capitalize;
+                    white-space: normal;
                     
-                    mat-icon {
+                    &:hover {
                         @include kanban.kanbanSidenavTextButtonStylesHover;
-                        
                     }
                 }
 
+                .new-column-button {
+                    @include kanban.kanbanHeadingXLText;
+                    color: var(--subtitle-text-1);
+                    text-transform: capitalize;
+                    white-space: normal;
+                    
+                    &:hover {
+                        @include kanban.kanbanSidenavTextButtonStylesHover;
+                        
+                        mat-icon {
+                            @include kanban.kanbanSidenavTextButtonStylesHover;
+                            
+                        }
+                    }
+
+                    mat-icon {
+                        color: var(--subtitle-text-1);
+                        margin-right: 8px;
+                    }
+
+                }
+                
                 mat-icon {
                     color: var(--subtitle-text-1);
                     margin-right: 8px;
                 }
-
-            }
-            
-            mat-icon {
-                color: var(--subtitle-text-1);
-                margin-right: 8px;
             }
         }
     }
-}
 
-.no-tasks-container {
-    @include global.flexboxLayout(column, center, center);
-    height: 100%;
-    height: calc(100% - var(--size-nav-bar-height));
+    .no-tasks-container {
+        @include global.flexboxLayout(column, center, center);
+        height: calc(100% - var(--size-nav-bar-height));
 
-    .empty-board {
-        @include kanban.kanbanHeadingLText;
-        color: var(--subtitle-text-1);
-        margin-bottom: 20px;
+        .empty-board-text {
+            @include kanban.kanbanHeadingLText;
+            color: var(--subtitle-text-1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .add-task-button {
+            @include kanban.kanbanHeadingMText;
+            @include kanban.kanbanMainButtonStyles;
+            @include kanban.kanbanColors;
+        }
+
     }
-
-    .add-task-button {
-        @include kanban.kanbanHeadingMText;
-        @include kanban.kanbanMainButtonStyles;
-        @include kanban.kanbanColors;
-    }
-
 }
 
 // this is the same element as .cdk-drag.  It is NOT the element as it is being dragged.

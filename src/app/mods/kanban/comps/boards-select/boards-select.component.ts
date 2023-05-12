@@ -5,6 +5,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 
 import { DialogCloseResult, DialogData } from 'src/app/common/interfaces';
 import { BoardFormComponent } from '../board-form/board-form.component';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-boards-select',
@@ -20,6 +21,9 @@ export class BoardsSelectComponent {
     return this.boards.length;
   } 
 
+  showSampleBoardButtonBS = new BehaviorSubject<boolean>(false);
+  showSampleBoardButton$: Observable<boolean> = this.showSampleBoardButtonBS;
+  
   darkModeToggleButtonColor: ThemePalette = 'primary';
   theme = '';
   
@@ -35,6 +39,10 @@ export class BoardsSelectComponent {
       
       if (data && data.selectedBoard) {
         this.selectedBoard = data.selectedBoard;
+      }
+
+      if (data && data.showSampleBoardButton) {
+        this.showSampleBoardButtonBS.next(data.showSampleBoardButton);
       }
       
       if (data && data.theme) {
@@ -70,6 +78,10 @@ export class BoardsSelectComponent {
 
   handleOpenCreateBoardDialog() {
     this.dialogRef.close({outcome: DialogCloseResult.OPEN_CREATE_BOARD_DIALOG});
+  }
+
+  handleAddSampleBoard() {
+    this.dialogRef.close({outcome: DialogCloseResult.ADD_SAMPLE_BOARD});
   }
   
   handleUpdateToggleDarkMode() {

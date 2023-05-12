@@ -4,19 +4,23 @@
 
     <div class="boards-select-upper">
 
-        <p class="all-boards">all boards ({{numBoards}})</p>
+        <p class="all-boards-text">all boards ({{numBoards}})</p>
 
-        <button *ngFor="let board of boards"
-                type="button"
-                class="nav-button"
-                [class.focused]="getFocusStatus(board)"
-                (click)="handleSetSelectedBoard(board)"
-        >
-            <mat-icon>grid_on</mat-icon>
-            <p class="nav-button-text">
-                {{board}}
-            </p>
-        </button>
+        <div class="boards-scroll-container">
+            
+            <button *ngFor="let board of boards"
+                    type="button"
+                    class="nav-button"
+                    [class.focused]="getFocusStatus(board)"
+                    (click)="handleSetSelectedBoard(board)"
+            >
+                <mat-icon>grid_on</mat-icon>
+                <p class="nav-button-text">
+                    {{board}}
+                </p>
+            </button>
+
+        </div>
 
         <button mat-flat-button
                 type="button"
@@ -27,6 +31,17 @@
             <mat-icon>add</mat-icon>
             Create New Board
         </button>
+
+        <button *ngIf="(showSampleBoardButton$ | async)! === true"
+                    mat-flat-button
+                    type="button"
+                    class="create-new-board-button"
+                    disableRipple="true"
+                    (click)="handleAddSampleBoard()"
+            >
+                <mat-icon>add</mat-icon>
+                add sample board
+            </button>
 
     </div>
 
