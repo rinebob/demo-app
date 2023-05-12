@@ -1,6 +1,7 @@
 @use '../../../styles/global-mixins' as global;
 @use '../../../styles/global-variables' as globalVar;
-@use '../../mods/ang-exp/css-tricks//css-tricks-mixins' as cssTricks;
+@use '../../../styles/kanban-mixins' as kanbanMixin;
+@use '../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
 @import "styles.scss";
 
 :host {
@@ -9,57 +10,64 @@
     box-sizing: border-box;
     margin: 0;
     min-height: 100vh;
-    
-    .kanban-logo-container {
-        @include global.flexboxLayout(row, flex-start, center);
-        align-self: flex-start;
-        border-right: 1px solid var(--sidenav-border-color);
-        height: var(--size-nav-bar-height);
-        margin-left: 24px;
-        width: 358px;
-    
-        @include global.response(sm) {
-            border: none;
-            margin: 0;
-        }
-    
-        .logo-text {
-            color: var(--title-text-1);
-            font-weight: 700;
-            font-size: globalVar.globalFontSize(heading-xl);
-            line-height: globalVar.globalLineHeight(heading-xl);
-            font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
-            margin: 0 0 0 16px;
-        }
-    }
-    
-    .kanban-icon-container {
-        @include global.flexboxLayout(row, flex-start, center);
+
+    .upper-container {
+        @include global.flexboxLayout(column, space-between, center);
+        height: 176px;
+        width: 100%;
+
+        .kanban-logo-container {
+            @include global.flexboxLayout(row, flex-start, center);
+            align-self: flex-start;
+            border-right: 1px solid var(--sidenav-border-color);
+            height: var(--size-nav-bar-height);
+            margin-left: 24px;
+            width: 358px;
         
-        .kanban-icon-segment {
-            border-radius: 2px;
-            height: 25px;
-            width: 6px;
-    
-            &:not(:last-child) {
-                margin: 0 3px 0 0;
+            @include global.response(sm) {
+                border: none;
+                margin: 0;
+            }
+        
+            .logo-text {
+                color: var(--title-text-1);
+                font-weight: 700;
+                font-size: globalVar.globalFontSize(heading-xl);
+                line-height: globalVar.globalLineHeight(heading-xl);
+                font-family: var(--main-font-family), "Helvetica Neue", sans-serif;
+                margin: 0 0 0 16px;
             }
         }
-    
-        .segment-1 {
-            background-color: var(--global-kanban-purple-1);
-        }
-    
-        .segment-2 {
-            background-color: var(--global-kanban-purple-1);
-            opacity: .75;
-        }
-    
-        .segment-3 {
-            background-color: var(--global-kanban-purple-1);
-            opacity: .5;
+        
+        .kanban-icon-container {
+            @include global.flexboxLayout(row, flex-start, center);
+            
+            .kanban-icon-segment {
+                border-radius: 2px;
+                height: 25px;
+                width: 6px;
+        
+                &:not(:last-child) {
+                    margin: 0 3px 0 0;
+                }
+            }
+        
+            .segment-1 {
+                background-color: var(--global-kanban-purple-1);
+            }
+        
+            .segment-2 {
+                background-color: var(--global-kanban-purple-1);
+                opacity: .75;
+            }
+        
+            .segment-3 {
+                background-color: var(--global-kanban-purple-1);
+                opacity: .5;
+            }
         }
     }
+    
     
     .title-text {
         font: 500 normal 24px/30px var(--global-font-nunito);
@@ -85,6 +93,14 @@
     .login-container {
         @include global.flexboxLayout(row, center, flex-start);
         background-color: var(--background-2);
+        width: 100%;
+        
+        @include kanbanMixin.response(md) {
+            @include global.flexboxLayout(column, space-between, center);
+            height: calc(100vh - 176px);
+            overflow-y: auto;
+
+        }
         
         .panel-container {
             @include cssTricks.boxShadowRaisedUpperLeftLowerRight;
@@ -92,9 +108,14 @@
             border: 8px solid var(--kanban-primary-idle);
             border-radius: 20px;
             color: var(--subtitle-text-1);
-            height: 540px;
+            height: 592px;
             padding: 40px;
             width: 360px;
+            
+            @include kanbanMixin.response(md) {
+                height: inherit;
+                width: 300px;
+            }
             
             &.left {
                 @include global.flexboxLayout(column, flex-start, flex-start);
@@ -106,6 +127,11 @@
 
             &:first-of-type {
                 margin-right: 40px;
+                
+                @include kanbanMixin.response(md) {
+                    margin-right: 0;
+                    margin-bottom: 40px;
+                }
             }
 
             .auth-container {
@@ -133,7 +159,7 @@
             height: 40px;
             letter-spacing: 0;
             max-width: 192px;
-            margin-bottom: 16px;
+            margin: 30px 0 16px;
             min-width: 64px;
             outline: none;
             padding: 8px 16px;

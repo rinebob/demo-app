@@ -23,7 +23,7 @@ import { SAMPLE_APP, RAW_TASKS, RAW_SUBTASKS } from 'src/app/testing/mock-task-d
 export class BoardViewComponent implements OnDestroy, OnInit {
   readonly destroy$ = new Subject<void>();
   @HostBinding('class') theme = 'kanban-light-theme';
-
+  
   user$ = this.userService.user$;
   authState$ = this.userService.authState$;
   idToken$ = this.userService.idToken$;
@@ -243,7 +243,7 @@ export class BoardViewComponent implements OnDestroy, OnInit {
     this.boardsStore.setSelectedBoard(board);
   }
 
-  openCreateBoardDialog() {
+  handleOpenCreateBoardDialog() {
     // console.log('aC oCBD create board called');
     this.dialogService.openCreateBoardDialog(this.theme);
   }
@@ -291,6 +291,7 @@ export class BoardViewComponent implements OnDestroy, OnInit {
       boardNames,
       selectedBoard: this.selectedBoardBS.value.displayName,
       theme: this.theme,
+      showSampleBoardButton: !this.sampleBoardExistsBS.value,
     }
 
     const dialogRef = this.dialogService.openBoardsSelectDialog(dialogData, this.theme);
@@ -317,13 +318,19 @@ export class BoardViewComponent implements OnDestroy, OnInit {
 
       if (result['outcome'] === DialogCloseResult.OPEN_CREATE_BOARD_DIALOG) {
         // console.log('bV oBSD result = open create board dialog');
-        this.openCreateBoardDialog();
+        this.handleOpenCreateBoardDialog();
       }
       
       if (result['outcome'] === DialogCloseResult.TOGGLE_DARK_MODE) {
         // console.log('bV oBSD result = toggle dark mode');
-          this.toggleTheme();
+        this.toggleTheme();
       }
+
+      if (result['outcome'] === DialogCloseResult.ADD_SAMPLE_BOARD) {
+        // console.log('bV oBSD result = add sample board');
+        this.handleAddSampleBoard();
+      }
+
     } else {
       // console.log('bV oBSD no board select result dude!  wtf???');
     }

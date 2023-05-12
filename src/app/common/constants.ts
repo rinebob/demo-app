@@ -1,4 +1,4 @@
-import { ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict, BoardsState } from "./interfaces";
+import { ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -13,7 +13,7 @@ export const TASK_INITIALIZER: Task = {
     description: '',
     boardId: -1,
     subTasks: [],
-    status: TaskStatus.NOT_STARTED,
+    status: TaskStatus.PLANNING,
 }
 
 export const ALLOCATED_TASKS_INITIALIZER: SortedTasks = {
