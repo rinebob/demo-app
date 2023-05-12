@@ -91,7 +91,6 @@
         .scroll-container {
             @include global.flexboxLayout(column, flex-start, center);
             align-self: stretch;
-            background-color: var(--scroll-container-background-color);
             height: calc(100vh - 100px);
             overflow-x: hidden;
             overflow-y: auto;

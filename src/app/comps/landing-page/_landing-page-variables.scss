@@ -219,9 +219,6 @@
     --maize: #fee440ff;
     --aureolin: #F7E733;
 
-    // for dark mode scroll container background
-    --full-black: #000;
-
     // uses colors from all sets above
     // --lp-dark-background: var(--global-grey-2);
     // --lp-dark-on-background: var(--jonquil);
@@ -306,8 +303,6 @@
     --landing-page-heavy-border-color: var(--lp-background);
     --landing-page-heavy-border-hover-color: var(--lp-primary);
 
-    --scroll-container-background-color: var(--lp-background);
-
     --section-header-text-color: var(--lp-on-background);
     --section-button-background-color: var(--lp-on-background);
     --section-button-text-color: var(--lp-on-primary);
@@ -386,9 +381,6 @@
     --landing-page-heavy-border-color: var(--lp-dark-background);
     --landing-page-heavy-border-hover-color: var(--lp-dark-primary);
 
-    --scroll-container-background-color: var(--full-black);
-
-    // --section-header-text-color: var(--lp-dark-on-background);
     --section-header-text-color: var(--lp-dark-primary);
     --section-button-background-color: var(--lp-dark-primary);
     --section-button-text-color: var(--lp-dark-on-primary);
@@ -396,8 +388,6 @@
     --skill-card-background-color: var(--lp-dark-primary);
     --skill-card-title-color: var(--lp-dark-on-primary);
     
-    // --project-card-background-color: var(--lp-dark-primary);
-    // --project-card-background-color: var(--lp-dark-accent-2);
     --project-card-background-color: var(--lp-dark-secondary);
     --project-card-overlay-background-color: var(--lp-dark-accent-1);
     --project-card-overlay-header-text-color: var(--lp-dark-on-accent-1);

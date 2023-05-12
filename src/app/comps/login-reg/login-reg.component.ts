@@ -1,13 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { Auth, User, user } from '@angular/fire/auth';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Auth, User, user, onAuthStateChanged, signInAnonymously } from '@angular/fire/auth';
 // from https://github.com/firebase/firebaseui-web
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase/compat/app';
+
 // See https://github.com/angular/angularfire/blob/master/docs/auth.md
-import { onAuthStateChanged, signInAnonymously, GoogleAuthProvider } from "firebase/auth";
 
 import { LOGIN_INSTRUCTIONS } from '../../common/constants';
+import { BoardsStore } from 'src/app/services/boards-store.service';
 
 
 @Component({
@@ -18,10 +20,11 @@ import { LOGIN_INSTRUCTIONS } from '../../common/constants';
 })
 export class LoginRegComponent implements OnDestroy, OnInit {
   
-  provider = new GoogleAuthProvider();
-
   ////////////// FIREBASEUI ////////////////
   // from https://firebase.google.com/docs/auth/web/firebaseui near bottom
+
+  loadingBS = new BehaviorSubject<boolean>(false);
+  loading$: Observable<boolean> = this.loadingBS;
 
   // from firebaseui docs
   // must be here to avoid 'used before declared' error
@@ -40,12 +43,18 @@ export class LoginRegComponent implements OnDestroy, OnInit {
     // console.log('lR sIF auth error: ', error);
   };
   
+  uiShown() {
+    // console.log('lR uIS UI shown');
+
+  }
+  
   firebaseuiConfig: firebaseui.auth.Config = {
 
     // from firebaseui docs
     callbacks: {
       signInSuccessWithAuthResult: this.signInSuccessWithAuthResult,
       signInFailure: this.signInFailure,
+      uiShown: this.uiShown,
     },
 
     signInFlow: 'redirect',
@@ -76,6 +85,21 @@ export class LoginRegComponent implements OnDestroy, OnInit {
     this.ui = new firebaseui.auth.AuthUI(this.auth);
     this.ui.start('#firebaseui-auth-container', this.firebaseuiConfig);
     this.ui.disableAutoSignIn();
+
+    onAuthStateChanged(this.auth, (user) => {
+      // console.log('lR ngOI auth state changed. loadingBS:', this.loadingBS.value);
+      // this.loadingBS.next(true);
+      if (user) {
+        const uid = user.uid;
+        // console.log('lR ngOI userId/user: ', uid, user)
+        this.loadingBS.next(false);
+      } else {
+        // this.loadingBS.next(true);
+        // console.log('lR ngOI user login malfunction - wtf???')
+      }
+      // console.log('lR ngOI this.auth.currentUser: ', this.auth.currentUser)
+    });
+    
   }
 
   ngOnDestroy() {
@@ -85,24 +109,14 @@ export class LoginRegComponent implements OnDestroy, OnInit {
   signInAnonymously() {
     signInAnonymously(this.auth)
     .then(() => {
-      // console.log('lR sIA anon login success');
+      // console.log('lR sIA anon login success.  nav to /kanban');
+      this.router.navigateByUrl('kanban');
 
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // console.log('lR sIA anon login error code/message: ', errorCode, errorMessage);
+      console.log('lR sIA anon login error code/message: ', errorCode, errorMessage);
     });
-
-    onAuthStateChanged(this.auth, (user) => {
-      if (user) {
-        // const uid = user.uid;
-        // console.log('lR sIA anon userId/user: ', uid, user)
-      } else {
-        // console.log('lR sIA anon user malfunction - wtf???')
-      }
-      // console.log('lR sIA this.auth.currentUser: ', this.auth.currentUser)
-    });
-    this.router.navigateByUrl('kanban');
   }
 }

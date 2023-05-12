@@ -142,7 +142,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
           // firebase returns a DocumentData[] so need to cast
           const bds = boards as Board[];
           this.setBoards([...bds])
-          // console.log('bSt gAB all boards: ', boards);
+          console.log('bSt gAB all boards: ', boards);
 
           // in-mem web api
           // this.setBoards([...boards])
@@ -152,14 +152,14 @@ export class BoardsStore extends ComponentStore<BoardsState> {
   readonly getAllBoardsForUser = this.effect<string>((userId$: Observable<string>) => {
     return userId$.pipe(
     switchMap((userId) => {
-      // console.log('bSvc gABFU userId: ', userId);
+      console.log('bSt gABFU getting boards for user: ', userId);
 
       return this.boardsService.listBoardsForUser(userId).pipe(
         tap(( boards) => {
           // firebase returns a DocumentData[] so need to cast as Board[]
           const bds = boards as Board[];
           this.setBoards([...bds])
-          // console.log('bSt gAB all boards for user: ', boards);
+          console.log('bSt gAB boards from backend: ', boards);
         }))}
       ))
   });
@@ -185,10 +185,11 @@ export class BoardsStore extends ComponentStore<BoardsState> {
     return board$.pipe(
       concatMap(board => this.boardsService.createBoard(board).pipe(
         tap((board) => {
-          // console.log('bSt cB created board: ', board);
+          console.log('bSt cB created board: ', board);
           if (board.ownerUid) {
-            // console.log('bSt cB get boards for user: ', board.ownerUid);
+            console.log('bSt cB call get boards for user: ', board.ownerUid);
             this.getAllBoardsForUser(board.ownerUid);
+            console.log('bSt cB after get boards call');
           }
           this.setSelectedBoard(board);
           
@@ -197,7 +198,7 @@ export class BoardsStore extends ComponentStore<BoardsState> {
           // this.getAllBoards();
         }),
         catchError(error => {
-          // console.log('bSt gB error: ', error);
+          console.log('bSt gB error: ', error);
           return of(error);
         })
       ))
