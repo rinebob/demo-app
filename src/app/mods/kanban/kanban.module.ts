@@ -18,34 +18,36 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { KanbanRoutingModule } from './kanban-routing.module';
 import { BoardFormComponent } from './comps/board-form/board-form.component';
-import { TaskFormComponent } from './comps/task-form/task-form.component';
-import { ListBoardsComponent } from './comps/list-boards/list-boards.component';
 import { BoardViewComponent } from './comps/board-view/board-view.component';
-import { DesignSystemComponent } from './comps/design-system/design-system.component';
-import { ViewTaskComponent } from './comps/view-task/view-task.component';
+import { BoardsSelectComponent } from './comps/boards-select/boards-select.component';
+import { ColumnSettingsComponent } from './comps/column-settings/column-settings.component';
 import { CreateColumnComponent } from './comps/create-column/create-column.component';
 import { DeleteConfirmComponent } from './comps/delete-confirm/delete-confirm.component';
-import { KanbanTasksComponent } from './comps/kanban-tasks/kanban-tasks.component';
-import { ColumnSettingsComponent } from './comps/column-settings/column-settings.component';
-import { BoardsSelectComponent } from './comps/boards-select/boards-select.component';
+import { DesignSystemComponent } from './comps/design-system/design-system.component';
 import { DialogShellComponent } from './comps/dialog-shell/dialog-shell.component';
 import { GuidedTourComponent } from './comps/guided-tour/guided-tour.component';
+import { KanbanTasksComponent } from './comps/kanban-tasks/kanban-tasks.component';
+import { ListBoardsComponent } from './comps/list-boards/list-boards.component';
+import { LoginRegComponent } from './comps/login-reg/login-reg.component';
+import { TaskFormComponent } from './comps/task-form/task-form.component';
+import { ViewTaskComponent } from './comps/view-task/view-task.component';
 
 @NgModule({
   declarations: [
     BoardFormComponent,
-    TaskFormComponent,
-    ListBoardsComponent,
     BoardViewComponent,
-    DesignSystemComponent,
-    ViewTaskComponent,
+    BoardsSelectComponent,
+    ColumnSettingsComponent,
     CreateColumnComponent,
     DeleteConfirmComponent,
-    KanbanTasksComponent,
-    ColumnSettingsComponent,
-    BoardsSelectComponent,
+    DesignSystemComponent,
     DialogShellComponent,
     GuidedTourComponent,
+    KanbanTasksComponent,
+    ListBoardsComponent,
+    LoginRegComponent,
+    TaskFormComponent,
+    ViewTaskComponent,
   ],
   imports: [
     CommonModule,
@@ -67,6 +69,7 @@ import { GuidedTourComponent } from './comps/guided-tour/guided-tour.component';
     
     KanbanRoutingModule,
  ],
+ exports: [MatIconModule],
 })
 export class KanbanModule { }
 

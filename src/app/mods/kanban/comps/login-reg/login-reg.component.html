@@ -44,6 +44,14 @@
 
         <div class="auth-container" id="firebaseui-auth-container"></div>
 
+        <button class="anonymous-button" (click)="handleLogout()">
+
+            <mat-icon>logout</mat-icon>
+            
+            <span>Log out</span>
+            
+        </button>
+
         <!-- <div class="loading-indicator" *ngIf="(loading$ | async)! === true">Loading...</div> -->
 
     </div>

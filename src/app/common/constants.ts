@@ -388,7 +388,7 @@ export const CONTACT_SUBTITLE_TEXT = 'Let\'s get in touch!';
 export const CONTACT_MESSAGE_TEXT = 'I\'m currently seeking new opportunities and I\'d really like to hear from you!  If you think my skill set is a match for your team please contact me here or through LinkedIn.  I love coding and I\'ll be a dedicated and focused employee.  I\'m super excited and eager to join an Angular team and make an important contribution to a special company!  Looking forward to meeting you soon.';
 
 export const LOGIN_INSTRUCTIONS = [
-    'Thanks for visiting my Kanban Todo app.  Use guest registration for one-time access to see all the features in action (click the guided tour button in the lower left for a quick introduction).',
+    'Thanks for visiting my Kanban Todo app.  Use guest registration for one-time access to see all the features in action (once inside, click the guided tour button in the lower left for a quick introduction).',
     'This app also has full backend support!  You can create your own project (called a board) and add tasks and subtasks, and track completion progress.',
     'Create a named account to save any work to the database (guest accounts can\'t be logged into a second time).  You can use login with Google, your Github account or any email address.',
     'We\'ll send an email verification to the address provided, just click on the link and you\'ll be good to go!',

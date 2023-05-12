@@ -143,6 +143,7 @@ export interface DialogData {
     LOGOUT = 'logout',
     ROBERT = 'robert',
     KANBAN = 'kanban',
+    BOARD = 'board',
     CHARTS = 'charts',
     TRADER = 'trader',
     ANG_EXP = 'ang-exp',
@@ -151,6 +152,9 @@ export interface DialogData {
     MAT_THEME = 'mat-theme',
     DESIGN_SYSTEM = 'design-system',
     AUDIO = 'audio',
+    KANBAN_BOARD = 'kanban/board',
+    KANBAN_LOGIN = 'kanban/login',
+    KANBAN_LOGOUT = 'kanban/logout',
   }
 
   export enum AngExpRoutes {

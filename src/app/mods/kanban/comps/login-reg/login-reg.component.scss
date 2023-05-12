@@ -1,7 +1,6 @@
-@use '../../../styles/global-mixins' as global;
-@use '../../../styles/global-variables' as globalVar;
-@use '../../../styles/kanban-mixins' as kanbanMixin;
-@use '../../mods/ang-exp/css-tricks/css-tricks-mixins' as cssTricks;
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+@use '../../../../../styles/kanban-mixins' as kanbanMixin;
 @import "styles.scss";
 
 :host {
@@ -103,7 +102,7 @@
         }
         
         .panel-container {
-            @include cssTricks.boxShadowRaisedUpperLeftLowerRight;
+            @include kanbanMixin.boxShadowRaisedUpperLeftLowerRight;
             background-color: var(--background-2);
             border: 8px solid var(--kanban-primary-idle);
             border-radius: 20px;
@@ -166,9 +165,11 @@
             text-align: center;
             text-decoration: none;
             vertical-align: middle;
-
+            width: 100%;
+            
             span {
                 padding: 0 16px;
+                width: 90%;
             }
 
         }

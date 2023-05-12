@@ -3,18 +3,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { BoardViewComponent } from './comps/board-view/board-view.component';
 import { BoardsResolver } from '../../common/resolvers';
 import { DesignSystemComponent } from './comps/design-system/design-system.component';
+import { LoginRegComponent } from './comps/login-reg/login-reg.component';
+import { AppRoutes } from 'src/app/common/interfaces';
+import { AuthGuard, hasCustomClaim, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo('login');
 
 const routes: Routes = [
-  // {path: '', redirectTo: 'boards', pathMatch: 'full'},
   {
     path: '',
-    component: BoardViewComponent,
-    // resolve: {
-    //   board: BoardsResolver
-    // },
+    redirectTo: AppRoutes.LOGIN,
+    pathMatch: 'full'
   },
-  {path: 'design-system', component: DesignSystemComponent},
-  {path: '**', component: BoardViewComponent},
+  {path: AppRoutes.LOGIN, component: LoginRegComponent},
+  {path: AppRoutes.LOGOUT, component: LoginRegComponent},
+  {
+    path: AppRoutes.BOARD,
+    component: BoardViewComponent,
+    canActivate: [AuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
+  {path: '**', component: LoginRegComponent},
 ];
 
 @NgModule({

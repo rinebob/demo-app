@@ -45,7 +45,7 @@ export class BoardsService  {
 
   // get all boards for an authenticated user with userId (auth.uid)
   listBoardsForUser(userId: string): Observable<DocumentData[]> {
-    // console.log('bSvc lBFU list boards for user: ', userId);
+    console.log('bSvc lBFU list boards for user: ', userId);
 
     const boards = collection(this.db, BOARDS_COLLECTION);
     const q = query(boards, where('ownerUid', '==', userId));
