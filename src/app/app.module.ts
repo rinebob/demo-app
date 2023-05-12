@@ -33,7 +33,6 @@ import { DesignSystemComponent } from './comps/design-system/design-system.compo
 import { ProjectCardComponent } from './comps/landing-page/project-card/project-card.component';
 import { SkillCardComponent } from './comps/landing-page/skill-card/skill-card.component';
 import { ExperienceCardComponent } from './comps/landing-page/experience-card/experience-card.component';
-import { LoginRegComponent } from './comps/login-reg/login-reg.component';
 import { connectAuthEmulator } from 'firebase/auth';
 
 import { SharedModule } from './shared/shared.module';
@@ -46,12 +45,6 @@ import { NameIntroComponent } from './comps/landing-page/name-intro/name-intro.c
 // import { ImBoardsTasksService } from './services/im-boards-tasks.service';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-let resolvePersistenceEnabled: (enabled: boolean) => void;
-
-export const persistenceEnabled = new Promise<boolean>(resolve => {
-  resolvePersistenceEnabled = resolve;
-});
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +55,6 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     ExperienceCardComponent,
     ContactFormComponent,
     NameIntroComponent,
-    LoginRegComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,10 +109,6 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
       if (environment.useEmulators) {
           connectFirestoreEmulator(firestore, 'localhost', 8080);
       }
-      // enableMultiTabIndexedDbPersistence(firestore).then(
-      //   () => resolvePersistenceEnabled(true),
-      //   () => resolvePersistenceEnabled(false)
-      // );
       return firestore;
     }),
     StoreModule.forRoot({}, {}),

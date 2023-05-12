@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, Subject, takeUntil, withLatestFrom } from 
 import { User } from '@angular/fire/auth';
 
 import { BOARD_INITIALIZER, GUIDED_TOUR_TEXT, NO_BOARDS_TEXT, SAMPLE_APP_DISPLAY_NAME } from 'src/app/common/constants';
-import { Board, Column, DialogCloseResult, DialogResult, GuidedTourMetadata, Task, TourStop } from 'src/app/common/interfaces';
+import { AppRoutes, Board, Column, DialogCloseResult, DialogResult, GuidedTourMetadata, Task, TourStop } from 'src/app/common/interfaces';
 import { BoardsStore } from 'src/app/services/boards-store.service';
 import { DialogService } from 'src/app/services/dialog-service.service';
 import { FbProjectsService } from 'src/app/services/fb-projects.service';
@@ -394,6 +394,6 @@ export class BoardViewComponent implements OnDestroy, OnInit {
     // console.log('bV hL board view logging out');
     this.userService.logout();
     this.boardsStore.reset();
-    this.router.navigateByUrl('login');
+    this.router.navigateByUrl(`${AppRoutes.KANBAN}/${AppRoutes.LOGOUT}`);
   }
 }

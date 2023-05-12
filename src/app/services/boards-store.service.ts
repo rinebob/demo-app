@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { concatMap, tap, switchMap, catchError, withLatestFrom, map } from 'rxjs/operators';
 
 import { Board, BoardsState, Column, SortedTasks, Task } from '../common/interfaces';
-import { BOARD_INITIALIZER, BOARDS_STORE_INITIALIZER } from '../common/constants';
+import { BOARDS_STORE_INITIALIZER } from '../common/constants';
 import { BoardsService } from './boards.service';
 
 @Injectable({

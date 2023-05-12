@@ -1,25 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard, hasCustomClaim, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 import { AppRoutes } from './common/interfaces';
 import { LandingPageComponent } from './comps/landing-page/landing-page.component';
 import { DesignSystemComponent } from './comps/design-system/design-system.component';
-import { LoginRegComponent } from './comps/login-reg/login-reg.component';
-
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo('login');
 
 const routes: Routes = [
-  {path: '', redirectTo: AppRoutes.LOGIN, pathMatch: 'full'},
-  {path: 'login', component: LoginRegComponent},
-  {path: 'logout', component: LoginRegComponent},
+  {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
   {path: AppRoutes.ROBERT, component: LandingPageComponent},
   {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
   {
     path: AppRoutes.KANBAN,
     loadChildren: () => import('./mods/kanban/kanban.module').then(m => m.KanbanModule),
-    canActivate: [AuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToLogin}
   },
   { 
     path: AppRoutes.CHARTS,
@@ -47,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: LoginRegComponent
+    component: LandingPageComponent
   },
 ];
 

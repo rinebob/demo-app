@@ -8,8 +8,9 @@ import firebase from 'firebase/compat/app';
 
 // See https://github.com/angular/angularfire/blob/master/docs/auth.md
 
-import { LOGIN_INSTRUCTIONS } from '../../common/constants';
+import { LOGIN_INSTRUCTIONS } from '../../../../common/constants';
 import { BoardsStore } from 'src/app/services/boards-store.service';
+import { AppRoutes } from 'src/app/common/interfaces';
 
 
 @Component({
@@ -58,7 +59,8 @@ export class LoginRegComponent implements OnDestroy, OnInit {
     },
 
     signInFlow: 'redirect',
-    signInSuccessUrl: '/kanban',
+    // signInSuccessUrl: 'kanban',
+    signInSuccessUrl: `${AppRoutes.KANBAN}/${AppRoutes.BOARD}`,
     signInOptions: [
       {
         provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
@@ -86,12 +88,14 @@ export class LoginRegComponent implements OnDestroy, OnInit {
     this.ui.start('#firebaseui-auth-container', this.firebaseuiConfig);
     this.ui.disableAutoSignIn();
 
+    console.log('lR ngOI this.auth: ', this.auth);
+
     onAuthStateChanged(this.auth, (user) => {
       // console.log('lR ngOI auth state changed. loadingBS:', this.loadingBS.value);
       // this.loadingBS.next(true);
       if (user) {
-        const uid = user.uid;
-        // console.log('lR ngOI userId/user: ', uid, user)
+        // const uid = user.uid;
+        // console.log('lR ngOI auth state changed userId/user: ', uid, user)
         this.loadingBS.next(false);
       } else {
         // this.loadingBS.next(true);
@@ -110,13 +114,22 @@ export class LoginRegComponent implements OnDestroy, OnInit {
     signInAnonymously(this.auth)
     .then(() => {
       // console.log('lR sIA anon login success.  nav to /kanban');
-      this.router.navigateByUrl('kanban');
-
+      // this.router.navigateByUrl('kanban');
+      // console.log('lR sIA anon login success.  nav to /kanban/board');
+      this.router.navigateByUrl(AppRoutes.KANBAN_BOARD);
+      
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log('lR sIA anon login error code/message: ', errorCode, errorMessage);
     });
+  }
+  
+  handleLogout() {
+    
+    // console.log('lR hLO logout user: ', this.auth.currentUser?.uid);
+    this.auth.signOut();
+    this.router.navigateByUrl(AppRoutes.KANBAN_LOGOUT);
   }
 }
