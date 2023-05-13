@@ -182,6 +182,10 @@ export class BoardViewComponent implements OnDestroy, OnInit {
       this.isLoggedOut$.pipe(takeUntil(this.destroy$)).subscribe((status: boolean) => {
         // console.log('bV ctor logged out?: ', status);
       });
+
+      this.selectedBubble$.pipe().subscribe(tourStop => {
+        console.log('bV selectedBubble sub: ', tourStop);
+      });
   }
 
   ngOnInit(): void {
@@ -341,23 +345,38 @@ export class BoardViewComponent implements OnDestroy, OnInit {
     }
   }
   
-  startGuidedTour() {
-    // console.log('bV oGTD open guided tour called');
-    this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[2])
+  handleStartGuidedTour() {
+    console.log('bV oGTD open guided tour called');
+    this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[1]);
   }
 
-  handleNextTourStop(cancel?: string) {
-    if (this.selectedBubbleBS.value) {
-      const numStops = Object.keys(this.GUIDED_TOUR_TEXT).length;
-      // console.log('bV hNTS tour stop: ', this.selectedBubbleBS.value.order);
-      if (this.selectedBubbleBS.value.order === numStops) {
-        this.handleCancelTour();
-      } else {
-        const nextInd = this.selectedBubbleBS.value.order < numStops ? this.selectedBubbleBS.value.order + 1 : 2;
-        this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[nextInd])
-        // console.log('bV hNTS next tour stop: ', this.selectedBubbleBS.value);
-      }
-    }
+  // handleNextTourStop(cancel?: string) {
+  //   if (this.selectedBubbleBS.value) {
+  //     const numStops = Object.keys(this.GUIDED_TOUR_TEXT).length;
+  //     console.log('bV hNTS tour stop: ', this.selectedBubbleBS.value.order);
+  //     if (this.selectedBubbleBS.value.order === numStops) {
+  //       this.handleCancelTour();
+  //     } else {
+  //       const nextInd = this.selectedBubbleBS.value.order < numStops ? this.selectedBubbleBS.value.order + 1 : 2;
+  //       this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[nextInd])
+  //       console.log('bV hNTS next tour stop: ', this.selectedBubbleBS.value);
+  //     }
+  //   }
+  // }
+
+  handleNextTourStop(tourStop: GuidedTourMetadata) {
+    this.selectedBubbleBS.next(tourStop);
+    // if (this.selectedBubbleBS.value) {
+    //   const numStops = Object.keys(this.GUIDED_TOUR_TEXT).length;
+    //   console.log('bV hNTS tour stop: ', this.selectedBubbleBS.value.order);
+    //   if (this.selectedBubbleBS.value.order === numStops) {
+    //     this.handleCancelTour();
+    //   } else {
+    //     const nextInd = this.selectedBubbleBS.value.order < numStops ? this.selectedBubbleBS.value.order + 1 : 2;
+    //     this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[nextInd])
+    //     console.log('bV hNTS next tour stop: ', this.selectedBubbleBS.value);
+    //   }
+    // }
   }
   
   handleCancelTour() {

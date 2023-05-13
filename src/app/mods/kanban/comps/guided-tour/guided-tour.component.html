@@ -1,5 +1,6 @@
 
-<div class="tour-bubble-container not-visible" *ngIf="selectedBubble as bubble">
+<!-- <div class="tour-bubble-container not-visible" *ngIf="selectedBubble as bubble"> -->
+<div class="tour-bubble-container not-visible" *ngIf="selectedBubble$ | async as bubble">
 
     <div class="pointer"
          [style.top]="bubble.pointerTop"
@@ -8,14 +9,20 @@
 
     <p class="title-text">{{bubble.title | titlecase}}</p>
 
-    <p class="description">{{bubble.description}}</p>
+    <ng-container *ngFor="let text of bubble.description">
+        
+        <p class="description">{{text}}</p>
 
+    </ng-container>
+    
     <div class="progress"></div>
 
     <div class="buttons-container">
 
-        <button class="action-button next" (click)="handleSelectNextBubble()">Next</button>
-        <button class="action-button cancel" (click)="handleCloseTour()">Got it</button>
+        <!-- <button class="action-button next" (click)="handleSelectNextBubble()">Next</button>
+        <button class="action-button cancel" (click)="handleCloseTour()">Got it</button> -->
+        <button class="action-button next" (click)="handleNextTourStop()">Next</button>
+        <button class="action-button cancel" (click)="handleCancelTour()">Got it</button>
 
     </div>
 
