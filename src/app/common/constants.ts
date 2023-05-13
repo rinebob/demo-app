@@ -196,7 +196,7 @@ export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     {url: AppRoutes.KANBAN, text: 'kanban todo app'},
     {url: AppRoutes.AUDIO, text: 'audiophile ecom site'},
     // {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
-    {url: AppRoutes.TRADER, text: 'trading view chart clone'},
+    // {url: AppRoutes.TRADER, text: 'trading view chart clone'},
     // {url: AppRoutes.CUBIC_BEZIER, text: 'cubic-bezier site clone'},
     // {url: AppRoutes.BIODATA, text: 'bio data app'},
     // {url: AppRoutes.ANG_EXP, text: 'ng experiments'},
@@ -389,8 +389,8 @@ export const CONTACT_MESSAGE_TEXT = 'I\'m currently seeking new opportunities an
 
 export const LOGIN_INSTRUCTIONS = [
     'Thanks for visiting my Kanban Todo app.  Use guest registration for one-time access to see all the features in action (once inside, click the guided tour button in the lower left for a quick introduction).',
-    'This app also has full backend support!  You can create your own project (called a board) and add tasks and subtasks, and track completion progress.',
-    'Create a named account to save any work to the database (guest accounts can\'t be logged into a second time).  You can use login with Google, your Github account or any email address.',
-    'We\'ll send an email verification to the address provided, just click on the link and you\'ll be good to go!',
+    'This app also has full backend support through Firebase!  You can create your own project (called a board) and add tasks and subtasks, and track completion progress.',
+    'Create a named account to save any work to the database (guest accounts can\'t be logged into a second time).  You can login with any of the federated providers, or any valid email address.  We don\'t store passwords.',
+    // 'We\'ll send an email verification to the address provided, just click on the link and you\'ll be good to go!',
     'Thanks for stopping by!'
 ];

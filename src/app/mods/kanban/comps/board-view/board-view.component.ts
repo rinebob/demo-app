@@ -100,13 +100,18 @@ export class BoardViewComponent implements OnDestroy, OnInit {
         if (boards.length > 0) {
           this.boardsBS.next([...boards]);
           if (boards[0] && selectedBoard && selectedBoard.displayName === '') {
+            // the initializer is the selected board, so select the first in the list
             this.setSelectedBoard(boards[0]);
             // console.log('bV ctor setting default selectedBoard: ', boards[0]);
           } else {
+            // selected board exists so use that as selected board
             const existingBoard = boards.find(b => b.id === selectedBoard.id) ?? boards[0];
             this.setSelectedBoard(existingBoard);
             // console.log('bV ctor setting existing selectedBoard: ', existingBoard);
           }
+        } else {
+          // no boards exist for this user so set to initializer
+          this.setSelectedBoard(BOARD_INITIALIZER);
         }
 
       });
