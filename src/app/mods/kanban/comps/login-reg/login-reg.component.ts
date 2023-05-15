@@ -88,7 +88,7 @@ export class LoginRegComponent implements OnDestroy, OnInit {
     this.ui.start('#firebaseui-auth-container', this.firebaseuiConfig);
     this.ui.disableAutoSignIn();
 
-    console.log('lR ngOI this.auth: ', this.auth);
+    // console.log('lR ngOI uid: ', this.auth.currentUser?.uid);
 
     onAuthStateChanged(this.auth, (user) => {
       // console.log('lR ngOI auth state changed. loadingBS:', this.loadingBS.value);
@@ -96,7 +96,7 @@ export class LoginRegComponent implements OnDestroy, OnInit {
       if (user) {
         // const uid = user.uid;
         // console.log('lR ngOI auth state changed userId/user: ', uid, user)
-        this.loadingBS.next(false);
+        // this.loadingBS.next(false);
       } else {
         // this.loadingBS.next(true);
         // console.log('lR ngOI user login malfunction - wtf???')
@@ -113,8 +113,6 @@ export class LoginRegComponent implements OnDestroy, OnInit {
   signInAnonymously() {
     signInAnonymously(this.auth)
     .then(() => {
-      // console.log('lR sIA anon login success.  nav to /kanban');
-      // this.router.navigateByUrl('kanban');
       // console.log('lR sIA anon login success.  nav to /kanban/board');
       this.router.navigateByUrl(AppRoutes.KANBAN_BOARD);
       
@@ -127,7 +125,6 @@ export class LoginRegComponent implements OnDestroy, OnInit {
   }
   
   handleLogout() {
-    
     // console.log('lR hLO logout user: ', this.auth.currentUser?.uid);
     this.auth.signOut();
     this.router.navigateByUrl(AppRoutes.KANBAN_LOGOUT);

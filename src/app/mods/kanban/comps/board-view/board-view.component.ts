@@ -166,27 +166,27 @@ export class BoardViewComponent implements OnDestroy, OnInit {
         }
       });
   
-      this.authState$.pipe(takeUntil(this.destroy$)).subscribe((user: User | null) => {
-        //handle auth state changes here. Note, that user will be null if there is no currently logged in user.
-        // console.log('bV ctor auth state subscription: ',user);
-      });
+      // this.authState$.pipe(takeUntil(this.destroy$)).subscribe((user: User | null) => {
+      //   //handle auth state changes here. Note, that user will be null if there is no currently logged in user.
+      //   // console.log('bV ctor auth state subscription: ',user);
+      // });
   
-      this.idToken$.pipe(takeUntil(this.destroy$)).subscribe((token: string | null) => {
-        //handle idToken changes here. Note, that user will be null if there is no currently logged in user.
-        // console.log('bV ctor id token subscription: ', token);
-      });
+      // this.idToken$.pipe(takeUntil(this.destroy$)).subscribe((token: string | null) => {
+      //   //handle idToken changes here. Note, that user will be null if there is no currently logged in user.
+      //   // console.log('bV ctor id token subscription: ', token);
+      // });
   
-      this.isLoggedIn$.pipe(takeUntil(this.destroy$)).subscribe((status: boolean) => {
-        // console.log('bV ctor logged in?: ', status);
-      });
+      // this.isLoggedIn$.pipe(takeUntil(this.destroy$)).subscribe((status: boolean) => {
+      //   // console.log('bV ctor logged in?: ', status);
+      // });
       
-      this.isLoggedOut$.pipe(takeUntil(this.destroy$)).subscribe((status: boolean) => {
-        // console.log('bV ctor logged out?: ', status);
-      });
+      // this.isLoggedOut$.pipe(takeUntil(this.destroy$)).subscribe((status: boolean) => {
+      //   // console.log('bV ctor logged out?: ', status);
+      // });
 
-      this.selectedBubble$.pipe().subscribe(tourStop => {
-        console.log('bV selectedBubble sub: ', tourStop);
-      });
+      // this.selectedBubble$.pipe().subscribe(tourStop => {
+      //   console.log('bV selectedBubble sub: ', tourStop);
+      // });
   }
 
   ngOnInit(): void {
