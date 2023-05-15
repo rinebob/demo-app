@@ -1,6 +1,5 @@
 
-<!-- <div class="tour-bubble-container not-visible" *ngIf="selectedBubble as bubble"> -->
-<div class="tour-bubble-container not-visible" *ngIf="selectedBubble$ | async as bubble">
+<div class="tour-bubble-container not-visible" *ngIf="selectedBubble as bubble">
 
     <div class="pointer"
          [style.top]="bubble.pointerTop"
@@ -19,11 +18,19 @@
 
     <div class="buttons-container">
 
-        <!-- <button class="action-button next" (click)="handleSelectNextBubble()">Next</button>
-        <button class="action-button cancel" (click)="handleCloseTour()">Got it</button> -->
-        <button class="action-button next" (click)="handleNextTourStop()">Next</button>
-        <button class="action-button cancel" (click)="handleCancelTour()">Got it</button>
-
+        <button *ngIf="bubble.end !== true"
+                class="action-button next" 
+                (click)="handleSelectNextBubble()"
+        >
+            Next
+        </button>
+        
+        <button class="action-button cancel"
+                (click)="handleCloseTour()"
+        >
+            Got it
+        </button>
+        
     </div>
 
 </div>

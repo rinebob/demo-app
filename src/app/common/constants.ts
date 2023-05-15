@@ -419,7 +419,7 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
 
             `Configuring the layout of your board columns is easy.  Just click on the Columns button in the right side or open the upper right menu and click the Configure columns button.  Choose the columns you want to view and change their display order by dragging a column name up or down in the list.`,
 
-            `Toggle light/dark mode using the button in the lower left.`
+            `Toggle light/dark mode using the button in the lower left.  When the sidenav is closed you can open it by clicking the View Sidebar button in the lower left corner.`
         ],
         top: '',
         left: '',
@@ -443,7 +443,7 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
     {
         title: 'create a board',
         description: [
-            'Start by creating a board (click the Create Board button to the left).  Give it a name and optional description and click save.  You’ll see your new board in the list to the left.  Select a board to view by clicking on it in the list.'
+            'Start by creating a board (click either the Create Board or Add Sample Board button to the left).  Give it a name and optional description and click save.  You’ll see your new board in the list to the left.  Select a board to view by clicking on it in the list.',
         ],
         top: '23%',
         left: '8%',
@@ -454,12 +454,12 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
     {
         title: 'edit / delete a board',
         description: [
-            `If you want to edit board details or delete a board, just click the menu in the upper right and select your desired option.  A dialog will open to help you.`
+            `If you want to edit board details or delete a board, just click the three dots menu in the upper right and select your desired option.  A dialog will open to help you.`
         ],
-        top: '16%',
-        left: 'calc(90% - 240px)',
+        top: '10%',
+        left: 'calc(99% - 360px)',
         pointerTop: '-20px',
-        pointerLeft: '220px',
+        pointerLeft: '305px',
         order: 40,
     },
     {
@@ -469,19 +469,20 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
 
             `Note that if the column for the status you select isn’t currently displayed, you won’t see the new task.  Click configure columns to enable that column.`
         ],
-        top: '16%',
-        left: 'calc(90% - 240px)',
+        top: '10%',
+        left: 'calc(99% - 360px)',
         pointerTop: '-20px',
-        pointerLeft: '188px',
+        pointerLeft: '216px',
         order: 50,
     },
     {
         title: 'view a task',
         description: [
-            `Once you’ve created a task you’ll see it in the kanban view.  Click on any task card right now to see details.  With the dialog open, click on the menu button in the upper right to edit or delete a task.`
+            `Once you’ve created a task you’ll see it in the kanban view.  Click on any task card right now to see details.  With the dialog open, click on the menu button in the upper right to edit or delete a task.`,
+            `You can also move a task from one development stage to another simply by dragging the task card to a different column.  This will automatically update the status in the backend.`
         ],
         top: '10%',
-        left: 'calc(50% - 240px)',
+        left: 'calc(50% - 360px)',
         pointerTop: '92px',
         pointerLeft: '-20px',
         order: 60,
@@ -492,7 +493,7 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
             `You can change the title, description, status and add/edit/delete subtasks.  Click save to close the dialog and see the results.`
         ],
         top: '10%',
-        left: 'calc(50% - 240px)',
+        left: 'calc(50% - 360px)',
         pointerTop: '50%',
         pointerLeft: '50%',
         order: 70,
@@ -503,7 +504,7 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
             `Changing the status will move the task to a different column.  You’ll see this after you close the dialog.  Make sure the column you choose is displayed otherwise you might not see the task in it’s updated status column.`
         ],
         top: '10%',
-        left: 'calc(50% - 240px)',
+        left: 'calc(50% - 360px)',
         pointerTop: '50%',
         pointerLeft: '50%',
         order: 80,
@@ -514,7 +515,7 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
             `From the Kanban view, click on a task card to open the View Task dialog, then click the menu in the upper right and select the delete option.`
         ],
         top: '10%',
-        left: 'calc(50% - 240px)',
+        left: 'calc(50% - 360px)',
         pointerTop: '50%',
         pointerLeft: '50%',
         order: 90,
@@ -525,7 +526,7 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
             `In the Kanban view, you can update task status simply by dragging a task card from one column to another.  If the status you want to move the task to isn’t visible, open the Configure columns dialog to enable that column.`
         ],
         top: '10%',
-        left: 'calc(50% - 240px)',
+        left: 'calc(50% - 360px)',
         pointerTop: '50%',
         pointerLeft: '50%',
         order: 100,
@@ -538,11 +539,22 @@ export const GUIDED_TOUR_TEXT: GuidedTourMetadata[] = [
             `From there you can select which columns you want to view by checking/unchecking a column.  You can change the display order by dragging a column up or down in the list.  You can quickly select all columns, only columns with tasks, or clear all columns using the buttons provided.`
         ],
         top: '10%',
-        left: 'calc(50% - 240px)',
+        left: 'calc(50% - 360px)',
         pointerTop: '50%',
         pointerLeft: '50%',
         order: 110,
+        end: true,
     },
+    // {
+    //     title: '',
+    //     description: [],
+    //     top: '',
+    //     left: '',
+    //     pointerTop: '',
+    //     pointerLeft: '',
+    //     order: 120,
+    //     end: true,
+    // },
     // '': {
     //         title: '',
     //         description: ``,

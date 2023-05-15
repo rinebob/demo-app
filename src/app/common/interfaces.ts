@@ -248,6 +248,7 @@ export interface DialogData {
     pointerTop: string;
     pointerLeft: string;
     order: number;
+    end?: boolean;
   }
 
   export interface GuidedTourDict {

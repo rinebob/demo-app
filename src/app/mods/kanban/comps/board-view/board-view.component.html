@@ -191,8 +191,8 @@
             </nav>
 
             <ng-container *ngIf="(selectedBubble$ | async)! as bubble">
-
-                <!-- <div #guidedTour class="tour-bubble"
+            
+                <div #guidedTour class="tour-bubble"
                      [style.top]="bubble.top"
                      [style.left]="bubble.left"
                 >
@@ -201,27 +201,7 @@
                                      (closeTour)="handleCancelTour()"
                     ></app-guided-tour>
 
-                </div> -->
-
-                <div #guidedTour class="tour-bubble"
-                     [style.top]="bubble.top"
-                     [style.left]="bubble.left"
-                >
-                <!-- [selectedBubble]="bubble" -->
-                    <app-guided-tour 
-                                     (next)="handleNextTourStop($event)"
-                                     (closeTour)="handleCancelTour()"
-                    ></app-guided-tour>
-
                 </div>
-
-                <!-- [selectedBubble]="bubble" -->
-                <!-- <app-guided-tour #guidedTour class="tour-bubble"
-                                [style.top]="bubble.top"
-                                [style.left]="bubble.left"
-                                (next)="handleNextTourStop($event)"
-                                (closeTour)="handleCancelTour()"
-                ></app-guided-tour> -->
 
             </ng-container>
 

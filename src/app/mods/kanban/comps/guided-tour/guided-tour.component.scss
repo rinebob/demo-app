@@ -34,7 +34,7 @@
     }
 
     .buttons-container {
-        @include global.flexboxLayout(row, space-between, center);
+        @include global.flexboxLayout(row, space-evenly, center);
         padding: 10px 0;
         width: 100%;
         
@@ -48,13 +48,14 @@
             &:hover {
                 @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
             }
-    
+            
             @include global.response(md) {
                 font-size: 10px;
             }
-    
-            &.cancel {
-    
+            
+            &.disabled {
+                @include kanban.kanbanColors($background-color: var(--kanban-primary-hover), $color: var(--kanban-on-primary-hover));
+                cursor: default;
             }
         }
 

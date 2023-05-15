@@ -77,6 +77,7 @@ export class BoardViewComponent implements OnDestroy, OnInit {
   readonly TourStop = TourStop;
   selectedBubbleBS = new BehaviorSubject<GuidedTourMetadata|undefined>(undefined);
   selectedBubble$: Observable<GuidedTourMetadata|undefined> = this.selectedBubbleBS;
+  currentStop = 1;
   
   loggedInAsText = '';
   
@@ -346,41 +347,18 @@ export class BoardViewComponent implements OnDestroy, OnInit {
   }
   
   handleStartGuidedTour() {
-    console.log('bV oGTD open guided tour called');
-    this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[1]);
+    // console.log('bV oGTD open guided tour called.  current stop: ', this.currentStop);
+    this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[this.currentStop]);
   }
-
-  // handleNextTourStop(cancel?: string) {
-  //   if (this.selectedBubbleBS.value) {
-  //     const numStops = Object.keys(this.GUIDED_TOUR_TEXT).length;
-  //     console.log('bV hNTS tour stop: ', this.selectedBubbleBS.value.order);
-  //     if (this.selectedBubbleBS.value.order === numStops) {
-  //       this.handleCancelTour();
-  //     } else {
-  //       const nextInd = this.selectedBubbleBS.value.order < numStops ? this.selectedBubbleBS.value.order + 1 : 2;
-  //       this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[nextInd])
-  //       console.log('bV hNTS next tour stop: ', this.selectedBubbleBS.value);
-  //     }
-  //   }
-  // }
-
-  handleNextTourStop(tourStop: GuidedTourMetadata) {
-    this.selectedBubbleBS.next(tourStop);
-    // if (this.selectedBubbleBS.value) {
-    //   const numStops = Object.keys(this.GUIDED_TOUR_TEXT).length;
-    //   console.log('bV hNTS tour stop: ', this.selectedBubbleBS.value.order);
-    //   if (this.selectedBubbleBS.value.order === numStops) {
-    //     this.handleCancelTour();
-    //   } else {
-    //     const nextInd = this.selectedBubbleBS.value.order < numStops ? this.selectedBubbleBS.value.order + 1 : 2;
-    //     this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[nextInd])
-    //     console.log('bV hNTS next tour stop: ', this.selectedBubbleBS.value);
-    //   }
-    // }
+  
+  handleNextTourStop() {
+    this.currentStop ++;
+    this.selectedBubbleBS.next(GUIDED_TOUR_TEXT[this.currentStop]);
   }
   
   handleCancelTour() {
     this.selectedBubbleBS.next(undefined);
+    this.currentStop = 1;
     // console.log('bV hCT cancel tour: ', this.selectedBubbleBS.value);
   }
 
