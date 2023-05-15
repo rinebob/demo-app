@@ -8,15 +8,29 @@
 
     <p class="title-text">{{bubble.title | titlecase}}</p>
 
-    <p class="description">{{bubble.description}}</p>
+    <ng-container *ngFor="let text of bubble.description">
+        
+        <p class="description">{{text}}</p>
 
+    </ng-container>
+    
     <div class="progress"></div>
 
     <div class="buttons-container">
 
-        <button class="action-button next" (click)="handleSelectNextBubble()">Next</button>
-        <button class="action-button cancel" (click)="handleCloseTour()">Got it</button>
-
+        <button *ngIf="bubble.end !== true"
+                class="action-button next" 
+                (click)="handleSelectNextBubble()"
+        >
+            Next
+        </button>
+        
+        <button class="action-button cancel"
+                (click)="handleCloseTour()"
+        >
+            Got it
+        </button>
+        
     </div>
 
 </div>

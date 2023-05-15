@@ -88,7 +88,7 @@
             </button>
 
             <button class="hide-sidebar-button"
-                    (click)="startGuidedTour()"
+                    (click)="handleStartGuidedTour()"
             >
                 <mat-icon class="material-symbols-outlined">info</mat-icon>
                 Take the tour
@@ -191,7 +191,7 @@
             </nav>
 
             <ng-container *ngIf="(selectedBubble$ | async)! as bubble">
-
+            
                 <div #guidedTour class="tour-bubble"
                      [style.top]="bubble.top"
                      [style.left]="bubble.left"

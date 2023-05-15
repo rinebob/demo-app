@@ -242,12 +242,13 @@ export interface DialogData {
 
   export interface GuidedTourMetadata {
     title: string;
-    description: string;
+    description: string[];
     top: string;
     left: string;
     pointerTop: string;
     pointerLeft: string;
     order: number;
+    end?: boolean;
   }
 
   export interface GuidedTourDict {

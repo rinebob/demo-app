@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatDialogRef} from '@angular/material/dialog';
-import { BehaviorSubject, Observable } from 'rxjs';
 
-import { GuidedTourMetadata, TourStop } from 'src/app/common/interfaces';
-import { GUIDED_TOUR_TEXT } from 'src/app/common/constants';
+import { GuidedTourMetadata } from 'src/app/common/interfaces';
 
 @Component({
   selector: 'app-guided-tour',
@@ -17,23 +14,18 @@ export class GuidedTourComponent {
   @Output() next = new EventEmitter<void>();
   @Output() closeTour = new EventEmitter<void>();
 
-  constructor() {
-    // console.log('gT ctor selected bubble: ', this.selectedBubble);
-  }
+  constructor() {}
 
+  
   handleSelectNextBubble() {
-    // console.log('tB hSNS next stop called.  bubble: ', this.selectedBubbleBS.value);
+    // console.log('tB hSNS next stop called');
     this.next.emit();
   }
   
   handleCloseTour() {
     // console.log('tB hCT close tour called');
     this.closeTour.emit();
-
   }
-
-
-
 }
 
 
