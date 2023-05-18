@@ -21,6 +21,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { connectFirestoreEmulator, getFirestore, provideFirestore, enableMultiTabIndexedDbPersistence } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { connectStorageEmulator, getStorage, provideStorage } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,12 @@ import { NameIntroComponent } from './comps/landing-page/name-intro/name-intro.c
 // for angular in memory web api
 // import { ImBoardsTasksService } from './services/im-boards-tasks.service';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
+let resolvePersistenceEnabled: (enabled: boolean) => void;
+
+export const persistenceEnabled = new Promise<boolean>(resolve => {
+  resolvePersistenceEnabled = resolve;
+});
 
 @NgModule({
   declarations: [
@@ -103,14 +110,29 @@ import { NameIntroComponent } from './comps/landing-page/name-intro/name-intro.c
       }
       return auth;
     }),
+
+    provideStorage(() => {
+      const storage = getStorage();
+      if (environment.useEmulators) {
+        connectStorageEmulator(storage, 'localhost', 9199);
+      }
+      return storage;
+    }),
     
     provideFirestore(() => {
       const firestore = getFirestore();
       if (environment.useEmulators) {
           connectFirestoreEmulator(firestore, 'localhost', 8080);
       }
+      // enableMultiTabIndexedDbPersistence(firestore).then(
+      //   () => resolvePersistenceEnabled(true),
+      //   () => resolvePersistenceEnabled(false)
+      // );
       return firestore;
     }),
+
+
+    
     StoreModule.forRoot({}, {}),
     
   ],

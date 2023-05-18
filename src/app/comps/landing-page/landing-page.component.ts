@@ -4,6 +4,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import {Subject, fromEvent} from 'rxjs';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {debounceTime, takeUntil} from 'rxjs/operators';
+import { Storage, getDownloadURL, ref } from '@angular/fire/storage';
 
 import { ScrollService } from '../../services/scroll-service.service';
 import { APP_SIDENAV_BUTTONS, CONTACT_MESSAGE_TEXT, CONTACT_SUBTITLE_TEXT, LANDING_PAGE_THEME_START_TEXT, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, ROBERT_RINEHART_TEXT, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
@@ -29,6 +30,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
     messageControl: new FormControl('')
   });
 
+  readonly DOWNLOAD_RESUME_TEXT = 'download resume';
   readonly RINEBOB_SKILLS = RINEBOB_SKILLS;
   readonly RINEBOB_EXPERIENCE = RINEBOB_EXPERIENCE;
   readonly RINEBOB_PROJECTS = RINEBOB_PROJECTS;
@@ -72,6 +74,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
     
   constructor(private scrollService: ScrollService,
     private _overlayContainer: OverlayContainer,
+    readonly storage: Storage,
     ) {
       this.applyTheme(this.theme);
       this.initializeViewportCoords();
@@ -200,6 +203,31 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
     // console.log('lP aT container classes post: ', overlayContainerClasses);
   }
 
+  handleDownloadResume() {
+    const storageRef = ref(this.storage, 'gs://fir-app-f2720.appspot.com');
+    console.log('lP hDR storage ref: ', storageRef);
+    
+    const pathRef = ref(storageRef, 'Robert Rinehart - Angular Frontend Developer.pdf');
+    console.log('lP hDR path ref: ', pathRef);
+
+    getDownloadURL(pathRef)
+      .then((url) => {
+        const xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = (event) => {
+          const blob = xhr.response;
+          console.log('lP hDR downloaded blob: ', blob);
+
+          const a = document.createElement('a');
+          a.href = window.URL.createObjectURL(xhr.response);
+          a.download = 'robert_rinehart_angular_frontend_developer.pdf';
+          a.click();
+
+        }
+        xhr.open('GET', url);
+        xhr.send();
+      });
+  }
 
 
 }
