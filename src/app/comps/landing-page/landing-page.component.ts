@@ -7,7 +7,7 @@ import {debounceTime, takeUntil} from 'rxjs/operators';
 import { Storage, getDownloadURL, ref } from '@angular/fire/storage';
 
 import { ScrollService } from '../../services/scroll-service.service';
-import { APP_SIDENAV_BUTTONS, CONTACT_MESSAGE_TEXT, CONTACT_SUBTITLE_TEXT, LANDING_PAGE_THEME_START_TEXT, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, ROBERT_RINEHART_TEXT, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
+import { APP_SIDENAV_BUTTONS, CONTACT_MESSAGE_TEXT, CONTACT_SUBTITLE_TEXT, LANDING_PAGE_THEME_START_TEXT, RESUME_TEXT, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, RINEHART_RESUME_TEXT_1, RINEHART_RESUME_TEXT_2, ROBERT_RINEHART_TEXT, STORAGE_BUCKET_LOCATION_TEXT, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
 import { AppTheme, Contact, LandingPageSection, RinebobUrl, LpScrollTargetId, ViewMode } from 'src/app/common/interfaces';
 import { ThemePalette } from '@angular/material/core';
 
@@ -30,7 +30,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
     messageControl: new FormControl('')
   });
 
-  readonly DOWNLOAD_RESUME_TEXT = 'download resume';
+  readonly RESUME_TEXT = RESUME_TEXT;
   readonly RINEBOB_SKILLS = RINEBOB_SKILLS;
   readonly RINEBOB_EXPERIENCE = RINEBOB_EXPERIENCE;
   readonly RINEBOB_PROJECTS = RINEBOB_PROJECTS;
@@ -204,11 +204,11 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   handleDownloadResume() {
-    const storageRef = ref(this.storage, 'gs://fir-app-f2720.appspot.com');
-    console.log('lP hDR storage ref: ', storageRef);
+    const storageRef = ref(this.storage, STORAGE_BUCKET_LOCATION_TEXT);
+    // console.log('lP hDR storage ref: ', storageRef);
     
-    const pathRef = ref(storageRef, 'Robert Rinehart - Angular Frontend Developer.pdf');
-    console.log('lP hDR path ref: ', pathRef);
+    const pathRef = ref(storageRef, RINEHART_RESUME_TEXT_1);
+    // console.log('lP hDR path ref: ', pathRef);
 
     getDownloadURL(pathRef)
       .then((url) => {
@@ -216,11 +216,11 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
         xhr.responseType = 'blob';
         xhr.onload = (event) => {
           const blob = xhr.response;
-          console.log('lP hDR downloaded blob: ', blob);
+          // console.log('lP hDR downloaded blob: ', blob);
 
           const a = document.createElement('a');
           a.href = window.URL.createObjectURL(xhr.response);
-          a.download = 'robert_rinehart_angular_frontend_developer.pdf';
+          a.download = RINEHART_RESUME_TEXT_2;
           a.click();
 
         }
