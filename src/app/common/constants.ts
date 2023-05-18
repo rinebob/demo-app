@@ -67,6 +67,10 @@ export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
 export const BOARDS_COLLECTION = 'boards';
 export const TASKS_COLLECTION = 'tasks';
 export const SAMPLE_APP_DISPLAY_NAME = 'Sample app';
+export const RESUME_TEXT = 'resume';
+export const RINEHART_RESUME_TEXT_1 = 'Robert Rinehart - Angular Frontend Developer.pdf';
+export const RINEHART_RESUME_TEXT_2 = 'robert_rinehart_angular_frontend_developer.pdf';
+export const STORAGE_BUCKET_LOCATION_TEXT = 'gs://fir-app-f2720.appspot.com';
 
 export const BOARDS_STORE_INITIALIZER = {
     boards: [],
