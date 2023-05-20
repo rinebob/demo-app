@@ -43,15 +43,17 @@
         <mat-icon class="icon material-symbols-outlined">lock</mat-icon>
         
         <span class="placeholder"
-                [class.error]="message?.invalid && (message?.dirty || message?.touched)"
+                [class.error]="messageText?.invalid && (messageText?.dirty || messageText?.touched)"
         >
-            {{!(message?.invalid && (message?.dirty || message?.touched)) ? 'message' : 'message is required'}}
+            {{!(messageText?.invalid && (messageText?.dirty || messageText?.touched)) ? 'message' : 'message is required'}}
         </span>
 
     </div>
 
     <button class="main-button"
             type="submit"
+            [disabled]="!contactForm.valid"
+            [class.disabled]="!contactForm.valid"
     >
         Send message
     </button>

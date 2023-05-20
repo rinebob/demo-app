@@ -16,6 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
 
 // from https://github.com/angular/angularfire/blob/master/samples/modular/src/app/app.module.ts
 import { connectFirestoreEmulator, getFirestore, provideFirestore, enableMultiTabIndexedDbPersistence } from '@angular/fire/firestore';
@@ -41,6 +42,7 @@ import { SocialIconLinksModule } from './shared/social-icon-links/social-icon-li
 import { ThreeWayToggleModule } from './shared/three-way-toggle/three-way-toggle.module';
 import { ContactFormComponent } from './comps/landing-page/contact-form/contact-form.component';
 import { NameIntroComponent } from './comps/landing-page/name-intro/name-intro.component';
+import { MessagesViewComponent } from './comps/messages-view/messages-view.component';
 
 // for angular in memory web api
 // import { ImBoardsTasksService } from './services/im-boards-tasks.service';
@@ -62,6 +64,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     ExperienceCardComponent,
     ContactFormComponent,
     NameIntroComponent,
+    MessagesViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +85,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatTableModule,
 
     SharedModule,
     SocialIconLinksModule,

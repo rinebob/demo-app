@@ -1,4 +1,4 @@
-import { ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict, GuidedTourMetadata } from "./interfaces";
+import { ProjectData, SkillData, AngExpRoutes, Board, ColumnColor, ColumnOrder, ExperienceData, NavButtonConfig, SortedTasks, Task, TaskStatus, ButtonMetadata, ComingSoonMetadata, ComingSoonDict, RinebobSite, IconNavBarLink, AppRoutes, GuidedTourDict, GuidedTourMetadata, AuthLevel } from "./interfaces";
 
 
 export const BOARD_INITIALIZER: Board = {
@@ -66,6 +66,8 @@ export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
 
 export const BOARDS_COLLECTION = 'boards';
 export const TASKS_COLLECTION = 'tasks';
+export const MESSAGES_COLLECTION_TEXT = 'messages';
+export const RINEBOB_GMAIL_ADDRESS_TEXT = 'rinebob111185@gmail.com';
 export const SAMPLE_APP_DISPLAY_NAME = 'Sample app';
 export const RESUME_TEXT = 'resume';
 export const RINEHART_RESUME_TEXT_1 = 'Robert Rinehart - Angular Frontend Developer.pdf';
@@ -196,9 +198,10 @@ export const RINEBOB_EXPERIENCE: ExperienceData[] = [
 
 export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     // {url: AppRoutes.LOGIN, text: 'login'},
-    {url: AppRoutes.ROBERT, text: 'home'},
-    {url: AppRoutes.KANBAN, text: 'kanban todo app'},
-    {url: AppRoutes.AUDIO, text: 'audiophile ecom site'},
+    {url: AppRoutes.ROBERT, text: 'home', authLevel: AuthLevel.UNKNOWN},
+    {url: AppRoutes.KANBAN, text: 'kanban todo app', authLevel: AuthLevel.UNKNOWN},
+    {url: AppRoutes.AUDIO, text: 'audiophile ecom site', authLevel: AuthLevel.UNKNOWN},
+    {url: AppRoutes.MESSAGES, text: 'messages', authLevel: AuthLevel.OWNER},
     // {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
     // {url: AppRoutes.TRADER, text: 'trading view chart clone'},
     // {url: AppRoutes.CUBIC_BEZIER, text: 'cubic-bezier site clone'},

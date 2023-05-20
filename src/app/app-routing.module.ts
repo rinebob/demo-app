@@ -4,10 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutes } from './common/interfaces';
 import { LandingPageComponent } from './comps/landing-page/landing-page.component';
 import { DesignSystemComponent } from './comps/design-system/design-system.component';
+import { MessagesViewComponent } from './comps/messages-view/messages-view.component';
 
 const routes: Routes = [
   {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
   {path: AppRoutes.ROBERT, component: LandingPageComponent},
+  {path: AppRoutes.MESSAGES, component: MessagesViewComponent},
   // {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
   {
     path: AppRoutes.KANBAN,
