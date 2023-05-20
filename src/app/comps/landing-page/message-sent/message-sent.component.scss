@@ -1,0 +1,31 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/global-variables' as globalVar;
+@use '../landing-page-variables' as landingPageVar;
+@import "../../../../styles/styles.scss";
+
+.message-sent-container {
+    @include global.flexboxLayout(column, flex-start, center);
+    padding: 24px;
+    width: 400px;
+
+    .confirmation-header {
+        @include global.textTitle;
+        color: var(--landing-page-header-text-color);
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .confirmation-message {
+        @include global.welcomeTextDescription;
+        color: var(--landing-page-body-text-color);
+        line-height: 30px;
+        margin: 10px 0 20px;
+        text-align: center;
+
+    }
+
+    .close-button {
+        @include landingPageVar.contactSpiffyButtonStyles;
+        width: 50%;
+    }
+}

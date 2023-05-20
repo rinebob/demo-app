@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {Subject, fromEvent} from 'rxjs';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {debounceTime, takeUntil} from 'rxjs/operators';
+import {debounceTime, takeUntil, tap} from 'rxjs/operators';
 import { Storage, getDownloadURL, ref } from '@angular/fire/storage';
 
 import { ScrollService } from '../../services/scroll-service.service';
@@ -13,6 +13,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from '@angular/fire/auth';
+import { DialogService } from 'src/app/services/dialog-service.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -88,6 +89,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
     readonly storage: Storage,
     readonly messageService: MessageService,
     readonly userService: UserService,
+    readonly dialogService: DialogService,
     ) {
       this.applyTheme(this.theme);
       this.initializeViewportCoords();
@@ -199,12 +201,12 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   handleContactSubmission(contact: Contact) {
-    // console.log('lP hSM contact: ', contact);
-    this.messageService.saveMessage(contact);
-  }
-
-  handleClearForm() {
-
+    this.messageService.saveMessage(contact).pipe(
+      tap(message => {
+        // console.log('lP hCS message sent: ', message);
+        this.dialogService.openMessageSentConfirmationDialog(this.theme);
+      })
+    ).subscribe();
   }
 
   handleUpdateViewMode(mode: ViewMode) {
