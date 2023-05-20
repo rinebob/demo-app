@@ -16,13 +16,14 @@ export class ContactFormComponent implements OnDestroy, OnInit {
   contactForm: FormGroup;
   
   nameControl = new FormControl('', [Validators.required]);
-  emailControl = new FormControl('', Validators.required);
+  // emailControl = new FormControl('', [Validators.email, Validators.required]);
+  emailControl = new FormControl('', [Validators.required]);
   messageControl = new FormControl('', Validators.required);
     
 
   get name() {return this.contactForm.get('nameControl')}
   get email() {return this.contactForm.get('emailControl')}
-  get message() {return this.contactForm.get('messageControl')}
+  get messageText() {return this.contactForm.get('messageControl')}
 
   constructor() {
     this.buildForm();
@@ -50,14 +51,19 @@ export class ContactFormComponent implements OnDestroy, OnInit {
   }
 
   handleSubmitForm() {
+    const date = new Date();
+    // console.log('cF hSF create date: ', date);
     const contact: Contact = {
+      // date: new Date(),
+      date,
       name: this.contactForm.get('nameControl')?.value,
       email: this.contactForm.get('emailControl')?.value,
-      message: this.contactForm.get('messageControl')?.value,
+      messageText: this.contactForm.get('messageControl')?.value,
     }
 
     // console.log('cF hSF create contact: ', contact);
     this.contact.emit(contact);
+    this.contactForm.reset();
   }
 
 }

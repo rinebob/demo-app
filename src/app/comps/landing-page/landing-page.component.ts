@@ -7,9 +7,12 @@ import {debounceTime, takeUntil} from 'rxjs/operators';
 import { Storage, getDownloadURL, ref } from '@angular/fire/storage';
 
 import { ScrollService } from '../../services/scroll-service.service';
-import { APP_SIDENAV_BUTTONS, CONTACT_MESSAGE_TEXT, CONTACT_SUBTITLE_TEXT, LANDING_PAGE_THEME_START_TEXT, RESUME_TEXT, RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS, RINEHART_RESUME_TEXT_1, RINEHART_RESUME_TEXT_2, ROBERT_RINEHART_TEXT, STORAGE_BUCKET_LOCATION_TEXT, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
-import { AppTheme, Contact, LandingPageSection, RinebobUrl, LpScrollTargetId, ViewMode } from 'src/app/common/interfaces';
+import { APP_SIDENAV_BUTTONS, CONTACT_MESSAGE_TEXT, CONTACT_SUBTITLE_TEXT, LANDING_PAGE_THEME_START_TEXT, RESUME_TEXT, RINEBOB_EXPERIENCE, RINEBOB_GMAIL_ADDRESS_TEXT, RINEBOB_PROJECTS, RINEBOB_SKILLS, RINEHART_RESUME_TEXT_1, RINEHART_RESUME_TEXT_2, ROBERT_RINEHART_TEXT, STORAGE_BUCKET_LOCATION_TEXT, WELCOME_BUTTONS, WELCOME_TEXT } from 'src/app/common/constants';
+import { AppTheme, Contact, LandingPageSection, RinebobUrl, LpScrollTargetId, ViewMode, AuthLevel, ButtonMetadata, AppRoutes } from 'src/app/common/interfaces';
 import { ThemePalette } from '@angular/material/core';
+import { MessageService } from 'src/app/services/message.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-landing-page',
@@ -71,13 +74,39 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
   numItemsBS = new BehaviorSubject<number>(0);
   itemsBS = new BehaviorSubject<any[]>(new Array(this.numItemsBS.value));
   items$: Observable<any[]> = this.itemsBS;
+
+  ///////////// AUTH STATE ///////////////
+
+  isOwner$ = this.userService.isMasterOfTheKnownUniverse$;
+  authState$ = this.userService.authState$;
+  
+  authLevelBS = new BehaviorSubject<AuthLevel>(AuthLevel.UNKNOWN);
+  authLevel$: Observable<AuthLevel> = this.authLevelBS;
     
   constructor(private scrollService: ScrollService,
     private _overlayContainer: OverlayContainer,
     readonly storage: Storage,
+    readonly messageService: MessageService,
+    readonly userService: UserService,
     ) {
       this.applyTheme(this.theme);
       this.initializeViewportCoords();
+
+      // this.isOwner$.pipe().subscribe(isOwner => {
+      //   console.log('lP ctor isOwner: ', isOwner);
+      // });
+
+      this.authState$.pipe().subscribe(user => {
+        // console.log('lP ctor authState user: ', user);
+        if (user) {
+          this.setAuthLevel(user);
+
+        }
+      });
+
+      // this.authLevel$.pipe().subscribe(authLevel => {
+      //   console.log('lP ctor authLevel: ', authLevel);
+      // });
   }
     
   ngOnInit () {
@@ -97,6 +126,36 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
   ngOnDestroy() {
     this.destroy.next();
     this.destroy.complete();
+  }
+
+  setAuthLevel(user: User) {
+      
+      if (user) {
+        if (user.email === RINEBOB_GMAIL_ADDRESS_TEXT) {
+          // console.log('uS sAL rinebob user email: ', user?.email);
+          this.authLevelBS.next(AuthLevel.OWNER);
+          
+        } else {
+          this.authLevelBS.next(AuthLevel.USER);
+          // console.log('uS sAL user: ', user?.email);
+          
+        }
+      } else {
+        this.authLevelBS.next(AuthLevel.UNKNOWN);
+        // console.log('uS sAL final auth level: ', this.authLevelBS.value);
+
+      }
+  }
+
+  shouldShowMenuOption(menuOption: ButtonMetadata) {
+    // console.log('lP sSMO menu option: ', menuOption);
+
+    if (menuOption.text !== AppRoutes.MESSAGES) {
+      return true;
+    } else {
+      return this.authLevelBS.value === AuthLevel.OWNER;
+    }
+
   }
 
   initializeViewportCoords() {
@@ -141,6 +200,7 @@ export class LandingPageComponent implements AfterViewInit, OnDestroy, OnInit {
 
   handleContactSubmission(contact: Contact) {
     // console.log('lP hSM contact: ', contact);
+    this.messageService.saveMessage(contact);
   }
 
   handleClearForm() {

@@ -38,6 +38,8 @@ testem.log
 /typings
 /kanban-data
 /kanban-users
+/kanban-functions/node_modules
+cors.json
 
 #firebase config file
 /src/environments/firebase-config.ts

@@ -1,0 +1,30 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+@use '../landing-page/landing-page-variables' as landingPageVar;
+@import "../../../styles/styles.scss";
+
+:host {
+    @include global.flexboxLayout(column, flex-start, center);
+    background-color: var(--landing-page-background-color);
+    height: 100%;
+    transition: all 0.5s ease;
+    
+    .messages-view-container {
+        @include global.flexboxLayout(column, flex-start, center);
+        flex-grow: 1;
+        padding: 100px 0 0;
+        
+        .messages-table {
+            width: 100%;
+    
+            ::ng-deep {
+                
+                .mat-column-messagesText {
+                    max-width: 100px;
+                }
+    
+            }
+        }
+    }
+
+}

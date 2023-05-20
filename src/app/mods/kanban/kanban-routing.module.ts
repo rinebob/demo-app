@@ -7,7 +7,7 @@ import { LoginRegComponent } from './comps/login-reg/login-reg.component';
 import { AppRoutes } from 'src/app/common/interfaces';
 import { AuthGuard, hasCustomClaim, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo('login');
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(AppRoutes.KANBAN_LOGIN);
 
 const routes: Routes = [
   {

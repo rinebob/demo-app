@@ -143,6 +143,8 @@ export interface DialogData {
     LOGOUT = 'logout',
     ROBERT = 'robert',
     KANBAN = 'kanban',
+    AUDIO = 'audio',
+    MESSAGES = 'messages',
     BOARD = 'board',
     CHARTS = 'charts',
     TRADER = 'trader',
@@ -151,7 +153,6 @@ export interface DialogData {
     BIODATA = 'biodata',
     MAT_THEME = 'mat-theme',
     DESIGN_SYSTEM = 'design-system',
-    AUDIO = 'audio',
     KANBAN_BOARD = 'kanban/board',
     KANBAN_LOGIN = 'kanban/login',
     KANBAN_LOGOUT = 'kanban/logout',
@@ -207,6 +208,14 @@ export interface DialogData {
     url: string;
     fragment?: string;
     text: string;
+    authLevel?: AuthLevel;
+  }
+
+  export enum AuthLevel {
+    OWNER = 'owner',
+    ADMIN = 'admin',
+    USER = 'user',
+    UNKNOWN = 'unknown',
   }
 
   export interface ComingSoonMetadata {
@@ -285,9 +294,11 @@ export interface UserAccount extends Login {
 export type ViewMode = 'light' | 'dark' | 'css-tricks';
 
 export interface Contact {
+  date?: Date;
+  id?: string;
   name: string;
   email: string;
-  message: string;
+  messageText: string;
 }
 
 export enum LandingPageSection {

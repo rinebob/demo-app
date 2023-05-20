@@ -30,6 +30,10 @@ service cloud.firestore {
             return isAuthenticated() && isOwnedByUser();
         }
 
+        function isRinebob() {
+            return request.auth.token.email == 'rinebob111185@gmail.com';
+        }
+
 
         match /boards/{boardId} {
             allow read: if isAuthenticated();
@@ -44,6 +48,11 @@ service cloud.firestore {
                 allow update: if isOwnedByUser();
                 allow delete: if isAuthenticated();
             }
+        }
+
+        match /messages/{messageId} {
+            allow read: if debug(debug(isRinebob()));
+            allow write;
         }
     }
 }   

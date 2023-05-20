@@ -468,8 +468,8 @@
     pointer-events: none;
     transition: 0.5s;
 
-    @include global.response(xs) {
-        font-size: globalVar.globalFontSize(body-m);
+    @include response(lg) {
+        font-size: globalVar.globalFontSize(body-s);
     }
 }
 

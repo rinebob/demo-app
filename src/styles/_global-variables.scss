@@ -53,6 +53,7 @@ $global-font-sizes: (
     body-l-xl: 14px,
     body-l: 13px,
     body-m: 12px,
+    body-s: 10px,
 );
 
 @function globalFontSize($size) {
