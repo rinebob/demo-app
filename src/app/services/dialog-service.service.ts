@@ -9,6 +9,7 @@ import { TaskFormComponent } from '../mods/kanban/comps/task-form/task-form.comp
 import { Board, Column, DialogCloseResult, DialogData, Task } from '../common/interfaces';
 import { ViewTaskComponent } from '../mods/kanban/comps/view-task/view-task.component';
 import { DeleteConfirmComponent } from '../mods/kanban/comps/delete-confirm/delete-confirm.component';
+import { MessageSentComponent } from '../comps/landing-page/message-sent/message-sent.component';
 
 
 @Injectable({
@@ -22,6 +23,7 @@ export class DialogService {
   deleteConfirmPanelClass = 'delete-confirm-panel-class';
   taskFormPanelClass = 'task-form-panel-class';
   viewTaskPanelClass = 'view-task-panel-class';
+  messageSentPanelClass = 'message-sent-panel-class';
 
   constructor(private dialog: MatDialog, private boardsStore: BoardsStore) { }
 
@@ -162,5 +164,11 @@ export class DialogService {
     const dialogRef = this.dialog.open(BoardsSelectComponent, dialogConfig);
 
     return dialogRef;
+  }
+
+  openMessageSentConfirmationDialog(theme: string) {
+    const config = new MatDialogConfig();
+    config.panelClass = [this.messageSentPanelClass, theme];
+    this.dialog.open(MessageSentComponent, config);
   }
 }

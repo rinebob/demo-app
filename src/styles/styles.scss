@@ -248,3 +248,12 @@ p {
     top: 82px;
     width: 100%;
 }
+
+.message-sent-panel-class {
+    background-color: var(--landing-page-background-color)!important;
+    border-radius: 8px;
+    
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        background-color: var(--landing-page-background-color)!important;
+    }
+}

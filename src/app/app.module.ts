@@ -43,6 +43,7 @@ import { ThreeWayToggleModule } from './shared/three-way-toggle/three-way-toggle
 import { ContactFormComponent } from './comps/landing-page/contact-form/contact-form.component';
 import { NameIntroComponent } from './comps/landing-page/name-intro/name-intro.component';
 import { MessagesViewComponent } from './comps/messages-view/messages-view.component';
+import { MessageSentComponent } from './comps/landing-page/message-sent/message-sent.component';
 
 // for angular in memory web api
 // import { ImBoardsTasksService } from './services/im-boards-tasks.service';
@@ -65,6 +66,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     ContactFormComponent,
     NameIntroComponent,
     MessagesViewComponent,
+    MessageSentComponent,
   ],
   imports: [
     BrowserModule,

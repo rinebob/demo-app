@@ -16,8 +16,7 @@ export class ContactFormComponent implements OnDestroy, OnInit {
   contactForm: FormGroup;
   
   nameControl = new FormControl('', [Validators.required]);
-  // emailControl = new FormControl('', [Validators.email, Validators.required]);
-  emailControl = new FormControl('', [Validators.required]);
+  emailControl = new FormControl('', [Validators.email, Validators.required]);
   messageControl = new FormControl('', Validators.required);
     
 
