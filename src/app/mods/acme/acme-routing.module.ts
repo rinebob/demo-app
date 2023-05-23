@@ -16,6 +16,7 @@ const routes: Routes = [
         path: AcmeRoutes.VEHICLES,
         loadChildren: () => import('./vehicles-view/vehicles-view.module').then(m => m.VehiclesViewModule)
       },
+      { path: '**', redirectTo: AcmeRoutes.PARCELS }
     ],
   },
   { path: '**', redirectTo: AcmeRoutes.PARCELS }
