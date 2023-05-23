@@ -1,0 +1,44 @@
+@use '../../../styles/global-mixins' as global;
+@use '../../../styles/global-variables' as globalVar;
+
+:host {
+    @include global.flexboxLayout(column, flex-start, flex-start);
+    height: 100%;
+    width: 100%;
+
+    .mat-sidenav-container {
+        @include global.flexboxLayout(column, flex-start, flex-start);
+        @include global.border1;
+        background-color: white;
+        color: black;
+        height: 100%;
+        width: 100%;
+
+        .mat-sidenav {
+            @include global.flexboxLayout(column, flex-start, flex-start);
+            @include global.border1;
+            background-color: white;
+            color: black;
+            padding: 50px 20px;
+            // width: 300px;
+            height: 100%;
+    
+            .acme-sidenav-button {
+                background-color: lightblue;
+                border: none;
+                border-radius: 4px;
+                color: black;
+                margin: 10px 0;
+                padding: 10px 20px;
+                width: 100%;
+            }
+        }
+
+        .acme-sidenav-content {
+            height: 100%;
+            overflow-y: hidden;
+            width: 100%;
+        }
+    }
+}
+    

@@ -1,0 +1,15 @@
+@use '../../../../styles/global-mixins' as global;
+@use '../../../../styles/global-variables' as globalVar;
+
+:host {
+    
+    .vehicles-view-container {
+        @include global.flexboxLayout(column, flex-start,center);
+        @include global.border1;
+        background-color: white;
+        color: black;
+        
+
+    }
+    
+}

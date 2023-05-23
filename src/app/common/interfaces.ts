@@ -156,6 +156,7 @@ export interface DialogData {
     KANBAN_BOARD = 'kanban/board',
     KANBAN_LOGIN = 'kanban/login',
     KANBAN_LOGOUT = 'kanban/logout',
+    ACME = 'acme',
   }
 
   export enum AngExpRoutes {

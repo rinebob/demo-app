@@ -35,6 +35,8 @@ const routes: Routes = [
     path: AppRoutes.AUDIO,
     loadChildren: () => import('./mods/audio/audio.module').then(m => m.AudioModule)
   },
+  { path: AppRoutes.ACME,
+    loadChildren: () => import('./mods/acme/acme.module').then(m => m.AcmeModule) },
   // { 
   //   path: AppRoutes.TRADER,
   //   loadChildren: () => import('./mods/trader/trader.module').then(m => m.TraderModule) 
