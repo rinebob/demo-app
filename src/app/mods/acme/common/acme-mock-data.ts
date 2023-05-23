@@ -52,6 +52,18 @@ export const PARCEL_3: Parcel = {
 
 export const PARCELS: Parcel[] = [PARCEL_1, PARCEL_2, PARCEL_3];
 
+export const PARCEL_4: Parcel = {
+    entityId: 'parcel-4',
+    displayName: 'Spiffy tiny home',
+    parcelType: ParcelType.SINGLE_FAM_RES,
+    address: '456 Shady Bend Ln, Mellowtown, CO 88888',
+    sqFt: 200,
+    age: 1,
+    price: 50000,
+    use: ParcelUse.RESIDENTIAL,
+
+}
+
 ////////////////////// VEHICLES /////////////////////////////////
 
 // export const VEHICLE_: Vehicle = {
