@@ -12,6 +12,11 @@ export interface ButtonMetadata {
     text: string;
 }
 
+export interface ColumnMetadata {
+    columnName: string;
+    headerText: string;
+}
+
 /////////////////////// ENTITY ///////////////////////////
 
 export interface EntityBase {
@@ -31,6 +36,15 @@ export interface EntityComponentStoreInterface<T extends EntityBase> {
     setEntities(observableOrValue: Observable<T[]> | T[]): Subscription;
     setSelectedEntity(observableOrValue: Observable<T> | T): Subscription;
     setTableData(observableOrValue: Observable<T[]> | T[]): Subscription;
+}
+
+
+/////////////////////// COMPONENT STORE ////////////////
+
+export interface AcmeState<T extends EntityBase> {
+    entities: T[];
+    selectedEntity: T | undefined;
+    tableData: T[];
 }
 
 
@@ -65,6 +79,20 @@ export interface Parcel extends EntityBase {
 export interface ParcelComponentStoreInterface extends EntityComponentStoreInterface<Parcel> {
 }
 
+export enum ParcelTableColumn {
+    ENTITY_ID = 'entityId',
+    DISPLAY_NAME = 'displayName',
+    PARCEL_TYPE = 'parcelType',
+    ADDRESS = 'address',
+    SQ_FT = 'sqFt',
+    AGE = 'age',
+    PRICE = 'price',
+    USE = 'use',
+}
+
+
+  
+
 
 ////////////////////// VEHICLE ////////////////////////
 
@@ -94,10 +122,14 @@ export interface Vehicle extends EntityBase {
 export interface VehicleComponentStoreInterface extends EntityComponentStoreInterface<Vehicle> {
 }
 
-/////////////////////// COMPONENT STORE ////////////////
+export enum VehicleTableColumn {
+    ENTITY_ID = 'entityId',
+    DISPLAY_NAME = 'displayName',
+    VEHICLE_TYPE = 'vehicleType',
+    MAKER = 'maker',
+    MODEL = 'model',
+    YEAR = 'year',
+    PRICE = 'price',
+    MILES = 'miles',
 
-export interface AcmeState<T extends EntityBase> {
-    entities: T[];
-    selectedEntity: T | undefined;
-    tableData: T[];
 }

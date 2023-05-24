@@ -2,12 +2,12 @@
 @use '../../../../styles/global-variables' as globalVar;
 
 :host {
-
+    
     .parcels-view-container {
         @include global.flexboxLayout(column, flex-start,center);
-        @include global.border1;
         background-color: white;
         color: black;
+        padding: 20px;
         
 
     }

@@ -1,25 +1,12 @@
 
 <div class="parcels-view-container">
     
-    <p>parcels-view works!</p>
+    <p>Parcels</p>
 
-    <div class="parcels-container">
-        <p>Parcels:</p>
-        {{parcels$ | async | json}}
+    <app-parcels-table [entities]="(parcels$ | async)!"
+                       [columnMetadata]="PARCEL_TABLE_COLUMNS"
+    >
 
-    </div>
-
-    <div class="parcel-container">
-        <p>Selected parcel:</p>
-        {{selectedParcel$ | async | json}}
-    </div>
-
-    <div class="parcels-container">
-        <p>Table data:</p>
-        {{parcelsTableData$ | async | json}}
-
-    </div>
-
-    <button (click)="saveParcel()">Save parcel</button>
+    </app-parcels-table>
 
 </div>

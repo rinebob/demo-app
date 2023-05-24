@@ -1,0 +1,20 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+
+.entities-table-container {
+
+    
+    .entities-table {
+        @include global.border1($color: lightgrey, $radius: 0);
+        width: 100%;
+                
+        .mat-mdc-header-cell, .mat-mdc-cell {
+            border-bottom: 1px solid lightgrey;
+            background-color: white;
+            color: black;
+
+        }
+    }
+
+}
+
