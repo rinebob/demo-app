@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, take, withLatestFrom } from 'rxjs';
 
-import { PARCELS, PARCEL_4, VEHICLES } from '../common/acme-mock-data';
-import { Parcel, Vehicle } from '../common/interfaces-acme';
-import { PARCEL_TABLE_COLUMNS, VEHICLE_TABLE_COLUMNS } from '../common/constants-acme';
+import { PARCELS, PARCEL_4 } from '../common/acme-mock-data';
+import { Parcel } from '../common/interfaces-acme';
+import { PARCEL_TABLE_COLUMNS } from '../common/constants-acme';
 import { ParcelsViewStore } from './parcels-view-store';
+import { EntitiesViewBaseComponent } from '../base/entities-view/entities-view.component';
+import { search } from '../common/acme-utils';
 
 @Component({
   selector: 'app-parcels-view',
@@ -12,21 +14,28 @@ import { ParcelsViewStore } from './parcels-view-store';
   styleUrls: ['./parcels-view.component.scss'],
   providers: [ParcelsViewStore],
 })
-export class ParcelsViewComponent implements OnInit {
+export class ParcelsViewComponent extends EntitiesViewBaseComponent<Parcel> implements OnInit {
 
-  parcels$ = this.parcelsStore.entities$;
-  selectedParcel$ = this.parcelsStore.selectedEntity$;
-  parcelsTableData$ = this.parcelsStore.tableData$;
-
+  searchTerm$ = this.parcelsStore.searchTerm$;
+  
   readonly PARCEL_TABLE_COLUMNS = PARCEL_TABLE_COLUMNS;
-
-  readonly VEHICLE_TABLE_COLUMNS = VEHICLE_TABLE_COLUMNS;
 
   constructor(readonly parcelsStore: ParcelsViewStore) {
 
+    super(parcelsStore);
+    this.parcelsStore.setEntities(PARCELS);
+    this.parcelsStore.setTableData(PARCELS);
   }
 
   ngOnInit(): void {
+    this.searchTerm$.pipe(
+      withLatestFrom(this.entities$),
+      ).subscribe(([term, parcels]) => {
+        // console.log('pV ngOI search term sub: ', term);
+        const results = search<Parcel>(parcels, term)
+        // console.log('pV hST search results: ', results);
+        this.parcelsStore.setSearchResults(results);
+    });
   }
 
   saveParcel() {

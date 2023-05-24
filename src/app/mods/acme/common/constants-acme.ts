@@ -19,6 +19,8 @@ export const ACME_STORE_INITIALIZER: AcmeState<Parcel> = {
     entities: [],
     selectedEntity: undefined,
     tableData: [],
+    searchTerm: '',
+    searchResults: [],
 }
 
 
@@ -32,6 +34,8 @@ export const PARCEL_STORE_INITIALIZER: AcmeState<Parcel> = {
     entities: [...PARCELS],
     selectedEntity: PARCELS[0],
     tableData: [...PARCELS],
+    searchTerm: '',
+    searchResults: [],
 }
 
 export const PARCEL_TABLE_COLUMNS: ColumnMetadata[] = [

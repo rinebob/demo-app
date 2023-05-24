@@ -1,9 +1,6 @@
-import { Injectable } from '@angular/core';
 import { ComponentStore } from '@ngrx/component-store';
-import { filter, tap, map, withLatestFrom, pairwise, skip } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
-import { Entity, AcmeState, EntityBase } from './common/interfaces-acme';
+import { AcmeState, EntityBase } from './common/interfaces-acme';
 
 export abstract class EntityStoreBase<T extends EntityBase> extends ComponentStore<AcmeState<T>> {
 
@@ -22,6 +19,17 @@ export abstract class EntityStoreBase<T extends EntityBase> extends ComponentSto
         tableData: [...tableData],
     }));
 
+    readonly setSearchTerm = this.updater((state, searchTerm: string) => ({
+        ...state,
+        searchTerm,
+    }));
+
+    readonly setSearchResults = this.updater((state, searchResults: T[]) => ({
+        ...state,
+        searchResults: [...searchResults],
+    }));
+
+
     readonly entities$ = this.select((state) => {
         return state.entities;
     });
@@ -32,6 +40,14 @@ export abstract class EntityStoreBase<T extends EntityBase> extends ComponentSto
 
     readonly tableData$ = this.select((state) => {
         return state.tableData;
+    });
+
+    readonly searchTerm$ = this.select((state) => {
+        return state.searchTerm;
+    });
+
+    readonly searchResults$ = this.select((state) => {
+        return state.searchResults;
     });
 
 }

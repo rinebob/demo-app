@@ -1,0 +1,33 @@
+@use '../../../../../styles/global-mixins' as global;
+@use '../../../../../styles/global-variables' as globalVar;
+
+
+.entities-search-container {
+    @include global.flexboxLayout;
+    width: 100%;
+
+    .entities-search-form {
+        width: 40%;
+        
+        ::ng-deep {
+    
+            .mat-mdc-form-field {
+                width: 100%;
+            }
+
+            .mat-mdc-input-element {
+                color: black;
+            }
+    
+            .mat-mdc-text-field-wrapper {
+    
+                &:not(:focus) {
+                    border: 1px solid lightgrey;
+    
+                }
+            }    
+    
+        }
+        
+    }
+}

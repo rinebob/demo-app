@@ -3,7 +3,13 @@
     
     <p>Parcels</p>
 
-    <app-parcels-table [entities]="(parcels$ | async)!"
+    <app-parcels-search [entities]="(entities$ | async)!"
+                         (searchTerm)="handleSearchTerm($event)"
+    >
+
+    </app-parcels-search>
+
+    <app-parcels-table [entities]="(entitiesTableData$ | async)!"
                        [columnMetadata]="PARCEL_TABLE_COLUMNS"
     >
 

@@ -19,9 +19,9 @@ export const PARCEL_1: Parcel = {
     displayName: 'Beautiful home',
     parcelType: ParcelType.SINGLE_FAM_RES,
     address: '123 Any St., Sometown CA, 99999',
-    sqFt: 2000,
-    age: 10,
-    price: 1000000,
+    sqFt: 2158,
+    age: 12,
+    price: 1995250,
     use: ParcelUse.RESIDENTIAL,
 
 }
@@ -31,9 +31,9 @@ export const PARCEL_2: Parcel = {
     displayName: 'Office building',
     parcelType: ParcelType.OFFICE,
     address: '555 Busy Ave., Ste. 100 Overthere, NY 11111',
-    sqFt: 100000,
-    age: 20,
-    price: 5000000,
+    sqFt: 103875,
+    age: 17,
+    price: 5959970,
     use: ParcelUse.COMMERCIAL,
 
 }
@@ -43,9 +43,9 @@ export const PARCEL_3: Parcel = {
     displayName: 'Vacant land',
     parcelType: ParcelType.LAND,
     address: '200 Smith Rd. Ruralville, TX 55555',
-    sqFt: 10000000,
+    sqFt: 12365022,
     age: 100,
-    price: 200000,
+    price: 219987,
     use: ParcelUse.UNDEVELOPED,
 
 }
@@ -57,9 +57,9 @@ export const PARCEL_4: Parcel = {
     displayName: 'Spiffy tiny home',
     parcelType: ParcelType.SINGLE_FAM_RES,
     address: '456 Shady Bend Ln, Mellowtown, CO 88888',
-    sqFt: 200,
+    sqFt: 235,
     age: 1,
-    price: 50000,
+    price: 59590,
     use: ParcelUse.RESIDENTIAL,
 
 }

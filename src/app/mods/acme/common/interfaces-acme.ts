@@ -45,6 +45,8 @@ export interface AcmeState<T extends EntityBase> {
     entities: T[];
     selectedEntity: T | undefined;
     tableData: T[];
+    searchTerm: string;
+    searchResults: T[];
 }
 
 
