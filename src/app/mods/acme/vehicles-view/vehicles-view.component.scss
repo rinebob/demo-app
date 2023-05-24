@@ -5,10 +5,13 @@
     
     .vehicles-view-container {
         @include global.flexboxLayout(column, flex-start,center);
-        @include global.border1;
         background-color: white;
         color: black;
+        padding: 20px;
         
+        app-vehicles-search, app-vehicles-table {
+            width: 100%;
+        }
 
     }
     
