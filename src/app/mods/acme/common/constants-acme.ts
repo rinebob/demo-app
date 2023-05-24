@@ -1,3 +1,4 @@
+import { PARCELS } from "./acme-mock-data";
 import { AcmeRoutes, AcmeState, ButtonMetadata, Entity, EntityBase, Parcel } from "./interfaces-acme";
 
 
@@ -28,9 +29,9 @@ export const ACME_STORE_INITIALIZER: AcmeState<Parcel> = {
 ///////////////////// PARCEL ///////////////////////
 
 export const PARCEL_STORE_INITIALIZER: AcmeState<Parcel> = {
-    entities: [],
-    selectedEntity: undefined,
-    tableData: [],
+    entities: [...PARCELS],
+    selectedEntity: PARCELS[0],
+    tableData: [...PARCELS],
 }
 
 
