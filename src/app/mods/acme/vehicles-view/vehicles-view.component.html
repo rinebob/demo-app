@@ -1,9 +1,16 @@
 
 <div class="vehicles-view-container">
-    
-    <p>vehicles-view works!</p>
 
-    {{vehicles$ | async | json}}
+    <p>Vehicles</p>
+    
+    <app-vehicles-search [entities]="(entities$ | async)!"
+                         (searchTerm)="handleSearchTerm($event)"
+    >
+    </app-vehicles-search>
+
+    <app-vehicles-table [entities]="(entitiesTableData$ | async)!"
+                        [columnMetadata]="VEHICLE_TABLE_COLUMNS"
+    ></app-vehicles-table>
 
 </div>
 

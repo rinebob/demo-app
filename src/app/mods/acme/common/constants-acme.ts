@@ -1,5 +1,5 @@
-import { PARCELS } from "./acme-mock-data";
-import { AcmeRoutes, AcmeState, ButtonMetadata, ColumnMetadata, Entity, EntityBase, Parcel, ParcelTableColumn, VehicleTableColumn } from "./interfaces-acme";
+import { PARCELS, VEHICLES } from "./acme-mock-data";
+import { AcmeRoutes, AcmeState, ButtonMetadata, ColumnMetadata, EntityBase, Parcel, ParcelTableColumn, Vehicle, VehicleTableColumn } from "./interfaces-acme";
 
 
 export const ACME_SIDENAV_BUTTONS: ButtonMetadata[] = [
@@ -14,19 +14,6 @@ export const ENTITY_INITIALIZER: EntityBase = {
     entityId: '',
     displayName: '',
 }
-
-export const ACME_STORE_INITIALIZER: AcmeState<Parcel> = {
-    entities: [],
-    selectedEntity: undefined,
-    tableData: [],
-    searchTerm: '',
-    searchResults: [],
-}
-
-
-
-
-
 
 ///////////////////// PARCEL ///////////////////////
 
@@ -53,6 +40,14 @@ export const PARCEL_TABLE_COLUMNS: ColumnMetadata[] = [
 
 
 ///////////////////// VEHICLE ////////////////////////
+
+export const VEHICLE_STORE_INITIALIZER: AcmeState<Vehicle> = {
+    entities: [...VEHICLES],
+    selectedEntity: VEHICLES[0],
+    tableData: [...VEHICLES],
+    searchTerm: '',
+    searchResults: [],
+}
 
 export const VEHICLE_TABLE_COLUMNS: ColumnMetadata[] = [
 

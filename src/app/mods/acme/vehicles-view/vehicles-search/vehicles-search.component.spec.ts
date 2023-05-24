@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntitiesViewComponent } from './entities-view-base.component';
+import { VehiclesSearchComponent } from './vehicles-search.component';
 
-describe('EntitiesViewComponent', () => {
-  let component: EntitiesViewComponent;
-  let fixture: ComponentFixture<EntitiesViewComponent>;
+describe('VehiclesSearchComponent', () => {
+  let component: VehiclesSearchComponent;
+  let fixture: ComponentFixture<VehiclesSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EntitiesViewComponent ]
+      declarations: [ VehiclesSearchComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EntitiesViewComponent);
+    fixture = TestBed.createComponent(VehiclesSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

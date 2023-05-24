@@ -5,7 +5,7 @@ import { PARCELS, PARCEL_4 } from '../common/acme-mock-data';
 import { Parcel } from '../common/interfaces-acme';
 import { PARCEL_TABLE_COLUMNS } from '../common/constants-acme';
 import { ParcelsViewStore } from './parcels-view-store';
-import { EntitiesViewBaseComponent } from '../base/entities-view/entities-view.component';
+import { EntitiesViewBaseComponent } from '../base/entities-view/entities-view-base.component';
 import { search } from '../common/acme-utils';
 
 @Component({
