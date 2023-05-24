@@ -1,0 +1,28 @@
+<mat-sidenav-container #sidenav class="acme-sidenav-container">
+    
+    <!-- opened="true" -->
+    <mat-sidenav mode="side"
+                class="acme-sidenav"
+    >
+
+        <button *ngFor="let button of ACME_SIDENAV_BUTTONS"
+                class="acme-sidenav-button"
+                routerLink="{{button.url}}"
+                routerLinkActive="active-link"
+                (click)="sidenav.close()"
+
+        >
+            {{button.text}}
+        </button>
+    
+    </mat-sidenav>
+
+    <mat-sidenav-content class="acme-sidenav-content">
+
+        <button (click)="sidenav.open()">open sidenav</button>
+
+        <router-outlet></router-outlet>
+        
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

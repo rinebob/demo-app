@@ -201,6 +201,7 @@ export const APP_SIDENAV_BUTTONS: ButtonMetadata[] = [
     {url: AppRoutes.ROBERT, text: 'home', authLevel: AuthLevel.UNKNOWN},
     {url: AppRoutes.KANBAN, text: 'kanban todo app', authLevel: AuthLevel.UNKNOWN},
     {url: AppRoutes.AUDIO, text: 'audiophile ecom site', authLevel: AuthLevel.UNKNOWN},
+    {url: AppRoutes.ACME, text: 'acme sales', authLevel: AuthLevel.UNKNOWN},
     {url: AppRoutes.MESSAGES, text: 'messages', authLevel: AuthLevel.OWNER},
     // {url: AppRoutes.CHARTS, text: 'trading view chart clone'},
     // {url: AppRoutes.TRADER, text: 'trading view chart clone'},
