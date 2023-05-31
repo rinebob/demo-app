@@ -1,4 +1,4 @@
-import { Parcel, ParcelType, ParcelUse, Vehicle, VehicleMaker, VehicleType } from "./interfaces-acme";
+import { Collectible, CollectibleCondition, CollectibleType, Parcel, ParcelType, ParcelUse, Vehicle, VehicleMaker, VehicleType } from "./interfaces-acme";
 
 ///////////////////////// PARCELS ///////////////////////////
 
@@ -127,3 +127,57 @@ export const VEHICLE_4: Vehicle = {
 }
 
 export const VEHICLES: Vehicle[] = [VEHICLE_1, VEHICLE_2, VEHICLE_3, VEHICLE_4];
+
+/////////////////////////// COLLECTIBLES ////////////////////////
+
+// export interface Collectible extends EntityBase {
+//     collectibleType: CollectibleType;
+//     age: number;
+//     subject: string;    // who/what the collectible refers to (i.e. baseball card)
+//     price: number;
+//     condition: CollectibleCondition;
+// }
+
+// export const COLLECTIBLE_: Collectible = {
+    // entityId: '',
+    // displayName: '',
+//     collectibleType: CollectibleType.,
+//     age: 0,
+//     subject: '',
+//     price: 0,
+//     condition: CollectibleCondition.,
+// }
+
+export const COLLECTIBLE_1: Collectible = {
+    entityId: 'collectible-1',
+    displayName: 'paris in spring',
+    collectibleType: CollectibleType.ART,
+    age: 200,
+    subject: 'monay',
+    price: 1250500,
+    condition: CollectibleCondition.FAIR,
+}
+
+export const COLLECTIBLE_2: Collectible = {
+    entityId: 'collectible-2',
+    displayName: 'hank aaron rookie card',
+    collectibleType: CollectibleType.MEMORABILIA,
+    age: 65,
+    subject: 'hank aaron',
+    price: 1125750,
+    condition: CollectibleCondition.LIKE_NEW,
+}
+
+export const COLLECTIBLE_3: Collectible = {
+    entityId: 'collectible-3',
+    displayName: 'american revolution uniform',
+    collectibleType: CollectibleType.CLOTHING,
+    age: 265,
+    subject: 'soldier',
+    price: 295500,
+    condition: CollectibleCondition.POOR,
+}
+
+export const COLLECTIBLES: Collectible[] = [
+    COLLECTIBLE_1, COLLECTIBLE_2, COLLECTIBLE_3,
+];

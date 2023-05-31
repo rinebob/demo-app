@@ -4,6 +4,7 @@ import { Observable, Subject, Subscription } from "rxjs";
 export enum AcmeRoutes {
     PARCELS = 'parcels',
     VEHICLES = 'vehicles',
+    COLLECTIBLES = 'collectibles',
 }
 
 export interface ButtonMetadata {
@@ -134,4 +135,43 @@ export enum VehicleTableColumn {
     PRICE = 'price',
     MILES = 'miles',
 
+}
+
+////////////////////////// COLLECTIBLE ////////////////////////////
+
+export enum CollectibleType {
+    ART = 'art',
+    MEMORABILIA = 'memorabilia',
+    CLOTHING = 'clothing',
+    BOOK = 'book',
+}
+
+export enum CollectibleCondition {
+    NEW = 'new',
+    LIKE_NEW = 'like new',
+    GOOD = 'good',
+    FAIR = 'fair',
+    POOR = 'poor',
+}
+
+export interface Collectible extends EntityBase {
+    collectibleType: CollectibleType;
+    age: number;
+    subject: string;    // who/what the collectible refers to (i.e. baseball card)
+    price: number;
+    condition: CollectibleCondition;
+}
+
+export interface collectibleComponentStoreInterface  extends EntityComponentStoreInterface<Collectible> {
+
+}
+
+export enum CollectibleTableColumn {
+    ENTITY_ID = 'entityId',
+    DISPLAY_NAME = 'displayName',
+    COLLECTIBLE_TYPE = 'collectibleType',
+    AGE = 'age',
+    SUBJECT = 'subject',
+    PRICE = 'price',
+    CONDITION = 'condition',
 }

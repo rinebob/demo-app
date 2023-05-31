@@ -1,5 +1,5 @@
-import { PARCELS, VEHICLES } from "./acme-mock-data";
-import { AcmeRoutes, AcmeState, ButtonMetadata, ColumnMetadata, EntityBase, Parcel, ParcelTableColumn, Vehicle, VehicleTableColumn } from "./interfaces-acme";
+import { COLLECTIBLES, PARCELS, VEHICLES } from "./acme-mock-data";
+import { AcmeRoutes, AcmeState, ButtonMetadata, Collectible, CollectibleTableColumn, ColumnMetadata, EntityBase, Parcel, ParcelTableColumn, Vehicle, VehicleTableColumn } from "./interfaces-acme";
 
 
 export const ACME_SIDENAV_BUTTONS: ButtonMetadata[] = [
@@ -61,3 +61,23 @@ export const VEHICLE_TABLE_COLUMNS: ColumnMetadata[] = [
     {columnName: VehicleTableColumn.MILES, headerText: 'Miles'},
 
 ];
+
+//////////////////////// COLLECTIBLE //////////////////////////
+
+export const COLLECTIBLE_STORE_INITIALIZER: AcmeState<Collectible> = {
+    entities: [...COLLECTIBLES],
+    selectedEntity: COLLECTIBLES[0],
+    tableData: [...COLLECTIBLES],
+    searchTerm: '',
+    searchResults: [],
+}
+
+export const COLLECTIBLE_TABLE_COLUMNS: ColumnMetadata[] = [
+    {columnName: CollectibleTableColumn.ENTITY_ID, headerText: 'Id'},
+    {columnName: CollectibleTableColumn.DISPLAY_NAME, headerText: 'Name'},
+    {columnName: CollectibleTableColumn.AGE, headerText: 'Age'},
+    {columnName: CollectibleTableColumn.COLLECTIBLE_TYPE, headerText: 'Type'},
+    {columnName: CollectibleTableColumn.CONDITION, headerText: 'Condition'},
+    {columnName: CollectibleTableColumn.SUBJECT, headerText: 'Subject'},
+    {columnName: CollectibleTableColumn.PRICE, headerText: 'Price'},
+]
