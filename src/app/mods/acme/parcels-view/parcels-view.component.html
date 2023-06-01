@@ -4,12 +4,13 @@
     <p>Parcels</p>
 
     <app-parcels-search [entities]="(entities$ | async)!"
+                        [label]="label"
                         (searchTerm)="handleSearchTerm($event)"
     >
 
     </app-parcels-search>
 
-    <app-parcels-table [entities]="(entitiesTableData$ | async)!"
+    <app-parcels-table [entities]="(tableData$ | async)!"
                        [columnMetadata]="PARCEL_TABLE_COLUMNS"
     >
 

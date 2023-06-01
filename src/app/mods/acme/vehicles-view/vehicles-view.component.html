@@ -4,11 +4,12 @@
     <p>Vehicles</p>
     
     <app-vehicles-search [entities]="(entities$ | async)!"
+                         [label]="label"
                          (searchTerm)="handleSearchTerm($event)"
     >
     </app-vehicles-search>
 
-    <app-vehicles-table [entities]="(entitiesTableData$ | async)!"
+    <app-vehicles-table [entities]="(tableData$ | async)!"
                         [columnMetadata]="VEHICLE_TABLE_COLUMNS"
     ></app-vehicles-table>
 

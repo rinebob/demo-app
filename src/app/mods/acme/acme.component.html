@@ -5,11 +5,11 @@
                 class="acme-sidenav"
     >
 
-        <button *ngFor="let button of ACME_SIDENAV_BUTTONS"
-                class="acme-sidenav-button"
-                routerLink="{{button.url}}"
-                routerLinkActive="active-link"
-                (click)="sidenav.close()"
+    <button *ngFor="let button of ACME_SIDENAV_BUTTONS"
+            class="acme-sidenav-button"
+            routerLink="{{button.url}}"
+            routerLinkActive="active-link"
+            (click)="sidenav.close()"
 
         >
             {{button.text}}

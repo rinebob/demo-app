@@ -1,4 +1,4 @@
-import { Entity, EntityBase, Parcel } from "./interfaces-acme";
+import { EntityBase } from "./interfaces-acme";
 
 
 export function search<T extends EntityBase>(source: T[], term: string): T[] {
@@ -20,7 +20,7 @@ export function search<T extends EntityBase>(source: T[], term: string): T[] {
     for (const entity of source) {
         // console.log('aU sP entity/name: ', entity, entity.displayName);
         // for (let value of Object.values(entity)) {
-        for (let [key, value] of Object.entries(entity)) {
+        for (let value of Object.values(entity)) {
             // console.log('aU sP key/value: ', key, value, typeof value);
             
             if (typeof value !== 'string' && typeof value !== 'number') {
