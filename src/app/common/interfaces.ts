@@ -151,7 +151,6 @@ export interface DialogData {
     ANG_EXP = 'ang-exp',
     CUBIC_BEZIER = 'cubic-bezier',
     BIODATA = 'biodata',
-    MAT_THEME = 'mat-theme',
     DESIGN_SYSTEM = 'design-system',
     KANBAN_BOARD = 'kanban/board',
     KANBAN_LOGIN = 'kanban/login',
