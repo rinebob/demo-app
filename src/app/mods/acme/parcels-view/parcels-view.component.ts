@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, of, take, withLatestFrom } from 'rxjs';
+import { withLatestFrom } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { PARCELS, PARCEL_4 } from '../common/acme-mock-data';
 import { Parcel } from '../common/interfaces-acme';
@@ -17,19 +18,20 @@ import { search } from '../common/acme-utils';
 export class ParcelsViewComponent extends EntitiesViewBaseComponent<Parcel> implements OnInit {
 
   searchTerm$ = this.parcelsStore.searchTerm$;
+
+  label = 'parcels';
   
   readonly PARCEL_TABLE_COLUMNS = PARCEL_TABLE_COLUMNS;
 
   constructor(readonly parcelsStore: ParcelsViewStore) {
 
     super(parcelsStore);
-    this.parcelsStore.setEntities(PARCELS);
-    this.parcelsStore.setTableData(PARCELS);
   }
 
   ngOnInit(): void {
     this.searchTerm$.pipe(
       withLatestFrom(this.entities$),
+      takeUntil(this.destroy$)
       ).subscribe(([term, parcels]) => {
         // console.log('pV ngOI search term sub: ', term);
         const results = search<Parcel>(parcels, term)
@@ -37,12 +39,4 @@ export class ParcelsViewComponent extends EntitiesViewBaseComponent<Parcel> impl
         this.parcelsStore.setSearchResults(results);
     });
   }
-
-  saveParcel() {
-    this.parcelsStore.setEntities([...PARCELS, {...PARCEL_4}])
-    this.parcelsStore.setSelectedEntity(PARCEL_4);
-
-  }
-
-
 }

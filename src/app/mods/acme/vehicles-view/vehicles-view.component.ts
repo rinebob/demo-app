@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, withLatestFrom } from 'rxjs';
+import { withLatestFrom } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { EntitiesViewBaseComponent } from '../base/entities-view/entities-view-base.component';
 import { Vehicle } from '../common/interfaces-acme';
 import { VEHICLE_TABLE_COLUMNS } from '../common/constants-acme';
-import { VEHICLES } from '../common/acme-mock-data';
 import { VehiclesViewStore } from './vehicles-view-store';
 import { search } from '../common/acme-utils';
 
@@ -17,18 +17,19 @@ import { search } from '../common/acme-utils';
 export class VehiclesViewComponent extends EntitiesViewBaseComponent<Vehicle> implements OnInit {
 
   searchTerm$ = this.vehiclesStore.searchTerm$;
+
+  label = 'vehicles';
   
   readonly VEHICLE_TABLE_COLUMNS = VEHICLE_TABLE_COLUMNS;
 
   constructor(readonly vehiclesStore: VehiclesViewStore) {
     super(vehiclesStore);
-    this.vehiclesStore.setEntities(VEHICLES);
-    this.vehiclesStore.setTableData(VEHICLES);
   }
 
   ngOnInit(): void {
     this.searchTerm$.pipe(
       withLatestFrom(this.entities$),
+      takeUntil(this.destroy$)
       ).subscribe(([term, vehicles]) => {
         // console.log('pV ngOI search term sub: ', term);
         const results = search<Vehicle>(vehicles, term)
