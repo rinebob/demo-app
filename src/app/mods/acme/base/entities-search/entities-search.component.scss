@@ -21,8 +21,9 @@
     
             .mat-mdc-text-field-wrapper {
     
-                &:not(:focus) {
+                &:not(.mdc-text-field--focused) {
                     border: 1px solid lightgrey;
+                    border-radius: 4px;
     
                 }
             }    
