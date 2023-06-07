@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ParcelsViewComponent } from './parcels-view.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ParcelsViewComponent', () => {
   let component: ParcelsViewComponent;
@@ -8,7 +9,8 @@ describe('ParcelsViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ParcelsViewComponent ]
+      declarations: [ ParcelsViewComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
 
