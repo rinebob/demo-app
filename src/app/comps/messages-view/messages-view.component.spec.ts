@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MessagesViewComponent } from './messages-view.component';
+import { Firestore } from '@angular/fire/firestore';
+import { AppModule } from 'src/app/app.module';
 
 describe('MessagesViewComponent', () => {
   let component: MessagesViewComponent;
@@ -8,7 +10,11 @@ describe('MessagesViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MessagesViewComponent ]
+      declarations: [ MessagesViewComponent ],
+      imports: [AppModule],
+      providers: [
+        {provide: Firestore, useValue: {}}
+      ],
     })
     .compileComponents();
 

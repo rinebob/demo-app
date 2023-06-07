@@ -7,6 +7,7 @@ import { FirebaseAppModule } from '@angular/fire/app';
 import { KanbanModule } from '../../kanban.module';
 import { BoardFormComponent } from './board-form.component';
 import { BoardsStore } from '../../../../services/boards-store.service';
+import { UserService } from 'src/app/services/user.service';
 
 describe('BoardFormComponent', () => {
   let component: BoardFormComponent;
@@ -24,7 +25,8 @@ describe('BoardFormComponent', () => {
         BoardsStore,
         {provide: MatDialogRef, useValue: {}},
         {provide: MAT_DIALOG_DATA, useValue: []},
-        {provide: Firestore, useValue: {}}
+        {provide: Firestore, useValue: {}},
+        {provide: UserService, useValue: {user$: {}}},
        ],
     })
     .compileComponents();

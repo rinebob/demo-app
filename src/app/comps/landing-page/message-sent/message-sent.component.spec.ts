@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MessageSentComponent } from './message-sent.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 describe('MessageSentComponent', () => {
   let component: MessageSentComponent;
@@ -8,7 +9,10 @@ describe('MessageSentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MessageSentComponent ]
+      declarations: [ MessageSentComponent ],
+      providers: [
+        {provide: MatDialogRef, useValue: {}}
+      ],
     })
     .compileComponents();
 

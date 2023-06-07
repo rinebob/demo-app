@@ -7,6 +7,7 @@ import { FirebaseAppModule } from '@angular/fire/app';
 import { KanbanModule } from '../../kanban.module';
 import { TaskFormComponent } from './task-form.component';
 import { BoardsStore } from '../../../../services/boards-store.service';
+import { UserService } from 'src/app/services/user.service';
 
 describe('TaskFormComponent', () => {
   let component: TaskFormComponent;
@@ -25,6 +26,7 @@ describe('TaskFormComponent', () => {
         {provide: MatDialogRef, useValue: {}},
         {provide: MAT_DIALOG_DATA, useValue: []},
         {provide: Firestore, useValue: {}},
+        {provide: UserService, useValue: {user$: {}}}
       ],
     })
     .compileComponents();
