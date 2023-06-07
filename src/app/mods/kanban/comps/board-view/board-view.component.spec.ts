@@ -6,6 +6,7 @@ import { FirebaseAppModule } from '@angular/fire/app';
 import { KanbanModule } from '../../kanban.module';
 import { BoardViewComponent } from './board-view.component';
 import { BoardsStore } from '../../../../services/boards-store.service';
+import { UserService } from 'src/app/services/user.service';
 
 describe('BoardViewComponent', () => {
   let component: BoardViewComponent;
@@ -21,7 +22,8 @@ describe('BoardViewComponent', () => {
        ],
       providers: [ 
         BoardsStore,
-        {provide: Firestore, useValue: {}}
+        {provide: Firestore, useValue: {}},
+        {provide: UserService, useValue: {user$: undefined}},
        ],
     })
     .compileComponents();

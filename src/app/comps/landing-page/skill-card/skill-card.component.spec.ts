@@ -22,4 +22,9 @@ describe('SkillCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should show correct icon
+
+  // should show text with formatting
+
 });

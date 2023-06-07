@@ -22,4 +22,6 @@ describe('NameIntroComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should have title, text and name
 });

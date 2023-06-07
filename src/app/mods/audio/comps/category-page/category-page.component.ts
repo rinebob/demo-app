@@ -21,7 +21,6 @@ export class CategoryPageComponent implements OnDestroy, OnInit {
   }
 
   viewportMode: ViewportMode = ViewportMode.DESKTOP;
-
   viewportMode$ = this.viewportService.viewportMode$;
 
   category = '';

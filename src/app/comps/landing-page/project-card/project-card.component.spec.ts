@@ -22,4 +22,10 @@ describe('ProjectCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should have correct title
+
+  // should have button with text
+
+  // button click should navigate to project
 });

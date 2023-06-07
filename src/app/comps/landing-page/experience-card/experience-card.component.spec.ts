@@ -22,4 +22,10 @@ describe('ExperienceCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should have title, employer, tenure, title and role
+
+  // should have assignment headline and text
+
+
 });

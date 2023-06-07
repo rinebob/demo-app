@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginRegComponent } from './login-reg.component';
+import { UserService } from 'src/app/services/user.service';
 
 describe('LoginRegComponent', () => {
   let component: LoginRegComponent;
@@ -8,7 +9,10 @@ describe('LoginRegComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginRegComponent ]
+      declarations: [ LoginRegComponent ],
+      providers: [
+        {provide: UserService, useValue: {user$: {}}},
+      ]
     })
     .compileComponents();
 

@@ -11,7 +11,6 @@ import { ProjectData } from 'src/app/common/interfaces';
 })
 export class ProjectCardComponent {
   @Input() project: ProjectData = RINEBOB_PROJECTS[0];
-  readonly RINEBOB_PROJECTS = RINEBOB_PROJECTS;
 
   constructor(private router: Router) {
 

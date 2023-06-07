@@ -26,4 +26,8 @@ describe('NavFooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // should have logo and nav links component, all text and icon buttons
+
+  // click on icon button should redirect to external website
 });

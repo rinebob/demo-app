@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { Assignment, ExperienceData, ProjectData, SkillData } from 'src/app/common/interfaces';
-
-import { RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS } from 'src/app/common/constants';
+import { SkillData } from 'src/app/common/interfaces';
+import { RINEBOB_SKILLS } from 'src/app/common/constants';
 
 @Component({
   selector: 'app-skill-card',
@@ -12,8 +11,4 @@ import { RINEBOB_EXPERIENCE, RINEBOB_PROJECTS, RINEBOB_SKILLS } from 'src/app/co
 })
 export class SkillCardComponent {
   @Input() skill: SkillData = RINEBOB_SKILLS[0];
-  
-  
-  readonly RINEBOB_SKILLS = RINEBOB_SKILLS;
-  
 }
