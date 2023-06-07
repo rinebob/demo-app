@@ -1,18 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VehicleViewComponent } from './vehicles-view.component';
+import { VehiclesViewComponent } from './vehicles-view.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('VehicleViewComponent', () => {
-  let component: VehicleViewComponent;
-  let fixture: ComponentFixture<VehicleViewComponent>;
+describe('VehiclesViewComponent', () => {
+  let component: VehiclesViewComponent;
+  let fixture: ComponentFixture<VehiclesViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VehicleViewComponent ]
+      declarations: [ VehiclesViewComponent ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VehicleViewComponent);
+    fixture = TestBed.createComponent(VehiclesViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
