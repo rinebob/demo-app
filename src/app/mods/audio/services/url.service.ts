@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
 export class UrlService {
 
   private currentUrlBS = new BehaviorSubject<string>('');
-  private previousUrlBS = new BehaviorSubject<string>('');
+  private previousUrlBS = new BehaviorSubject<string>('/audio/home');
   public previousUrl$: Observable<string> = this.previousUrlBS;
 
   constructor(private router: Router,) {

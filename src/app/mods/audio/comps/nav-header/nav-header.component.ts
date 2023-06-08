@@ -22,7 +22,7 @@ export class NavHeaderComponent implements OnDestroy {
   @ViewChild('navHeaderContainer') navHeaderContainer: ElementRef;
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  onResize() {
     this.viewportService.updateViewportMode(window.innerWidth);
   }
 
@@ -61,7 +61,6 @@ export class NavHeaderComponent implements OnDestroy {
   
   handleOpenNavMenu() {
     // console.log('nH hONM open nav menu dialog called. nav header comp: ', this.navHeaderContainer);
-
     const config = new MatDialogConfig();
 
     config.panelClass = this.navMenuPanelClass;
@@ -72,11 +71,8 @@ export class NavHeaderComponent implements OnDestroy {
       // console.log('nH hSSC t.route: ', this.route);
       if (result) {
         this.router.navigate(['/audio/category', result]);
-
       }
-
     });
-
   }
 
   handleShowShoppingCart() {
@@ -89,31 +85,22 @@ export class NavHeaderComponent implements OnDestroy {
       // console.log('nH hSSC shopping cart dialog closed.  result: ', result);
 
       if (result && result === AudioDialogCloseResult.PROCEED_TO_CHECKOUT) {
-      
         this.router.navigate(['./checkout'], {relativeTo: this.route});
-
       }
-
     });
   }
 
   populateCart() {
-
     for (const item of POPULATED_SHOPPING_CART) {
       this.audioStore.addItemToCart(item);
-      
     }
 
-    this.cart$.pipe(take(1)).subscribe(cart => {
-      if (cart.length > 0) {
-        
-        const data = JSON.stringify(cart);
-        // console.log('pD aTC saving item to storage: ', data);
-        // this.localStorage.saveData('cart', data);
-
-      }
-      
-    });
-
+    // this.cart$.pipe(take(1)).subscribe(cart => {
+    //   if (cart.length > 0) {
+    //     const data = JSON.stringify(cart);
+    //     console.log('pD aTC saving item to storage: ', data);
+    //     this.localStorage.saveData('cart', data);
+    //   }
+    // });
   }
 }

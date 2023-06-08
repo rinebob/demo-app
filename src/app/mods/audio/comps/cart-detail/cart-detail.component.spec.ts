@@ -22,4 +22,7 @@ describe('CartDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // correctly 
+
 });

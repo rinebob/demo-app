@@ -8,6 +8,7 @@ import { AppText, Customer, Order, Product, ViewportMode } from '../../common/au
 import { AudioStore } from '../../services/audio-store.service';
 import { ProductsService } from '../../services/products.service';
 import { ThankYouComponent } from '../thank-you/thank-you.component';
+import { UrlService } from '../../services/url.service';
 import { ViewportService } from '../../services/viewport.service';
 
 @Component({
@@ -29,6 +30,8 @@ export class CheckoutPageComponent implements OnDestroy {
   customer$ = this.audioStore.customer$;
   order$ = this.audioStore.order$;
 
+  previousUrl$ = this.urlService.previousUrl$;
+
   customerFormValidityBS = new BehaviorSubject<string>('');
   customerFormValidity$: Observable<string> = this.customerFormValidityBS;;
 
@@ -39,6 +42,7 @@ export class CheckoutPageComponent implements OnDestroy {
   constructor(readonly audioStore: AudioStore, readonly dialog: MatDialog,
               readonly productsService: ProductsService, readonly router: Router, 
               readonly route: ActivatedRoute,  readonly viewportService: ViewportService,
+              readonly urlService: UrlService, 
     ) {
       this.viewportMode$.pipe(takeUntil(this.destroy$)).subscribe(mode => {
         // console.log('cP ctor viewport mode sub: ', mode);

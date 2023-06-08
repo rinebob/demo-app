@@ -110,7 +110,7 @@
                 
                 <div class="radio-control">
                     
-                    <input type="radio" id="COD" value="COD" name="paymentMethodControl"
+                    <input type="radio" id="COD" value="COD" name="paymentMethodControl" class="radio-button"
                            formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === PaymentMethod.COD"
                     />
                     <label for="COD">{{AppText.CASH_ON_DELIVERY}}</label>
@@ -119,7 +119,7 @@
                 
                 <div class="radio-control">
     
-                    <input type="radio" id="e-Money" value="e-Money" name="paymentMethodControl"
+                    <input type="radio" id="e-Money" value="e-Money" name="paymentMethodControl" class="radio-button"
                            formControlName="paymentMethodControl" [checked]="paymentMethodControl.value === PaymentMethod.E_MONEY"
                     >
                     <label for="e-Money">{{AppText.E_MONEY}}</label>
