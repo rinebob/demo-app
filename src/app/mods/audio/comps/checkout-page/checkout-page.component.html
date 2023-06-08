@@ -1,7 +1,7 @@
 
 <div class="checkout-page-container">
 
-    <app-breadcrumb-panel></app-breadcrumb-panel>
+    <app-breadcrumb-panel [url]="(previousUrl$ | async)!"></app-breadcrumb-panel>
     
     <div class="checkout-page-inner-container">
     

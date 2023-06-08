@@ -46,15 +46,5 @@ export class ProductCardComponent {
 
   readonly AppText = AppText;
 
-  constructor(readonly router: Router, readonly route: ActivatedRoute) {
-
-  }
-
-  navigate(segment: string) {
-    // console.log('pC n navigate to segment: ', segment);
-
-    this.router.navigate(['../../products', {id: segment}], {relativeTo: this.route})
-
-  }
-
+  constructor(readonly router: Router, readonly route: ActivatedRoute) {}
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap, NavigationEnd, Scroll } from '@angular/router';
-import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil, tap } from 'rxjs';
 
 import { AuScrollTargetId, Product, ViewportMode } from '../../common/au-interfaces';
 import { ViewportService } from '../../services/viewport.service';
@@ -61,11 +61,11 @@ export class CategoryPageComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ products }) => {
-      // console.log('cP ctor route data products: ', products);
+    this.route.data.pipe(takeUntil(this.destroy$)).subscribe(({ products }) => {
+      // console.log('cP ngOI route data products: ', products);
       const orderedProducts = this.setNewProductsFirst(products);
       this.productsBS.next(orderedProducts);
-      // console.log('cP ctor products BS value: ', this.productsBS.value);
+      // console.log('cP ngOI products BS value: ', this.productsBS.value);
     })
 
     this.viewportService.updateViewportMode(window.innerWidth);

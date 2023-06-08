@@ -51,6 +51,11 @@ export class ProductPageComponent implements OnDestroy {
         this.viewportMode = mode;
         
       });
+
+      this.previousUrl$.pipe().subscribe(prevUrl => {
+        // console.log('pP ctor prev url sub: ', prevUrl);
+        // console.log('pP ctor prev url sub: ', prevUrl);
+      });
   }
 
   ngOnInit(): void {
