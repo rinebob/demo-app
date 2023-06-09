@@ -7,7 +7,7 @@ import { AUDIO_PRODUCT_1 } from '../../common/audio-mock-data';
 import { ProductPageComponent } from '../product-page/product-page.component';
 import { By } from '@angular/platform-browser';
 
-fdescribe('AlsoLikePanelComponent', () => {
+describe('AlsoLikePanelComponent', () => {
   let component: AlsoLikePanelComponent;
   let fixture: ComponentFixture<AlsoLikePanelComponent>;
   let router: Router;
@@ -52,7 +52,7 @@ fdescribe('AlsoLikePanelComponent', () => {
     expect(headlines[0].textContent).toEqual('XX99 Mark I');
   });
 
-  fit('clicking a product button navigates to product page', () => {
+  it('clicking a product button navigates to product page', () => {
     const navSpy = spyOn(router, 'navigateByUrl');
     const button = fixture.nativeElement.querySelector('.see-product-button');
 
