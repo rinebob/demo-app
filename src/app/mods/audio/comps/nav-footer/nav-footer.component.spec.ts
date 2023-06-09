@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { AudioModule } from '../../audio.module';
 import { NavFooterComponent } from './nav-footer.component';
+import { findComponent } from 'src/app/testing/test-utils';
+import { FOOTER_COPYRIGHT, FOOTER_TEXT, NAV_BUTTONS } from '../../common/au-constants';
+import { AppText } from '../../common/au-interfaces';
 
 describe('NavFooterComponent', () => {
   let component: NavFooterComponent;
@@ -27,7 +30,24 @@ describe('NavFooterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // should have logo and nav links component, all text and icon buttons
+  it('should have logo and nav links component, all text and icon buttons', () => {
+    const logoText = fixture.nativeElement.querySelector('.logo-text');
+    const comp = findComponent(fixture, 'app-nav-links');
+    const descText = fixture.nativeElement.querySelector('.description');
+    const copyright = fixture.nativeElement.querySelector('.copyright');
+    const fbIcon = fixture.nativeElement.querySelector('.facebook-icon');
+    const twIcon = fixture.nativeElement.querySelector('.twitter-icon');
+    const igIcon = fixture.nativeElement.querySelector('.instagram-icon');
 
-  // click on icon button should redirect to external website
+    expect(logoText).toBeTruthy();
+    expect(comp).toBeTruthy();
+    expect(descText).toBeTruthy();
+    expect(copyright).toBeTruthy();
+    expect(fbIcon).toBeTruthy();
+    expect(twIcon).toBeTruthy();
+    expect(igIcon).toBeTruthy();
+    expect(logoText.textContent).toEqual(AppText.LOGO_TEXT);
+    expect(descText.textContent).toEqual(FOOTER_TEXT);
+    expect(copyright.textContent).toEqual(FOOTER_COPYRIGHT);
+  });
 });
