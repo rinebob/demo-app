@@ -64,6 +64,7 @@ export enum AppText {
     XX99_HEADPHONES_SLUG = 'xx99-mark-two-headphones',
     REMOVE_ALL = 'remove all',
     CART = 'cart',
+    EMPTY_CART = 'your cart is currently empty',
     TOTAL = 'total',
     SUMMARY = 'summary',
     SHIPPING = 'shipping',
