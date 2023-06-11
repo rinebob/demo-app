@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AudioModule } from '../../audio.module';
 import { NavFooterComponent } from './nav-footer.component';
 import { findComponent } from 'src/app/testing/test-utils';
-import { FOOTER_COPYRIGHT, FOOTER_TEXT, NAV_BUTTONS } from '../../common/au-constants';
+import { FOOTER_COPYRIGHT, FOOTER_TEXT } from '../../common/au-constants';
 import { AppText } from '../../common/au-interfaces';
 
 describe('NavFooterComponent', () => {

@@ -43,9 +43,9 @@
                         
                         <div class="quantity-container" *ngIf="mode === 'detail'; else amounts">
                                 
-                            <button class="counter-button" (click)="handleIncrementCount(product.slug, -1)">-</button>
+                            <button class="counter-button decrement-button" (click)="handleIncrementCount(product.slug, -1)">-</button>
                             <p class="count">{{product.count}}</p>
-                            <button class="counter-button" (click)="handleIncrementCount(product.slug, 1)">+</button>
+                            <button class="counter-button increment-button" (click)="handleIncrementCount(product.slug, 1)">+</button>
                             <button class="counter-button delete-button" (click)="handleRemoveItemFromCart(product.slug)"> <mat-icon class="material-symbols-outlined">delete</mat-icon> </button>
                             
                         </div>
