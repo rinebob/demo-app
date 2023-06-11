@@ -141,20 +141,15 @@ export class CartDetailComponent implements AfterViewInit, OnDestroy, OnInit {
   getCartProducts() {
     this.cart$.pipe(takeUntil(this.destroy$)).subscribe(cart => {
       // console.log('cD gCP cart sub: ', cart);
-      
       this.cartBS.next([...cart]);
-      
       const products: Product[] = []
       
       if (cart.length > 0) {
         
         for (const item of cart) {
           // console.log('cD gCP item: ', item);
-  
           const slug = Object.keys(item)[0];
-  
           const product = AUDIO_PRODUCTS.find(item => item.slug === slug);
-  
           // console.log('cD gCP slug: ', slug);
   
           if (product) {
@@ -163,7 +158,6 @@ export class CartDetailComponent implements AfterViewInit, OnDestroy, OnInit {
             products.push(product);
             // console.log('cD gCP product: ', product);
           }
-  
   
           this.productsInCartBS.next(products);
           // console.log('cD gCP final products in cart: ', this.productsInCartBS.value);
@@ -195,35 +189,15 @@ export class CartDetailComponent implements AfterViewInit, OnDestroy, OnInit {
       // console.log('cD hIC product count before increment: ', product.count);
       product.count += delta;
       // console.log('cD hIC product count after increment: ', product.count);
-
       product.count = product.count > 0 ? product.count : 0;
-
       const cartItem: CartItem = {[product.slug]: product.count};
-
       this.audioStore.updateCartItemCount(cartItem);
-
     }
     // console.log('cD hIC productsBS: ', this.productsInCartBS.value);
   }
 
   handleRemoveItemFromCart(slug: string) {
     this.audioStore.removeItemFromCart(slug)
-  }
-
-  // this is the cost of the items only.  Doesn't include shipping, tax or VAT.
-  generateItemCountAndTotalCost() {
-    let cost = 0;
-    let count = 0;
-    for (const item of this.productsInCartBS.value) {
-      if (item.count) {
-        const itemCost = item.count * item.price;
-        count += item.count;
-        cost += itemCost;
-      }
-    }
-
-    this.totalCost = cost;
-    this.itemsCount = count;
   }
 
   updateLocalOrderState() {
@@ -276,11 +250,11 @@ export class CartDetailComponent implements AfterViewInit, OnDestroy, OnInit {
         }
       }
 
-      // console.log('cD hCAP cart detail proceed to checkout called.  current order: ', this.currentOrderBS.value);
+      // console.log('cD hP cart detail proceed to checkout called.  current order: ', this.currentOrderBS.value);
       this.dialogRef.close(AudioDialogCloseResult.PROCEED_TO_CHECKOUT);
 
     } else {
-      // console.log('cD hCAP cart detail continue and pay called. current order: ', this.currentOrderBS.value);
+      // console.log('cD hP cart summary continue and pay called. current order: ', this.currentOrderBS.value);
       this.audioStore.setCustomerOrder(this.currentOrderBS.value);
       this.continueAndPay.emit(this.productsInCartBS.value);
 
