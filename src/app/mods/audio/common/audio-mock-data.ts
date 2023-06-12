@@ -1,4 +1,4 @@
-import { CartItem, Customer, PaymentMethod, Product } from './au-interfaces';
+import { CartItem, Customer, Order, PaymentMethod, Product } from './au-interfaces';
 
 export const MOCK_CUSTOMER: Customer = {
   name: 'Joe Smith',
@@ -573,3 +573,54 @@ export const ORDERED_AUDIO_PRODUCTS: Product [] = [
   AUDIO_PRODUCT_3,
   AUDIO_PRODUCT_5,
 ];
+
+export const PRODUCTS_IN_CART: Product [] = [
+  {...AUDIO_PRODUCT_1, count: 2},
+  {...AUDIO_PRODUCT_2, count: 3},
+  {...AUDIO_PRODUCT_3, count: 4},
+  {...AUDIO_PRODUCT_4, count: 3},
+  {...AUDIO_PRODUCT_5, count: 3},
+  {...AUDIO_PRODUCT_6, count: 3},
+];
+
+export const MOCK_ORDER: Order = {
+  "products": [
+      {
+          "xx99-mark-two-headphones": 2
+      },
+      {
+          "xx99-mark-one-headphones": 3
+      },
+      {
+          "xx59-headphones": 4
+      },
+      {
+          "zx7-speaker": 3
+      },
+      {
+          "zx9-speaker": 3
+      },
+      {
+          "yx1-earphones": 3
+      }
+  ],
+  "totalCost": 40641,
+  "shippingCost": 50,
+  "vatCost": 8128,
+  "grandTotal": 48819,
+  "totalItemsCount": 18,
+  "orderDate": "2023-06-12T15:54:13.862Z",
+  "customer": {
+      "name": "Joe Smith",
+      "email": "joe@smith.com",
+      "phoneNumber": "555 555 5555",
+      "address": "123 Shady Bend Ln",
+      "city": "Someplace",
+      "state": "OT",
+      "zip": "90125",
+      "country": "USA",
+      "paymentMethod": "cash on delivery",
+      "eMoneyNumber": "123abc",
+      "eMoneyPin": "pin"
+  }
+}

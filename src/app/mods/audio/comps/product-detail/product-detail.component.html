@@ -24,9 +24,9 @@
         
                 <div class="quantity-container">
 
-                    <button class="counter-button" (click)="incrementCount(-1)">-</button>
+                    <button class="counter-button decrement-button" (click)="incrementCount(-1)">-</button>
                     <p class="count">{{count}}</p>
-                    <button class="counter-button" (click)="incrementCount(1)">+</button>
+                    <button class="counter-button increment-button" (click)="incrementCount(1)">+</button>
                     
                     <button class="see-product-button" (click)="addToCart()">
                         {{AppText.ADD_TO_CART}}
