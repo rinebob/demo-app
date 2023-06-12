@@ -52,16 +52,15 @@ export class ThankYouComponent {
   initializeVars() {
     this.numOtherItems = 0;
     const otherItems = this.products.slice(1);
+    // console.log('tY iV other items length : ', otherItems.length);
     if (otherItems.length > 0) {
       
       for (const item of otherItems) {
+        // console.log('tY iV item count: ', item.count, item);
         this.numOtherItems += item.count ?? 0;
-        this.showOtherItemsButtonText = `and ${this.numOtherItems} other item(s)`;
-        // console.log('tY iV other items count/button text: ', this.numOtherItems, this.showOtherItemsButtonText);
-        // console.log('tY iV products bs pre: ', this.productsBS.value);
-        // this.productsBS.next(this.showAllItems ? this.products : [this.products[0]]);
-        // console.log('tY iV products bs post: ', this.productsBS.value);
       }
+      this.showOtherItemsButtonText = `and ${this.numOtherItems} other item(s)`;
+      // console.log('tY iV other items count/button text: ', this.numOtherItems, this.showOtherItemsButtonText);
       
     } else {
       this.productsBS.next(this.products);
@@ -80,7 +79,7 @@ export class ThankYouComponent {
   }
 
   handleCloseDialog() {
-    this.dialogRef.close({result: 'thank you dialog closed dude'});
+    this.dialogRef.close({result: 'thank you dialog closed'});
   }
 
 }

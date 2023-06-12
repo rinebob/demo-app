@@ -113,7 +113,7 @@ export enum PaymentMethod {
     state: string;
     zip: string;
     country: string;
-    paymentMethod?: PaymentMethod;
+    paymentMethod?: PaymentMethod | string;
     eMoneyNumber?: string;
     eMoneyPin?: string;
   }
@@ -135,7 +135,7 @@ export enum PaymentMethod {
     vatCost: number;
     grandTotal: number;
     totalItemsCount: number;
-    orderDate: Date;
+    orderDate: Date | string;
   }
   
   export interface AudioState {

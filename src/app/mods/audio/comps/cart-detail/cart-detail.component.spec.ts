@@ -9,7 +9,7 @@ import { AppText, CartDetailMode, CartDialogData, CartItem, Order, Product, View
 import { AudioStore } from '../../services/audio-store.service';
 import { POPULATED_SHOPPING_CART } from '../../common/audio-mock-data';
 
-fdescribe('CartDetailComponent', () => {
+describe('CartDetailComponent', () => {
 
   let populatedMockAudioStore = jasmine.createSpyObj(
     'AudioStore',

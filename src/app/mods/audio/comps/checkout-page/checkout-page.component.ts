@@ -76,7 +76,7 @@ export class CheckoutPageComponent implements OnDestroy {
       withLatestFrom(this.customer$),
       take(1)
       ).subscribe(([order, customer]) => {
-      // console.log('cP hCAP order/customer: ', order, customer);
+      console.log('cP hCAP order/customer: ', order, customer);
 
       order.customer = customer;
 

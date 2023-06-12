@@ -25,7 +25,6 @@ import { BreadcrumbPanelComponent } from './comps/breadcrumb-panel/breadcrumb-pa
 import { CartDetailComponent } from './comps/cart-detail/cart-detail.component';
 import { CheckoutPageComponent } from './comps/checkout-page/checkout-page.component';
 import { CheckoutFormComponent } from './comps/checkout-form/checkout-form.component';
-import { CartSummaryComponent } from './comps/cart-summary/cart-summary.component';
 import { ThankYouComponent } from './comps/thank-you/thank-you.component';
 import { HomePageComponent } from './comps/home-page/home-page.component';
 import { NavLinksComponent } from './comps/nav-links/nav-links.component';
@@ -50,7 +49,6 @@ import { NavLinksComponent } from './comps/nav-links/nav-links.component';
     CartDetailComponent,
     CheckoutPageComponent,
     CheckoutFormComponent,
-    CartSummaryComponent,
     ThankYouComponent,
     HomePageComponent,
     NavLinksComponent,
