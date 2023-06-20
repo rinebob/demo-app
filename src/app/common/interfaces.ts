@@ -321,3 +321,25 @@ export enum LpScrollTargetId {
   EXPERIENCE = 'experience',
   CONTACT = 'contact',
 }
+
+export interface ColorSpec {
+  hex: string;
+  textColor?: string;
+  red: number;
+  blue: number;
+  green: number;
+}
+
+export interface TypographyCss {
+  fontFamily: string;
+  fontWeight: number;
+  fontSize: string;
+  lineHeight: string;
+  letterSpacing?: string;
+  color: string;
+}
+export interface TypographySpec {
+  typographyLevel: string;
+  exampleText?: string;
+  cssClasses: TypographyCss;
+}

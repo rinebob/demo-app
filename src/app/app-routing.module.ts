@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '', redirectTo: AppRoutes.ROBERT, pathMatch: 'full'},
   {path: AppRoutes.ROBERT, component: LandingPageComponent},
   {path: AppRoutes.MESSAGES, component: MessagesViewComponent},
-  // {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
+  {path: AppRoutes.DESIGN_SYSTEM, component: DesignSystemComponent},
   {
     path: AppRoutes.KANBAN,
     loadChildren: () => import('./mods/kanban/kanban.module').then(m => m.KanbanModule),
