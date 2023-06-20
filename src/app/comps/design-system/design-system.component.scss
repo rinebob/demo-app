@@ -11,9 +11,494 @@
         overflow-x: hidden;
         overflow-y: auto;
 
+        /////////// FE MENTOR PRODUCT FEEDBACK APP DES SYS //////////////
 
     .design-system-container {
         @include global.flexboxLayout(column, flex-start, flex-start);
+        height: 100%;
+        margin: 20px 50px;
+        max-width: 1440px;
+
+        /////////////// GENERIC ELEMENTS ///////////////////
+        
+        .section {
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .section-label {
+            align-self: center;
+            margin: 36px;
+        }
+
+        .text-container {
+            @include global.flexboxLayout(column, flex-start, flex-start);
+            margin-bottom: 20px;
+            width: 50%;
+        }
+
+        .label-text {
+            @include global.sbxBody1;
+            color: #647196;
+        }
+
+        .menu-container {
+            @include global.flexboxLayout(column, space-between, flex-start);
+            border-radius: 10px;
+            box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+            margin-top: 20px;
+            
+            .option {
+                @include global.sbxBody1;
+                @include global.color(transparent, globalVar.$color8);
+                padding: 12px 24px;
+                vertical-align: middle;
+                width: 255px;
+                
+                &:not(:last-of-type) {
+                    border-bottom: 1px solid rgba(globalVar.$color7, 0.15);
+                }
+            }
+            
+            p {
+                margin: 0;
+            }
+            
+            .active {
+                @include global.flexboxLayout(row, space-between, center);
+                border-bottom: 1px solid rgba(globalVar.$color7, 0.15);
+
+                mat-icon {
+                    @include global.color(transparent, globalVar.$color1);
+                }
+            }
+            
+            .hover {
+                @include global.color(transparent, globalVar.$color1);
+            }
+        }
+
+        ////////////////// COLORS ///////////////////////
+
+        .colors-section {
+            @include global.flexboxLayout;
+            flex-wrap: wrap;
+    
+            .color-container {
+                @include global.flexboxLayout(column, flex-start, flex-start);
+                flex: 1 0 auto;
+                margin-right: 20px;
+                padding: 20px;
+                width: 20%;
+                
+                .color-box {
+                    @include global.flexboxLayout(column, flex-end, flex-start);
+                    border-radius: 4px;
+                    height: 64px;
+                    padding: 16px 24px;
+                    width: 80%;
+                    
+                    .color-text {
+                        @include global.sbxBody1;
+                        @include global.color(transparent, globalVar.$color4);
+                    }
+                }
+                
+                .color-label {
+                    @include global.color(transparent, globalVar.$color8);
+                    margin: 16px 0;
+                }
+            }
+        }
+
+        //////////////////// TYPOGRAPHY ///////////////////////
+
+        .typography-section {
+            @include global.flexboxLayout;
+            
+            .font-container {
+                width: 50%;
+            }
+
+            .font-letters-container { 
+                line-height: 40px;
+                letter-spacing: 9.55px;
+                width: 50%;
+        
+                .caps {
+                    @include global.sbxH2;
+                }
+                
+                .lower {
+                    @include global.sbxBody1;
+                }
+            }
+            
+            .font-highlight {
+                @include global.flexboxLayout(row, center, center);
+                align-self: stretch;
+            }
+        }
+        
+        .specs-section {
+            @include global.flexboxLayout(row, flex-start, space-between);
+                
+            .spec-container {
+                @include global.flexboxLayout(column, flex-start, flex-start);
+                width: 100%;
+    
+                .typography-label {
+                    margin: 32px 0 8px;
+                }
+            }
+        }
+        
+        ////////////////////// BUTTONS /////////////////////
+    
+        .buttons-section {
+            @include global.flexboxLayout(row, space-evenly, flex-start);
+            width: 100%;
+            
+            .buttons-container {
+                @include global.flexboxLayout(column, flex-start, center);
+        
+                .btn {
+                    @include global.sbxH4;
+                    border-radius: 10px;
+                    height: 44px;
+                    margin-bottom: 24px;
+                    width: 158px;
+                }
+                
+                .hover {
+                    opacity: .65;
+                }
+        
+                .underline {
+                    text-decoration: underline;
+                }
+        
+                .button-label {
+                    margin-bottom: 56px;
+                }
+        
+                .btn-1 {
+                    @include global.color(globalVar.$color1, globalVar.$color6);
+                }
+                
+                .btn-2 {
+                    @include global.color(globalVar.$color2, globalVar.$color6);
+                }
+                    
+                .btn-3 {
+                    @include global.color(globalVar.$color7, globalVar.$color6);
+                }
+                
+                .btn-4 {
+                    @include global.color(globalVar.$color11, globalVar.$color6);
+                }
+                
+                .btn-5 {
+                    @include global.color(globalVar.$color6, globalVar.$color12);
+                }
+        
+                .btn-6 {
+                    @include global.color(globalVar.$color12, globalVar.$color6);
+                }
+        
+        
+            }
+        }
+        
+        /////////////////////// INTERACTIVE ELEMENTS ///////////////////
+        
+        .interactive-section {
+            @include global.flexboxLayout;
+    
+            .left {
+                @include global.flexboxLayout(row, space-evenly, center);
+                width: 50%;
+                
+                .column {
+                    @include global.flexboxLayout(column, flex-start, center);
+                    
+                    .interactive-label {
+                        margin: 37px 0 88px;
+                    }
+            
+                    .btn {
+                        @include global.flexboxLayout(column, center, center);
+                        border-radius: 10px;
+                        height: 53px;
+                        
+                        .btn-text {
+                            @include global.sbxBody3;
+                            margin: 0;
+                        }
+            
+                        .caret {
+                            font-size: 20px;
+                        }
+                    }
+                    
+                    .btn-default {
+                        @include global.color($backgroundColor: globalVar.$color5);
+            
+                        & .light {
+                            @include global.color($color: globalVar.$color2);
+                        }
+                        
+                        & .dark {
+                            @include global.color($color: globalVar.$color7);
+                        }
+                    }
+                    
+                    .btn-hover {
+                        @include global.color($backgroundColor: globalVar.$color13);
+                        
+                        & .light {
+                            @include global.color($color: globalVar.$color2);
+            
+                        }
+                        
+                        & .dark {
+                            @include global.color($color: globalVar.$color7);
+                        }
+                    }
+                    
+                    .btn-active {
+                        @include global.color($backgroundColor: globalVar.$color2);
+                    }
+                }
+            }
+            
+            .right {
+                @include global.flexboxLayout(column, flex-start, flex-start);
+                height: 100%;
+                padding: 0 50px;
+                width: 50%;
+                
+                .sort-buttons-container {
+                    @include global.flexboxLayout(column, space-between, flex-start);
+    
+                    .sort-button {
+                        @include global.color(globalVar.$color12, globalVar.$color5);
+                        border-radius: 10px;
+                        padding: 26px 18px;
+                        
+                        &-1 {
+                            margin-bottom: 50px;
+                        }
+                    }
+                }
+            }
+        }
+
+        //////////////////// FORM ELEMENTS //////////////////////
+    
+        .forms-section {
+            @include global.flexboxLayout(column, space-between, flex-start);
+            
+            .forms-group {
+                @include global.flexboxLayout(row, space-evenly, flex-start);
+
+                & .top {
+                    width: 100%;
+                }
+                
+                .form-container {
+                    @include global.flexboxLayout(column, space-between, center);
+                    position: relative;
+    
+                    &:not(:last-of-type) {
+                        margin-right: 20px;
+                    }
+    
+                    .form-label {
+                        margin-bottom: 24px;
+                    }
+    
+                    .form-control {
+                        border-radius: 4px;
+                        height: 48px;
+                        padding: 0 20px;
+                        width: 255px;
+                        border: none;
+    
+                        &-default {
+                            @include global.border1(globalVar.$color8);
+                            @include global.color(transparent, globalVar.$color7);
+                            
+                            &:focus, :focus-visible {
+                                @include global.border1(globalVar.$color8);
+                                outline: none;
+                            }
+                        }
+                        
+                        &-filled {
+                            @include global.border1(globalVar.$color8);
+                            @include global.color(transparent, globalVar.$color7);
+                            
+                            &:focus, :focus-visible {
+                                @include global.border1(globalVar.$color8);
+                                outline: none;
+                            }
+                        }
+                        
+                        &-active {
+                            @include global.border1(globalVar.$color2);
+                            @include global.color(transparent, globalVar.$color7);
+                            
+                            &:focus, :focus-visible {
+                                @include global.border1(globalVar.$color2);
+                                outline: none;
+                            }
+                        }
+                        
+                        &-error {
+                            @include global.border1(globalVar.$color11);
+                            @include global.color(transparent, globalVar.$color7);
+                            
+                            &:focus, :focus-visible {
+                                @include global.border1(globalVar.$color11);
+                                outline: none;
+                            }
+                        }
+                    }
+                    
+                    .error-text {
+                        @include global.fontSpec(
+                            $fontFamily: globalVar.$jost-font,
+                            $fontWeight: 400,
+                            $fontSize: 14px,
+                            $lineHeight: 20px,
+                        );
+                        @include global.color(transparent, globalVar.$color11);
+                        align-self: flex-start;
+                    }
+                    
+                    .dropdown {
+                        border-radius: 4px;
+                        height: 48px;
+                        padding: 0 20px;
+                        width: 297px;
+                        border: none;
+
+                        &-default {
+                            @include global.border1(globalVar.$color8);
+                            @include global.color(transparent, globalVar.$color7);
+                            
+                            &:focus, :focus-visible {
+                                @include global.border1(globalVar.$color8);
+                                outline: none;
+                            }
+                        }
+
+                        &-active {
+                            @include global.border1(globalVar.$color8);
+                            @include global.color(transparent, globalVar.$color7);
+                            
+                            &:focus, :focus-visible {
+                                @include global.border1(globalVar.$color2);
+                                outline: none;
+                            }
+                        }
+
+                        .option {
+                            @include global.sbxBody1;
+                            @include global.color(transparent, globalVar.$color8);
+                            padding: 12px 24px;
+                            vertical-align: middle;
+                            width: 255px;
+                            
+                            &:not(:last-of-type) {
+                                border-bottom: 1px solid rgba(globalVar.$color7, 0.15);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        ////////////////////// SANDBOX TEXT MIXINS ///////////////////
+    
+        .h-1 {
+            @include global.sbxH1;
+        }
+        
+        .h-2 {
+            @include global.sbxH2;
+        }
+        
+        .h-3 {
+            @include global.sbxH3;
+        }
+        
+        .h-4 {
+            @include global.sbxH4;
+        }
+        
+        .b-1 {
+            @include global.sbxBody1;
+        }
+        
+        .b-2 {
+            @include global.sbxBody2;
+        }
+        
+        .b-3 {
+            @include global.sbxBody3;
+        }
+    
+        /////////////////// MATERIAL TYPOGRAPHY LEVEL MIXINS //////////////
+    
+        .headline-1 {
+            @include global.typographyLevel();
+        }
+        
+        .headline-2 {
+            @include global.typographyLevel($level: 'headline-2');
+        }
+        
+        .headline-3 {
+            @include global.typographyLevel($level: 'headline-3');
+        }
+        
+        .headline-4 {
+            @include global.typographyLevel($level: 'headline-4');
+        }
+        
+        .headline-5 {
+            @include global.typographyLevel($level: 'headline-5');
+        }
+        
+        .headline-6 {
+            @include global.typographyLevel($level: 'headline-6');
+        }
+        
+        .body-1 {
+            @include global.typographyLevel($level: 'body-1');
+        }
+        
+        .body-2 {
+            @include global.typographyLevel($level: 'body-2');
+        }
+        
+        .subtitle-2 {
+            @include global.typographyLevel($level: 'subtitle-2');
+        }
+        
+        .caption {
+            @include global.typographyLevel($level: 'caption');
+        }
+        
+        
+        
+        
+        /////////// END FE MENTOR PRODUCT FEEDBACK APP DES SYS //////////////
+
+
+        //////////////////// FONTS ////////////////////////
         
         .fonts-container {
             @include global.flexboxLayout(row, flex-start, flex-start);

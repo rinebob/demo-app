@@ -3,6 +3,358 @@
 
     <div class="design-system-container">
 
+
+            <!-- /////// FE MENTOR PRODUCT FEEDBACK APP DESIGN SYSTEM /////// -->
+
+            <p class="title headline-4">Product Feedback App Design System</p>
+    
+            <!-- /////////////// COLORS ///////////// -->
+    
+        <p class="section-label headline-5">Colors</p>
+        
+        <div class="section colors-section">
+            
+            <div class="color-container" *ngFor="let color of PRODUCT_FEEDBACK_APP_COLOR_SPECS">
+                
+                <div class="color-box" [style.backgroundColor]="color.hex">
+                    
+                    <p class="color-text" [style.color]="color.textColor">{{color.hex}}</p>
+                    
+                </div>
+    
+                <p class="label-text color-label">RGB: {{color.red}}, {{color.green}}, {{color.blue}}</p>
+                
+            </div>
+            
+        </div>
+    
+            <!-- /////////////// TYPOGRAPHY ///////////// -->
+        
+        <p class="section-label headline-5">Typography</p>
+    
+        <div class="section typography-section">
+    
+            <div class="font-container font-highlight">
+                <p class="h-1">JOST</p>
+            </div>
+    
+            <div class="font-container font-letters-container">
+                <span class="font-letters caps">A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</span>
+                <span class="font-letters lower">a b c d e f g h i j k l m n o p q r s t u v w x y z 1 2 3 4 5 6 7 8 9 0 ! @ # $ % ^ & * ( ) _ +</span>
+            </div>
+    
+        </div>
+    
+        <div class="section specs-section">
+    
+            <div class="text-container">
+                
+                <div class="spec-container" *ngFor="let spec of PRODUCT_FEEDBACK_APP_TYPOGRAPHY_SPECS.slice(0,4)">
+                
+                    <p class="label-text typography-label" [innerText]="generateSpecText(spec)"></p>
+                    <p [ngStyle]="spec.cssClasses">{{spec.exampleText}}</p>
+        
+                </div>
+    
+            </div>
+    
+            <div class="text-container">
+    
+                <div class="spec-container" *ngFor="let spec of PRODUCT_FEEDBACK_APP_TYPOGRAPHY_SPECS.slice(4)">
+                
+                    <p class="label-text typography-label" [innerText]="generateSpecText(spec)"></p>
+                    <p class="typogaphy-example" [ngStyle]="spec.cssClasses">{{spec.exampleText}}</p>
+        
+                </div>
+    
+            </div>
+            
+        </div>
+    
+            <!-- /////////////// BUTTONS ///////////// -->
+    
+        <p class="section-label headline-5">Buttons</p>
+    
+        <div class="section buttons-section">
+    
+            <div class="buttons-container">
+    
+                <button mat-flat-button class="btn btn-1">Button 1</button>
+                <p class="label-text button-label">Default</p>
+                <button mat-flat-button class="btn btn-1 hover">Button 1</button>
+                <p class="label-text button-label hover">Hover</p>
+    
+                <button mat-flat-button class="btn btn-5">< Go Back</button>
+                <p class="label-text button-label">Default</p>
+                <button mat-flat-button class="btn btn-5">< <span class="underline">Go Back</span></button>
+                <p class="label-text button-label hover">Hover</p>
+                
+            </div>
+            
+            <div class="buttons-container">
+                
+                <button mat-flat-button class="btn btn-2">Button 2</button>
+                <p class="label-text button-label">Default</p>
+                <button mat-flat-button class="btn btn-2 hover">Button 2</button>
+                <p class="label-text button-label hover">Hover</p>
+    
+                <button mat-flat-button class="btn btn-6">< Go Back</button>
+                <p class="label-text button-label">Default</p>
+                <button mat-flat-button class="btn btn-6">< <span class="underline">Go Back</span></button>
+                <p class="label-text button-label hover">Hover</p>
+                
+            </div>
+            
+            <div class="buttons-container">
+                
+                <button mat-flat-button class="btn btn-3">Button 3</button>
+                <p class="label-text button-label">Default</p>
+                <button mat-flat-button class="btn btn-3 hover">Button 3</button>
+                <p class="label-text button-label hover">Hover</p>
+                
+            </div>
+            
+            <div class="buttons-container">
+                
+                <button mat-flat-button class="btn btn-4">Button 4</button>
+                <p class="label-text button-label">Default</p>
+                <button mat-flat-button class="btn btn-4 hover">Button 4</button>
+                <p class="label-text button-label hover">Hover</p>
+    
+            </div>
+    
+        </div>
+    
+            <!-- /////////////// INTERACTIVE ELEMENTS ///////////// -->
+    
+        <p class="section-label headline-5">Interactive elements</p>
+    
+        <div class="section interactive-section">
+    
+            <div class="left">
+    
+                <div class="column">
+    
+                    <button mat-flat-button class="btn btn-default">
+                        <p class="btn-text light caret">^</p>
+                        <p class="btn-text dark">99</p>
+                    </button>
+    
+                    <p class="label-text interactive-label">Default</p>
+                    
+                    <button mat-flat-button class="btn btn-default">
+                        <p class="btn-text light">UX</p>
+                    </button>
+                    
+                    <p class="label-text interactive-label">Default</p>
+                    
+                </div>
+                
+                <div class="column">
+    
+                    <button mat-flat-button class="btn btn-hover">
+                        <p class="btn-text light caret">^</p>
+                        <p class="btn-text dark">99</p>
+                    </button>
+    
+                    <p class="label-text interactive-label">Hover</p>
+                    
+                    <button mat-flat-button class="btn btn-hover">
+                        <p class="btn-text light">UX</p>
+                    </button>
+                    
+                    <p class="label-text interactive-label">Hover</p>
+                    
+                </div>
+                
+                <div class="column">
+    
+                    <button mat-flat-button class="btn btn-active">
+                        <p class="btn-text caret">^</p>
+                        <p class="btn-text">99</p>
+                    </button>
+    
+                    <p class="label-text interactive-label">Active</p>
+                    
+                    <button mat-flat-button class="btn btn-active">
+                        <p class="btn-text">UX</p>
+                    </button>
+                    
+                    <p class="label-text interactive-label">Active</p>
+                    
+                </div>
+    
+            </div>
+    
+            <div class="right">
+    
+                <div class="sort-buttons-container">
+    
+                    <button mat-flat-button class="sort-button sort-button-1"><span>Sort by: </span><span>Most Upvotes</span><span>^</span></button>
+                    <button mat-flat-button class="sort-button"><span>Sort by: </span><span>Most Upvotes</span><span>^</span></button>
+    
+                </div>
+    
+                <div class="menu-container">
+                    
+                    <div class="option active">
+                        <p>Most Upvotes</p>
+                        <mat-icon>check</mat-icon>
+                    </div>
+    
+                    <p class="option hover">Least Upvotes</p>
+                    <p class="option">Most Comments</p>
+                    <p class="option">Least Comments</p>
+    
+                </div>
+    
+            </div>
+    
+        </div>
+    
+            <!-- /////////////// FORM ELEMENTS ///////////// -->
+        
+        <p class="section-label headline-5">Form elements</p>
+    
+        <div class="section forms-section">
+    
+            <div class="forms-group top">
+    
+                <div class="form-container">
+    
+                    <p class="label-text form-label">Text Field - Default</p>
+    
+                    <input class="form-control form-control-default" type="text">
+                    
+                </div>
+                
+                <div class="form-container">
+    
+                    <p class="label-text form-label">Text Field - Filled</p>
+    
+                    <input class="form-control form-control-filled" type="text" value="lorem ipsum dude">
+                    
+                </div>
+                
+                <div class="form-container">
+    
+                    <p class="label-text form-label">Text Field - Active</p>
+    
+                    <input class="form-control form-control-active" type="text" value="lorem ipsum dude">
+                    
+                </div>
+                
+                <div class="form-container">
+    
+                    <p class="label-text form-label">Text Field - Error</p>
+                    
+                    <input class="form-control form-control-error" type="text">
+                    
+                    <p class="error-text">Can't be empty</p>
+                    
+                </div>
+                
+            </div>
+    
+            <div class="forms-group">
+    
+                <div class="form-container">
+    
+                    <p class="label-text form-label">Dropdown - Default</p>
+    
+                    <select class="dropdown dropdown-default">
+        
+                        <option class="option hover">Feature</option>
+                        <option class="option hover">UI</option>
+                        <option class="option">UX</option>
+                        <option class="option">Enhancement</option>
+                        <option class="option">Bug</option>
+    
+                    </select>
+                    
+                </div>
+    
+                <div class="form-container">
+    
+                    <p class="label-text form-label">Dropdown - Active</p>
+    
+                    <select class="dropdown dropdown-active">
+        
+                        <option class="option hover">Feature</option>
+                        <option class="option hover">UI</option>
+                        <option class="option">UX</option>
+                        <option class="option">Enhancement</option>
+                        <option class="option">Bug</option>
+    
+                    </select>
+                    
+                </div>
+                
+                <div class="form-container">
+    
+                    <p class="label-text form-label">Dropdown - Menu</p>
+                    
+                    <div class="menu-container">
+                        
+                        <div class="option active">
+                            <p>Feature</p>
+                            <mat-icon>check</mat-icon>
+                        </div>
+        
+                        <p class="option hover">UI</p>
+                        <p class="option">UX</p>
+                        <p class="option">Enhancement</p>
+                        <p class="option">Bug</p>
+        
+                    </div>
+                    
+                </div>
+    
+            </div>
+    
+        </div>
+        
+            <!-- /////////////// ADDITIONAL TYPOGRAPHY   ///////////// -->
+    
+        <p class="section-label headline-5">Additional Typography</p>
+    
+        <div class="section typography-section">
+            
+            <div class="text-container">
+                <p class="title headline-6">Sandbox typography mixins</p>
+                
+                <p class="h-1">Feedback app Headline 1</p>
+                <p class="h-2">Feedback app Headline 2</p>
+                <p class="h-3">Feedback app Headline 3</p>
+                <p class="h-4">Feedback app Headline 4</p>
+                <p class="b-1">Feedback app Body 1</p>
+                <p class="b-2">Feedback app Body 2</p>
+                <p class="b-3">Feedback app Body 3</p>
+                
+            </div>
+            
+            
+            <div class="text-container">
+                <p class="title headline-6">Material typography levels</p>
+        
+                <p class="headline-1">Headline 1</p>
+                <p class="headline-2">Headline 2</p>
+                <p class="headline-3">Headline 3</p>
+                <p class="headline-4">Headline 4</p>
+                <p class="headline-5">Headline 5</p>
+                <p class="headline-6">Headline 6</p>
+                <p class="body-1">Body 1</p>
+                <p class="body-2">Body 2</p>
+                <p class="subtitle-2">Subtitle 2</p>
+                <p class="caption">caption</p>
+                
+            </div>
+    
+        </div>
+
+
+            <!-- END PRODUCT FEEDBACK APP DESIGN SYSTEM -->
+
         <div class="fonts-container">
 
             <div class="font-container">

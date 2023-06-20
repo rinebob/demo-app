@@ -1,4 +1,4 @@
-
+@use '@angular/material' as mat;
 
 :root {
 
@@ -75,3 +75,27 @@ $global-line-heights: (
 @function globalLineHeight($size) {
     @return map-get($global-line-heights, $size);
 }
+
+////////////////// FE MENTOR PRODUCT FEEDBACK APP DESIGN SYSTEM //////////////
+
+$jost-typography: mat.define-typography-config(
+    $font-family: 'Jost',
+);
+
+$jost-font: 'Jost';
+
+$color1: #ad1fea;     // magenta
+$color2: #4661e6;     // medium blue
+$color3: #373f68;     // dark grayish blue
+$color4: #ffffff;     // white
+$color5: #f2f4ff;     // very light blue
+$color6: #f7f8fd;     // white
+$color7: #3a4374;     // grayish blue
+$color8: #647196;     // grey
+$color9: #f49f85;     // light orange
+$color10: #62bcfa;    // light blue
+$color11: #d73737;    // red
+$color12: #373f68;    // dark blue
+$color13: #CFD7FF;    // very light blue
+
+////////////////// END FE MENTOR PRODUCT FEEDBACK APP DESIGN SYSTEM //////////////
