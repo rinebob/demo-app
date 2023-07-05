@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test-audio": "ng test --include=src/app/mods/audio",
-    "test-audio:prod": "ng test --include=src/app/mods/audio" --browsers=ChromeHeadless --watch=false --code-coverage",
+    "test-audio:prod": "ng test --include=src/app/mods/audio --browsers=ChromeHeadless --watch=false --code-coverage",
   },
   "private": true,
   "dependencies": {
