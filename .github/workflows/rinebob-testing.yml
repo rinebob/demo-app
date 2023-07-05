@@ -38,4 +38,4 @@ jobs:
 
       - name: Test
         run: |
-          ng test --include=src/app/mods/audio
+          npm test audio
