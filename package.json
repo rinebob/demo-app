@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test audio": "ng test --include=src/app/mods/audio"
   },
   "private": true,
   "dependencies": {
