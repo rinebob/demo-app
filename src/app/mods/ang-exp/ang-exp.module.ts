@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig, HammerModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -23,6 +24,18 @@ import { LoginRegFormComponent } from './css-tricks/login-reg-form/login-reg-for
 
 import { ThreeWayToggleModule } from 'src/app/shared/three-way-toggle/three-way-toggle.module';
 import { GridExpComponent } from './grid-exp/grid-exp.component';
+import { SwipeCarouselComponent } from './animations/swipe-carousel/swipe-carousel.component';
+
+import * as hammer from "hammerjs";
+
+export class MyHammerConfig extends HammerGestureConfig {
+  override overrides = <any>{
+    swipe: { direction: hammer.DIRECTION_HORIZONTAL },
+    pinch: { enable: false },
+    rotate: { enable: false }
+  };
+}
+
 
 
 @NgModule({
@@ -36,10 +49,12 @@ import { GridExpComponent } from './grid-exp/grid-exp.component';
     CssTricksComponent,
     IconNavBarComponent,
     LoginRegFormComponent,
-    GridExpComponent
+    GridExpComponent,
+    SwipeCarouselComponent
   ],
   imports: [
     CommonModule,
+    HammerModule,
     ReactiveFormsModule,
 
     DragDropModule,
@@ -52,6 +67,9 @@ import { GridExpComponent } from './grid-exp/grid-exp.component';
 
     AngExpRoutingModule,
     ThreeWayToggleModule,
+  ],
+  providers: [
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
   ]
 })
 export class AngExpModule { }

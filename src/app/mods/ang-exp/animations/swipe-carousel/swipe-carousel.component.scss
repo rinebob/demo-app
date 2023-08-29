@@ -1,0 +1,96 @@
+@use '../../../../../styles/global-mixins' as gMix;
+@use '../../../../../styles/global-variables' as gVar;
+@import "../../../../../styles/styles.scss";
+
+:host {
+    @include gMix.flexboxLayout(row, center, flex-start);
+    height: 100%;
+    width: 100%;
+
+    p {
+        color: black;
+    }
+
+    .swipe-component-container {
+        @include gMix.flexboxLayout(column, center, center);
+        @include gMix.border1();
+        margin-top: 50px;
+        width: 100%;
+        
+        .swipe-container {
+            overflow-x: hidden;
+            max-width: 800px;
+            
+            .elements-container {
+                gap: 20px;
+                
+                .element-container {
+                    @include gMix.flexboxLayout(column, center, center);
+                    @include gMix.border1();
+                    
+                    background-color: lightslategrey;
+                    
+                    height: 500px;
+                    width: 250px;
+                    
+                    .element-title {
+                        font: 700 36px/48px 'Arial';
+                    }
+                }
+            }
+        }
+
+        .left {
+            @include gMix.flexboxLayout();
+            
+        }
+        
+        .right {
+            @include gMix.flexboxLayout(row, flex-end, flex-start);
+
+        }
+        
+        .controls-container {
+            @include gMix.flexboxLayout(row, center, center);
+            width: 100%;
+            
+            .indicator-container {
+                @include gMix.flexboxLayout(row, center, center);
+                margin-right: 20px;
+                
+                .indicator {
+                    @include gMix.flexboxLayout(row, center, center);
+                    @include gMix.border1();
+                    border-radius: 50%;
+                    height: 30px;
+                    width: 30px;
+
+                    &:not(:last-of-type) {
+                        margin-right: 8px;
+                    }
+
+                    &.displayed {
+                        color: white;
+                        background-color: purple;
+                    }
+                }
+            }
+            
+            .buttons-container {
+                @include gMix.flexboxLayout(row, center, center);
+
+                
+            }
+        }
+
+        .carousel-button {
+            font: 700 36px/48px 'Arial';
+            background-color: lightcyan;
+            border-radius: 50%;
+            cursor: pointer;
+            height: 50px;
+            margin: 20px;
+            width: 50px;
+        }
+    }
+}

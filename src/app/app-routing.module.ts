@@ -19,10 +19,10 @@ const routes: Routes = [
   //   path: AppRoutes.CHARTS,
   //   loadChildren: () => import('./mods/charts/charts.module').then(m => m.ChartsModule)
   // },
-  // { 
-  //   path: AppRoutes.ANG_EXP,
-  //   loadChildren: () => import('./mods/ang-exp/ang-exp.module').then(m => m.AngExpModule) 
-  // },
+  { 
+    path: AppRoutes.ANG_EXP,
+    loadChildren: () => import('./mods/ang-exp/ang-exp.module').then(m => m.AngExpModule) 
+  },
   // { 
   //   path: AppRoutes.CUBIC_BEZIER,
   //   loadChildren: () => import('./mods/bezier/bezier.module').then(m => m.BezierModule)
