@@ -142,11 +142,11 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
   setNumCardsToDisplay(width: number) {
     console.log('sC sNCTD num cards to display. rect: ', width);
 
-    if (width > 850) {
+    if (width > this.minThreeCardContainerWidth) {
       this.numCardsToDisplay = 3;
-    } else if (width <= 850 && width > 520) {
+    } else if (width <= this.minThreeCardContainerWidth && width > this.minTwoCardContainerWidth) {
       this.numCardsToDisplay = 2;
-    } else if (width <= 520) {
+    } else if (width <= this.minTwoCardContainerWidth) {
       this.numCardsToDisplay = 1;
     }
 
@@ -319,8 +319,8 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
 
   updateCarouselButtonsDisabledState() {
     console.log('sC uCBDS init lef/right inds: ', this.leftSideIndex, this.rightSideIndex);
-    this.leftCarouselButtonDisabled = this.leftSideIndex <= 0;
-    this.rightCarouselButtonDisabled = this.rightSideIndex >= this.allElementsBS.value.length - 1;
+    this.leftCarouselButtonDisabled = this.indicatorIndices[0] <= 0;
+    this.rightCarouselButtonDisabled = this.indicatorIndices[this.indicatorIndices.length - 1] >= this.allElementsBS.value.length - 1;
     console.log('sC uCBDS final left/right button disabled states: ', this.leftCarouselButtonDisabled, this.rightCarouselButtonDisabled);
   }
 
