@@ -24,10 +24,11 @@ import { LoginRegFormComponent } from './css-tricks/login-reg-form/login-reg-for
 
 import { ThreeWayToggleModule } from 'src/app/shared/three-way-toggle/three-way-toggle.module';
 import { GridExpComponent } from './grid-exp/grid-exp.component';
-import { SwipeCarouselComponent } from './animations/swipe-carousel/swipe-carousel.component';
+import { CarouselComponent } from './animations/carousel/carousel.component';
 
 import * as hammer from "hammerjs";
 import { ScrollFeatureComponent } from './scroll-feature/scroll-feature.component';
+import { SwipeComponent } from './animations/swipe/swipe.component';
 
 export class MyHammerConfig extends HammerGestureConfig {
   override overrides = <any>{
@@ -36,8 +37,6 @@ export class MyHammerConfig extends HammerGestureConfig {
     rotate: { enable: false }
   };
 }
-
-
 
 @NgModule({
   declarations: [
@@ -51,8 +50,9 @@ export class MyHammerConfig extends HammerGestureConfig {
     IconNavBarComponent,
     LoginRegFormComponent,
     GridExpComponent,
-    SwipeCarouselComponent,
-    ScrollFeatureComponent
+    CarouselComponent,
+    ScrollFeatureComponent,
+    SwipeComponent,
   ],
   imports: [
     CommonModule,
