@@ -8,6 +8,7 @@ import { AnimationsComponent } from './animations/animations.component';
 import { FormArrayComponent } from './form-array/form-array.component';
 import { CssTricksComponent } from './css-tricks/css-tricks.component';
 import { GridExpComponent } from './grid-exp/grid-exp.component';
+import { ScrollFeatureComponent } from './scroll-feature/scroll-feature.component';
 
 const routes: Routes = [
   { path: '', component: AngExpComponent,
@@ -41,6 +42,10 @@ const routes: Routes = [
         path: AngExpRoutes.CSS_GRID,
         component: GridExpComponent,
         data: {animation: 'CssGridPage'}
+      },
+      { 
+        path: AngExpRoutes.SCROLL,
+        component: ScrollFeatureComponent,
       },
       { path: '', redirectTo: AngExpRoutes.CSS_GRID, pathMatch: 'full' },
 

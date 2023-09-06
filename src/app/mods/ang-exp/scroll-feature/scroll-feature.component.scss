@@ -1,0 +1,54 @@
+
+
+@use '../../../../styles/global-mixins' as gMix;
+@use '../../../../styles/global-variables' as gVar;
+@import "../../../../styles/styles.scss";
+
+:host {
+    @include gMix.flexboxLayout(row, center, flex-start);
+    height: 100%;
+    width: 100%;
+
+    p {
+        color: black;
+    }
+
+    .scroll-feature-container {
+        @include gMix.flexboxLayout(column, center, center);
+        @include gMix.border1();
+        margin-top: 50px;
+        width: 100%;
+        
+        .scroll-container {
+            @include gMix.flexboxLayout(row, flex-start, flex-start);
+            @include gMix.border1();
+            overflow-x: auto;
+            width: 800px;
+
+            @include gMix.response(md) {
+                width: 600px;
+            }
+            
+            .items-container {
+                @include gMix.flexboxLayout(row, flex-start, flex-start);
+                gap: 20px;
+
+                .item-container {
+                    @include gMix.flexboxLayout(column, center, center);
+                    @include gMix.border1();
+                    
+                    background-color: lightslategrey;
+                    
+                    height: 300px;
+                    width: 250px;
+                    
+                    .item-title {
+                        font: 700 36px/48px 'Arial';
+                    }
+                }
+
+            }
+        }
+    }
+
+}

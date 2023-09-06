@@ -62,6 +62,7 @@ export const ANG_EXP_NAV_BUTTONS:NavButtonConfig[] = [
     {routerLink: AngExpRoutes.SIGNALS, text: 'signals'},
     {routerLink: AngExpRoutes.CSS_TRICKS, text: 'css tricks'},
     {routerLink: AngExpRoutes.CSS_GRID, text: 'css grid'},
+    {routerLink: AngExpRoutes.SCROLL, text: 'scroll'},
 ];
 
 export const BOARDS_COLLECTION = 'boards';

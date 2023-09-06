@@ -165,6 +165,7 @@ export interface DialogData {
     FORM_ARRAY = 'form-array',
     CSS_TRICKS = 'css-tricks',
     CSS_GRID = 'css-grid',
+    SCROLL = 'scroll',
   }
 
   export interface NavButtonConfig {

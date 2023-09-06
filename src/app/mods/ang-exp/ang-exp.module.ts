@@ -27,6 +27,7 @@ import { GridExpComponent } from './grid-exp/grid-exp.component';
 import { SwipeCarouselComponent } from './animations/swipe-carousel/swipe-carousel.component';
 
 import * as hammer from "hammerjs";
+import { ScrollFeatureComponent } from './scroll-feature/scroll-feature.component';
 
 export class MyHammerConfig extends HammerGestureConfig {
   override overrides = <any>{
@@ -50,7 +51,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     IconNavBarComponent,
     LoginRegFormComponent,
     GridExpComponent,
-    SwipeCarouselComponent
+    SwipeCarouselComponent,
+    ScrollFeatureComponent
   ],
   imports: [
     CommonModule,
