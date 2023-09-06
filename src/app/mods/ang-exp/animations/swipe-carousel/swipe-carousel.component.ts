@@ -69,6 +69,8 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
   minTwoCardContainerWidth = 520;
   twoCardWindowWidth = 520;
   oneCardWindowWidth = 270;
+
+  showSwipeFeature = true;
   
   ngOnInit() {
     console.log('sC ngOI window inner width: ', window.innerWidth);
@@ -200,10 +202,9 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
   handleSwipe(direction: Direction) {
     console.log('sC hS handle swipe called. direction: ', direction);
 
-    // to move individual cards
-
     // to move the cards container
-    // this.updateCardsContainerSwipeState(direction);
+    //this.updateCardsContainerSwipeState(direction);
+    this.updateSwipeState(direction);
   }
 
   updateDisplayIndicesAndElements(direction: Direction) {
@@ -302,7 +303,7 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
   updateSwipeState(direction: Direction) {
     const swipeElementsLength = this.allElementsBS.value.length;
     if (direction !== Direction.UNDEFINED) {
-      // console.log('sC uSS dirn left/right ind/num swipe els: ', direction, this.leftSideIndex, this.rightSideIndex, swipeElementsLength);
+      console.log('sC uSS dirn left/right ind/num swipe els: ', direction, this.leftSideIndex, this.rightSideIndex, swipeElementsLength);
     }
     if (direction === Direction.RIGHT && this.rightSideIndex < swipeElementsLength) {
         
@@ -335,5 +336,49 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
     // console.log('sC rAS reset swipe state');
     this.swipeStateBS.next(SwipeState.UNDEFINED);
   }
+
+  // SWIPE FEATURE
+
+  // handleSwipeGesture(direction: number) {
+  //   //console.log('pCs hSG handle swipe called.  direction: ', direction);
+  //   this.updatePlanToDisplay(direction);
+  // }
+  // updatePlanToDisplay(direction: number) {
+    
+  //   if (this.showElectricPlans) {
+  //     //console.log('pCs uPTD cur index/direction: ', this.planIndexBS.value, direction);
+      
+  //     this.electricPlans$.pipe(take(1)).subscribe(plans => {
+  //       //console.log('pCs uPTD electric plans.length: ', plans.length);
+  //       //console.log('pCs uPTD current electric plan: ', this.planToDisplayBS.value);
+  //       let updatedIndex = this.planIndexBS.value;
+  //       if (direction > 0) {
+  //         updatedIndex = this.planIndexBS.value < plans.length - 1 ? this.planIndexBS.value + direction : this.planIndexBS.value;
+        
+  //       } else if (direction < 0) {
+  //         updatedIndex = this.planIndexBS.value > 0 ? this.planIndexBS.value + direction : this.planIndexBS.value;
+  //       }
+  //       this.planIndexBS.next(updatedIndex);
+  //       this.planToDisplayBS.next(plans[this.planIndexBS.value]);
+  //       //console.log('pCs uPTD updatedIndex/planToDisplay: ', this.planIndexBS.value, this.planToDisplayBS.value);
+  //     })
+  //   } else if (this.showGasPlans) {
+  //     //console.log('pCs uPTD gas plans. cur index/direction: ', this.planIndexBS.value, direction);
+  //     this.gasPlans$.pipe(take(1)).subscribe(plans => {
+  //       //console.log('pCs uPTD gas plans.length: ', plans.length);
+  //       //console.log('pCs uPTD current gas plan: ', this.planToDisplayBS.value);
+  //       let updatedIndex = this.planIndexBS.value;
+  //       if (direction > 0) {
+  //         updatedIndex = this.planIndexBS.value < plans.length - 1 ? this.planIndexBS.value + direction : this.planIndexBS.value;
+        
+  //       } else if (direction < 0) {
+  //         updatedIndex = this.planIndexBS.value > 0 ? this.planIndexBS.value + direction : this.planIndexBS.value;
+  //       }
+  //       this.planIndexBS.next(updatedIndex);
+  //       this.planToDisplayBS.next(plans[this.planIndexBS.value]);
+  //       //console.log('pCs uPTD updatedIndex/planToDisplay: ', this.planIndexBS.value, this.planToDisplayBS.value);
+  //     })
+  //   }
+  // }
 
 }

@@ -1,0 +1,27 @@
+<div class="scroll-feature-container">
+
+    <div class="scroll-container">
+
+        <div class="items-container">
+
+            <ng-container *ngIf="items$ | async as items">
+
+                <ng-container *ngFor="let item of items; let i = index">
+
+                    <div class="item-container"
+                    >
+                    
+                        <p class="item-title">
+                            {{item.title}}
+                        </p>
+
+                    </div>
+
+                </ng-container>
+                
+            </ng-container>
+            
+
+        </div>
+
+    </div>
