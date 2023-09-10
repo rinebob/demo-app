@@ -1,0 +1,88 @@
+
+
+<div class="swipe-feature-container">
+
+    <div #swipeContainer
+        class="swipe-container"
+        [class.right]="swipeDirectionBS.value === Direction.LEFT"
+        [class.left]="swipeDirectionBS.value === Direction.RIGHT 
+            || swipeDirectionBS.value === Direction.UNDEFINED"
+    >
+    
+        <div #elementsContainer
+             class="elements-container"
+             [class.right]="swipeDirectionBS.value === Direction.LEFT"
+             [class.left]="swipeDirectionBS.value === Direction.RIGHT 
+                || swipeDirectionBS.value === Direction.UNDEFINED"
+             [@elementContainerAnimator]="swipeState$ | async"
+             (@elementContainerAnimator.start)="checkSwipeState($event)"
+             (@elementContainerAnimator.done)="handleAnimationEnd($event)"
+             (swipeleft)="handleSwipe(Direction.LEFT)"
+             (swiperight)="handleSwipe(Direction.RIGHT)"
+        >
+
+            <ng-container *ngIf="animationElements$ | async as elements">
+
+                <ng-container *ngFor="let element of elements; let i = index">
+
+                    <div class="element-container">
+                    
+                        <p class="element-title">
+                            {{element.title}}
+                        </p>
+
+                    </div>
+
+                </ng-container>
+                
+            </ng-container>
+            
+        </div>
+
+    </div>
+
+    <!-- Displayed cards indicator -->
+    <div class="controls-container">
+
+        <div class="indicator-container">
+
+            <ng-container *ngIf="allElements$ | async as elements">
+
+                <ng-container *ngFor="let element of elements; let i = index">
+
+                    <div class="indicator"
+                         [class.displayed]="displayElementIndices.includes(i)"
+                    >
+                        {{i}}
+                    </div>
+            
+                </ng-container>
+            
+            </ng-container>
+        
+        </div>
+
+        <!-- <div class="buttons-container">
+            
+            <button class="carousel-button" (click)="handleClick(Direction.LEFT)"
+                    [disabled]="leftCarouselButtonDisabled"
+            >
+                <
+            </button>
+            
+            <button class="carousel-button" (click)="handleClick(Direction.RIGHT)"
+                    [disabled]="rightCarouselButtonDisabled"
+            >
+                >
+            </button>
+
+        </div> -->
+
+    </div> 
+
+</div>
+
+
+
+
+ 

@@ -30,13 +30,13 @@ import * as hammer from "hammerjs";
 import { ScrollFeatureComponent } from './scroll-feature/scroll-feature.component';
 import { SwipeComponent } from './animations/swipe/swipe.component';
 
-export class MyHammerConfig extends HammerGestureConfig {
-  override overrides = <any>{
-    swipe: { direction: hammer.DIRECTION_HORIZONTAL },
-    pinch: { enable: false },
-    rotate: { enable: false }
-  };
-}
+// export class MyHammerConfig extends HammerGestureConfig {
+//   override overrides = <any>{
+//     swipe: { direction: hammer.DIRECTION_HORIZONTAL },
+//     pinch: { enable: false },
+//     rotate: { enable: false }
+//   };
+// }
 
 @NgModule({
   declarations: [
@@ -56,7 +56,8 @@ export class MyHammerConfig extends HammerGestureConfig {
   ],
   imports: [
     CommonModule,
-    HammerModule,
+    // HammerModule,
+    
     ReactiveFormsModule,
 
     DragDropModule,
@@ -71,7 +72,7 @@ export class MyHammerConfig extends HammerGestureConfig {
     ThreeWayToggleModule,
   ],
   providers: [
-    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
+    // { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
   ]
 })
 export class AngExpModule { }

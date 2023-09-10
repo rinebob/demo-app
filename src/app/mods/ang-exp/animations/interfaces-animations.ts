@@ -2,7 +2,7 @@
 
 export interface SwipeElement {
     title: string;
-    state?: CardState;
+    state?: ElementState;
   }
   
   export enum Direction {
@@ -11,7 +11,7 @@ export interface SwipeElement {
     UNDEFINED = 'undefined',
   }
   
-  export enum CardState {
+  export enum ElementState {
     OUTSIDE_LEFT = 'outside-left',
     LEFT_SIDE = 'left-side',
     MIDDLE = 'middle',
