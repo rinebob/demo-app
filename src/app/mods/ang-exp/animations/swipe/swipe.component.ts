@@ -1,28 +1,22 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AnimationEvent } from '@angular/animations'
-import { BehaviorSubject, Observable, Subject, debounceTime, fromEvent, of, take, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, fromEvent, of, take, takeUntil, withLatestFrom } from 'rxjs';
 
-import { SwipeState, ElementState, Direction, SwipeElement} from '../interfaces-animations';
-import { elementContainerAnimator } from './swipe-animations';
-
-enum DisplayMode {
-  SINGLE_ELEMENT = 'single-element',
-  MULTI_ELEMENT = 'multi-element',
-}
+import { DisplayMode, Direction, SwipeElement, SwipeState} from '../interfaces-animations';
+import { elementContainerAnimator } from '../swipe/swipe-animations';
 
 @Component({
   selector: 'app-swipe',
-  templateUrl: './swipe.component.html',
-  styleUrls: ['./swipe.component.scss'],
+  templateUrl: '../swipe/swipe.component.html',
+  styleUrls: ['../swipe/swipe.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [elementContainerAnimator],
 })
 export class SwipeComponent implements AfterViewInit, OnDestroy, OnInit {
   destroy$ = new Subject<void>();
   @ViewChild('swipeContainer') swipeContainer!: ElementRef;
-  // @Input() displayMode: DisplayMode = DisplayMode.SINGLE_ELEMENT;
-  @Input() displayMode: DisplayMode = DisplayMode.MULTI_ELEMENT;
-
+  @Input() displayMode: DisplayMode = DisplayMode.SINGLE_ELEMENT;
+  
   windowResize$ = fromEvent(window, 'resize');
   windowInnerWidth$: Observable<number> = of(window.innerWidth);
 
@@ -31,9 +25,9 @@ export class SwipeComponent implements AfterViewInit, OnDestroy, OnInit {
     { title: 'one'},
     { title: 'two'},
     { title: 'three'},
-    // { title: 'four'},
-    // { title: 'five'},
-    // { title: 'six'},
+    { title: 'four'},
+    { title: 'five'},
+    { title: 'six'},
   ];
 
   // This is the entire list of elements
@@ -47,83 +41,80 @@ export class SwipeComponent implements AfterViewInit, OnDestroy, OnInit {
   swipeDirectionBS = new BehaviorSubject<Direction>(Direction.UNDEFINED);
   swipeDirection$: Observable<Direction> = this.swipeDirectionBS;
 
-  priorDirectionBS = new BehaviorSubject<Direction>(Direction.UNDEFINED);
-  priorDirection$: Observable<Direction> = this.priorDirectionBS;
-
-  // Updated when user swipes and we're not at the beginning/end of
-  // all the elements. 
   swipeStateBS = new BehaviorSubject<SwipeState>(SwipeState.UNDEFINED);
   swipeState$: Observable<SwipeState> = this.swipeStateBS;
 
-  // for mobile - one plan
-  selectedElementBS = new BehaviorSubject<SwipeElement | undefined>(undefined);
-  selectedElement$: Observable<SwipeElement | undefined> = this.selectedElementBS;
-
-  elementIndexBS = new BehaviorSubject<number>(0);
-  elementIndex$: Observable<number> = this.elementIndexBS;
-  //animationState: string;
-
-  readonly Direction = Direction;
-
-  numElementsToAnimate: number;
-  animationElementIndices: number[];
-  leftAnimationIndex = 0;
-  rightAnimationIndex = 0;
+  initialMoveBS = new BehaviorSubject<boolean>(true);
+  initialMove$: Observable<boolean> = this.initialMoveBS;
   
+  leftElementIndexBS = new BehaviorSubject<number>(0);
+  leftElementIndex$: Observable<number> = this.leftElementIndexBS;
+  
+  get firstElement() {
+    const firstEl = this.leftElementIndexBS.value === 0;
+    // console.log('sC get firstEl: ', firstEl)
+    return firstEl;
+  }
+  
+  get lastElement() {
+    const lastEl = this.leftElementIndexBS.value + this.numElementsToDisplay === this.allElementsBS.value.length;
+    // console.log('sC get lastEl: ', this.leftElementIndexBS.value, this.numElementsToDisplay, this.allElementsBS.value.length, lastEl)
+    return lastEl;
+  }
+  
+  readonly Direction = Direction;
+  
+  numElementsToDisplay = 0;
+  numElementsToAnimate: number;
   displayElementIndices: number[];
   
-  get leftDisplayIndex() {
-    return this.displayElementIndices[0];
-  }
-  get rightDisplayIndex() {
-    return this.displayElementIndices[this.displayElementIndices.length - 1];
-  }
-
-  leftCarouselButtonDisabled = true;
-  rightCarouselButtonDisabled = false;
-
   minThreeElementContainerWidth = 850;
   threeElementWindowWidth = 810;
   minTwoElementContainerWidth = 520;
   twoElementWindowWidth = 520;
-  oneElementWindowWidth = 270;
-
-  showSimpleSwipeFeature = false;
-  showMultiElementSwipeFeature = true;
+  oneElementWindowWidth = 251;
   
   ngOnInit() {
     //console.log('sC ngOI window inner width: ', window.innerWidth);
     this.allElementsBS.next(this.elements);
     
-    this.initializeNumElementsToDisplay(window.innerWidth);
-    this.setElementIndices();
-    this.initializeElements();
-
-    // this.windowInnerWidth$.pipe(take(1)).subscribe(width => {
-    //   //console.log('sC ngOI window inner width sub: ', width);
-    //   // this.initializeNumElementsToDisplay(width);
-    //   if (this.swipeContainer) {
-    //     // this.setSwipeContainerWidth(width);
-    //   }
-    // });
+    this.initialMove$.pipe(take(1)).subscribe(init => {
+      if (init) {
+        // console.log('sC ngOI initial move sub. init/firstEl/lastEl: ',  init, this.firstElement, this.lastElement);
+        this.initializeNumElsToDisplay(window.innerWidth);
+        this.getAnimationElements(Direction.LEFT);
+        this.updateDisplayedElementIndices();
+      }
+    });
     
-    this.swipeDirection$.pipe(takeUntil(this.destroy$)).subscribe(dirn => {
-      console.log('sC ngOI swipe direction sub: ', dirn);
-      if (dirn !== Direction.UNDEFINED) {
-        this.updateDisplayElementsAndIndices(dirn);
+    this.swipeDirection$.pipe(
+        withLatestFrom(this.initialMove$),
+        takeUntil(this.destroy$)
+      ).subscribe(([direction, init]) => {
+      // console.log('sC ngOI swipe direction sub. direction/init: ', direction, init);
+      
+      if (init === true) {
+        // console.log('sC ngOI swipe direction sub. init = true block');
+        this.initialMoveBS.next(false);
+      } else {
+        // console.log('sC ngOI sD$ init = false block. direction: ', direction);
+        this.getAnimationElements(direction);
+        this.updateSwipeState(direction);
+        this.updateLeftElementIndex(direction);
+        this.updateDisplayedElementIndices();
       }
     });
 
     this.animationElements$.pipe(takeUntil(this.destroy$)).subscribe(elements => {
-      console.log('sC ngOI display els sub. inds/els: ', this.animationElementIndices, elements);
-      if (elements.length !== 0) {
-        this.updateSwipeState(this.swipeDirectionBS.value);
-      }
+      // console.log('sC ngOI aE$ animation els sub. els/init/dirn: ',  elements);
+    });
+
+    this.leftElementIndex$.pipe(takeUntil(this.destroy$)).subscribe(ind => {
+      // console.log('sC ngOI lEI$ sub: ', ind);
     });
 
     this.swipeState$.pipe(takeUntil(this.destroy$)).subscribe(state => {
-      console.log('sC ngOI swipe state sub: ', state);
-      // this.updateCarouselButtonsDisabledState();
+      // console.log('sC ngOI swipe state sub.  state/init/direction: ', state);
     });
   }
 
@@ -156,86 +147,61 @@ export class SwipeComponent implements AfterViewInit, OnDestroy, OnInit {
     this.destroy$.complete();
   }
 
-  initializeNumElementsToDisplay(width: number) {
-    console.log('sC sNCTD num elements to display. width/disp mode: ', width, this.displayMode);
+  initializeNumElsToDisplay(width: number) {
+    // console.log('sC iNETD num elements to display. width/disp mode: ', width, this.displayMode);
     
     if (this.displayMode === DisplayMode.SINGLE_ELEMENT) {
-      this.numElementsToAnimate = 1;
+      this.numElementsToDisplay = 1;
+      // console.log('sC iNETD single element block.  nETD: ', this.numElementsToDisplay);
       
     } else {
 
       if (width > this.minThreeElementContainerWidth) {
-        this.numElementsToAnimate = 3;
-        console.log('sC sNCTD width > 3 el width');
+        this.numElementsToDisplay = 3;
+        // // console.log('sC iNETD width > 3 el width');
       } else if (width <= this.minThreeElementContainerWidth && width > this.minTwoElementContainerWidth) {
-        this.numElementsToAnimate = 2;
-        console.log('sC sNCTD width 2 < 3 el width');
+        this.numElementsToDisplay = 2;
+        // console.log('sC iNETD width 2 < 3 el width');
       } else if (width <= this.minTwoElementContainerWidth) {
-        this.numElementsToAnimate = 1;
-        console.log('sC sNCTD width < 2 el width');
+        this.numElementsToDisplay = 1;
+        // console.log('sC iNETD width < 2 el width');
       }
-      
-      // if (width > this.minThreeElementContainerWidth) {
-      //   this.numElementsToAnimate = Math.min(3, this.allElementsBS.value.length - 1);
-      //   console.log('sC sNCTD width > 3 el width');
-      // } else if (width <= this.minThreeElementContainerWidth && width > this.minTwoElementContainerWidth) {
-      //   this.numElementsToAnimate = Math.min(2, this.allElementsBS.value.length - 1);
-      //   console.log('sC sNCTD width 2 < 3 el width');
-      // } else if (width <= this.minTwoElementContainerWidth) {
-      //   this.numElementsToAnimate = 1;
-      //   console.log('sC sNCTD width < 2 el width');
-      // }
     }
     
-    console.log('sC sNCTD final num elements: ', this.numElementsToAnimate);
+    this.numElementsToAnimate = this.numElementsToDisplay + 1;
+    // console.log('sC iNETD final num elements to disp/animate: ', this.numElementsToDisplay, this.numElementsToAnimate);
 
   }
 
-  setElementIndices() {
-    const aEIs = [];
-    for (let i = 0; i <= this.numElementsToAnimate; i++) {
-      aEIs.push(i);
-    }
-    
-    const dEIs = aEIs.slice(0, this.numElementsToAnimate);
-    console.log('sC sDEI aEIs/dEIs: ', aEIs, dEIs);
-
-    this.animationElementIndices = aEIs;
-    this.displayElementIndices = dEIs;
-    this.rightAnimationIndex = aEIs[aEIs.length -1];
-    
-    console.log('sC sDEI final nETD/aEIs/dEIs/lAI/rAI/: ', this.numElementsToAnimate, this.animationElementIndices, this.displayElementIndices);
-    console.log('sC sDEI final lAI/rAI/lDI/rDI: ', this.leftAnimationIndex, this.rightAnimationIndex, this.leftDisplayIndex, this.rightDisplayIndex);
+  getAnimationElements(direction: Direction) {
+    const startIndex = direction === Direction.LEFT ? this.leftElementIndexBS.value : this.leftElementIndexBS.value - 1;
+    // console.log('sC gAE startIndex/nETA: ', startIndex, this.numElementsToDisplay + 1);
+    const els = this.allElementsBS.value.slice(startIndex, startIndex + this.numElementsToDisplay + 1);
+    // console.log('sC gAE final els: ', els);
+    this.animationElementsBS.next(els);
   }
-
-  initializeElements() {
-    const initialElements: SwipeElement[] = []
-    for (let i = 0; i <= this.numElementsToAnimate; i++) {
-      initialElements.push(this.allElementsBS.value[i]);
+  
+  updateDisplayedElementIndices() {
+    // console.log('sC uDEIs init lEI.v/dEIs: ', this.leftElementIndexBS.value, this.displayElementIndices);
+    const inds = [];
+    const startIndex = this.leftElementIndexBS.value;
+    for (let i = startIndex; i < startIndex + this.numElementsToDisplay; i++) {
+      inds.push(i);
     }
-    this.animationElementsBS.next(initialElements);
-    console.log('sC iE init animElementInds/dispInds: ', this.animationElementIndices, this.displayElementIndices);
-    console.log('sC iE init elements: ', this.animationElementsBS.value);
+    // console.log('sC uDEIs not init block. start ind/final dEIs: ', startIndex, inds);
+    this.displayElementIndices = inds;
   }
 
   setSwipeContainerWidth(viewportWidth: number) {
-    console.log('sC sSCW viewport width: ', viewportWidth);
+    // console.log('sC sSCW viewport width: ', viewportWidth);
 
     let numEls = this.allElementsBS.value.length;
     let width = 0;
 
     if (this.displayMode === DisplayMode.SINGLE_ELEMENT) {
       width = this.oneElementWindowWidth;
-      console.log('sC sSCW single element block. width: ', width);
+      // console.log('sC sSCW single element block. width: ', width);
     } else {
-
-      // if (width > this.minThreeElementContainerWidth) {
-      //   this.numElementsToAnimate = Math.min(3, this.allElementsBS.value.length - 1);
-      // } else if (width <= this.minThreeElementContainerWidth && width > this.minTwoElementContainerWidth) {
-      //   this.numElementsToAnimate = Math.min(2, this.allElementsBS.value.length - 1);
-      // } else if (width <= this.minTwoElementContainerWidth) {
-      //   this.numElementsToAnimate = 1;
-      // }
 
       // Need to set width based on viewport width and num elements to display
       // if viewport width can handle 3 elements and more than 3 elements are present,
@@ -244,164 +210,99 @@ export class SwipeComponent implements AfterViewInit, OnDestroy, OnInit {
       // set width to num elements - 1
 
       if (viewportWidth > this.minThreeElementContainerWidth) {
-        console.log('sC sSCW viewport > 3 elements width');
+        // console.log('sC sSCW viewpo?rt > 3 elements width');
         
         if (numEls > 3) {
           width = this.threeElementWindowWidth;
-          console.log('sC sSCW > 3 els  block: ', width);
+          // console.log('sC sSCW > 3 els  block: ', width);
           
         } else {
           width = numEls === 3 ? this.twoElementWindowWidth : this.oneElementWindowWidth;
-          console.log('sC sSCW num els =/< 3  block: ', width);
+          // console.log('sC sSCW num els =/< 3  block: ', width);
           
         }
 
         this.numElementsToAnimate = Math.min(3, this.allElementsBS.value.length - 1);
         
       } else if (viewportWidth < this.minThreeElementContainerWidth && viewportWidth > this.minTwoElementContainerWidth) {
-        console.log('sC sSCW 2 element block');
+        // console.log('sC sSCW 2 element block');
         
         if (numEls > 3) {
           width = this.twoElementWindowWidth;
-          console.log('sC sSCW > 3 els  block: ', width);
+          // console.log('sC sSCW > 3 els  block: ', width);
           
         } else {
           width = this.oneElementWindowWidth;
-          console.log('sC sSCW num els =/< 3  block: ', width);
+          // console.log('sC sSCW num els =/< 3  block: ', width);
           
         }
 
         this.numElementsToAnimate = Math.min(2, this.allElementsBS.value.length - 1);
         
       } else if (viewportWidth <= this.minTwoElementContainerWidth) {
-        console.log('sC sSCW 1 element block');
+        // console.log('sC sSCW 1 element block');
         width = this.oneElementWindowWidth;
         this.numElementsToAnimate = Math.min(1, this.allElementsBS.value.length - 1);
       }
       
-      console.log('sC sSCW final viewport width: ', width);
-      this.swipeContainer.nativeElement.style.maxWidth = `${width}px`;
     }
+    // console.log('sC sSCW final viewport width: ', width);
+    this.swipeContainer.nativeElement.style.maxWidth = `${width}px`;
+  }
+
+  handleSwipe(direction: Direction) {
+    // console.log('==============================');
+    // console.log('sC hS handle swipe called. direction: ', direction);
+    this.updateSwipeDirection(direction);
   }
 
   updateSwipeDirection(direction: Direction) {
-    
     if (direction !== Direction.UNDEFINED) {
-      console.log('sC uSD init dirn/lAI/rAI/lDI/rDI: ', direction, this.leftAnimationIndex, this.rightAnimationIndex, this.leftDisplayIndex, this.rightDisplayIndex);
-      console.log('sC uSD num all els: ', this.allElementsBS.value.length);
+      // console.log('sC uSD init dirn/t.dEIs/fE/lE: ', direction, this.displayElementIndices, this.firstElement, this.lastElement);
       
-      if (direction === Direction.RIGHT && this.leftDisplayIndex > 0) {
+      if (direction === Direction.RIGHT && !this.firstElement) {
+        this.swipeDirectionBS.next(direction);
         
-        this.swipeDirectionBS.next(Direction.RIGHT)
-        console.log('sC uSD right swipe block. updated swipe direction: ', this.swipeDirectionBS.value);
-
-      } else if (direction === Direction.LEFT && this.rightDisplayIndex < this.allElementsBS.value.length - 1) {
+      } else if (direction === Direction.LEFT && !this.lastElement) {
+        this.swipeDirectionBS.next(direction);
         
-        this.swipeDirectionBS.next(Direction.LEFT)
-        console.log('sC uSD left swipe block. updated swipe direction: ', this.swipeDirectionBS.value);
-
       }
     } else {
-      console.log('sC uSD dirn undefined (wtf??)');
-
+      // console.log('sC uSD dirn undefined (wtf??)');
     }
-  }
-
-  updateDisplayElementsAndIndices(direction: Direction) {
-    console.log('sC uDEAI update display inds/els. init direction: ', direction);
-    console.log('sC uDEAI init lAI/rAI/lDI/rDI: ', this.leftAnimationIndex, this.rightAnimationIndex, this.leftDisplayIndex, this.rightDisplayIndex);
-    console.log('sC uDEAI init swipe/prior dirn: ', this.swipeDirectionBS.value, this.priorDirectionBS.value);
-    
-    const newElements: SwipeElement[] = [];
-    const newIndices: number[] = [];
-
-    // First, only change the elements if it's the same direction
-    if (direction === this.priorDirectionBS.value) {
-      console.log('sC uDEAI same direction block');
-
-      if (direction === Direction.LEFT) {
-        console.log('sC uDEAI dirn left block. rDI < num all els - 1: ', this.rightDisplayIndex < this.allElementsBS.value.length - 1);
-        
-        // next only update left/right inds if not at the end of all elements
-        if (this.rightDisplayIndex < this.allElementsBS.value.length - 1) {
-          this.leftAnimationIndex ++;
-          this.rightAnimationIndex ++;
-          console.log('sC uDEAI swipe left. rDI < all els - 1. new lAI/rAI/lDI/rDI: ', this.leftAnimationIndex, this.rightAnimationIndex, this.leftDisplayIndex, this.rightDisplayIndex);
-          
-        } else {
-          console.log('sC uDEAI swipe left. right ind > num els. not updating left/right inds');
-          
-        }
-      } else if (direction === Direction.RIGHT) {
-        console.log('sC uDEAI dirn right block');
-        
-        // next only update left/right inds if not at the start of all elements
-        if (this.leftDisplayIndex > 0) {
-          this.leftAnimationIndex --;
-          this.rightAnimationIndex --;
-          console.log('sC uDEAI swipe right. lDI > 0. new lAI/rAI/lDI/rDI: ', this.leftAnimationIndex, this.rightAnimationIndex, this.leftDisplayIndex, this.rightDisplayIndex);
-          
-        } else {
-          console.log('sC uDEAI swipe right. left ind = 0. not updating left ind');
-        }
-      }
-
-      // Updates animationElements array (these are the rendered elements plus the outside element)
-      // Adds number of elements to display starting at leftAnimationIndex plus outside element
-      for(let i = this.leftAnimationIndex; i <= this.leftAnimationIndex + this.numElementsToAnimate; i++ ) {
-        newIndices.push(i);
-        const el = this.allElementsBS.value[i];
-        newElements.push(el);
-        // console.log('sC uDEAI ind/new element: ', i, el);
-      }
-      this.animationElementIndices = newIndices;
-      this.animationElementsBS.next(newElements);
-      console.log('sC uDEAI new disp elements: ', this.animationElementsBS.value);
-      console.log('sC uDEAI final lAI/rAI/lDI/rDI/t.aEIs/t.dEIs: ', this.leftAnimationIndex, this.rightAnimationIndex,  this.leftDisplayIndex, this.rightDisplayIndex, this.animationElementIndices, this.animationElementIndices, this.displayElementIndices);
-
-    } else {
-
-      // different click direction
-      this.animationElementsBS.next([...this.animationElementsBS.value]);
-      console.log('sC uDEAI different direction block.  keeping existing displayed inds');
-
-      console.log('sC uDEAI unchanged lAI/rAI/lDI/rDI/t.aEIs/t.dEIs: ', this.leftAnimationIndex, this.rightAnimationIndex,  this.leftDisplayIndex, this.rightDisplayIndex, this.animationElementIndices, this.animationElementIndices, this.displayElementIndices);
-      console.log('sC uDEAI unchanged swipe/prior dirn: ', this.swipeDirectionBS.value, this.priorDirectionBS.value);
-    }
-
-    // Updates the displayed elements indicator array
-    if (direction === Direction.LEFT) {
-      this.displayElementIndices = this.animationElementIndices.slice(1);
-      console.log('sC uDEAI dirn left new displayElementIndices: ', this.displayElementIndices);
-    } else if (direction === Direction.RIGHT) {
-      this.displayElementIndices = this.animationElementIndices.slice(0, this.numElementsToAnimate);
-      console.log('sC uDEAI dirn right new displayElementIndices: ', this.displayElementIndices);
-    }
-    // prepare for next click
-    this.priorDirectionBS.next(direction);
-  }
-  
-  handleSwipe(direction: Direction) {
-    console.log('==============================');
-    console.log('sC hS handle swipe called. direction: ', direction);
-    
-    this.updateSwipeDirection(direction);
   }
 
   updateSwipeState(direction: Direction) {
     const swipeElementsLength = this.allElementsBS.value.length;
+    // console.log('sC uSS init dirn/t.dEIs/: ', direction, this.displayElementIndices, swipeElementsLength, this.firstElement, this.lastElement);
     if (direction !== Direction.UNDEFINED) {
-      console.log('sC uSS init dirn/lAI/rAI/lDI/rDI/num swipe els: ', direction, this.leftAnimationIndex, this.rightAnimationIndex, this.leftDisplayIndex, this.rightDisplayIndex, swipeElementsLength);
-
-      if (direction === Direction.RIGHT && this.leftDisplayIndex >= 0) {
-        
+    if (direction === Direction.RIGHT && !this.firstElement) {
         this.swipeStateBS.next(SwipeState.SWIPE_RIGHT)
-        console.log('sC uSS right swipe block. updated swipe state: ', this.swipeStateBS.value);
-  
-      } else if (direction === Direction.LEFT && this.rightDisplayIndex <= swipeElementsLength - 1) {
-      
+        // console.log('sC uSS right swipe block. updated swipe state: ', this.swipeStateBS.value);
+        // console.log('----------------------');
+      } else if (direction === Direction.LEFT && !this.lastElement) {
         this.swipeStateBS.next(SwipeState.SWIPE_LEFT)
-        console.log('sC uSS left swipe block. updated swipe state: ', this.swipeStateBS.value);
+        // console.log('sC uSS left swipe block. updated swipe state: ', this.swipeStateBS.value);
+        // console.log('----------------------');
+      }
+    }
+  }
+  
+  updateLeftElementIndex(direction: Direction) {
+    let nextLei = 0;
+    if (direction === Direction.LEFT) {
+      // console.log('sC uLEI dirn=left. lastElem: ', this.lastElement);
+      if (!this.lastElement) {
+        nextLei = this.leftElementIndexBS.value + 1;
+        // console.log('sC uLEI dirn=left nextLei: ', direction, nextLei);
+        this.leftElementIndexBS.next(nextLei);
+      }
+    } else {
+      // console.log('sC uLEI dirn=right. firstElem: ', this.firstElement);
+      if (!this.firstElement) {
+        const nextLei = this.leftElementIndexBS.value - 1;
+        // console.log('sC uLEI dirn=right nextLei: ', direction, nextLei);
+        this.leftElementIndexBS.next(nextLei);
       }
     }
   }
@@ -409,25 +310,14 @@ export class SwipeComponent implements AfterViewInit, OnDestroy, OnInit {
   checkSwipeState(event: AnimationEvent) {
     // console.log('sC cSS swipe state: ', this.swipeStateBS.value);
     // console.log('sC cSS swipe event: ', event);
-
   }
 
   handleAnimationEnd(event: AnimationEvent) {
     this.resetSwipeState();
-    // console.log('=============================');
-    // console.log('s hAE done event: ', event);
-
-
-    
-    // this.updateDisplayElementsAndIndices(this.swipeDirectionBS.value);
   }
 
   resetSwipeState() {
-    
     // console.log('sC rSS reset swipe state');
     this.swipeStateBS.next(SwipeState.UNDEFINED);
   }
-
-  
-  
 }

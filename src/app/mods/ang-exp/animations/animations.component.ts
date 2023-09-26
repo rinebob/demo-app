@@ -8,6 +8,7 @@ import {
   
 } from '@angular/animations';
 
+import { DisplayMode} from './interfaces-animations';
 @Component({
   selector: 'app-animations',
   templateUrl: './animations.component.html',
@@ -17,6 +18,7 @@ import {
 })
 export class AnimationsComponent {
 
+  readonly DisplayMode = DisplayMode;
 
   handleTabAnimationDone(event: any) {
     // console.log('a hTAD tab animation done event: ', event);

@@ -25,3 +25,8 @@ export interface SwipeElement {
     SWIPE_RIGHT = 'swipe-right',
     UNDEFINED = '',
   }
+
+  export enum DisplayMode {
+    SINGLE_ELEMENT = 'single-element',
+    MULTI_ELEMENT = 'multi-element',
+  }
