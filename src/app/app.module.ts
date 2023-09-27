@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HAMMER_GESTURE_CONFIG, HammerGestureConfig, HammerModule } from '@angular/platform-browser';
+import * as hammer from "hammerjs";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -55,6 +57,14 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
   resolvePersistenceEnabled = resolve;
 });
 
+export class MyHammerConfig extends HammerGestureConfig {
+  override overrides = <any>{
+    swipe: { direction: hammer.DIRECTION_HORIZONTAL },
+    pinch: { enable: false },
+    rotate: { enable: false }
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +82,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HammerModule,
     HttpClientModule,
     ReactiveFormsModule,
 
@@ -144,6 +155,7 @@ export const persistenceEnabled = new Promise<boolean>(resolve => {
   ],
   providers: [
     MatIconRegistry, BoardsStore,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
   ],
   exports: [MatIconModule],
   bootstrap: [AppComponent]

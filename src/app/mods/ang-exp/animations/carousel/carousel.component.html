@@ -16,9 +16,9 @@
              [class.left]="clickDirectionBS.value === Direction.LEFT 
                            || clickDirectionBS.value === Direction.UNDEFINED"
              [class.right]="clickDirectionBS.value === Direction.RIGHT"
-             [@cardContainerAnimator]="swipeState$ | async"
-             (@cardContainerAnimator.start)="checkSwipeState($event)"
-             (@cardContainerAnimator.done)="resetSwipeState($event)"
+             [@carouselContainerAnimator]="swipeState$ | async"
+             (@carouselContainerAnimator.start)="checkSwipeState($event)"
+             (@carouselContainerAnimator.done)="resetSwipeState($event)"
         >
 
             <ng-container *ngIf="displayElements$ | async as elements">
@@ -26,8 +26,8 @@
                 <ng-container *ngFor="let element of elements; let i = index">
 
                     <div class="element-container" 
-                         (swipeleft)="handleSwipe(Direction.LEFT)"
-                         (swiperight)="handleSwipe(Direction.RIGHT)"
+                         (swipeleft)="handleCarouselSwipe(Direction.LEFT)"
+                         (swiperight)="handleCarouselSwipe(Direction.RIGHT)"
                     >
                     
                         <p class="element-title">

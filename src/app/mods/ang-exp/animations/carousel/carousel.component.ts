@@ -2,17 +2,17 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestro
 import { AnimationEvent } from '@angular/animations'
 import { BehaviorSubject, Observable, Subject, debounceTime, fromEvent, of, take, takeUntil } from 'rxjs';
 
-import { SwipeState, CardState, Direction, SwipeElement} from '../interfaces-animations';
-import { cardContainerAnimator, individualCardAnimator } from './swipe-animations';
+import { SwipeState, Direction, SwipeElement} from '../interfaces-animations';
+import { carouselContainerAnimator } from './carousel-animations';
 
 @Component({
-  selector: 'app-swipe-carousel',
-  templateUrl: './swipe-carousel.component.html',
-  styleUrls: ['./swipe-carousel.component.scss'],
+  selector: 'app-carousel',
+  templateUrl: './carousel.component.html',
+  styleUrls: ['./carousel.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [cardContainerAnimator, individualCardAnimator],
+  animations: [carouselContainerAnimator],
 })
-export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit {
+export class CarouselComponent implements AfterViewInit, OnDestroy, OnInit {
   destroy$ = new Subject<void>();
   @ViewChild('swipeContainer') swipeContainer!: ElementRef;
 
@@ -73,13 +73,10 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
   showSwipeFeature = true;
   
   ngOnInit() {
-    console.log('sC ngOI window inner width: ', window.innerWidth);
-    // this.setNumCardsToDisplay(window.innerWidth);
-
     this.allElementsBS.next(this.elements);
 
     this.windowInnerWidth$.pipe(take(1)).subscribe(width => {
-      console.log('sC ngOI window inner width sub: ', width);
+      //console.log('c ngOI window inner width sub: ', width);
       this.setNumCardsToDisplay(width);
       if (this.swipeContainer) {
         this.setSwipeContainerWidth(width);
@@ -87,28 +84,28 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
     });
     
     this.clickDirection$.pipe(takeUntil(this.destroy$)).subscribe(dirn => {
-      console.log('sC ngOI click direction sub: ', dirn);
+      //console.log('c ngOI click direction sub: ', dirn);
       if (dirn !== Direction.UNDEFINED) {
         this.updateDisplayIndicesAndElements(dirn);
       }
     });
 
     this.displayElements$.pipe(takeUntil(this.destroy$)).subscribe(elements => {
-      console.log('sC ngOI display inds/elements sub: ', this.displayedCardIndices, elements);
+      //console.log('c ngOI display inds/elements sub: ', this.displayedCardIndices, elements);
       if (elements.length !== 0) {
         this.updateSwipeState(this.clickDirectionBS.value);
       }
     });
 
     this.swipeState$.pipe(takeUntil(this.destroy$)).subscribe(state => {
-      console.log('sC ngOI swipe state sub: ', state);
+      //console.log('c ngOI swipe state sub: ', state);
       this.updateCarouselButtonsDisabledState();
     });
   }
 
   ngAfterViewInit(): void {
-    console.log('sC ngAVI t.swipeContainer: ', this.swipeContainer);
-    // console.log('sC ngAVI window inner width: ', window.innerWidth);
+    //console.log('c ngAVI t.swipeContainer: ', this.swipeContainer);
+    // console.log('c ngAVI window inner width: ', window.innerWidth);
 
     if (this.swipeContainer) {
       this.setSwipeContainerWidth(window.innerWidth);
@@ -119,9 +116,9 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
     this.windowResize$.pipe(
       debounceTime(500),
       takeUntil(this.destroy$)).subscribe(event => {
-      console.log('sC ngAVI window resize sub event: ', event);
+      //console.log('c ngAVI window resize sub event: ', event);
       const width = (event['target'] as typeof window).innerWidth;
-      console.log('sC ngAVI window width: ', width);
+      //console.log('c ngAVI window width: ', width);
       // this.setNumCardsToDisplay(width);
       if (this.swipeContainer) {
         // this.setSwipeContainerWidth(window.innerWidth);
@@ -142,7 +139,7 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
   // below 520px set container width to 170px and show one card
   
   setNumCardsToDisplay(width: number) {
-    console.log('sC sNCTD num cards to display. rect: ', width);
+    //console.log('c sNCTD num cards to display. rect: ', width);
 
     if (width > this.minThreeCardContainerWidth) {
       this.numCardsToDisplay = 3;
@@ -158,24 +155,24 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
     }
 
     const iIs = dCIs.slice(0, this.numCardsToDisplay);
-    console.log('sC sNCTD dCIs/iIs: ', dCIs, iIs);
+    //console.log('c sNCTD dCIs/iIs: ', dCIs, iIs);
 
     this.displayedCardIndices = dCIs;
     this.indicatorIndices = dCIs.slice(0, this.numCardsToDisplay);
     this.rightSideIndex = dCIs[dCIs.length -1];
     
-    console.log('sC sNCTD final nCTD/dCIs/iIs/lSI/rSI: ', this.numCardsToDisplay, this.displayedCardIndices, this.indicatorIndices, this.leftSideIndex, this.rightSideIndex);
+    //console.log('c sNCTD final nCTD/dCIs/iIs/lSI/rSI: ', this.numCardsToDisplay, this.displayedCardIndices, this.indicatorIndices, this.leftSideIndex, this.rightSideIndex);
   }
 
   setSwipeContainerWidth(width: number) {
     if (width > this.minThreeCardContainerWidth) {
-      console.log('sC sSCW 3 card block: ', width);
+      //console.log('c sSCW 3 card block: ', width);
       this.swipeContainer.nativeElement.style.maxWidth = `${this.threeCardWindowWidth}px`;
     } else if (width < this.minThreeCardContainerWidth && width > this.minTwoCardContainerWidth) {
-      console.log('sC sSCW 2 card block: ', width);
+      //console.log('c sSCW 2 card block: ', width);
       this.swipeContainer.nativeElement.style.maxWidth = `${this.twoCardWindowWidth}px`;
     } else if (width <= this.minTwoCardContainerWidth) {
-      console.log('sC sSCW 1 card block: ', width);
+      //console.log('c sSCW 1 card block: ', width);
       this.swipeContainer.nativeElement.style.maxWidth = `${this.oneCardWindowWidth}px`;
     }
   }
@@ -186,31 +183,30 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
       initialCards.push(this.allElementsBS.value[i]);
     }
     this.displayElementsBS.next(initialCards);
-    console.log('sC iC init dispCardInds/indInds: ', this.displayedCardIndices, this.indicatorIndices);
-    console.log('sC iC init cards: ', this.displayElementsBS.value);
+    //console.log('c iC init dispCardInds/indInds: ', this.displayedCardIndices, this.indicatorIndices);
+    //console.log('c iC init cards: ', this.displayElementsBS.value);
   }
 
   // NOTE: 
   // A right click equals a left swipe
   // A left click equals a right swipe
   handleClick(direction: Direction) {
-    console.log('==============================');
-    console.log('sC hC handle click called. click direction: ', direction);
+    //console.log('==============================');
+    //console.log('c hC handle click called. click direction: ', direction);
     this.clickDirectionBS.next(direction);
   }
   
-  handleSwipe(direction: Direction) {
-    console.log('sC hS handle swipe called. direction: ', direction);
+  handleCarouselSwipe(direction: Direction) {
+    //console.log('c hS handle swipe called. direction: ', direction);
+    const swipeDirection = direction === Direction.LEFT ? Direction.RIGHT : Direction.LEFT;
 
-    // to move the cards container
-    //this.updateCardsContainerSwipeState(direction);
-    this.updateSwipeState(direction);
+    this.handleClick(swipeDirection);
   }
 
   updateDisplayIndicesAndElements(direction: Direction) {
-    console.log('sC uDI update display inds/els. direction: ', direction);
-    console.log('sC uDI init left/right inds/dispCardInds: ', this.leftSideIndex, this.rightSideIndex, this.displayedCardIndices);
-    console.log('sC uDI init click/prior dirn: ', this.clickDirectionBS.value, this.priorDirectionBS.value);
+    console.log('c uDI update display inds/els. direction: ', direction);
+    console.log('c uDI init left/right inds/dispCardInds: ', this.leftSideIndex, this.rightSideIndex, this.displayedCardIndices);
+    console.log('c uDI init click/prior dirn: ', this.clickDirectionBS.value, this.priorDirectionBS.value);
     
     const newElements: SwipeElement[] = [];
     const newIndices: number[] = [];
@@ -239,32 +235,32 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
     // Updates displayed card indices
     // First, only change the cards if it's the same direction
     if (direction === this.priorDirectionBS.value) {
-      console.log('sC uDI same direction block');
+      console.log('c uDI same direction block');
 
       if (direction === Direction.RIGHT) {
-        console.log('sC uDI dirn right block');
+        console.log('c uDI dirn right block');
         
         // next only update left/right inds if not at the end of all elements
         if (this.rightSideIndex < this.allElementsBS.value.length - 1) {
           this.leftSideIndex ++;
           this.rightSideIndex ++;
-          console.log('sC uDI click right new left/right ind: ', this.leftSideIndex, this.rightSideIndex);
+          console.log('c uDI click right new left/right ind: ', this.leftSideIndex, this.rightSideIndex);
           
         } else {
-          console.log('sC uDI click right. right ind > num els. not updating left/right inds');
+          console.log('c uDI click right. right ind > num els. not updating left/right inds');
           
         }
       } else if (direction === Direction.LEFT) {
-        console.log('sC uDI dirn left block');
+        console.log('c uDI dirn left block');
         
         // next only update left/right inds if not at the start of all elements
         if (this.leftSideIndex > 0) {
           this.leftSideIndex --;
           this.rightSideIndex --;
-          console.log('sC uDI click left. left ind > 0. new left/right ind: ', this.leftSideIndex, this.rightSideIndex);
+          console.log('c uDI click left. left ind > 0. new left/right ind: ', this.leftSideIndex, this.rightSideIndex);
           
         } else {
-          console.log('sC uDI click left. left ind = 0. not updating left ind');
+          console.log('c uDI click left. left ind = 0. not updating left ind');
         }
       }
 
@@ -274,27 +270,27 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
         newIndices.push(i);
         const el = this.allElementsBS.value[i];
         newElements.push(el);
-        // console.log('sC uDI ind/new element: ', i, el);
+        // console.log('c uDI ind/new element: ', i, el);
       }
       this.displayedCardIndices = newIndices;
       this.displayElementsBS.next(newElements);
-      console.log('sC uDI final left ind/disp cards: ', this.leftSideIndex, this.rightSideIndex, this.displayedCardIndices);
-      console.log('sC uDI new disp elements: ', this.displayElementsBS.value);
+      console.log('c uDI final left ind/disp cards: ', this.leftSideIndex, this.rightSideIndex, this.displayedCardIndices);
+      console.log('c uDI new disp elements: ', this.displayElementsBS.value);
 
     } else {
 
       // different click direction
       this.displayElementsBS.next([...this.displayElementsBS.value]);
-      console.log('sC uDI different direction block.  keeping existing displayed inds/els: ', this.displayedCardIndices, this.displayElementsBS.value);
+      console.log('c uDI different direction block.  keeping existing displayed inds/els: ', this.displayedCardIndices, this.displayElementsBS.value);
     }
 
     // Updates the displayed cards indicator array
     if (direction === Direction.RIGHT) {
       this.indicatorIndices = this.displayedCardIndices.slice(1);
-      // console.log('sC uDI dirn right new indicatorIndices: ', this.indicatorIndices);
+      console.log('c uDI dirn right new indicatorIndices: ', this.indicatorIndices);
     } else if (direction === Direction.LEFT) {
       this.indicatorIndices = this.displayedCardIndices.slice(0, this.numCardsToDisplay);
-      // console.log('sC uDI dirn left new indicatorIndices: ', this.indicatorIndices);
+      console.log('c uDI dirn left new indicatorIndices: ', this.indicatorIndices);
     }
     // prepare for next click
     this.priorDirectionBS.next(direction);
@@ -303,82 +299,39 @@ export class SwipeCarouselComponent implements AfterViewInit, OnDestroy, OnInit 
   updateSwipeState(direction: Direction) {
     const swipeElementsLength = this.allElementsBS.value.length;
     if (direction !== Direction.UNDEFINED) {
-      console.log('sC uSS dirn left/right ind/num swipe els: ', direction, this.leftSideIndex, this.rightSideIndex, swipeElementsLength);
+      //console.log('c uSS dirn left/right ind/num swipe els: ', direction, this.leftSideIndex, this.rightSideIndex, swipeElementsLength);
     }
     if (direction === Direction.RIGHT && this.rightSideIndex < swipeElementsLength) {
         
       // right click = left swipe
       this.swipeStateBS.next(SwipeState.SWIPE_LEFT)
-      console.log('sC uSS right click block. updated swipe state: ', this.swipeStateBS.value);
+      //console.log('c uSS right click block. updated swipe state: ', this.swipeStateBS.value);
     } else if (direction === Direction.LEFT && this.leftSideIndex >= 0) {
     
       // left click = right swipe
       this.swipeStateBS.next(SwipeState.SWIPE_RIGHT)
-      console.log('sC uSS left click block. updated swipe state: ', this.swipeStateBS.value);
+      //console.log('c uSS left click block. updated swipe state: ', this.swipeStateBS.value);
     }
   }
 
   updateCarouselButtonsDisabledState() {
-    console.log('sC uCBDS init lef/right inds: ', this.leftSideIndex, this.rightSideIndex);
+    //console.log('c uCBDS init lef/right inds: ', this.leftSideIndex, this.rightSideIndex);
     this.leftCarouselButtonDisabled = this.indicatorIndices[0] <= 0;
     this.rightCarouselButtonDisabled = this.indicatorIndices[this.indicatorIndices.length - 1] >= this.allElementsBS.value.length - 1;
-    console.log('sC uCBDS final left/right button disabled states: ', this.leftCarouselButtonDisabled, this.rightCarouselButtonDisabled);
+    //console.log('c uCBDS final left/right button disabled states: ', this.leftCarouselButtonDisabled, this.rightCarouselButtonDisabled);
   }
 
   checkSwipeState(event: AnimationEvent) {
-    //console.log('sC cSS swipe state: ', this.swipeState);
-    //console.log('sC cSS swipe event: ', event);
+    //console.log('c cSS swipe state: ', this.swipeState);
+    //console.log('c cSS swipe event: ', event);
 
   }
 
   resetSwipeState(event: AnimationEvent) {
     
-    // console.log('sC rAS reset swipe state');
+    // console.log('c rAS reset swipe state');
     this.swipeStateBS.next(SwipeState.UNDEFINED);
   }
 
-  // SWIPE FEATURE
-
-  // handleSwipeGesture(direction: number) {
-  //   //console.log('pCs hSG handle swipe called.  direction: ', direction);
-  //   this.updatePlanToDisplay(direction);
-  // }
-  // updatePlanToDisplay(direction: number) {
-    
-  //   if (this.showElectricPlans) {
-  //     //console.log('pCs uPTD cur index/direction: ', this.planIndexBS.value, direction);
-      
-  //     this.electricPlans$.pipe(take(1)).subscribe(plans => {
-  //       //console.log('pCs uPTD electric plans.length: ', plans.length);
-  //       //console.log('pCs uPTD current electric plan: ', this.planToDisplayBS.value);
-  //       let updatedIndex = this.planIndexBS.value;
-  //       if (direction > 0) {
-  //         updatedIndex = this.planIndexBS.value < plans.length - 1 ? this.planIndexBS.value + direction : this.planIndexBS.value;
-        
-  //       } else if (direction < 0) {
-  //         updatedIndex = this.planIndexBS.value > 0 ? this.planIndexBS.value + direction : this.planIndexBS.value;
-  //       }
-  //       this.planIndexBS.next(updatedIndex);
-  //       this.planToDisplayBS.next(plans[this.planIndexBS.value]);
-  //       //console.log('pCs uPTD updatedIndex/planToDisplay: ', this.planIndexBS.value, this.planToDisplayBS.value);
-  //     })
-  //   } else if (this.showGasPlans) {
-  //     //console.log('pCs uPTD gas plans. cur index/direction: ', this.planIndexBS.value, direction);
-  //     this.gasPlans$.pipe(take(1)).subscribe(plans => {
-  //       //console.log('pCs uPTD gas plans.length: ', plans.length);
-  //       //console.log('pCs uPTD current gas plan: ', this.planToDisplayBS.value);
-  //       let updatedIndex = this.planIndexBS.value;
-  //       if (direction > 0) {
-  //         updatedIndex = this.planIndexBS.value < plans.length - 1 ? this.planIndexBS.value + direction : this.planIndexBS.value;
-        
-  //       } else if (direction < 0) {
-  //         updatedIndex = this.planIndexBS.value > 0 ? this.planIndexBS.value + direction : this.planIndexBS.value;
-  //       }
-  //       this.planIndexBS.next(updatedIndex);
-  //       this.planToDisplayBS.next(plans[this.planIndexBS.value]);
-  //       //console.log('pCs uPTD updatedIndex/planToDisplay: ', this.planIndexBS.value, this.planToDisplayBS.value);
-  //     })
-  //   }
-  // }
 
 }

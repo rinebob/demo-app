@@ -1,0 +1,75 @@
+@use '../../../../../styles/global-mixins' as gMix;
+@use '../../../../../styles/global-variables' as gVar;
+@import "../../../../../styles/styles.scss";
+
+:host {
+    @include gMix.flexboxLayout(column, center, flex-start);
+    width: 100%;
+
+    p {
+        color: black;
+    }
+
+    .swipe-feature-container {
+        @include gMix.flexboxLayout(column, center, center);
+        @include gMix.border1();
+        margin-top: 20px;
+        width: 100%;
+        
+        .swipe-container {
+            overflow-x: hidden;
+            margin-top: 20px;
+            max-width: 800px;
+            
+            .elements-container {
+                gap: 20px;
+                
+                .element-container {
+                    @include gMix.flexboxLayout(column, center, center);
+                    @include gMix.border1();
+                    
+                    background-color: lightslategrey;
+                    
+                    height: 300px;
+                    width: 250px;
+                    
+                    .element-title {
+                        font: 700 36px/48px 'Arial';
+                    }
+                }
+            }
+        }
+
+        .left {
+            @include gMix.flexboxLayout();
+        }
+        
+        .right {
+            @include gMix.flexboxLayout(row, flex-end, flex-start);
+        }
+        
+        .controls-container {
+            @include gMix.flexboxLayout(row, center, center);
+            margin: 20px 0;
+            width: 100%;
+            
+            .indicator-container {
+                @include gMix.flexboxLayout(row, center, center);
+                gap: 8px;
+                
+                .indicator {
+                    @include gMix.flexboxLayout(row, center, center);
+                    @include gMix.border1();
+                    border-radius: 50%;
+                    height: 30px;
+                    width: 30px;
+
+                    &.displayed {
+                        color: white;
+                        background-color: blue;
+                    }
+                }
+            }
+        }
+    }
+}

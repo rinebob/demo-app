@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate, keyframes, animation, useAnimation, group, query, stagger, animateChild } from "@angular/animations";
 
-import { SwipeState, CardState, Direction, SwipeElement} from '../interfaces-animations';
+import { SwipeState, ElementState, Direction, SwipeElement} from '../interfaces-animations';
 
 // SWIPE ANIMATIONS RULES
 
@@ -24,7 +24,7 @@ import { SwipeState, CardState, Direction, SwipeElement} from '../interfaces-ani
 ///////////////// FOR CARD CONTAINER MOVEMENT /////////////
 
 
-export const cardContainerAnimator = trigger('cardContainerAnimator', [
+export const carouselContainerAnimator = trigger('carouselContainerAnimator', [
     transition('* => swipe-left', [
         style({ transform: 'translateX(270px)'}),
         animate('1000ms ease-out'),

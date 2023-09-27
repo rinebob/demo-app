@@ -10,10 +10,16 @@
                (selectedTabChange)="handleSelectedTabChange($event)"
 
 >
+    <mat-tab label="Swipe">
 
-    <mat-tab label="Swipe/Carousel">
+        <app-swipe [displayMode]="DisplayMode.SINGLE_ELEMENT"></app-swipe>
+        <app-swipe [displayMode]="DisplayMode.MULTI_ELEMENT"></app-swipe>
 
-        <app-swipe-carousel></app-swipe-carousel>
+    </mat-tab>
+
+    <mat-tab label="Carousel">
+
+        <app-carousel></app-carousel>
 
     </mat-tab>
 

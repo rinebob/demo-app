@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SwipeCarouselComponent } from './swipe-carousel.component';
+import { SwipeCarouselComponent } from './carousel.component';
 
 describe('SwipeCarouselComponent', () => {
   let component: SwipeCarouselComponent;
